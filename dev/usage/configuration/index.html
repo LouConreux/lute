@@ -1,0 +1,1934 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="GFD, VM">
+      
+      
+      
+        <link rel="prev" href="../../quick_start/">
+      
+      
+        <link rel="next" href="../running_lute/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>Task Configuration - LUTE</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#task-configuration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="LUTE" class="md-header__button md-logo" aria-label="LUTE" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LUTE
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Task Configuration
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/slac-lcls/lute" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="LUTE" class="md-nav__button md-logo" aria-label="LUTE" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    LUTE
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/slac-lcls/lute" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick_start/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quick Start
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Usage Manual
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Usage Manual
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Task Configuration
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Task Configuration
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#preparing-a-configuration-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparing a Configuration YAML
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Preparing a Configuration YAML">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-do-i-know-what-parameters-are-available-and-what-they-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do I know what parameters are available, and what they do?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variable-substitution-in-yaml-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variable Substitution in YAML Files
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Variable Substitution in YAML Files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gotchas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gotchas!
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../running_lute/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Running LUTE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Developer Documentation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Developer Documentation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/new_task/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creating a new Task
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/creating_workflows/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creating a new Workflow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Source Code
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Source Code
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/managed_tasks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    managed_tasks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    execution
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            execution
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/execution/executor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    executor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/execution/ipc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ipc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/execution/debug_utils/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    debug_utils
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/execution/logging/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    logging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    tasks
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            tasks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/task/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    task
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/tasklets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tasklets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/dataclasses/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dataclasses
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/geometry/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    geometry
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/_geometry/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    _geometry
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/sfx_find_peaks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sfx_find_peaks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/sfx_index/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sfx_index
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/smalldata/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    smalldata
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/_smalldata/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    _smalldata
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/math/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    math
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/test/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    test
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/mpi_test/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mpi_test
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3_13" id="__nav_4_3_13_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    util
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_13">
+            <span class="md-nav__icon md-icon"></span>
+            util
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/util/html/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    html
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    io
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            io
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_1" id="__nav_4_4_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    models
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/models/base/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    base
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/models/geometry/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    geometry
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/models/sfx_find_peaks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sfx_find_peaks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/models/sfx_index/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sfx_index
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/models/sfx_merge/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sfx_merge
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/models/sfx_solve/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sfx_solve
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/models/smd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    smd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/models/validators/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    validators
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/models/tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/models/mpi_tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mpi_tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/config/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    config
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/db/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    db
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/_sqlite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    _sqlite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/elog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    elog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/exceptions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    exceptions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Design and Specifications
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Design and Specifications
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/database/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Database
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#preparing-a-configuration-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparing a Configuration YAML
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Preparing a Configuration YAML">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-do-i-know-what-parameters-are-available-and-what-they-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do I know what parameters are available, and what they do?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variable-substitution-in-yaml-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variable Substitution in YAML Files
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Variable Substitution in YAML Files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gotchas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gotchas!
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="task-configuration">Task Configuration</h1>
+<h2 id="preparing-a-configuration-yaml">Preparing a Configuration YAML</h2>
+<p>All <code>Task</code>s are parameterized through a single configuration YAML file - even third party code which requires its own configuration files is managed through this YAML file. The basic structure is split into two documents, a brief header section which contains information that is applicable across all <code>Task</code>s, such as the experiment name, run numbers and the working directory, followed by per <code>Task</code> parameters:</p>
+<pre><code class="language-yaml">%YAML 1.3
+---
+title: &quot;Some title.&quot;
+experiment: &quot;MYEXP123&quot;
+# run: 12 # Does not need to be provided
+date: &quot;2024/05/01&quot;
+lute_version: 0.1
+task_timeout: 600
+work_dir: &quot;/sdf/scratch/users/d/dorlhiac&quot;
+...
+---
+TaskOne:
+  param_a: 123
+  param_b: 456
+  param_c:
+    sub_var: 3
+    sub_var2: 4
+
+TaskTwo:
+  new_param1: 3
+  new_param2: 4
+
+# ...
+...
+</code></pre>
+<p>In the first document, the header, it is important that the <code>work_dir</code> is properly specified. This is the root directory from which <code>Task</code> outputs will be written, and the LUTE database will be stored. It may also be desirable to modify the <code>task_timeout</code> parameter which defines the time limit for individual <code>Task</code> jobs. By default it is set to 10 minutes, although this may not be sufficient for long running jobs. This value will be applied to <strong>all</strong> <code>Task</code>s so should account for the longest running job you expect.</p>
+<p>The actual analysis parameters are defined in the second document. As these vary from <code>Task</code> to <code>Task</code>, a full description will not be provided here. An actual template with real <code>Task</code> parameters is available in <code>config/test.yaml</code>. Your analysis POC can also help you set up and choose the correct <code>Task</code>s to include as a starting point. The template YAML file has further descriptions of what each parameter does and how to fill it out. You can also refer to the <code>lute_help</code> program described under the following sub-heading.</p>
+<p><strong>Some things to consider and possible points of confusion:</strong></p>
+<ul>
+<li>While we will be submitting <strong>managed</strong> <code>Task</code>s, the parameters are defined at the <code>Task</code> level. I.e. the <strong>managed</strong> <code>Task</code> and <code>Task</code> itself have different names, and the names in the YAML refer to the latter. This is because a single <code>Task</code> can be run using different <code>Executor</code> configurations, but using the same parameters. The list of <strong>managed</strong> <code>Task</code>s is in <code>lute/managed_tasks.py</code>. A table is also provided below for some routines of interest..</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>Managed</strong> <code>Task</code></th>
+<th style="text-align: center;">The <code>Task</code> it Runs</th>
+<th style="text-align: center;"><code>Task</code> Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>SmallDataProducer</code></td>
+<td style="text-align: center;"><code>SubmitSMD</code></td>
+<td style="text-align: center;">Smalldata production</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>CrystFELIndexer</code></td>
+<td style="text-align: center;"><code>IndexCrystFEL</code></td>
+<td style="text-align: center;">Crystallographic indexing</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>PartialatorMerger</code></td>
+<td style="text-align: center;"><code>MergePartialator</code></td>
+<td style="text-align: center;">Crystallographic merging</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>HKLComparer</code></td>
+<td style="text-align: center;"><code>CompareHKL</code></td>
+<td style="text-align: center;">Crystallographic figures of merit</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>HKLManipulator</code></td>
+<td style="text-align: center;"><code>ManipulateHKL</code></td>
+<td style="text-align: center;">Crystallographic format conversions</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>DimpleSolver</code></td>
+<td style="text-align: center;"><code>DimpleSolve</code></td>
+<td style="text-align: center;">Crystallographic structure solution with molecular replacement</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>PeakFinderPyAlgos</code></td>
+<td style="text-align: center;"><code>FindPeaksPyAlgos</code></td>
+<td style="text-align: center;">Peak finding with PyAlgos algorithm.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>PeakFinderPsocake</code></td>
+<td style="text-align: center;"><code>FindPeaksPsocake</code></td>
+<td style="text-align: center;">Peak finding with psocake algorithm.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>StreamFileConcatenator</code></td>
+<td style="text-align: center;"><code>ConcatenateStreamFiles</code></td>
+<td style="text-align: center;">Stream file concatenation.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="how-do-i-know-what-parameters-are-available-and-what-they-do">How do I know what parameters are available, and what they do?</h3>
+<p>A summary of <code>Task</code> parameters is available through the <code>lute_help</code> program.</p>
+<pre><code class="language-bash">&gt; utilities/lute_help -t [TaskName]
+</code></pre>
+<p>Note, some parameters may say "Unknown description" - this either means they are using an old-style defintion that does not include parameter help, or they may have some internal use. In particular you will see this for <code>lute_config</code> on every <code>Task</code>, this parameter is filled in automatically and should be ignored. E.g. as an example:</p>
+<pre><code class="language-bash">&gt; utilities/lute_help -t IndexCrystFEL
+INFO:__main__:Fetching parameter information for IndexCrystFEL.
+IndexCrystFEL
+-------------
+Parameters for CrystFEL's `indexamajig`.
+
+There are many parameters, and many combinations. For more information on
+usage, please refer to the CrystFEL documentation, here:
+https://www.desy.de/~twhite/crystfel/manual-indexamajig.html
+
+
+Required Parameters:
+--------------------
+[...]
+
+All Parameters:
+-------------
+[...]
+
+highres (number)
+    Mark all pixels greater than `x` has bad.
+
+profile (boolean) - Default: False
+    Display timing data to monitor performance.
+
+temp_dir (string)
+    Specify a path for the temp files folder.
+
+wait_for_file (integer) - Default: 0
+    Wait at most `x` seconds for a file to be created. A value of -1 means wait forever.
+
+no_image_data (boolean) - Default: False
+    Load only the metadata, no iamges. Can check indexability without high data requirements.
+
+[...]
+</code></pre>
+<p><code>lute_help</code> can also be used to retrieve a list of all currently available <code>Task</code>s. (Truncated for brevity)</p>
+<pre><code class="language-bash">&gt; ./lute/utilities/lute_help -l
+INFO:__main__:Fetching Task list.
+Task List
+---------
+
+- AnalyzeSmallDataXAS
+  Current Managed Tasks: SmallDataXASAnalyzer,
+    TaskParameter model for AnalyzeSmallDataXAS Task.
+
+    This Task does basic analysis of XAS data based on a SmallData HDF5 output
+    file. It calculates difference absorption and signal binned by various
+    scanned motors.
+
+- AnalyzeSmallDataXES
+  Current Managed Tasks: SmallDataXESAnalyzer,
+    TaskParameter model for AnalyzeSmallDataXES Task.
+
+    This Task does basic analysis of XES data based on a SmallData HDF5 output
+    file. It calculates difference emission and signal binned by various
+    scanned motors.
+</code></pre>
+<p><strong>NOTE:</strong> Associated <strong>managed</strong> <code>Task</code>s are provided under each <code>Task</code> name. These will be the names passed to submission scripts.</p>
+<h2 id="variable-substitution-in-yaml-files">Variable Substitution in YAML Files</h2>
+<p>Using <code>validator</code>s, it is possible to define (generally, default) model parameters for a <code>Task</code> in terms of other parameters. It is also possible to use validated Pydantic model parameters to substitute values into a configuration file required to run a third party <code>Task</code> (e.g. some <code>Task</code>s may require their own JSON, TOML files, etc. to run properly). For more information on these types of substitutions, refer to the <code>Creating a new Task</code> documentation on <code>Task</code> creation (in the Developer Documentation).</p>
+<p>These types of substitutions, however, have a limitation in that they are not easily adapted at run time. They therefore address only a small number of the possible combinations in the dependencies between different input parameters. In order to support more complex relationships between parameters, variable substitutions can also be used in the configuration YAML itself. Using a syntax similar to <code>Jinja</code> templates, you can define values for YAML parameters in terms of other parameters or environment variables. The values are substituted before Pydantic attempts to validate the configuration.</p>
+<p>It is perhaps easiest to illustrate with an example. A test case is provided in <code>config/test_var_subs.yaml</code> and is reproduced here:</p>
+<pre><code class="language-yaml">%YAML 1.3
+---
+title: &quot;Configuration to Test YAML Substitution&quot;
+experiment: &quot;TestYAMLSubs&quot;
+run: 12
+date: &quot;2024/05/01&quot;
+lute_version: 0.1
+task_timeout: 600
+work_dir: &quot;/sdf/scratch/users/d/dorlhiac&quot;
+...
+---
+OtherTask:
+  useful_other_var: &quot;USE ME!&quot;
+
+NonExistentTask:
+  test_sub: &quot;/path/to/{{ experiment }}/file_r{{ run:04d }}.input&quot;         # Substitute `experiment` and `run` from header above
+  test_env_sub: &quot;/path/to/{{ $EXPERIMENT }}/file.input&quot;                   # Substitute from the environment variable $EXPERIMENT
+  test_nested:
+    a: &quot;outfile_{{ run }}_one.out&quot;                                        # Substitute `run` from header above
+    b:
+      c: &quot;outfile_{{ run }}_two.out&quot;                                      # Also substitute `run` from header above
+      d: &quot;{{ OtherTask.useful_other_var }}&quot;                               # Substitute `useful_other_var` from `OtherTask`
+  test_fmt: &quot;{{ run:04d }}&quot;                                               # Subsitute `run` and format as 0012
+  test_env_fmt: &quot;{{ $RUN:04d }}&quot;                                          # Substitute environment variable $RUN and pad to 4 w/ zeros
+...
+</code></pre>
+<p>Input parameters in the config YAML can be substituted with either other input parameters or environment variables, with or without limited string formatting. All substitutions occur between double curly brackets: <code>{{ VARIABLE_TO_SUBSTITUTE }}</code>. Environment variables are indicated by <code>$</code> in front of the variable name. Parameters from the header, i.e. the first YAML document (top section) containing the <code>run</code>, <code>experiment</code>, version fields, etc. can be substituted without any qualification. If you want to use the <code>run</code> parameter, you can substitute it using <code>{{ run }}</code>. All other parameters, i.e. from other <code>Task</code>s or within <code>Task</code>s, must use a qualified name. Nested levels are delimited using a <code>.</code>. E.g. consider a structure like:</p>
+<pre><code class="language-yaml">Task:
+  param_set:
+    a: 1
+    b: 2
+    c: 3
+</code></pre>
+<p>In order to use parameter <code>c</code>, you would use <code>{{ Task.param_set.c }}</code> as the substitution.</p>
+<p>Take care when using substitutions! This process will not try to guess for you. When a substitution is not available, e.g. due to misspelling, one of two things will happen:</p>
+<ul>
+<li>If it was an environment variable that does not exist, no substitution will be performed, although a message will be printed. I.e. you will be left with <code>param: /my/failed/{{ $SUBSTITUTION }}</code> as your parameter. This may or may not fail the model validation step, but is likely not what you intended.</li>
+<li>If it was an attempt at substituting another YAML parameter which does not exist, an exception will be thrown and the program will exit.</li>
+</ul>
+<p><strong>Defining your own parameters</strong></p>
+<p>The configuration file is <strong>not</strong> validated in its totality, only on a <code>Task</code>-by-<code>Task</code> basis, but it <strong>is read</strong> in its totality. E.g. when running <code>MyTask</code> only that portion of the configuration is validated even though the entire file has been read, and is available for substitutions. As a result, it is safe to introduce extra entries into the YAML file, as long as they are not entered under a specific <code>Task</code>'s configuration. This may be useful to create your own global substitutions, for example if there is a key variable that may be used across different <code>Task</code>s.
+E.g. Consider a case where you want to create a more generic configuration file where a single variable is used by multiple <code>Task</code>s. This single variable may be changed between experiments, for instance, but is likely static for the duration of a single set of analyses. In order to avoid a mistake when changing the configuration between experiments you can define this special variable (or variables) as a separate entry in the YAML, and make use of substitutions in each <code>Task</code>'s configuration. This way the variable only needs to be changed in one place.</p>
+<pre><code class="language-yaml"># Define our substitution. This is only for substitutiosns!
+MY_SPECIAL_SUB: &quot;EXPMT_DEPENDENT_VALUE&quot;  # Can change here once per experiment!
+
+RunTask1:
+  special_var: &quot;{{ MY_SPECIAL_SUB }}&quot;
+  var_1: 1
+  var_2: &quot;a&quot;
+  # ...
+
+RunTask2:
+  special_var: &quot;{{ MY_SPECIAL_SUB }}&quot;
+  var_3: &quot;abcd&quot;
+  var_4: 123
+  # ...
+
+RunTask3:
+  special_var: &quot;{{ MY_SPECIAL_SUB }}&quot;
+  #...
+
+# ... and so on
+</code></pre>
+<h3 id="gotchas">Gotchas!</h3>
+<p><strong>Order matters</strong></p>
+<p>While in general you can use parameters that appear later in a YAML document to substitute for values of parameters that appear earlier, the substitutions themselves will be performed in order of appearance. It is therefore <strong>NOT possible</strong> to correctly use a later parameter as a substitution for an earlier one, if the later one itself depends on a substitution. The YAML document, however, can be rearranged without error. The order in the YAML document has no effect on execution order which is determined purely by the workflow definition. As mentioned above, the document is not validated in its entirety so rearrangements are allowed. For example consider the following situation which produces an incorrect substitution:</p>
+<pre><code class="language-yaml">%YAML 1.3
+---
+title: &quot;Configuration to Test YAML Substitution&quot;
+experiment: &quot;TestYAMLSubs&quot;
+run: 12
+date: &quot;2024/05/01&quot;
+lute_version: 0.1
+task_timeout: 600
+work_dir: &quot;/sdf/data/lcls/ds/exp/experiment/scratch&quot;
+...
+---
+RunTaskOne:
+  input_dir: &quot;{{ RunTaskTwo.path }}&quot;  # Will incorrectly be &quot;{{ work_dir }}/additional_path/{{ $RUN }}&quot;
+  # ...
+
+RunTaskTwo:
+  # Remember `work_dir` and `run` come from the header document and don't need to
+  # be qualified
+  path: &quot;{{ work_dir }}/additional_path/{{ run }}&quot;
+...
+</code></pre>
+<p>This configuration can be rearranged to achieve the desired result:</p>
+<pre><code class="language-yaml">%YAML 1.3
+---
+title: &quot;Configuration to Test YAML Substitution&quot;
+experiment: &quot;TestYAMLSubs&quot;
+run: 12
+date: &quot;2024/05/01&quot;
+lute_version: 0.1
+task_timeout: 600
+work_dir: &quot;/sdf/data/lcls/ds/exp/experiment/scratch&quot;
+...
+---
+RunTaskTwo:
+  # Remember `work_dir` comes from the header document and doesn't need to be qualified
+  path: &quot;{{ work_dir }}/additional_path/{{ run }}&quot;
+
+RunTaskOne:
+  input_dir: &quot;{{ RunTaskTwo.path }}&quot;  # Will now be /sdf/data/lcls/ds/exp/experiment/scratch/additional_path/12
+  # ...
+...
+</code></pre>
+<p>On the otherhand, relationships such as these may point to inconsistencies in the dependencies between <code>Task</code>s which may warrant a refactor.</p>
+<p><strong>Found unhashable key</strong></p>
+<p>To avoid YAML parsing issues when using the substitution syntax, be sure to quote your substitutions. Before substitution is performed, a dictionary is first constructed by the <code>pyyaml</code> package which parses the document - it may fail to parse the document and raise an exception if the substitutions are not quoted.
+E.g.</p>
+<pre><code class="language-yaml"># USE THIS
+MyTask:
+  var_sub: &quot;{{ other_var:04d }}&quot;
+
+# **DO NOT** USE THIS
+MyTask:
+  var_sub: {{ other_var:04d }}
+</code></pre>
+<p>During validation, Pydantic will by default cast variables if possible, because of this it is generally safe to use strings for substitutions. E.g. if your parameter is expecting an integer, and after substitution you pass <code>"2"</code>, Pydantic will cast this to the <code>int</code> <code>2</code>, and validation will succeed. As part of the substitution process limited type casting will also be handled if it is necessary for any formatting strings provided. E.g. <code>"{{ run:04d }}"</code> requires that run be an integer, so it will be treated as such in order to apply the formatting.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2024 LCLS
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

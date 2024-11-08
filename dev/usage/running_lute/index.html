@@ -1,0 +1,2040 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="GFD, VM">
+      
+      
+      
+        <link rel="prev" href="../configuration/">
+      
+      
+        <link rel="next" href="../../development/new_task/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>Running LUTE - LUTE</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#running-lute" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="LUTE" class="md-header__button md-logo" aria-label="LUTE" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LUTE
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Running LUTE
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/slac-lcls/lute" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="LUTE" class="md-nav__button md-logo" aria-label="LUTE" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    LUTE
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/slac-lcls/lute" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick_start/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quick Start
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Usage Manual
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Usage Manual
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Task Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Running LUTE
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Running LUTE
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#running-managed-tasks-and-workflows-dags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Managed Tasks and Workflows (DAGs)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Managed Tasks and Workflows (DAGs)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-single-managed-tasks-interactively" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running single managed Tasks interactively
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running single managed Tasks interactively">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gotchas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gotchas!
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#submitting-a-single-managed-task-as-a-batch-job" class="md-nav__link">
+    <span class="md-ellipsis">
+      Submitting a single managed Task as a batch job
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Submitting a single managed Task as a batch job">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#experiment-and-run-again" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiment and run, again...
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workflow-dag-submission" class="md-nav__link">
+    <span class="md-ellipsis">
+      Workflow (DAG) submission
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Workflow (DAG) submission">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dag-submission-from-the-elog" class="md-nav__link">
+    <span class="md-ellipsis">
+      DAG Submission from the eLog
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#airflow-launch-and-dag-execution-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Airflow Launch and DAG Execution Steps
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Airflow Launch and DAG Execution Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#elevated-privileges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Elevated Privileges
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-run-time-dags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Run-Time DAGs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debug Environment Variables
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Debug Environment Variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#currently-used-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Currently used environment variables
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Developer Documentation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Developer Documentation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/new_task/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creating a new Task
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/creating_workflows/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creating a new Workflow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Source Code
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Source Code
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/managed_tasks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    managed_tasks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    execution
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            execution
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/execution/executor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    executor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/execution/ipc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ipc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/execution/debug_utils/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    debug_utils
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/execution/logging/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    logging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    tasks
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            tasks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/task/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    task
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/tasklets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tasklets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/dataclasses/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dataclasses
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/geometry/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    geometry
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/_geometry/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    _geometry
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/sfx_find_peaks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sfx_find_peaks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/sfx_index/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sfx_index
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/smalldata/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    smalldata
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/_smalldata/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    _smalldata
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/math/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    math
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/test/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    test
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/mpi_test/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mpi_test
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3_13" id="__nav_4_3_13_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    util
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_13">
+            <span class="md-nav__icon md-icon"></span>
+            util
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/util/html/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    html
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    io
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            io
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_1" id="__nav_4_4_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    models
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/models/base/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    base
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/models/geometry/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    geometry
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/models/sfx_find_peaks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sfx_find_peaks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/models/sfx_index/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sfx_index
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/models/sfx_merge/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sfx_merge
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/models/sfx_solve/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sfx_solve
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/models/smd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    smd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/models/validators/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    validators
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/models/tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/models/mpi_tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mpi_tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/config/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    config
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/db/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    db
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/_sqlite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    _sqlite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/elog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    elog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/exceptions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    exceptions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Design and Specifications
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Design and Specifications
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/database/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Database
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#running-managed-tasks-and-workflows-dags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Managed Tasks and Workflows (DAGs)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Managed Tasks and Workflows (DAGs)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-single-managed-tasks-interactively" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running single managed Tasks interactively
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running single managed Tasks interactively">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gotchas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gotchas!
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#submitting-a-single-managed-task-as-a-batch-job" class="md-nav__link">
+    <span class="md-ellipsis">
+      Submitting a single managed Task as a batch job
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Submitting a single managed Task as a batch job">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#experiment-and-run-again" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiment and run, again...
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workflow-dag-submission" class="md-nav__link">
+    <span class="md-ellipsis">
+      Workflow (DAG) submission
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Workflow (DAG) submission">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dag-submission-from-the-elog" class="md-nav__link">
+    <span class="md-ellipsis">
+      DAG Submission from the eLog
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#airflow-launch-and-dag-execution-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Airflow Launch and DAG Execution Steps
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Airflow Launch and DAG Execution Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#elevated-privileges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Elevated Privileges
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-run-time-dags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Run-Time DAGs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debug Environment Variables
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Debug Environment Variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#currently-used-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Currently used environment variables
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="running-lute">Running <code>LUTE</code></h1>
+<h2 id="running-managed-tasks-and-workflows-dags">Running Managed <code>Task</code>s and Workflows (DAGs)</h2>
+<p>After a YAML file has been filled in you can run a <code>Task</code> (really, a <strong>managed</strong> <code>Task</code>). There are multiple ways to submit a <code>Task</code>, but there are 3 that are most likely:</p>
+<ol>
+<li>Run a single <strong>managed</strong> <code>Task</code> interactively by running <code>python ...</code></li>
+<li>Run a single <strong>managed</strong> <code>Task</code> as a batch job (e.g. on S3DF) via a SLURM submission <code>submit_slurm.sh ...</code></li>
+<li>Run a DAG (workflow with multiple <strong>managed</strong> <code>Task</code>s).</li>
+</ol>
+<p>These will be covered in turn below; however, in general all methods will require two parameters: the path to a configuration YAML file, and the name of the <strong>managed</strong> <code>Task</code> or workflow you want to run. When submitting via SLURM or submitting an entire workflow there are additional parameters to control these processes.</p>
+<h3 id="running-single-managed-tasks-interactively">Running single managed <code>Task</code>s interactively</h3>
+<p>The simplest submission method is just to run Python interactively. In most cases this is not practical for long-running analysis, but may be of use for short <code>Task</code>s or when debugging. From the root directory of the LUTE repository (or after installation) you can use the <code>run_task.py</code> script:</p>
+<pre><code class="language-bash">&gt; python -B [-O] run_task.py -t &lt;ManagedTaskName&gt; -c &lt;/path/to/config/yaml&gt;
+</code></pre>
+<p>The command-line arguments in square brackets <code>[]</code> are optional, while those in <code>&lt;&gt;</code> must be provided:</p>
+<ul>
+<li><code>-O</code> is the flag controlling whether you run in debug or non-debug mode. <strong>By default, i.e. if you do NOT provide this flag you will run in debug mode</strong> which enables verbose printing. Passing <code>-O</code> will turn off debug to minimize output.</li>
+<li><code>-t &lt;ManagedTaskName&gt;</code> is the name of the <strong>managed</strong> <code>Task</code> you want to run.</li>
+<li><code>-c &lt;/path/...&gt;</code> is the path to the configuration YAML.</li>
+</ul>
+<h4 id="gotchas">Gotchas!</h4>
+<p>Be sure to modify your configuration file to include an <code>experiment</code> and <code>run</code> in the header section! Many <code>Task</code>s (including some code outside of LUTE's control) will require these values to work properly. Alternatively you can provide them as environment variables when running your command, e.g.:</p>
+<pre><code class="language-bash">&gt; EXPERIMENT=&quot;...&quot; RUN_NUM=123 python -B [-O] -t &lt;ManagedTaskName&gt; -c &lt;path/to/config.yaml&gt;
+</code></pre>
+<p>If you are submitting a <strong>managed</strong> <code>Task</code> that uses MPI you may encounter an issue at launch due to rank selection. Depending on where you are running this could be because the fallback mechanisms for determining the number of cores are inconsistent with the true number of cores available to your processes. In order to get around this you can "mimic" the SLURM submission process by setting the environment variable <code>SLURM_NPROCS</code> to some small number of cores (e.g. 2)</p>
+<pre><code class="language-bash">&gt; SLURM_NPROCS=2 python -B [-O] -t &lt;ManagedTaskName&gt; -c &lt;path/to/config.yaml&gt;
+</code></pre>
+<p>For additional debugging variables see the advanced usage section below.</p>
+<h3 id="submitting-a-single-managed-task-as-a-batch-job">Submitting a single managed <code>Task</code> as a batch job</h3>
+<p>On S3DF you can also submit individual <strong>managed</strong> <code>Task</code>s to run as batch jobs. To do so use <code>launch_scripts/submit_slurm.sh</code></p>
+<pre><code class="language-bash">&gt; launch_scripts/submit_slurm.sh -t &lt;ManagedTaskName&gt; -c &lt;/path/to/config/yaml&gt; [--debug] $SLURM_ARGS
+</code></pre>
+<p>As before command-line arguments in square brackets <code>[]</code> are optional, while those in <code>&lt;&gt;</code> must be provided</p>
+<ul>
+<li><code>-t &lt;ManagedTaskName&gt;</code> is the name of the <strong>managed</strong> <code>Task</code> you want to run.</li>
+<li><code>-c &lt;/path/...&gt;</code> is the path to the configuration YAML.</li>
+<li><code>--debug</code> is the flag to control whether or not to run in debug mode.</li>
+</ul>
+<p>In addition to the LUTE-specific arguments, SLURM arguments must also be provided (<code>$SLURM_ARGS</code> above). You can provide as many as you want; however you will need to at least provide:</p>
+<ul>
+<li><code>--partition=&lt;partition/queue&gt;</code> - The queue to run on, in general for LCLS this is <code>milano</code></li>
+<li><code>--account=lcls:&lt;experiment&gt;</code> - The account to use for batch job accounting.</li>
+</ul>
+<p>You will likely also want to provide at a minimum:</p>
+<ul>
+<li><code>--ntasks=&lt;...&gt;</code> to control the number of cores in allocated.</li>
+</ul>
+<p>In general, it is best to prefer the long-form of the SLURM-argument (<code>--arg=&lt;...&gt;</code>) in order to avoid potential clashes with present or future LUTE arguments.</p>
+<h4 id="experiment-and-run-again">Experiment and run, again...</h4>
+<p>If you are not providing a specific experiment and run in your configuration YAML, you can additionally pass these values as arguments on the command-line:</p>
+<pre><code class="language-bash">&gt; launch_scripts/submit_slurm.sh -t &lt;ManagedTaskName&gt; -c &lt;/path/to/config/yaml&gt; [-e EXPERIMENT] [-r RUN] [--debug] $SLURM_ARGS
+</code></pre>
+<h3 id="workflow-dag-submission">Workflow (DAG) submission</h3>
+<p>Finally, you can submit a full workflow (e.g. SFX analysis, smalldata production and summary results, geometry optimization...). This can be done using a single script, <code>submit_launch_airflow.sh</code>, similarly to the SLURM submission above:</p>
+<pre><code class="language-bash">&gt; launch_scripts/submit_launch_airflow.sh /path/to/lute/launch_scripts/launch_airflow.py -c &lt;/path/to/yaml.yaml&gt; -w &lt;dag_name&gt; [--debug] [--test] [-e &lt;exp&gt;] [-r &lt;run&gt;] $SLURM_ARGS
+</code></pre>
+<p>The submission process is slightly more complicated in this case. A more in-depth explanation is provided under "Airflow Launch Steps", in the advanced usage section below if interested. The parameters are as follows - as before command-line arguments in square brackets <code>[]</code> are optional, while those in <code>&lt;&gt;</code> must be provided:</p>
+<ul>
+<li>The <strong>first argument</strong> (must be first) is the full path to the <code>launch_scripts/launch_airflow.py</code> script located in whatever LUTE installation you are running. All other arguments can come afterwards in any order.</li>
+<li><code>-c &lt;/path/...&gt;</code> is the path to the configuration YAML to use.</li>
+<li><code>-w &lt;dag_name&gt;</code> is the name of the DAG (workflow) to run. This replaces the task name provided when using the other two methods above. A DAG list is provided below.</li>
+<li><strong>NOTE:</strong> For advanced usage, a custom DAG can be provided at <strong>run</strong> time using <code>-W</code> (capital W) followed by the path to the workflow instead of <code>-w</code>. See below for further discussion on this use case.</li>
+<li><code>--debug</code> controls whether to use debug mode (verbose printing)</li>
+<li><code>--test</code> controls whether to use the test or production instance of Airflow to manage the DAG. The instances are running identical versions of Airflow, but the <code>test</code> instance may have "test" or more bleeding edge development DAGs.</li>
+<li><code>-e</code> is used to pass the experiment name. Needed if not using the ARP, i.e. running from the command-line.</li>
+<li><code>-r</code> is used to pass a run number. Needed if not using the ARP, i.e. running from the command-line.</li>
+</ul>
+<p>The <code>$SLURM_ARGS</code> must be provided in the same manner as when submitting an individual <strong>managed</strong> <code>Task</code> by hand to be run as batch job with the script above. <strong>Note</strong> that these parameters will be used as the starting point for the SLURM arguments of <strong>every managed</strong> <code>Task</code> in the DAG; however, individual steps in the DAG may have overrides built-in where appropriate to make sure that step is not submitted with potentially incompatible arguments. For example, a single threaded analysis <code>Task</code> may be capped to running on one core, even if in general everything should be running on 100 cores, per the SLURM argument provided. These caps are added during development and cannot be disabled through configuration changes in the YAML.</p>
+<p><strong>Note for LCLS Staff</strong>: LCLS staff should refer to the Advanced Usaged section for information on accessing Airflow with greater privileges.</p>
+<p><strong>DAG List</strong></p>
+<ul>
+<li><code>find_peaks_index</code></li>
+<li><code>psocake_sfx_phasing</code></li>
+<li><code>pyalgos_sfx</code></li>
+<li><code>smd_summaries</code></li>
+</ul>
+<h4 id="dag-submission-from-the-elog">DAG Submission from the <code>eLog</code></h4>
+<p>You can use the script in the previous section to submit jobs through the eLog. To do so navigate to the <code>Workflow &gt; Definitions</code> tab using the blue navigation bar at the top of the eLog. On this tab, in the top-right corner (underneath the help and zoom icons) you can click the <code>+</code> sign to add a new workflow. This will bring up a "Workflow definition" UI window. When filling out the eLog workflow definition the following fields are needed (all of them):</p>
+<ul>
+<li><code>Name</code>: You can name the workflow anything you like. It should probably be something descriptive, e.g. if you are using LUTE to run smalldata_tools, you may call the workflow <code>lute_smd</code>.</li>
+<li><code>Executable</code>: In this field you will put the <strong>full path</strong> to the <code>submit_launch_airflow.sh</code> script:  <code>/path/to/lute/launch_scripts/submit_launch_airflow.sh</code>.</li>
+<li><code>Parameters</code>: You will use the parameters as described above. Remember the first argument will be the <strong>full path</strong> to the <code>launch_airflow.py</code> script (this is NOT the same as the bash script used in the executable!): <code>/full/path/to/lute/launch_scripts/launch_airflow.py -c &lt;path/to/yaml&gt; -w &lt;dag_name&gt; [--debug] [--test] $SLURM_ARGS</code></li>
+<li><code>Location</code>: <strong>Be sure to set to</strong> <code>S3DF</code>.</li>
+<li><code>Trigger</code>: You can have the workflow trigger automatically or manually. Which option to choose will depend on the type of workflow you are running. In general the options <code>Manually triggered</code> (which displays as <code>MANUAL</code> on the definitions page) and <code>End of a run</code> (which displays as <code>END_OF_RUN</code> on the definitions page) are safe options for ALL workflows. The latter will be automatically submitted for you when data acquisition has finished. If you are running a workflow with <strong>managed</strong> <code>Task</code>s that work as data is being acquired (e.g. <code>SmallDataProducer</code>), you may also select <code>Start of a run</code> (which displays as <code>START_OF_RUN</code> on the definitions page).</li>
+</ul>
+<p>Upon clicking create you will see a new entry in the table on the definitions page. In order to run <code>MANUAL</code> workflows, or re-run automatic workflows, you must navigate to the <code>Workflows &gt; Control</code> tab. For each acquisition run you will find a drop down menu under the <code>Job</code> column. To submit a workflow you select it from this drop down menu by the <code>Name</code> you provided when creating its definition.</p>
+<h2 id="advanced-usage">Advanced Usage</h2>
+<h3 id="airflow-launch-and-dag-execution-steps">Airflow Launch and DAG Execution Steps</h3>
+<p>The Airflow launch process actually involves two steps. There is a wrapper prior to getting to the actual Airflow API communication.</p>
+<ol>
+<li><code>launch_scripts/submit_launch_airflow.sh</code> is run.</li>
+<li>This script runs the <code>launch_scripts/launch_airflow.py</code> script which was provided as the first argument. This is the <strong>true</strong> launch script</li>
+<li><code>launch_airflow.py</code> communicates with the Airflow API, requesting that a specific DAG be launched. It then continues to run, and gathers the individual logs and the exit status of each step of the DAG.</li>
+<li>Airflow will then enter a loop of communication where it asks the JID to submit each step of the requested DAG as batch job using <code>launch_scripts/submit_slurm.sh</code>.</li>
+</ol>
+<p>There are some specific reasons for this complexity:</p>
+<ul>
+<li>The use of <code>submit_launch_airflow.sh</code> is to allow the true Airflow launch script to be a long-lived job. This is for compatibility with the eLog and the ARP. When run from the eLog as a workflow, the job submission process must occur within 30 seconds due to a timeout built-in to the system. This is fine when submitting jobs to run on the batch-nodes, as the submission to the queue takes very little time. So here, <code>submit_launch_airflow.sh</code> serves as a thin script to have <code>launch_airflow.py</code> run as a batch job. It can then run as a long-lived job (for the duration of the entire DAG) collecting log files all in one place. This allows the log for each stage of the Airflow DAG to be inspected in a single file, and through the eLog browser interface.</li>
+</ul>
+<h4 id="elevated-privileges">Elevated Privileges</h4>
+<p>The <code>launch_airflow.py</code> script (and by proxy the <code>submit_launch_airflow.sh</code> script) can be run as a user with greater privileges. This involves passing an additional flag <code>--admin</code> to the script. You need sufficient permissions to access the credentials to use this account which currently means membership of the <code>ps-data</code> Unix group.</p>
+<h3 id="custom-run-time-dags">Custom Run-Time DAGs</h3>
+<p>In most cases, standard DAGs should be called as described above. However, Airflow also supports the dynamic creation of DAGs, e.g. to vary the input data to various steps, or the number of steps that will occur. Some of this functionality has been used to allow for user-defined DAGs which are passed in the form of a dictionary, allowing Airflow to construct the workflow as it is running.</p>
+<p>A basic YAML syntax is used to construct a series of nested dictionaries which define a DAG. Consider a simplified serial femtosecond crystallography DAG which runs peak finding through merging and then calculates some statistics. I.e. we want an execution order that looks like:</p>
+<pre><code class="language-python">peak_finder &gt;&gt; indexer &gt;&gt; merger &gt;&gt; hkl_comparer
+</code></pre>
+<p>We can alternatively define this DAG in YAML:</p>
+<pre><code class="language-yaml">task_name: PeakFinderPyAlgos
+slurm_params: ''
+next:
+- task_name: CrystFELIndexer
+  slurm_params: ''
+  next:
+  - task_name: PartialatorMerger
+    slurm_params: ''
+    next:
+    - task_name: HKLComparer
+      slurm_params: ''
+      next:
+</code></pre>
+<p>I.e. we define a tree where each node is constructed using <code>Node(task_name: str, slurm_params: str, next: List[Node])</code>.</p>
+<ul>
+<li>The <code>task_name</code> is the name of a <strong>managed</strong> <code>Task</code>. This name <strong>must</strong> be identical to a <strong>managed</strong> <code>Task</code> defined in the LUTE installation you are using.</li>
+<li>A custom string of slurm arguments can be passed using <code>slurm_params</code>. This is a complete string of <strong>all</strong> the arguments to use for the corresponding <strong>managed</strong> <code>Task</code>. Use of this field is <strong>all or nothing!</strong> - if it is left as an empty string, the default parameters (passed on the command-line using the launch script) are used, otherwise this string is used in its stead. Because of this <strong>remember to include a partition and account</strong> if using it.</li>
+<li>The <code>next</code> field is composed of either an empty list (meaning no <strong>managed</strong> <code>Task</code>s are run after the current node), or additional nodes. All nodes in the <code>next</code> list are run in parallel.</li>
+</ul>
+<p>As a second example, to run <code>task1</code> followed by <code>task2</code> and <code>task3</code> in parellel we would use:</p>
+<pre><code class="language-yaml">task_name: Task1
+slurm_params: ''
+next:
+- task_name: Task2
+  slurm_params: ''
+  next: []
+- task_name: Task3
+  slurm_params: ''
+  next: []
+</code></pre>
+<p>In order to run a DAG defined in this way, we pass the <strong>path</strong> to the YAML file we have defined it in to the launch script using <code>-W &lt;path_to_dag&gt;</code>. This is instead of calling it by name. E.g.</p>
+<pre><code class="language-bash">/path/to/lute/launch_scripts/submit_launch_airflow.sh /path/to/lute/launch_scripts/launch_airflow.py -e &lt;exp&gt; -r &lt;run&gt; -c /path/to/config -W &lt;path_to_dag&gt; --test [--debug] [SLURM_ARGS]
+</code></pre>
+<p>Note that fewer options are currently supported for configuring the operators for each step of the DAG.  The slurm arguments can be replaced in their entirety using a custom <code>slurm_params</code> string but individual options cannot be modified.</p>
+<h3 id="debug-environment-variables">Debug Environment Variables</h3>
+<p>Special markers have been inserted at certain points in the execution flow for LUTE. These can be enabled by setting the environment variables detailed below. These are intended to allow developers to exit the program at certain points to investigate behaviour or a bug. For instance, when working on configuration parsing, an environment variable can be set which exits the program after passing this step. This allows you to run LUTE otherwise as normal (described above), without having to modify any additional code or insert your own early exits.</p>
+<p>Types of debug markers:</p>
+<ul>
+<li><code>LUTE_DEBUG_EXIT</code>: Will exit the program at this point if the corresponding environment variable has been set.</li>
+</ul>
+<p>Developers can insert these markers as needed into their code to add new exit points, although as a rule of thumb they should be used sparingly, and generally only after major steps in the execution flow (e.g. after parsing, after beginning a task, after returning a result, etc.).</p>
+<p>In order to include a new marker in your code:</p>
+<pre><code class="language-py">from lute.execution.debug_utils import LUTE_DEBUG_EXIT
+
+def my_code() -&gt; None:
+    # ...
+    LUTE_DEBUG_EXIT(&quot;MYENVVAR&quot;, &quot;Additional message to print&quot;)
+    # If MYENVVAR is not set, the above function does nothing
+</code></pre>
+<p>You can enable a marker by setting to 1, e.g. to enable the example marker above while running <code>Tester</code>:</p>
+<pre><code class="language-bash">MYENVVAR=1 python -B run_task.py -t Tester -c config/test.yaml
+</code></pre>
+<h4 id="currently-used-environment-variables">Currently used environment variables</h4>
+<ul>
+<li><code>LUTE_DEBUG_EXIT_AT_YAML</code>: Exits the program after reading in a YAML configuration file and performing variable substitutions, but BEFORE Pydantic validation.</li>
+<li><code>LUTE_DEBUG_BEFORE_TPP_EXEC</code>: Exits the program after a ThirdPartyTask has prepared its submission command, but before <code>exec</code> is used to run it.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2024 LCLS
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>
