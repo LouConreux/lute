@@ -1874,7 +1874,7 @@
 <span class="normal">308</span>
 <span class="normal">309</span>
 <span class="normal">310</span>
-<span class="normal">311</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">deploy_geometry</span><span class="p">(</span>
+<span class="normal">311</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">deploy_geometry</span><span class="p">(</span>
     <span class="n">out_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">run</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
@@ -1908,7 +1908,7 @@
 
 <span class="sd">        pv_camera_length (str | None): PV associated with camera length.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">import</span> <span class="nn">PSCalib</span>  <span class="c1"># type: ignore</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">PSCalib</span>  <span class="c1"># type: ignore</span>
 
     <span class="c1"># retrieve original geometry</span>
     <span class="n">geom</span><span class="p">:</span> <span class="n">PSCalib</span><span class="o">.</span><span class="n">GeometryAcces</span><span class="o">.</span><span class="n">GeometryAccess</span> <span class="o">=</span> <span class="n">det</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="n">run</span><span class="p">)</span>
@@ -2082,7 +2082,7 @@
 <span class="normal">43</span>
 <span class="normal">44</span>
 <span class="normal">45</span>
-<span class="normal">46</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">generate_concentric_sample_pts</span><span class="p">(</span>
+<span class="normal">46</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">generate_concentric_sample_pts</span><span class="p">(</span>
     <span class="n">peak_radii</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span>
     <span class="n">center</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
     <span class="n">num_pts</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
@@ -2366,7 +2366,7 @@ geometry for this run, which is used to compute the coffset parameter.</p>
 <span class="normal">158</span>
 <span class="normal">159</span>
 <span class="normal">160</span>
-<span class="normal">161</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">generate_geom_file</span><span class="p">(</span>
+<span class="normal">161</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">generate_geom_file</span><span class="p">(</span>
     <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">run</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">ds</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">psana</span><span class="o">.</span><span class="n">DataSource</span><span class="p">,</span> <span class="n">psana</span><span class="o">.</span><span class="n">MPIDataSource</span><span class="p">],</span>  <span class="c1"># type: ignore</span>
@@ -2401,7 +2401,7 @@ geometry for this run, which is used to compute the coffset parameter.</p>
 
 <span class="sd">        pv_camera_length (Optional[str]): PV associated with the camera length</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">psgeom</span> <span class="kn">import</span> <span class="n">camera</span><span class="p">,</span> <span class="n">sensors</span>  <span class="c1"># type: ignore</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">psgeom</span><span class="w"> </span><span class="kn">import</span> <span class="n">camera</span><span class="p">,</span> <span class="n">sensors</span>  <span class="c1"># type: ignore</span>
 
     <span class="k">if</span> <span class="n">input_file</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span>
         <span class="n">geom</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">CompoundAreaCamera</span><span class="o">.</span><span class="n">from_psana_file</span><span class="p">(</span><span class="n">input_file</span><span class="p">)</span>
@@ -2568,7 +2568,7 @@ Center values are floats. Peaks are integers.</p>
 <span class="normal">73</span>
 <span class="normal">74</span>
 <span class="normal">75</span>
-<span class="normal">76</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">geometry_optimize_residual</span><span class="p">(</span>
+<span class="normal">76</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">geometry_optimize_residual</span><span class="p">(</span>
     <span class="n">params</span><span class="p">:</span> <span class="n">lmfit</span><span class="o">.</span><span class="n">Parameters</span><span class="p">,</span> <span class="n">powder</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Target function for OptimizeAgBhGeometryExhaustive geometry fitting.</span>
@@ -2729,7 +2729,7 @@ Center values are floats. Peaks are integers.</p>
 <span class="normal">237</span>
 <span class="normal">238</span>
 <span class="normal">239</span>
-<span class="normal">240</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">modify_crystfel_coffset_res</span><span class="p">(</span>
+<span class="normal">240</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">modify_crystfel_coffset_res</span><span class="p">(</span>
     <span class="n">input_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">output_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">coffset</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">res</span><span class="p">:</span> <span class="nb">float</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Overwrite coffset and res entries in a CrystFEL .geom file.</span>
@@ -2879,7 +2879,7 @@ Center values are floats. Peaks are integers.</p>
 <span class="normal">202</span>
 <span class="normal">203</span>
 <span class="normal">204</span>
-<span class="normal">205</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">modify_crystfel_header</span><span class="p">(</span><span class="n">input_file</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
+<span class="normal">205</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">modify_crystfel_header</span><span class="p">(</span><span class="n">input_file</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Modify the header of a psgeom-generated Crystfel (.geom) file.</span>
 
 <span class="sd">    This function performs the following modifications:</span>

@@ -1915,14 +1915,14 @@ experimental runs.</p>
 <span class="normal">504</span>
 <span class="normal">505</span>
 <span class="normal">506</span>
-<span class="normal">507</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ConcatenateStreamFilesParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
+<span class="normal">507</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ConcatenateStreamFilesParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Parameters for stream concatenation.</span>
 
 <span class="sd">    Concatenates the stream file output from CrystFEL indexing for multiple</span>
 <span class="sd">    experimental runs.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="n">TaskParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">TaskParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
         <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Whether the Executor should mark a specified parameter as a result.&quot;&quot;&quot;</span>
 
@@ -1941,7 +1941,7 @@ experimental runs.</p>
     <span class="p">)</span>
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;in_file&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">validate_in_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">in_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate_in_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">in_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">in_file</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
             <span class="n">stream_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">read_latest_db_entry</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;lute_config&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;IndexCrystFEL&quot;</span><span class="p">,</span> <span class="s2">&quot;out_file&quot;</span>
@@ -1952,7 +1952,7 @@ experimental runs.</p>
         <span class="k">return</span> <span class="n">in_file</span>
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">validate_tag</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate_tag</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
             <span class="n">stream_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">read_latest_db_entry</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;lute_config&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;IndexCrystFEL&quot;</span><span class="p">,</span> <span class="s2">&quot;out_file&quot;</span>
@@ -1963,7 +1963,7 @@ experimental runs.</p>
         <span class="k">return</span> <span class="n">tag</span>
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;out_file&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">validate_out_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate_out_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
             <span class="n">stream_out_file</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span>
                 <span class="n">Path</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;in_file&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;tag&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">.stream&quot;</span>
@@ -2009,7 +2009,7 @@ experimental runs.</p>
                 <summary>Source code in <code>lute/io/models/sfx_index.py</code></summary>
                 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">460</span>
 <span class="normal">461</span>
-<span class="normal">462</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="n">TaskParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
+<span class="normal">462</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">TaskParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
     <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether the Executor should mark a specified parameter as a result.&quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
@@ -2030,7 +2030,7 @@ experimental runs.</p>
 
 
 <h4 id="io.models.sfx_index.ConcatenateStreamFilesParameters.Config.set_result" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span></code>
+            <code class="highlight language-python"><span class="n">set_result</span> <span class="o">=</span> <span class="kc">True</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2368,17 +2368,17 @@ experimental runs.</p>
 <span class="normal">784</span>
 <span class="normal">785</span>
 <span class="normal">786</span>
-<span class="normal">787</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">IndexCCTBXXFELParameters</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="p">):</span>
+<span class="normal">787</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">IndexCCTBXXFELParameters</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Parameters for indexing with cctbx.xfel.&quot;&quot;&quot;</span>
 
-    <span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
         <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Whether the Executor should mark a specified parameter as a result.&quot;&quot;&quot;</span>
 
-    <span class="k">class</span> <span class="nc">PhilParameters</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">PhilParameters</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Template parameters for CCTBX phil file.&quot;&quot;&quot;</span>
 
-        <span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="n">BaseModel</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>  <span class="c1"># type: ignore</span>
+        <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">BaseModel</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>  <span class="c1"># type: ignore</span>
             <span class="n">extra</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;allow&quot;</span>
 
         <span class="c1"># Generic input settings: input_</span>
@@ -2556,13 +2556,13 @@ experimental runs.</p>
         <span class="p">)</span>
 
         <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;output_output_dir&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="k">def</span> <span class="nf">set_output_dir</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">output</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">set_output_dir</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">output</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">output</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;LUTE_WORK_DIR&quot;</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">output</span>
 
         <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;output_logging_dir&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="k">def</span> <span class="nf">set_output_log_dir</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">output</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">set_output_log_dir</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">output</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">output</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;output_output_dir&quot;</span><span class="p">]</span>
             <span class="k">return</span> <span class="n">output</span>
@@ -2612,13 +2612,13 @@ experimental runs.</p>
     <span class="p">)</span>
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;phil_file&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">set_default_phil_path</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">phil_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_default_phil_path</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">phil_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">phil_file</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
             <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;lute_config&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">/cctbx_index.phil&quot;</span>
         <span class="k">return</span> <span class="n">phil_file</span>
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;lute_template_cfg&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">set_phil_template_path</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_phil_template_path</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span> <span class="n">lute_template_cfg</span><span class="p">:</span> <span class="n">TemplateConfig</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TemplateConfig</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">lute_template_cfg</span><span class="o">.</span><span class="n">output_path</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
@@ -2626,7 +2626,7 @@ experimental runs.</p>
         <span class="k">return</span> <span class="n">lute_template_cfg</span>
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;in_file&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">set_in_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">in_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_in_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">in_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">in_file</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
             <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">experiment</span>
             <span class="n">run</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">run</span><span class="p">)</span>
@@ -2635,7 +2635,7 @@ experimental runs.</p>
         <span class="k">return</span> <span class="n">in_file</span>
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;data_spec&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">write_data_spec_file</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">write_data_spec_file</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
         <span class="n">data_spec</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]],</span>
         <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
@@ -2685,7 +2685,7 @@ experimental runs.</p>
                 <summary>Source code in <code>lute/io/models/sfx_index.py</code></summary>
                 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">513</span>
 <span class="normal">514</span>
-<span class="normal">515</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
+<span class="normal">515</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
     <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether the Executor should mark a specified parameter as a result.&quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
@@ -2706,7 +2706,7 @@ experimental runs.</p>
 
 
 <h4 id="io.models.sfx_index.IndexCCTBXXFELParameters.Config.set_result" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span></code>
+            <code class="highlight language-python"><span class="n">set_result</span> <span class="o">=</span> <span class="kc">False</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2948,10 +2948,10 @@ experimental runs.</p>
 <span class="normal">704</span>
 <span class="normal">705</span>
 <span class="normal">706</span>
-<span class="normal">707</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">PhilParameters</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="normal">707</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">PhilParameters</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Template parameters for CCTBX phil file.&quot;&quot;&quot;</span>
 
-    <span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="n">BaseModel</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>  <span class="c1"># type: ignore</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">BaseModel</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>  <span class="c1"># type: ignore</span>
         <span class="n">extra</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;allow&quot;</span>
 
     <span class="c1"># Generic input settings: input_</span>
@@ -3129,13 +3129,13 @@ experimental runs.</p>
     <span class="p">)</span>
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;output_output_dir&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">set_output_dir</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">output</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_output_dir</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">output</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">output</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;LUTE_WORK_DIR&quot;</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">output</span>
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;output_logging_dir&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">set_output_log_dir</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">output</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_output_log_dir</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">output</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">output</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;output_output_dir&quot;</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">output</span>
@@ -3614,7 +3614,7 @@ https://www.desy.de/~twhite/crystfel/manual-indexamajig.html</p>
 <span class="normal">447</span>
 <span class="normal">448</span>
 <span class="normal">449</span>
-<span class="normal">450</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">IndexCrystFELParameters</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="p">):</span>
+<span class="normal">450</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">IndexCrystFELParameters</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Parameters for CrystFEL&#39;s `indexamajig`.</span>
 
 <span class="sd">    There are many parameters, and many combinations. For more information on</span>
@@ -3622,7 +3622,7 @@ https://www.desy.de/~twhite/crystfel/manual-indexamajig.html</p>
 <span class="sd">    https://www.desy.de/~twhite/crystfel/manual-indexamajig.html</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
         <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Whether the Executor should mark a specified parameter as a result.&quot;&quot;&quot;</span>
 
@@ -3989,7 +3989,7 @@ https://www.desy.de/~twhite/crystfel/manual-indexamajig.html</p>
     <span class="p">)</span>
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;in_file&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">validate_in_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">in_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate_in_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">in_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">in_file</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
             <span class="n">filename</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">read_latest_db_entry</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;lute_config&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;FindPeaksPyAlgos&quot;</span><span class="p">,</span> <span class="s2">&quot;out_file&quot;</span>
@@ -4013,7 +4013,7 @@ https://www.desy.de/~twhite/crystfel/manual-indexamajig.html</p>
         <span class="k">return</span> <span class="n">in_file</span>
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;out_file&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">validate_out_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">out_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate_out_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">out_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">out_file</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
             <span class="n">expmt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">experiment</span>
             <span class="n">run</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">run</span><span class="p">)</span>
@@ -4072,7 +4072,7 @@ https://www.desy.de/~twhite/crystfel/manual-indexamajig.html</p>
 <span class="normal">45</span>
 <span class="normal">46</span>
 <span class="normal">47</span>
-<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
+<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
     <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether the Executor should mark a specified parameter as a result.&quot;&quot;&quot;</span>
 
@@ -4096,7 +4096,7 @@ https://www.desy.de/~twhite/crystfel/manual-indexamajig.html</p>
 
 
 <h4 id="io.models.sfx_index.IndexCrystFELParameters.Config.long_flags_use_eq" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">long_flags_use_eq</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span></code>
+            <code class="highlight language-python"><span class="n">long_flags_use_eq</span> <span class="o">=</span> <span class="kc">True</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -4118,7 +4118,7 @@ https://www.desy.de/~twhite/crystfel/manual-indexamajig.html</p>
 
 
 <h4 id="io.models.sfx_index.IndexCrystFELParameters.Config.set_result" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span></code>
+            <code class="highlight language-python"><span class="n">set_result</span> <span class="o">=</span> <span class="kc">True</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>

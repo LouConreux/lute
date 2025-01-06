@@ -1678,7 +1678,7 @@ reduce logging from libraries which output many messages.</p>
 
 
 <h2 id="execution.logging.LUTE_TASK_LOG_FORMAT" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">LUTE_TASK_LOG_FORMAT</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;TASK_LOG -- </span><span class="si">%(levelname)s</span><span class="s1">:</span><span class="si">%(name)s</span><span class="s1">: </span><span class="si">%(message)s</span><span class="s1">&#39;</span></code>
+            <code class="highlight language-python"><span class="n">LUTE_TASK_LOG_FORMAT</span> <span class="o">=</span> <span class="s1">&#39;TASK_LOG -- </span><span class="si">%(levelname)s</span><span class="s1">:</span><span class="si">%(name)s</span><span class="s1">: </span><span class="si">%(message)s</span><span class="s1">&#39;</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
@@ -1699,7 +1699,7 @@ reduce logging from libraries which output many messages.</p>
 
 
 <h2 id="execution.logging.STD_PYTHON_LOG_FORMAT" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">STD_PYTHON_LOG_FORMAT</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%(levelname)s</span><span class="s1">:</span><span class="si">%(name)s</span><span class="s1">:</span><span class="si">%(message)s</span><span class="s1">&#39;</span></code>
+            <code class="highlight language-python"><span class="n">STD_PYTHON_LOG_FORMAT</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%(levelname)s</span><span class="s1">:</span><span class="si">%(name)s</span><span class="s1">:</span><span class="si">%(message)s</span><span class="s1">&#39;</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
@@ -1775,7 +1775,7 @@ reduce logging from libraries which output many messages.</p>
 <span class="normal">72</span>
 <span class="normal">73</span>
 <span class="normal">74</span>
-<span class="normal">75</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ColorFormatter</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">):</span>
+<span class="normal">75</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ColorFormatter</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Provide color text formatting for a logger.&quot;&quot;&quot;</span>
 
     <span class="n">WARNING_COLOR_FMT</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\x1b</span><span class="s2">[33;20m&quot;</span>
@@ -1783,7 +1783,7 @@ reduce logging from libraries which output many messages.</p>
     <span class="n">CRITICAL_COLOR_FMT</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\x1b</span><span class="s2">[31;1m&quot;</span>
     <span class="n">RESET_COLOR_FMT</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\x1b</span><span class="s2">[0m&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">fmt</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">datefmt</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1806,7 +1806,7 @@ reduce logging from libraries which output many messages.</p>
             <span class="n">logging</span><span class="o">.</span><span class="n">CRITICAL</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">CRITICAL_COLOR_FMT</span><span class="si">}{</span><span class="n">log_format</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">RESET_COLOR_FMT</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
         <span class="p">}</span>
 
-    <span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">format</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="n">log_fmt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">level_formats</span><span class="p">[</span><span class="n">record</span><span class="o">.</span><span class="n">levelno</span><span class="p">]</span>
         <span class="n">formatter</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="n">log_fmt</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">formatter</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
@@ -1869,15 +1869,15 @@ reduce logging from libraries which output many messages.</p>
 <span class="normal">35</span>
 <span class="normal">36</span>
 <span class="normal">37</span>
-<span class="normal">38</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SocketCommunicatorHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Handler</span><span class="p">):</span>
+<span class="normal">38</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SocketCommunicatorHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Handler</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Logging handler which passes messages via SocketCommunicator objects.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_communicator</span><span class="p">:</span> <span class="n">SocketCommunicator</span> <span class="o">=</span> <span class="n">SocketCommunicator</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_communicator</span><span class="o">.</span><span class="n">delayed_setup</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">emit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">LogRecord</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">emit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">LogRecord</span><span class="p">):</span>
         <span class="n">formatted_message</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
         <span class="n">msg</span><span class="p">:</span> <span class="n">Message</span> <span class="o">=</span> <span class="n">Message</span><span class="p">(</span><span class="n">contents</span><span class="o">=</span><span class="n">formatted_message</span><span class="p">,</span> <span class="n">signal</span><span class="o">=</span><span class="s2">&quot;TASK_LOG&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_communicator</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
@@ -2029,7 +2029,7 @@ particularly useful when running in debug mode.</p>
 <span class="normal">126</span>
 <span class="normal">127</span>
 <span class="normal">128</span>
-<span class="normal">129</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_logger</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">is_task</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">logging</span><span class="o">.</span><span class="n">Logger</span><span class="p">:</span>
+<span class="normal">129</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_logger</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">is_task</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">logging</span><span class="o">.</span><span class="n">Logger</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Retrieve a logger with LUTE handler and set log levels of other loggers.</span>
 
 <span class="sd">    This function returns a logger with correct log level set by the debug flag.</span>

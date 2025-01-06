@@ -4056,13 +4056,13 @@ module for implementation into runnable Tasks.</p>
 <span class="normal">1792</span>
 <span class="normal">1793</span>
 <span class="normal">1794</span>
-<span class="normal">1795</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">AnalyzeSmallData</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
+<span class="normal">1795</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalyzeSmallData</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for analyzing a SmallData HDF5 file with MPI support.&quot;&quot;&quot;</span>
 
     <span class="n">_LARGE_DETNAMES</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;epix10k2M&quot;</span><span class="p">,</span> <span class="s2">&quot;Rayonix&quot;</span><span class="p">,</span> <span class="s2">&quot;Jungfrau4M&quot;</span><span class="p">]</span>
     <span class="n">_SMALL_DETNAMES</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;epix_1&quot;</span><span class="p">,</span> <span class="s2">&quot;epix_2&quot;</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">TaskParameters</span><span class="p">,</span> <span class="n">use_mpi</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">TaskParameters</span><span class="p">,</span> <span class="n">use_mpi</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">use_mpi</span><span class="o">=</span><span class="n">use_mpi</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
             <span class="n">Union</span><span class="p">[</span>
@@ -4139,13 +4139,13 @@ module for implementation into runnable Tasks.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">_scan_var_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_scan_values</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">_pre_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_pre_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
 
-    <span class="k">def</span> <span class="nf">_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
 
-    <span class="k">def</span> <span class="nf">_post_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_post_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
 
-    <span class="k">def</span> <span class="nf">_extract_standard_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_extract_standard_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Setup up stored attributes by taking data from the smalldata hdf5 file.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
@@ -4204,7 +4204,7 @@ module for implementation into runnable Tasks.</p>
                     <span class="s2">&quot;No scans found, using linearly spaced data for _scan_values.&quot;</span>
                 <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_extract_az_int</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_extract_az_int</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Try to extract the azimuthal integration data from HDF5 file.</span>
 
 <span class="sd">        This internal method will search first to see if a detector has been</span>
@@ -4231,7 +4231,7 @@ module for implementation into runnable Tasks.</p>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_mpi_comm</span><span class="o">.</span><span class="n">Barrier</span><span class="p">()</span>
                 <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_extract_az_int_smd_internal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">detname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_extract_az_int_smd_internal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">detname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Extract stored data from SmallData&#39;s azimuthal integration algorithm.</span>
 
 <span class="sd">        Args:</span>
@@ -4244,7 +4244,7 @@ module for implementation into runnable Tasks.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">_q_vals</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_smd_h5</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;UserDataCfg/</span><span class="si">{</span><span class="n">detname</span><span class="si">}</span><span class="s2">/azav__azav_q&quot;</span><span class="p">][()]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_phi_vals</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_smd_h5</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;UserDataCfg/</span><span class="si">{</span><span class="n">detname</span><span class="si">}</span><span class="s2">/azav__azav_phiVec&quot;</span><span class="p">][()]</span>
 
-    <span class="k">def</span> <span class="nf">_extract_az_int_pyfai</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">detname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_extract_az_int_pyfai</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">detname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Extract stored data from PyFAI&#39;s azimuthal integration algorithm.</span>
 
 <span class="sd">        Args:</span>
@@ -4257,7 +4257,7 @@ module for implementation into runnable Tasks.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">_q_vals</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_smd_h5</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">detname</span><span class="si">}</span><span class="s2">/pyfai_q&quot;</span><span class="p">][()][</span><span class="mi">0</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_phi_vals</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_smd_h5</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">detname</span><span class="si">}</span><span class="s2">/pyfai_az&quot;</span><span class="p">][()][</span><span class="mi">0</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">_setup_std_filters</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_setup_std_filters</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Setup the individual standard event filters.</span>
 
 <span class="sd">        Sets up light status (X-ray and laser) filters, and adjustable filters</span>
@@ -4281,7 +4281,7 @@ module for implementation into runnable Tasks.</p>
         <span class="c1"># Create scattering and ipm thresholds for first time</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_update_filters</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">_update_filters</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_filters</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Update stored event filters that are based on adjustable parameters.</span>
 
 <span class="sd">        E.g. update the minimum scattering intensity to use in analyses.</span>
@@ -4304,7 +4304,7 @@ module for implementation into runnable Tasks.</p>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_filter_dict</span><span class="p">[</span><span class="s2">&quot;ipm&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_num_events</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_calc_norm_by_qrange</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_calc_norm_by_qrange</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">q_limits</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">)</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate a normalization factor by averaging over a range of Q values.</span>
@@ -4321,7 +4321,7 @@ module for implementation into runnable Tasks.</p>
         <span class="n">norm_range</span> <span class="o">&amp;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_q_vals</span> <span class="o">&lt;</span> <span class="n">q_limits</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_az_int</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">norm_range</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_calc_norm_by_max</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_calc_norm_by_max</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate a normalization factor by taking the maximum of each profile.</span>
 
 <span class="sd">        Returns:</span>
@@ -4329,7 +4329,7 @@ module for implementation into runnable Tasks.</p>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_az_int</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">_calc_1d_water_norm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_calc_1d_water_norm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate normalization factors by integrating the water ring.</span>
 
 <span class="sd">        https://www.osti.gov/servlets/purl/1760438 says to use 1.5-3.5 A-1</span>
@@ -4343,7 +4343,7 @@ module for implementation into runnable Tasks.</p>
         <span class="c1"># )</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_calc_norm_by_qrange</span><span class="p">((</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_aggregate_filters</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_aggregate_filters</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">filter_vars</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;xray on, laser on, total scattering, ipm&quot;</span><span class="p">)</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">bool_</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Combine a number of possible data filters.</span>
@@ -4388,7 +4388,7 @@ module for implementation into runnable Tasks.</p>
 
         <span class="k">return</span> <span class="n">total_filter</span>
 
-    <span class="k">def</span> <span class="nf">_calc_xss_dark_mean</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_calc_xss_dark_mean</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">profiles</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate the dark (X-ray off) mean of a set of XSS profiles.</span>
@@ -4413,7 +4413,7 @@ module for implementation into runnable Tasks.</p>
             <span class="n">dark_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_num_events</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">dark_mean</span>
 
-    <span class="k">def</span> <span class="nf">_find_solvent_argmax</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">corrected_profile</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_find_solvent_argmax</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">corrected_profile</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Find the index of the solvent ring maximum.</span>
 
 <span class="sd">        Currently just a hack around SciPy find_peaks.</span>
@@ -4441,7 +4441,7 @@ module for implementation into runnable Tasks.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">_solvent_peak_idx</span> <span class="o">=</span> <span class="n">peak_idx</span>
         <span class="k">return</span> <span class="n">peak_idx</span>
 
-    <span class="k">def</span> <span class="nf">_fit_overlap</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_fit_overlap</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">laser_on</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
         <span class="n">bins</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -4508,7 +4508,7 @@ module for implementation into runnable Tasks.</p>
 
         <span class="k">return</span> <span class="n">raw_curve</span><span class="p">,</span> <span class="n">opt</span><span class="p">,</span> <span class="n">res</span>
 
-    <span class="k">def</span> <span class="nf">_fit_convolution_fwhm</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_fit_convolution_fwhm</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">trace</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">,</span> <span class="n">bins</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate the FWHM of a convolution signal.</span>
@@ -4521,7 +4521,7 @@ module for implementation into runnable Tasks.</p>
 <span class="sd">        Returns:</span>
 <span class="sd">            fwhm (float): Calculated FWHM.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">UnivariateSpline</span>  <span class="c1"># type: ignore</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.interpolate</span><span class="w"> </span><span class="kn">import</span> <span class="n">UnivariateSpline</span>  <span class="c1"># type: ignore</span>
 
         <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">trace</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">trace</span><span class="p">))</span>
         <span class="n">spline</span> <span class="o">=</span> <span class="n">UnivariateSpline</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">trace</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">trace</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="n">s</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -4549,7 +4549,7 @@ module for implementation into runnable Tasks.</p>
             <span class="n">fwhm</span> <span class="o">=</span> <span class="n">sigma_to_fwhm</span><span class="p">(</span><span class="n">opt</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">fwhm</span>
 
-    <span class="k">def</span> <span class="nf">_convolution_fit</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_convolution_fit</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">laser_on</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
         <span class="n">bins</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -4577,7 +4577,7 @@ module for implementation into runnable Tasks.</p>
 
 <span class="sd">            fwhm (float): Width of the convlution signal (fwhm).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">fftconvolve</span>  <span class="c1"># type: ignore</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.signal</span><span class="w"> </span><span class="kn">import</span> <span class="n">fftconvolve</span>  <span class="c1"># type: ignore</span>
 
         <span class="n">max_pt</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_solvent_argmax</span><span class="p">(</span><span class="n">laser_on</span><span class="p">)</span>
         <span class="n">raw_curve</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">diff</span><span class="p">[</span><span class="n">max_pt</span> <span class="o">+</span> <span class="mi">10</span><span class="p">])</span>
@@ -4591,7 +4591,7 @@ module for implementation into runnable Tasks.</p>
 
     <span class="c1"># XAS - Extraction and TR difference</span>
     <span class="c1">############################################################################</span>
-    <span class="k">def</span> <span class="nf">_extract_xas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">detname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_extract_xas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">detname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Extract XAS specific data.</span>
 
 <span class="sd">        Extracts the integrated sum of an ROI as well as an CCM position data.</span>
@@ -4617,7 +4617,7 @@ module for implementation into runnable Tasks.</p>
                 <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;No ccm_E_setpoint data. Will use fallback binning.&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_element</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">element</span>
 
-    <span class="k">def</span> <span class="nf">_calc_binned_difference_xas</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_calc_binned_difference_xas</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span>
         <span class="n">Optional</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]],</span>
@@ -4701,7 +4701,7 @@ module for implementation into runnable Tasks.</p>
 
     <span class="c1"># XES - Extraction and TR difference</span>
     <span class="c1">############################################################################</span>
-    <span class="k">def</span> <span class="nf">_extract_xes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">detname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_extract_xes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">detname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Extract XAS specific data.</span>
 
 <span class="sd">        Extracts individual ROIs and applys projections to extract the XES</span>
@@ -4750,7 +4750,7 @@ module for implementation into runnable Tasks.</p>
                         <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_num_events</span><span class="p">,</span> <span class="n">xes_roi</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">spatial_axis</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
                     <span class="p">)</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">rot_angle</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">rotate</span>  <span class="c1"># type: ignore</span>
+                    <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.ndimage</span><span class="w"> </span><span class="kn">import</span> <span class="n">rotate</span>  <span class="c1"># type: ignore</span>
 
                     <span class="n">xes_roi</span> <span class="o">=</span> <span class="n">rotate</span><span class="p">(</span>
                         <span class="n">xes_roi</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">rot_angle</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -4772,7 +4772,7 @@ module for implementation into runnable Tasks.</p>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_start_idx</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop_idx</span>
             <span class="p">]</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">rot_angle</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">rotate</span>
+                <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.ndimage</span><span class="w"> </span><span class="kn">import</span> <span class="n">rotate</span>
 
                 <span class="n">xes_roi</span> <span class="o">=</span> <span class="n">rotate</span><span class="p">(</span>
                     <span class="n">xes_roi</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">rot_angle</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -4789,7 +4789,7 @@ module for implementation into runnable Tasks.</p>
                     <span class="n">xes_roi</span><span class="p">[:,</span> <span class="n">guess_idx</span> <span class="o">-</span> <span class="mi">5</span> <span class="p">:</span> <span class="n">guess_idx</span> <span class="o">+</span> <span class="mi">5</span><span class="p">,</span> <span class="p">:],</span> <span class="n">axis</span><span class="o">=</span><span class="n">spectral_axis</span> <span class="o">+</span> <span class="mi">1</span>
                 <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_calc_avg_difference_xes</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_calc_avg_difference_xes</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span>
         <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -4828,7 +4828,7 @@ module for implementation into runnable Tasks.</p>
 
     <span class="c1"># Binning</span>
     <span class="c1">############################################################################</span>
-    <span class="k">def</span> <span class="nf">_calc_ccm_bins_by_set_pt</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_calc_ccm_bins_by_set_pt</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Caculate bin edges based on the provided CCM_E set points.</span>
 
 <span class="sd">        Returns:</span>
@@ -4861,7 +4861,7 @@ module for implementation into runnable Tasks.</p>
 
         <span class="k">return</span> <span class="n">nbins</span><span class="p">,</span> <span class="n">edges</span>
 
-    <span class="k">def</span> <span class="nf">_calc_ccm_bins_by_unique</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_calc_ccm_bins_by_unique</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">nbins</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate bin edges based on unique CCM_E recorded values.</span>
@@ -4892,7 +4892,7 @@ module for implementation into runnable Tasks.</p>
         <span class="n">b_edges</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram_bin_edges</span><span class="p">(</span><span class="n">unique</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">nbins</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">nbins</span><span class="p">,</span> <span class="n">b_edges</span>
 
-    <span class="k">def</span> <span class="nf">_calc_scan_bins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nbins</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">51</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_calc_scan_bins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nbins</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">51</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate a set of scan bins.</span>
 
 <span class="sd">        Args:</span>
@@ -4927,7 +4927,7 @@ module for implementation into runnable Tasks.</p>
     <span class="c1"># Differences by scan</span>
     <span class="c1">############################################################################</span>
 
-    <span class="k">def</span> <span class="nf">_calc_scan_binned_difference_xss</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_calc_scan_binned_difference_xss</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span>
         <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]</span>
@@ -4996,7 +4996,7 @@ module for implementation into runnable Tasks.</p>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">bins</span><span class="p">,</span> <span class="n">diff</span><span class="p">,</span> <span class="n">normed_xss_las_on</span>
 
-    <span class="k">def</span> <span class="nf">_calc_scan_binned_difference_xas</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_calc_scan_binned_difference_xas</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span>
         <span class="n">Optional</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]],</span>
@@ -5070,7 +5070,7 @@ module for implementation into runnable Tasks.</p>
         <span class="n">diff</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]</span> <span class="o">=</span> <span class="n">binned_xas_las_on</span> <span class="o">-</span> <span class="n">binned_xas_las_off</span>
         <span class="k">return</span> <span class="n">bins</span><span class="p">,</span> <span class="n">diff</span><span class="p">,</span> <span class="n">binned_xas_las_on</span><span class="p">,</span> <span class="n">binned_xas_las_off</span>
 
-    <span class="k">def</span> <span class="nf">_calc_scan_binned_difference_xes</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_calc_scan_binned_difference_xes</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span>
         <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -5149,14 +5149,14 @@ module for implementation into runnable Tasks.</p>
     <span class="c1">############################################################################</span>
 
     <span class="c1"># XSS</span>
-    <span class="k">def</span> <span class="nf">plot_avg_xss</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_avg_xss</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">laser_on</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
         <span class="n">q_vals</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
         <span class="n">phis</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">plt</span><span class="o">.</span><span class="n">Figure</span><span class="p">:</span> <span class="o">...</span>
 
-    <span class="k">def</span> <span class="nf">plot_difference_xss_hv</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_difference_xss_hv</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">bins</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
         <span class="n">q_vals</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -5211,7 +5211,7 @@ module for implementation into runnable Tasks.</p>
         <span class="n">grid</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">diff_curves</span><span class="o">.</span><span class="n">opts</span><span class="p">(</span><span class="n">shared_axes</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">grid</span>
 
-    <span class="k">def</span> <span class="nf">plot_xss_overlap_fit</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_xss_overlap_fit</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">laser_on</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
         <span class="n">bins</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -5270,7 +5270,7 @@ module for implementation into runnable Tasks.</p>
         <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">fig</span>
 
-    <span class="k">def</span> <span class="nf">plot_all_xss</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_all_xss</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">laser_on</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
         <span class="n">bins</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -5311,7 +5311,7 @@ module for implementation into runnable Tasks.</p>
         <span class="k">return</span> <span class="n">tabbed_display</span>
 
     <span class="c1"># XAS</span>
-    <span class="k">def</span> <span class="nf">plot_all_xas</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_all_xas</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">laser_on</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
         <span class="n">laser_off</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -5349,7 +5349,7 @@ module for implementation into runnable Tasks.</p>
 
         <span class="k">return</span> <span class="n">tabs</span>
 
-    <span class="k">def</span> <span class="nf">plot_std_xas_hv</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_std_xas_hv</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">laser_on</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
         <span class="n">laser_off</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -5403,7 +5403,7 @@ module for implementation into runnable Tasks.</p>
         <span class="n">grid</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">diff_plot</span>
         <span class="k">return</span> <span class="n">grid</span>
 
-    <span class="k">def</span> <span class="nf">plot_xas_scan_hv</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_xas_scan_hv</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">laser_on</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
         <span class="n">laser_off</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -5440,7 +5440,7 @@ module for implementation into runnable Tasks.</p>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_xas_lxt_fast_scan</span><span class="p">(</span><span class="n">laser_on</span><span class="p">,</span> <span class="n">laser_off</span><span class="p">,</span> <span class="n">scan_bins</span><span class="p">,</span> <span class="n">diff</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">plot_xas_lxt_fast_scan</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_xas_lxt_fast_scan</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">laser_on</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
         <span class="n">laser_off</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -5502,7 +5502,7 @@ module for implementation into runnable Tasks.</p>
         <span class="n">tabs</span><span class="p">:</span> <span class="n">pn</span><span class="o">.</span><span class="n">Tabs</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">Tabs</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">tabs</span>
 
-    <span class="k">def</span> <span class="nf">plot_xas_power_titration_scan</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_xas_power_titration_scan</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">laser_on</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
         <span class="n">laser_off</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -5563,7 +5563,7 @@ module for implementation into runnable Tasks.</p>
         <span class="k">return</span> <span class="n">tabs</span>
 
     <span class="c1"># XES</span>
-    <span class="k">def</span> <span class="nf">plot_xes_hv</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_xes_hv</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">laser_on</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
         <span class="n">laser_off</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -5595,7 +5595,7 @@ module for implementation into runnable Tasks.</p>
 
         <span class="k">return</span> <span class="n">tabs</span>
 
-    <span class="k">def</span> <span class="nf">plot_std_xes_hv</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_std_xes_hv</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">laser_on</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
         <span class="n">laser_off</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -5654,7 +5654,7 @@ module for implementation into runnable Tasks.</p>
         <span class="n">grid</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">diff_plot</span>
         <span class="k">return</span> <span class="n">grid</span>
 
-    <span class="k">def</span> <span class="nf">plot_xes_scan_hv</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_xes_scan_hv</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">laser_on</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
         <span class="n">laser_off</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -5690,7 +5690,7 @@ module for implementation into runnable Tasks.</p>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_xes_lxt_scan</span><span class="p">(</span><span class="n">laser_on</span><span class="p">,</span> <span class="n">laser_off</span><span class="p">,</span> <span class="n">scan_bins</span><span class="p">,</span> <span class="n">diff</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">plot_xes_lxt_fast_scan</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_xes_lxt_fast_scan</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">laser_on</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
         <span class="n">laser_off</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -5751,7 +5751,7 @@ module for implementation into runnable Tasks.</p>
         <span class="n">grid</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">diff_curves</span><span class="o">.</span><span class="n">opts</span><span class="p">(</span><span class="n">shared_axes</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">pn</span><span class="o">.</span><span class="n">Tabs</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">plot_xes_lxt_scan</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_xes_lxt_scan</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">laser_on</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
         <span class="n">laser_off</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -5957,7 +5957,7 @@ of (num_events) which can be used to index and filter a data array.</p>
 <span class="normal">369</span>
 <span class="normal">370</span>
 <span class="normal">371</span>
-<span class="normal">372</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_aggregate_filters</span><span class="p">(</span>
+<span class="normal">372</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_aggregate_filters</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">filter_vars</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;xray on, laser on, total scattering, ipm&quot;</span><span class="p">)</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">bool_</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Combine a number of possible data filters.</span>
@@ -6035,7 +6035,7 @@ of (num_events) which can be used to index and filter a data array.</p>
 <span class="normal">324</span>
 <span class="normal">325</span>
 <span class="normal">326</span>
-<span class="normal">327</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_calc_1d_water_norm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
+<span class="normal">327</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_calc_1d_water_norm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate normalization factors by integrating the water ring.</span>
 
 <span class="sd">    https://www.osti.gov/servlets/purl/1760438 says to use 1.5-3.5 A-1</span>
@@ -6154,7 +6154,7 @@ of shape (pixels)</p>
 <span class="normal">807</span>
 <span class="normal">808</span>
 <span class="normal">809</span>
-<span class="normal">810</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_calc_avg_difference_xes</span><span class="p">(</span>
+<span class="normal">810</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_calc_avg_difference_xes</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span>
     <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -6351,7 +6351,7 @@ profiles of shape (ccm_bins)</p>
 <span class="normal">680</span>
 <span class="normal">681</span>
 <span class="normal">682</span>
-<span class="normal">683</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_calc_binned_difference_xas</span><span class="p">(</span>
+<span class="normal">683</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_calc_binned_difference_xas</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span>
     <span class="n">Optional</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]],</span>
@@ -6507,7 +6507,7 @@ profiles of shape (ccm_bins)</p>
 <span class="normal">842</span>
 <span class="normal">843</span>
 <span class="normal">844</span>
-<span class="normal">845</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_calc_ccm_bins_by_set_pt</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]]:</span>
+<span class="normal">845</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_calc_ccm_bins_by_set_pt</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Caculate bin edges based on the provided CCM_E set points.</span>
 
 <span class="sd">    Returns:</span>
@@ -6653,7 +6653,7 @@ profiles of shape (ccm_bins)</p>
 <span class="normal">873</span>
 <span class="normal">874</span>
 <span class="normal">875</span>
-<span class="normal">876</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_calc_ccm_bins_by_unique</span><span class="p">(</span>
+<span class="normal">876</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_calc_ccm_bins_by_unique</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">nbins</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate bin edges based on unique CCM_E recorded values.</span>
@@ -6712,7 +6712,7 @@ norm (npt.NDArray[np.float64]): The 1D norm with shape (num_events)</p>
 <span class="normal">310</span>
 <span class="normal">311</span>
 <span class="normal">312</span>
-<span class="normal">313</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_calc_norm_by_max</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
+<span class="normal">313</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_calc_norm_by_max</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate a normalization factor by taking the maximum of each profile.</span>
 
 <span class="sd">    Returns:</span>
@@ -6811,7 +6811,7 @@ Q-range to average.</p>
 <span class="normal">302</span>
 <span class="normal">303</span>
 <span class="normal">304</span>
-<span class="normal">305</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_calc_norm_by_qrange</span><span class="p">(</span>
+<span class="normal">305</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_calc_norm_by_qrange</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">q_limits</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">)</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate a normalization factor by averaging over a range of Q values.</span>
@@ -6976,7 +6976,7 @@ Final difference shape is 1D: (scan_bins)</p>
 <span class="normal">1051</span>
 <span class="normal">1052</span>
 <span class="normal">1053</span>
-<span class="normal">1054</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_calc_scan_binned_difference_xas</span><span class="p">(</span>
+<span class="normal">1054</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_calc_scan_binned_difference_xas</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span>
     <span class="n">Optional</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]],</span>
@@ -7199,7 +7199,7 @@ axis is energy.</p>
 <span class="normal">1126</span>
 <span class="normal">1127</span>
 <span class="normal">1128</span>
-<span class="normal">1129</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_calc_scan_binned_difference_xes</span><span class="p">(</span>
+<span class="normal">1129</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_calc_scan_binned_difference_xes</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span>
     <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -7409,7 +7409,7 @@ of shape (n_events_las_on, q_bins)</p>
 <span class="normal">977</span>
 <span class="normal">978</span>
 <span class="normal">979</span>
-<span class="normal">980</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_calc_scan_binned_difference_xss</span><span class="p">(</span>
+<span class="normal">980</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_calc_scan_binned_difference_xss</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span>
     <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]</span>
@@ -7582,7 +7582,7 @@ of shape (n_events_las_on, q_bins)</p>
 <span class="normal">905</span>
 <span class="normal">906</span>
 <span class="normal">907</span>
-<span class="normal">908</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_calc_scan_bins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nbins</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">51</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
+<span class="normal">908</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_calc_scan_bins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nbins</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">51</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate a set of scan bins.</span>
 
 <span class="sd">    Args:</span>
@@ -7692,7 +7692,7 @@ dark mean from. Shape: (n_events, q_bins)</p>
 <span class="normal">394</span>
 <span class="normal">395</span>
 <span class="normal">396</span>
-<span class="normal">397</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_calc_xss_dark_mean</span><span class="p">(</span>
+<span class="normal">397</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_calc_xss_dark_mean</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">profiles</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the dark (X-ray off) mean of a set of XSS profiles.</span>
@@ -7895,7 +7895,7 @@ Q value used for calculating the overlap.</p>
 <span class="normal">570</span>
 <span class="normal">571</span>
 <span class="normal">572</span>
-<span class="normal">573</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_convolution_fit</span><span class="p">(</span>
+<span class="normal">573</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_convolution_fit</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">laser_on</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
     <span class="n">bins</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -7923,7 +7923,7 @@ Q value used for calculating the overlap.</p>
 
 <span class="sd">        fwhm (float): Width of the convlution signal (fwhm).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">fftconvolve</span>  <span class="c1"># type: ignore</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.signal</span><span class="w"> </span><span class="kn">import</span> <span class="n">fftconvolve</span>  <span class="c1"># type: ignore</span>
 
     <span class="n">max_pt</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_solvent_argmax</span><span class="p">(</span><span class="n">laser_on</span><span class="p">)</span>
     <span class="n">raw_curve</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">diff</span><span class="p">[</span><span class="n">max_pt</span> <span class="o">+</span> <span class="mi">10</span><span class="p">])</span>
@@ -7986,7 +7986,7 @@ algorithm data.</p>
 <span class="normal">212</span>
 <span class="normal">213</span>
 <span class="normal">214</span>
-<span class="normal">215</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_extract_az_int</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">215</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_extract_az_int</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Try to extract the azimuthal integration data from HDF5 file.</span>
 
 <span class="sd">    This internal method will search first to see if a detector has been</span>
@@ -8075,7 +8075,7 @@ algorithm data.</p>
 <span class="normal">238</span>
 <span class="normal">239</span>
 <span class="normal">240</span>
-<span class="normal">241</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_extract_az_int_pyfai</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">detname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">241</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_extract_az_int_pyfai</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">detname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract stored data from PyFAI&#39;s azimuthal integration algorithm.</span>
 
 <span class="sd">    Args:</span>
@@ -8150,7 +8150,7 @@ algorithm data.</p>
 <span class="normal">225</span>
 <span class="normal">226</span>
 <span class="normal">227</span>
-<span class="normal">228</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_extract_az_int_smd_internal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">detname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">228</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_extract_az_int_smd_internal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">detname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract stored data from SmallData&#39;s azimuthal integration algorithm.</span>
 
 <span class="sd">    Args:</span>
@@ -8240,7 +8240,7 @@ algorithm data.</p>
 <span class="normal">185</span>
 <span class="normal">186</span>
 <span class="normal">187</span>
-<span class="normal">188</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_extract_standard_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">188</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_extract_standard_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Setup up stored attributes by taking data from the smalldata hdf5 file.&quot;&quot;&quot;</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
@@ -8377,7 +8377,7 @@ PV.</p>
 <span class="normal">598</span>
 <span class="normal">599</span>
 <span class="normal">600</span>
-<span class="normal">601</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_extract_xas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">detname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">601</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_extract_xas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">detname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract XAS specific data.</span>
 
 <span class="sd">    Extracts the integrated sum of an ROI as well as an CCM position data.</span>
@@ -8548,7 +8548,7 @@ at once.</p>
 <span class="normal">770</span>
 <span class="normal">771</span>
 <span class="normal">772</span>
-<span class="normal">773</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_extract_xes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">detname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">773</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_extract_xes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">detname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract XAS specific data.</span>
 
 <span class="sd">    Extracts individual ROIs and applys projections to extract the XES</span>
@@ -8597,7 +8597,7 @@ at once.</p>
                     <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_num_events</span><span class="p">,</span> <span class="n">xes_roi</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">spatial_axis</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
                 <span class="p">)</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">rot_angle</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">rotate</span>  <span class="c1"># type: ignore</span>
+                <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.ndimage</span><span class="w"> </span><span class="kn">import</span> <span class="n">rotate</span>  <span class="c1"># type: ignore</span>
 
                 <span class="n">xes_roi</span> <span class="o">=</span> <span class="n">rotate</span><span class="p">(</span>
                     <span class="n">xes_roi</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">rot_angle</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -8619,7 +8619,7 @@ at once.</p>
             <span class="bp">self</span><span class="o">.</span><span class="n">_start_idx</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop_idx</span>
         <span class="p">]</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">rot_angle</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">rotate</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.ndimage</span><span class="w"> </span><span class="kn">import</span> <span class="n">rotate</span>
 
             <span class="n">xes_roi</span> <span class="o">=</span> <span class="n">rotate</span><span class="p">(</span>
                 <span class="n">xes_roi</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">rot_angle</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -8738,7 +8738,7 @@ mean corrected, laser on, scattering profile.</p>
 <span class="normal">422</span>
 <span class="normal">423</span>
 <span class="normal">424</span>
-<span class="normal">425</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_find_solvent_argmax</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">corrected_profile</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="normal">425</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_find_solvent_argmax</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">corrected_profile</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Find the index of the solvent ring maximum.</span>
 
 <span class="sd">    Currently just a hack around SciPy find_peaks.</span>
@@ -8895,7 +8895,7 @@ mean corrected, laser on, scattering profile.</p>
 <span class="normal">530</span>
 <span class="normal">531</span>
 <span class="normal">532</span>
-<span class="normal">533</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_fit_convolution_fwhm</span><span class="p">(</span>
+<span class="normal">533</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_fit_convolution_fwhm</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">trace</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">,</span> <span class="n">bins</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the FWHM of a convolution signal.</span>
@@ -8908,7 +8908,7 @@ mean corrected, laser on, scattering profile.</p>
 <span class="sd">    Returns:</span>
 <span class="sd">        fwhm (float): Calculated FWHM.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">UnivariateSpline</span>  <span class="c1"># type: ignore</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.interpolate</span><span class="w"> </span><span class="kn">import</span> <span class="n">UnivariateSpline</span>  <span class="c1"># type: ignore</span>
 
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">trace</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">trace</span><span class="p">))</span>
     <span class="n">spline</span> <span class="o">=</span> <span class="n">UnivariateSpline</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">trace</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">trace</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="n">s</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -9149,7 +9149,7 @@ Q value used for calculating the overlap.</p>
 <span class="normal">489</span>
 <span class="normal">490</span>
 <span class="normal">491</span>
-<span class="normal">492</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_fit_overlap</span><span class="p">(</span>
+<span class="normal">492</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_fit_overlap</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">laser_on</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
     <span class="n">bins</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -9260,7 +9260,7 @@ based on, e.g., thresholds.</p>
 <span class="normal">262</span>
 <span class="normal">263</span>
 <span class="normal">264</span>
-<span class="normal">265</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_setup_std_filters</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">265</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_setup_std_filters</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Setup the individual standard event filters.</span>
 
 <span class="sd">    Sets up light status (X-ray and laser) filters, and adjustable filters</span>
@@ -9326,7 +9326,7 @@ based on, e.g., thresholds.</p>
 <span class="normal">285</span>
 <span class="normal">286</span>
 <span class="normal">287</span>
-<span class="normal">288</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_update_filters</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">288</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_update_filters</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Update stored event filters that are based on adjustable parameters.</span>
 
 <span class="sd">    E.g. update the minimum scattering intensity to use in analyses.</span>
@@ -9510,7 +9510,7 @@ signal.</p>
 <span class="normal">1330</span>
 <span class="normal">1331</span>
 <span class="normal">1332</span>
-<span class="normal">1333</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">plot_all_xas</span><span class="p">(</span>
+<span class="normal">1333</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_all_xas</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">laser_on</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
     <span class="n">laser_off</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -9711,7 +9711,7 @@ signal.</p>
 <span class="normal">1291</span>
 <span class="normal">1292</span>
 <span class="normal">1293</span>
-<span class="normal">1294</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">plot_all_xss</span><span class="p">(</span>
+<span class="normal">1294</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_all_xss</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">laser_on</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
     <span class="n">bins</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -9928,7 +9928,7 @@ signal.</p>
 <span class="normal">1192</span>
 <span class="normal">1193</span>
 <span class="normal">1194</span>
-<span class="normal">1195</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">plot_difference_xss_hv</span><span class="p">(</span>
+<span class="normal">1195</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_difference_xss_hv</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">bins</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
     <span class="n">q_vals</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -10160,7 +10160,7 @@ signal.</p>
 <span class="normal">1384</span>
 <span class="normal">1385</span>
 <span class="normal">1386</span>
-<span class="normal">1387</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">plot_std_xas_hv</span><span class="p">(</span>
+<span class="normal">1387</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_std_xas_hv</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">laser_on</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
     <span class="n">laser_off</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -10396,7 +10396,7 @@ for the energy axis. If None, will just use pixels for that axis.</p>
 <span class="normal">1635</span>
 <span class="normal">1636</span>
 <span class="normal">1637</span>
-<span class="normal">1638</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">plot_std_xes_hv</span><span class="p">(</span>
+<span class="normal">1638</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_std_xes_hv</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">laser_on</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
     <span class="n">laser_off</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -10640,7 +10640,7 @@ signal.</p>
 <span class="normal">1483</span>
 <span class="normal">1484</span>
 <span class="normal">1485</span>
-<span class="normal">1486</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">plot_xas_lxt_fast_scan</span><span class="p">(</span>
+<span class="normal">1486</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_xas_lxt_fast_scan</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">laser_on</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
     <span class="n">laser_off</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -10885,7 +10885,7 @@ signal.</p>
 <span class="normal">1543</span>
 <span class="normal">1544</span>
 <span class="normal">1545</span>
-<span class="normal">1546</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">plot_xas_power_titration_scan</span><span class="p">(</span>
+<span class="normal">1546</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_xas_power_titration_scan</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">laser_on</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
     <span class="n">laser_off</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -11106,7 +11106,7 @@ signal.</p>
 <span class="normal">1421</span>
 <span class="normal">1422</span>
 <span class="normal">1423</span>
-<span class="normal">1424</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">plot_xas_scan_hv</span><span class="p">(</span>
+<span class="normal">1424</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_xas_scan_hv</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">laser_on</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
     <span class="n">laser_off</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -11298,7 +11298,7 @@ for the energy axis. If None, will just use pixels for that axis.</p>
 <span class="normal">1576</span>
 <span class="normal">1577</span>
 <span class="normal">1578</span>
-<span class="normal">1579</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">plot_xes_hv</span><span class="p">(</span>
+<span class="normal">1579</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_xes_hv</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">laser_on</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
     <span class="n">laser_off</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -11514,7 +11514,7 @@ signal.</p>
 <span class="normal">1732</span>
 <span class="normal">1733</span>
 <span class="normal">1734</span>
-<span class="normal">1735</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">plot_xes_lxt_fast_scan</span><span class="p">(</span>
+<span class="normal">1735</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_xes_lxt_fast_scan</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">laser_on</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
     <span class="n">laser_off</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -11758,7 +11758,7 @@ signal.</p>
 <span class="normal">1792</span>
 <span class="normal">1793</span>
 <span class="normal">1794</span>
-<span class="normal">1795</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">plot_xes_lxt_scan</span><span class="p">(</span>
+<span class="normal">1795</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_xes_lxt_scan</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">laser_on</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
     <span class="n">laser_off</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -11979,7 +11979,7 @@ the scan variable is unknown/unrecognized.</p>
 <span class="normal">1671</span>
 <span class="normal">1672</span>
 <span class="normal">1673</span>
-<span class="normal">1674</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">plot_xes_scan_hv</span><span class="p">(</span>
+<span class="normal">1674</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_xes_scan_hv</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">laser_on</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
     <span class="n">laser_off</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -12181,7 +12181,7 @@ signal.</p>
 <span class="normal">1251</span>
 <span class="normal">1252</span>
 <span class="normal">1253</span>
-<span class="normal">1254</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">plot_xss_overlap_fit</span><span class="p">(</span>
+<span class="normal">1254</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_xss_overlap_fit</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">laser_on</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
     <span class="n">bins</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>

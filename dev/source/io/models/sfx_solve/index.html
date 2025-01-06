@@ -1905,7 +1905,7 @@ https://ccp4.github.io/dimple/</p>
 <span class="normal">216</span>
 <span class="normal">217</span>
 <span class="normal">218</span>
-<span class="normal">219</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">DimpleSolveParameters</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="p">):</span>
+<span class="normal">219</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">DimpleSolveParameters</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Parameters for CCP4&#39;s dimple program.</span>
 
 <span class="sd">    There are many parameters. For more information on</span>
@@ -1913,7 +1913,7 @@ https://ccp4.github.io/dimple/</p>
 <span class="sd">    https://ccp4.github.io/dimple/</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Identical to super-class Config but includes a result.&quot;&quot;&quot;</span>
 
         <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
@@ -2076,7 +2076,7 @@ https://ccp4.github.io/dimple/</p>
     <span class="p">)</span>
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;in_file&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">validate_in_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">in_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate_in_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">in_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">in_file</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
             <span class="n">get_hkl_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">read_latest_db_entry</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;lute_config&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;ManipulateHKL&quot;</span><span class="p">,</span> <span class="s2">&quot;out_file&quot;</span>
@@ -2086,7 +2086,7 @@ https://ccp4.github.io/dimple/</p>
         <span class="k">return</span> <span class="n">in_file</span>
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;out_dir&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">validate_out_dir</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">out_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate_out_dir</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">out_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">out_dir</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
             <span class="n">get_hkl_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">read_latest_db_entry</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;lute_config&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;ManipulateHKL&quot;</span><span class="p">,</span> <span class="s2">&quot;out_file&quot;</span>
@@ -2096,7 +2096,7 @@ https://ccp4.github.io/dimple/</p>
         <span class="k">return</span> <span class="n">out_dir</span>
 
     <span class="nd">@root_validator</span><span class="p">(</span><span class="n">pre</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">define_result</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">define_result</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
         <span class="n">out_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;out_dir&quot;</span><span class="p">]</span>
         <span class="n">result</span><span class="p">:</span> <span class="nb">str</span>
         <span class="k">if</span> <span class="n">out_dir</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
@@ -2151,7 +2151,7 @@ https://ccp4.github.io/dimple/</p>
 <span class="normal">32</span>
 <span class="normal">33</span>
 <span class="normal">34</span>
-<span class="normal">35</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
+<span class="normal">35</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Identical to super-class Config but includes a result.&quot;&quot;&quot;</span>
 
     <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
@@ -2177,7 +2177,7 @@ https://ccp4.github.io/dimple/</p>
 
 
 <h4 id="io.models.sfx_solve.DimpleSolveParameters.Config.result_from_params" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">result_from_params</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span></code>
+            <code class="highlight language-python"><span class="n">result_from_params</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2199,7 +2199,7 @@ https://ccp4.github.io/dimple/</p>
 
 
 <h4 id="io.models.sfx_solve.DimpleSolveParameters.Config.set_result" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span></code>
+            <code class="highlight language-python"><span class="n">set_result</span> <span class="o">=</span> <span class="kc">True</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2299,7 +2299,7 @@ https://www.ccp4.ac.uk/html/crank.html</p>
 <span class="normal">255</span>
 <span class="normal">256</span>
 <span class="normal">257</span>
-<span class="normal">258</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">RunSHELXCParameters</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="p">):</span>
+<span class="normal">258</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">RunSHELXCParameters</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Parameters for CCP4&#39;s SHELXC program.</span>
 
 <span class="sd">    SHELXC prepares files for SHELXD and SHELXE.</span>
@@ -2323,7 +2323,7 @@ https://www.ccp4.ac.uk/html/crank.html</p>
     <span class="p">)</span>
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;in_file&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">validate_in_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">in_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate_in_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">in_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">in_file</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
             <span class="c1"># get_hkl needed to be run to produce an XDS format file...</span>
             <span class="n">xds_format_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">read_latest_db_entry</span><span class="p">(</span>

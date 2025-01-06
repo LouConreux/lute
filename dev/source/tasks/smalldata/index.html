@@ -1748,15 +1748,15 @@ a SmallData file.</p>
 <span class="normal">180</span>
 <span class="normal">181</span>
 <span class="normal">182</span>
-<span class="normal">183</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">AnalyzeSmallDataXAS</span><span class="p">(</span><span class="n">AnalyzeSmallData</span><span class="p">):</span>
+<span class="normal">183</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalyzeSmallDataXAS</span><span class="p">(</span><span class="n">AnalyzeSmallData</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Task to analyze XAS data stored in a SmallData HDF5 file.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">AnalyzeSmallDataXASParameters</span><span class="p">,</span> <span class="n">use_mpi</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">use_mpi</span><span class="o">=</span><span class="n">use_mpi</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_pre_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_pre_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># Currently scattering data is extracted as standard since its used</span>
         <span class="c1"># for all analysis types (XSS, XAS, XES,...)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
@@ -1765,7 +1765,7 @@ a SmallData file.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">_extract_standard_data</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_extract_xas</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">xas_detname</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># XAS returns two sets of binned data</span>
         <span class="c1"># Bins raw TR-XAS first, then bins by scan</span>
         <span class="n">diff</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]]</span>
@@ -1835,7 +1835,7 @@ a SmallData file.</p>
                 <span class="n">all_plots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ElogSummaryPlots</span><span class="p">(</span><span class="n">plot_display_name</span><span class="p">,</span> <span class="n">plots</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_result</span><span class="o">.</span><span class="n">payload</span> <span class="o">=</span> <span class="n">all_plots</span>
 
-    <span class="k">def</span> <span class="nf">_post_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_post_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -1965,15 +1965,15 @@ a SmallData file.</p>
 <span class="normal">264</span>
 <span class="normal">265</span>
 <span class="normal">266</span>
-<span class="normal">267</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">AnalyzeSmallDataXES</span><span class="p">(</span><span class="n">AnalyzeSmallData</span><span class="p">):</span>
+<span class="normal">267</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalyzeSmallDataXES</span><span class="p">(</span><span class="n">AnalyzeSmallData</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Task to analyze XES data stored in a SmallData HDF5 file.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">AnalyzeSmallDataXESParameters</span><span class="p">,</span> <span class="n">use_mpi</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">use_mpi</span><span class="o">=</span><span class="n">use_mpi</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_pre_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_pre_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># Currently scattering data is extracted as standard since its used</span>
         <span class="c1"># for all analysis types (XSS, XAS, XES,...)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
@@ -1982,7 +1982,7 @@ a SmallData file.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">_extract_standard_data</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_extract_xes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">xes_detname</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># XES returns two sets of data</span>
         <span class="c1"># Average TR-XES first, then bins by scan variable</span>
         <span class="n">diff</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]]</span>
@@ -2046,7 +2046,7 @@ a SmallData file.</p>
                 <span class="n">all_plots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ElogSummaryPlots</span><span class="p">(</span><span class="n">plot_display_name</span><span class="p">,</span> <span class="n">plots</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_result</span><span class="o">.</span><span class="n">payload</span> <span class="o">=</span> <span class="n">all_plots</span>
 
-    <span class="k">def</span> <span class="nf">_post_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_post_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -2140,10 +2140,10 @@ a SmallData file.</p>
 <span class="normal">90</span>
 <span class="normal">91</span>
 <span class="normal">92</span>
-<span class="normal">93</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">AnalyzeSmallDataXSS</span><span class="p">(</span><span class="n">AnalyzeSmallData</span><span class="p">):</span>
+<span class="normal">93</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalyzeSmallDataXSS</span><span class="p">(</span><span class="n">AnalyzeSmallData</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Task to analyze XSS profiles stored in a SmallData HDF5 file.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">AnalyzeSmallDataXSSParameters</span><span class="p">,</span> <span class="n">use_mpi</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">use_mpi</span><span class="o">=</span><span class="n">use_mpi</span><span class="p">)</span>
@@ -2151,12 +2151,12 @@ a SmallData file.</p>
             <span class="n">AnalyzeSmallDataXSSParameters</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span>
         <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_pre_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_pre_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># Currently scattering data is extracted as standard since its used</span>
         <span class="c1"># for all analysis types (XSS, XAS, XES,...)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_extract_standard_data</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">diff</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]]</span>
         <span class="n">bins</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]</span>
         <span class="n">laser_on</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]]</span>

@@ -2169,9 +2169,9 @@ compression and decompression with libpressio for data reduction tests.</p>
 <span class="normal">390</span>
 <span class="normal">391</span>
 <span class="normal">392</span>
-<span class="normal">393</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">CxiWriter</span><span class="p">:</span>
+<span class="normal">393</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">CxiWriter</span><span class="p">:</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">outdir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">rank</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
@@ -2321,7 +2321,7 @@ compression and decompression with libpressio for data reduction tests.</p>
         <span class="p">)</span>
         <span class="n">ds_x</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;axes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;experiment_identifier&quot;</span>
 
-    <span class="k">def</span> <span class="nf">write_event</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">write_event</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">img</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
         <span class="n">peaks</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>  <span class="c1"># Not typed becomes it comes from psana</span>
@@ -2446,7 +2446,7 @@ compression and decompression with libpressio for data reduction tests.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">_outh5</span><span class="p">[</span><span class="s2">&quot;/LCLS/detector_1/EncoderValue&quot;</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">clen</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">+=</span> <span class="mi">1</span>
 
-    <span class="k">def</span> <span class="nf">write_non_event_data</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">write_non_event_data</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">powder_hits</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
         <span class="n">powder_misses</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -2476,7 +2476,7 @@ compression and decompression with libpressio for data reduction tests.</p>
             <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">mask</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="p">)</span>  <span class="c1"># Crystfel expects inverted values</span>
 
-    <span class="k">def</span> <span class="nf">optimize_and_close_file</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">optimize_and_close_file</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">num_hits</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
         <span class="n">max_peaks</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
@@ -2735,7 +2735,7 @@ tag (str): Tag to append to cxi file names.
 <span class="normal">184</span>
 <span class="normal">185</span>
 <span class="normal">186</span>
-<span class="normal">187</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">187</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">outdir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">rank</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
@@ -2961,7 +2961,7 @@ max_peaks (int): Maximum number of peaks (per event) for which information
 <span class="normal">390</span>
 <span class="normal">391</span>
 <span class="normal">392</span>
-<span class="normal">393</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">optimize_and_close_file</span><span class="p">(</span>
+<span class="normal">393</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">optimize_and_close_file</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">num_hits</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">max_peaks</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
@@ -3173,7 +3173,7 @@ clen (float): Camera length/detector distance.
 <span class="normal">309</span>
 <span class="normal">310</span>
 <span class="normal">311</span>
-<span class="normal">312</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">write_event</span><span class="p">(</span>
+<span class="normal">312</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">write_event</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">img</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
     <span class="n">peaks</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>  <span class="c1"># Not typed becomes it comes from psana</span>
@@ -3353,7 +3353,7 @@ mask: (NDArray[numpy.uint16]): Pixel ask to write into the file
 <span class="normal">339</span>
 <span class="normal">340</span>
 <span class="normal">341</span>
-<span class="normal">342</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">write_non_event_data</span><span class="p">(</span>
+<span class="normal">342</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">write_non_event_data</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">powder_hits</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
     <span class="n">powder_misses</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -3799,18 +3799,18 @@ writes the peak information to CXI files.</p>
 <span class="normal">984</span>
 <span class="normal">985</span>
 <span class="normal">986</span>
-<span class="normal">987</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">FindPeaksPyAlgos</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
+<span class="normal">987</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">FindPeaksPyAlgos</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Task that performs peak finding using the PyAlgos peak finding algorithms and</span>
 <span class="sd">    writes the peak information to CXI files.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">FindPeaksPyAlgosParameters</span><span class="p">,</span> <span class="n">use_mpi</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">use_mpi</span><span class="o">=</span><span class="n">use_mpi</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">FindPeaksPyAlgosParameters</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="p">)</span>
         <span class="n">ds</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">MPIDataSource</span><span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;exp=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">lute_config</span><span class="o">.</span><span class="n">experiment</span><span class="si">}</span><span class="s2">:&quot;</span>
@@ -3951,7 +3951,7 @@ writes the peak information to CXI files.</p>
             <span class="p">):</span>
 
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">compression</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="kn">from</span> <span class="nn">libpressio</span> <span class="kn">import</span> <span class="n">PressioCompressor</span>  <span class="c1"># type: ignore</span>
+                    <span class="kn">from</span><span class="w"> </span><span class="nn">libpressio</span><span class="w"> </span><span class="kn">import</span> <span class="n">PressioCompressor</span>  <span class="c1"># type: ignore</span>
 
                     <span class="n">libpressio_config_with_peaks</span> <span class="o">=</span> <span class="p">(</span>
                         <span class="n">add_peaks_to_libpressio_configuration</span><span class="p">(</span><span class="n">libpressio_config</span><span class="p">,</span> <span class="n">peaks</span><span class="p">)</span>
@@ -4075,11 +4075,11 @@ writes the peak information to CXI files.</p>
 
             <span class="c1"># Write out_file</span>
 
-    <span class="k">def</span> <span class="nf">_post_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_post_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_post_run</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_result</span><span class="o">.</span><span class="n">task_status</span> <span class="o">=</span> <span class="n">TaskStatus</span><span class="o">.</span><span class="n">COMPLETED</span>
 
-    <span class="k">def</span> <span class="nf">_assemble_image</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_assemble_image</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">det</span><span class="p">:</span> <span class="n">Detector</span><span class="p">,</span> <span class="n">img</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">float64</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Assemble an image based on psana geometry.</span>
@@ -4109,7 +4109,7 @@ writes the peak information to CXI files.</p>
 
         <span class="k">return</span> <span class="n">assembled_img</span>
 
-    <span class="k">def</span> <span class="nf">_create_powder_plots</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_create_powder_plots</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">det</span><span class="p">:</span> <span class="n">Detector</span><span class="p">,</span>
         <span class="n">powder_hits</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -4307,7 +4307,7 @@ generally be of shape (n_panels, ss, fs)</p>
 <span class="normal">915</span>
 <span class="normal">916</span>
 <span class="normal">917</span>
-<span class="normal">918</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_assemble_image</span><span class="p">(</span>
+<span class="normal">918</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_assemble_image</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">det</span><span class="p">:</span> <span class="n">Detector</span><span class="p">,</span> <span class="n">img</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">float64</span><span class="p">]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Assemble an image based on psana geometry.</span>
@@ -4513,7 +4513,7 @@ misses across the run.</p>
 <span class="normal">984</span>
 <span class="normal">985</span>
 <span class="normal">986</span>
-<span class="normal">987</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_create_powder_plots</span><span class="p">(</span>
+<span class="normal">987</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_create_powder_plots</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">det</span><span class="p">:</span> <span class="n">Detector</span><span class="p">,</span>
     <span class="n">powder_hits</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -4638,7 +4638,7 @@ peaks (Any): Peak information as returned by psana.
 <span class="normal">604</span>
 <span class="normal">605</span>
 <span class="normal">606</span>
-<span class="normal">607</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">add_peaks_to_libpressio_configuration</span><span class="p">(</span><span class="n">lp_json</span><span class="p">,</span> <span class="n">peaks</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="normal">607</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_peaks_to_libpressio_configuration</span><span class="p">(</span><span class="n">lp_json</span><span class="p">,</span> <span class="n">peaks</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Add peak infromation to libpressio configuration</span>
 
@@ -4779,7 +4779,7 @@ for the libpressio library
 <span class="normal">583</span>
 <span class="normal">584</span>
 <span class="normal">585</span>
-<span class="normal">586</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">generate_libpressio_configuration</span><span class="p">(</span>
+<span class="normal">586</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">generate_libpressio_configuration</span><span class="p">(</span>
     <span class="n">compressor</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;sz3&quot;</span><span class="p">,</span> <span class="s2">&quot;qoz&quot;</span><span class="p">],</span>
     <span class="n">roi_window_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">bin_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
@@ -5007,7 +5007,7 @@ n_hits_total (int): Total number of hits found across all nodes.
 <span class="normal">495</span>
 <span class="normal">496</span>
 <span class="normal">497</span>
-<span class="normal">498</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">write_master_file</span><span class="p">(</span>
+<span class="normal">498</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">write_master_file</span><span class="p">(</span>
     <span class="n">mpi_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">outdir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>

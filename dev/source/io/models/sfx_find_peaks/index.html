@@ -1942,7 +1942,7 @@ NOTE: This Task is deprecated and provided for compatibility only.</p>
 <span class="normal">334</span>
 <span class="normal">335</span>
 <span class="normal">336</span>
-<span class="normal">337</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">FindPeaksPsocakeParameters</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="p">):</span>
+<span class="normal">337</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">FindPeaksPsocakeParameters</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Parameters for crystallographic (Bragg) peak finding using Psocake.</span>
 
 <span class="sd">    This peak finding Task optionally has the ability to compress/decompress</span>
@@ -1950,14 +1950,14 @@ NOTE: This Task is deprecated and provided for compatibility only.</p>
 <span class="sd">    NOTE: This Task is deprecated and provided for compatibility only.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="n">TaskParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">TaskParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
         <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Whether the Executor should mark a specified parameter as a result.&quot;&quot;&quot;</span>
 
         <span class="n">result_from_params</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Defines a result from the parameters. Use a validator to do so.&quot;&quot;&quot;</span>
 
-    <span class="k">class</span> <span class="nc">SZParameters</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">SZParameters</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
         <span class="n">compressor</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;qoz&quot;</span><span class="p">,</span> <span class="s2">&quot;sz3&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="s2">&quot;qoz&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;SZ compression algorithm (qoz, sz3)&quot;</span>
         <span class="p">)</span>
@@ -2099,19 +2099,19 @@ NOTE: This Task is deprecated and provided for compatibility only.</p>
     <span class="p">)</span>
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">validate_e</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate_e</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">e</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">experiment</span>
         <span class="k">return</span> <span class="n">e</span>
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">validate_r</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">r</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate_r</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">r</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">r</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">run</span>
         <span class="k">return</span> <span class="n">r</span>
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;lute_template_cfg&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">set_output_path</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_output_path</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span> <span class="n">lute_template_cfg</span><span class="p">:</span> <span class="n">TemplateConfig</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TemplateConfig</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">lute_template_cfg</span><span class="o">.</span><span class="n">output_path</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
@@ -2119,7 +2119,7 @@ NOTE: This Task is deprecated and provided for compatibility only.</p>
         <span class="k">return</span> <span class="n">lute_template_cfg</span>
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;sz_parameters&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">set_sz_compression_parameters</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_sz_compression_parameters</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span> <span class="n">sz_parameters</span><span class="p">:</span> <span class="n">SZParameters</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">values</span><span class="p">[</span><span class="s2">&quot;compressor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sz_parameters</span><span class="o">.</span><span class="n">compressor</span>
@@ -2135,7 +2135,7 @@ NOTE: This Task is deprecated and provided for compatibility only.</p>
         <span class="k">return</span> <span class="kc">None</span>
 
     <span class="nd">@root_validator</span><span class="p">(</span><span class="n">pre</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">define_result</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">define_result</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
         <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">experiment</span>
         <span class="n">run</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">run</span><span class="p">)</span>
         <span class="n">directory</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;outDir&quot;</span><span class="p">]</span>
@@ -2185,7 +2185,7 @@ NOTE: This Task is deprecated and provided for compatibility only.</p>
 <span class="normal">147</span>
 <span class="normal">148</span>
 <span class="normal">149</span>
-<span class="normal">150</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="n">TaskParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
+<span class="normal">150</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">TaskParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
     <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether the Executor should mark a specified parameter as a result.&quot;&quot;&quot;</span>
 
@@ -2209,7 +2209,7 @@ NOTE: This Task is deprecated and provided for compatibility only.</p>
 
 
 <h4 id="io.models.sfx_find_peaks.FindPeaksPsocakeParameters.Config.result_from_params" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">result_from_params</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span></code>
+            <code class="highlight language-python"><span class="n">result_from_params</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2231,7 +2231,7 @@ NOTE: This Task is deprecated and provided for compatibility only.</p>
 
 
 <h4 id="io.models.sfx_find_peaks.FindPeaksPsocakeParameters.Config.set_result" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span></code>
+            <code class="highlight language-python"><span class="n">set_result</span> <span class="o">=</span> <span class="kc">True</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2418,18 +2418,18 @@ data with SZ for the purpose of compression validation.</p>
 <span class="normal">131</span>
 <span class="normal">132</span>
 <span class="normal">133</span>
-<span class="normal">134</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">FindPeaksPyAlgosParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
+<span class="normal">134</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">FindPeaksPyAlgosParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Parameters for crystallographic (Bragg) peak finding using PyAlgos.</span>
 
 <span class="sd">    This peak finding Task optionally has the ability to compress/decompress</span>
 <span class="sd">    data with SZ for the purpose of compression validation.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="n">TaskParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">TaskParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
         <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Whether the Executor should mark a specified parameter as a result.&quot;&quot;&quot;</span>
 
-    <span class="k">class</span> <span class="nc">SZCompressorParameters</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">SZCompressorParameters</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
         <span class="n">compressor</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;qoz&quot;</span><span class="p">,</span> <span class="s2">&quot;sz3&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="s2">&quot;qoz&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Compression algorithm (&quot;qoz&quot; or &quot;sz3&quot;)&#39;</span>
         <span class="p">)</span>
@@ -2534,7 +2534,7 @@ data with SZ for the purpose of compression validation.</p>
     <span class="p">)</span>
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;out_file&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">validate_out_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">out_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate_out_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">out_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">out_file</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
             <span class="n">fname</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="p">(</span>
                 <span class="n">Path</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;outdir&quot;</span><span class="p">])</span>
@@ -2582,7 +2582,7 @@ data with SZ for the purpose of compression validation.</p>
                 <summary>Source code in <code>lute/io/models/sfx_find_peaks.py</code></summary>
                 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">17</span>
 <span class="normal">18</span>
-<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="n">TaskParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">TaskParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
     <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether the Executor should mark a specified parameter as a result.&quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
@@ -2603,7 +2603,7 @@ data with SZ for the purpose of compression validation.</p>
 
 
 <h4 id="io.models.sfx_find_peaks.FindPeaksPyAlgosParameters.Config.set_result" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span></code>
+            <code class="highlight language-python"><span class="n">set_result</span> <span class="o">=</span> <span class="kc">True</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>

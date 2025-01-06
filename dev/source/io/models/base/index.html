@@ -2001,7 +2001,7 @@ are stored in order to properly handle ThirdPartyParameter objects.</p>
 <span class="normal"> 99</span>
 <span class="normal">100</span>
 <span class="normal">101</span>
-<span class="normal">102</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">AnalysisHeader</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="normal">102</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalysisHeader</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Header information for LUTE analysis runs.&quot;&quot;&quot;</span>
 
     <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
@@ -2024,7 +2024,7 @@ are stored in order to properly handle ThirdPartyParameter objects.</p>
     <span class="n">work_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Main working directory for LUTE.&quot;</span><span class="p">)</span>
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;work_dir&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">validate_work_dir</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">directory</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate_work_dir</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">directory</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="n">work_dir</span><span class="p">:</span> <span class="nb">str</span>
         <span class="k">if</span> <span class="n">directory</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
             <span class="n">std_work_dir</span> <span class="o">=</span> <span class="p">(</span>
@@ -2044,7 +2044,7 @@ are stored in order to properly handle ThirdPartyParameter objects.</p>
         <span class="k">return</span> <span class="n">work_dir</span>
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;run&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">validate_run</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate_run</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span> <span class="n">run</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
         <span class="k">if</span> <span class="n">run</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
@@ -2055,7 +2055,7 @@ are stored in order to properly handle ThirdPartyParameter objects.</p>
         <span class="k">return</span> <span class="n">run</span>
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;experiment&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">validate_experiment</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">experiment</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate_experiment</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">experiment</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">experiment</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
             <span class="n">arp_exp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;EXPERIMENT&quot;</span><span class="p">,</span> <span class="s2">&quot;EXPX00000&quot;</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">arp_exp</span>
@@ -2200,7 +2200,7 @@ int).</p>
 <span class="normal">182</span>
 <span class="normal">183</span>
 <span class="normal">184</span>
-<span class="normal">185</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">TaskParameters</span><span class="p">(</span><span class="n">BaseSettings</span><span class="p">):</span>
+<span class="normal">185</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">TaskParameters</span><span class="p">(</span><span class="n">BaseSettings</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for models of task parameters to be validated.</span>
 
 <span class="sd">    Parameters are read from a configuration YAML file and validated against</span>
@@ -2215,7 +2215,7 @@ int).</p>
 <span class="sd">        int).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Configuration for parameters model.</span>
 
 <span class="sd">        The Config class holds Pydantic configuration. A number of LUTE-specific</span>
@@ -2491,7 +2491,7 @@ stored in the database, however. Only used if <code>set_result==True</code></p>
 <span class="normal">180</span>
 <span class="normal">181</span>
 <span class="normal">182</span>
-<span class="normal">183</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
+<span class="normal">183</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration for parameters model.</span>
 
 <span class="sd">    The Config class holds Pydantic configuration. A number of LUTE-specific</span>
@@ -2573,7 +2573,7 @@ stored in the database, however. Only used if <code>set_result==True</code></p>
 
 
 <h4 id="io.models.base.TaskParameters.Config.impl_schemas" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">impl_schemas</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></code>
+            <code class="highlight language-python"><span class="n">impl_schemas</span> <span class="o">=</span> <span class="kc">None</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2595,7 +2595,7 @@ stored in the database, however. Only used if <code>set_result==True</code></p>
 
 
 <h4 id="io.models.base.TaskParameters.Config.result_from_params" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">result_from_params</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></code>
+            <code class="highlight language-python"><span class="n">result_from_params</span> <span class="o">=</span> <span class="kc">None</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2617,7 +2617,7 @@ stored in the database, however. Only used if <code>set_result==True</code></p>
 
 
 <h4 id="io.models.base.TaskParameters.Config.result_summary" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">result_summary</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></code>
+            <code class="highlight language-python"><span class="n">result_summary</span> <span class="o">=</span> <span class="kc">None</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2639,7 +2639,7 @@ stored in the database, however. Only used if <code>set_result==True</code></p>
 
 
 <h4 id="io.models.base.TaskParameters.Config.run_directory" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">run_directory</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></code>
+            <code class="highlight language-python"><span class="n">run_directory</span> <span class="o">=</span> <span class="kc">None</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2661,7 +2661,7 @@ stored in the database, however. Only used if <code>set_result==True</code></p>
 
 
 <h4 id="io.models.base.TaskParameters.Config.set_result" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span></code>
+            <code class="highlight language-python"><span class="n">set_result</span> <span class="o">=</span> <span class="kc">False</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2772,7 +2772,7 @@ rendered template to.</p>
 <span class="normal">322</span>
 <span class="normal">323</span>
 <span class="normal">324</span>
-<span class="normal">325</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">TemplateConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="normal">325</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">TemplateConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Parameters used for templating of third party configuration files.</span>
 
 <span class="sd">    Attributes:</span>
@@ -2857,7 +2857,7 @@ positional argument instantiation of the <code>params</code> Field.</p>
 <span class="normal">202</span>
 <span class="normal">203</span>
 <span class="normal">204</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">TemplateParameters</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TemplateParameters</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for representing parameters for third party configuration files.</span>
 
 <span class="sd">    These parameters can represent arbitrary data types and are used in</span>
@@ -3026,14 +3026,14 @@ used for filling in third party configuration files.</p>
 <span class="normal">307</span>
 <span class="normal">308</span>
 <span class="normal">309</span>
-<span class="normal">310</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ThirdPartyParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
+<span class="normal">310</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ThirdPartyParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for third party task parameters.</span>
 
 <span class="sd">    Contains special validators for extra arguments and handling of parameters</span>
 <span class="sd">    used for filling in third party configuration files.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="n">TaskParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">TaskParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Configuration for parameters model.</span>
 
 <span class="sd">        The Config class holds Pydantic configuration and inherited configuration</span>
@@ -3108,7 +3108,7 @@ used for filling in third party configuration files.</p>
     <span class="c1"># lute_template_cfg: TemplateConfig</span>
 
     <span class="nd">@root_validator</span><span class="p">(</span><span class="n">pre</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">extra_fields_to_thirdparty</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">extra_fields_to_thirdparty</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]):</span>
         <span class="bp">cls</span><span class="o">.</span><span class="n">_unknown_template_params</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">param_schema_template</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
@@ -3397,7 +3397,7 @@ are passed as <code>--long=arg</code>. ThirdPartyTask-specific.</p>
 <span class="normal">280</span>
 <span class="normal">281</span>
 <span class="normal">282</span>
-<span class="normal">283</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="n">TaskParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
+<span class="normal">283</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">TaskParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration for parameters model.</span>
 
 <span class="sd">    The Config class holds Pydantic configuration and inherited configuration</span>
@@ -3485,7 +3485,7 @@ are passed as <code>--long=arg</code>. ThirdPartyTask-specific.</p>
 
 
 <h4 id="io.models.base.ThirdPartyParameters.Config.long_flags_use_eq" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">long_flags_use_eq</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span></code>
+            <code class="highlight language-python"><span class="n">long_flags_use_eq</span> <span class="o">=</span> <span class="kc">False</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -3507,7 +3507,7 @@ are passed as <code>--long=arg</code>. ThirdPartyTask-specific.</p>
 
 
 <h4 id="io.models.base.ThirdPartyParameters.Config.set_result" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span></code>
+            <code class="highlight language-python"><span class="n">set_result</span> <span class="o">=</span> <span class="kc">True</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -3529,7 +3529,7 @@ are passed as <code>--long=arg</code>. ThirdPartyTask-specific.</p>
 
 
 <h4 id="io.models.base.ThirdPartyParameters.Config.short_flags_use_eq" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">short_flags_use_eq</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span></code>
+            <code class="highlight language-python"><span class="n">short_flags_use_eq</span> <span class="o">=</span> <span class="kc">False</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>

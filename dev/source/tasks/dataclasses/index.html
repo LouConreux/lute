@@ -1855,7 +1855,7 @@ parameters, env).</p>
 <span class="normal">129</span>
 <span class="normal">130</span>
 <span class="normal">131</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">DescribedAnalysis</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DescribedAnalysis</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Complete analysis description. Held by an Executor.&quot;&quot;&quot;</span>
 
     <span class="n">task_result</span><span class="p">:</span> <span class="n">TaskResult</span>
@@ -1994,7 +1994,7 @@ automatically.</p>
 <span class="normal">118</span>
 <span class="normal">119</span>
 <span class="normal">120</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">ElogSummaryPlots</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ElogSummaryPlots</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Holds a graphical summary intended for display in the eLog.</span>
 
 <span class="sd">    Converts figures to a byte stream of HTML data to be written out, so the</span>
@@ -2017,10 +2017,10 @@ automatically.</p>
     <span class="n">display_name</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">figures</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">pn</span><span class="o">.</span><span class="n">Tabs</span><span class="p">,</span> <span class="n">hv</span><span class="o">.</span><span class="n">Image</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">Figure</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]</span>  <span class="c1"># type: ignore # noqa: F821</span>
 
-    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_setup_figures</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">_setup_figures</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_setup_figures</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert figures to an HTML file in a byte stream.&quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">figures</span><span class="p">,</span> <span class="s2">&quot;save&quot;</span><span class="p">):</span>
@@ -2065,7 +2065,7 @@ automatically.</p>
 <span class="normal">117</span>
 <span class="normal">118</span>
 <span class="normal">119</span>
-<span class="normal">120</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_setup_figures</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">120</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_setup_figures</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert figures to an HTML file in a byte stream.&quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">figures</span><span class="p">,</span> <span class="s2">&quot;save&quot;</span><span class="p">):</span>
@@ -2212,7 +2212,7 @@ multiple schemas. Multiple schemas are separated by ';', e.g.
 <span class="normal">81</span>
 <span class="normal">82</span>
 <span class="normal">83</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">TaskResult</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TaskResult</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for storing the result of a Task&#39;s execution with metadata.</span>
 
 <span class="sd">    Attributes:</span>
@@ -2314,7 +2314,7 @@ multiple schemas. Multiple schemas are separated by ';', e.g.
 <span class="normal">53</span>
 <span class="normal">54</span>
 <span class="normal">55</span>
-<span class="normal">56</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">TaskStatus</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="normal">56</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">TaskStatus</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Possible Task statuses.&quot;&quot;&quot;</span>
 
     <span class="n">PENDING</span> <span class="o">=</span> <span class="mi">0</span>

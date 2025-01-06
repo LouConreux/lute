@@ -1668,7 +1668,7 @@ an output file based on an entry in the database, if no path is provided.</p>
 <span class="normal">75</span>
 <span class="normal">76</span>
 <span class="normal">77</span>
-<span class="normal">78</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">TestBinaryErrParameters</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="p">):</span>
+<span class="normal">78</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">TestBinaryErrParameters</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Same as TestBinary, but exits with non-zero code.&quot;&quot;&quot;</span>
 
     <span class="n">executable</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
@@ -1742,13 +1742,13 @@ an output file based on an entry in the database, if no path is provided.</p>
 <span class="normal">57</span>
 <span class="normal">58</span>
 <span class="normal">59</span>
-<span class="normal">60</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">TestParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
+<span class="normal">60</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">TestParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Parameters for the test Task `Test`.&quot;&quot;&quot;</span>
 
     <span class="n">float_var</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A floating point number.&quot;</span><span class="p">)</span>
     <span class="n">str_var</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A string.&quot;</span><span class="p">)</span>
 
-    <span class="k">class</span> <span class="nc">CompoundVar</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">CompoundVar</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
         <span class="n">int_var</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="n">dict_var</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="s2">&quot;b&quot;</span><span class="p">}</span>
 

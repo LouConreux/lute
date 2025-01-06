@@ -2943,7 +2943,7 @@ environment that is passed to the Task subprocess.</p>
 <span class="normal">764</span>
 <span class="normal">765</span>
 <span class="normal">766</span>
-<span class="normal">767</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BaseExecutor</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="normal">767</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BaseExecutor</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;ABC to manage Task execution and communication with user services.</span>
 
 <span class="sd">    When running in a workflow, &quot;tasks&quot; (not the class instances) are submitted</span>
@@ -2968,7 +2968,7 @@ environment that is passed to the Task subprocess.</p>
 
     <span class="n">Hooks</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">ExecutorHooks</span><span class="p">]</span> <span class="o">=</span> <span class="n">ExecutorHooks</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">communicators</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Communicator</span><span class="p">],</span>
@@ -3010,7 +3010,7 @@ environment that is passed to the Task subprocess.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">_tasklets</span><span class="p">:</span> <span class="n">TaskletDict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;before&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;after&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_shell_source_script</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">add_tasklet</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_tasklet</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">tasklet</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
         <span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
@@ -3056,7 +3056,7 @@ environment that is passed to the Task subprocess.</p>
             <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tasklets</span><span class="p">[</span><span class="n">when</span><span class="p">],</span> <span class="nb">list</span><span class="p">)</span>
             <span class="n">cast</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tasklets</span><span class="p">[</span><span class="n">when</span><span class="p">])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tasklet_tuple</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_sub_tasklet_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_sub_tasklet_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Substitute tasklet arguments using TaskParameters members.&quot;&quot;&quot;</span>
         <span class="n">sub_pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\{\{[^}{]*\}\}&quot;</span>
         <span class="n">new_args</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
@@ -3090,7 +3090,7 @@ environment that is passed to the Task subprocess.</p>
             <span class="n">new_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_arg</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">new_args</span>
 
-    <span class="k">def</span> <span class="nf">_run_tasklets</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_run_tasklets</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">when</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;before&quot;</span><span class="p">],</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;after&quot;</span><span class="p">]]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Run all tasklets of the specified kind.&quot;&quot;&quot;</span>
@@ -3144,7 +3144,7 @@ environment that is passed to the Task subprocess.</p>
                     <span class="c1"># Summary == &quot;&quot; - i.e. hasn&#39;t been set</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_analysis_desc</span><span class="o">.</span><span class="n">task_result</span><span class="o">.</span><span class="n">summary</span> <span class="o">=</span> <span class="n">output</span>
 
-    <span class="k">def</span> <span class="nf">add_hook</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_hook</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">event</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="c1"># hook: Callable[[Self, Message, Optional[subprocess.Popen]], Optional[bool]],</span>
@@ -3168,12 +3168,12 @@ environment that is passed to the Task subprocess.</p>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Hooks</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="n">hook</span><span class="p">)</span>
 
     <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">add_default_hooks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_default_hooks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Populate the set of default event hooks.&quot;&quot;&quot;</span>
 
         <span class="o">...</span>
 
-    <span class="k">def</span> <span class="nf">update_environment</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_environment</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">update_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;prepend&quot;</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Update the stored set of environment variables.</span>
@@ -3217,7 +3217,7 @@ environment that is passed to the Task subprocess.</p>
         <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_analysis_desc</span><span class="o">.</span><span class="n">task_env</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">shell_source</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">shell_source</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Source a script.</span>
 
 <span class="sd">        Unlike `update_environment` this method sources a new file.</span>
@@ -3233,7 +3233,7 @@ environment that is passed to the Task subprocess.</p>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_shell_source_script</span> <span class="o">=</span> <span class="n">env</span>
 
-    <span class="k">def</span> <span class="nf">_shell_source</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_shell_source</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Actually shell source step.</span>
 
 <span class="sd">        This is run prior to Task execution.</span>
@@ -3264,7 +3264,7 @@ environment that is passed to the Task subprocess.</p>
                 <span class="n">new_environment</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;LUTE_TENV_</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_analysis_desc</span><span class="o">.</span><span class="n">task_env</span> <span class="o">=</span> <span class="n">new_environment</span>
 
-    <span class="k">def</span> <span class="nf">_pre_task</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_pre_task</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Any actions to be performed before task submission.</span>
 
 <span class="sd">        This method may or may not be used by subclasses. It may be useful</span>
@@ -3283,7 +3283,7 @@ environment that is passed to the Task subprocess.</p>
         <span class="p">}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_analysis_desc</span><span class="o">.</span><span class="n">task_env</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_submit_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_submit_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">:</span>
         <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span>
             <span class="n">cmd</span><span class="o">.</span><span class="n">split</span><span class="p">(),</span>
             <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
@@ -3297,7 +3297,7 @@ environment that is passed to the Task subprocess.</p>
         <span class="k">return</span> <span class="n">proc</span>
 
     <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">_task_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_task_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Actions to perform while the Task is running.</span>
 
 <span class="sd">        This function is run in the body of a loop until the Task signals</span>
@@ -3306,7 +3306,7 @@ environment that is passed to the Task subprocess.</p>
         <span class="o">...</span>
 
     <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">_finalize_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_finalize_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Any actions to be performed after the Task has ended.</span>
 
 <span class="sd">        Examples include a final clearing of the pipes, retrieving results,</span>
@@ -3314,7 +3314,7 @@ environment that is passed to the Task subprocess.</p>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 
-    <span class="k">def</span> <span class="nf">_submit_cmd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">executable_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_submit_cmd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">executable_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a formatted command for launching Task subprocess.</span>
 
 <span class="sd">        May be overridden by subclasses.</span>
@@ -3340,7 +3340,7 @@ environment that is passed to the Task subprocess.</p>
 
         <span class="k">return</span> <span class="n">cmd</span>
 
-    <span class="k">def</span> <span class="nf">execute_task</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">execute_task</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Run the requested Task as a subprocess.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pre_task</span><span class="p">()</span>
         <span class="n">lute_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;LUTE_PATH&quot;</span><span class="p">)</span>
@@ -3406,11 +3406,11 @@ environment that is passed to the Task subprocess.</p>
             <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Exiting after Task failure. Result recorded.&quot;</span><span class="p">)</span>
             <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_store_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_store_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Store configuration and results in the LUTE database.&quot;&quot;&quot;</span>
         <span class="n">record_analysis_db</span><span class="p">(</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_analysis_desc</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">_task_is_running</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_task_is_running</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Whether a subprocess is running.</span>
 
 <span class="sd">        Args:</span>
@@ -3429,12 +3429,12 @@ environment that is passed to the Task subprocess.</p>
         <span class="n">is_running</span> <span class="o">&amp;=</span> <span class="n">task_status</span> <span class="o">!=</span> <span class="n">TaskStatus</span><span class="o">.</span><span class="n">FAILED</span>
         <span class="k">return</span> <span class="n">proc</span><span class="o">.</span><span class="n">poll</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">is_running</span>
 
-    <span class="k">def</span> <span class="nf">_stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Stop the Task subprocess.&quot;&quot;&quot;</span>
         <span class="n">os</span><span class="o">.</span><span class="n">kill</span><span class="p">(</span><span class="n">proc</span><span class="o">.</span><span class="n">pid</span><span class="p">,</span> <span class="n">signal</span><span class="o">.</span><span class="n">SIGTSTP</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_analysis_desc</span><span class="o">.</span><span class="n">task_result</span><span class="o">.</span><span class="n">task_status</span> <span class="o">=</span> <span class="n">TaskStatus</span><span class="o">.</span><span class="n">STOPPED</span>
 
-    <span class="k">def</span> <span class="nf">_continue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_continue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Resume a stopped Task subprocess.&quot;&quot;&quot;</span>
         <span class="n">os</span><span class="o">.</span><span class="n">kill</span><span class="p">(</span><span class="n">proc</span><span class="o">.</span><span class="n">pid</span><span class="p">,</span> <span class="n">signal</span><span class="o">.</span><span class="n">SIGCONT</span><span class="p">)</span>
         <span class="c1"># status: str = psutil.Process(proc.pid).status()</span>
@@ -3452,7 +3452,7 @@ environment that is passed to the Task subprocess.</p>
         <span class="c1">#        return None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_analysis_desc</span><span class="o">.</span><span class="n">task_result</span><span class="o">.</span><span class="n">task_status</span> <span class="o">=</span> <span class="n">TaskStatus</span><span class="o">.</span><span class="n">RUNNING</span>
 
-    <span class="k">def</span> <span class="nf">_set_result_from_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_result_from_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Use TaskParameters object to set TaskResult fields.</span>
 
 <span class="sd">        A result may be defined in terms of specific parameters. This is most</span>
@@ -3573,7 +3573,7 @@ environment that is passed to the Task subprocess.</p>
                 <span class="p">)</span>
             <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">process_results</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">process_results</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Perform any necessary steps to process TaskResults object.</span>
 
 <span class="sd">        Processing will depend on subclass. Examples of steps include, moving</span>
@@ -3583,7 +3583,7 @@ environment that is passed to the Task subprocess.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">_process_results</span><span class="p">()</span>
 
     <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">_process_results</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_process_results</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -3723,7 +3723,7 @@ managed subprocess. In seconds.</p>
 <span class="normal">189</span>
 <span class="normal">190</span>
 <span class="normal">191</span>
-<span class="normal">192</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">192</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">communicators</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Communicator</span><span class="p">],</span>
@@ -3801,7 +3801,7 @@ managed subprocess. In seconds.</p>
 <span class="normal">631</span>
 <span class="normal">632</span>
 <span class="normal">633</span>
-<span class="normal">634</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_continue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">634</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_continue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Resume a stopped Task subprocess.&quot;&quot;&quot;</span>
     <span class="n">os</span><span class="o">.</span><span class="n">kill</span><span class="p">(</span><span class="n">proc</span><span class="o">.</span><span class="n">pid</span><span class="p">,</span> <span class="n">signal</span><span class="o">.</span><span class="n">SIGCONT</span><span class="p">)</span>
     <span class="c1"># status: str = psutil.Process(proc.pid).status()</span>
@@ -3853,7 +3853,7 @@ reporting to third party services, etc.</p>
 <span class="normal">494</span>
 <span class="normal">495</span>
 <span class="normal">496</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
-<span class="k">def</span> <span class="nf">_finalize_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_finalize_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Any actions to be performed after the Task has ended.</span>
 
 <span class="sd">    Examples include a final clearing of the pipes, retrieving results,</span>
@@ -3900,7 +3900,7 @@ for logging etc.</p>
 <span class="normal">462</span>
 <span class="normal">463</span>
 <span class="normal">464</span>
-<span class="normal">465</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_pre_task</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">465</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_pre_task</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Any actions to be performed before task submission.</span>
 
 <span class="sd">    This method may or may not be used by subclasses. It may be useful</span>
@@ -3991,7 +3991,7 @@ for logging etc.</p>
 <span class="normal">323</span>
 <span class="normal">324</span>
 <span class="normal">325</span>
-<span class="normal">326</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_run_tasklets</span><span class="p">(</span>
+<span class="normal">326</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_run_tasklets</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">when</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;before&quot;</span><span class="p">],</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;after&quot;</span><span class="p">]]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Run all tasklets of the specified kind.&quot;&quot;&quot;</span>
@@ -4204,7 +4204,7 @@ met, however, there are minimal checks in it as well.</p>
 <span class="normal">752</span>
 <span class="normal">753</span>
 <span class="normal">754</span>
-<span class="normal">755</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_set_result_from_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">755</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_set_result_from_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Use TaskParameters object to set TaskResult fields.</span>
 
 <span class="sd">    A result may be defined in terms of specific parameters. This is most</span>
@@ -4375,7 +4375,7 @@ met, however, there are minimal checks in it as well.</p>
 <span class="normal">443</span>
 <span class="normal">444</span>
 <span class="normal">445</span>
-<span class="normal">446</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_shell_source</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">446</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_shell_source</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Actually shell source step.</span>
 
 <span class="sd">    This is run prior to Task execution.</span>
@@ -4429,7 +4429,7 @@ met, however, there are minimal checks in it as well.</p>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">613</span>
 <span class="normal">614</span>
 <span class="normal">615</span>
-<span class="normal">616</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">616</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Stop the Task subprocess.&quot;&quot;&quot;</span>
     <span class="n">os</span><span class="o">.</span><span class="n">kill</span><span class="p">(</span><span class="n">proc</span><span class="o">.</span><span class="n">pid</span><span class="p">,</span> <span class="n">signal</span><span class="o">.</span><span class="n">SIGTSTP</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_analysis_desc</span><span class="o">.</span><span class="n">task_result</span><span class="o">.</span><span class="n">task_status</span> <span class="o">=</span> <span class="n">TaskStatus</span><span class="o">.</span><span class="n">STOPPED</span>
@@ -4456,7 +4456,7 @@ met, however, there are minimal checks in it as well.</p>
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">590</span>
 <span class="normal">591</span>
-<span class="normal">592</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_store_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">592</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_store_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Store configuration and results in the LUTE database.&quot;&quot;&quot;</span>
     <span class="n">record_analysis_db</span><span class="p">(</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_analysis_desc</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
@@ -4512,7 +4512,7 @@ met, however, there are minimal checks in it as well.</p>
 <span class="normal">269</span>
 <span class="normal">270</span>
 <span class="normal">271</span>
-<span class="normal">272</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_sub_tasklet_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+<span class="normal">272</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_sub_tasklet_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Substitute tasklet arguments using TaskParameters members.&quot;&quot;&quot;</span>
     <span class="n">sub_pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\{\{[^}{]*\}\}&quot;</span>
     <span class="n">new_args</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
@@ -4665,7 +4665,7 @@ swapped prior to execution.</p>
 <span class="normal">519</span>
 <span class="normal">520</span>
 <span class="normal">521</span>
-<span class="normal">522</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_submit_cmd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">executable_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="normal">522</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_submit_cmd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">executable_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a formatted command for launching Task subprocess.</span>
 
 <span class="sd">    May be overridden by subclasses.</span>
@@ -4783,7 +4783,7 @@ of.</p>
 <span class="normal">608</span>
 <span class="normal">609</span>
 <span class="normal">610</span>
-<span class="normal">611</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_task_is_running</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="normal">611</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_task_is_running</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether a subprocess is running.</span>
 
 <span class="sd">    Args:</span>
@@ -4836,7 +4836,7 @@ that its finished.</p>
 <span class="normal">485</span>
 <span class="normal">486</span>
 <span class="normal">487</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
-<span class="k">def</span> <span class="nf">_task_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_task_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Actions to perform while the Task is running.</span>
 
 <span class="sd">    This function is run in the body of a loop until the Task signals</span>
@@ -4873,7 +4873,7 @@ that its finished.</p>
 <span class="normal">353</span>
 <span class="normal">354</span>
 <span class="normal">355</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
-<span class="k">def</span> <span class="nf">add_default_hooks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">add_default_hooks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Populate the set of default event hooks.&quot;&quot;&quot;</span>
 
     <span class="o">...</span>
@@ -4955,7 +4955,7 @@ events which do not exist is not allowed.</p>
 <span class="normal">346</span>
 <span class="normal">347</span>
 <span class="normal">348</span>
-<span class="normal">349</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">add_hook</span><span class="p">(</span>
+<span class="normal">349</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_hook</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">event</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="c1"># hook: Callable[[Self, Message, Optional[subprocess.Popen]], Optional[bool]],</span>
@@ -5150,7 +5150,7 @@ summary of the main Task. Default is False.</p>
 <span class="normal">235</span>
 <span class="normal">236</span>
 <span class="normal">237</span>
-<span class="normal">238</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">add_tasklet</span><span class="p">(</span>
+<span class="normal">238</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_tasklet</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">tasklet</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
     <span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
@@ -5280,7 +5280,7 @@ summary of the main Task. Default is False.</p>
 <span class="normal">585</span>
 <span class="normal">586</span>
 <span class="normal">587</span>
-<span class="normal">588</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">execute_task</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">588</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">execute_task</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Run the requested Task as a subprocess.&quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_pre_task</span><span class="p">()</span>
     <span class="n">lute_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;LUTE_PATH&quot;</span><span class="p">)</span>
@@ -5376,7 +5376,7 @@ file, etc.</p>
 <span class="normal">761</span>
 <span class="normal">762</span>
 <span class="normal">763</span>
-<span class="normal">764</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">process_results</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">764</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">process_results</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Perform any necessary steps to process TaskResults object.</span>
 
 <span class="sd">    Processing will depend on subclass. Examples of steps include, moving</span>
@@ -5455,7 +5455,7 @@ their appropriate form prior to the actual execution of Task code.</p>
 <span class="normal">412</span>
 <span class="normal">413</span>
 <span class="normal">414</span>
-<span class="normal">415</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">shell_source</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">415</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">shell_source</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Source a script.</span>
 
 <span class="sd">    Unlike `update_environment` this method sources a new file.</span>
@@ -5591,7 +5591,7 @@ current environment, the new PATH is used without modification.</p>
 <span class="normal">396</span>
 <span class="normal">397</span>
 <span class="normal">398</span>
-<span class="normal">399</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">update_environment</span><span class="p">(</span>
+<span class="normal">399</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">update_environment</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">update_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;prepend&quot;</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Update the stored set of environment variables.</span>
@@ -6066,7 +6066,7 @@ environment that is passed to the Task subprocess.</p>
 <span class="normal">1111</span>
 <span class="normal">1112</span>
 <span class="normal">1113</span>
-<span class="normal">1114</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Executor</span><span class="p">(</span><span class="n">BaseExecutor</span><span class="p">):</span>
+<span class="normal">1114</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Executor</span><span class="p">(</span><span class="n">BaseExecutor</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Basic implementation of an Executor which manages simple IPC with Task.</span>
 
 <span class="sd">    Attributes:</span>
@@ -6084,7 +6084,7 @@ environment that is passed to the Task subprocess.</p>
 <span class="sd">        execute_task(): Run the task as a subprocess.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">communicators</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Communicator</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
@@ -6100,10 +6100,10 @@ environment that is passed to the Task subprocess.</p>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_default_hooks</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">add_default_hooks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_default_hooks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Populate the set of default event hooks.&quot;&quot;&quot;</span>
 
-        <span class="k">def</span> <span class="nf">no_pickle_mode</span><span class="p">(</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">no_pickle_mode</span><span class="p">(</span>
             <span class="n">executor</span><span class="p">:</span> <span class="n">Executor_T</span><span class="p">,</span>
             <span class="n">msg</span><span class="p">:</span> <span class="n">Message</span><span class="p">,</span>
             <span class="n">proc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -6117,7 +6117,7 @@ environment that is passed to the Task subprocess.</p>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_hook</span><span class="p">(</span><span class="s2">&quot;no_pickle_mode&quot;</span><span class="p">,</span> <span class="n">no_pickle_mode</span><span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">task_started</span><span class="p">(</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">task_started</span><span class="p">(</span>
             <span class="n">executor</span><span class="p">:</span> <span class="n">Executor_T</span><span class="p">,</span>
             <span class="n">msg</span><span class="p">:</span> <span class="n">Message</span><span class="p">,</span>
             <span class="n">proc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -6148,7 +6148,7 @@ environment that is passed to the Task subprocess.</p>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_hook</span><span class="p">(</span><span class="s2">&quot;task_started&quot;</span><span class="p">,</span> <span class="n">task_started</span><span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">task_failed</span><span class="p">(</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">task_failed</span><span class="p">(</span>
             <span class="n">executor</span><span class="p">:</span> <span class="n">Executor_T</span><span class="p">,</span>
             <span class="n">msg</span><span class="p">:</span> <span class="n">Message</span><span class="p">,</span>
             <span class="n">proc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -6161,7 +6161,7 @@ environment that is passed to the Task subprocess.</p>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_hook</span><span class="p">(</span><span class="s2">&quot;task_failed&quot;</span><span class="p">,</span> <span class="n">task_failed</span><span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">task_stopped</span><span class="p">(</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">task_stopped</span><span class="p">(</span>
             <span class="n">executor</span><span class="p">:</span> <span class="n">Executor_T</span><span class="p">,</span>
             <span class="n">msg</span><span class="p">:</span> <span class="n">Message</span><span class="p">,</span>
             <span class="n">proc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -6174,7 +6174,7 @@ environment that is passed to the Task subprocess.</p>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_hook</span><span class="p">(</span><span class="s2">&quot;task_stopped&quot;</span><span class="p">,</span> <span class="n">task_stopped</span><span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">task_done</span><span class="p">(</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">task_done</span><span class="p">(</span>
             <span class="n">executor</span><span class="p">:</span> <span class="n">Executor_T</span><span class="p">,</span>
             <span class="n">msg</span><span class="p">:</span> <span class="n">Message</span><span class="p">,</span>
             <span class="n">proc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -6187,7 +6187,7 @@ environment that is passed to the Task subprocess.</p>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_hook</span><span class="p">(</span><span class="s2">&quot;task_done&quot;</span><span class="p">,</span> <span class="n">task_done</span><span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">task_cancelled</span><span class="p">(</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">task_cancelled</span><span class="p">(</span>
             <span class="n">executor</span><span class="p">:</span> <span class="n">Executor_T</span><span class="p">,</span>
             <span class="n">msg</span><span class="p">:</span> <span class="n">Message</span><span class="p">,</span>
             <span class="n">proc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -6200,7 +6200,7 @@ environment that is passed to the Task subprocess.</p>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_hook</span><span class="p">(</span><span class="s2">&quot;task_cancelled&quot;</span><span class="p">,</span> <span class="n">task_cancelled</span><span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">task_result</span><span class="p">(</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">task_result</span><span class="p">(</span>
             <span class="n">executor</span><span class="p">:</span> <span class="n">Executor_T</span><span class="p">,</span>
             <span class="n">msg</span><span class="p">:</span> <span class="n">Message</span><span class="p">,</span>
             <span class="n">proc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -6228,7 +6228,7 @@ environment that is passed to the Task subprocess.</p>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_hook</span><span class="p">(</span><span class="s2">&quot;task_result&quot;</span><span class="p">,</span> <span class="n">task_result</span><span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">task_log</span><span class="p">(</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">task_log</span><span class="p">(</span>
             <span class="n">executor</span><span class="p">:</span> <span class="n">Executor_T</span><span class="p">,</span>
             <span class="n">msg</span><span class="p">:</span> <span class="n">Message</span><span class="p">,</span>
             <span class="n">proc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -6241,7 +6241,7 @@ environment that is passed to the Task subprocess.</p>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_hook</span><span class="p">(</span><span class="s2">&quot;task_log&quot;</span><span class="p">,</span> <span class="n">task_log</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_task_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_task_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Actions to perform while the Task is running.</span>
 
 <span class="sd">        This function is run in the body of a loop until the Task signals</span>
@@ -6266,7 +6266,7 @@ environment that is passed to the Task subprocess.</p>
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">communicator</span><span class="o">.</span><span class="n">has_messages</span><span class="p">:</span>
                     <span class="k">break</span>
 
-    <span class="k">def</span> <span class="nf">_finalize_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_finalize_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Any actions to be performed after the Task has ended.</span>
 
 <span class="sd">        Examples include a final clearing of the pipes, retrieving results,</span>
@@ -6274,7 +6274,7 @@ environment that is passed to the Task subprocess.</p>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_task_loop</span><span class="p">(</span><span class="n">proc</span><span class="p">)</span>  <span class="c1"># Perform a final read.</span>
 
-    <span class="k">def</span> <span class="nf">_process_results</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_process_results</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Performs result processing.</span>
 
 <span class="sd">        Actions include:</span>
@@ -6285,7 +6285,7 @@ environment that is passed to the Task subprocess.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">_process_result_payload</span><span class="p">(</span><span class="n">task_result</span><span class="o">.</span><span class="n">payload</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_process_result_summary</span><span class="p">(</span><span class="n">task_result</span><span class="o">.</span><span class="n">summary</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_process_result_payload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">payload</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_process_result_payload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">payload</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_analysis_desc</span><span class="o">.</span><span class="n">task_parameters</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
                 <span class="s2">&quot;Please run Task before using this method! (_process_result_payload). &quot;</span>
@@ -6312,7 +6312,7 @@ environment that is passed to the Task subprocess.</p>
             <span class="c1"># schemas: Optional[str] = self._analysis_desc.task_result.impl_schemas</span>
             <span class="c1"># Should also check `impl_schemas` to determine what to do with path</span>
 
-    <span class="k">def</span> <span class="nf">_process_elog_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plots</span><span class="p">:</span> <span class="n">ElogSummaryPlots</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_process_elog_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plots</span><span class="p">:</span> <span class="n">ElogSummaryPlots</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Process an ElogSummaryPlots</span>
 
 <span class="sd">        Writes out the eLog summary plot for display and returns the path of</span>
@@ -6348,7 +6348,7 @@ environment that is passed to the Task subprocess.</p>
 
         <span class="k">return</span> <span class="n">path</span>
 
-    <span class="k">def</span> <span class="nf">_process_result_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">summary</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_process_result_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">summary</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Process an object destined for the results summary.</span>
 
 <span class="sd">        Args:</span>
@@ -6385,7 +6385,7 @@ environment that is passed to the Task subprocess.</p>
         <span class="k">else</span><span class="p">:</span>
             <span class="o">...</span>
 
-    <span class="k">def</span> <span class="nf">_process_summary_run_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_process_summary_run_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Process a dictionary of run parameters to be posted to the eLog.</span>
 
 <span class="sd">        Args:</span>
@@ -6449,7 +6449,7 @@ reporting to third party services, etc.</p>
 <span class="normal">973</span>
 <span class="normal">974</span>
 <span class="normal">975</span>
-<span class="normal">976</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_finalize_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">976</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_finalize_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Any actions to be performed after the Task has ended.</span>
 
 <span class="sd">    Examples include a final clearing of the pipes, retrieving results,</span>
@@ -6570,7 +6570,7 @@ which can be directly written to an HTML file.</p>
 <span class="normal">1047</span>
 <span class="normal">1048</span>
 <span class="normal">1049</span>
-<span class="normal">1050</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_process_elog_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plots</span><span class="p">:</span> <span class="n">ElogSummaryPlots</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="normal">1050</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_process_elog_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plots</span><span class="p">:</span> <span class="n">ElogSummaryPlots</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Process an ElogSummaryPlots</span>
 
 <span class="sd">    Writes out the eLog summary plot for display and returns the path of</span>
@@ -6695,7 +6695,7 @@ individually.</p>
 <span class="normal">1084</span>
 <span class="normal">1085</span>
 <span class="normal">1086</span>
-<span class="normal">1087</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_process_result_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">summary</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">1087</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_process_result_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">summary</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Process an object destined for the results summary.</span>
 
 <span class="sd">    Args:</span>
@@ -6764,7 +6764,7 @@ individually.</p>
 <span class="normal">984</span>
 <span class="normal">985</span>
 <span class="normal">986</span>
-<span class="normal">987</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_process_results</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">987</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_process_results</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Performs result processing.</span>
 
 <span class="sd">    Actions include:</span>
@@ -6875,7 +6875,7 @@ summary field of the database.</p>
 <span class="normal">1111</span>
 <span class="normal">1112</span>
 <span class="normal">1113</span>
-<span class="normal">1114</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_process_summary_run_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="normal">1114</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_process_summary_run_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Process a dictionary of run parameters to be posted to the eLog.</span>
 
 <span class="sd">    Args:</span>
@@ -6947,7 +6947,7 @@ that its finished.</p>
 <span class="normal">965</span>
 <span class="normal">966</span>
 <span class="normal">967</span>
-<span class="normal">968</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_task_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">968</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_task_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Actions to perform while the Task is running.</span>
 
 <span class="sd">    This function is run in the body of a loop until the Task signals</span>
@@ -7131,10 +7131,10 @@ that its finished.</p>
 <span class="normal">940</span>
 <span class="normal">941</span>
 <span class="normal">942</span>
-<span class="normal">943</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">add_default_hooks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">943</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_default_hooks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Populate the set of default event hooks.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">no_pickle_mode</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">no_pickle_mode</span><span class="p">(</span>
         <span class="n">executor</span><span class="p">:</span> <span class="n">Executor_T</span><span class="p">,</span>
         <span class="n">msg</span><span class="p">:</span> <span class="n">Message</span><span class="p">,</span>
         <span class="n">proc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -7148,7 +7148,7 @@ that its finished.</p>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">add_hook</span><span class="p">(</span><span class="s2">&quot;no_pickle_mode&quot;</span><span class="p">,</span> <span class="n">no_pickle_mode</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">task_started</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">task_started</span><span class="p">(</span>
         <span class="n">executor</span><span class="p">:</span> <span class="n">Executor_T</span><span class="p">,</span>
         <span class="n">msg</span><span class="p">:</span> <span class="n">Message</span><span class="p">,</span>
         <span class="n">proc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -7179,7 +7179,7 @@ that its finished.</p>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">add_hook</span><span class="p">(</span><span class="s2">&quot;task_started&quot;</span><span class="p">,</span> <span class="n">task_started</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">task_failed</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">task_failed</span><span class="p">(</span>
         <span class="n">executor</span><span class="p">:</span> <span class="n">Executor_T</span><span class="p">,</span>
         <span class="n">msg</span><span class="p">:</span> <span class="n">Message</span><span class="p">,</span>
         <span class="n">proc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -7192,7 +7192,7 @@ that its finished.</p>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">add_hook</span><span class="p">(</span><span class="s2">&quot;task_failed&quot;</span><span class="p">,</span> <span class="n">task_failed</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">task_stopped</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">task_stopped</span><span class="p">(</span>
         <span class="n">executor</span><span class="p">:</span> <span class="n">Executor_T</span><span class="p">,</span>
         <span class="n">msg</span><span class="p">:</span> <span class="n">Message</span><span class="p">,</span>
         <span class="n">proc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -7205,7 +7205,7 @@ that its finished.</p>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">add_hook</span><span class="p">(</span><span class="s2">&quot;task_stopped&quot;</span><span class="p">,</span> <span class="n">task_stopped</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">task_done</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">task_done</span><span class="p">(</span>
         <span class="n">executor</span><span class="p">:</span> <span class="n">Executor_T</span><span class="p">,</span>
         <span class="n">msg</span><span class="p">:</span> <span class="n">Message</span><span class="p">,</span>
         <span class="n">proc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -7218,7 +7218,7 @@ that its finished.</p>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">add_hook</span><span class="p">(</span><span class="s2">&quot;task_done&quot;</span><span class="p">,</span> <span class="n">task_done</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">task_cancelled</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">task_cancelled</span><span class="p">(</span>
         <span class="n">executor</span><span class="p">:</span> <span class="n">Executor_T</span><span class="p">,</span>
         <span class="n">msg</span><span class="p">:</span> <span class="n">Message</span><span class="p">,</span>
         <span class="n">proc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -7231,7 +7231,7 @@ that its finished.</p>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">add_hook</span><span class="p">(</span><span class="s2">&quot;task_cancelled&quot;</span><span class="p">,</span> <span class="n">task_cancelled</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">task_result</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">task_result</span><span class="p">(</span>
         <span class="n">executor</span><span class="p">:</span> <span class="n">Executor_T</span><span class="p">,</span>
         <span class="n">msg</span><span class="p">:</span> <span class="n">Message</span><span class="p">,</span>
         <span class="n">proc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -7259,7 +7259,7 @@ that its finished.</p>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">add_hook</span><span class="p">(</span><span class="s2">&quot;task_result&quot;</span><span class="p">,</span> <span class="n">task_result</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">task_log</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">task_log</span><span class="p">(</span>
         <span class="n">executor</span><span class="p">:</span> <span class="n">Executor_T</span><span class="p">,</span>
         <span class="n">msg</span><span class="p">:</span> <span class="n">Message</span><span class="p">,</span>
         <span class="n">proc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -7330,7 +7330,7 @@ subprocess.</p>
 <span class="normal">121</span>
 <span class="normal">122</span>
 <span class="normal">123</span>
-<span class="normal">124</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ExecutorHooks</span><span class="p">:</span>
+<span class="normal">124</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ExecutorHooks</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A container class for the Executor&#39;s event hooks.</span>
 
 <span class="sd">    There is a corresponding function (hook) for each event/signal. Each</span>
@@ -7475,7 +7475,7 @@ of ranks is determined from the cores dedicated to Task execution.</p>
 <span class="normal">1158</span>
 <span class="normal">1159</span>
 <span class="normal">1160</span>
-<span class="normal">1161</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">MPIExecutor</span><span class="p">(</span><span class="n">Executor</span><span class="p">):</span>
+<span class="normal">1161</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MPIExecutor</span><span class="p">(</span><span class="n">Executor</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Runs first-party Tasks that require MPI.</span>
 
 <span class="sd">    This Executor is otherwise identical to the standard Executor, except it</span>
@@ -7497,7 +7497,7 @@ of ranks is determined from the cores dedicated to Task execution.</p>
 <span class="sd">        _submit_cmd: Run the task as a subprocess using `mpirun`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">_submit_cmd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">executable_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_submit_cmd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">executable_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Override submission command to use `mpirun`</span>
 
 <span class="sd">        Args:</span>
@@ -7642,7 +7642,7 @@ of ranks is determined from the cores dedicated to Task execution.</p>
 <span class="normal">1158</span>
 <span class="normal">1159</span>
 <span class="normal">1160</span>
-<span class="normal">1161</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_submit_cmd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">executable_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="normal">1161</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_submit_cmd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">executable_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Override submission command to use `mpirun`</span>
 
 <span class="sd">    Args:</span>

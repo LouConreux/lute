@@ -2008,7 +2008,7 @@ displayed data.</p>
 <span class="normal">363</span>
 <span class="normal">364</span>
 <span class="normal">365</span>
-<span class="normal">366</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_get_current_run_status</span><span class="p">(</span><span class="n">update_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
+<span class="normal">366</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_get_current_run_status</span><span class="p">(</span><span class="n">update_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Retrieve the current &#39;counters&#39; or status for a workflow.</span>
 
 <span class="sd">    This function is intended to be called from the posting function to allow</span>
@@ -2022,7 +2022,7 @@ displayed data.</p>
 <span class="sd">        data (Dict[str, str]): A dictionary of key:value pairs of currently</span>
 <span class="sd">            displayed data.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">import</span> <span class="nn">getpass</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">getpass</span>
 
     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;ARP_ROOT_JOB_ID&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;RUN_NUM&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
@@ -2258,7 +2258,7 @@ information.</p>
 <span class="normal">286</span>
 <span class="normal">287</span>
 <span class="normal">288</span>
-<span class="normal">289</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">elog_http_request</span><span class="p">(</span>
+<span class="normal">289</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">elog_http_request</span><span class="p">(</span>
     <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">request_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Make an HTTP request to the eLog.</span>
@@ -2407,7 +2407,7 @@ eLog post.</p>
 <span class="normal">321</span>
 <span class="normal">322</span>
 <span class="normal">323</span>
-<span class="normal">324</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">format_file_for_post</span><span class="p">(</span>
+<span class="normal">324</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">format_file_for_post</span><span class="p">(</span>
     <span class="n">in_file</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="nb">list</span><span class="p">]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">BufferedReader</span><span class="p">],</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Format a file for attachment to an eLog post.</span>
@@ -2539,7 +2539,7 @@ should generally be 0.</p>
 <span class="normal">176</span>
 <span class="normal">177</span>
 <span class="normal">178</span>
-<span class="normal">179</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_elog_active_expmt</span><span class="p">(</span><span class="n">hutch</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">endstation</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="normal">179</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_elog_active_expmt</span><span class="p">(</span><span class="n">hutch</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">endstation</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the current active experiment for a hutch.</span>
 
 <span class="sd">    This function is one of two functions to manage the HTTP request independently.</span>
@@ -2625,7 +2625,7 @@ or the current user submitting a job.</p>
 <span class="normal">191</span>
 <span class="normal">192</span>
 <span class="normal">193</span>
-<span class="normal">194</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_elog_auth</span><span class="p">(</span><span class="n">exp</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">HTTPBasicAuth</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
+<span class="normal">194</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_elog_auth</span><span class="p">(</span><span class="n">exp</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">HTTPBasicAuth</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Determine the appropriate auth method depending on experiment state.</span>
 
 <span class="sd">    Returns:</span>
@@ -2695,7 +2695,7 @@ It assumes that <code>kinit</code> has been run.</p>
 <span class="normal">223</span>
 <span class="normal">224</span>
 <span class="normal">225</span>
-<span class="normal">226</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_elog_kerberos_auth</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="normal">226</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_elog_kerberos_auth</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns Kerberos authorization key.</span>
 
 <span class="sd">    This functions returns authorization for the USER account submitting jobs.</span>
@@ -2704,7 +2704,7 @@ It assumes that <code>kinit</code> has been run.</p>
 <span class="sd">    Returns:</span>
 <span class="sd">        auth (Dict[str, str]): Dictionary containing Kerberos authorization key.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">krtc</span> <span class="kn">import</span> <span class="n">KerberosTicket</span>  <span class="c1"># type: ignore</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">krtc</span><span class="w"> </span><span class="kn">import</span> <span class="n">KerberosTicket</span>  <span class="c1"># type: ignore</span>
 
     <span class="k">return</span> <span class="n">KerberosTicket</span><span class="p">(</span><span class="s2">&quot;HTTP@pswww.slac.stanford.edu&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">getAuthHeaders</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
@@ -2799,7 +2799,7 @@ username and password for the associated operator account.</p>
 <span class="normal">209</span>
 <span class="normal">210</span>
 <span class="normal">211</span>
-<span class="normal">212</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_elog_opr_auth</span><span class="p">(</span><span class="n">exp</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">HTTPBasicAuth</span><span class="p">:</span>
+<span class="normal">212</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_elog_opr_auth</span><span class="p">(</span><span class="n">exp</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">HTTPBasicAuth</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Produce authentication for the &quot;opr&quot; user associated to an experiment.</span>
 
 <span class="sd">    This method uses basic authentication using username and password.</span>
@@ -2897,7 +2897,7 @@ Tasks, etc.)</p>
 <span class="normal">524</span>
 <span class="normal">525</span>
 <span class="normal">526</span>
-<span class="normal">527</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_elog_params_by_run</span><span class="p">(</span>
+<span class="normal">527</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_elog_params_by_run</span><span class="p">(</span>
     <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">runs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Retrieve requested parameters by run or for all runs.</span>
@@ -2998,7 +2998,7 @@ Tasks, etc.)</p>
 <span class="normal">509</span>
 <span class="normal">510</span>
 <span class="normal">511</span>
-<span class="normal">512</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_elog_runs_by_tag</span><span class="p">(</span>
+<span class="normal">512</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_elog_runs_by_tag</span><span class="p">(</span>
     <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">auth</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">HTTPBasicAuth</span><span class="p">,</span> <span class="n">Dict</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Retrieve run numbers with a specified tag.</span>
@@ -3069,7 +3069,7 @@ Tasks, etc.)</p>
 <span class="normal">74</span>
 <span class="normal">75</span>
 <span class="normal">76</span>
-<span class="normal">77</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_elog_workflows</span><span class="p">(</span><span class="n">exp</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="normal">77</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_elog_workflows</span><span class="p">(</span><span class="n">exp</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the current workflow definitions for an experiment.</span>
 
 <span class="sd">    Returns:</span>
@@ -3271,7 +3271,7 @@ return an error message.</p>
 <span class="normal">453</span>
 <span class="normal">454</span>
 <span class="normal">455</span>
-<span class="normal">456</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">post_elog_message</span><span class="p">(</span>
+<span class="normal">456</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">post_elog_message</span><span class="p">(</span>
     <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
@@ -3431,7 +3431,7 @@ neither is found, the function aborts</p>
 <span class="normal">396</span>
 <span class="normal">397</span>
 <span class="normal">398</span>
-<span class="normal">399</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">post_elog_run_status</span><span class="p">(</span>
+<span class="normal">399</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">post_elog_run_status</span><span class="p">(</span>
     <span class="n">data</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span> <span class="n">update_url</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Post a summary to the status/report section of a specific run.</span>
@@ -3601,7 +3601,7 @@ return an error message.</p>
 <span class="normal">486</span>
 <span class="normal">487</span>
 <span class="normal">488</span>
-<span class="normal">489</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">post_elog_run_table</span><span class="p">(</span>
+<span class="normal">489</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">post_elog_run_table</span><span class="p">(</span>
     <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">run</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
@@ -3844,7 +3844,7 @@ trigger='param_is' - 2 Arguments
 <span class="normal">146</span>
 <span class="normal">147</span>
 <span class="normal">148</span>
-<span class="normal">149</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">post_elog_workflow</span><span class="p">(</span>
+<span class="normal">149</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">post_elog_workflow</span><span class="p">(</span>
     <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">executable</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>

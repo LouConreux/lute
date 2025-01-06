@@ -1816,7 +1816,7 @@ scanned motors.</p>
 <span class="normal">531</span>
 <span class="normal">532</span>
 <span class="normal">533</span>
-<span class="normal">534</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">AnalyzeSmallDataXASParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
+<span class="normal">534</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalyzeSmallDataXASParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;TaskParameter model for AnalyzeSmallDataXAS Task.</span>
 
 <span class="sd">    This Task does basic analysis of XAS data based on a SmallData HDF5 output</span>
@@ -1824,7 +1824,7 @@ scanned motors.</p>
 <span class="sd">    scanned motors.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">class</span> <span class="nc">Thresholds</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Thresholds</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
         <span class="n">min_Iscat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="mf">10.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Minimum scattering intensity to use for filtering.&quot;</span>
         <span class="p">)</span>
@@ -1963,7 +1963,7 @@ scanned motors.</p>
 <span class="normal">585</span>
 <span class="normal">586</span>
 <span class="normal">587</span>
-<span class="normal">588</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">AnalyzeSmallDataXESParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
+<span class="normal">588</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalyzeSmallDataXESParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;TaskParameter model for AnalyzeSmallDataXES Task.</span>
 
 <span class="sd">    This Task does basic analysis of XES data based on a SmallData HDF5 output</span>
@@ -1971,7 +1971,7 @@ scanned motors.</p>
 <span class="sd">    scanned motors.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">class</span> <span class="nc">Thresholds</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Thresholds</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
         <span class="n">min_Iscat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="mf">10.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Minimum scattering intensity to use for filtering.&quot;</span>
         <span class="p">)</span>
@@ -2104,7 +2104,7 @@ scanned motors.</p>
 <span class="normal">483</span>
 <span class="normal">484</span>
 <span class="normal">485</span>
-<span class="normal">486</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">AnalyzeSmallDataXSSParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
+<span class="normal">486</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalyzeSmallDataXSSParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;TaskParameter model for AnalyzeSmallDataXSS Task.</span>
 
 <span class="sd">    This Task does basic analysis of XSS data based on a SmallData HDF5 output</span>
@@ -2112,7 +2112,7 @@ scanned motors.</p>
 <span class="sd">    scanned motors.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">class</span> <span class="nc">Thresholds</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Thresholds</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
         <span class="n">min_Iscat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="mf">10.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Minimum scattering intensity to use for filtering.&quot;</span>
         <span class="p">)</span>
@@ -2120,7 +2120,7 @@ scanned motors.</p>
             <span class="mf">1000.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Minimum X-ray intensity to use for filtering.&quot;</span>
         <span class="p">)</span>
 
-    <span class="k">class</span> <span class="nc">AnalysisFlags</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">AnalysisFlags</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
         <span class="n">use_pyfai</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="n">use_asymls</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 
@@ -2591,10 +2591,10 @@ scanned motors.</p>
 <span class="normal">442</span>
 <span class="normal">443</span>
 <span class="normal">444</span>
-<span class="normal">445</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SubmitSMDParameters</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="p">):</span>
+<span class="normal">445</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SubmitSMDParameters</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Parameters for running smalldata to produce reduced HDF5 files.&quot;&quot;&quot;</span>
 
-    <span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Identical to super-class Config but includes a result.&quot;&quot;&quot;</span>
 
         <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
@@ -2603,8 +2603,8 @@ scanned motors.</p>
         <span class="n">result_from_params</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Defines a result from the parameters. Use a validator to do so.&quot;&quot;&quot;</span>
 
-    <span class="k">class</span> <span class="nc">ProducerParameters</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-        <span class="k">class</span> <span class="nc">ROIParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">ProducerParameters</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+        <span class="k">class</span><span class="w"> </span><span class="nc">ROIParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
             <span class="n">ROIs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
                 <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Definition of ROIs, can define multiple.&quot;</span>
             <span class="p">)</span>
@@ -2617,7 +2617,7 @@ scanned motors.</p>
                 <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Optional threshold on ADU.&quot;</span>
             <span class="p">)</span>
 
-        <span class="k">class</span> <span class="nc">AzIntParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+        <span class="k">class</span><span class="w"> </span><span class="nc">AzIntParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
             <span class="n">eBeam</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Beam energy in keV.&quot;</span><span class="p">)</span>
 
             <span class="n">center</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Beam center in micrometers&quot;</span><span class="p">)</span>
@@ -2628,8 +2628,8 @@ scanned motors.</p>
 
             <span class="n">ty</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Tilt in y, degress&quot;</span><span class="p">)</span>
 
-        <span class="k">class</span> <span class="nc">AzIntPyFAIParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-            <span class="k">class</span> <span class="nc">AiKwargs</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+        <span class="k">class</span><span class="w"> </span><span class="nc">AzIntPyFAIParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+            <span class="k">class</span><span class="w"> </span><span class="nc">AiKwargs</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
                 <span class="n">dist</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Detector distance.&quot;</span><span class="p">)</span>
                 <span class="n">poni1</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;First poni.&quot;</span><span class="p">)</span>
                 <span class="n">poni2</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Second poni.&quot;</span><span class="p">)</span>
@@ -2653,14 +2653,14 @@ scanned motors.</p>
                 <span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Whether to return the 2D q/phi integration.&quot;</span>
             <span class="p">)</span>
 
-        <span class="k">class</span> <span class="nc">PhotonParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+        <span class="k">class</span><span class="w"> </span><span class="nc">PhotonParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
             <span class="n">ADU_per_photon</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of ADU per photon.&quot;</span><span class="p">)</span>
 
             <span class="n">thresADU</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
                 <span class="mf">0.8</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Threshold in fraction of ADU_per_photon.&quot;</span>
             <span class="p">)</span>
 
-        <span class="k">class</span> <span class="nc">DropletParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+        <span class="k">class</span><span class="w"> </span><span class="nc">DropletParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
             <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
                 <span class="s2">&quot;droplet&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;HDF5 key name for storing droplet data.&quot;</span>
             <span class="p">)</span>
@@ -2691,8 +2691,8 @@ scanned motors.</p>
                 <span class="kc">True</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;After initial finding, relabel image.&quot;</span>
             <span class="p">)</span>
 
-        <span class="k">class</span> <span class="nc">Droplet2PhotonParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-            <span class="k">class</span> <span class="nc">DropletParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+        <span class="k">class</span><span class="w"> </span><span class="nc">Droplet2PhotonParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+            <span class="k">class</span><span class="w"> </span><span class="nc">DropletParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
                 <span class="n">threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
                     <span class="mi">5</span><span class="p">,</span>
                     <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Threshold for pixel to be part of a droplet. Sigma or ADU depending on useRms.&quot;</span><span class="p">,</span>
@@ -2723,7 +2723,7 @@ scanned motors.</p>
 
             <span class="n">nData</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mf">3e4</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
 
-        <span class="k">class</span> <span class="nc">SvdParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+        <span class="k">class</span><span class="w"> </span><span class="nc">SvdParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
             <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">&quot;svdFit&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;DetObject name.&quot;</span><span class="p">)</span>
 
             <span class="n">n_components</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
@@ -2746,8 +2746,8 @@ scanned motors.</p>
                 <span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Return the reconstructed waveforms.&quot;</span>
             <span class="p">)</span>
 
-        <span class="k">class</span> <span class="nc">AutocorrParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-            <span class="k">class</span> <span class="nc">IlluminationParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+        <span class="k">class</span><span class="w"> </span><span class="nc">AutocorrParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+            <span class="k">class</span><span class="w"> </span><span class="nc">IlluminationParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
                 <span class="n">correction</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
                     <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Path to correction arrays. One per mask/ROI.&quot;</span>
                 <span class="p">)</span>
@@ -2959,7 +2959,7 @@ scanned motors.</p>
     <span class="p">)</span>
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;producer&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">validate_producer_path</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">producer</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate_producer_path</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">producer</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">producer</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
             <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">experiment</span>
             <span class="n">hutch</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">exp</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
@@ -2973,7 +2973,7 @@ scanned motors.</p>
         <span class="k">return</span> <span class="n">producer</span>
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;lute_template_cfg&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">use_producer</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">use_producer</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span> <span class="n">lute_template_cfg</span><span class="p">:</span> <span class="n">TemplateConfig</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TemplateConfig</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">lute_template_cfg</span><span class="o">.</span><span class="n">output_path</span><span class="p">:</span>
@@ -2981,7 +2981,7 @@ scanned motors.</p>
         <span class="k">return</span> <span class="n">lute_template_cfg</span>
 
     <span class="nd">@root_validator</span><span class="p">(</span><span class="n">pre</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">define_result</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">define_result</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
         <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">experiment</span>
         <span class="n">hutch</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">exp</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
         <span class="n">run</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">run</span><span class="p">)</span>
@@ -3038,7 +3038,7 @@ scanned motors.</p>
 <span class="normal">52</span>
 <span class="normal">53</span>
 <span class="normal">54</span>
-<span class="normal">55</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
+<span class="normal">55</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Identical to super-class Config but includes a result.&quot;&quot;&quot;</span>
 
     <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
@@ -3064,7 +3064,7 @@ scanned motors.</p>
 
 
 <h4 id="io.models.smd.SubmitSMDParameters.Config.result_from_params" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">result_from_params</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span></code>
+            <code class="highlight language-python"><span class="n">result_from_params</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -3086,7 +3086,7 @@ scanned motors.</p>
 
 
 <h4 id="io.models.smd.SubmitSMDParameters.Config.set_result" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span></code>
+            <code class="highlight language-python"><span class="n">set_result</span> <span class="o">=</span> <span class="kc">True</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>

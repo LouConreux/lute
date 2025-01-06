@@ -2673,10 +2673,10 @@ exhaustive grid search.</p>
 <span class="normal">854</span>
 <span class="normal">855</span>
 <span class="normal">856</span>
-<span class="normal">857</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">OptimizeAgBhGeometryExhaustive</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
+<span class="normal">857</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">OptimizeAgBhGeometryExhaustive</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Task to perform geometry optimization.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">OptimizeAgBhGeometryExhaustiveParameters</span><span class="p">,</span> <span class="n">use_mpi</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">use_mpi</span><span class="o">=</span><span class="n">use_mpi</span><span class="p">)</span>
@@ -2686,7 +2686,7 @@ exhaustive grid search.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">_mpi_rank</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mpi_comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_mpi_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mpi_comm</span><span class="o">.</span><span class="n">Get_size</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">_check_if_path_and_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_if_path_and_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Check if a string is a valid path and determine the filetype.</span>
 
 <span class="sd">        Args:</span>
@@ -2722,7 +2722,7 @@ exhaustive grid search.</p>
 
         <span class="k">return</span> <span class="n">is_valid_path</span><span class="p">,</span> <span class="n">powder_type</span>
 
-    <span class="k">def</span> <span class="nf">_extract_powder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">powder_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_extract_powder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">powder_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Extract a powder image.</span>
 
 <span class="sd">        May take a smalldata file or numpy array.</span>
@@ -2787,7 +2787,7 @@ exhaustive grid search.</p>
 
         <span class="k">return</span> <span class="n">powder</span>
 
-    <span class="k">def</span> <span class="nf">_extract_mask</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_extract_mask</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">mask_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">bool_</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Extract a mask.</span>
@@ -2853,7 +2853,7 @@ exhaustive grid search.</p>
                         <span class="p">)</span>
         <span class="k">return</span> <span class="n">mask</span>
 
-    <span class="k">def</span> <span class="nf">_get_pixel_size_and_wavelength</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_pixel_size_and_wavelength</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">ds</span><span class="p">:</span> <span class="n">psana</span><span class="o">.</span><span class="n">DataSource</span><span class="p">,</span> <span class="n">det</span><span class="p">:</span> <span class="n">psana</span><span class="o">.</span><span class="n">Detector</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Extract pixel size in mm and wavelength in Angstroms.</span>
@@ -2882,7 +2882,7 @@ exhaustive grid search.</p>
         <span class="n">wavelength</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">env</span><span class="p">()</span><span class="o">.</span><span class="n">epicsStore</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;SIOC:SYS0:ML00:AO192&quot;</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>
         <span class="k">return</span> <span class="n">pixel_size</span><span class="p">,</span> <span class="n">wavelength</span>
 
-    <span class="k">def</span> <span class="nf">_estimate_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_estimate_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Estimate a starting distance.</span>
 
 <span class="sd">        Will estimate the distance based on current geometry if no guess is</span>
@@ -2903,7 +2903,7 @@ exhaustive grid search.</p>
         <span class="n">det</span><span class="p">:</span> <span class="n">psana</span><span class="o">.</span><span class="n">Detector</span> <span class="o">=</span> <span class="n">psana</span><span class="o">.</span><span class="n">Detector</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">detname</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">env</span><span class="p">())</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">det</span><span class="o">.</span><span class="n">coords_z</span><span class="p">(</span><span class="n">run</span><span class="p">))</span> <span class="o">/</span> <span class="mf">1e3</span>
 
-    <span class="k">def</span> <span class="nf">_initial_image_center</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_initial_image_center</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">powder</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Estimate a beam center.</span>
@@ -2925,7 +2925,7 @@ exhaustive grid search.</p>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">center_guess</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">powder</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>
 
-    <span class="k">def</span> <span class="nf">_center_guesses</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_center_guesses</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">powder</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return starting beam center points based on dx/dy parameters.</span>
@@ -2959,7 +2959,7 @@ exhaustive grid search.</p>
         <span class="p">]</span>
         <span class="k">return</span> <span class="n">new_centers</span>
 
-    <span class="k">def</span> <span class="nf">_radial_profile</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_radial_profile</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">powder</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
         <span class="n">mask</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">bool_</span><span class="p">]],</span>
@@ -3014,7 +3014,7 @@ exhaustive grid search.</p>
             <span class="n">tbin</span><span class="p">,</span> <span class="n">nr</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">where</span><span class="o">=</span><span class="n">nr</span> <span class="o">!=</span> <span class="mi">0</span>
         <span class="p">)</span>
         <span class="k">if</span> <span class="n">filter_profile</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">sosfiltfilt</span><span class="p">,</span> <span class="n">butter</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.signal</span><span class="w"> </span><span class="kn">import</span> <span class="n">sosfiltfilt</span><span class="p">,</span> <span class="n">butter</span>
 
             <span class="n">sos</span> <span class="o">=</span> <span class="n">butter</span><span class="p">(</span><span class="n">filter_order</span><span class="p">,</span> <span class="n">filter_threshold</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="s2">&quot;sos&quot;</span><span class="p">)</span>
             <span class="n">radial_profile</span> <span class="o">=</span> <span class="n">sosfiltfilt</span><span class="p">(</span><span class="n">sos</span><span class="p">,</span> <span class="n">radial_profile</span><span class="p">)</span>
@@ -3022,7 +3022,7 @@ exhaustive grid search.</p>
         <span class="n">radial_profile</span><span class="p">[</span><span class="n">radial_profile</span> <span class="o">&lt;</span> <span class="n">threshold</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">return</span> <span class="n">radial_profile</span>
 
-    <span class="k">def</span> <span class="nf">_calc_and_score_ideal_rings</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_calc_and_score_ideal_rings</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">q_peaks</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Score inter-peak distances in q-space based on known behenate pattern.</span>
@@ -3065,7 +3065,7 @@ exhaustive grid search.</p>
             <span class="n">final_score</span> <span class="o">=</span> <span class="mf">0.0</span>
         <span class="k">return</span> <span class="n">rings</span><span class="p">,</span> <span class="n">final_score</span>
 
-    <span class="k">def</span> <span class="nf">_opt_distance</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_opt_distance</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">radial_profile</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
         <span class="n">distance_guess</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
@@ -3120,7 +3120,7 @@ exhaustive grid search.</p>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">peak_indices</span><span class="p">,</span> <span class="n">radial_profile</span><span class="p">[</span><span class="n">peak_indices</span><span class="p">],</span> <span class="n">new_distance</span><span class="p">,</span> <span class="n">final_score</span>
 
-    <span class="k">def</span> <span class="nf">_opt_center</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_opt_center</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">powder</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
         <span class="n">indices</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">],</span>
@@ -3164,7 +3164,7 @@ exhaustive grid search.</p>
             <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unable to report fit! </span><span class="si">{</span><span class="n">err</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">res</span>
 
-    <span class="k">def</span> <span class="nf">_opt_geom</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_opt_geom</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">powder</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
         <span class="n">mask</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">bool_</span><span class="p">]],</span>
@@ -3243,7 +3243,7 @@ exhaustive grid search.</p>
             <span class="n">calc_centers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">center_guess</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">final_scores</span><span class="p">,</span> <span class="n">calc_distances</span><span class="p">,</span> <span class="n">calc_centers</span>
 
-    <span class="k">def</span> <span class="nf">_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Perform geometry optimization of detector distance and beam center.</span>
 
 <span class="sd">        Requires a powder image from data acquired of Ag Behenate.</span>
@@ -3339,7 +3339,7 @@ exhaustive grid search.</p>
         <span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mpi_comm</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">final_centers_by_rank</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
         <span class="c1"># Flatten nested lists</span>
-        <span class="k">def</span> <span class="nf">flatten</span><span class="p">(</span><span class="n">nested_lists</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">flatten</span><span class="p">(</span><span class="n">nested_lists</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
             <span class="n">flattened</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">nested_lists</span><span class="p">:</span>
                 <span class="n">flattened</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
@@ -3391,11 +3391,11 @@ exhaustive grid search.</p>
                 <span class="n">distance</span><span class="o">=</span><span class="n">best_distance</span><span class="p">,</span>
             <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_post_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_post_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_post_run</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_result</span><span class="o">.</span><span class="n">task_status</span> <span class="o">=</span> <span class="n">TaskStatus</span><span class="o">.</span><span class="n">COMPLETED</span>
 
-    <span class="k">def</span> <span class="nf">plot_powder_and_summaries</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_powder_and_summaries</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">powder</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
         <span class="n">center</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
@@ -3430,7 +3430,7 @@ exhaustive grid search.</p>
         <span class="n">tabs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">profile_grid</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">tabs</span>
 
-    <span class="k">def</span> <span class="nf">_plot_radial_profile</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_plot_radial_profile</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">radial_profile</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
         <span class="n">qprofile</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -3451,7 +3451,7 @@ exhaustive grid search.</p>
 
         <span class="k">return</span> <span class="n">grid</span>
 
-    <span class="k">def</span> <span class="nf">_plot_powder_and_rings</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_plot_powder_and_rings</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">powder</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
         <span class="n">center</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
@@ -3634,7 +3634,7 @@ with each q-spacin.</p>
 <span class="normal">423</span>
 <span class="normal">424</span>
 <span class="normal">425</span>
-<span class="normal">426</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_calc_and_score_ideal_rings</span><span class="p">(</span>
+<span class="normal">426</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_calc_and_score_ideal_rings</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">q_peaks</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Score inter-peak distances in q-space based on known behenate pattern.</span>
@@ -3788,7 +3788,7 @@ center optimization routine.</p>
 <span class="normal">317</span>
 <span class="normal">318</span>
 <span class="normal">319</span>
-<span class="normal">320</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_center_guesses</span><span class="p">(</span>
+<span class="normal">320</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_center_guesses</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">powder</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return starting beam center points based on dx/dy parameters.</span>
@@ -3940,7 +3940,7 @@ center optimization routine.</p>
 <span class="normal">80</span>
 <span class="normal">81</span>
 <span class="normal">82</span>
-<span class="normal">83</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_check_if_path_and_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+<span class="normal">83</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_check_if_path_and_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Check if a string is a valid path and determine the filetype.</span>
 
 <span class="sd">    Args:</span>
@@ -4041,7 +4041,7 @@ was present in the TaskParameters.</p>
 <span class="normal">261</span>
 <span class="normal">262</span>
 <span class="normal">263</span>
-<span class="normal">264</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_estimate_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="normal">264</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_estimate_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Estimate a starting distance.</span>
 
 <span class="sd">    Will estimate the distance based on current geometry if no guess is</span>
@@ -4203,7 +4203,7 @@ was encountered.</p>
 <span class="normal">211</span>
 <span class="normal">212</span>
 <span class="normal">213</span>
-<span class="normal">214</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_extract_mask</span><span class="p">(</span>
+<span class="normal">214</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_extract_mask</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">mask_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">bool_</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract a mask.</span>
@@ -4409,7 +4409,7 @@ was encountered.</p>
 <span class="normal">145</span>
 <span class="normal">146</span>
 <span class="normal">147</span>
-<span class="normal">148</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_extract_powder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">powder_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]]:</span>
+<span class="normal">148</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_extract_powder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">powder_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract a powder image.</span>
 
 <span class="sd">    May take a smalldata file or numpy array.</span>
@@ -4602,7 +4602,7 @@ will be extracted.</p>
 <span class="normal">240</span>
 <span class="normal">241</span>
 <span class="normal">242</span>
-<span class="normal">243</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_get_pixel_size_and_wavelength</span><span class="p">(</span>
+<span class="normal">243</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_get_pixel_size_and_wavelength</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">ds</span><span class="p">:</span> <span class="n">psana</span><span class="o">.</span><span class="n">DataSource</span><span class="p">,</span> <span class="n">det</span><span class="p">:</span> <span class="n">psana</span><span class="o">.</span><span class="n">Detector</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract pixel size in mm and wavelength in Angstroms.</span>
@@ -4728,7 +4728,7 @@ guess if one was present in the TaskParameters.</p>
 <span class="normal">283</span>
 <span class="normal">284</span>
 <span class="normal">285</span>
-<span class="normal">286</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_initial_image_center</span><span class="p">(</span>
+<span class="normal">286</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_initial_image_center</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">powder</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Estimate a beam center.</span>
@@ -4901,7 +4901,7 @@ res.params["cx"] and res.params["cy"] contain the new beam center.</p>
 <span class="normal">522</span>
 <span class="normal">523</span>
 <span class="normal">524</span>
-<span class="normal">525</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_opt_center</span><span class="p">(</span>
+<span class="normal">525</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_opt_center</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">powder</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
     <span class="n">indices</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">],</span>
@@ -5152,7 +5152,7 @@ with each q-spacing.</p>
 <span class="normal">478</span>
 <span class="normal">479</span>
 <span class="normal">480</span>
-<span class="normal">481</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_opt_distance</span><span class="p">(</span>
+<span class="normal">481</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_opt_distance</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">radial_profile</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
     <span class="n">distance_guess</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
@@ -5483,7 +5483,7 @@ with each score.</p>
 <span class="normal">601</span>
 <span class="normal">602</span>
 <span class="normal">603</span>
-<span class="normal">604</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_opt_geom</span><span class="p">(</span>
+<span class="normal">604</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_opt_geom</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">powder</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
     <span class="n">mask</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">bool_</span><span class="p">]],</span>
@@ -5799,7 +5799,7 @@ for an azimuthally integrated powder image.</p>
 <span class="normal">380</span>
 <span class="normal">381</span>
 <span class="normal">382</span>
-<span class="normal">383</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_radial_profile</span><span class="p">(</span>
+<span class="normal">383</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_radial_profile</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">powder</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
     <span class="n">mask</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">bool_</span><span class="p">]],</span>
@@ -5854,7 +5854,7 @@ for an azimuthally integrated powder image.</p>
         <span class="n">tbin</span><span class="p">,</span> <span class="n">nr</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">where</span><span class="o">=</span><span class="n">nr</span> <span class="o">!=</span> <span class="mi">0</span>
     <span class="p">)</span>
     <span class="k">if</span> <span class="n">filter_profile</span><span class="p">:</span>
-        <span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">sosfiltfilt</span><span class="p">,</span> <span class="n">butter</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.signal</span><span class="w"> </span><span class="kn">import</span> <span class="n">sosfiltfilt</span><span class="p">,</span> <span class="n">butter</span>
 
         <span class="n">sos</span> <span class="o">=</span> <span class="n">butter</span><span class="p">(</span><span class="n">filter_order</span><span class="p">,</span> <span class="n">filter_threshold</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="s2">&quot;sos&quot;</span><span class="p">)</span>
         <span class="n">radial_profile</span> <span class="o">=</span> <span class="n">sosfiltfilt</span><span class="p">(</span><span class="n">sos</span><span class="p">,</span> <span class="n">radial_profile</span><span class="p">)</span>
@@ -6029,7 +6029,7 @@ for an azimuthally integrated powder image.</p>
 <span class="normal">749</span>
 <span class="normal">750</span>
 <span class="normal">751</span>
-<span class="normal">752</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">752</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Perform geometry optimization of detector distance and beam center.</span>
 
 <span class="sd">    Requires a powder image from data acquired of Ag Behenate.</span>
@@ -6125,7 +6125,7 @@ for an azimuthally integrated powder image.</p>
     <span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mpi_comm</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">final_centers_by_rank</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
     <span class="c1"># Flatten nested lists</span>
-    <span class="k">def</span> <span class="nf">flatten</span><span class="p">(</span><span class="n">nested_lists</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">flatten</span><span class="p">(</span><span class="n">nested_lists</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
         <span class="n">flattened</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">nested_lists</span><span class="p">:</span>
             <span class="n">flattened</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>

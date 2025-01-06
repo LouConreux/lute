@@ -1897,13 +1897,13 @@ from a <code>TaskParameters</code> object will be needed to run the Tasklet:
 <span class="normal">156</span>
 <span class="normal">157</span>
 <span class="normal">158</span>
-<span class="normal">159</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">clone_smalldata</span><span class="p">(</span><span class="n">producer_location</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">159</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">clone_smalldata</span><span class="p">(</span><span class="n">producer_location</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Clone smalldata_tools based on producer location.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        producer_location (str): Full path to the producer to be used.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
     <span class="n">repo</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;slac-lcls/smalldata_tools&quot;</span>
     <span class="n">location</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">producer_location</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span><span class="p">)</span>
@@ -2016,7 +2016,7 @@ from a <code>TaskParameters</code> object will be needed to run the Tasklet:
 <span class="normal">266</span>
 <span class="normal">267</span>
 <span class="normal">268</span>
-<span class="normal">269</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">compare_hkl_fom_summary</span><span class="p">(</span>
+<span class="normal">269</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compare_hkl_fom_summary</span><span class="p">(</span>
     <span class="n">shell_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">figure_display_name</span><span class="p">:</span> <span class="nb">str</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ElogSummaryPlots</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Analyze information produced by CrystFEL&#39;s compare_hkl.</span>
@@ -2028,10 +2028,10 @@ from a <code>TaskParameters</code> object will be needed to run the Tasklet:
 
 <span class="sd">        figure_display_name (str): Display name of the figure in the eLog.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-    <span class="kn">import</span> <span class="nn">numpy.typing</span> <span class="k">as</span> <span class="nn">npt</span>
-    <span class="kn">import</span> <span class="nn">holoviews</span> <span class="k">as</span> <span class="nn">hv</span>  <span class="c1"># type: ignore</span>
-    <span class="kn">import</span> <span class="nn">panel</span> <span class="k">as</span> <span class="nn">pn</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">numpy.typing</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">npt</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">holoviews</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">hv</span>  <span class="c1"># type: ignore</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">panel</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pn</span>
 
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">shell_file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">lines</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
@@ -2163,7 +2163,7 @@ path. These will all be concatenated.</p>
 <span class="normal"> 99</span>
 <span class="normal">100</span>
 <span class="normal">101</span>
-<span class="normal">102</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">concat_files</span><span class="p">(</span><span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">in_files_glob</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">out_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">102</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">concat_files</span><span class="p">(</span><span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">in_files_glob</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">out_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Concatenate a series of files into a single output file.</span>
 
 <span class="sd">    Args:</span>
@@ -2174,8 +2174,8 @@ path. These will all be concatenated.</p>
 
 <span class="sd">        out_file (str): Name of the concatenated output.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-    <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">BinaryIO</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">BinaryIO</span>
 
     <span class="n">in_file_path</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">in_file_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">in_file_path</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">in_files_glob</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
@@ -2303,7 +2303,7 @@ location.</p>
 <span class="normal">143</span>
 <span class="normal">144</span>
 <span class="normal">145</span>
-<span class="normal">146</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">git_clone</span><span class="p">(</span><span class="n">repo</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">permissions</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">146</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">git_clone</span><span class="p">(</span><span class="n">repo</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">permissions</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Clone a git repository.</span>
 
 <span class="sd">    Will not overwrite a directory of there is already a folder at the specified</span>
@@ -2445,7 +2445,7 @@ string if nothing is found.</p>
 <span class="normal">178</span>
 <span class="normal">179</span>
 <span class="normal">180</span>
-<span class="normal">181</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">grep</span><span class="p">(</span><span class="n">match_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">in_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="normal">181</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">grep</span><span class="p">(</span><span class="n">match_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">in_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Grep for specific lines of text output.</span>
 
 <span class="sd">    Args:</span>
@@ -2541,7 +2541,7 @@ string if nothing is found.</p>
 <span class="normal">224</span>
 <span class="normal">225</span>
 <span class="normal">226</span>
-<span class="normal">227</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">indexamajig_summary_indexing_rate</span><span class="p">(</span><span class="n">stream_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="normal">227</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">indexamajig_summary_indexing_rate</span><span class="p">(</span><span class="n">stream_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return indexing rate from indexamajig output.</span>
 
 <span class="sd">    Args:</span>
@@ -2595,7 +2595,7 @@ string if nothing is found.</p>
 <span class="normal">110</span>
 <span class="normal">111</span>
 <span class="normal">112</span>
-<span class="normal">113</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">modify_permissions</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">permissions</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">113</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">modify_permissions</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">permissions</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Recursively set permissions for a path.&quot;&quot;&quot;</span>
     <span class="n">os</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">permissions</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
@@ -2744,7 +2744,7 @@ electron density in the eLog.</p>
 <span class="normal">324</span>
 <span class="normal">325</span>
 <span class="normal">326</span>
-<span class="normal">327</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">setup_dimple_uglymol</span><span class="p">(</span>
+<span class="normal">327</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">setup_dimple_uglymol</span><span class="p">(</span>
     <span class="n">final_mtz</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">experiment</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">density_display_name</span><span class="p">:</span> <span class="nb">str</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Setup uglymol so electron density can be explored in eLog.</span>
@@ -2797,7 +2797,7 @@ electron density in the eLog.</p>
     <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">final_pdb</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">/final.pdb&quot;</span><span class="p">)</span>
 
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">/report.html&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="kn">from</span> <span class="nn">lute.tasks.util.html</span> <span class="kn">import</span> <span class="n">DIMPLE_HTML</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">lute.tasks.util.html</span><span class="w"> </span><span class="kn">import</span> <span class="n">DIMPLE_HTML</span>
 
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">DIMPLE_HTML</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -2886,7 +2886,7 @@ likely user scratch if running from the eLog.</p>
 <span class="normal">197</span>
 <span class="normal">198</span>
 <span class="normal">199</span>
-<span class="normal">200</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">wget</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">out_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">200</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">wget</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">out_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Pull down some resource.</span>
 
 <span class="sd">    Args:</span>
