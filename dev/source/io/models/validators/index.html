@@ -1795,7 +1795,7 @@ command-line/when launching the third-party Task.</p>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds the path to a valid calibration file or raises an error.&quot;&quot;&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_validate_calib_path</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">calib_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">calib_path</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">calib_path</span><span class="p">:</span>
             <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">experiment</span>
             <span class="n">run</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">run</span><span class="p">)</span>
             <span class="k">try</span><span class="p">:</span>
@@ -1814,7 +1814,7 @@ command-line/when launching the third-party Task.</p>
 
         <span class="k">return</span> <span class="n">calib_path</span>
 
-    <span class="k">return</span> <span class="n">validator</span><span class="p">(</span><span class="n">calib_path_name</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)(</span><span class="n">_validate_calib_path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">validator</span><span class="p">(</span><span class="n">calib_path_name</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">pre</span><span class="o">=</span><span class="kc">True</span><span class="p">)(</span><span class="n">_validate_calib_path</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
