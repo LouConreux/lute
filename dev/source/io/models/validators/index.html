@@ -1281,15 +1281,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#io.models.validators.validate_output_path" class="md-nav__link">
-    <span class="md-ellipsis">
-      validate_output_path
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#io.models.validators.validate_smd_path" class="md-nav__link">
     <span class="md-ellipsis">
       validate_smd_path
@@ -1601,15 +1592,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#io.models.validators.validate_output_path" class="md-nav__link">
-    <span class="md-ellipsis">
-      validate_output_path
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#io.models.validators.validate_smd_path" class="md-nav__link">
     <span class="md-ellipsis">
       validate_smd_path
@@ -1816,12 +1798,12 @@ command-line/when launching the third-party Task.</p>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_validate_calib_path</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">calib_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">calib_path</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
-            <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">experiment</span>
+            <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">experiment</span><span class="p">)</span>
             <span class="n">run</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">run</span><span class="p">)</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="n">det_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;det_type&quot;</span><span class="p">]</span>
+                <span class="n">det_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;det_type&quot;</span><span class="p">])</span>
             <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-                <span class="n">det_type</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;detname&quot;</span><span class="p">]</span>
+                <span class="n">det_type</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;detname&quot;</span><span class="p">])</span>
             <span class="n">cdir</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/sdf/data/lcls/ds/</span><span class="si">{</span><span class="n">exp</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">exp</span><span class="si">}</span><span class="s2">/calib&quot;</span>
             <span class="n">src</span> <span class="o">=</span> <span class="n">source_from_det_info</span><span class="p">(</span><span class="n">det_type</span><span class="p">,</span> <span class="n">exp</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
             <span class="n">group</span> <span class="o">=</span> <span class="n">group_from_det_type</span><span class="p">(</span><span class="n">det_type</span><span class="p">)</span>
@@ -1829,7 +1811,7 @@ command-line/when launching the third-party Task.</p>
             <span class="n">calib_dir</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">cdir</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">group</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">src</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">type</span><span class="si">}</span><span class="s2">/&quot;</span>
             <span class="n">calib_run_path</span> <span class="o">=</span> <span class="n">select_calib_file</span><span class="p">(</span><span class="n">calib_dir</span><span class="p">,</span> <span class="n">run</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Calibration found: </span><span class="si">{</span><span class="n">calib_run_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">calib_path</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">calib_run_path</span><span class="p">):</span>
                 <span class="k">return</span> <span class="n">calib_run_path</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Calibration not found at </span><span class="si">{</span><span class="n">calib_run_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Calibration file not found at </span><span class="si">{</span><span class="n">calib_run_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -1837,52 +1819,6 @@ command-line/when launching the third-party Task.</p>
         <span class="k">return</span> <span class="n">calib_path</span>
 
     <span class="k">return</span> <span class="n">validator</span><span class="p">(</span><span class="n">calib_path_name</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)(</span><span class="n">_validate_calib_path</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div>
-            </details>
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h2 id="io.models.validators.validate_output_path" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">validate_output_path</span><span class="p">(</span><span class="n">output_path_name</span><span class="p">)</span></code>
-
-</h2>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Finds the path to a valid output file or raises an error.</p>
-
-            <details class="quote">
-              <summary>Source code in <code>lute/io/models/validators.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">103</span>
-<span class="normal">104</span>
-<span class="normal">105</span>
-<span class="normal">106</span>
-<span class="normal">107</span>
-<span class="normal">108</span>
-<span class="normal">109</span>
-<span class="normal">110</span>
-<span class="normal">111</span>
-<span class="normal">112</span>
-<span class="normal">113</span>
-<span class="normal">114</span>
-<span class="normal">115</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">validate_output_path</span><span class="p">(</span><span class="n">output_path_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds the path to a valid output file or raises an error.&quot;&quot;&quot;</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">_validate_output_path</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">output_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">output_path</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
-            <span class="n">run</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">run</span>
-            <span class="n">in_file</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;in_file&quot;</span><span class="p">]</span>
-            <span class="n">in_file_path</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">in_file</span><span class="p">)</span>
-            <span class="n">out_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">in_file_path</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">run</span><span class="si">}</span><span class="s2">-end.data&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">out_file</span>
-
-    <span class="k">return</span> <span class="n">validator</span><span class="p">(</span><span class="n">output_path_name</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)(</span><span class="n">_validate_output_path</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
