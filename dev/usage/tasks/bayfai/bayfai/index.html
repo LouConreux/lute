@@ -1679,7 +1679,35 @@ c. `SubmitSMD`:
     - Don't touch the producer if no smalldata repo was cloned in your experiment (I'd recommend even to never touch it!).
 </code></pre>
 <h2 id="running-bayfai-from-the-command-line">Running BayFAI from the Command-Line</h2>
-<p>Skip this section if you are interested in launching BayFAI from the <a href="#running-bayfai-from-the-elog">eLog</a></p>
+<p>Skip this section if you are only interested in launching BayFAI from the <a href="#running-bayfai-from-the-elog">eLog</a></p>
+<p>After setting correctly the config yaml, one can launch BayFAI workflow from the command-line by calling the lute executor.</p>
+<ol>
+<li>
+<p>Navigate to the launchpad folder:
+    <code>bash
+    (base) [lconreux@sdfiana002 bayfai] cd launchpad</code></p>
+</li>
+<li>
+<p>Launch BayFAI workflow
+    <code>bash
+    (base) [lconreux@sdfiana002 launchpad] /sdf/data/lcls/ds/prj/prjlute22/results/benchmarks/geom_opt/lute/launch_scripts/submit_launch_airflow.sh /sdf/data/lcls/ds/prj/prjlute22/results/benchmarks/geom_opt/lute/launch_scripts/launch_airflow.py -w bayfai -c /sdf/data/lcls/ds/&lt;hutch&gt;/&lt;experiment&gt;/scratch/bayfai/yamls/&lt;experiment&gt;.yaml --partition=milano --ntasks=102 --account=lcls:&lt;experiment&gt; --nodes=1 --test</code>
+    This will launch the BayFAI workflow using the config yaml one specified earlier, and will scan 101 distances around the provided <guess distance>.</p>
+</li>
+<li>
+<p>Monitor the Results (after a couple of minutes):</p>
+<ul>
+<li>Inside the launchpad folder, one will find the logs. If everything went smoothed, one should see Task Complete!</li>
+<li>Inside the smd_output, one will find the powder computed thanks to <code>smalldata</code>.</li>
+<li>After task completion, a figs folder should be created. Inside of it, Fitting plots along with BayFAI metrics can be found.</li>
+<li>The corrected geometry files should created within the calibration folder of the experiment: 
+```bash
+(base) [lconreux@sdfiana002 launchpad] cd /sdf/data/lcls/ds/<hutch>/<experiment>/calib/<group>/<source>/geometry/
+(base) [lconreux@sdfiana002 geometry] ls -l</li>
+</ul>
+<p>```
+    <run>-end.data </p>
+</li>
+</ol>
 <h2 id="running-bayfai-from-the-elog">Running BayFAI from the eLog</h2>
 <ol>
 <li>Go to the Workflow Definition Panel:<ul>
@@ -1714,7 +1742,7 @@ c. `SubmitSMD`:
 <ol>
 <li>Monitor the Results (after a couple of minutes!):<ul>
 <li>Geometry is posted to the eLog along with the Resolution range covered by the detector.</li>
-<li>Fitting plots along with BayFAI metrics can be found in the "Summaries" page
+<li>Fitting plots along with BayFAI metrics can be found in the "Summaries" page.
 The measured distance between sample and detector will eventually be reported in the Workflow controls tab. </li>
 </ul>
 </li>
@@ -1731,7 +1759,7 @@ The measured distance between sample and detector will eventually be reported in
 </tr>
 </tbody>
 </table>
-<p>Fitting plots will can be found in the "Summaries" page (go to <strong><em>runs &gt; r0010</em></strong> where 10 is the run number).</p>
+<p>Fitting plots can be found in the "Summaries" page (go to <strong><em>runs &gt; r0010</em></strong> where 10 is the run number).</p>
 <table>
 <thead>
 <tr>
