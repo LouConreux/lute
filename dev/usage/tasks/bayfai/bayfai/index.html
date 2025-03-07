@@ -1552,6 +1552,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#work-in-progress" class="md-nav__link">
+    <span class="md-ellipsis">
+      WORK IN PROGRESS
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1662,11 +1671,14 @@ detSumAlgos:
     - calib_max
 detnames:
 - &lt;detector&gt; # Fill this line with detector name (epix10k2M, jungfrau4M, Rayonix...)
-directory: /sdf/data/lcls/ds/&lt;hutch&gt;/&lt;experiment&gt;/scratch/lute_output/smd_output/ # Fill this line 
+directory: /sdf/data/lcls/ds/&lt;hutch&gt;/&lt;experiment&gt;/scratch/bayfai/smd_output/ # Fill this line 
 producer: /sdf/data/lcls/ds/prj/prjlute22/results/benchmarks/geom_opt/smalldata_tools/lcls1_producers/smd_producer.py # If no smalldata cloned in experiment folder, use this one!
 ...
 </code></pre>
-<pre><code>BayFAI's config template is divided into three parts, the `lute_config`: basic experiment configuration (top top of the yaml), `OptimizePyFAIGeometry`: BayFAI required parameters, `SMDSubmit`: smalldata required parameters
+<pre><code>```bash
+(base) [lconreux@sdfiana002 bayfai] nano yamls/&lt;experiment&gt;.yaml
+```
+BayFAI's config template is divided into three parts, the `lute_config`: basic experiment configuration (top top of the yaml), `OptimizePyFAIGeometry`: BayFAI required parameters, `SMDSubmit`: smalldata required parameters
 a. `lute_config`:
     - If launched from eLog, erase the experiment and run lines.
     - Fill in the correct working directory `/sdf/data/lcls/ds/&lt;hutch&gt;/&lt;experiment&gt;/scratch/bayfai/`.
@@ -1688,6 +1700,14 @@ c. `SubmitSMD`:
     (base) [lconreux@sdfiana002 bayfai] cd launchpad</code></p>
 </li>
 <li>
+<p>Double-check if the distance, the calibrant, or the detector have been changed in between runs!</p>
+<ul>
+<li>Modify the config yaml accordingly!
+<code>bash
+(base) [lconreux@sdfiana002 launchpad] nano ../yamls/&lt;experiment&gt;.yaml</code></li>
+</ul>
+</li>
+<li>
 <p>Launch BayFAI workflow
     <code>bash
     (base) [lconreux@sdfiana002 launchpad] /sdf/data/lcls/ds/prj/prjlute22/results/benchmarks/geom_opt/lute/launch_scripts/submit_launch_airflow.sh /sdf/data/lcls/ds/prj/prjlute22/results/benchmarks/geom_opt/lute/launch_scripts/launch_airflow.py -w bayfai -c /sdf/data/lcls/ds/&lt;hutch&gt;/&lt;experiment&gt;/scratch/bayfai/yamls/&lt;experiment&gt;.yaml --partition=milano --ntasks=102 --account=lcls:&lt;experiment&gt; --nodes=1 --test</code>
@@ -1696,16 +1716,31 @@ c. `SubmitSMD`:
 <li>
 <p>Monitor the Results (after a couple of minutes):</p>
 <ul>
-<li>Inside the launchpad folder, one will find the logs. If everything went smoothed, one should see Task Complete!</li>
+<li>Inside the launchpad folder, one will find the logs. If everything went smoothed, one should see Task Complete at the bottom of it along with the geometry!</li>
 <li>Inside the smd_output, one will find the powder computed thanks to <code>smalldata</code>.</li>
 <li>After task completion, a figs folder should be created. Inside of it, Fitting plots along with BayFAI metrics can be found.</li>
 <li>The corrected geometry files should created within the calibration folder of the experiment: 
-```bash
-(base) [lconreux@sdfiana002 launchpad] cd /sdf/data/lcls/ds/<hutch>/<experiment>/calib/<group>/<source>/geometry/
-(base) [lconreux@sdfiana002 geometry] ls -l</li>
+<code>bash
+(base) [lconreux@sdfiana002 launchpad] cd /sdf/data/lcls/ds/&lt;hutch&gt;/&lt;experiment&gt;/calib/&lt;group&gt;/&lt;source&gt;/geometry/
+(base) [lconreux@sdfiana002 geometry] ls -l
+-rw-rw-r--+ 1 lbgee    ps-users  3267 Dec  9 15:28 0-end.data
+-rw-rw----+ 1 lconreux ps-users  2729 Dec  9 19:13 &lt;run&gt;-end.data
+-rw-rw-r--+ 1 lbgee    ps-users   257 Dec  9 15:28 HISTORY
+-rw-rw----+ 1 lconreux ps-users 18365 Dec  9 19:13 r&lt;run:0&gt;4&gt;.geom</code></li>
 </ul>
-<p>```
-    <run>-end.data </p>
+<p>At this point, the working directory should look like this:
+<code>bash
+(base) [lconreux@sdfiana002 bayfai]$ tree
+.
+├── launchpad
+│   └── slurm-&lt;job-id&gt;.out
+├── smd_output
+│   └── &lt;experiment&gt;_Run&lt;run:0&gt;4&gt;.h5
+├── figs
+│    └── bayFAI_&lt;experiment&gt;_r&lt;run:0&gt;4&gt;.png
+├── lute.db
+└── yamls
+    └── &lt;experiment&gt;.yaml</code></p>
 </li>
 </ol>
 <h2 id="running-bayfai-from-the-elog">Running BayFAI from the eLog</h2>
@@ -1722,7 +1757,44 @@ c. `SubmitSMD`:
 </li>
 </ul>
 </li>
-<li>Go to the Workflow Control Panel:<ul>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="BayFAI workflow configuration from the eLog" src="../images/bayfai-config.png" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>BayFAI workflow configuration from the eLog for mfxl1047723.</strong></td>
+</tr>
+</tbody>
+</table>
+<p>At this point, this is what the Workflow Definition Panel should look like:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="BayFAI workflow definition from the eLog" src="../images/bayfai-definition.png" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>BayFAI workflow definition from the eLog for mfxl1047723.</strong></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>
+<p>Double-check if the distance, the calibrant, or the detector have been changed in between runs!</p>
+<ul>
+<li>Modify the config yaml accordingly!
+<code>bash
+(base) [lconreux@sdfiana002 bayfai] nano yamls/&lt;experiment&gt;.yaml</code></li>
+</ul>
+</li>
+<li>
+<p>Go to the Workflow Control Panel:</p>
+<ul>
 <li>Trigger BayFAI for the desired run!</li>
 </ul>
 </li>
@@ -1735,45 +1807,66 @@ c. `SubmitSMD`:
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>BayFAI workflow controls from the eLog.</strong></td>
+<td style="text-align: center;"><strong>BayFAI workflow controls from the eLog for mfxl1047723.</strong></td>
 </tr>
 </tbody>
 </table>
 <ol>
 <li>Monitor the Results (after a couple of minutes!):<ul>
-<li>Geometry is posted to the eLog along with the Resolution range covered by the detector.</li>
-<li>Fitting plots along with BayFAI metrics can be found in the "Summaries" page.
-The measured distance between sample and detector will eventually be reported in the Workflow controls tab. </li>
+<li>Geometry is posted to the eLog along with the Resolution range covered by the detector (beam center is defined relative to the center of the powder image (in pixels)).</li>
+<li>Fitting plots along with BayFAI metrics can be found in the "Summaries" page (go to <strong><em>Geometry_Fit &gt; r0018</em></strong> where 18 is the run number).</li>
+<li>The corrected geometry files should created within the calibration folder of the experiment:
+<code>bash
+(base) [lconreux@sdfiana002 bayfai] cd /sdf/data/lcls/ds/&lt;hutch&gt;/&lt;experiment&gt;/calib/&lt;group&gt;/&lt;source&gt;/geometry/
+(base) [lconreux@sdfiana002 geometry] ls -l
+-rw-rw-r--+ 1 lbgee    ps-users  3267 Dec  9 15:28 0-end.data
+-rw-rw----+ 1 lconreux ps-users  2729 Dec  9 19:13 &lt;run&gt;-end.data
+-rw-rw-r--+ 1 lbgee    ps-users   257 Dec  9 15:28 HISTORY
+-rw-rw----+ 1 lconreux ps-users 18365 Dec  9 19:13 r&lt;run:0&gt;4&gt;.geom</code></li>
 </ul>
 </li>
 </ol>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><img alt="BayFAI reporting of geometry inferred from Silver Behenate run" src="../images/bayfai-geom.png" /></th>
+<th style="text-align: center;"><img alt="BayFAI reporting of geometry inferred from LaB6 run" src="../images/bayfai-geom.png" /></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>BayFAI reporting of geometry inferred from Silver Behenate run.</strong></td>
+<td style="text-align: center;"><strong>BayFAI reporting of geometry from LaB6 for mfxl1047723 run 18.</strong></td>
 </tr>
 </tbody>
 </table>
-<p>Fitting plots can be found in the "Summaries" page (go to <strong><em>runs &gt; r0010</em></strong> where 10 is the run number).</p>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;">!BayFAI summary of geometry inferred from Silver Behenate run</th>
+<th style="text-align: center;"><img alt="BayFAI summary of geometry inferred from LaB6 run" src="../images/bayfai-summary.png" /></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>BayFAI summary of geometry inferred from Silver Behenate run.</strong></td>
+<td style="text-align: center;"><strong>BayFAI summary of geometry inferred from LaB6 for mfxl1047723 run 18.</strong></td>
 </tr>
 </tbody>
 </table>
+<p>If you are interested, at this point, the working directory should look like this:</p>
+<pre><code class="language-bash">(base) [lconreux@sdfiana002 bayfai]$ tree
+.
+├── launchpad
+├── smd_output
+│   └── &lt;experiment&gt;_Run&lt;run:0&gt;4&gt;.h5
+├── figs
+│    └── bayFAI_&lt;experiment&gt;_r&lt;run:0&gt;4&gt;.png
+├── lute.db
+└── yamls
+    └── &lt;experiment&gt;.yaml
+</code></pre>
+<p>The powder image used is stored as h5 file inside smd_output, and the fitting summary seen on the eLog is stored under the figs folder.</p>
 <h2 id="running-only-bayfai-geometry-calibration">Running only BayFAI Geometry Calibration</h2>
-<hr />
+<p>This is for advanced usage.
+If one has already a powder image to be used for calibration, the <code>smalldata</code> step can be skipped to directly run the geometry calibration step.</p>
+<h2 id="work-in-progress">WORK IN PROGRESS</h2>
 
 
 
