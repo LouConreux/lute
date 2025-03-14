@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.8">
     
     
       
@@ -1807,7 +1807,7 @@
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="tasks.sfx_find_peaks.CxiWriter" href="#tasks.sfx_find_peaks.CxiWriter">CxiWriter</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="CxiWriter (tasks.sfx_find_peaks.CxiWriter)" href="#tasks.sfx_find_peaks.CxiWriter">CxiWriter</a></code></td>
             <td>
               <div class="doc-md-description">
                 <p>utility class for writing peak finding results to CXI files.</p>
@@ -1815,7 +1815,7 @@
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="tasks.sfx_find_peaks.FindPeaksPyAlgos" href="#tasks.sfx_find_peaks.FindPeaksPyAlgos">FindPeaksPyAlgos</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="FindPeaksPyAlgos (tasks.sfx_find_peaks.FindPeaksPyAlgos)" href="#tasks.sfx_find_peaks.FindPeaksPyAlgos">FindPeaksPyAlgos</a></code></td>
             <td>
               <div class="doc-md-description">
                 <p>peak finding using psana's PyAlgos algorithm. Optional data
@@ -1825,6 +1825,7 @@ compression and decompression with libpressio for data reduction tests.</p>
           </tr>
       </tbody>
     </table>
+
 
 
 
@@ -1854,6 +1855,7 @@ compression and decompression with libpressio for data reduction tests.</p>
 
 
     <div class="doc doc-contents ">
+
 
 
 
@@ -2635,6 +2637,7 @@ ipy (Any): Pixel indexes with respect to detector origin (y component)
 tag (str): Tag to append to cxi file names.
 </code></pre>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/sfx_find_peaks.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 39</span>
@@ -2960,6 +2963,7 @@ max_peaks (int): Maximum number of peaks (per event) for which information
     can be written into the file
 </code></pre>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/sfx_find_peaks.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">344</span>
@@ -3097,6 +3101,7 @@ photon_energy (float): Photon energy for the event
 
 clen (float): Camera length/detector distance.
 </code></pre>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/sfx_find_peaks.py</code></summary>
@@ -3373,6 +3378,7 @@ powder_misses (NDArray[numpy.float64]): Virtual powder pattern from hits
 mask: (NDArray[numpy.uint16]): Pixel ask to write into the file
 </code></pre>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/sfx_find_peaks.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">314</span>
@@ -3464,6 +3470,7 @@ mask: (NDArray[numpy.uint16]): Pixel ask to write into the file
 
         <p>Task that performs peak finding using the PyAlgos peak finding algorithms and
 writes the peak information to CXI files.</p>
+
 
 
 
@@ -4327,6 +4334,7 @@ generally be of shape (n_panels, ss, fs)</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/sfx_find_peaks.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">890</span>
@@ -4493,6 +4501,7 @@ misses across the run.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/sfx_find_peaks.py</code></summary>
@@ -4668,6 +4677,7 @@ peaks (Any): Peak information as returned by psana.
 <pre><code>lp_json: Updated configuration JSON structure for the libpressio library.
 </code></pre>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/sfx_find_peaks.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">589</span>
@@ -4741,6 +4751,7 @@ libpressio_mask (NDArray): mask to be applied to the data.
 <pre><code>lp_json (Dict[str, Any]): Dictionary storing the JSON configuration structure
 for the libpressio library
 </code></pre>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/sfx_find_peaks.py</code></summary>
@@ -4952,6 +4963,7 @@ n_hits_total (int): Total number of hits found across all nodes.
 <p>Returns:</p>
 <pre><code>The path to the the written master file
 </code></pre>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/sfx_find_peaks.py</code></summary>

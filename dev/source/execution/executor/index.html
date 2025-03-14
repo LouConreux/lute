@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.8">
     
     
       
@@ -2232,7 +2232,7 @@ to an Executor.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="execution.executor.BaseExecutor" href="#execution.executor.BaseExecutor">BaseExecutor</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="BaseExecutor (execution.executor.BaseExecutor)" href="#execution.executor.BaseExecutor">BaseExecutor</a></code></td>
             <td>
               <div class="doc-md-description">
                 <p>Abstract base class from which all Executors are derived.</p>
@@ -2240,7 +2240,7 @@ to an Executor.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="execution.executor.Executor" href="#execution.executor.Executor">Executor</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="Executor (execution.executor.Executor)" href="#execution.executor.Executor">Executor</a></code></td>
             <td>
               <div class="doc-md-description">
                 <p>Default Executor implementing all basic functionality and IPC.</p>
@@ -2248,7 +2248,7 @@ to an Executor.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="execution.executor.MPIExecutor" href="#execution.executor.MPIExecutor">MPIExecutor</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="MPIExecutor (execution.executor.MPIExecutor)" href="#execution.executor.MPIExecutor">MPIExecutor</a></code></td>
             <td>
               <div class="doc-md-description">
                 <p>Runs exactly as the Executor but submits the Task using MPI.</p>
@@ -2258,6 +2258,7 @@ to an Executor.</p>
       </tbody>
     </table>
         <h3 id="execution.executor--exceptions">Exceptions</h3>
+
 
 
 
@@ -2309,7 +2310,7 @@ party services like the eLog.</p>
       </thead>
       <tbody>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="execution.executor.BaseExecutor.add_hook" href="#execution.executor.BaseExecutor.add_hook">add_hook</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="add_hook(event, hook) (execution.executor.BaseExecutor.add_hook)" href="#execution.executor.BaseExecutor.add_hook">add_hook</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>str, hook: Callable[[None], None]) -&gt; None: Create a
@@ -2318,7 +2319,11 @@ new hook to be called each time a specific event occurs.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="execution.executor.BaseExecutor.add_default_hooks" href="#execution.executor.BaseExecutor.add_default_hooks">add_default_hooks</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="add_default_hooks()
+
+  
+      abstractmethod
+   (execution.executor.BaseExecutor.add_default_hooks)" href="#execution.executor.BaseExecutor.add_default_hooks">add_default_hooks</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Populate the event hooks with the default
@@ -2327,7 +2332,7 @@ functions.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="execution.executor.BaseExecutor.update_environment" href="#execution.executor.BaseExecutor.update_environment">update_environment</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="update_environment(env, update_path='prepend') (execution.executor.BaseExecutor.update_environment)" href="#execution.executor.BaseExecutor.update_environment">update_environment</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Dict[str, str], update_path: str): Update the
@@ -2336,7 +2341,7 @@ environment that is passed to the Task subprocess.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="execution.executor.BaseExecutor.execute_task" href="#execution.executor.BaseExecutor.execute_task">execute_task</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="execute_task() (execution.executor.BaseExecutor.execute_task)" href="#execution.executor.BaseExecutor.execute_task">execute_task</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Run the task as a subprocess.</p>
@@ -2345,6 +2350,7 @@ environment that is passed to the Task subprocess.</p>
             </tr>
       </tbody>
     </table>
+
 
 
 
@@ -3731,6 +3737,7 @@ managed subprocess. In seconds.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">152</span>
@@ -3833,6 +3840,7 @@ managed subprocess. In seconds.</p>
 
         <p>Resume a stopped Task subprocess.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">618</span>
@@ -3893,6 +3901,7 @@ managed subprocess. In seconds.</p>
 <p>Examples include a final clearing of the pipes, retrieving results,
 reporting to third party services, etc.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">489</span>
@@ -3930,6 +3939,7 @@ reporting to third party services, etc.</p>
         <p>Any actions to be performed before task submission.</p>
 <p>This method may or may not be used by subclasses. It may be useful
 for logging etc.</p>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
@@ -3986,6 +3996,7 @@ for logging etc.</p>
     <div class="doc doc-contents ">
 
         <p>Run all tasklets of the specified kind.</p>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
@@ -4132,6 +4143,7 @@ result by setting a single config option:
                 TaskParameters.Config.set_result=True
 In general, this method should only be called when the above condition is
 met, however, there are minimal checks in it as well.</p>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
@@ -4394,6 +4406,7 @@ met, however, there are minimal checks in it as well.</p>
         <p>Actually shell source step.</p>
 <p>This is run prior to Task execution.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">417</span>
@@ -4474,6 +4487,7 @@ met, however, there are minimal checks in it as well.</p>
 
         <p>Stop the Task subprocess.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">613</span>
@@ -4502,6 +4516,7 @@ met, however, there are minimal checks in it as well.</p>
 
         <p>Store configuration and results in the LUTE database.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">590</span>
@@ -4527,6 +4542,7 @@ met, however, there are minimal checks in it as well.</p>
     <div class="doc doc-contents ">
 
         <p>Substitute tasklet arguments using TaskParameters members.</p>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
@@ -4689,6 +4705,7 @@ swapped prior to execution.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">498</span>
@@ -4814,6 +4831,7 @@ of.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">594</span>
@@ -4876,6 +4894,7 @@ of.</p>
 <p>This function is run in the body of a loop until the Task signals
 that its finished.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">480</span>
@@ -4915,6 +4934,7 @@ that its finished.</p>
     <div class="doc doc-contents ">
 
         <p>Populate the set of default event hooks.</p>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
@@ -4981,6 +5001,7 @@ events which do not exist is not allowed.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
@@ -5154,6 +5175,7 @@ summary of the main Task. Default is False.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">194</span>
@@ -5263,6 +5285,7 @@ summary of the main Task. Default is False.</p>
     <div class="doc doc-contents ">
 
         <p>Run the requested Task as a subprocess.</p>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
@@ -5417,6 +5440,7 @@ summary of the main Task. Default is False.</p>
 files, converting file formats, compiling plots/figures into an HTML
 file, etc.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">757</span>
@@ -5488,6 +5512,7 @@ their appropriate form prior to the actual execution of Task code.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
@@ -5596,6 +5621,7 @@ current environment, the new PATH is used without modification.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
@@ -5711,7 +5737,7 @@ current environment, the new PATH is used without modification.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="execution.executor.BaseExecutor" href="#execution.executor.BaseExecutor">BaseExecutor</a></code></p>
+              Bases: <code><a class="autorefs autorefs-internal" title="BaseExecutor (execution.executor.BaseExecutor)" href="#execution.executor.BaseExecutor">BaseExecutor</a></code></p>
 
 
         <p>Basic implementation of an Executor which manages simple IPC with Task.</p>
@@ -5728,7 +5754,7 @@ current environment, the new PATH is used without modification.</p>
       </thead>
       <tbody>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="execution.executor.Executor.add_hook" href="#execution.executor.BaseExecutor.add_hook">add_hook</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="add_hook(event, hook) (execution.executor.Executor.add_hook)" href="#execution.executor.BaseExecutor.add_hook">add_hook</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>str, hook: Callable[[None], None]) -&gt; None: Create a
@@ -5737,7 +5763,7 @@ new hook to be called each time a specific event occurs.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="execution.executor.Executor.add_default_hooks" href="#execution.executor.Executor.add_default_hooks">add_default_hooks</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="add_default_hooks() (execution.executor.Executor.add_default_hooks)" href="#execution.executor.Executor.add_default_hooks">add_default_hooks</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Populate the event hooks with the default
@@ -5746,7 +5772,7 @@ functions.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="execution.executor.Executor.update_environment" href="#execution.executor.BaseExecutor.update_environment">update_environment</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="update_environment(env, update_path='prepend') (execution.executor.Executor.update_environment)" href="#execution.executor.BaseExecutor.update_environment">update_environment</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Dict[str, str], update_path: str): Update the
@@ -5755,7 +5781,7 @@ environment that is passed to the Task subprocess.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="execution.executor.Executor.execute_task" href="#execution.executor.BaseExecutor.execute_task">execute_task</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="execute_task() (execution.executor.Executor.execute_task)" href="#execution.executor.BaseExecutor.execute_task">execute_task</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Run the task as a subprocess.</p>
@@ -5764,6 +5790,7 @@ environment that is passed to the Task subprocess.</p>
             </tr>
       </tbody>
     </table>
+
 
 
 
@@ -6491,6 +6518,7 @@ environment that is passed to the Task subprocess.</p>
 <p>Examples include a final clearing of the pipes, retrieving results,
 reporting to third party services, etc.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">970</span>
@@ -6583,6 +6611,7 @@ which can be directly written to an HTML file.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
@@ -6708,6 +6737,7 @@ individually.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1052</span>
@@ -6802,6 +6832,7 @@ individually.</p>
 <p>Actions include:
 - For <code>ElogSummaryPlots</code>, will save the summary plot to the appropriate
     directory for display in the eLog.</p>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
@@ -6898,6 +6929,7 @@ summary field of the database.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1089</span>
@@ -6972,6 +7004,7 @@ summary field of the database.</p>
 <p>This function is run in the body of a loop until the Task signals
 that its finished.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">945</span>
@@ -7039,6 +7072,7 @@ that its finished.</p>
     <div class="doc doc-contents ">
 
         <p>Populate the set of default event hooks.</p>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
@@ -7360,6 +7394,7 @@ subprocess.</p>
 
 
 
+
               <details class="quote">
                 <summary>Source code in <code>lute/execution/executor.py</code></summary>
                 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">106</span>
@@ -7435,7 +7470,7 @@ subprocess.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="execution.executor.Executor" href="#execution.executor.Executor">Executor</a></code></p>
+              Bases: <code><a class="autorefs autorefs-internal" title="Executor (execution.executor.Executor)" href="#execution.executor.Executor">Executor</a></code></p>
 
 
         <p>Runs first-party Tasks that require MPI.</p>
@@ -7464,7 +7499,7 @@ of ranks is determined from the cores dedicated to Task execution.</p>
       </thead>
       <tbody>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="execution.executor.MPIExecutor._submit_cmd" href="#execution.executor.MPIExecutor._submit_cmd">_submit_cmd</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="_submit_cmd(executable_path, params) (execution.executor.MPIExecutor._submit_cmd)" href="#execution.executor.MPIExecutor._submit_cmd">_submit_cmd</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Run the task as a subprocess using <code>mpirun</code>.</p>
@@ -7473,6 +7508,7 @@ of ranks is determined from the cores dedicated to Task execution.</p>
             </tr>
       </tbody>
     </table>
+
 
 
 
@@ -7667,6 +7703,7 @@ of ranks is determined from the cores dedicated to Task execution.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>

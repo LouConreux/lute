@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.8">
     
     
       
@@ -1951,7 +1951,7 @@
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="tasks.task.Task" href="#tasks.task.Task">Task</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="Task (tasks.task.Task)" href="#tasks.task.Task">Task</a></code></td>
             <td>
               <div class="doc-md-description">
                 <p>Abstract base class from which all analysis tasks are derived.</p>
@@ -1959,7 +1959,7 @@
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="tasks.task.ThirdPartyTask" href="#tasks.task.ThirdPartyTask">ThirdPartyTask</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="ThirdPartyTask (tasks.task.ThirdPartyTask)" href="#tasks.task.ThirdPartyTask">ThirdPartyTask</a></code></td>
             <td>
               <div class="doc-md-description">
                 <p>Class to run a third-party executable binary as a <code>Task</code>.</p>
@@ -1968,6 +1968,7 @@
           </tr>
       </tbody>
     </table>
+
 
 
 
@@ -2027,6 +2028,7 @@
           </tr>
       </tbody>
     </table>
+
 
 
 
@@ -2384,6 +2386,7 @@
     <div class="doc doc-contents ">
 
         <p>TaskResult: Read-only Task Result information.</p>
+
     </div>
 
 </div>
@@ -2455,6 +2458,7 @@ processing until all ranks have finished.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/task.py</code></summary>
@@ -2571,6 +2575,7 @@ processing until all ranks have finished.</p>
         <p>Code to run AFTER the main analysis takes place.</p>
 <p>This function may, or may not, be employed by subclasses.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/task.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">144</span>
@@ -2603,6 +2608,7 @@ processing until all ranks have finished.</p>
 
         <p>Code to run BEFORE the main analysis takes place.</p>
 <p>This function may, or may not, be employed by subclasses.</p>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/task.py</code></summary>
@@ -2669,6 +2675,7 @@ method may be overriden by subclasses with specialized functionality.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/task.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">198</span>
@@ -2732,6 +2739,7 @@ method may be overriden by subclasses with specialized functionality.</p>
 have pre and post task functionality embedded easily into a single
 function call.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/task.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">127</span>
@@ -2769,6 +2777,7 @@ function call.</p>
     <div class="doc doc-contents ">
 
         <p>Send the signal that results are ready along with the results.</p>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/task.py</code></summary>
@@ -2819,6 +2828,7 @@ function call.</p>
     <div class="doc doc-contents ">
 
         <p>Send the signal that the Task will begin shortly.</p>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/task.py</code></summary>
@@ -2884,6 +2894,7 @@ function call.</p>
 
         <p>Perform any necessary cleanup actions before exit if timing out.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/task.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">217</span>
@@ -2911,6 +2922,7 @@ function call.</p>
         <p>Calls the analysis routines and any pre/post task functions.</p>
 <p>This method is part of the public API and should not need to be modified
 in any subclasses.</p>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/task.py</code></summary>
@@ -2962,10 +2974,11 @@ in any subclasses.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="tasks.task.Task" href="#tasks.task.Task">Task</a></code></p>
+              Bases: <code><a class="autorefs autorefs-internal" title="Task (tasks.task.Task)" href="#tasks.task.Task">Task</a></code></p>
 
 
         <p>A <code>Task</code> interface to analysis with binary executables.</p>
+
 
 
 
@@ -3499,6 +3512,7 @@ TaskParameters model definition.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/task.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">225</span>
@@ -3632,6 +3646,7 @@ simplicity; however, any type can be stored as needed.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/task.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">256</span>
@@ -3690,6 +3705,7 @@ simplicity; however, any type can be stored as needed.</p>
 
         <p>Returns the command as it would passed on the command-line.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/task.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">426</span>
@@ -3730,6 +3746,7 @@ an input to Jinja. This method solely identifies the necessary objects
 and passes them all along. Refer to the template files and pydantic
 models for more information on how these parameters are defined and
 identified.</p>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/task.py</code></summary>
@@ -3965,6 +3982,7 @@ identified.</p>
 
         <p>Execute the new program by replacing the current process.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/task.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">416</span>
@@ -4003,6 +4021,7 @@ identified.</p>
 
         <p>Override start signal method to switch communication methods.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/task.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">431</span>
@@ -4040,6 +4059,7 @@ identified.</p>
 through the LUTE config file. This facilitates parameter modification
 for third party tasks which use a separate configuration, in addition
 to, or instead of, command-line arguments.</p>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/task.py</code></summary>

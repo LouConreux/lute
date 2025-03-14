@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.8">
     
     
       
@@ -1751,7 +1751,7 @@ and work exclusively on LUTE objects.</p>
       </thead>
       <tbody>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="io.db.record_analysis_db" href="#io.db.record_analysis_db">record_analysis_db</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="record_analysis_db(cfg) (io.db.record_analysis_db)" href="#io.db.record_analysis_db">record_analysis_db</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>DescribedAnalysis) -&gt; None: Writes the configuration
@@ -1760,7 +1760,7 @@ to the backend database.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="io.db.read_latest_db_entry" href="#io.db.read_latest_db_entry">read_latest_db_entry</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="read_latest_db_entry(db_dir, task_name, param, valid_only=True, for_run=os.getenv('RUN')) (io.db.read_latest_db_entry)" href="#io.db.read_latest_db_entry">read_latest_db_entry</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>str, task_name: str, param: str) -&gt; Any: Retrieve
@@ -1783,7 +1783,7 @@ the most recent entry from a database for a specific Task.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code><a class="autorefs autorefs-internal" title="io.db.DatabaseError" href="#io.db.DatabaseError">DatabaseError</a></code>
+                  <code><a class="autorefs autorefs-internal" title="DatabaseError (io.db.DatabaseError)" href="#io.db.DatabaseError">DatabaseError</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1793,6 +1793,7 @@ the most recent entry from a database for a specific Task.</p>
           </tr>
       </tbody>
     </table>
+
 
 
 
@@ -1827,6 +1828,7 @@ the most recent entry from a database for a specific Task.</p>
 
 
         <p>General LUTE database error.</p>
+
 
 
 
@@ -1910,6 +1912,7 @@ the most recent entry from a database for a specific Task.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/io/db.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">44</span>
@@ -1983,6 +1986,7 @@ the most recent entry from a database for a specific Task.</p>
     <div class="doc doc-contents ">
 
         <p>Return SQL type for a value.</p>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/io/db.py</code></summary>
@@ -2116,6 +2120,7 @@ Types are one of TEXT, INTEGER, REAL.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/io/db.py</code></summary>
@@ -2331,6 +2336,7 @@ Types are one of TEXT, INTEGER, REAL</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/io/db.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">167</span>
@@ -2519,6 +2525,7 @@ information dictionary.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/io/db.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 73</span>
@@ -2693,6 +2700,7 @@ information dictionary.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/io/db.py</code></summary>
@@ -2885,6 +2893,7 @@ that can be found in the database. Returns None if nothing found.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/io/db.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">341</span>
@@ -3023,6 +3032,7 @@ information necessary to fully describe a single <code>Task</code> execution. Th
 contained fields are split across multiple tables within the database as
 some of the information can be shared across multiple Tasks. Refer to
 <code>docs/design/database.md</code> for more information on the database specification.</p>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/io/db.py</code></summary>

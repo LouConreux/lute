@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.8">
     
     
       
@@ -2302,7 +2302,7 @@ module for implementation into runnable Tasks.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="tasks._smalldata.AnalyzeSmallData" href="#tasks._smalldata.AnalyzeSmallData">AnalyzeSmallData</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="AnalyzeSmallData (tasks._smalldata.AnalyzeSmallData)" href="#tasks._smalldata.AnalyzeSmallData">AnalyzeSmallData</a></code></td>
             <td>
               <div class="doc-md-description">
                 <p>Analyze a smalldata file, with MPI support.</p>
@@ -2311,6 +2311,7 @@ module for implementation into runnable Tasks.</p>
           </tr>
       </tbody>
     </table>
+
 
 
 
@@ -2345,6 +2346,7 @@ module for implementation into runnable Tasks.</p>
 
 
         <p>Base class for analyzing a SmallData HDF5 file with MPI support.</p>
+
 
 
 
@@ -5962,6 +5964,7 @@ of (num_events) which can be used to index and filter a data array.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">329</span>
@@ -6071,6 +6074,7 @@ of (num_events) which can be used to index and filter a data array.</p>
         <p>Calculate normalization factors by integrating the water ring.</p>
 <p>https://www.osti.gov/servlets/purl/1760438 says to use 1.5-3.5 A-1</p>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">315</span>
@@ -6166,6 +6170,7 @@ of shape (pixels)</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
@@ -6318,6 +6323,7 @@ profiles of shape (ccm_bins)</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
@@ -6524,6 +6530,7 @@ profiles of shape (ccm_bins)</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">814</span>
@@ -6672,6 +6679,7 @@ profiles of shape (ccm_bins)</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">847</span>
@@ -6753,6 +6761,7 @@ profiles of shape (ccm_bins)</p>
         <p>Calculate a normalization factor by taking the maximum of each profile.</p>
 <p>Returns:
 norm (npt.NDArray[np.float64]): The 1D norm with shape (num_events)</p>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
@@ -6843,6 +6852,7 @@ Q-range to average.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
@@ -6951,6 +6961,7 @@ Final difference shape is 1D: (scan_bins)</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
@@ -7174,6 +7185,7 @@ axis is energy.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1056</span>
@@ -7390,6 +7402,7 @@ of shape (n_events_las_on, q_bins)</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">913</span>
@@ -7600,6 +7613,7 @@ of shape (n_events_las_on, q_bins)</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">878</span>
@@ -7716,6 +7730,7 @@ dark mean from. Shape: (n_events, q_bins)</p>
         <p>Returns:
     dark_mean (npt.NDArray[np.float64]): The calculated dark mean.
         Shape: (q_bins)</p>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
@@ -7905,6 +7920,7 @@ Q value used for calculating the overlap.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">535</span>
@@ -8009,6 +8025,7 @@ integration data and PyFAI integrated data (which have different
 interfaces). If both are present, it will only extract the internal
 algorithm data.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">190</span>
@@ -8112,6 +8129,7 @@ algorithm data.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">230</span>
@@ -8187,6 +8205,7 @@ algorithm data.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">217</span>
@@ -8230,6 +8249,7 @@ algorithm data.</p>
     <div class="doc doc-contents ">
 
         <p>Setup up stored attributes by taking data from the smalldata hdf5 file.</p>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
@@ -8401,6 +8421,7 @@ PV.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">577</span>
@@ -8509,6 +8530,7 @@ at once.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
@@ -8760,6 +8782,7 @@ mean corrected, laser on, scattering profile.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">399</span>
@@ -8903,6 +8926,7 @@ mean corrected, laser on, scattering profile.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
@@ -9132,6 +9156,7 @@ Q value used for calculating the overlap.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">427</span>
@@ -9286,6 +9311,7 @@ Q value used for calculating the overlap.</p>
 <p>Sets up light status (X-ray and laser) filters, and adjustable filters
 based on, e.g., thresholds.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">243</span>
@@ -9352,6 +9378,7 @@ based on, e.g., thresholds.</p>
 
         <p>Update stored event filters that are based on adjustable parameters.</p>
 <p>E.g. update the minimum scattering intensity to use in analyses.</p>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
@@ -9521,6 +9548,7 @@ signal.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
@@ -9720,6 +9748,7 @@ signal.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
@@ -9922,6 +9951,7 @@ signal.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
@@ -10156,6 +10186,7 @@ signal.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1335</span>
@@ -10386,6 +10417,7 @@ for the energy axis. If None, will just use pixels for that axis.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
@@ -10627,6 +10659,7 @@ signal.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
@@ -10875,6 +10908,7 @@ signal.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1488</span>
@@ -11119,6 +11153,7 @@ signal.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1389</span>
@@ -11316,6 +11351,7 @@ for the energy axis. If None, will just use pixels for that axis.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1549</span>
@@ -11502,6 +11538,7 @@ signal.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
@@ -11748,6 +11785,7 @@ signal.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1737</span>
@@ -11993,6 +12031,7 @@ the scan variable is unknown/unrecognized.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1640</span>
@@ -12171,6 +12210,7 @@ signal.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_smalldata.py</code></summary>

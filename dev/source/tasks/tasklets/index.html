@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.8">
     
     
       
@@ -731,6 +731,15 @@
   <a href="#tasks.tasklets--mytaskrunnerupdate_environment-if-needed" class="md-nav__link">
     <span class="md-ellipsis">
       MyTaskRunner.update_environment(...) # if needed
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tasks.tasklets.clone_bayfai_lute" class="md-nav__link">
+    <span class="md-ellipsis">
+      clone_bayfai_lute
     </span>
   </a>
   
@@ -1662,6 +1671,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#tasks.tasklets.clone_bayfai_lute" class="md-nav__link">
+    <span class="md-ellipsis">
+      clone_bayfai_lute
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#tasks.tasklets.clone_smalldata" class="md-nav__link">
     <span class="md-ellipsis">
       clone_smalldata
@@ -1790,7 +1808,7 @@ the Executor mechanism is provided.</p>
       </thead>
       <tbody>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="tasks.tasklets.git_clone" href="#tasks.tasklets.git_clone">git_clone</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="git_clone(repo, location, permissions) (tasks.tasklets.git_clone)" href="#tasks.tasklets.git_clone">git_clone</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>str, location: str, permissions: str): Clone a git repo.</p>
@@ -1798,7 +1816,7 @@ the Executor mechanism is provided.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="tasks.tasklets.clone_smalldata" href="#tasks.tasklets.clone_smalldata">clone_smalldata</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="clone_smalldata(producer_location) (tasks.tasklets.clone_smalldata)" href="#tasks.tasklets.clone_smalldata">clone_smalldata</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>str): Clone smalldata_tools based on the
@@ -1807,7 +1825,7 @@ location of the producer file.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="tasks.tasklets.concat_files" href="#tasks.tasklets.concat_files">concat_files</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="concat_files(location, in_files_glob, out_file) (tasks.tasklets.concat_files)" href="#tasks.tasklets.concat_files">concat_files</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>str, in_files_glob: str, out_file: str): Concatenate
@@ -1816,7 +1834,7 @@ a group of files into a single output file.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="tasks.tasklets.grep" href="#tasks.tasklets.grep">grep</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="grep(match_str, in_file) (tasks.tasklets.grep)" href="#tasks.tasklets.grep">grep</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>str, in_file: str) -&gt; str | List[str]: grep for text in a
@@ -1825,7 +1843,7 @@ specific file. Returns the results.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="tasks.tasklets.indexamajig_summary_indexing_rate" href="#tasks.tasklets.indexamajig_summary_indexing_rate">indexamajig_summary_indexing_rate</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="indexamajig_summary_indexing_rate(stream_file) (tasks.tasklets.indexamajig_summary_indexing_rate)" href="#tasks.tasklets.indexamajig_summary_indexing_rate">indexamajig_summary_indexing_rate</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>str) -&gt; Dict[str, str]: Parse
@@ -1834,7 +1852,7 @@ an output stream file to determine indexed patterns/indexing rate.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="tasks.tasklets.compare_hkl_fom_summary" href="#tasks.tasklets.compare_hkl_fom_summary">compare_hkl_fom_summary</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="compare_hkl_fom_summary(shell_file, figure_display_name) (tasks.tasklets.compare_hkl_fom_summary)" href="#tasks.tasklets.compare_hkl_fom_summary">compare_hkl_fom_summary</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>str, figure_display_name: str) -&gt;
@@ -1844,7 +1862,7 @@ merit and produce a plot of figure of merit/resolution ring.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="tasks.tasklets.setup_dimple_uglymol" href="#tasks.tasklets.setup_dimple_uglymol">setup_dimple_uglymol</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="setup_dimple_uglymol(final_mtz, experiment, density_display_name) (tasks.tasklets.setup_dimple_uglymol)" href="#tasks.tasklets.setup_dimple_uglymol">setup_dimple_uglymol</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>str, experiment: str, density_display_name: str
@@ -1881,6 +1899,7 @@ from a <code>TaskParameters</code> object will be needed to run the Tasklet:
 
 
 
+
   <div class="doc doc-children">
 
 
@@ -1890,6 +1909,76 @@ from a <code>TaskParameters</code> object will be needed to run the Tasklet:
 
 
 
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="tasks.tasklets.clone_bayfai_lute" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">clone_bayfai_lute</span><span class="p">(</span><span class="n">work_dir</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Clone the Bayfai LUTE repository in the working directory </p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>work_dir</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Full path to the location to clone to.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+            <details class="quote">
+              <summary>Source code in <code>lute/tasks/tasklets.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">clone_bayfai_lute</span><span class="p">(</span><span class="n">work_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Clone the Bayfai LUTE repository in the working directory </span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        work_dir (str): Full path to the location to clone to.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">repo</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;LouConreux/lute&quot;</span>
+    <span class="n">git_clone</span><span class="p">(</span><span class="n">repo</span><span class="p">,</span> <span class="n">work_dir</span><span class="p">,</span> <span class="mo">0o777</span><span class="p">)</span>    
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
 
 <div class="doc doc-object doc-function">
 
@@ -1934,6 +2023,7 @@ from a <code>TaskParameters</code> object will be needed to run the Tasklet:
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/tasklets.py</code></summary>
@@ -2025,20 +2115,10 @@ from a <code>TaskParameters</code> object will be needed to run the Tasklet:
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/tasklets.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">230</span>
-<span class="normal">231</span>
-<span class="normal">232</span>
-<span class="normal">233</span>
-<span class="normal">234</span>
-<span class="normal">235</span>
-<span class="normal">236</span>
-<span class="normal">237</span>
-<span class="normal">238</span>
-<span class="normal">239</span>
-<span class="normal">240</span>
-<span class="normal">241</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">241</span>
 <span class="normal">242</span>
 <span class="normal">243</span>
 <span class="normal">244</span>
@@ -2066,7 +2146,18 @@ from a <code>TaskParameters</code> object will be needed to run the Tasklet:
 <span class="normal">266</span>
 <span class="normal">267</span>
 <span class="normal">268</span>
-<span class="normal">269</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compare_hkl_fom_summary</span><span class="p">(</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compare_hkl_fom_summary</span><span class="p">(</span>
     <span class="n">shell_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">figure_display_name</span><span class="p">:</span> <span class="nb">str</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ElogSummaryPlots</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Analyze information produced by CrystFEL&#39;s compare_hkl.</span>
@@ -2188,6 +2279,7 @@ path. These will all be concatenated.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/tasklets.py</code></summary>
@@ -2320,6 +2412,7 @@ location.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/tasklets.py</code></summary>
@@ -2474,20 +2567,10 @@ string if nothing is found.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/tasklets.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">162</span>
-<span class="normal">163</span>
-<span class="normal">164</span>
-<span class="normal">165</span>
-<span class="normal">166</span>
-<span class="normal">167</span>
-<span class="normal">168</span>
-<span class="normal">169</span>
-<span class="normal">170</span>
-<span class="normal">171</span>
-<span class="normal">172</span>
-<span class="normal">173</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">173</span>
 <span class="normal">174</span>
 <span class="normal">175</span>
 <span class="normal">176</span>
@@ -2495,7 +2578,18 @@ string if nothing is found.</p>
 <span class="normal">178</span>
 <span class="normal">179</span>
 <span class="normal">180</span>
-<span class="normal">181</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">grep</span><span class="p">(</span><span class="n">match_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">in_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">grep</span><span class="p">(</span><span class="n">match_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">in_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Grep for specific lines of text output.</span>
 
 <span class="sd">    Args:</span>
@@ -2565,20 +2659,10 @@ string if nothing is found.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/tasklets.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">203</span>
-<span class="normal">204</span>
-<span class="normal">205</span>
-<span class="normal">206</span>
-<span class="normal">207</span>
-<span class="normal">208</span>
-<span class="normal">209</span>
-<span class="normal">210</span>
-<span class="normal">211</span>
-<span class="normal">212</span>
-<span class="normal">213</span>
-<span class="normal">214</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">214</span>
 <span class="normal">215</span>
 <span class="normal">216</span>
 <span class="normal">217</span>
@@ -2591,7 +2675,18 @@ string if nothing is found.</p>
 <span class="normal">224</span>
 <span class="normal">225</span>
 <span class="normal">226</span>
-<span class="normal">227</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">indexamajig_summary_indexing_rate</span><span class="p">(</span><span class="n">stream_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">indexamajig_summary_indexing_rate</span><span class="p">(</span><span class="n">stream_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return indexing rate from indexamajig output.</span>
 
 <span class="sd">    Args:</span>
@@ -2634,6 +2729,7 @@ string if nothing is found.</p>
     <div class="doc doc-contents ">
 
         <p>Recursively set permissions for a path.</p>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/tasklets.py</code></summary>
@@ -2737,20 +2833,10 @@ electron density in the eLog.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/tasklets.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">272</span>
-<span class="normal">273</span>
-<span class="normal">274</span>
-<span class="normal">275</span>
-<span class="normal">276</span>
-<span class="normal">277</span>
-<span class="normal">278</span>
-<span class="normal">279</span>
-<span class="normal">280</span>
-<span class="normal">281</span>
-<span class="normal">282</span>
-<span class="normal">283</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">283</span>
 <span class="normal">284</span>
 <span class="normal">285</span>
 <span class="normal">286</span>
@@ -2794,7 +2880,18 @@ electron density in the eLog.</p>
 <span class="normal">324</span>
 <span class="normal">325</span>
 <span class="normal">326</span>
-<span class="normal">327</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">setup_dimple_uglymol</span><span class="p">(</span>
+<span class="normal">327</span>
+<span class="normal">328</span>
+<span class="normal">329</span>
+<span class="normal">330</span>
+<span class="normal">331</span>
+<span class="normal">332</span>
+<span class="normal">333</span>
+<span class="normal">334</span>
+<span class="normal">335</span>
+<span class="normal">336</span>
+<span class="normal">337</span>
+<span class="normal">338</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">setup_dimple_uglymol</span><span class="p">(</span>
     <span class="n">final_mtz</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">experiment</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">density_display_name</span><span class="p">:</span> <span class="nb">str</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Setup uglymol so electron density can be explored in eLog.</span>
@@ -2918,25 +3015,26 @@ likely user scratch if running from the eLog.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/tasklets.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">184</span>
-<span class="normal">185</span>
-<span class="normal">186</span>
-<span class="normal">187</span>
-<span class="normal">188</span>
-<span class="normal">189</span>
-<span class="normal">190</span>
-<span class="normal">191</span>
-<span class="normal">192</span>
-<span class="normal">193</span>
-<span class="normal">194</span>
-<span class="normal">195</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">195</span>
 <span class="normal">196</span>
 <span class="normal">197</span>
 <span class="normal">198</span>
 <span class="normal">199</span>
-<span class="normal">200</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">wget</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">out_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">wget</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">out_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Pull down some resource.</span>
 
 <span class="sd">    Args:</span>

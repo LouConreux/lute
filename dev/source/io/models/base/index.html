@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.8">
     
     
       
@@ -1905,7 +1905,7 @@
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="io.models.base.AnalysisHeader" href="#io.models.base.AnalysisHeader">AnalysisHeader</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="AnalysisHeader (io.models.base.AnalysisHeader)" href="#io.models.base.AnalysisHeader">AnalysisHeader</a></code></td>
             <td>
               <div class="doc-md-description">
                 <p>Model holding shared configuration across Tasks.
@@ -1914,7 +1914,7 @@ E.g. experiment name, run number and working directory.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="io.models.base.TaskParameters" href="#io.models.base.TaskParameters">TaskParameters</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="TaskParameters (io.models.base.TaskParameters)" href="#io.models.base.TaskParameters">TaskParameters</a></code></td>
             <td>
               <div class="doc-md-description">
                 <p>Base class for Task parameters. Subclasses
@@ -1923,7 +1923,7 @@ specify a model of parameters and their types for validation.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="io.models.base.ThirdPartyParameters" href="#io.models.base.ThirdPartyParameters">ThirdPartyParameters</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="ThirdPartyParameters (io.models.base.ThirdPartyParameters)" href="#io.models.base.ThirdPartyParameters">ThirdPartyParameters</a></code></td>
             <td>
               <div class="doc-md-description">
                 <p>Base class for Third-party, binary
@@ -1932,7 +1932,7 @@ executable Tasks.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="io.models.base.TemplateParameters" href="#io.models.base.TemplateParameters">TemplateParameters</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="TemplateParameters (io.models.base.TemplateParameters)" href="#io.models.base.TemplateParameters">TemplateParameters</a></code></td>
             <td>
               <div class="doc-md-description">
                 <p>Dataclass to represent parameters of binary
@@ -1941,7 +1941,7 @@ executable Tasks.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="io.models.base.TemplateConfig" href="#io.models.base.TemplateConfig">TemplateConfig</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="TemplateConfig (io.models.base.TemplateConfig)" href="#io.models.base.TemplateConfig">TemplateConfig</a></code></td>
             <td>
               <div class="doc-md-description">
                 <p>Class for holding information on where templates
@@ -1951,6 +1951,7 @@ are stored in order to properly handle ThirdPartyParameter objects.</p>
           </tr>
       </tbody>
     </table>
+
 
 
 
@@ -1985,6 +1986,7 @@ are stored in order to properly handle ThirdPartyParameter objects.</p>
 
 
         <p>Header information for LUTE analysis runs.</p>
+
 
 
 
@@ -2163,6 +2165,7 @@ model specified by the subclass definition if it is possible to do so.
 Consider whether this may cause issues (e.g. if a float is cast to an
 int).</p>
 </details>
+
 
 
 
@@ -2426,7 +2429,12 @@ infinity or NAN in float fields.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="io.models.base.TaskParameters.Config.run_directory" href="#io.models.base.TaskParameters.Config.run_directory">run_directory</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="run_directory = None
+
+  
+      class-attribute
+      instance-attribute
+   (io.models.base.TaskParameters.Config.run_directory)" href="#io.models.base.TaskParameters.Config.run_directory">run_directory</a></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
             </td>
@@ -2440,7 +2448,12 @@ directory.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="io.models.base.TaskParameters.Config.result_from_params" href="#io.models.base.TaskParameters.Config.result_from_params">result_from_params</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="result_from_params = None
+
+  
+      class-attribute
+      instance-attribute
+   (io.models.base.TaskParameters.Config.result_from_params)" href="#io.models.base.TaskParameters.Config.result_from_params">result_from_params</a></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
             </td>
@@ -2455,7 +2468,12 @@ validator. E.g. use a <code>outdir</code> and <code>filename</code> field to set
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="io.models.base.TaskParameters.Config.result_summary" href="#io.models.base.TaskParameters.Config.result_summary">result_summary</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="result_summary = None
+
+  
+      class-attribute
+      instance-attribute
+   (io.models.base.TaskParameters.Config.result_summary)" href="#io.models.base.TaskParameters.Config.result_summary">result_summary</a></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
             </td>
@@ -2470,6 +2488,7 @@ stored in the database, however. Only used if <code>set_result==True</code></p>
           </tr>
       </tbody>
     </table>
+
 
 
 
@@ -2636,6 +2655,7 @@ stored in the database, however. Only used if <code>set_result==True</code></p>
     <div class="doc doc-contents ">
 
         <p>Schema specification for output result. Will be passed to TaskResult.</p>
+
     </div>
 
 </div>
@@ -2658,6 +2678,7 @@ stored in the database, however. Only used if <code>set_result==True</code></p>
     <div class="doc doc-contents ">
 
         <p>Defines a result from the parameters. Use a validator to do so.</p>
+
     </div>
 
 </div>
@@ -2680,6 +2701,7 @@ stored in the database, however. Only used if <code>set_result==True</code></p>
     <div class="doc doc-contents ">
 
         <p>Format a TaskResult.summary from output.</p>
+
     </div>
 
 </div>
@@ -2702,6 +2724,7 @@ stored in the database, however. Only used if <code>set_result==True</code></p>
     <div class="doc doc-contents ">
 
         <p>Set the directory that the Task is run from.</p>
+
     </div>
 
 </div>
@@ -2724,6 +2747,7 @@ stored in the database, however. Only used if <code>set_result==True</code></p>
     <div class="doc doc-contents ">
 
         <p>Whether the Executor should mark a specified parameter as a result.</p>
+
     </div>
 
 </div>
@@ -2802,6 +2826,7 @@ rendered template to.</p>
           </tr>
       </tbody>
     </table>
+
 
 
 
@@ -2888,6 +2913,7 @@ positional argument instantiation of the <code>params</code> Field.</p>
 
 
 
+
               <details class="quote">
                 <summary>Source code in <code>lute/io/models/base.py</code></summary>
                 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">188</span>
@@ -2959,12 +2985,13 @@ positional argument instantiation of the <code>params</code> Field.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="io.models.base.TaskParameters" href="#io.models.base.TaskParameters">TaskParameters</a></code></p>
+              Bases: <code><a class="autorefs autorefs-internal" title="TaskParameters (io.models.base.TaskParameters)" href="#io.models.base.TaskParameters">TaskParameters</a></code></p>
 
 
         <p>Base class for third party task parameters.</p>
 <p>Contains special validators for extra arguments and handling of parameters
 used for filling in third party configuration files.</p>
+
 
 
 
@@ -3207,7 +3234,7 @@ used for filling in third party configuration files.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="io.models.base.TaskParameters.Config" href="#io.models.base.TaskParameters.Config">Config</a></code></p>
+              Bases: <code><a class="autorefs autorefs-internal" title="Config (io.models.base.TaskParameters.Config)" href="#io.models.base.TaskParameters.Config">Config</a></code></p>
 
 
         <p>Configuration for parameters model.</p>
@@ -3280,7 +3307,12 @@ infinity or NAN in float fields.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="io.models.base.ThirdPartyParameters.Config.run_directory" href="#io.models.base.TaskParameters.Config.run_directory">run_directory</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="run_directory = None
+
+  
+      class-attribute
+      instance-attribute
+   (io.models.base.ThirdPartyParameters.Config.run_directory)" href="#io.models.base.TaskParameters.Config.run_directory">run_directory</a></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
             </td>
@@ -3294,7 +3326,12 @@ directory.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="io.models.base.ThirdPartyParameters.Config.result_from_params" href="#io.models.base.TaskParameters.Config.result_from_params">result_from_params</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="result_from_params = None
+
+  
+      class-attribute
+      instance-attribute
+   (io.models.base.ThirdPartyParameters.Config.result_from_params)" href="#io.models.base.TaskParameters.Config.result_from_params">result_from_params</a></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
             </td>
@@ -3308,7 +3345,12 @@ validator. E.g. use a <code>outdir</code> and <code>filename</code> field to set
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="io.models.base.ThirdPartyParameters.Config.result_summary" href="#io.models.base.TaskParameters.Config.result_summary">result_summary</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="result_summary = None
+
+  
+      class-attribute
+      instance-attribute
+   (io.models.base.ThirdPartyParameters.Config.result_summary)" href="#io.models.base.TaskParameters.Config.result_summary">result_summary</a></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>
             </td>
@@ -3345,7 +3387,12 @@ arguments.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="io.models.base.ThirdPartyParameters.Config.short_flags_use_eq" href="#io.models.base.ThirdPartyParameters.Config.short_flags_use_eq">short_flags_use_eq</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="short_flags_use_eq = False
+
+  
+      class-attribute
+      instance-attribute
+   (io.models.base.ThirdPartyParameters.Config.short_flags_use_eq)" href="#io.models.base.ThirdPartyParameters.Config.short_flags_use_eq">short_flags_use_eq</a></code></td>
             <td>
                   <code><span title="bool">bool</span></code>
             </td>
@@ -3357,7 +3404,12 @@ are passed as <code>-x=arg</code>. ThirdPartyTask-specific.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="io.models.base.ThirdPartyParameters.Config.long_flags_use_eq" href="#io.models.base.ThirdPartyParameters.Config.long_flags_use_eq">long_flags_use_eq</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="long_flags_use_eq = False
+
+  
+      class-attribute
+      instance-attribute
+   (io.models.base.ThirdPartyParameters.Config.long_flags_use_eq)" href="#io.models.base.ThirdPartyParameters.Config.long_flags_use_eq">long_flags_use_eq</a></code></td>
             <td>
                   <code><span title="bool">bool</span></code>
             </td>
@@ -3370,6 +3422,7 @@ are passed as <code>--long=arg</code>. ThirdPartyTask-specific.</p>
           </tr>
       </tbody>
     </table>
+
 
 
 
@@ -3548,6 +3601,7 @@ are passed as <code>--long=arg</code>. ThirdPartyTask-specific.</p>
     <div class="doc doc-contents ">
 
         <p>Whether long command-line arguments are passed like <code>--long=arg</code>.</p>
+
     </div>
 
 </div>
@@ -3570,6 +3624,7 @@ are passed as <code>--long=arg</code>. ThirdPartyTask-specific.</p>
     <div class="doc doc-contents ">
 
         <p>Whether the Executor should mark a specified parameter as a result.</p>
+
     </div>
 
 </div>
@@ -3592,6 +3647,7 @@ are passed as <code>--long=arg</code>. ThirdPartyTask-specific.</p>
     <div class="doc doc-contents ">
 
         <p>Whether short command-line arguments are passed like <code>-x=arg</code>.</p>
+
     </div>
 
 </div>

@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.8">
     
     
       
@@ -1838,7 +1838,7 @@
       </thead>
       <tbody>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="io.elog.get_elog_opr_auth" href="#io.elog.get_elog_opr_auth">get_elog_opr_auth</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="get_elog_opr_auth(exp) (io.elog.get_elog_opr_auth)" href="#io.elog.get_elog_opr_auth">get_elog_opr_auth</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>str): Return an authorization object to interact with
@@ -1847,7 +1847,7 @@ eLog API as an opr account for the hutch where <code>exp</code> was conducted.</
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="io.elog.get_elog_kerberos_auth" href="#io.elog.get_elog_kerberos_auth">get_elog_kerberos_auth</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="get_elog_kerberos_auth() (io.elog.get_elog_kerberos_auth)" href="#io.elog.get_elog_kerberos_auth">get_elog_kerberos_auth</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Return the authorization headers for the user account
@@ -1856,7 +1856,7 @@ submitting the job.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="io.elog.elog_http_request" href="#io.elog.elog_http_request">elog_http_request</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="elog_http_request(exp, endpoint, request_type, **params) (io.elog.elog_http_request)" href="#io.elog.elog_http_request">elog_http_request</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>str, request_type: str, **params): Make an HTTP
@@ -1865,7 +1865,7 @@ request to the API endpoint at <code>url</code>.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="io.elog.format_file_for_post" href="#io.elog.format_file_for_post">format_file_for_post</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="format_file_for_post(in_file) (io.elog.format_file_for_post)" href="#io.elog.format_file_for_post">format_file_for_post</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Union[str, tuple, list]): Prepare files
@@ -1875,7 +1875,7 @@ posts.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="io.elog.post_elog_message" href="#io.elog.post_elog_message">post_elog_message</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="post_elog_message(exp, msg, *, tag, title, in_files=[]) (io.elog.post_elog_message)" href="#io.elog.post_elog_message">post_elog_message</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>str, msg: str, tag: Optional[str],
@@ -1887,7 +1887,7 @@ Post a message to the eLog.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="io.elog.post_elog_run_status" href="#io.elog.post_elog_run_status">post_elog_run_status</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="post_elog_run_status(data, update_url=None) (io.elog.post_elog_run_status)" href="#io.elog.post_elog_run_status">post_elog_run_status</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Dict[str, Union[str, int, float]],
@@ -1897,7 +1897,7 @@ Post a run status to the summary section on the Workflows&gt;Control tab.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="io.elog.post_elog_run_table" href="#io.elog.post_elog_run_table">post_elog_run_table</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="post_elog_run_table(exp, run, data) (io.elog.post_elog_run_table)" href="#io.elog.post_elog_run_table">post_elog_run_table</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>str, run: int, data: Dict[str, Any],
@@ -1907,7 +1907,7 @@ Update run table in the eLog.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="io.elog.get_elog_runs_by_tag" href="#io.elog.get_elog_runs_by_tag">get_elog_runs_by_tag</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="get_elog_runs_by_tag(exp, tag, auth=None) (io.elog.get_elog_runs_by_tag)" href="#io.elog.get_elog_runs_by_tag">get_elog_runs_by_tag</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>str, tag: str,
@@ -1917,7 +1917,7 @@ Return a list of runs with a specific tag.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="io.elog.get_elog_params_by_run" href="#io.elog.get_elog_params_by_run">get_elog_params_by_run</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="get_elog_params_by_run(exp, params, runs=None) (io.elog.get_elog_params_by_run)" href="#io.elog.get_elog_params_by_run">get_elog_params_by_run</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>str, params: List[str], runs: Optional[List[int]])
@@ -1928,6 +1928,7 @@ the requested parameters for all runs.</p>
             </tr>
       </tbody>
     </table>
+
 
 
 
@@ -2016,6 +2017,7 @@ displayed data.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/io/elog.py</code></summary>
@@ -2246,6 +2248,7 @@ information.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/io/elog.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">229</span>
@@ -2423,6 +2426,7 @@ eLog post.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/io/elog.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">292</span>
@@ -2560,6 +2564,7 @@ should generally be 0.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/io/elog.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">152</span>
@@ -2661,6 +2666,7 @@ or the current user submitting a job.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/io/elog.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">182</span>
@@ -2731,6 +2737,7 @@ It assumes that <code>kinit</code> has been run.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/io/elog.py</code></summary>
@@ -2831,6 +2838,7 @@ username and password for the associated operator account.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/io/elog.py</code></summary>
@@ -2933,6 +2941,7 @@ Tasks, etc.)</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/io/elog.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">515</span>
@@ -3026,6 +3035,7 @@ Tasks, etc.)</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/io/elog.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">492</span>
@@ -3110,6 +3120,7 @@ Tasks, etc.)</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/io/elog.py</code></summary>
@@ -3264,6 +3275,7 @@ return an error message.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/io/elog.py</code></summary>
@@ -3449,6 +3461,7 @@ neither is found, the function aborts</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/io/elog.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">369</span>
@@ -3618,6 +3631,7 @@ return an error message.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/io/elog.py</code></summary>
@@ -3822,6 +3836,7 @@ trigger='param_is' - 2 Arguments
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/io/elog.py</code></summary>

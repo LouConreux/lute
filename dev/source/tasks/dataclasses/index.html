@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.8">
     
     
       
@@ -1825,7 +1825,12 @@
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="tasks.dataclasses.TaskResult" href="#tasks.dataclasses.TaskResult">TaskResult</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="TaskResult
+
+
+  
+      dataclass
+   (tasks.dataclasses.TaskResult)" href="#tasks.dataclasses.TaskResult">TaskResult</a></code></td>
             <td>
               <div class="doc-md-description">
                 <p>Output of a specific analysis task.</p>
@@ -1833,7 +1838,7 @@
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="tasks.dataclasses.TaskStatus" href="#tasks.dataclasses.TaskStatus">TaskStatus</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="TaskStatus (tasks.dataclasses.TaskStatus)" href="#tasks.dataclasses.TaskStatus">TaskStatus</a></code></td>
             <td>
               <div class="doc-md-description">
                 <p>Enumeration of possible Task statuses (running, pending, failed,
@@ -1842,7 +1847,12 @@ etc.).</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="tasks.dataclasses.DescribedAnalysis" href="#tasks.dataclasses.DescribedAnalysis">DescribedAnalysis</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="DescribedAnalysis
+
+
+  
+      dataclass
+   (tasks.dataclasses.DescribedAnalysis)" href="#tasks.dataclasses.DescribedAnalysis">DescribedAnalysis</a></code></td>
             <td>
               <div class="doc-md-description">
                 <p>Executor's description of a <code>Task</code> run (results,
@@ -1852,6 +1862,7 @@ parameters, env).</p>
           </tr>
       </tbody>
     </table>
+
 
 
 
@@ -1888,6 +1899,7 @@ parameters, env).</p>
 
 
         <p>Complete analysis description. Held by an Executor.</p>
+
 
 
 
@@ -2007,6 +2019,7 @@ automatically.</p>
 
 
 
+
               <details class="quote">
                 <summary>Source code in <code>lute/tasks/dataclasses.py</code></summary>
                 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 86</span>
@@ -2106,6 +2119,7 @@ automatically.</p>
 
         <p>Convert figures to an HTML file in a byte stream.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/tasks/dataclasses.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">113</span>
@@ -2182,7 +2196,7 @@ automatically.</p>
           <tr class="doc-section-item">
             <td><code><span title="tasks.dataclasses.TaskResult.task_status">task_status</span></code></td>
             <td>
-                  <code><a class="autorefs autorefs-internal" title="tasks.dataclasses.TaskStatus" href="#tasks.dataclasses.TaskStatus">TaskStatus</a></code>
+                  <code><a class="autorefs autorefs-internal" title="TaskStatus (tasks.dataclasses.TaskStatus)" href="#tasks.dataclasses.TaskStatus">TaskStatus</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2229,6 +2243,7 @@ multiple schemas. Multiple schemas are separated by ';', e.g.
           </tr>
       </tbody>
     </table>
+
 
 
 
@@ -2332,6 +2347,7 @@ multiple schemas. Multiple schemas are separated by ';', e.g.
 
 
 
+
               <details class="quote">
                 <summary>Source code in <code>lute/tasks/dataclasses.py</code></summary>
                 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">26</span>
@@ -2426,6 +2442,7 @@ multiple schemas. Multiple schemas are separated by ';', e.g.
     <div class="doc doc-contents ">
 
         <p>Task was cancelled prior to completion or failure.</p>
+
     </div>
 
 </div>
@@ -2448,6 +2465,7 @@ multiple schemas. Multiple schemas are separated by ';', e.g.
     <div class="doc doc-contents ">
 
         <p>Task has completed without fatal errors.</p>
+
     </div>
 
 </div>
@@ -2470,6 +2488,7 @@ multiple schemas. Multiple schemas are separated by ';', e.g.
     <div class="doc doc-contents ">
 
         <p>Task encountered a fatal error.</p>
+
     </div>
 
 </div>
@@ -2492,6 +2511,7 @@ multiple schemas. Multiple schemas are separated by ';', e.g.
     <div class="doc doc-contents ">
 
         <p>Task has yet to run. Is Queued, or waiting for prior tasks.</p>
+
     </div>
 
 </div>
@@ -2514,6 +2534,7 @@ multiple schemas. Multiple schemas are separated by ';', e.g.
     <div class="doc doc-contents ">
 
         <p>Task is in the process of execution.</p>
+
     </div>
 
 </div>
@@ -2536,6 +2557,7 @@ multiple schemas. Multiple schemas are separated by ';', e.g.
     <div class="doc doc-contents ">
 
         <p>Task was, potentially temporarily, stopped/suspended.</p>
+
     </div>
 
 </div>
@@ -2558,6 +2580,7 @@ multiple schemas. Multiple schemas are separated by ';', e.g.
     <div class="doc doc-contents ">
 
         <p>Task did not reach completion due to timeout.</p>
+
     </div>
 
 </div>

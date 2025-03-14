@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.8">
     
     
       
@@ -2341,7 +2341,7 @@ pipes to Unix sockets, etc. All communicators pass a single object called a
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="execution.ipc.Party" href="#execution.ipc.Party">Party</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="Party (execution.ipc.Party)" href="#execution.ipc.Party">Party</a></code></td>
             <td>
               <div class="doc-md-description">
                 <p>Enum describing whether Communicator is on Task-side or Executor-side.</p>
@@ -2357,7 +2357,7 @@ pipes to Unix sockets, etc. All communicators pass a single object called a
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="execution.ipc.Communicator" href="#execution.ipc.Communicator">Communicator</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="Communicator (execution.ipc.Communicator)" href="#execution.ipc.Communicator">Communicator</a></code></td>
             <td>
               <div class="doc-md-description">
                 <p>Abstract base class for Communicator types.</p>
@@ -2365,7 +2365,7 @@ pipes to Unix sockets, etc. All communicators pass a single object called a
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="execution.ipc.PipeCommunicator" href="#execution.ipc.PipeCommunicator">PipeCommunicator</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="PipeCommunicator (execution.ipc.PipeCommunicator)" href="#execution.ipc.PipeCommunicator">PipeCommunicator</a></code></td>
             <td>
               <div class="doc-md-description">
                 <p>Manages communication between Task and Executor via pipes
@@ -2374,7 +2374,7 @@ pipes to Unix sockets, etc. All communicators pass a single object called a
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="execution.ipc.SocketCommunicator" href="#execution.ipc.SocketCommunicator">SocketCommunicator</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="SocketCommunicator (execution.ipc.SocketCommunicator)" href="#execution.ipc.SocketCommunicator">SocketCommunicator</a></code></td>
             <td>
               <div class="doc-md-description">
                 <p>Manages communication using sockets, either raw or using
@@ -2384,6 +2384,7 @@ zmq. Supports both TCP and Unix sockets.</p>
           </tr>
       </tbody>
     </table>
+
 
 
 
@@ -2415,6 +2416,7 @@ zmq. Supports both TCP and Unix sockets.</p>
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
               Bases: <code><span title="abc.ABC">ABC</span></code></p>
+
 
 
 
@@ -2567,6 +2569,7 @@ zmq. Supports both TCP and Unix sockets.</p>
         <p>Whether the Communicator has remaining messages.</p>
 <p>The precise method for determining whether there are remaining messages
 will depend on the specific Communicator sub-class.</p>
+
     </div>
 
 </div>
@@ -2603,7 +2606,7 @@ will depend on the specific Communicator sub-class.</p>
                 <code>party</code>
             </td>
             <td>
-                  <code><a class="autorefs autorefs-internal" title="execution.ipc.Party" href="#execution.ipc.Party">Party</a></code>
+                  <code><a class="autorefs autorefs-internal" title="Party (execution.ipc.Party)" href="#execution.ipc.Party">Party</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2612,7 +2615,12 @@ managing IPC for. I.e., is this the "Task" or "Executor" side.</p>
               </div>
             </td>
             <td>
-                  <code><a class="autorefs autorefs-internal" title="execution.ipc.Party.TASK" href="#execution.ipc.Party.TASK">TASK</a></code>
+                  <code><a class="autorefs autorefs-internal" title="TASK = 0
+
+  
+      class-attribute
+      instance-attribute
+   (execution.ipc.Party.TASK)" href="#execution.ipc.Party.TASK">TASK</a></code>
             </td>
           </tr>
           <tr class="doc-section-item">
@@ -2634,6 +2642,7 @@ sending it.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/ipc.py</code></summary>
@@ -2679,6 +2688,7 @@ sending it.</p>
 
         <p>Alternative exit method outside of context manager.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/execution/ipc.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">154</span>
@@ -2704,6 +2714,7 @@ sending it.</p>
     <div class="doc doc-contents ">
 
         <p>Any setup that should be done later than init.</p>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/ipc.py</code></summary>
@@ -2735,6 +2746,7 @@ sending it.</p>
 
         <p>Method for reading data through the communication mechanism.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/execution/ipc.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">119</span>
@@ -2762,6 +2774,7 @@ sending it.</p>
     <div class="doc doc-contents ">
 
         <p>Alternative method for staging outside of context manager.</p>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/ipc.py</code></summary>
@@ -2792,6 +2805,7 @@ sending it.</p>
     <div class="doc doc-contents ">
 
         <p>Method for sending data through the communication mechanism.</p>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/ipc.py</code></summary>
@@ -2836,6 +2850,7 @@ sending it.</p>
 <p>For some types of communication streams there may be different interfaces
 depending on which side of the communicator you are on. This enum is used
 by the communicator to determine which interface to use.</p>
+
 
 
 
@@ -2906,6 +2921,7 @@ by the communicator to determine which interface to use.</p>
     <div class="doc doc-contents ">
 
         <p>The Executor (server) side.</p>
+
     </div>
 
 </div>
@@ -2928,6 +2944,7 @@ by the communicator to determine which interface to use.</p>
     <div class="doc doc-contents ">
 
         <p>The Task (client) side.</p>
+
     </div>
 
 </div>
@@ -2955,13 +2972,14 @@ by the communicator to determine which interface to use.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="execution.ipc.Communicator" href="#execution.ipc.Communicator">Communicator</a></code></p>
+              Bases: <code><a class="autorefs autorefs-internal" title="Communicator (execution.ipc.Communicator)" href="#execution.ipc.Communicator">Communicator</a></code></p>
 
 
         <p>Provides communication through pipes over stderr/stdout.</p>
 <p>The implementation of this communicator has reading and writing ocurring
 on stderr and stdout. In general the <code>Task</code> will be writing while the
 <code>Executor</code> will be reading. <code>stderr</code> is used for sending signals.</p>
+
 
 
 
@@ -3372,7 +3390,7 @@ If pickle is not used</p>
                 <code>party</code>
             </td>
             <td>
-                  <code><a class="autorefs autorefs-internal" title="execution.ipc.Party" href="#execution.ipc.Party">Party</a></code>
+                  <code><a class="autorefs autorefs-internal" title="Party (execution.ipc.Party)" href="#execution.ipc.Party">Party</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -3381,7 +3399,12 @@ managing IPC for. I.e., is this the "Task" or "Executor" side.</p>
               </div>
             </td>
             <td>
-                  <code><a class="autorefs autorefs-internal" title="execution.ipc.Party.TASK" href="#execution.ipc.Party.TASK">TASK</a></code>
+                  <code><a class="autorefs autorefs-internal" title="TASK = 0
+
+  
+      class-attribute
+      instance-attribute
+   (execution.ipc.Party.TASK)" href="#execution.ipc.Party.TASK">TASK</a></code>
             </td>
           </tr>
           <tr class="doc-section-item">
@@ -3403,6 +3426,7 @@ sending it. If False, data is assumed to be text whi</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/ipc.py</code></summary>
@@ -3524,6 +3548,7 @@ Otherwise, None.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/ipc.py</code></summary>
@@ -3723,6 +3748,7 @@ Otherwise, None.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/execution/ipc.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">186</span>
@@ -3876,6 +3902,7 @@ Otherwise, None.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/execution/ipc.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">300</span>
@@ -3986,7 +4013,7 @@ Otherwise, None.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="execution.ipc.Communicator" href="#execution.ipc.Communicator">Communicator</a></code></p>
+              Bases: <code><a class="autorefs autorefs-internal" title="Communicator (execution.ipc.Communicator)" href="#execution.ipc.Communicator">Communicator</a></code></p>
 
 
         <p>Provides communication over Unix or TCP sockets.</p>
@@ -4027,6 +4054,7 @@ defined manually if launching the Task process separately. The Task will use
 the local socket <code>&lt;LUTE_SOCKET&gt;.task{##}</code>. Multiple local sockets may be
 created. Currently, it is assumed that the user is identical on both the Task
 machine and Executor machine.</p>
+
 
 
 
@@ -5347,6 +5375,7 @@ machine and Executor machine.</p>
     <div class="doc doc-contents ">
 
         <p>Maximum time to wait to accept connections. Used by Executor-side.</p>
+
     </div>
 
 </div>
@@ -5369,6 +5398,7 @@ machine and Executor machine.</p>
     <div class="doc doc-contents ">
 
         <p>Start signal of a message. The end of a message is indicated by MSG_HEAD[::-1].</p>
+
     </div>
 
 </div>
@@ -5391,6 +5421,7 @@ machine and Executor machine.</p>
     <div class="doc doc-contents ">
 
         <p>Separator for parts of a message. Messages have a start, length, message and end.</p>
+
     </div>
 
 </div>
@@ -5429,7 +5460,7 @@ through the socket.</p>
                 <code>party</code>
             </td>
             <td>
-                  <code><a class="autorefs autorefs-internal" title="execution.ipc.Party" href="#execution.ipc.Party">Party</a></code>
+                  <code><a class="autorefs autorefs-internal" title="Party (execution.ipc.Party)" href="#execution.ipc.Party">Party</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -5438,7 +5469,12 @@ managing IPC for. I.e., is this the "Task" or "Executor" side.</p>
               </div>
             </td>
             <td>
-                  <code><a class="autorefs autorefs-internal" title="execution.ipc.Party.TASK" href="#execution.ipc.Party.TASK">TASK</a></code>
+                  <code><a class="autorefs autorefs-internal" title="TASK = 0
+
+  
+      class-attribute
+      instance-attribute
+   (execution.ipc.Party.TASK)" href="#execution.ipc.Party.TASK">TASK</a></code>
             </td>
           </tr>
           <tr class="doc-section-item">
@@ -5460,6 +5496,7 @@ passing False does not change behaviour.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/ipc.py</code></summary>
@@ -5508,6 +5545,7 @@ passing False does not change behaviour.</p>
     <div class="doc doc-contents ">
 
         <p>Clean up connections.</p>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/ipc.py</code></summary>
@@ -5603,6 +5641,7 @@ variables controlling the behaviour of these two communication types.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/ipc.py</code></summary>
@@ -5713,6 +5752,7 @@ variables controlling the behaviour of these two communication types.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/execution/ipc.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">662</span>
@@ -5807,6 +5847,7 @@ variables controlling the behaviour of these two communication types.</p>
 
         <p>Find a random open port to bind to if using TCP.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/execution/ipc.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">703</span>
@@ -5885,6 +5926,7 @@ variables controlling the behaviour of these two communication types.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/ipc.py</code></summary>
@@ -5981,6 +6023,7 @@ will exit.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/ipc.py</code></summary>
@@ -6133,6 +6176,7 @@ object instead of returning one.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/execution/ipc.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">772</span>
@@ -6251,6 +6295,7 @@ Executor processes are on different machines.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/ipc.py</code></summary>
@@ -6395,6 +6440,7 @@ object instead of returning one.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/execution/ipc.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">879</span>
@@ -6480,6 +6526,7 @@ object instead of returning one.</p>
 available.</p>
 <p>Calls an underlying method for either raw sockets or ZMQ.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/execution/ipc.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">476</span>
@@ -6534,6 +6581,7 @@ available.</p>
 
         <p>Read data from a socket.</p>
 <p>Raw socket implementation for the reader thread.</p>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/ipc.py</code></summary>
@@ -6597,6 +6645,7 @@ available.</p>
 
         <p>Read data from a socket.</p>
 <p>ZMQ implementation for the reader thread.</p>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/ipc.py</code></summary>
@@ -6667,6 +6716,7 @@ Task machine and Executor machine.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/ipc.py</code></summary>
@@ -6801,6 +6851,7 @@ message to multiple full messages.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/ipc.py</code></summary>
@@ -6956,6 +7007,7 @@ message to multiple full messages.</p>
     - <HEAD[::-1]>: The start marker in reverse to indicate the end.</p>
 <p>This structure is used for decoding the message on the other end.</p>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/execution/ipc.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">592</span>
@@ -7029,6 +7081,7 @@ message to multiple full messages.</p>
 all Executors are created and available at once we want to delay
 acquisition of socket resources until a single Executor is ready
 to use them.</p>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/ipc.py</code></summary>
@@ -7177,6 +7230,7 @@ compatibility with other Communicator subtypes. Is ignored.</p>
       </tbody>
     </table>
 
+
             <details class="quote">
               <summary>Source code in <code>lute/execution/ipc.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">455</span>
@@ -7269,6 +7323,7 @@ a connection over Unix socket.</p>
           </tr>
       </tbody>
     </table>
+
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/ipc.py</code></summary>
