@@ -2999,7 +2999,9 @@ environment that is passed to the Task subprocess.</p>
 <span class="normal">764</span>
 <span class="normal">765</span>
 <span class="normal">766</span>
-<span class="normal">767</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BaseExecutor</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="normal">767</span>
+<span class="normal">768</span>
+<span class="normal">769</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BaseExecutor</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;ABC to manage Task execution and communication with user services.</span>
 
 <span class="sd">    When running in a workflow, &quot;tasks&quot; (not the class instances) are submitted</span>
@@ -3240,36 +3242,38 @@ environment that is passed to the Task subprocess.</p>
 <span class="sd">            env (Dict[str, str]): A dictionary of &quot;VAR&quot;:&quot;VALUE&quot; pairs of</span>
 <span class="sd">                environment variables to be added to the subprocess environment.</span>
 <span class="sd">                If any variables already exist, the new variables will</span>
-<span class="sd">                overwrite them (except PATH, see below).</span>
+<span class="sd">                overwrite them (except PATH and PYTHONPATH, see below).</span>
 
-<span class="sd">            update_path (str): If PATH is present in the new set of variables,</span>
-<span class="sd">                this argument determines how the old PATH is dealt with. There</span>
-<span class="sd">                are three options:</span>
-<span class="sd">                * &quot;prepend&quot; : The new PATH values are prepended to the old ones.</span>
-<span class="sd">                * &quot;append&quot; : The new PATH values are appended to the old ones.</span>
-<span class="sd">                * &quot;overwrite&quot; : The old PATH is overwritten by the new one.</span>
-<span class="sd">                &quot;prepend&quot; is the default option. If PATH is not present in the</span>
-<span class="sd">                current environment, the new PATH is used without modification.</span>
+<span class="sd">            update_path (str): If PATH and/or PYTHONPATH are present in the new</span>
+<span class="sd">                set of variables, this argument determines how the old value is </span>
+<span class="sd">                dealt with. There are three options:</span>
+<span class="sd">                * &quot;prepend&quot; : The new values are prepended to the old ones.</span>
+<span class="sd">                * &quot;append&quot; : The new values are appended to the old ones.</span>
+<span class="sd">                * &quot;overwrite&quot; : The old value is overwritten by the new one.</span>
+<span class="sd">                &quot;prepend&quot; is the default option. If PATH and/or PYTHONPATH is not</span>
+<span class="sd">                present in the current environment, the new PATH is used without </span>
+<span class="sd">                modification.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="s2">&quot;PATH&quot;</span> <span class="ow">in</span> <span class="n">env</span><span class="p">:</span>
-            <span class="n">sep</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">pathsep</span>
-            <span class="k">if</span> <span class="n">update_path</span> <span class="o">==</span> <span class="s2">&quot;prepend&quot;</span><span class="p">:</span>
-                <span class="n">env</span><span class="p">[</span><span class="s2">&quot;PATH&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;PATH&#39;</span><span class="p">]</span><span class="si">}{</span><span class="n">sep</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">_analysis_desc</span><span class="o">.</span><span class="n">task_env</span><span class="p">[</span><span class="s1">&#39;PATH&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
-                <span class="p">)</span>
-            <span class="k">elif</span> <span class="n">update_path</span> <span class="o">==</span> <span class="s2">&quot;append&quot;</span><span class="p">:</span>
-                <span class="n">env</span><span class="p">[</span><span class="s2">&quot;PATH&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_analysis_desc</span><span class="o">.</span><span class="n">task_env</span><span class="p">[</span><span class="s1">&#39;PATH&#39;</span><span class="p">]</span><span class="si">}{</span><span class="n">sep</span><span class="si">}{</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;PATH&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
-                <span class="p">)</span>
-            <span class="k">elif</span> <span class="n">update_path</span> <span class="o">==</span> <span class="s2">&quot;overwrite&quot;</span><span class="p">:</span>
-                <span class="k">pass</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="p">(</span>
-                        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">update_path</span><span class="si">}</span><span class="s2"> is not a valid option for `update_path`!&quot;</span>
-                        <span class="s2">&quot; Options are: prepend, append, overwrite.&quot;</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;PATH&quot;</span><span class="p">,</span> <span class="s2">&quot;PYTHONPATH&quot;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">env</span><span class="p">:</span>
+                <span class="n">sep</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">pathsep</span>
+                <span class="k">if</span> <span class="n">update_path</span> <span class="o">==</span> <span class="s2">&quot;prepend&quot;</span><span class="p">:</span>
+                    <span class="n">env</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">env</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="si">}{</span><span class="n">sep</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">_analysis_desc</span><span class="o">.</span><span class="n">task_env</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
                     <span class="p">)</span>
-                <span class="p">)</span>
+                <span class="k">elif</span> <span class="n">update_path</span> <span class="o">==</span> <span class="s2">&quot;append&quot;</span><span class="p">:</span>
+                    <span class="n">env</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_analysis_desc</span><span class="o">.</span><span class="n">task_env</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="si">}{</span><span class="n">sep</span><span class="si">}{</span><span class="n">env</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="p">)</span>
+                <span class="k">elif</span> <span class="n">update_path</span> <span class="o">==</span> <span class="s2">&quot;overwrite&quot;</span><span class="p">:</span>
+                    <span class="k">pass</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="p">(</span>
+                            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">update_path</span><span class="si">}</span><span class="s2"> is not a valid option for `update_path`!&quot;</span>
+                            <span class="s2">&quot; Options are: prepend, append, overwrite.&quot;</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
         <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_analysis_desc</span><span class="o">.</span><span class="n">task_env</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
 
@@ -3843,9 +3847,7 @@ managed subprocess. In seconds.</p>
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">618</span>
-<span class="normal">619</span>
-<span class="normal">620</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">620</span>
 <span class="normal">621</span>
 <span class="normal">622</span>
 <span class="normal">623</span>
@@ -3859,7 +3861,9 @@ managed subprocess. In seconds.</p>
 <span class="normal">631</span>
 <span class="normal">632</span>
 <span class="normal">633</span>
-<span class="normal">634</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_continue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">634</span>
+<span class="normal">635</span>
+<span class="normal">636</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_continue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Resume a stopped Task subprocess.&quot;&quot;&quot;</span>
     <span class="n">os</span><span class="o">.</span><span class="n">kill</span><span class="p">(</span><span class="n">proc</span><span class="o">.</span><span class="n">pid</span><span class="p">,</span> <span class="n">signal</span><span class="o">.</span><span class="n">SIGCONT</span><span class="p">)</span>
     <span class="c1"># status: str = psutil.Process(proc.pid).status()</span>
@@ -3904,14 +3908,14 @@ reporting to third party services, etc.</p>
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">489</span>
-<span class="normal">490</span>
-<span class="normal">491</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">491</span>
 <span class="normal">492</span>
 <span class="normal">493</span>
 <span class="normal">494</span>
 <span class="normal">495</span>
-<span class="normal">496</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
+<span class="normal">496</span>
+<span class="normal">497</span>
+<span class="normal">498</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">_finalize_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Any actions to be performed after the Task has ended.</span>
 
@@ -3943,9 +3947,7 @@ for logging etc.</p>
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">448</span>
-<span class="normal">449</span>
-<span class="normal">450</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">450</span>
 <span class="normal">451</span>
 <span class="normal">452</span>
 <span class="normal">453</span>
@@ -3960,7 +3962,9 @@ for logging etc.</p>
 <span class="normal">462</span>
 <span class="normal">463</span>
 <span class="normal">464</span>
-<span class="normal">465</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_pre_task</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">465</span>
+<span class="normal">466</span>
+<span class="normal">467</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_pre_task</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Any actions to be performed before task submission.</span>
 
 <span class="sd">    This method may or may not be used by subclasses. It may be useful</span>
@@ -4147,9 +4151,7 @@ met, however, there are minimal checks in it as well.</p>
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">636</span>
-<span class="normal">637</span>
-<span class="normal">638</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">638</span>
 <span class="normal">639</span>
 <span class="normal">640</span>
 <span class="normal">641</span>
@@ -4266,7 +4268,9 @@ met, however, there are minimal checks in it as well.</p>
 <span class="normal">752</span>
 <span class="normal">753</span>
 <span class="normal">754</span>
-<span class="normal">755</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_set_result_from_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">755</span>
+<span class="normal">756</span>
+<span class="normal">757</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_set_result_from_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Use TaskParameters object to set TaskResult fields.</span>
 
 <span class="sd">    A result may be defined in terms of specific parameters. This is most</span>
@@ -4409,9 +4413,7 @@ met, however, there are minimal checks in it as well.</p>
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">417</span>
-<span class="normal">418</span>
-<span class="normal">419</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">419</span>
 <span class="normal">420</span>
 <span class="normal">421</span>
 <span class="normal">422</span>
@@ -4438,7 +4440,9 @@ met, however, there are minimal checks in it as well.</p>
 <span class="normal">443</span>
 <span class="normal">444</span>
 <span class="normal">445</span>
-<span class="normal">446</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_shell_source</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">446</span>
+<span class="normal">447</span>
+<span class="normal">448</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_shell_source</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Actually shell source step.</span>
 
 <span class="sd">    This is run prior to Task execution.</span>
@@ -4490,10 +4494,10 @@ met, however, there are minimal checks in it as well.</p>
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">613</span>
-<span class="normal">614</span>
-<span class="normal">615</span>
-<span class="normal">616</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">615</span>
+<span class="normal">616</span>
+<span class="normal">617</span>
+<span class="normal">618</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Stop the Task subprocess.&quot;&quot;&quot;</span>
     <span class="n">os</span><span class="o">.</span><span class="n">kill</span><span class="p">(</span><span class="n">proc</span><span class="o">.</span><span class="n">pid</span><span class="p">,</span> <span class="n">signal</span><span class="o">.</span><span class="n">SIGTSTP</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_analysis_desc</span><span class="o">.</span><span class="n">task_result</span><span class="o">.</span><span class="n">task_status</span> <span class="o">=</span> <span class="n">TaskStatus</span><span class="o">.</span><span class="n">STOPPED</span>
@@ -4519,9 +4523,9 @@ met, however, there are minimal checks in it as well.</p>
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">590</span>
-<span class="normal">591</span>
-<span class="normal">592</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_store_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">592</span>
+<span class="normal">593</span>
+<span class="normal">594</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_store_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Store configuration and results in the LUTE database.&quot;&quot;&quot;</span>
     <span class="n">record_analysis_db</span><span class="p">(</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_analysis_desc</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
@@ -4708,9 +4712,7 @@ swapped prior to execution.</p>
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">498</span>
-<span class="normal">499</span>
-<span class="normal">500</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">500</span>
 <span class="normal">501</span>
 <span class="normal">502</span>
 <span class="normal">503</span>
@@ -4732,7 +4734,9 @@ swapped prior to execution.</p>
 <span class="normal">519</span>
 <span class="normal">520</span>
 <span class="normal">521</span>
-<span class="normal">522</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_submit_cmd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">executable_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="normal">522</span>
+<span class="normal">523</span>
+<span class="normal">524</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_submit_cmd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">executable_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a formatted command for launching Task subprocess.</span>
 
 <span class="sd">    May be overridden by subclasses.</span>
@@ -4834,9 +4838,7 @@ of.</p>
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">594</span>
-<span class="normal">595</span>
-<span class="normal">596</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">596</span>
 <span class="normal">597</span>
 <span class="normal">598</span>
 <span class="normal">599</span>
@@ -4851,7 +4853,9 @@ of.</p>
 <span class="normal">608</span>
 <span class="normal">609</span>
 <span class="normal">610</span>
-<span class="normal">611</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_task_is_running</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="normal">611</span>
+<span class="normal">612</span>
+<span class="normal">613</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_task_is_running</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether a subprocess is running.</span>
 
 <span class="sd">    Args:</span>
@@ -4897,14 +4901,14 @@ that its finished.</p>
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">480</span>
-<span class="normal">481</span>
-<span class="normal">482</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">482</span>
 <span class="normal">483</span>
 <span class="normal">484</span>
 <span class="normal">485</span>
 <span class="normal">486</span>
-<span class="normal">487</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
+<span class="normal">487</span>
+<span class="normal">488</span>
+<span class="normal">489</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">_task_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Actions to perform while the Task is running.</span>
 
@@ -5289,9 +5293,7 @@ summary of the main Task. Default is False.</p>
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">524</span>
-<span class="normal">525</span>
-<span class="normal">526</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">526</span>
 <span class="normal">527</span>
 <span class="normal">528</span>
 <span class="normal">529</span>
@@ -5353,7 +5355,9 @@ summary of the main Task. Default is False.</p>
 <span class="normal">585</span>
 <span class="normal">586</span>
 <span class="normal">587</span>
-<span class="normal">588</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">execute_task</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">588</span>
+<span class="normal">589</span>
+<span class="normal">590</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">execute_task</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Run the requested Task as a subprocess.&quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_pre_task</span><span class="p">()</span>
     <span class="n">lute_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;LUTE_PATH&quot;</span><span class="p">)</span>
@@ -5443,14 +5447,14 @@ file, etc.</p>
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">757</span>
-<span class="normal">758</span>
-<span class="normal">759</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">759</span>
 <span class="normal">760</span>
 <span class="normal">761</span>
 <span class="normal">762</span>
 <span class="normal">763</span>
-<span class="normal">764</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">process_results</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">764</span>
+<span class="normal">765</span>
+<span class="normal">766</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">process_results</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Perform any necessary steps to process TaskResults object.</span>
 
 <span class="sd">    Processing will depend on subclass. Examples of steps include, moving</span>
@@ -5516,9 +5520,7 @@ their appropriate form prior to the actual execution of Task code.</p>
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">401</span>
-<span class="normal">402</span>
-<span class="normal">403</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">403</span>
 <span class="normal">404</span>
 <span class="normal">405</span>
 <span class="normal">406</span>
@@ -5530,7 +5532,9 @@ their appropriate form prior to the actual execution of Task code.</p>
 <span class="normal">412</span>
 <span class="normal">413</span>
 <span class="normal">414</span>
-<span class="normal">415</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">shell_source</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">415</span>
+<span class="normal">416</span>
+<span class="normal">417</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">shell_source</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Source a script.</span>
 
 <span class="sd">    Unlike `update_environment` this method sources a new file.</span>
@@ -5589,7 +5593,7 @@ their appropriate form prior to the actual execution of Task code.</p>
                 <p>A dictionary of "VAR":"VALUE" pairs of
 environment variables to be added to the subprocess environment.
 If any variables already exist, the new variables will
-overwrite them (except PATH, see below).</p>
+overwrite them (except PATH and PYTHONPATH, see below).</p>
               </div>
             </td>
             <td>
@@ -5605,14 +5609,15 @@ overwrite them (except PATH, see below).</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>If PATH is present in the new set of variables,
-this argument determines how the old PATH is dealt with. There
-are three options:
-* "prepend" : The new PATH values are prepended to the old ones.
-* "append" : The new PATH values are appended to the old ones.
-* "overwrite" : The old PATH is overwritten by the new one.
-"prepend" is the default option. If PATH is not present in the
-current environment, the new PATH is used without modification.</p>
+                <p>If PATH and/or PYTHONPATH are present in the new
+set of variables, this argument determines how the old value is 
+dealt with. There are three options:
+* "prepend" : The new values are prepended to the old ones.
+* "append" : The new values are appended to the old ones.
+* "overwrite" : The old value is overwritten by the new one.
+"prepend" is the default option. If PATH and/or PYTHONPATH is not
+present in the current environment, the new PATH is used without 
+modification.</p>
               </div>
             </td>
             <td>
@@ -5667,7 +5672,9 @@ current environment, the new PATH is used without modification.</p>
 <span class="normal">396</span>
 <span class="normal">397</span>
 <span class="normal">398</span>
-<span class="normal">399</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">update_environment</span><span class="p">(</span>
+<span class="normal">399</span>
+<span class="normal">400</span>
+<span class="normal">401</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">update_environment</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">update_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;prepend&quot;</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Update the stored set of environment variables.</span>
@@ -5678,36 +5685,38 @@ current environment, the new PATH is used without modification.</p>
 <span class="sd">        env (Dict[str, str]): A dictionary of &quot;VAR&quot;:&quot;VALUE&quot; pairs of</span>
 <span class="sd">            environment variables to be added to the subprocess environment.</span>
 <span class="sd">            If any variables already exist, the new variables will</span>
-<span class="sd">            overwrite them (except PATH, see below).</span>
+<span class="sd">            overwrite them (except PATH and PYTHONPATH, see below).</span>
 
-<span class="sd">        update_path (str): If PATH is present in the new set of variables,</span>
-<span class="sd">            this argument determines how the old PATH is dealt with. There</span>
-<span class="sd">            are three options:</span>
-<span class="sd">            * &quot;prepend&quot; : The new PATH values are prepended to the old ones.</span>
-<span class="sd">            * &quot;append&quot; : The new PATH values are appended to the old ones.</span>
-<span class="sd">            * &quot;overwrite&quot; : The old PATH is overwritten by the new one.</span>
-<span class="sd">            &quot;prepend&quot; is the default option. If PATH is not present in the</span>
-<span class="sd">            current environment, the new PATH is used without modification.</span>
+<span class="sd">        update_path (str): If PATH and/or PYTHONPATH are present in the new</span>
+<span class="sd">            set of variables, this argument determines how the old value is </span>
+<span class="sd">            dealt with. There are three options:</span>
+<span class="sd">            * &quot;prepend&quot; : The new values are prepended to the old ones.</span>
+<span class="sd">            * &quot;append&quot; : The new values are appended to the old ones.</span>
+<span class="sd">            * &quot;overwrite&quot; : The old value is overwritten by the new one.</span>
+<span class="sd">            &quot;prepend&quot; is the default option. If PATH and/or PYTHONPATH is not</span>
+<span class="sd">            present in the current environment, the new PATH is used without </span>
+<span class="sd">            modification.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="s2">&quot;PATH&quot;</span> <span class="ow">in</span> <span class="n">env</span><span class="p">:</span>
-        <span class="n">sep</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">pathsep</span>
-        <span class="k">if</span> <span class="n">update_path</span> <span class="o">==</span> <span class="s2">&quot;prepend&quot;</span><span class="p">:</span>
-            <span class="n">env</span><span class="p">[</span><span class="s2">&quot;PATH&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;PATH&#39;</span><span class="p">]</span><span class="si">}{</span><span class="n">sep</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">_analysis_desc</span><span class="o">.</span><span class="n">task_env</span><span class="p">[</span><span class="s1">&#39;PATH&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
-            <span class="p">)</span>
-        <span class="k">elif</span> <span class="n">update_path</span> <span class="o">==</span> <span class="s2">&quot;append&quot;</span><span class="p">:</span>
-            <span class="n">env</span><span class="p">[</span><span class="s2">&quot;PATH&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_analysis_desc</span><span class="o">.</span><span class="n">task_env</span><span class="p">[</span><span class="s1">&#39;PATH&#39;</span><span class="p">]</span><span class="si">}{</span><span class="n">sep</span><span class="si">}{</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;PATH&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
-            <span class="p">)</span>
-        <span class="k">elif</span> <span class="n">update_path</span> <span class="o">==</span> <span class="s2">&quot;overwrite&quot;</span><span class="p">:</span>
-            <span class="k">pass</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">update_path</span><span class="si">}</span><span class="s2"> is not a valid option for `update_path`!&quot;</span>
-                    <span class="s2">&quot; Options are: prepend, append, overwrite.&quot;</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;PATH&quot;</span><span class="p">,</span> <span class="s2">&quot;PYTHONPATH&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">env</span><span class="p">:</span>
+            <span class="n">sep</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">pathsep</span>
+            <span class="k">if</span> <span class="n">update_path</span> <span class="o">==</span> <span class="s2">&quot;prepend&quot;</span><span class="p">:</span>
+                <span class="n">env</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">env</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="si">}{</span><span class="n">sep</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">_analysis_desc</span><span class="o">.</span><span class="n">task_env</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
                 <span class="p">)</span>
-            <span class="p">)</span>
+            <span class="k">elif</span> <span class="n">update_path</span> <span class="o">==</span> <span class="s2">&quot;append&quot;</span><span class="p">:</span>
+                <span class="n">env</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_analysis_desc</span><span class="o">.</span><span class="n">task_env</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="si">}{</span><span class="n">sep</span><span class="si">}{</span><span class="n">env</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+            <span class="k">elif</span> <span class="n">update_path</span> <span class="o">==</span> <span class="s2">&quot;overwrite&quot;</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">update_path</span><span class="si">}</span><span class="s2"> is not a valid option for `update_path`!&quot;</span>
+                        <span class="s2">&quot; Options are: prepend, append, overwrite.&quot;</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
     <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_analysis_desc</span><span class="o">.</span><span class="n">task_env</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -5799,9 +5808,7 @@ environment that is passed to the Task subprocess.</p>
 
               <details class="quote">
                 <summary>Source code in <code>lute/execution/executor.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 770</span>
-<span class="normal"> 771</span>
-<span class="normal"> 772</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 772</span>
 <span class="normal"> 773</span>
 <span class="normal"> 774</span>
 <span class="normal"> 775</span>
@@ -6143,7 +6150,9 @@ environment that is passed to the Task subprocess.</p>
 <span class="normal">1111</span>
 <span class="normal">1112</span>
 <span class="normal">1113</span>
-<span class="normal">1114</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Executor</span><span class="p">(</span><span class="n">BaseExecutor</span><span class="p">):</span>
+<span class="normal">1114</span>
+<span class="normal">1115</span>
+<span class="normal">1116</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Executor</span><span class="p">(</span><span class="n">BaseExecutor</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Basic implementation of an Executor which manages simple IPC with Task.</span>
 
 <span class="sd">    Attributes:</span>
@@ -6521,13 +6530,13 @@ reporting to third party services, etc.</p>
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">970</span>
-<span class="normal">971</span>
-<span class="normal">972</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">972</span>
 <span class="normal">973</span>
 <span class="normal">974</span>
 <span class="normal">975</span>
-<span class="normal">976</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_finalize_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">976</span>
+<span class="normal">977</span>
+<span class="normal">978</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_finalize_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Any actions to be performed after the Task has ended.</span>
 
 <span class="sd">    Examples include a final clearing of the pipes, retrieving results,</span>
@@ -6615,9 +6624,7 @@ which can be directly written to an HTML file.</p>
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1016</span>
-<span class="normal">1017</span>
-<span class="normal">1018</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1018</span>
 <span class="normal">1019</span>
 <span class="normal">1020</span>
 <span class="normal">1021</span>
@@ -6649,7 +6656,9 @@ which can be directly written to an HTML file.</p>
 <span class="normal">1047</span>
 <span class="normal">1048</span>
 <span class="normal">1049</span>
-<span class="normal">1050</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_process_elog_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plots</span><span class="p">:</span> <span class="n">ElogSummaryPlots</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="normal">1050</span>
+<span class="normal">1051</span>
+<span class="normal">1052</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_process_elog_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plots</span><span class="p">:</span> <span class="n">ElogSummaryPlots</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Process an ElogSummaryPlots</span>
 
 <span class="sd">    Writes out the eLog summary plot for display and returns the path of</span>
@@ -6740,9 +6749,7 @@ individually.</p>
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1052</span>
-<span class="normal">1053</span>
-<span class="normal">1054</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1054</span>
 <span class="normal">1055</span>
 <span class="normal">1056</span>
 <span class="normal">1057</span>
@@ -6775,7 +6782,9 @@ individually.</p>
 <span class="normal">1084</span>
 <span class="normal">1085</span>
 <span class="normal">1086</span>
-<span class="normal">1087</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_process_result_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">summary</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">1087</span>
+<span class="normal">1088</span>
+<span class="normal">1089</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_process_result_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">summary</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Process an object destined for the results summary.</span>
 
 <span class="sd">    Args:</span>
@@ -6836,16 +6845,16 @@ individually.</p>
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">978</span>
-<span class="normal">979</span>
-<span class="normal">980</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">980</span>
 <span class="normal">981</span>
 <span class="normal">982</span>
 <span class="normal">983</span>
 <span class="normal">984</span>
 <span class="normal">985</span>
 <span class="normal">986</span>
-<span class="normal">987</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_process_results</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">987</span>
+<span class="normal">988</span>
+<span class="normal">989</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_process_results</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Performs result processing.</span>
 
 <span class="sd">    Actions include:</span>
@@ -6932,9 +6941,7 @@ summary field of the database.</p>
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1089</span>
-<span class="normal">1090</span>
-<span class="normal">1091</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1091</span>
 <span class="normal">1092</span>
 <span class="normal">1093</span>
 <span class="normal">1094</span>
@@ -6957,7 +6964,9 @@ summary field of the database.</p>
 <span class="normal">1111</span>
 <span class="normal">1112</span>
 <span class="normal">1113</span>
-<span class="normal">1114</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_process_summary_run_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="normal">1114</span>
+<span class="normal">1115</span>
+<span class="normal">1116</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_process_summary_run_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Process a dictionary of run parameters to be posted to the eLog.</span>
 
 <span class="sd">    Args:</span>
@@ -7007,9 +7016,7 @@ that its finished.</p>
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">945</span>
-<span class="normal">946</span>
-<span class="normal">947</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">947</span>
 <span class="normal">948</span>
 <span class="normal">949</span>
 <span class="normal">950</span>
@@ -7030,7 +7037,9 @@ that its finished.</p>
 <span class="normal">965</span>
 <span class="normal">966</span>
 <span class="normal">967</span>
-<span class="normal">968</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_task_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">968</span>
+<span class="normal">969</span>
+<span class="normal">970</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_task_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc</span><span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Actions to perform while the Task is running.</span>
 
 <span class="sd">    This function is run in the body of a loop until the Task signals</span>
@@ -7076,9 +7085,7 @@ that its finished.</p>
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">804</span>
-<span class="normal">805</span>
-<span class="normal">806</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">806</span>
 <span class="normal">807</span>
 <span class="normal">808</span>
 <span class="normal">809</span>
@@ -7215,7 +7222,9 @@ that its finished.</p>
 <span class="normal">940</span>
 <span class="normal">941</span>
 <span class="normal">942</span>
-<span class="normal">943</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_default_hooks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">943</span>
+<span class="normal">944</span>
+<span class="normal">945</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_default_hooks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Populate the set of default event hooks.&quot;&quot;&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">no_pickle_mode</span><span class="p">(</span>
@@ -7517,9 +7526,7 @@ of ranks is determined from the cores dedicated to Task execution.</p>
 
               <details class="quote">
                 <summary>Source code in <code>lute/execution/executor.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1117</span>
-<span class="normal">1118</span>
-<span class="normal">1119</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1119</span>
 <span class="normal">1120</span>
 <span class="normal">1121</span>
 <span class="normal">1122</span>
@@ -7561,7 +7568,9 @@ of ranks is determined from the cores dedicated to Task execution.</p>
 <span class="normal">1158</span>
 <span class="normal">1159</span>
 <span class="normal">1160</span>
-<span class="normal">1161</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MPIExecutor</span><span class="p">(</span><span class="n">Executor</span><span class="p">):</span>
+<span class="normal">1161</span>
+<span class="normal">1162</span>
+<span class="normal">1163</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MPIExecutor</span><span class="p">(</span><span class="n">Executor</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Runs first-party Tasks that require MPI.</span>
 
 <span class="sd">    This Executor is otherwise identical to the standard Executor, except it</span>
@@ -7707,9 +7716,7 @@ of ranks is determined from the cores dedicated to Task execution.</p>
 
             <details class="quote">
               <summary>Source code in <code>lute/execution/executor.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1139</span>
-<span class="normal">1140</span>
-<span class="normal">1141</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1141</span>
 <span class="normal">1142</span>
 <span class="normal">1143</span>
 <span class="normal">1144</span>
@@ -7729,7 +7736,9 @@ of ranks is determined from the cores dedicated to Task execution.</p>
 <span class="normal">1158</span>
 <span class="normal">1159</span>
 <span class="normal">1160</span>
-<span class="normal">1161</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_submit_cmd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">executable_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="normal">1161</span>
+<span class="normal">1162</span>
+<span class="normal">1163</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_submit_cmd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">executable_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Override submission command to use `mpirun`</span>
 
 <span class="sd">    Args:</span>
