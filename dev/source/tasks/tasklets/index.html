@@ -1921,7 +1921,7 @@ from a <code>TaskParameters</code> object will be needed to run the Tasklet:
 
     <div class="doc doc-contents ">
 
-        <p>Clone the LCLS Geom repository in the working directory </p>
+        <p>Clone the LCLS Geom repository in the working directory</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -1972,7 +1972,7 @@ from a <code>TaskParameters</code> object will be needed to run the Tasklet:
 <span class="normal">174</span>
 <span class="normal">175</span>
 <span class="normal">176</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">clone_lcls_geom</span><span class="p">(</span><span class="n">work_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Clone the LCLS Geom repository in the working directory </span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Clone the LCLS Geom repository in the working directory</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        work_dir (str): Full path to the location to clone to.</span>
@@ -1980,7 +1980,7 @@ from a <code>TaskParameters</code> object will be needed to run the Tasklet:
 
     <span class="n">repo</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;LouConreux/LCLSGeom&quot;</span>
     <span class="n">git_clone</span><span class="p">(</span><span class="n">repo</span><span class="p">,</span> <span class="n">work_dir</span><span class="p">,</span> <span class="mo">0o777</span><span class="p">)</span>
-    <span class="n">python_path</span> <span class="o">=</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;PYTHONPATH&quot;</span><span class="p">)</span>
+    <span class="n">python_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;PYTHONPATH&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">python_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">python_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">python_path</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">/LCLSGeom&quot;</span>
     <span class="k">else</span><span class="p">:</span>
