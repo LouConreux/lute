@@ -11,8 +11,10 @@
       
       
       
-        <link rel="prev" href="../../source/io/exceptions/">
+        <link rel="prev" href="../creating_workflows/">
       
+      
+        <link rel="next" href="../../source/managed_tasks/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +22,7 @@
     
     
       
-        <title>Database - LUTE</title>
+        <title>Tests - LUTE</title>
       
     
     
@@ -64,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#lute-configuration-database-specification" class="md-skip">
+        <a href="#running-lute-tests" class="md-skip">
           Skip to content
         </a>
       
@@ -100,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Database
+              Tests
             
           </span>
         </div>
@@ -330,18 +332,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -357,7 +361,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Developer Documentation
@@ -371,7 +375,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/architecture/" class="md-nav__link">
+      <a href="../architecture/" class="md-nav__link">
         
   
   
@@ -394,7 +398,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/new_task/" class="md-nav__link">
+      <a href="../new_task/" class="md-nav__link">
         
   
   
@@ -417,7 +421,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/creating_workflows/" class="md-nav__link">
+      <a href="../creating_workflows/" class="md-nav__link">
         
   
   
@@ -437,10 +441,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../development/tests/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Tests
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -451,6 +477,74 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functional-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Functional Tests
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Functional Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Organization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Tests
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1501,20 +1595,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -1530,7 +1622,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Design and Specifications
@@ -1541,32 +1633,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Database
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../design/database/" class="md-nav__link">
         
   
   
@@ -1577,179 +1647,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#basic-outline" class="md-nav__link">
-    <span class="md-ellipsis">
-      Basic Outline
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Basic Outline">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#gen_cfg-table" class="md-nav__link">
-    <span class="md-ellipsis">
-      gen_cfg table
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="gen_cfg table">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#column-descriptions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Column descriptions
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#exec_cfg-table" class="md-nav__link">
-    <span class="md-ellipsis">
-      exec_cfg table
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="exec_cfg table">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#column-descriptions_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Column descriptions
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#task-tables" class="md-nav__link">
-    <span class="md-ellipsis">
-      Task tables
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Task tables">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#column-descriptions_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Column descriptions
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api" class="md-nav__link">
-    <span class="md-ellipsis">
-      API
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="API">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#write" class="md-nav__link">
-    <span class="md-ellipsis">
-      Write
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#read" class="md-nav__link">
-    <span class="md-ellipsis">
-      Read
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#utilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      Utilities
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Utilities">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#scripts" class="md-nav__link">
-    <span class="md-ellipsis">
-      Scripts
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tui-and-gui" class="md-nav__link">
-    <span class="md-ellipsis">
-      TUI and GUI
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1789,29 +1686,38 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#basic-outline" class="md-nav__link">
+  <a href="#functional-tests" class="md-nav__link">
     <span class="md-ellipsis">
-      Basic Outline
+      Functional Tests
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Basic Outline">
+    <nav class="md-nav" aria-label="Functional Tests">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#gen_cfg-table" class="md-nav__link">
+  <a href="#test-organization" class="md-nav__link">
     <span class="md-ellipsis">
-      gen_cfg table
+      Test Organization
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="gen_cfg table">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Tests
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Tests">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#column-descriptions" class="md-nav__link">
+  <a href="#example" class="md-nav__link">
     <span class="md-ellipsis">
-      Column descriptions
+      Example
     </span>
   </a>
   
@@ -1819,120 +1725,6 @@
         
       </ul>
     </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#exec_cfg-table" class="md-nav__link">
-    <span class="md-ellipsis">
-      exec_cfg table
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="exec_cfg table">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#column-descriptions_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Column descriptions
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#task-tables" class="md-nav__link">
-    <span class="md-ellipsis">
-      Task tables
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Task tables">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#column-descriptions_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Column descriptions
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api" class="md-nav__link">
-    <span class="md-ellipsis">
-      API
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="API">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#write" class="md-nav__link">
-    <span class="md-ellipsis">
-      Write
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#read" class="md-nav__link">
-    <span class="md-ellipsis">
-      Read
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#utilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      Utilities
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Utilities">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#scripts" class="md-nav__link">
-    <span class="md-ellipsis">
-      Scripts
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tui-and-gui" class="md-nav__link">
-    <span class="md-ellipsis">
-      TUI and GUI
-    </span>
-  </a>
   
 </li>
         
@@ -1960,321 +1752,75 @@
   
 
 
-<h1 id="lute-configuration-database-specification">LUTE Configuration Database Specification</h1>
-<p><strong>Date:</strong> 2024-02-12
-<strong>VERSION:</strong> v0.1</p>
-<h2 id="basic-outline">Basic Outline</h2>
+<h1 id="running-lute-tests">Running LUTE Tests</h1>
+<h2 id="functional-tests">Functional Tests</h2>
+<p>LUTE provides a framework for running a series of workflows as a functional test suite. This provides a mechanism to both test changes in LUTE code, as well as verify that underlying code run by various <code>Task</code>s still behaves as expected. This latter use-case allows testing against new <code>psana</code> release, for example.</p>
+<h3 id="test-organization">Test Organization</h3>
+<p>Functional tests are organized as sub-directories under the <code>tests/functional</code> directory of the main repository. An alternative directory can be provided to run against, however, it must maintain the same structure described here.</p>
+<p>Under <code>tests/functional</code> each test workflow to run is given a sub-directory which <strong>must</strong> contain the following:</p>
 <ul>
-<li>The backend database will be sqlite, using the standard Python library.</li>
-<li>A high-level API is provided, so if needed, the backend database can be changed without affecting <code>Executor</code> level code.</li>
-<li>One LUTE database is created per working directory for this iteration of the database. Note that this database is independent of any database used by a workflow manager (e.g. Airflow) to manage task execution order.</li>
-<li>Each database has the following tables:</li>
-<li>1 table for <code>Executor</code> configuration</li>
-<li>1 table for general task configuration (i.e., <code>lute.io.config.AnalysisHeader</code>)</li>
-<li>1 table <strong>PER</strong> <code>Task</code><ul>
-<li>Executor and general configuration is shared between <code>Task</code> tables by pointing/linking to the entry ids in the above two tables.</li>
-<li>Multiple experiments can reside in the same table, although in practice this is unlikely to occur in production as the working directory will most likely change between experiments.</li>
+<li><code>config.yaml</code>: to specify the LUTE configuration YAML for running the test workflow. This YAML <strong>MUST specify</strong> an experiment and run. It <strong>CANNOT</strong> rely on retrieving this information from the eLog or the command-line.</li>
+<li><code>dag.yaml</code>: A workflow specification in line with the dyanmic DAG YAML syntax for LUTE.</li>
 </ul>
-</li>
+<p>Each test sub-directory may also contain:</p>
+<ul>
+<li>A <code>README.md</code> file to explain the test.</li>
+<li>A <code>SHOULD_FAIL</code> file which is empty. This should be provided if the workflow is expected to fail and the test should be marked succesful if it does.</li>
 </ul>
-<h3 id="gen_cfg-table"><code>gen_cfg</code> table</h3>
-<p>The general configuration table contains entries which may be shared between multiple <code>Task</code>s. The format of the table is:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">id</th>
-<th style="text-align: center;">title</th>
-<th style="text-align: center;">experiment</th>
-<th style="text-align: center;">run</th>
-<th style="text-align: center;">date</th>
-<th style="text-align: center;">lute_version</th>
-<th style="text-align: center;">task_timeout</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">"My experiment desc"</td>
-<td style="text-align: center;">"EXPx00000</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">YYYY/MM/DD</td>
-<td style="text-align: center;">0.1</td>
-<td style="text-align: center;">6000</td>
-</tr>
-<tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-</tbody>
-</table>
-<p>These parameters are extracted from the <code>TaskParameters</code> object. Each of those contains an <code>AnalysisHeader</code> object stored in the <code>lute_config</code> variable. For a given experimental run, this value will be shared across any <code>Task</code>s that are executed.</p>
-<h4 id="column-descriptions">Column descriptions</h4>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;"><strong>Column</strong></th>
-<th style="text-align: center;"><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;"><code>id</code></td>
-<td style="text-align: center;">ID of the entry in this table.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>title</code></td>
-<td style="text-align: center;">Arbitrary description/title of the purpose of analysis. E.g. what kind of experiment is being conducted</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>experiment</code></td>
-<td style="text-align: center;">LCLS Experiment. Can be a placeholder if debugging, etc.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>run</code></td>
-<td style="text-align: center;">LCLS Acquisition run. Can be a placeholder if debugging, testing, etc.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>date</code></td>
-<td style="text-align: center;">Date the configuration file was first setup.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>lute_version</code></td>
-<td style="text-align: center;">Version of the codebase being used to execute <code>Task</code>s.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>task_timeout</code></td>
-<td style="text-align: center;">The maximum amount of time in seconds that a <code>Task</code> can run before being cancelled.</td>
-</tr>
-<tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-</tbody>
-</table>
-<h3 id="exec_cfg-table"><code>exec_cfg</code> table</h3>
-<p>The <code>Executor</code> table contains information on the environment provided to the <code>Executor</code> for <code>Task</code> execution, the polling interval used for IPC between the <code>Task</code> and <code>Executor</code> and information on the communicator protocols used for IPC. This information can be shared between <code>Task</code>s or between experimental runs, but not necessarily every <code>Task</code> of a given run will use exactly the same <code>Executor</code> configuration and environment.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">id</th>
-<th style="text-align: center;">env</th>
-<th style="text-align: center;">poll_interval</th>
-<th style="text-align: center;">communicator_desc</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">"VAR1=val1;VAR2=val2"</td>
-<td style="text-align: center;">0.1</td>
-<td style="text-align: center;">"PipeCommunicator...;SocketCommunicator..."</td>
-</tr>
-<tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-</tbody>
-</table>
-<h4 id="column-descriptions_1">Column descriptions</h4>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;"><strong>Column</strong></th>
-<th style="text-align: center;"><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;"><code>id</code></td>
-<td style="text-align: center;">ID of the entry in this table.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>env</code></td>
-<td style="text-align: center;">Execution environment used by the Executor and by proxy any Tasks submitted by an Executor matching this entry. Environment is stored as a string with variables delimited by ";"</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>poll_interval</code></td>
-<td style="text-align: center;">Polling interval used for Task monitoring.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>communicator_desc</code></td>
-<td style="text-align: center;">Description of the Communicators used.</td>
-</tr>
-<tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-</tbody>
-</table>
-<p><strong>NOTE</strong>: The <code>env</code> column currently only stores variables related to <code>SLURM</code> or <code>LUTE</code> itself.</p>
-<h3 id="task-tables"><code>Task</code> tables</h3>
-<p>For every <code>Task</code> a table of the following format will be created. The exact number of columns will depend on the specific <code>Task</code>, as the number of parameters can vary between them, and each parameter gets its own column. Within a table, multiple experiments and runs can coexist. The experiment and run are not recorded directly. Instead, the first two columns point to the id of entries in the general configuration and <code>Executor</code> tables respectively. The general configuration table entry will contain the experiment and run information.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">id</th>
-<th style="text-align: center;">timestamp</th>
-<th style="text-align: center;">gen_cfg_id</th>
-<th style="text-align: center;">exec_cfg_id</th>
-<th style="text-align: center;">P1</th>
-<th style="text-align: center;">P2</th>
-<th style="text-align: center;">...</th>
-<th style="text-align: center;">Pn</th>
-<th style="text-align: center;">result.task_status</th>
-<th style="text-align: center;">result.summary</th>
-<th style="text-align: center;">result.payload</th>
-<th style="text-align: center;">result.impl_schemas</th>
-<th style="text-align: center;">valid_flag</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">"YYYY-MM-DD HH:MM:SS"</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">...</td>
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">"COMPLETED"</td>
-<td style="text-align: center;">"Summary"</td>
-<td style="text-align: center;">"XYZ"</td>
-<td style="text-align: center;">"schema1;schema3;"</td>
-<td style="text-align: center;">1</td>
-</tr>
-<tr>
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">"YYYY-MM-DD HH:MM:SS"</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">...</td>
-<td style="text-align: center;">4</td>
-<td style="text-align: center;">"FAILED"</td>
-<td style="text-align: center;">"Summary"</td>
-<td style="text-align: center;">"XYZ"</td>
-<td style="text-align: center;">"schema1;schema3;"</td>
-<td style="text-align: center;">0</td>
-</tr>
-<tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-</tbody>
-</table>
-<p>Parameter sets which can be described as nested dictionaries are flattened and then delimited with a <code>.</code> to create column names. Parameters which are lists (or Python tuples, etc.) have a column for each entry with names that include an index (counting from 0). E.g. consider the following dictionary of parameters:</p>
-<pre><code class="language-py">param_dict: Dict[str, Any] = {
-    &quot;a&quot;: {               # First parameter a
-        &quot;b&quot;: (1, 2),
-        &quot;c&quot;: 1,
-        # ...
-    },
-    &quot;a2&quot;: 4,             # Second parameter a2
-    # ...
-}
+<h3 id="running-tests">Running Tests</h3>
+<p>There are two main scripts for test submission:</p>
+<ul>
+<li><code>run_functional.py</code>: This does the bulk of the work.</li>
+<li><code>submit_run_functional.sh</code>: a thin wrapper to submit a SLURM job.</li>
+</ul>
+<p>As an alternative to a SLURM job, <code>run_functional.py</code> can be run in the background with output redirected to a file, or perhaps more securely using, e.g. screen. <code>run_functional.py</code> can be used like:</p>
+<pre><code class="language-bash">usage: run_functional.py [-h] [-a] [--test_airflow] [--use_prefect] [--git_pr_id GIT_PR_ID] [--git_tag GIT_TAG] -r RUN_DIR [--no_delete] [--run_tests RUN_TESTS] [--tests_dir TESTS_DIR] [--use_local_tests]
+
+Run the LUTE functional test suite.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -a, --admin           Run as Airflow admin. Requires permissions. Ignored if using prefect.
+  --test_airflow        Use test Airflow instance. Ignored if using prefect.
+  --use_prefect         Use prefect (experimental) instead of Airflow.
+  --git_pr_id GIT_PR_ID
+                        Check out a specific GitHub PR ID of LUTE to run (a PR branch).
+  --git_tag GIT_TAG     Check out a specific git tag of LUTE to run (e.g. a release).
+  -r RUN_DIR, --run_dir RUN_DIR
+                        Directory to install LUTE to.
+  --no_delete           If passed, do not delete output files when tests are finished.
+  --run_tests RUN_TESTS
+                        Provide a comma-separated string of tests to run. If provided, this script will only run those, rather than the default behaviour of running all tests. E.g: --run_these_tests
+                        test2,test5. Tests that do not exist are silently ignored.
+  --tests_dir TESTS_DIR
+                        Specify an alternative path to tests than those from the LUTE clone. Must have the same directory structure: $DIR/test1/... $DIR/test2/... If this flag and --use_local_tests are both
+                        passed, this one is used.
+  --use_local_tests     Use the tests from the installation of LUTE where this script is called, rather than those from the clone of LUTE which is run against, or another directory if passed. If this flag
+                        and --tests_dir are both passed, --tests_dir is used.
+
+Refer to https://github.com/slac-lcls/lute for more information.
 </code></pre>
-<p>The dictionary <code>a</code> will produce columns: <code>a.b[0]</code>, <code>a.b[1]</code>, <code>a.c</code>, and so on.</p>
-<h4 id="column-descriptions_2">Column descriptions</h4>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;"><strong>Column</strong></th>
-<th style="text-align: center;"><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;"><code>id</code></td>
-<td style="text-align: center;">ID of the entry in this table.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>CURRENT_TIMESTAMP</code></td>
-<td style="text-align: center;">Full timestamp for the entry.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>gen_cfg_id</code></td>
-<td style="text-align: center;">ID of the entry in the general config table that applies to this <code>Task</code> entry. That table has, e.g., experiment and run number.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>exec_cfg_id</code></td>
-<td style="text-align: center;">The ID of the entry in the <code>Executor</code> table which applies to this <code>Task</code> entry.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>P1</code> - <code>Pn</code></td>
-<td style="text-align: center;">The specific parameters of the <code>Task</code>. The <code>P{1..n}</code> are replaced by the actual parameter names.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>result.task_status</code></td>
-<td style="text-align: center;">Reported exit status of the <code>Task</code>. Note that the output may still be labeled invalid by the <code>valid_flag</code> (see below).</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>result.summary</code></td>
-<td style="text-align: center;">Short text summary of the <code>Task</code> result. This is provided by the <code>Task</code>, or sometimes the <code>Executor</code>.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>result.payload</code></td>
-<td style="text-align: center;">Full description of result from the <code>Task</code>. If the object is incompatible with the database, will instead be a pointer to where it can be found.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>result.impl_schemas</code></td>
-<td style="text-align: center;">A string of semi-colon separated schema(s) implemented by the <code>Task</code>. Schemas describe conceptually the type output the <code>Task</code> produces.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>valid_flag</code></td>
-<td style="text-align: center;">A boolean flag for whether the result is valid. May be <code>0</code> (False) if e.g., data is missing, or corrupt, or reported status is failed.</td>
-</tr>
-<tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-</tbody>
-</table>
-<p><strong>NOTE:</strong> The <code>result.payload</code> may be distinct from the output files. Payloads can be specified in terms of output parameters, specific output files, or are an optional summary of the results provided by the <code>Task</code>. E.g. this may include graphical descriptions of results (plots, figures, etc.). In many cases, however, the output files will most likely be pointed to by a parameter in one of the columns <code>P{1...n}</code> - if properly specified in the <code>TaskParameters</code> model the value of this output parameter will be replicated in the <code>result.payload</code> column as well..</p>
-<h2 id="api">API</h2>
-<p>This API is intended to be used at the <code>Executor</code> level, with some calls intended to provide default values for Pydantic models. Utilities for reading and inspecting the database outside of normal <code>Task</code> execution are addressed in the following subheader.</p>
-<h3 id="write">Write</h3>
-<ul>
-<li><code>record_analysis_db(cfg: DescribedAnalysis) -&gt; None</code>: Writes the configuration to the backend database.</li>
-<li>...</li>
-<li>...</li>
-</ul>
-<h3 id="read">Read</h3>
-<ul>
-<li><code>read_latest_db_entry(db_dir: str, task_name: str, param: str) -&gt; Any</code>: Retrieve the most recent entry from a database for a specific Task.</li>
-<li>...</li>
-<li>...</li>
-</ul>
-<h2 id="utilities">Utilities</h2>
-<h3 id="scripts">Scripts</h3>
-<ul>
-<li><code>invalidate_entry</code>: Marks a database entry as invalid. Common reason to use this is if data has been deleted, or found to be corrupted.</li>
-<li>...</li>
-</ul>
-<h3 id="tui-and-gui">TUI and GUI</h3>
-<ul>
-<li><code>dbview</code>: TUI for database inspection. Read only.</li>
-<li>...</li>
-</ul>
+<p><code>submit_run_functional.sh</code> transparently passes parameters so has the same interface, SLURM arguments will be required however. These arguments are just for the job running the <code>run_functional.py</code> script, as the SLURM arguments for each step of the underlying workflow are specified in the <code>dag.yaml</code> file.</p>
+<h4 id="example">Example</h4>
+<p>Checkout a copy of <code>LUTE</code> and run the following command:</p>
+<pre><code class="language-bash">./lute/tests/submit_run_functional.sh --run_dir &lt;$OUTPUT_DIR&gt; [--use_prefect]
+</code></pre>
+<p>Substituting <code>&lt;$OUTPUT_DIR&gt;</code> for any directory you would like to work in. Within this directory, the test script will create the following directories:</p>
+<pre><code>OUTPUT_DIR
+|
+|------------ lute # (The clone of the repository)
+|
+|------------ lute_output # (All output files will be placed here)
+</code></pre>
+<p><strong>Note:</strong> A new copy of LUTE will be cloned unless the <code>--use_local_tests</code> argument is passed. Using the appropriate arguments listed above, the new clone of LUTE can be checked out to use a specific tag or PR branch.</p>
+<p><code>OUTPUT_DIR</code> must exist before the script is called. The <code>lute</code> and <code>lute_output</code> directories will be deleted after the tests complete, unless the <code>--no_delete</code> option is passed.</p>
+<p>The results of the tests can be examined from the SLURM log file:</p>
+<pre><code class="language-bash">&gt; tail -n 4 slurm-59804105.out
+INFO:Launch_Func_Tests:Ran 2 tests. 2 were successful.
+DEBUG:Launch_Func_Tests:Removing duplicate Kerberos credentials.
+INFO:Launch_Func_Tests:Cleaning up /sdf/scratch/users/d/dorlhiac/func_tests/lute
+INFO:Launch_Func_Tests:Cleaning up /sdf/scratch/users/d/dorlhiac/func_tests/lute_output
+</code></pre>
 
 
 

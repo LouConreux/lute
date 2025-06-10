@@ -11,8 +11,10 @@
       
       
       
-        <link rel="prev" href="../../source/io/exceptions/">
+        <link rel="prev" href="../../usage/running_lute/">
       
+      
+        <link rel="next" href="../new_task/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +22,7 @@
     
     
       
-        <title>Database - LUTE</title>
+        <title>Architecture and Execution Model - LUTE</title>
       
     
     
@@ -64,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#lute-configuration-database-specification" class="md-skip">
+        <a href="#lute-architecture-and-execution-model" class="md-skip">
           Skip to content
         </a>
       
@@ -100,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Database
+              Architecture and Execution Model
             
           </span>
         </div>
@@ -330,18 +332,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -357,7 +361,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Developer Documentation
@@ -368,10 +372,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../development/architecture/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Architecture and Execution Model
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -382,6 +408,86 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#glossary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Glossary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#database-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Layer
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task Layer
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#execution-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Execution Layer
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflow-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Workflow Layer
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -394,7 +500,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/new_task/" class="md-nav__link">
+      <a href="../new_task/" class="md-nav__link">
         
   
   
@@ -417,7 +523,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/creating_workflows/" class="md-nav__link">
+      <a href="../creating_workflows/" class="md-nav__link">
         
   
   
@@ -440,7 +546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/tests/" class="md-nav__link">
+      <a href="../tests/" class="md-nav__link">
         
   
   
@@ -1501,20 +1607,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -1530,7 +1634,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Design and Specifications
@@ -1541,32 +1645,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Database
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../design/database/" class="md-nav__link">
         
   
   
@@ -1577,179 +1659,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#basic-outline" class="md-nav__link">
-    <span class="md-ellipsis">
-      Basic Outline
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Basic Outline">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#gen_cfg-table" class="md-nav__link">
-    <span class="md-ellipsis">
-      gen_cfg table
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="gen_cfg table">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#column-descriptions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Column descriptions
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#exec_cfg-table" class="md-nav__link">
-    <span class="md-ellipsis">
-      exec_cfg table
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="exec_cfg table">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#column-descriptions_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Column descriptions
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#task-tables" class="md-nav__link">
-    <span class="md-ellipsis">
-      Task tables
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Task tables">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#column-descriptions_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Column descriptions
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api" class="md-nav__link">
-    <span class="md-ellipsis">
-      API
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="API">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#write" class="md-nav__link">
-    <span class="md-ellipsis">
-      Write
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#read" class="md-nav__link">
-    <span class="md-ellipsis">
-      Read
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#utilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      Utilities
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Utilities">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#scripts" class="md-nav__link">
-    <span class="md-ellipsis">
-      Scripts
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tui-and-gui" class="md-nav__link">
-    <span class="md-ellipsis">
-      TUI and GUI
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1789,115 +1698,19 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#basic-outline" class="md-nav__link">
+  <a href="#architecture" class="md-nav__link">
     <span class="md-ellipsis">
-      Basic Outline
+      Architecture
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Basic Outline">
+    <nav class="md-nav" aria-label="Architecture">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#gen_cfg-table" class="md-nav__link">
+  <a href="#glossary" class="md-nav__link">
     <span class="md-ellipsis">
-      gen_cfg table
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="gen_cfg table">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#column-descriptions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Column descriptions
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#exec_cfg-table" class="md-nav__link">
-    <span class="md-ellipsis">
-      exec_cfg table
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="exec_cfg table">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#column-descriptions_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Column descriptions
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#task-tables" class="md-nav__link">
-    <span class="md-ellipsis">
-      Task tables
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Task tables">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#column-descriptions_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Column descriptions
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api" class="md-nav__link">
-    <span class="md-ellipsis">
-      API
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="API">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#write" class="md-nav__link">
-    <span class="md-ellipsis">
-      Write
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#read" class="md-nav__link">
-    <span class="md-ellipsis">
-      Read
+      Glossary
     </span>
   </a>
   
@@ -1909,35 +1722,38 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#utilities" class="md-nav__link">
+  <a href="#database-layer" class="md-nav__link">
     <span class="md-ellipsis">
-      Utilities
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Utilities">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#scripts" class="md-nav__link">
-    <span class="md-ellipsis">
-      Scripts
+      Database Layer
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#tui-and-gui" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#task-layer" class="md-nav__link">
     <span class="md-ellipsis">
-      TUI and GUI
+      Task Layer
     </span>
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#execution-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Execution Layer
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflow-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Workflow Layer
+    </span>
+  </a>
   
 </li>
       
@@ -1960,321 +1776,108 @@
   
 
 
-<h1 id="lute-configuration-database-specification">LUTE Configuration Database Specification</h1>
-<p><strong>Date:</strong> 2024-02-12
-<strong>VERSION:</strong> v0.1</p>
-<h2 id="basic-outline">Basic Outline</h2>
+<h1 id="lute-architecture-and-execution-model">LUTE Architecture and Execution Model</h1>
+<p>The following page attempts to provide an overview of the architecture of LUTE and the various steps and components involved in its execution model.</p>
+<h2 id="architecture">Architecture</h2>
+<p>The LUTE architecture consists of four separate layers:
+- A database layer for storing parameter information and the results of analysis.
+- A <code>Task</code> layer which runs analysis code.
+- An execution layer which manages the differing environments used by components of the <code>Task</code> layer.
+- A workflow layer which launches series of <strong>managed</strong> <code>Task</code>s (see below), in a specified order, to run various analysis routines in their respective environments.</p>
+<p>A rough schematic of the architecture and how the various layers communicate with each other is given by:</p>
+<p><img alt="Overview of LUTE Architecture" src="../images/architecture.png" /></p>
+<h3 id="glossary">Glossary</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Term</th>
+<th style="text-align: left;">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>Task</code></td>
+<td style="text-align: left;">A unit of code “of interest” – e.g. may be an algorithm. Definition is flexible but typically will encompass processing until a natural stopping point.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>Executor</code></td>
+<td style="text-align: left;">A manager – executes or runs a Task in a specific environment and provides interactions with UI, etc.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Managed</strong> <code>Task</code></td>
+<td style="text-align: left;">Executor + Task to run. When code is executed in LUTE, it is done through <strong>managed</strong> <code>Task</code>s. Task code on its own is not usually submitted.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>Tasklet</code></td>
+<td style="text-align: left;">A Python function attached to a <strong>managed</strong> <code>Task</code>.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>DAG</code></td>
+<td style="text-align: left;">Directed acyclic graph. A workflow, i.e., a number of <strong>managed</strong> <code>Task</code>s and their dependencies.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="database-layer">Database Layer</h2>
+<p>The database layer stores a complete set of information required for reproducing a processing step upon completion of that step, regardless of whether the analysis exited successfully.</p>
+<p>The information stored includes:</p>
 <ul>
-<li>The backend database will be sqlite, using the standard Python library.</li>
-<li>A high-level API is provided, so if needed, the backend database can be changed without affecting <code>Executor</code> level code.</li>
-<li>One LUTE database is created per working directory for this iteration of the database. Note that this database is independent of any database used by a workflow manager (e.g. Airflow) to manage task execution order.</li>
-<li>Each database has the following tables:</li>
-<li>1 table for <code>Executor</code> configuration</li>
-<li>1 table for general task configuration (i.e., <code>lute.io.config.AnalysisHeader</code>)</li>
-<li>1 table <strong>PER</strong> <code>Task</code><ul>
-<li>Executor and general configuration is shared between <code>Task</code> tables by pointing/linking to the entry ids in the above two tables.</li>
-<li>Multiple experiments can reside in the same table, although in practice this is unlikely to occur in production as the working directory will most likely change between experiments.</li>
+<li>Parameter sets</li>
+<li>Results information - This may be a pointer to objects stored on a filesystem (i.e. a path), or the result itself the result can be simply represented, such as by a scalar value.</li>
+<li>Execution information - Information about communication protocols used between <code>Task</code> and <code>Executor</code>, as well as pertinent environment variables.</li>
 </ul>
-</li>
+<p><strong>Importantly</strong>, all the data stored in the database is available to subsequent processing steps. In this way <code>Task</code>s which are written to be runnable independently can be chained together into workflows which specify dependencies between them.</p>
+<p><img alt="Database Layer" src="../images/database_layer.png" /></p>
+<p>The database API is designed to be light-weight. The current implementation makes use of a sqlite database for portability, but this can be exchanged as needed.</p>
+<p>In general, the API is designed with the idea the <code>Task</code> layer reads from the database, while the Execution layer writes.</p>
+<p><img alt="Database API" src="../images/database_api.png" /></p>
+<h2 id="task-layer"><code>Task</code> Layer</h2>
+<p>The <code>Task</code> layer consists of the actual analysis "code of interest". In paritcular, it is composed of three main objects:</p>
+<ul>
+<li><code>TaskParameters</code>: A model comprising a set of type-validated parameters needed to run the <code>Task</code>.</li>
+<li><code>TaskResult</code>: A description of the result of the analysis. Depending on the <code>Task</code>, the entire result may be contained within this object, although frequently a <code>Task</code> will, e.g., write out a file, the path to which is recorded as the result.</li>
+<li><code>Task</code>: The main code to run. This object also contains the parameters and results.</li>
 </ul>
-<h3 id="gen_cfg-table"><code>gen_cfg</code> table</h3>
-<p>The general configuration table contains entries which may be shared between multiple <code>Task</code>s. The format of the table is:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">id</th>
-<th style="text-align: center;">title</th>
-<th style="text-align: center;">experiment</th>
-<th style="text-align: center;">run</th>
-<th style="text-align: center;">date</th>
-<th style="text-align: center;">lute_version</th>
-<th style="text-align: center;">task_timeout</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">"My experiment desc"</td>
-<td style="text-align: center;">"EXPx00000</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">YYYY/MM/DD</td>
-<td style="text-align: center;">0.1</td>
-<td style="text-align: center;">6000</td>
-</tr>
-<tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-</tbody>
-</table>
-<p>These parameters are extracted from the <code>TaskParameters</code> object. Each of those contains an <code>AnalysisHeader</code> object stored in the <code>lute_config</code> variable. For a given experimental run, this value will be shared across any <code>Task</code>s that are executed.</p>
-<h4 id="column-descriptions">Column descriptions</h4>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;"><strong>Column</strong></th>
-<th style="text-align: center;"><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;"><code>id</code></td>
-<td style="text-align: center;">ID of the entry in this table.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>title</code></td>
-<td style="text-align: center;">Arbitrary description/title of the purpose of analysis. E.g. what kind of experiment is being conducted</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>experiment</code></td>
-<td style="text-align: center;">LCLS Experiment. Can be a placeholder if debugging, etc.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>run</code></td>
-<td style="text-align: center;">LCLS Acquisition run. Can be a placeholder if debugging, testing, etc.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>date</code></td>
-<td style="text-align: center;">Date the configuration file was first setup.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>lute_version</code></td>
-<td style="text-align: center;">Version of the codebase being used to execute <code>Task</code>s.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>task_timeout</code></td>
-<td style="text-align: center;">The maximum amount of time in seconds that a <code>Task</code> can run before being cancelled.</td>
-</tr>
-<tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-</tbody>
-</table>
-<h3 id="exec_cfg-table"><code>exec_cfg</code> table</h3>
-<p>The <code>Executor</code> table contains information on the environment provided to the <code>Executor</code> for <code>Task</code> execution, the polling interval used for IPC between the <code>Task</code> and <code>Executor</code> and information on the communicator protocols used for IPC. This information can be shared between <code>Task</code>s or between experimental runs, but not necessarily every <code>Task</code> of a given run will use exactly the same <code>Executor</code> configuration and environment.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">id</th>
-<th style="text-align: center;">env</th>
-<th style="text-align: center;">poll_interval</th>
-<th style="text-align: center;">communicator_desc</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">"VAR1=val1;VAR2=val2"</td>
-<td style="text-align: center;">0.1</td>
-<td style="text-align: center;">"PipeCommunicator...;SocketCommunicator..."</td>
-</tr>
-<tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-</tbody>
-</table>
-<h4 id="column-descriptions_1">Column descriptions</h4>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;"><strong>Column</strong></th>
-<th style="text-align: center;"><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;"><code>id</code></td>
-<td style="text-align: center;">ID of the entry in this table.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>env</code></td>
-<td style="text-align: center;">Execution environment used by the Executor and by proxy any Tasks submitted by an Executor matching this entry. Environment is stored as a string with variables delimited by ";"</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>poll_interval</code></td>
-<td style="text-align: center;">Polling interval used for Task monitoring.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>communicator_desc</code></td>
-<td style="text-align: center;">Description of the Communicators used.</td>
-</tr>
-<tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-</tbody>
-</table>
-<p><strong>NOTE</strong>: The <code>env</code> column currently only stores variables related to <code>SLURM</code> or <code>LUTE</code> itself.</p>
-<h3 id="task-tables"><code>Task</code> tables</h3>
-<p>For every <code>Task</code> a table of the following format will be created. The exact number of columns will depend on the specific <code>Task</code>, as the number of parameters can vary between them, and each parameter gets its own column. Within a table, multiple experiments and runs can coexist. The experiment and run are not recorded directly. Instead, the first two columns point to the id of entries in the general configuration and <code>Executor</code> tables respectively. The general configuration table entry will contain the experiment and run information.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">id</th>
-<th style="text-align: center;">timestamp</th>
-<th style="text-align: center;">gen_cfg_id</th>
-<th style="text-align: center;">exec_cfg_id</th>
-<th style="text-align: center;">P1</th>
-<th style="text-align: center;">P2</th>
-<th style="text-align: center;">...</th>
-<th style="text-align: center;">Pn</th>
-<th style="text-align: center;">result.task_status</th>
-<th style="text-align: center;">result.summary</th>
-<th style="text-align: center;">result.payload</th>
-<th style="text-align: center;">result.impl_schemas</th>
-<th style="text-align: center;">valid_flag</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">"YYYY-MM-DD HH:MM:SS"</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">...</td>
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">"COMPLETED"</td>
-<td style="text-align: center;">"Summary"</td>
-<td style="text-align: center;">"XYZ"</td>
-<td style="text-align: center;">"schema1;schema3;"</td>
-<td style="text-align: center;">1</td>
-</tr>
-<tr>
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">"YYYY-MM-DD HH:MM:SS"</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">...</td>
-<td style="text-align: center;">4</td>
-<td style="text-align: center;">"FAILED"</td>
-<td style="text-align: center;">"Summary"</td>
-<td style="text-align: center;">"XYZ"</td>
-<td style="text-align: center;">"schema1;schema3;"</td>
-<td style="text-align: center;">0</td>
-</tr>
-<tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-</tbody>
-</table>
-<p>Parameter sets which can be described as nested dictionaries are flattened and then delimited with a <code>.</code> to create column names. Parameters which are lists (or Python tuples, etc.) have a column for each entry with names that include an index (counting from 0). E.g. consider the following dictionary of parameters:</p>
-<pre><code class="language-py">param_dict: Dict[str, Any] = {
-    &quot;a&quot;: {               # First parameter a
-        &quot;b&quot;: (1, 2),
-        &quot;c&quot;: 1,
-        # ...
-    },
-    &quot;a2&quot;: 4,             # Second parameter a2
-    # ...
-}
+<p><img alt="Task Layer" src="../images/task_layer.png" /></p>
+<p>A <code>Task</code> can be instantiated by passing in an instance of the <code>TaskParameters</code> object. The <code>Task</code> can then be run by invoking the <code>run()</code> method. A script is provided to do this: <code>subprocess_task.py</code>, although this script is not intended to be run directly, but rather submitted by an <code>Executor</code> (see below).</p>
+<p>The <code>subprocess_task.py</code> script will go through the following steps:</p>
+<ol>
+<li><code>subprocess_task.py</code> does parameter validation. A configuration YAML is parsed for the specific <code>Task</code> we want to run, and the parameters are type-validated. If the validation fails, the script exits at this point without attempting to execute the analysis code.</li>
+<li><code>Task</code> is created and signals it is ready to start to the <code>Executor</code>. It passes along the validated parameter set along with this signal. After signalling, the process suspends itself with a <code>SIGSTOP</code>. This gives the <code>Executor</code> time to run any tasklets it may need to.</li>
+<li>The process is resumed by the <code>Executor</code> when appropriate and the <code>Task</code> begins its actual analysis.</li>
+<li>On completion the <code>Task</code> sends the result back to the <code>Executor</code> and exits.</li>
+</ol>
+<h2 id="execution-layer">Execution Layer</h2>
+<p>The execution layer runs a <code>Task</code> in the appropriate environment. It consists of a number of principle objects:</p>
+<ul>
+<li><code>Executor</code>: Orchestrates and manages <code>Task</code> running. The <code>Executor</code> also manages database writes and results presentation via preferred UI.</li>
+<li><code>Task</code>: The code to execute</li>
+<li>Tasklets: Auxiliary functions. These are also run by the <code>Executor</code>, either before or after the main <code>Task</code>. They can take in as arguments the parameters which are passed to the main <code>Task</code>.</li>
+</ul>
+<p><img alt="Execution Layer" src="../images/execution_layer.png" /></p>
+<p>A <strong>managed</strong> <code>Task</code>, in LUTE terminology, is an instance of an <code>Executor</code> which in turns runs (i.e. manages) a <code>Task</code> (the actual analysis code to be run). In nearly all cases, except for perhaps when debugging, <strong>managed</strong> <code>Task</code>s are the smallest executable units in LUTE. I.e. all analysis is submitted via <strong>managed</strong> <code>Task</code>s, rather than by running the <code>Task</code> itself. A simple script, <code>run_task.py</code>, is provided to run one:</p>
+<pre><code class="language-bash">&gt; python -B [-O] run_task.py -t &lt;ManagedTaskName&gt; -c &lt;/path/to/config/yaml&gt;
 </code></pre>
-<p>The dictionary <code>a</code> will produce columns: <code>a.b[0]</code>, <code>a.b[1]</code>, <code>a.c</code>, and so on.</p>
-<h4 id="column-descriptions_2">Column descriptions</h4>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;"><strong>Column</strong></th>
-<th style="text-align: center;"><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;"><code>id</code></td>
-<td style="text-align: center;">ID of the entry in this table.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>CURRENT_TIMESTAMP</code></td>
-<td style="text-align: center;">Full timestamp for the entry.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>gen_cfg_id</code></td>
-<td style="text-align: center;">ID of the entry in the general config table that applies to this <code>Task</code> entry. That table has, e.g., experiment and run number.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>exec_cfg_id</code></td>
-<td style="text-align: center;">The ID of the entry in the <code>Executor</code> table which applies to this <code>Task</code> entry.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>P1</code> - <code>Pn</code></td>
-<td style="text-align: center;">The specific parameters of the <code>Task</code>. The <code>P{1..n}</code> are replaced by the actual parameter names.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>result.task_status</code></td>
-<td style="text-align: center;">Reported exit status of the <code>Task</code>. Note that the output may still be labeled invalid by the <code>valid_flag</code> (see below).</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>result.summary</code></td>
-<td style="text-align: center;">Short text summary of the <code>Task</code> result. This is provided by the <code>Task</code>, or sometimes the <code>Executor</code>.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>result.payload</code></td>
-<td style="text-align: center;">Full description of result from the <code>Task</code>. If the object is incompatible with the database, will instead be a pointer to where it can be found.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>result.impl_schemas</code></td>
-<td style="text-align: center;">A string of semi-colon separated schema(s) implemented by the <code>Task</code>. Schemas describe conceptually the type output the <code>Task</code> produces.</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>valid_flag</code></td>
-<td style="text-align: center;">A boolean flag for whether the result is valid. May be <code>0</code> (False) if e.g., data is missing, or corrupt, or reported status is failed.</td>
-</tr>
-<tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-</tbody>
-</table>
-<p><strong>NOTE:</strong> The <code>result.payload</code> may be distinct from the output files. Payloads can be specified in terms of output parameters, specific output files, or are an optional summary of the results provided by the <code>Task</code>. E.g. this may include graphical descriptions of results (plots, figures, etc.). In many cases, however, the output files will most likely be pointed to by a parameter in one of the columns <code>P{1...n}</code> - if properly specified in the <code>TaskParameters</code> model the value of this output parameter will be replicated in the <code>result.payload</code> column as well..</p>
-<h2 id="api">API</h2>
-<p>This API is intended to be used at the <code>Executor</code> level, with some calls intended to provide default values for Pydantic models. Utilities for reading and inspecting the database outside of normal <code>Task</code> execution are addressed in the following subheader.</p>
-<h3 id="write">Write</h3>
+<p>This script takes the name of the <strong>managed</strong> <code>Task</code> and the path to the configuration YAML file. The <strong>managed</strong> <code>Task</code> is selected from one of those defined in the module <code>managed_tasks.py</code>, and then its <code>execute_task()</code> method is run.</p>
+<p>On calling <code>execute_task()</code>, the <code>Executor</code> goes through the following stages:</p>
+<ol>
+<li>The <code>Executor</code> updates the environment that the <code>Task</code> will run in. How it does so is defined by using the <code>update_environment()</code> and <code>shell_source()</code> methods when it is created in the <code>managed_tasks.py</code> file. If these methods are not callled, then the <code>Task</code> will execute in the environment of the <code>Executor</code>.</li>
+<li>The <code>Executor</code> then submits the <code>subprocess_task.py</code> as a subprocess. The script will run the specified <code>Task</code> and enter its task loop. The subprocess is launched with any environment modifications created in step 1.</li>
+<li>The <code>Task</code> process will auto-suspend (see above). At this point the <code>Executor</code> will run any <code>tasklets</code> that need to be run before the main analysis. <strong>NOTE:</strong> Because the subprocess has already been launched at this point, the <code>tasklet</code> can <strong>NOT</strong> perform any environment modifications. On the other hand, however, the <code>Executor</code> will now have access to validated parameters for the <code>Task</code>, so these can be used as arguments to the <code>tasklet</code>. See here for more information on <code>tasklet</code>s.</li>
+<li>After running all <code>tasklet</code>s, the <code>Executor</code> will then resume the <code>Task</code> process. It then continues processing signals, messages, etc., until the process completes, either successfully or due to an error.</li>
+<li>When the subprocess exits, post-<code>Task</code> <code>tasklets</code> are run and any results are processed by the <code>Executor</code>. This may include activities such as preparing figures for the eLog.</li>
+<li>Finally, the <code>Executor</code> records the information about the <code>Task</code> execution into the database.</li>
+</ol>
+<p><img alt="Execution Layer Order of Operations" src="../images/execution_generic.png" /></p>
+<h2 id="workflow-layer">Workflow Layer</h2>
+<p>The workflow layer controls the order of submission of a number of <strong>managed</strong> <code>Task</code>s. In the most generic form, it consists of:</p>
 <ul>
-<li><code>record_analysis_db(cfg: DescribedAnalysis) -&gt; None</code>: Writes the configuration to the backend database.</li>
-<li>...</li>
-<li>...</li>
+<li>A series of <strong>managed</strong> <code>Task</code>s (<code>Executor</code>s)</li>
+<li>A description of the connectivity or dependencies between them. This may also include additional information such as early termination or special submission conditions, e.g. end a workflow early if <code>Executor</code> 2 reports success. Or, run <code>Executor</code> 3 only if <code>Executor</code> 1 reports failure.</li>
 </ul>
-<h3 id="read">Read</h3>
-<ul>
-<li><code>read_latest_db_entry(db_dir: str, task_name: str, param: str) -&gt; Any</code>: Retrieve the most recent entry from a database for a specific Task.</li>
-<li>...</li>
-<li>...</li>
-</ul>
-<h2 id="utilities">Utilities</h2>
-<h3 id="scripts">Scripts</h3>
-<ul>
-<li><code>invalidate_entry</code>: Marks a database entry as invalid. Common reason to use this is if data has been deleted, or found to be corrupted.</li>
-<li>...</li>
-</ul>
-<h3 id="tui-and-gui">TUI and GUI</h3>
-<ul>
-<li><code>dbview</code>: TUI for database inspection. Read only.</li>
-<li>...</li>
-</ul>
+<p><img alt="Workflow Layer" src="../images/workflow_layer.png" /></p>
+<p>Currently, the workflow layer is provided by either Airflow, or Prefect. The code running in the workflow layer is mostly independent of the rest of the code base. The workflow orchestration, in fact, runs simultaneously but on separate machines than the <strong>managed</strong> <code>Task</code>s it is submitting.</p>
+<p>A schematic overview of the various components in an Airflow-based workflow running on S3DF is given below. A trigger, such as the start of a DAQ run, reaches the <code>ARP</code> (automatic run processor), which causes a small batch job to be started on S3DF. This batch job makes a request to the Airflow server to begin running a specific workflow. Airflow then submits <code>Operators</code>, which request <strong>managed</strong> <code>Task</code>s be submitted as batch jobs on the S3DF. Once the batch job has started, the execution proceeds through the various layers described above.</p>
+<p><img alt="Overview of LUTE Architecture" src="../images/lute.png" /></p>
 
 
 
