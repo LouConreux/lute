@@ -418,9 +418,20 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../../../development/creating_workflows/" class="md-nav__link">
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -429,7 +440,88 @@
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Creating a new Workflow
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../development/creating_workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../development/creating_workflows_airflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    With Airflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../development/dynamic_workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dynamic Run-time Workflows
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1031,6 +1123,29 @@
   
   <span class="md-ellipsis">
     html
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tasks/util/environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    environment
     
   </span>
   
@@ -1931,15 +2046,7 @@ scanned motors.</p>
 
               <details class="quote">
                 <summary>Source code in <code>lute/io/models/smd.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">528</span>
-<span class="normal">529</span>
-<span class="normal">530</span>
-<span class="normal">531</span>
-<span class="normal">532</span>
-<span class="normal">533</span>
-<span class="normal">534</span>
-<span class="normal">535</span>
-<span class="normal">536</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">536</span>
 <span class="normal">537</span>
 <span class="normal">538</span>
 <span class="normal">539</span>
@@ -1975,7 +2082,15 @@ scanned motors.</p>
 <span class="normal">569</span>
 <span class="normal">570</span>
 <span class="normal">571</span>
-<span class="normal">572</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalyzeSmallDataXASParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
+<span class="normal">572</span>
+<span class="normal">573</span>
+<span class="normal">574</span>
+<span class="normal">575</span>
+<span class="normal">576</span>
+<span class="normal">577</span>
+<span class="normal">578</span>
+<span class="normal">579</span>
+<span class="normal">580</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalyzeSmallDataXASParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;TaskParameter model for AnalyzeSmallDataXAS Task.</span>
 
 <span class="sd">    This Task does basic analysis of XAS data based on a SmallData HDF5 output</span>
@@ -2072,15 +2187,7 @@ scanned motors.</p>
 
               <details class="quote">
                 <summary>Source code in <code>lute/io/models/smd.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">575</span>
-<span class="normal">576</span>
-<span class="normal">577</span>
-<span class="normal">578</span>
-<span class="normal">579</span>
-<span class="normal">580</span>
-<span class="normal">581</span>
-<span class="normal">582</span>
-<span class="normal">583</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">583</span>
 <span class="normal">584</span>
 <span class="normal">585</span>
 <span class="normal">586</span>
@@ -2123,7 +2230,15 @@ scanned motors.</p>
 <span class="normal">623</span>
 <span class="normal">624</span>
 <span class="normal">625</span>
-<span class="normal">626</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalyzeSmallDataXESParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
+<span class="normal">626</span>
+<span class="normal">627</span>
+<span class="normal">628</span>
+<span class="normal">629</span>
+<span class="normal">630</span>
+<span class="normal">631</span>
+<span class="normal">632</span>
+<span class="normal">633</span>
+<span class="normal">634</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalyzeSmallDataXESParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;TaskParameter model for AnalyzeSmallDataXES Task.</span>
 
 <span class="sd">    This Task does basic analysis of XES data based on a SmallData HDF5 output</span>
@@ -2227,15 +2342,7 @@ scanned motors.</p>
 
               <details class="quote">
                 <summary>Source code in <code>lute/io/models/smd.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">486</span>
-<span class="normal">487</span>
-<span class="normal">488</span>
-<span class="normal">489</span>
-<span class="normal">490</span>
-<span class="normal">491</span>
-<span class="normal">492</span>
-<span class="normal">493</span>
-<span class="normal">494</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">494</span>
 <span class="normal">495</span>
 <span class="normal">496</span>
 <span class="normal">497</span>
@@ -2265,7 +2372,15 @@ scanned motors.</p>
 <span class="normal">521</span>
 <span class="normal">522</span>
 <span class="normal">523</span>
-<span class="normal">524</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalyzeSmallDataXSSParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
+<span class="normal">524</span>
+<span class="normal">525</span>
+<span class="normal">526</span>
+<span class="normal">527</span>
+<span class="normal">528</span>
+<span class="normal">529</span>
+<span class="normal">530</span>
+<span class="normal">531</span>
+<span class="normal">532</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalyzeSmallDataXSSParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;TaskParameter model for AnalyzeSmallDataXSS Task.</span>
 
 <span class="sd">    This Task does basic analysis of XSS data based on a SmallData HDF5 output</span>
@@ -2790,7 +2905,15 @@ scanned motors.</p>
 <span class="normal">480</span>
 <span class="normal">481</span>
 <span class="normal">482</span>
-<span class="normal">483</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SubmitSMDParameters</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="p">):</span>
+<span class="normal">483</span>
+<span class="normal">484</span>
+<span class="normal">485</span>
+<span class="normal">486</span>
+<span class="normal">487</span>
+<span class="normal">488</span>
+<span class="normal">489</span>
+<span class="normal">490</span>
+<span class="normal">491</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SubmitSMDParameters</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Parameters for running smalldata to produce reduced HDF5 files.&quot;&quot;&quot;</span>
 
     <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
@@ -3103,6 +3226,11 @@ scanned motors.</p>
         <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">stn</span><span class="p">:</span> <span class="n">NonNegativeInt</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Hutch endstation.&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+    <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Alternative config file to use for producer configuration&quot;</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
     <span class="n">nevents</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="nb">int</span><span class="p">(</span><span class="mf">1e9</span><span class="p">),</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of events to process.&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
     <span class="p">)</span>
@@ -3206,14 +3334,17 @@ scanned motors.</p>
         <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">experiment</span>
         <span class="n">hutch</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">exp</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">lute_template_cfg</span><span class="o">.</span><span class="n">output_path</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">hutch</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;cxi&quot;</span><span class="p">,</span> <span class="s2">&quot;mec&quot;</span><span class="p">,</span> <span class="s2">&quot;xcs&quot;</span><span class="p">,</span> <span class="s2">&quot;xpp&quot;</span><span class="p">):</span>
-                <span class="n">lute_template_cfg</span><span class="o">.</span><span class="n">output_path</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;producer&quot;</span><span class="p">]</span>
+            <span class="n">cfg</span><span class="p">:</span> <span class="nb">str</span>
+            <span class="k">if</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;config&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">prod_cfg</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;prod_config_</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;config&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="n">cfg</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;producer&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="n">prod_cfg</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">cfg</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span>
-                    <span class="n">Path</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;producer&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;prod_config_</span><span class="si">{</span><span class="n">hutch</span><span class="si">}</span><span class="s2">.py&quot;</span>
-                <span class="p">)</span>
-                <span class="n">lute_template_cfg</span><span class="o">.</span><span class="n">output_path</span> <span class="o">=</span> <span class="n">cfg</span>
-                <span class="n">lute_template_cfg</span><span class="o">.</span><span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;smd_prod_config_template.py&quot;</span>
+                <span class="n">cfg</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;producer&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;prod_config_</span><span class="si">{</span><span class="n">hutch</span><span class="si">}</span><span class="s2">.py&quot;</span><span class="p">)</span>
+            <span class="n">lute_template_cfg</span><span class="o">.</span><span class="n">output_path</span> <span class="o">=</span> <span class="n">cfg</span>
+            <span class="k">if</span> <span class="n">hutch</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;cxi&quot;</span><span class="p">,</span> <span class="s2">&quot;mec&quot;</span><span class="p">,</span> <span class="s2">&quot;xcs&quot;</span><span class="p">,</span> <span class="s2">&quot;xpp&quot;</span><span class="p">):</span>
+                <span class="n">lute_template_cfg</span><span class="o">.</span><span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;smd1_prod_config_template.py&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">lute_template_cfg</span><span class="o">.</span><span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;smd2_prod_config_template.py&quot;</span>
         <span class="k">return</span> <span class="n">lute_template_cfg</span>
 
     <span class="nd">@root_validator</span><span class="p">(</span><span class="n">pre</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>

@@ -418,9 +418,20 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../development/creating_workflows/" class="md-nav__link">
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -429,7 +440,88 @@
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Creating a new Workflow
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/creating_workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/creating_workflows_airflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    With Airflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/dynamic_workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dynamic Run-time Workflows
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -705,6 +797,15 @@
   <a href="#managed_tasks.SHELXCRunner" class="md-nav__link">
     <span class="md-ellipsis">
       SHELXCRunner
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managed_tasks.SMDToNexusConvertor" class="md-nav__link">
+    <span class="md-ellipsis">
+      SMDToNexusConvertor
     </span>
   </a>
   
@@ -1303,6 +1404,29 @@
   
   <span class="md-ellipsis">
     html
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tasks/util/environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    environment
     
   </span>
   
@@ -2019,6 +2143,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#managed_tasks.SMDToNexusConvertor" class="md-nav__link">
+    <span class="md-ellipsis">
+      SMDToNexusConvertor
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#managed_tasks.SmallDataProducer" class="md-nav__link">
     <span class="md-ellipsis">
       SmallDataProducer
@@ -2494,6 +2627,28 @@ here.</p>
     <div class="doc doc-contents ">
 
         <p>Runs CCP4 SHELXC - needed for crystallographic phasing.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="managed_tasks.SMDToNexusConvertor" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">SMDToNexusConvertor</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="s1">&#39;ConvertSMDToNexus&#39;</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Convert smalldata HDF5 to NEXUS HDF5 for use by CCTBX.</p>
 
     </div>
 

@@ -699,9 +699,20 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../creating_workflows/" class="md-nav__link">
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -710,7 +721,88 @@
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Creating a new Workflow
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../creating_workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../creating_workflows_airflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    With Airflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dynamic_workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dynamic Run-time Workflows
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1310,6 +1402,29 @@
   
   <span class="md-ellipsis">
     html
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/util/environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    environment
     
   </span>
   
@@ -2533,7 +2648,9 @@ TaskRunner: Executor = Executor(&quot;SubmitTask&quot;)
 <p><strong>Modifying the environment</strong></p>
 <p>If your third-party <code>Task</code> can run in the standard <code>psana</code> environment with no further configuration files, the setup process is now complete and your <code>Task</code> can be run within the LUTE framework. If on the other hand your <code>Task</code> requires some changes to the environment, this is managed through the <code>Executor</code>. There are a couple principle methods that the <code>Executor</code> has to change the environment.</p>
 <ol>
-<li><code>Executor.update_environment</code>: if you only need to add a few environment variables, or update the <code>PATH</code> this is the method to use. The method takes a <code>Dict[str, str]</code> as input. Any variables can be passed/defined using this method. By default, any variables in the dictionary will overwrite those variable definitions in the current environment if they are already present, <strong>except</strong> for the variable <code>PATH</code>. By default <code>PATH</code> entries in the dictionary are prepended to the current <code>PATH</code> available in the environment the <code>Executor</code> runs in (the standard <code>psana</code> environment). This behaviour can be changed to either append, or overwrite the <code>PATH</code> entirely by an optional second argument to the method.</li>
+<li><code>Executor.update_environment</code>: if you only need to add a few environment variables, or update the <code>PATH</code> this is the method to use. There are two supported interfaces for this method:</li>
+<li>You can provide a <code>Dict[str, str]</code> as input which contains environment variable/value pairs. Any variables can be passed/defined using this method. By default, any variables in the dictionary will overwrite those variable definitions in the current environment if they are already present, <strong>except</strong> for the variable <code>PATH</code>. By default <code>PATH</code> entries in the dictionary are prepended to the current <code>PATH</code> available in the environment the <code>Executor</code> runs in (the standard <code>psana</code> environment). This behaviour can be changed to either append, or overwrite the <code>PATH</code> entirely by an optional second argument to the method.</li>
+<li>Alternatively, you can provide a <code>Callable[[], Dict[str, str]]</code>, i.e. a function that takes no arguments and returns a <code>Dict[str,str]</code>. The returned dictionary will be used to update the environment. This interface does not support a second argument to modify behaviour of the <code>PATH</code> variable, as any desired behaviour can be included in the body of the function being passed. This interface allows for a more dynamic setting of environment variables. An example can be found in <code>lute.tasks.util.environment.setup_smd2_env</code>.</li>
 <li><code>Executor.shell_source</code>: This method will source a shell script which can perform numerous modifications of the environment (PATH changes, new environment variables, conda environments, etc.). The method takes a <code>str</code> which is the path to a shell script to source.</li>
 </ol>
 <p>As an example, we will update the <code>PATH</code> of one <code>Task</code> and source a script for a second.</p>

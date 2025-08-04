@@ -11,6 +11,10 @@
       
       
       
+        <link rel="prev" href="../creating_workflows_airflow/">
+      
+      
+        <link rel="next" href="../tests/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>[ADR-2] Analysis Task Submission and Communication is Performed Via Executors - LUTE</title>
+        <title>Dynamic Run-time Workflows - LUTE</title>
       
     
     
@@ -62,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#adr-2-analysis-task-submission-and-communication-is-performed-via-executors" class="md-skip">
+        <a href="#dynamic-run-time-workflows" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              [ADR-2] Analysis Task Submission and Communication is Performed Via Executors
+              Dynamic Run-time Workflows
             
           </span>
         </div>
@@ -328,18 +332,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -355,7 +361,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Developer Documentation
@@ -369,7 +375,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/architecture/" class="md-nav__link">
+      <a href="../architecture/" class="md-nav__link">
         
   
   
@@ -392,7 +398,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/new_task/" class="md-nav__link">
+      <a href="../new_task/" class="md-nav__link">
         
   
   
@@ -412,18 +418,20 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
@@ -439,7 +447,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_3">
             <span class="md-nav__icon md-icon"></span>
             Creating a new Workflow
@@ -453,7 +461,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/creating_workflows/" class="md-nav__link">
+      <a href="../creating_workflows/" class="md-nav__link">
         
   
   
@@ -476,7 +484,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/creating_workflows_airflow/" class="md-nav__link">
+      <a href="../creating_workflows_airflow/" class="md-nav__link">
         
   
   
@@ -496,10 +504,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../development/dynamic_workflows/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Dynamic Run-time Workflows
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -510,6 +540,119 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#run-time-dag-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run-time DAG creation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#launching-dynamic-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Launching dynamic workflows
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Launching dynamic workflows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#airflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Airflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prefect" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prefect
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slurm" class="md-nav__link">
+    <span class="md-ellipsis">
+      SLURM
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes-and-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notes and limitations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Notes and limitations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#airflow_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Airflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prefect_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prefect
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slurm-job" class="md-nav__link">
+    <span class="md-ellipsis">
+      SLURM job
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -530,7 +673,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/tests/" class="md-nav__link">
+      <a href="../tests/" class="md-nav__link">
         
   
   
@@ -1705,46 +1848,46 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#status" class="md-nav__link">
+  <a href="#run-time-dag-creation" class="md-nav__link">
     <span class="md-ellipsis">
-      Status
+      Run-time DAG creation
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#context-and-problem-statement" class="md-nav__link">
+  <a href="#launching-dynamic-workflows" class="md-nav__link">
     <span class="md-ellipsis">
-      Context and Problem Statement
+      Launching dynamic workflows
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision" class="md-nav__link">
-    <span class="md-ellipsis">
-      Decision
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Decision">
+    <nav class="md-nav" aria-label="Launching dynamic workflows">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#decision-drivers" class="md-nav__link">
+  <a href="#airflow" class="md-nav__link">
     <span class="md-ellipsis">
-      Decision Drivers
+      Airflow
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#considered-options" class="md-nav__link">
+  <a href="#prefect" class="md-nav__link">
     <span class="md-ellipsis">
-      Considered Options
+      Prefect
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slurm" class="md-nav__link">
+    <span class="md-ellipsis">
+      SLURM
     </span>
   </a>
   
@@ -1756,29 +1899,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#consequences" class="md-nav__link">
+  <a href="#notes-and-limitations" class="md-nav__link">
     <span class="md-ellipsis">
-      Consequences
+      Notes and limitations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Notes and limitations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#airflow_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Airflow
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#compliance" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#prefect_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Compliance
+      Prefect
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#metadata" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#slurm-job" class="md-nav__link">
     <span class="md-ellipsis">
-      Metadata
+      SLURM job
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1801,56 +1959,63 @@
   
 
 
-<h1 id="adr-2-analysis-task-submission-and-communication-is-performed-via-executors">[ADR-2] Analysis Task Submission and Communication is Performed Via Executors</h1>
-<p><strong>Date:</strong> 2023-11-06</p>
-<h2 id="status">Status</h2>
-<p><strong>Accepted</strong></p>
-<h2 id="context-and-problem-statement">Context and Problem Statement</h2>
+<h1 id="dynamic-run-time-workflows">Dynamic Run-time workflows</h1>
+<h2 id="run-time-dag-creation">Run-time DAG creation</h2>
+<p>In most cases, standard workflows should be defined explicitly in Airflow. However, LUTE also provides support for the creation of DAGs dynamically by passing the definition of the workflow in the form of a dictionary. All the supported workflow backends (Airflow, prefect, etc.) will then construct the workflow as it is running.</p>
+<p>A basic YAML syntax is used to construct a series of nested dictionaries which define a DAG. We can consider a serial-femtosecond crystallography DAG which may be given in the Airflow syntax as:</p>
+<pre><code class="language-python">peak_finder &gt;&gt; indexer &gt;&gt; merger &gt;&gt; hkl_comparer
+</code></pre>
+<p>We can alternatively define this DAG in YAML:</p>
+<pre><code class="language-yaml">task_name: PeakFinderPyAlgos
+slurm_params: ''
+next:
+- task_name: CrystFELIndexer
+  slurm_params: ''
+  next: []
+  - task_name: PartialatorMerger
+    slurm_params: ''
+    next: []
+    - task_name: HKLComparer
+      slurm_params: ''
+      next: []
+</code></pre>
+<p>I.e. we define a tree where each node is constructed using <code>Node(task_name: str, slurm_params: str, next: List[Node])</code>.</p>
 <ul>
-<li>Analysis code should be independent of the location and manner it is run.</li>
-<li>Additionally, communication is required after task submission to understand task context/state/results.</li>
-<li>This communication is best handled outside of the submitted job itself.<ul>
-<li>This provides a mechanism for continued communication even in the case of task failure.</li>
+<li>The <code>task_name</code> is the name of a <strong>managed</strong> <code>Task</code> as before, in the same way that would be passed to the <code>JIDSlurmOperator</code> in Airflow.</li>
+<li>A custom string of slurm arguments can be passed using <code>slurm_params</code>. This is a complete string of <strong>all</strong> the arguments to use for the corresponding <strong>managed</strong> <code>Task</code>. Use of this field is <strong>all or nothing!</strong> - if it is left as an empty string, the default parameters (passed on the command-line using the launch script) are used, otherwise this string is used in its stead. Because of this <strong>remember to include a partition and account</strong> if using it.</li>
+<li>The <code>next</code> field is composed of either an empty list (meaning no <strong>managed</strong> <code>Task</code>s are run after the current node), or additional nodes. All nodes in the list are run in parallel. </li>
 </ul>
-</li>
-<li>A separate Executor (Controller) provides a mechanism that allows for communication and job submission to be independent of the task code itself.</li>
-<li>Therefore: An Executor will be submitted, which in turn submits the Task and manages communication activities.</li>
-</ul>
-<h2 id="decision">Decision</h2>
-<h3 id="decision-drivers">Decision Drivers</h3>
-<ul>
-<li>Removing the job submission and communication components from the <code>Task</code> code itself provides a separation of concerns allowing <code>Task</code>s to run indepently of execution environment.</li>
-<li>A separate <code>Executor</code> can prepare environment, submission requirements, etc.</li>
-<li>A desire to reduce code redundancy. Providing unified interfaces through <code>Executor</code> classes avoids maintaining that code independently for each task (cf. alternatives considered).</li>
-<li>Job submission strategies can be changed at the <code>Executor</code> level and immediately applied to all <code>Task</code>s.</li>
-<li>If communication APIs change, this does not affect <code>Task</code> code.</li>
-<li><strong>Difficulties encountered due to edge-cases in the original <code>btx</code> tasks. E.g. task timeout leading to failure of a processing pipeline even if substantial work had been done and subsequent tasks could proceed.</strong></li>
-<li>Varied methods of <code>Task</code> submission already exist in the original <code>btx</code> but the methods were not fully standardized.</li>
-<li>E.g. <code>JobScheduler</code> submission vs direct submission of the task.</li>
-</ul>
-<h3 id="considered-options">Considered Options</h3>
-<ul>
-<li>Wrapping the execution, and communication, into the base <code>Task</code> class interface as pre/post analysis operations.</li>
-<li>Multiple <code>Task</code> subclasses for different execution environments.</li>
-<li>For communication specifically:</li>
-<li>Periodic asynchronous communication in the <code>Task</code> class.</li>
-</ul>
-<h2 id="consequences">Consequences</h2>
-<ul>
-<li><code>Task</code> code independent of execution environment.</li>
-<li>Ability to maintain communication even in the event of <code>Task</code> failure.</li>
-<li>Potential complications due to an additional layer of abstraction.</li>
-</ul>
-<h2 id="compliance">Compliance</h2>
-<ul>
-<li>Airflow will submit <code>Executor</code>s as the "Managed Task"</li>
-<li>I.e. at the highlest API layer, <code>Task</code>s will not be submitted independently.</li>
-</ul>
-<h2 id="metadata">Metadata</h2>
-<ul>
-<li>This ADR WILL be revisited during the post-mortem of the first prototype.</li>
-<li>Compliance section will be updated as prototype evolves.</li>
-</ul>
+<p>As a second example, to run <code>task1</code> followed by <code>task2</code> and <code>task3</code> in parellel we would use:</p>
+<pre><code class="language-yaml">task_name: Task1
+slurm_params: ''
+next:
+- task_name: Task2
+  slurm_params: ''
+  next: []
+- task_name: Task3
+  slurm_params: ''
+  next: []
+</code></pre>
+<h2 id="launching-dynamic-workflows">Launching dynamic workflows</h2>
+<p>In order to run a DAG defined this way we pass the <strong>path</strong> to the YAML file we have defined it in to the launch script using <code>-W &lt;path_to_dag&gt;</code>. This is instead of calling it by name. E.g.</p>
+<h3 id="airflow">Airflow</h3>
+<pre><code class="language-bash">/path/to/lute/launch_scripts/submit_launch_airflow.sh /path/to/lute/launch_scripts/launch_airflow.py -e &lt;exp&gt; -r &lt;run&gt; -c /path/to/config -W &lt;path_to_dag&gt; --test [--debug] [SLURM_ARGS]
+</code></pre>
+<p>Note that fewer options are currently supported for configuring the operators for each step of the DAG. The slurm arguments can be replaced in their entirety using a custom <code>slurm_params</code> string but individual options cannot be modified.</p>
+<h3 id="prefect">Prefect</h3>
+<pre><code class="language-bash">/path/to/lute/launch_scripts/submit_launch_prefect.sh /path/to/lute/launch_scripts/launch_prefect.py -e &lt;exp&gt; -r &lt;run&gt; -c /path/to/config -W &lt;path_to_dag&gt; [--debug] [SLURM_ARGS]
+</code></pre>
+<h3 id="slurm">SLURM</h3>
+<pre><code class="language-bash">/path/to/lute/launch_scripts/submit_launch_slurm.sh /path/to/lute/launch_scripts/launch_slurm.py -e &lt;exp&gt; -r &lt;run&gt; -c /path/to/config -W &lt;path_to_dag&gt; [--debug] [SLURM_ARGS]
+</code></pre>
+<h2 id="notes-and-limitations">Notes and limitations</h2>
+<h3 id="airflow_1">Airflow</h3>
+<p>Airflow was not designed with this use-case in mind, so there are some caveats when launching one of these dynamic DAGs via Airflow. In particular, due to the mechanism used to store the dynamic workflow definition on the Airflow, it is currently only possible to run a <strong>single</strong> custom defintion at a time. I.e. two users <strong>cannot</strong> launch workflows with different YAML definitions concurrently on the same instance of Airflow (one could use the test instance, and the other production instance without conflict).</p>
+<p>Seemingly, the process also appears to be slightly less stable, for reasons that are not understood, so it may be necessary to launch a dynamic workflow twice on occassion.</p>
+<h3 id="prefect_1">Prefect</h3>
+<p>Prefect lends itself more naturally to this use-case, so there shouldn't be any issues with workflows designed in this manner when launched using this backend. Currently, the prefect backend only accepts these dynamic run-time workflow definitions, with no static workflows having been defined yet.</p>
+<h3 id="slurm-job">SLURM job</h3>
+<p>The backup SLURM job-based workflow manager only accepts these dynamic workflow definitions. There are currently no plans to add support for providing static workflows using this backend.</p>
 
 
 
