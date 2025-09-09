@@ -1,0 +1,4006 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="GFD, VM">
+      
+      
+      
+        <link rel="prev" href="../../source/io/exceptions/">
+      
+      
+        <link rel="next" href="../database/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.19">
+    
+    
+      
+        <title>API v0.2 - LUTE</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lute-configuration-database-specification" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="LUTE" class="md-header__button md-logo" aria-label="LUTE" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LUTE
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              API v0.2
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/slac-lcls/lute" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="LUTE" class="md-nav__button md-logo" aria-label="LUTE" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    LUTE
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/slac-lcls/lute" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick_start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Usage Manual
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Usage Manual
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Task Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/running_lute/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Running LUTE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Developer Documentation
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Developer Documentation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture and Execution Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Creating a new Task
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Creating a new Task
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/new_task/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/new_task/first_party/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    First Party
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/new_task/third_party/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Third Party
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Creating a new Workflow
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Creating a new Workflow
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/creating_workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/creating_workflows_airflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    With Airflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/dynamic_workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dynamic Run-time Workflows
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tests
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Source Code
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Source Code
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/managed_tasks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    managed_tasks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    execution
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            execution
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/execution/executor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    executor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/execution/ipc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ipc
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/execution/debug_utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    debug_utils
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/execution/logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    logging
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    tasks
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            tasks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/task/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    task
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/tasklets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    tasklets
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/dataclasses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    dataclasses
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/geometry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    geometry
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/_geometry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    _geometry
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/sfx_find_peaks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    sfx_find_peaks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/sfx_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    sfx_index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/smalldata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    smalldata
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/_smalldata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    _smalldata
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/math/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    math
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    test
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/mpi_test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    mpi_test
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3_13" id="__nav_4_3_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    util
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_13">
+            <span class="md-nav__icon md-icon"></span>
+            util
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/util/html/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    html
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/tasks/util/environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    environment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    io
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            io
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_1" id="__nav_4_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    models
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/models/base/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    base
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/models/geometry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    geometry
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/models/sfx_find_peaks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    sfx_find_peaks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/models/sfx_index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    sfx_index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/models/sfx_merge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    sfx_merge
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/models/sfx_solve/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    sfx_solve
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/models/smd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    smd
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/models/validators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    validators
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/models/tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    tests
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/models/mpi_tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    mpi_tests
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/db/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    db
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_4" id="__nav_4_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    _db
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            _db
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/_db/common_sqlite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    common_sqlite
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_4_2" id="__nav_4_4_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    v2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            v2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/_db/v2/api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    api
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/_db/v2/_sqlite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    _sqlite
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_4_3" id="__nav_4_4_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    v1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            v1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/_db/v1/api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    api
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/_db/v1/_sqlite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    _sqlite
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/elog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    elog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/exceptions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    exceptions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Design and Specifications
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Design and Specifications
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Database
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            Database
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    API v0.2
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    API v0.2
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basic-outline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Outline
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Outline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schematic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schematic
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#executions-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      executions table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="executions table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#column-descriptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Column descriptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tasks-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      tasks table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="tasks table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constraints_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#column-descriptions_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Column descriptions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#executors-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      executors table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="executors table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#column-descriptions_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Column descriptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraints_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      config table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="config table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#column-descriptions_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Column descriptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraints_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#results-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      results table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="results table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#column-descriptions_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Column descriptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraints_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      environment table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="environment table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#column-descriptions_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Column descriptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraints_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#communicators-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      communicators table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="communicators table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#column-descriptions_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Column descriptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraints_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      schema table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="schema table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#column-descriptions_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Column descriptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraints_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#base_schema-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      base_schema table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="base_schema table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#column-descriptions_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Column descriptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraints_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      parameters table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="parameters table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#column-descriptions_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Column descriptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraints_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#param_meta-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      param_meta table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="param_meta table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#column-descriptions_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Column descriptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraints_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameter_types-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      parameter_types table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="parameter_types table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#column-descriptions_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      Column descriptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraints_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#write" class="md-nav__link">
+    <span class="md-ellipsis">
+      Write
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read" class="md-nav__link">
+    <span class="md-ellipsis">
+      Read
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Utilities
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Utilities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scripts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tui-and-gui" class="md-nav__link">
+    <span class="md-ellipsis">
+      TUI and GUI
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API v0.1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basic-outline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Outline
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Outline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schematic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schematic
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#executions-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      executions table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="executions table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#column-descriptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Column descriptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tasks-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      tasks table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="tasks table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constraints_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#column-descriptions_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Column descriptions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#executors-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      executors table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="executors table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#column-descriptions_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Column descriptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraints_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      config table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="config table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#column-descriptions_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Column descriptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraints_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#results-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      results table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="results table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#column-descriptions_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Column descriptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraints_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      environment table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="environment table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#column-descriptions_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Column descriptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraints_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#communicators-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      communicators table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="communicators table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#column-descriptions_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Column descriptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraints_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      schema table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="schema table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#column-descriptions_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Column descriptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraints_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#base_schema-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      base_schema table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="base_schema table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#column-descriptions_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Column descriptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraints_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      parameters table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="parameters table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#column-descriptions_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Column descriptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraints_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#param_meta-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      param_meta table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="param_meta table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#column-descriptions_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Column descriptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraints_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameter_types-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      parameter_types table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="parameter_types table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#column-descriptions_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      Column descriptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraints_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#write" class="md-nav__link">
+    <span class="md-ellipsis">
+      Write
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read" class="md-nav__link">
+    <span class="md-ellipsis">
+      Read
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Utilities
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Utilities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scripts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tui-and-gui" class="md-nav__link">
+    <span class="md-ellipsis">
+      TUI and GUI
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="lute-configuration-database-specification">LUTE Configuration Database Specification</h1>
+<p><strong>Date:</strong> 2025-08-12
+<strong>VERSION:</strong> v0.2</p>
+<h2 id="basic-outline">Basic Outline</h2>
+<ul>
+<li>The backend database will be sqlite, using the standard Python library.</li>
+<li>A high-level API is provided, so if needed, the backend database can be changed without affecting <code>Executor</code> level code.</li>
+<li>One LUTE database is created per working directory for this iteration of the database. Note that this database is independent of any database used by a workflow manager (e.g. Airflow) to manage task execution order.</li>
+<li>Attempts were made to make the database 3NF/BCNF normal; however, denormalization was chosen in some cases for simplicity.</li>
+<li>Each database has the following tables:<ul>
+<li>1 table for <code>executions</code>: Each time any <strong>Managed</strong> Task is run a new entry is made in this table.</li>
+<li>1 table for <code>tasks</code>: Contains the listing of <strong>Managed</strong> Tasks, the <code>executions</code> table links here.</li>
+<li>1 table for <code>executors</code>: Contains the listing of <code>Executors</code>, the <code>executions</code> table links here.</li>
+<li>1 table for <code>config</code>: Contains sets of parameters used for the <code>AnalysisHeader</code>, the <code>executions</code> table links here.</li>
+<li>1 table for <code>results</code>: Contains the result fields for each execution. The <code>executions</code> table links here.</li>
+<li>1 table for <code>environment</code>: Contains environment variables and values, each one linked to a specific execution in the <code>executions</code> table.</li>
+<li>1 table for <code>communicators</code>: The entries in the <code>executors</code> table link as needed here.</li>
+<li>1 table for <code>schema</code>: The <code>results</code> table links to entries in this table to describe which schemas the results conform to.</li>
+<li>1 table for <code>base_schema</code>: The <code>schema</code> table entries are constructed as the bitwise or of the ids in this table, since a result may implement multiple <code>base_schema</code>.</li>
+<li>1 table for <code>parameters</code>: Contains the parameters and their values. Each entry links to a specific execution in the <code>executions</code> table.</li>
+<li>1 table for <code>parameter_types</code>: Which contain the type specifications to fully reconstruct a parameter. The entries in both the <code>executions</code> table, and the <code>parameters</code> table link here. The former is linked to describe the full <code>TaskParameters</code> model for the execution. The latter links to describe the type of each parameter in the <code>TaskParameters</code> model.</li>
+<li>1 table for <code>param_meta</code>: Which contains additional fields used internally to properly construct parameter fields.</li>
+</ul>
+</li>
+</ul>
+<h3 id="schematic">Schematic</h3>
+<p><img alt="Overview of LUTE Architecture" src="../images/api_v2.png" /></p>
+<h3 id="executions-table"><code>executions</code> table</h3>
+<p>The <code>executions</code> table contains an entry for each time any <strong>Managed</strong> Task is run. It links all necessary information together.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">id</th>
+<th style="text-align: center;">task_id</th>
+<th style="text-align: center;">parameter_type_id</th>
+<th style="text-align: center;">executor_id</th>
+<th style="text-align: center;">config_id</th>
+<th style="text-align: center;">result_id</th>
+<th style="text-align: center;">timestamp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">"YYYY-MM-DD HH:MM:SS"</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p>Each of the <code>xyz_id</code> columns follow the <code>id</code>s in the respective tables to allow a complete reconstruction of the <code>Task</code>, <code>TaskParameters</code>, <code>Executor</code>, and results data.</p>
+<h4 id="column-descriptions">Column descriptions</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>Column</strong></th>
+<th style="text-align: center;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>id</code></td>
+<td style="text-align: center;">ID of the execution in this table.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>task_id</code></td>
+<td style="text-align: center;">Pointer to the entry in the <code>tasks</code> table holding the information about the <code>Task</code> run.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>parameter_type_id</code></td>
+<td style="text-align: center;">Pointer to the entry in the <code>parameter_types</code> table that describes the <code>TaskParameters</code> model.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>executor_id</code></td>
+<td style="text-align: center;">Pointer to the entry in the <code>executors</code> table holding the information about the <code>Executor</code> used.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>config_id</code></td>
+<td style="text-align: center;">Pointer to the entry in the <code>config</code> table holding the <code>AnalysisHeader</code> for this execution.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>result_id</code></td>
+<td style="text-align: center;">Pointer to the entry in the <code>results</code> table holding the results for this execution.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>timestamp</code></td>
+<td style="text-align: center;">Timestamp for the execution.</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="constraints">Constraints</h4>
+<p>This table DOES NOT contain constraints. This breaks full normalization to some degree. Redundant entries are allowed.</p>
+<h3 id="tasks-table"><code>tasks</code> table</h3>
+<p>The <code>tasks</code> table holds <code>Task</code> names.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">id</th>
+<th style="text-align: center;">name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">"MyTask"</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="constraints_1">Constraints</h4>
+<ul>
+<li><code>name</code> must be unique.</li>
+</ul>
+<h4 id="column-descriptions_1">Column descriptions</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>Column</strong></th>
+<th style="text-align: center;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>id</code></td>
+<td style="text-align: center;">ID of the entry in this table.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>name</code></td>
+<td style="text-align: center;">Name of the <code>Task</code>.</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="executors-table"><code>executors</code> table</h3>
+<p>The <code>executors</code> table holds information about the kinds of <code>Executors</code> being used.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">id</th>
+<th style="text-align: center;">name</th>
+<th style="text-align: center;">comm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">"MyTask"</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="column-descriptions_2">Column descriptions</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>Column</strong></th>
+<th style="text-align: center;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>id</code></td>
+<td style="text-align: center;">ID of the entry in this table.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>name</code></td>
+<td style="text-align: center;">Name of the <code>Task</code>.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>comm</code></td>
+<td style="text-align: center;">Bitwise OR of entries in the <code>communicators</code> table describing the communicators used by this <code>Executor</code>.</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="constraints_2">Constraints</h4>
+<ul>
+<li>The combination of all columns (name, poll_interval, comm) must be unique. Multiple executions can reference the same row of this table.</li>
+<li>The <code>comm</code> entry must be a BITWISE OR of the ids in the <code>communicators</code> table. This constraint is setup by the separate triggers rather than on table creation.</li>
+</ul>
+<h3 id="config-table"><code>config</code> table</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">id</th>
+<th style="text-align: center;">title</th>
+<th style="text-align: center;">experiment</th>
+<th style="text-align: center;">run</th>
+<th style="text-align: center;">date</th>
+<th style="text-align: center;">lute_version</th>
+<th style="text-align: center;">task_timeout</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">"My experiment desc"</td>
+<td style="text-align: center;">"EXPx00000</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">YYYY/MM/DD</td>
+<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">6000</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p>These parameters are extracted from the <code>TaskParameters</code> object. Each of those contains an <code>AnalysisHeader</code> object stored in the <code>lute_config</code> variable. For a given experimental run, this value will likely be shared across any <code>Task</code>s that are executed.</p>
+<h4 id="column-descriptions_3">Column descriptions</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>Column</strong></th>
+<th style="text-align: center;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>id</code></td>
+<td style="text-align: center;">ID of the entry in this table.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>title</code></td>
+<td style="text-align: center;">Arbitrary description/title of the purpose of analysis. E.g. what kind of experiment is being conducted</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>experiment</code></td>
+<td style="text-align: center;">LCLS Experiment. Can be a placeholder if debugging, etc.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>run</code></td>
+<td style="text-align: center;">LCLS Acquisition run. Can be a placeholder if debugging, testing, etc.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>date</code></td>
+<td style="text-align: center;">Date the configuration file was first setup.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>lute_version</code></td>
+<td style="text-align: center;">Version of the codebase being used to execute <code>Task</code>s.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>task_timeout</code></td>
+<td style="text-align: center;">The maximum amount of time in seconds that a <code>Task</code> can run before being cancelled.</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="constraints_3">Constraints</h4>
+<ul>
+<li>The combination of all columns (title, experiment, run, date, lute_version, task_timeout) must be unique. Multiple executions can reference the same row of this table.</li>
+</ul>
+<h3 id="results-table"><code>results</code> table</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">id</th>
+<th style="text-align: center;">schema_id</th>
+<th style="text-align: center;">payload</th>
+<th style="text-align: center;">summary</th>
+<th style="text-align: center;">status</th>
+<th style="text-align: center;">valid_flag</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">"Payload"</td>
+<td style="text-align: center;">"Summary"</td>
+<td style="text-align: center;">COMPLETED</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="column-descriptions_4">Column descriptions</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>Column</strong></th>
+<th style="text-align: center;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>id</code></td>
+<td style="text-align: center;">ID of the entry in this table.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>schema_id</code></td>
+<td style="text-align: center;">Pointer to the entry in the <code>schema</code> table that describes the output produced by the <code>Task</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>payload</code></td>
+<td style="text-align: center;">Potentially full result. If the object is incompatible with the database, will instead be a path where it can be found.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>summary</code></td>
+<td style="text-align: center;">Short text summary of the <code>Task</code> result. This is provided by the <code>Task</code>, or sometimes the <code>Executor</code>.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>status</code></td>
+<td style="text-align: center;">Reported exit status of the <code>Task</code>. Note that the output may still be labeled invalid by the <code>valid_flag</code> (see below).</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>valid_flag</code></td>
+<td style="text-align: center;">A boolean flag for whether the result is valid. May be <code>0</code> (False) if e.g., data is missing, or corrupt, or reported status is failed.</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="constraints_4">Constraints</h4>
+<ul>
+<li>The combination of all columns (schema_id, payload, summary, status, valid_flag) must be unique. Multiple executions can reference the same row of this table.</li>
+</ul>
+<h3 id="environment-table"><code>environment</code> table</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">id</th>
+<th style="text-align: center;">execution_id</th>
+<th style="text-align: center;">name</th>
+<th style="text-align: center;">value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">"PATH"</td>
+<td style="text-align: center;">"/usr/bin/"</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="column-descriptions_5">Column descriptions</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>Column</strong></th>
+<th style="text-align: center;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>id</code></td>
+<td style="text-align: center;">ID of the entry in this table.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>execution_id</code></td>
+<td style="text-align: center;">Pointer to the entry in the <code>executions</code> table that this env var was used for.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>name</code></td>
+<td style="text-align: center;">Environment variable name.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>value</code></td>
+<td style="text-align: center;">Environment variable value.</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="constraints_5">Constraints</h4>
+<p>This table DOES NOT contain constraints. This breaks full normalization to some degree. A unique index is constructed from (execution_id, name), however.</p>
+<h3 id="communicators-table"><code>communicators</code> table</h3>
+<p>The <code>communicators</code> table holds descriptions of implemented <code>Communicator</code> objects. The entries may be associated to multiple <code>Executors</code>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">id</th>
+<th style="text-align: center;">name</th>
+<th style="text-align: center;">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">SocketCommunicator</td>
+<td style="text-align: center;">"Communication over TCP sockets.."</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="column-descriptions_6">Column descriptions</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>Column</strong></th>
+<th style="text-align: center;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>id</code></td>
+<td style="text-align: center;">ID of the entry in this table.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>name</code></td>
+<td style="text-align: center;">Name of the <code>Communicator</code>.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>description</code></td>
+<td style="text-align: center;">Description of communication method. E.g. used TCP sockets.</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="constraints_6">Constraints</h4>
+<ul>
+<li>The (name, description) combination must be unique. The name is allowed to be duplicate, because the same Communicator may have slightly different implementations which are reflected in the description column.</li>
+<li>The <code>id</code> entry must be a power of 2 as the <code>schema</code> table uses a bitwise OR to indicate implementation of multiple <code>base_schema</code>.</li>
+</ul>
+<h3 id="schema-table"><code>schema</code> table</h3>
+<p>The <code>schema</code> table holds information about the combinations of schemas implemented by the various results. This is the information provided in <code>impl_schemas</code> when construction parameter modls..</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">id</th>
+<th style="text-align: center;">schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="column-descriptions_7">Column descriptions</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>Column</strong></th>
+<th style="text-align: center;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>id</code></td>
+<td style="text-align: center;">ID of the entry in this table.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>schema</code></td>
+<td style="text-align: center;">This is a bitwise OR of all the ids in the <code>base_schema</code> table which contribute.</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p>A particular value of <code>schema</code> may for example be:</p>
+<ul>
+<li><code>0</code>: No schemas implemented</li>
+<li><code>1</code>: <code>base_schema</code> 1 is implemented</li>
+<li><code>2</code>: <code>base_schema</code> 1 is implemented</li>
+<li><code>3</code>: <code>base_schema</code> 1 and 2 are implemented</li>
+</ul>
+<p>All the ids in the <code>base_schema</code> table are powers of two, or the value 0.</p>
+<p>The <code>schema</code> column of the <code>schema</code> table is constrained to be <code>schema &lt;= SELECT SUM(id) FROM base_schema</code>.</p>
+<h4 id="constraints_7">Constraints</h4>
+<ul>
+<li>The <code>schema</code> column must be unique. Multiple executions may reference the same entry in this table.</li>
+<li>The <code>schema</code> entry must be a BITWISE OR of the ids in the <code>base_schema</code> table. This constraint is setup by separate triggers rather than on table creation.</li>
+</ul>
+<h3 id="base_schema-table"><code>base_schema</code> table</h3>
+<p>The <code>base_schema</code> table holds the currently supported basic schema that may be provided. These are atomic, but a <code>Task</code> may implement multiple entries from this table.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">id</th>
+<th style="text-align: center;">name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">"none"</td>
+</tr>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">"hdf5"</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="column-descriptions_8">Column descriptions</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>Column</strong></th>
+<th style="text-align: center;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>id</code></td>
+<td style="text-align: center;">ID of the entry in this table.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>name</code></td>
+<td style="text-align: center;">A string representation for this base schema type</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p>The <code>id</code> column of this table is constrained to be the value 0 or a power of two: <code>CHECK (id = 0 OR (id &gt; 0 AND (id &amp; (id - 1)) = 0))</code>.</p>
+<h4 id="constraints_8">Constraints</h4>
+<ul>
+<li>The name (and id) must be unique.</li>
+<li>The <code>id</code> entry must be a power of 2 as the <code>schema</code> table uses a bitwise OR to indicate implementation of multiple <code>base_schema</code>.</li>
+</ul>
+<h3 id="parameters-table"><code>parameters</code> table</h3>
+<p>The <code>parameters</code> table holds combinations of parameters and their values.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">id</th>
+<th style="text-align: center;">execution_id</th>
+<th style="text-align: center;">meta_id</th>
+<th style="text-align: center;">name</th>
+<th style="text-align: center;">value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">"param_1"</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="column-descriptions_9">Column descriptions</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>Column</strong></th>
+<th style="text-align: center;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>id</code></td>
+<td style="text-align: center;">ID of the entry in this table.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>execution_id</code></td>
+<td style="text-align: center;">Pointer to the execution where this parameter/value combination was used.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>meta_id</code></td>
+<td style="text-align: center;">Pointer to the entry in the <code>param_meta</code> table containing associated parameter meta data.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>name</code></td>
+<td style="text-align: center;">Parameter name.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>value</code></td>
+<td style="text-align: center;">Parameter value.</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="constraints_9">Constraints</h4>
+<p>This table DOES NOT contain constraints. This breaks full normalization to some degree. Redundant entries are allowed.</p>
+<h3 id="param_meta-table"><code>param_meta</code> table</h3>
+<p>The <code>param_meta</code> table holds meta data combinations that can be associated to a parameter/value combination. A single meta data set may be associated to multiple parameter/value entries. The meta data in this table is mostly used for internal LUTE objects, but also contains information about reconstructing the parameter type.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">id</th>
+<th style="text-align: center;">rename_param</th>
+<th style="text-align: center;">flag_type</th>
+<th style="text-align: center;">description</th>
+<th style="text-align: center;">is_result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">"new_param"</td>
+<td style="text-align: center;">"--"</td>
+<td style="text-align: center;">"new-param does X."</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="column-descriptions_10">Column descriptions</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>Column</strong></th>
+<th style="text-align: center;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>id</code></td>
+<td style="text-align: center;">ID of the entry in this table.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>flag_type</code></td>
+<td style="text-align: center;">Specify the type of flag for passing this argument. One of <code>"-"</code>, <code>"--"</code>, or <code>""</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>rename_param</code></td>
+<td style="text-align: center;">Change the name of the parameter as passed on the command-line.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>description</code></td>
+<td style="text-align: center;">Documentation of the parameter's usage or purpose.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>is_result</code></td>
+<td style="text-align: center;"><code>bool</code>. If the <code>set_result</code> <code>Config</code> option is <code>True</code>, we can set this to <code>True</code> to indicate a result.</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="constraints_10">Constraints</h4>
+<ul>
+<li>The combination of all columns (rename_param, flag_type, description, is_result) must be unique. Multiple parameters can reference the same row of this table.</li>
+</ul>
+<h3 id="parameter_types-table"><code>parameter_types</code> table</h3>
+<p>The <code>parameter_types</code> table holds type reconstructions.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">id</th>
+<th style="text-align: center;">type_name</th>
+<th style="text-align: center;">definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">MyTypeClass</td>
+<td style="text-align: center;">"json_model_of_class"</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="column-descriptions_11">Column descriptions</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>Column</strong></th>
+<th style="text-align: center;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>id</code></td>
+<td style="text-align: center;">ID of the entry in this table.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>type_name</code></td>
+<td style="text-align: center;">The name of the type - usually a Python class name.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>definition</code></td>
+<td style="text-align: center;">A json string that can be used to reconstruct the object.</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note</strong>: Despite parameters themselves possibly having a complex type definitions, they do not reference entries in this table (either through the <code>parameters</code> or <code>param_meta</code> table). The overall <code>TaskParameters</code> object schema contains the definitions of all parameters, so the individual parameters do not need to also reference this table.</p>
+<h4 id="constraints_11">Constraints</h4>
+<ul>
+<li>The <code>definition</code> column must be unique. The <code>type_name</code> column is allowed to be repeated to account for the possibility (although small) that a TaskParameters object is updated over the lifetime of the database.</li>
+<li>The <code>definition</code> is required to be NOT NULL. All entries in the table must contain a definition.</li>
+</ul>
+<h2 id="api">API</h2>
+<p>This API is intended to be used at the <code>Executor</code> level, with some calls intended to provide default values for Pydantic models. Utilities for reading and inspecting the database outside of normal <code>Task</code> execution are addressed in the following subheader.</p>
+<h3 id="write">Write</h3>
+<ul>
+<li><code>record_analysis_db(cfg: DescribedAnalysis) -&gt; None</code>: Writes the configuration to the backend database.</li>
+<li>...</li>
+<li>...</li>
+</ul>
+<h3 id="read">Read</h3>
+<ul>
+<li><code>read_latest_db_entry(db_dir: str, task_name: str, param: str) -&gt; Any</code>: Retrieve the most recent entry from a database for a specific Task.</li>
+<li>...</li>
+<li>...</li>
+</ul>
+<h2 id="utilities">Utilities</h2>
+<h3 id="scripts">Scripts</h3>
+<ul>
+<li><code>invalidate_entry</code>: Marks a database entry as invalid. Common reason to use this is if data has been deleted, or found to be corrupted.</li>
+<li>...</li>
+</ul>
+<h3 id="tui-and-gui">TUI and GUI</h3>
+<ul>
+<li><code>dbview</code>: TUI for database inspection. Read only.</li>
+<li>...</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2024 LCLS
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>
