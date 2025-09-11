@@ -2539,13 +2539,14 @@
 <p>For additional debugging variables see the advanced usage section below.</p>
 <h3 id="submitting-a-single-managed-task-as-a-batch-job">Submitting a single managed <code>Task</code> as a batch job</h3>
 <p>On S3DF you can also submit individual <strong>managed</strong> <code>Task</code>s to run as batch jobs. To do so use <code>launch_scripts/submit_slurm.sh</code></p>
-<pre><code class="language-bash">&gt; launch_scripts/submit_slurm.sh -t &lt;ManagedTaskName&gt; -c &lt;/path/to/config/yaml&gt; [--debug] $SLURM_ARGS
+<pre><code class="language-bash">&gt; launch_scripts/submit_slurm.sh -t &lt;ManagedTaskName&gt; -c &lt;/path/to/config/yaml&gt; [--debug] [--psana2] $SLURM_ARGS
 </code></pre>
 <p>As before command-line arguments in square brackets <code>[]</code> are optional, while those in <code>&lt;&gt;</code> must be provided</p>
 <ul>
 <li><code>-t &lt;ManagedTaskName&gt;</code> is the name of the <strong>managed</strong> <code>Task</code> you want to run.</li>
 <li><code>-c &lt;/path/...&gt;</code> is the path to the configuration YAML.</li>
 <li><code>--debug</code> is the flag to control whether or not to run in debug mode.</li>
+<li><code>--psana2</code> is a flag to switch to using the psana2 base environment for LUTE. Otherwise, it will use the psana1 environment. The core infrastructure runs in both. If running a workflow and it was determined that the experiment/run was a LCLS2 environment, this argument will be added automatically. In general, this has no effect on <code>Task</code> execution; however, it may allow some <code>TaskParameters</code> models to use psana1/psana2 specific information to simplify configuration.</li>
 </ul>
 <p>In addition to the LUTE-specific arguments, SLURM arguments must also be provided (<code>$SLURM_ARGS</code> above). You can provide as many as you want; however you will need to at least provide:</p>
 <ul>
