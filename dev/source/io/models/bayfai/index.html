@@ -11,10 +11,10 @@
       
       
       
-        <link rel="prev" href="../../db/">
+        <link rel="prev" href="../base/">
       
       
-        <link rel="next" href="../v2/api/">
+        <link rel="next" href="../geometry/">
       
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>common_sqlite - LUTE</title>
+        <title>bayfai - LUTE</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#io._db.common_sqlite" class="md-skip">
+        <a href="#io.models.bayfai" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              common_sqlite
+              bayfai
             
           </span>
         </div>
@@ -1446,18 +1446,20 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_1" checked>
         
           
           <label class="md-nav__link" for="__nav_4_4_1" id="__nav_4_4_1_label" tabindex="0">
@@ -1473,7 +1475,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_4_1">
             <span class="md-nav__icon md-icon"></span>
             models
@@ -1487,7 +1489,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/base/" class="md-nav__link">
+      <a href="../base/" class="md-nav__link">
         
   
   
@@ -1507,10 +1509,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../models/bayfai/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    bayfai
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1521,6 +1543,99 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#io.models.bayfai" class="md-nav__link">
+    <span class="md-ellipsis">
+      bayfai
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#io.models.bayfai.BayFAIParameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      BayFAIParameters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="BayFAIParameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#io.models.bayfai.BayFAIParameters.BayesGeomOptParameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      BayesGeomOptParameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#io.models.bayfai.BayFAIParameters.Config" class="md-nav__link">
+    <span class="md-ellipsis">
+      Config
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Config">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#io.models.bayfai.BayFAIParameters.Config.set_result" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_result
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#io.models.bayfai.validate_geometry_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      validate_geometry_path
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#io.models.bayfai.validate_metrology_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      validate_metrology_path
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1533,7 +1648,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/geometry/" class="md-nav__link">
+      <a href="../geometry/" class="md-nav__link">
         
   
   
@@ -1556,7 +1671,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/sfx_find_peaks/" class="md-nav__link">
+      <a href="../sfx_find_peaks/" class="md-nav__link">
         
   
   
@@ -1579,7 +1694,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/sfx_index/" class="md-nav__link">
+      <a href="../sfx_index/" class="md-nav__link">
         
   
   
@@ -1602,7 +1717,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/sfx_merge/" class="md-nav__link">
+      <a href="../sfx_merge/" class="md-nav__link">
         
   
   
@@ -1625,7 +1740,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/sfx_solve/" class="md-nav__link">
+      <a href="../sfx_solve/" class="md-nav__link">
         
   
   
@@ -1648,7 +1763,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/smd/" class="md-nav__link">
+      <a href="../smd/" class="md-nav__link">
         
   
   
@@ -1671,7 +1786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/validators/" class="md-nav__link">
+      <a href="../validators/" class="md-nav__link">
         
   
   
@@ -1694,7 +1809,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/tests/" class="md-nav__link">
+      <a href="../tests/" class="md-nav__link">
         
   
   
@@ -1717,7 +1832,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/mpi_tests/" class="md-nav__link">
+      <a href="../mpi_tests/" class="md-nav__link">
         
   
   
@@ -1814,20 +1929,18 @@
                 
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5" >
         
           
           <label class="md-nav__link" for="__nav_4_4_5" id="__nav_4_4_5_label" tabindex="0">
@@ -1843,7 +1956,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_4_5">
             <span class="md-nav__icon md-icon"></span>
             _db
@@ -1854,30 +1967,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    common_sqlite
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../_db/common_sqlite/" class="md-nav__link">
         
   
   
@@ -1888,87 +1981,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#io._db.common_sqlite" class="md-nav__link">
-    <span class="md-ellipsis">
-      common_sqlite
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#io._db.common_sqlite.DatabaseError" class="md-nav__link">
-    <span class="md-ellipsis">
-      DatabaseError
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#io._db.common_sqlite.compare_cols" class="md-nav__link">
-    <span class="md-ellipsis">
-      compare_cols
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#io._db.common_sqlite.does_table_exist" class="md-nav__link">
-    <span class="md-ellipsis">
-      does_table_exist
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#io._db.common_sqlite.get_all_rows_for_table" class="md-nav__link">
-    <span class="md-ellipsis">
-      get_all_rows_for_table
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#io._db.common_sqlite.get_table_cols" class="md-nav__link">
-    <span class="md-ellipsis">
-      get_table_cols
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#io._db.common_sqlite.get_tables" class="md-nav__link">
-    <span class="md-ellipsis">
-      get_tables
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2019,7 +2031,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../v2/api/" class="md-nav__link">
+      <a href="../../_db/v2/api/" class="md-nav__link">
         
   
   
@@ -2042,7 +2054,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../v2/_sqlite/" class="md-nav__link">
+      <a href="../../_db/v2/_sqlite/" class="md-nav__link">
         
   
   
@@ -2111,7 +2123,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../v1/api/" class="md-nav__link">
+      <a href="../../_db/v1/api/" class="md-nav__link">
         
   
   
@@ -2134,7 +2146,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../v1/_sqlite/" class="md-nav__link">
+      <a href="../../_db/v1/_sqlite/" class="md-nav__link">
         
   
   
@@ -2389,63 +2401,75 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#io._db.common_sqlite" class="md-nav__link">
+  <a href="#io.models.bayfai" class="md-nav__link">
     <span class="md-ellipsis">
-      common_sqlite
+      bayfai
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#io._db.common_sqlite.DatabaseError" class="md-nav__link">
+  <a href="#io.models.bayfai.BayFAIParameters" class="md-nav__link">
     <span class="md-ellipsis">
-      DatabaseError
+      BayFAIParameters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="BayFAIParameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#io.models.bayfai.BayFAIParameters.BayesGeomOptParameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      BayesGeomOptParameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#io.models.bayfai.BayFAIParameters.Config" class="md-nav__link">
+    <span class="md-ellipsis">
+      Config
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Config">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#io.models.bayfai.BayFAIParameters.Config.set_result" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_result
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#io.models.bayfai.validate_geometry_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      validate_geometry_path
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#io._db.common_sqlite.compare_cols" class="md-nav__link">
+  <a href="#io.models.bayfai.validate_metrology_path" class="md-nav__link">
     <span class="md-ellipsis">
-      compare_cols
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#io._db.common_sqlite.does_table_exist" class="md-nav__link">
-    <span class="md-ellipsis">
-      does_table_exist
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#io._db.common_sqlite.get_all_rows_for_table" class="md-nav__link">
-    <span class="md-ellipsis">
-      get_all_rows_for_table
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#io._db.common_sqlite.get_table_cols" class="md-nav__link">
-    <span class="md-ellipsis">
-      get_table_cols
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#io._db.common_sqlite.get_tables" class="md-nav__link">
-    <span class="md-ellipsis">
-      get_tables
+      validate_metrology_path
     </span>
   </a>
   
@@ -2470,16 +2494,37 @@
   
 
 
-  <h1>common_sqlite</h1>
+  <h1>bayfai</h1>
 
 <div class="doc doc-object doc-module">
 
 
 
-<a id="io._db.common_sqlite"></a>
+<a id="io.models.bayfai"></a>
     <div class="doc doc-contents first">
 
-        <p>SQLite utility functions that are independent of API version.</p>
+        <p>Models for optimizing detector geometry using PyFAI and Bayesian optimization.</p>
+
+
+<p><span class="doc-section-title">Classes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="io.models.bayfai.- BayFAIParameters">- BayFAIParameters</span></code></td>
+            <td>
+              <div class="doc-md-description">
+                <p>Parameters for running BayFAI</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
 
@@ -2504,8 +2549,8 @@
 
 
 
-<h2 id="io._db.common_sqlite.DatabaseError" class="doc doc-heading">
-            <code>DatabaseError</code>
+<h2 id="io.models.bayfai.BayFAIParameters" class="doc doc-heading">
+            <code>BayFAIParameters</code>
 
 
 </h2>
@@ -2513,10 +2558,11 @@
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><span title="Exception">Exception</span></code></p>
+              Bases: <code><span title="lute.io.models.base.TaskParameters">TaskParameters</span></code></p>
 
 
-        <p>General LUTE database error.</p>
+        <p>Parameters for optimizing detector geometry using PyFAI and Bayesian optimization.</p>
+<p>The Bayesian Optimization has default hyperparameters that can be overriden by the user.</p>
 
 
 
@@ -2526,116 +2572,43 @@
 
 
               <details class="quote">
-                <summary>Source code in <code>lute/io/_db/common_sqlite.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">DatabaseError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;General LUTE database error.&quot;&quot;&quot;</span>
-
-    <span class="o">...</span>
-</code></pre></div></td></tr></table></div>
-              </details>
-
-    </div>
-
-</div>
-
-
-<div class="doc doc-object doc-function">
-
-
-<h2 id="io._db.common_sqlite.compare_cols" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">compare_cols</span><span class="p">(</span><span class="n">cols1</span><span class="p">,</span> <span class="n">cols2</span><span class="p">)</span></code>
-
-</h2>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Compare whether two sets of columns are identical.</p>
-<p>The comparison is unidirectional - This function tests for columns present
-in <code>cols2</code> which are not present in <code>cols1</code>, but NOT vice versa. Switch the
-order of the arguments in order to retrieve the other comparison.</p>
-
-
-<p><span class="doc-section-title">Parameters:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>cols1</code>
-            </td>
-            <td>
-                  <code><span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="str">str</span>]</code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Dictionary of first set of column names and
-types.</p>
-              </div>
-            </td>
-            <td>
-                <em>required</em>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>cols2</code>
-            </td>
-            <td>
-                  <code><span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="str">str</span>]</code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Dictionary of second set of column names and
-types.</p>
-              </div>
-            </td>
-            <td>
-                <em>required</em>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-    <p><span class="doc-section-title">Returns:</span></p>
-    <table>
-      <thead>
-        <tr>
-<th>Name</th>          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-<td><code>diff</code></td>            <td>
-                  <code><span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="str">str</span>] | None</code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Any columns present in <code>cols2</code> which
-are not present in <code>cols1</code>. If <code>cols2</code> has no entries which are
-not present in <code>cols1</code>, returns <code>None</code>.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-            <details class="quote">
-              <summary>Source code in <code>lute/io/_db/common_sqlite.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">100</span>
+                <summary>Source code in <code>lute/io/models/bayfai.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
 <span class="normal">101</span>
 <span class="normal">102</span>
 <span class="normal">103</span>
@@ -2662,34 +2635,454 @@ not present in <code>cols1</code>, returns <code>None</code>.</p>
 <span class="normal">124</span>
 <span class="normal">125</span>
 <span class="normal">126</span>
-<span class="normal">127</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compare_cols</span><span class="p">(</span>
-    <span class="n">cols1</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">cols2</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compare whether two sets of columns are identical.</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BayFAIParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parameters for optimizing detector geometry using PyFAI and Bayesian optimization.</span>
 
-<span class="sd">    The comparison is unidirectional - This function tests for columns present</span>
-<span class="sd">    in `cols2` which are not present in `cols1`, but NOT vice versa. Switch the</span>
-<span class="sd">    order of the arguments in order to retrieve the other comparison.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        cols1 (Dict[str, str]): Dictionary of first set of column names and</span>
-<span class="sd">            types.</span>
-
-<span class="sd">        cols2 (Dict[str, str]): Dictionary of second set of column names and</span>
-<span class="sd">            types.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        diff (Dict[str, str] | None): Any columns present in `cols2` which</span>
-<span class="sd">            are not present in `cols1`. If `cols2` has no entries which are</span>
-<span class="sd">            not present in `cols1`, returns `None`.</span>
+<span class="sd">    The Bayesian Optimization has default hyperparameters that can be overriden by the user.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">diff</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 
-    <span class="k">for</span> <span class="n">col_name</span> <span class="ow">in</span> <span class="n">cols2</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">col_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cols1</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="n">diff</span><span class="p">[</span><span class="n">col_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">cols2</span><span class="p">[</span><span class="n">col_name</span><span class="p">]</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">TaskParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
+        <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Whether the Executor should mark a specified parameter as a result.&quot;&quot;&quot;</span>
 
-    <span class="k">return</span> <span class="n">diff</span> <span class="k">if</span> <span class="n">diff</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">BayesGeomOptParameters</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Bayesian optimization hyperparameters.&quot;&quot;&quot;</span>
+
+        <span class="n">n_samples</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+            <span class="mi">20</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of samples to initialize the Gaussian Process.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">n_iterations</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+            <span class="mi">80</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of iterations of Bayesian Optimization&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">max_rings</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+            <span class="mi">6</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Maximum number of rings to search for Bragg peaks.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">prior</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+            <span class="kc">True</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Whether to sample initial points around the center of search space or randomly.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">beta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+            <span class="mf">1.96</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Exploration-exploitation trade-off parameter for Upper Confidence Bound acquisition function.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+            <span class="mi">0</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Random seed for reproducibility.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="n">center</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;dist&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+            <span class="s2">&quot;poni1&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+            <span class="s2">&quot;poni2&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+            <span class="s2">&quot;rot1&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+            <span class="s2">&quot;rot2&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+            <span class="s2">&quot;rot3&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Center of the search space for the detector geometry parameters.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">bounds</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;dist&quot;</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">),</span>
+            <span class="s2">&quot;poni1&quot;</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.005</span><span class="p">,</span> <span class="mf">0.005</span><span class="p">),</span>
+            <span class="s2">&quot;poni2&quot;</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.005</span><span class="p">,</span> <span class="mf">0.005</span><span class="p">),</span>
+            <span class="s2">&quot;rot1&quot;</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+            <span class="s2">&quot;rot2&quot;</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+            <span class="s2">&quot;rot3&quot;</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+        <span class="p">},</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Bounds of the search space for the detector geometry parameters.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">resolutions</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;dist&quot;</span><span class="p">:</span> <span class="mf">0.0005</span><span class="p">,</span>
+            <span class="s2">&quot;poni1&quot;</span><span class="p">:</span> <span class="mf">0.0001</span><span class="p">,</span>
+            <span class="s2">&quot;poni2&quot;</span><span class="p">:</span> <span class="mf">0.0001</span><span class="p">,</span>
+            <span class="s2">&quot;rot1&quot;</span><span class="p">:</span> <span class="mf">0.02</span><span class="p">,</span>
+            <span class="s2">&quot;rot2&quot;</span><span class="p">:</span> <span class="mf">0.02</span><span class="p">,</span>
+            <span class="s2">&quot;rot3&quot;</span><span class="p">:</span> <span class="mf">0.02</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Resolution of the search space for the detector geometry parameters.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">fixed</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="p">[</span><span class="s2">&quot;rot3&quot;</span><span class="p">],</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;List of fixed parameters for the optimization.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">detname</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Detector name&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">in_file</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Path to the input .data file containing the detector metrology to be calibrated.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">calibrant</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Calibrant used for the calibration supported by pyFAI: https://github.com/silx-kit/pyFAI/tree/main/src/pyFAI/resources/calibration, </span><span class="se">\n</span><span class="s2"> e.g. Silver Behenate &#39;AgBh&#39;, LaB6 &#39;CeO2&#39;, etc.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">powder</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Powder diffraction image path to be used for the calibration.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">preprocess</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">False</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Whether to apply preprocessing to the powder diffraction image before calibration.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">out_file</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Path to the output .data file that will contain the optimized detector geometry.&quot;</span><span class="p">,</span>
+        <span class="n">is_result</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">bo_params</span><span class="p">:</span> <span class="n">BayesGeomOptParameters</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">BayesGeomOptParameters</span><span class="p">(),</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Bayesian optimization hyperparameters.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">_find_in_file_path</span> <span class="o">=</span> <span class="n">validate_metrology_path</span><span class="p">(</span><span class="s2">&quot;in_file&quot;</span><span class="p">)</span>
+
+    <span class="n">_find_smd_path</span> <span class="o">=</span> <span class="n">validate_smd_path</span><span class="p">(</span><span class="s2">&quot;powder&quot;</span><span class="p">)</span>
+
+    <span class="n">_find_out_file_path</span> <span class="o">=</span> <span class="n">validate_geometry_path</span><span class="p">(</span><span class="s2">&quot;out_file&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="io.models.bayfai.BayFAIParameters.BayesGeomOptParameters" class="doc doc-heading">
+            <code>BayesGeomOptParameters</code>
+
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
+
+
+        <p>Bayesian optimization hyperparameters.</p>
+
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>lute/io/models/bayfai.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BayesGeomOptParameters</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bayesian optimization hyperparameters.&quot;&quot;&quot;</span>
+
+    <span class="n">n_samples</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="mi">20</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of samples to initialize the Gaussian Process.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">n_iterations</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="mi">80</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of iterations of Bayesian Optimization&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">max_rings</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="mi">6</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Maximum number of rings to search for Bragg peaks.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">prior</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">True</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Whether to sample initial points around the center of search space or randomly.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">beta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="mf">1.96</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Exploration-exploitation trade-off parameter for Upper Confidence Bound acquisition function.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="mi">0</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Random seed for reproducibility.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="io.models.bayfai.BayFAIParameters.Config" class="doc doc-heading">
+            <code>Config</code>
+
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="lute.io.models.base.TaskParameters.Config">Config</span></code></p>
+
+
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>lute/io/models/bayfai.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">TaskParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
+    <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether the Executor should mark a specified parameter as a result.&quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="io.models.bayfai.BayFAIParameters.Config.set_result" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">set_result</span> <span class="o">=</span> <span class="kc">True</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Whether the Executor should mark a specified parameter as a result.</p>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="io.models.bayfai.validate_geometry_path" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">validate_geometry_path</span><span class="p">(</span><span class="n">output_path_name</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Dynamically generates the output geometry path for the optimization results.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>lute/io/models/bayfai.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">validate_geometry_path</span><span class="p">(</span><span class="n">output_path_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Dynamically generates the output geometry path for the optimization results.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_validate_geometry_path</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">output_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">output_path</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+            <span class="n">work_dir</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span>
+            <span class="n">run</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">run</span><span class="p">)</span>
+            <span class="n">geom_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">work_dir</span><span class="p">,</span> <span class="s2">&quot;geom&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">geom_dir</span><span class="p">):</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">geom_dir</span><span class="p">)</span>
+            <span class="n">output_run_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">geom_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">run</span><span class="si">}</span><span class="s2">-end.data&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">output_run_path</span>
+        <span class="k">return</span> <span class="n">output_path</span>
+
+    <span class="k">return</span> <span class="n">validator</span><span class="p">(</span><span class="n">output_path_name</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)(</span><span class="n">_validate_geometry_path</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -2699,93 +3092,21 @@ not present in <code>cols1</code>, returns <code>None</code>.</p>
 <div class="doc doc-object doc-function">
 
 
-<h2 id="io._db.common_sqlite.does_table_exist" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">does_table_exist</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="n">table_name</span><span class="p">)</span></code>
+<h2 id="io.models.bayfai.validate_metrology_path" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">validate_metrology_path</span><span class="p">(</span><span class="n">calib_path_name</span><span class="p">)</span></code>
 
 </h2>
 
 
     <div class="doc doc-contents ">
 
-        <p>Check whether a table exists.</p>
-
-
-<p><span class="doc-section-title">Parameters:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>con</code>
-            </td>
-            <td>
-                  <code><span title="sqlite3.Connection">Connection</span></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Database connection.</p>
-              </div>
-            </td>
-            <td>
-                <em>required</em>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>table_name</code>
-            </td>
-            <td>
-                  <code><span title="str">str</span></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>The table to check for.</p>
-              </div>
-            </td>
-            <td>
-                <em>required</em>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-    <p><span class="doc-section-title">Returns:</span></p>
-    <table>
-      <thead>
-        <tr>
-<th>Name</th>          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-<td><code>does_exist</code></td>            <td>
-                  <code><span title="bool">bool</span></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Whether the table exists.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+        <p>Finds the path to a valid calibration metrology file (psana1).
+If no calib folder found, returns empty string (e.g. for psana2).</p>
 
 
             <details class="quote">
-              <summary>Source code in <code>lute/io/_db/common_sqlite.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
+              <summary>Source code in <code>lute/io/models/bayfai.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">21</span>
 <span class="normal">22</span>
 <span class="normal">23</span>
 <span class="normal">24</span>
@@ -2799,393 +3120,41 @@ not present in <code>cols1</code>, returns <code>None</code>.</p>
 <span class="normal">32</span>
 <span class="normal">33</span>
 <span class="normal">34</span>
-<span class="normal">35</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">does_table_exist</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check whether a table exists.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        con (sqlite3.Connection): Database connection.</span>
-
-<span class="sd">        table_name (str): The table to check for.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        does_exist (bool): Whether the table exists.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">res</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
-        <span class="sa">f</span><span class="s2">&quot;SELECT name FROM sqlite_master WHERE name=&#39;</span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
-    <span class="p">)</span>
-    <span class="k">if</span> <span class="n">res</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">return</span> <span class="kc">False</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="kc">True</span>
-</code></pre></div></td></tr></table></div>
-            </details>
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h2 id="io._db.common_sqlite.get_all_rows_for_table" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">get_all_rows_for_table</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="n">table_name</span><span class="p">)</span></code>
-
-</h2>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Return all rows for a requested table.</p>
-
-
-<p><span class="doc-section-title">Parameters:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>con</code>
-            </td>
-            <td>
-                  <code><span title="sqlite3.Connection">Connection</span></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Database connection.</p>
-              </div>
-            </td>
-            <td>
-                <em>required</em>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>table_name</code>
-            </td>
-            <td>
-                  <code><span title="str">str</span></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>The table's name.</p>
-              </div>
-            </td>
-            <td>
-                <em>required</em>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-    <p><span class="doc-section-title">Returns:</span></p>
-    <table>
-      <thead>
-        <tr>
-<th>Name</th>          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-<td><code>rows</code></td>            <td>
-                  <code><span title="typing.List">List</span>[<span title="typing.Tuple">Tuple</span>[<span title="typing.Any">Any</span>, ...]]</code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>ALL rows for a table.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-            <details class="quote">
-              <summary>Source code in <code>lute/io/_db/common_sqlite.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span>
-<span class="normal">84</span>
-<span class="normal">85</span>
-<span class="normal">86</span>
-<span class="normal">87</span>
-<span class="normal">88</span>
-<span class="normal">89</span>
-<span class="normal">90</span>
-<span class="normal">91</span>
-<span class="normal">92</span>
-<span class="normal">93</span>
-<span class="normal">94</span>
-<span class="normal">95</span>
-<span class="normal">96</span>
-<span class="normal">97</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_all_rows_for_table</span><span class="p">(</span>
-    <span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="o">...</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return all rows for a requested table.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        con (sqlite3.Connection): Database connection.</span>
-
-<span class="sd">        table_name (str): The table&#39;s name.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        rows (List[Tuple[Any, ...]]): ALL rows for a table.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">sql</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;SELECT * FROM &quot;</span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s1">&quot;&#39;</span>
-    <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
-        <span class="n">res</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
-
-    <span class="n">rows</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="o">...</span><span class="p">]]</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">rows</span>
-</code></pre></div></td></tr></table></div>
-            </details>
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h2 id="io._db.common_sqlite.get_table_cols" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">get_table_cols</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="n">table_name</span><span class="p">)</span></code>
-
-</h2>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Retrieve the columns currently present in a table.</p>
-
-
-<p><span class="doc-section-title">Parameters:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>con</code>
-            </td>
-            <td>
-                  <code><span title="sqlite3.Connection">Connection</span></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Database connection.</p>
-              </div>
-            </td>
-            <td>
-                <em>required</em>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>table_name</code>
-            </td>
-            <td>
-                  <code><span title="str">str</span></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>The table's name.</p>
-              </div>
-            </td>
-            <td>
-                <em>required</em>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-    <p><span class="doc-section-title">Returns:</span></p>
-    <table>
-      <thead>
-        <tr>
-<th>Name</th>          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-<td><code>cols</code></td>            <td>
-                  <code><span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="str">str</span>]</code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>A dictionary of column names and types.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-            <details class="quote">
-              <summary>Source code in <code>lute/io/_db/common_sqlite.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
-<span class="normal">72</span>
-<span class="normal">73</span>
-<span class="normal">74</span>
-<span class="normal">75</span>
-<span class="normal">76</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_table_cols</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Retrieve the columns currently present in a table.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        con (sqlite3.Connection): Database connection.</span>
-
-<span class="sd">        table_name (str): The table&#39;s name.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        cols (Dict[str, str]): A dictionary of column names and types.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">res</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PRAGMA table_info(</span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
-    <span class="c1"># Retrieves: list = [col_id, col_name, col_type, -, default_val, -]</span>
-    <span class="n">table_info</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-
-    <span class="n">cols</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">col</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="n">col</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">table_info</span><span class="p">}</span>
-    <span class="k">return</span> <span class="n">cols</span>
-</code></pre></div></td></tr></table></div>
-            </details>
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h2 id="io._db.common_sqlite.get_tables" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">get_tables</span><span class="p">(</span><span class="n">con</span><span class="p">)</span></code>
-
-</h2>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Retrieve a list of all tables in a database.</p>
-
-
-<p><span class="doc-section-title">Parameters:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>con</code>
-            </td>
-            <td>
-                  <code><span title="sqlite3.Connection">Connection</span></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Database connection.</p>
-              </div>
-            </td>
-            <td>
-                <em>required</em>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-    <p><span class="doc-section-title">Returns:</span></p>
-    <table>
-      <thead>
-        <tr>
-<th>Name</th>          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-<td><code>tables</code></td>            <td>
-                  <code><span title="typing.List">List</span>[<span title="str">str</span>]</code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>A list of database tables.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-            <details class="quote">
-              <summary>Source code in <code>lute/io/_db/common_sqlite.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">38</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
 <span class="normal">39</span>
 <span class="normal">40</span>
 <span class="normal">41</span>
 <span class="normal">42</span>
 <span class="normal">43</span>
 <span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_tables</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Retrieve a list of all tables in a database.</span>
+<span class="normal">45</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">validate_metrology_path</span><span class="p">(</span><span class="n">calib_path_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds the path to a valid calibration metrology file (psana1).</span>
+<span class="sd">    If no calib folder found, returns empty string (e.g. for psana2).&quot;&quot;&quot;</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        con (sqlite3.Connection): Database connection.</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_validate_metrology_path</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">calib_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">calib_path</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+            <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">experiment</span>
+            <span class="n">run</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">run</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">det_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;det_type&quot;</span><span class="p">]</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="n">det_type</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;detname&quot;</span><span class="p">]</span>
+            <span class="n">cdir</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/sdf/data/lcls/ds/</span><span class="si">{</span><span class="n">exp</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">exp</span><span class="si">}</span><span class="s2">/calib&quot;</span>
+            <span class="n">src</span> <span class="o">=</span> <span class="n">source_from_det_info</span><span class="p">(</span><span class="n">det_type</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="n">exp</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+            <span class="n">group</span> <span class="o">=</span> <span class="n">group_from_det_type</span><span class="p">(</span><span class="n">det_type</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+            <span class="n">calib_type</span> <span class="o">=</span> <span class="s2">&quot;geometry&quot;</span>
+            <span class="n">calib_dir</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">cdir</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">group</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">src</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">calib_type</span><span class="si">}</span><span class="s2">/&quot;</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">calib_dir</span><span class="p">):</span>
+                <span class="n">calib_run_path</span> <span class="o">=</span> <span class="n">select_calib_file</span><span class="p">(</span><span class="n">calib_dir</span><span class="p">,</span> <span class="n">run</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">calib_run_path</span>
+        <span class="k">return</span> <span class="n">calib_path</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        tables (List[str]): A list of database tables.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># sql: str = &quot;SELECT name FROM sqlite_schema&quot;</span>
-    <span class="n">sql</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="s2">&quot;SELECT name FROM sqlite_schema &quot;</span>
-        <span class="s2">&quot;WHERE type = &#39;table&#39; &quot;</span>
-        <span class="s2">&quot;AND name NOT LIKE &#39;sqlite_%&#39;&quot;</span>
-    <span class="p">)</span>
-    <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
-        <span class="n">res</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
-
-    <span class="n">tables</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">table</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">table</span> <span class="ow">in</span> <span class="n">res</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()]</span>
-    <span class="k">return</span> <span class="n">tables</span>
+    <span class="k">return</span> <span class="n">validator</span><span class="p">(</span><span class="n">calib_path_name</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)(</span><span class="n">_validate_metrology_path</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
