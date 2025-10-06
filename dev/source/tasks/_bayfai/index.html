@@ -5976,7 +5976,9 @@ run : int
 <span class="normal">1816</span>
 <span class="normal">1817</span>
 <span class="normal">1818</span>
-<span class="normal">1819</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BayFAIOpt</span><span class="p">:</span>
+<span class="normal">1819</span>
+<span class="normal">1820</span>
+<span class="normal">1821</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BayFAIOpt</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class to run BayFAI optimization on a powder image.</span>
 
@@ -7332,7 +7334,9 @@ run : int
 
         <span class="c1"># Plotting radial profiles with peaks</span>
         <span class="n">ax3</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="n">nrow</span><span class="p">,</span> <span class="n">ncol</span><span class="p">),</span> <span class="p">(</span><span class="n">irow</span><span class="p">,</span> <span class="n">icol</span><span class="p">),</span> <span class="n">colspan</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-        <span class="n">profile</span><span class="p">,</span> <span class="n">tth</span> <span class="o">=</span> <span class="n">azimuthal_integration</span><span class="p">(</span><span class="n">powder</span><span class="p">,</span> <span class="n">detector</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="n">distance</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="n">profile</span><span class="p">,</span> <span class="n">tth</span> <span class="o">=</span> <span class="n">azimuthal_integration</span><span class="p">(</span>
+            <span class="n">powder</span><span class="p">,</span> <span class="n">detector</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="n">distance</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="p">)</span>
         <span class="n">qs</span> <span class="o">=</span> <span class="n">theta2q</span><span class="p">(</span><span class="n">tth</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrant</span><span class="o">.</span><span class="n">wavelength</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">plot_radial_integration</span><span class="p">(</span><span class="n">qs</span><span class="p">,</span> <span class="n">profile</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrant</span><span class="p">,</span> <span class="n">ax3</span><span class="p">)</span>
         <span class="n">irow</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -7495,7 +7499,7 @@ run : int
 
         <span class="c1"># Plotting radial profiles with peaks</span>
         <span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="n">nrow</span><span class="p">,</span> <span class="n">ncol</span><span class="p">),</span> <span class="p">(</span><span class="n">irow</span><span class="p">,</span> <span class="n">icol</span><span class="p">),</span> <span class="n">colspan</span><span class="o">=</span><span class="n">ncol</span> <span class="o">-</span> <span class="n">icol</span><span class="p">)</span>
-        <span class="n">profile</span><span class="p">,</span> <span class="n">tth</span> <span class="o">=</span> <span class="n">azimuthal_integration</span><span class="p">(</span><span class="n">powder</span><span class="p">,</span> <span class="n">detector</span><span class="p">)</span>
+        <span class="n">profile</span><span class="p">,</span> <span class="n">tth</span> <span class="o">=</span> <span class="n">azimuthal_integration</span><span class="p">(</span><span class="n">powder</span><span class="p">,</span> <span class="n">detector</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="n">distance</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
         <span class="n">qs</span> <span class="o">=</span> <span class="n">theta2q</span><span class="p">(</span><span class="n">tth</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrant</span><span class="o">.</span><span class="n">wavelength</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">plot_radial_integration</span><span class="p">(</span><span class="n">qs</span><span class="p">,</span> <span class="n">profile</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrant</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
         <span class="n">irow</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -8300,7 +8304,9 @@ plot : str
 <span class="normal">1636</span>
 <span class="normal">1637</span>
 <span class="normal">1638</span>
-<span class="normal">1639</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_diagnostics_panel</span><span class="p">(</span>
+<span class="normal">1639</span>
+<span class="normal">1640</span>
+<span class="normal">1641</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_diagnostics_panel</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">powder</span><span class="p">,</span>
     <span class="n">Imin</span><span class="p">,</span>
@@ -8445,7 +8451,9 @@ plot : str
 
     <span class="c1"># Plotting radial profiles with peaks</span>
     <span class="n">ax3</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="n">nrow</span><span class="p">,</span> <span class="n">ncol</span><span class="p">),</span> <span class="p">(</span><span class="n">irow</span><span class="p">,</span> <span class="n">icol</span><span class="p">),</span> <span class="n">colspan</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">profile</span><span class="p">,</span> <span class="n">tth</span> <span class="o">=</span> <span class="n">azimuthal_integration</span><span class="p">(</span><span class="n">powder</span><span class="p">,</span> <span class="n">detector</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="n">distance</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">profile</span><span class="p">,</span> <span class="n">tth</span> <span class="o">=</span> <span class="n">azimuthal_integration</span><span class="p">(</span>
+        <span class="n">powder</span><span class="p">,</span> <span class="n">detector</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="n">distance</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="p">)</span>
     <span class="n">qs</span> <span class="o">=</span> <span class="n">theta2q</span><span class="p">(</span><span class="n">tth</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrant</span><span class="o">.</span><span class="n">wavelength</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">plot_radial_integration</span><span class="p">(</span><span class="n">qs</span><span class="p">,</span> <span class="n">profile</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrant</span><span class="p">,</span> <span class="n">ax3</span><span class="p">)</span>
     <span class="n">irow</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -9000,9 +9008,7 @@ plot : str
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_bayfai.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1641</span>
-<span class="normal">1642</span>
-<span class="normal">1643</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1643</span>
 <span class="normal">1644</span>
 <span class="normal">1645</span>
 <span class="normal">1646</span>
@@ -9178,7 +9184,9 @@ plot : str
 <span class="normal">1816</span>
 <span class="normal">1817</span>
 <span class="normal">1818</span>
-<span class="normal">1819</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_summary_plot</span><span class="p">(</span>
+<span class="normal">1819</span>
+<span class="normal">1820</span>
+<span class="normal">1821</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_summary_plot</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">powder</span><span class="p">,</span>
     <span class="n">Imin</span><span class="p">,</span>
@@ -9321,7 +9329,7 @@ plot : str
 
     <span class="c1"># Plotting radial profiles with peaks</span>
     <span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="n">nrow</span><span class="p">,</span> <span class="n">ncol</span><span class="p">),</span> <span class="p">(</span><span class="n">irow</span><span class="p">,</span> <span class="n">icol</span><span class="p">),</span> <span class="n">colspan</span><span class="o">=</span><span class="n">ncol</span> <span class="o">-</span> <span class="n">icol</span><span class="p">)</span>
-    <span class="n">profile</span><span class="p">,</span> <span class="n">tth</span> <span class="o">=</span> <span class="n">azimuthal_integration</span><span class="p">(</span><span class="n">powder</span><span class="p">,</span> <span class="n">detector</span><span class="p">)</span>
+    <span class="n">profile</span><span class="p">,</span> <span class="n">tth</span> <span class="o">=</span> <span class="n">azimuthal_integration</span><span class="p">(</span><span class="n">powder</span><span class="p">,</span> <span class="n">detector</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="n">distance</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
     <span class="n">qs</span> <span class="o">=</span> <span class="n">theta2q</span><span class="p">(</span><span class="n">tth</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrant</span><span class="o">.</span><span class="n">wavelength</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">plot_radial_integration</span><span class="p">(</span><span class="n">qs</span><span class="p">,</span> <span class="n">profile</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrant</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
     <span class="n">irow</span> <span class="o">+=</span> <span class="mi">1</span>
