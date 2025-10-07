@@ -6026,7 +6026,9 @@ run : int
 <span class="normal">1889</span>
 <span class="normal">1890</span>
 <span class="normal">1891</span>
-<span class="normal">1892</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BayFAIOpt2</span><span class="p">:</span>
+<span class="normal">1892</span>
+<span class="normal">1893</span>
+<span class="normal">1894</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BayFAIOpt2</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class to run BayFAI optimization on a powder image.</span>
 
@@ -7448,7 +7450,9 @@ run : int
 
         <span class="c1"># Plotting radial profiles with peaks</span>
         <span class="n">ax3</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="n">nrow</span><span class="p">,</span> <span class="n">ncol</span><span class="p">),</span> <span class="p">(</span><span class="n">irow</span><span class="p">,</span> <span class="n">icol</span><span class="p">),</span> <span class="n">colspan</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-        <span class="n">profile</span><span class="p">,</span> <span class="n">tth</span> <span class="o">=</span> <span class="n">azimuthal_integration</span><span class="p">(</span><span class="n">powder</span><span class="p">,</span> <span class="n">detector</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="n">distance</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="n">profile</span><span class="p">,</span> <span class="n">tth</span> <span class="o">=</span> <span class="n">azimuthal_integration</span><span class="p">(</span>
+            <span class="n">powder</span><span class="p">,</span> <span class="n">detector</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="n">distance</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="p">)</span>
         <span class="n">qs</span> <span class="o">=</span> <span class="n">theta2q</span><span class="p">(</span><span class="n">tth</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrant</span><span class="o">.</span><span class="n">wavelength</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">plot_radial_integration</span><span class="p">(</span><span class="n">qs</span><span class="p">,</span> <span class="n">profile</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrant</span><span class="p">,</span> <span class="n">ax3</span><span class="p">)</span>
         <span class="n">irow</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -8438,7 +8442,9 @@ plot : str
 <span class="normal">1707</span>
 <span class="normal">1708</span>
 <span class="normal">1709</span>
-<span class="normal">1710</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_diagnostics_panel</span><span class="p">(</span>
+<span class="normal">1710</span>
+<span class="normal">1711</span>
+<span class="normal">1712</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_diagnostics_panel</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">powder</span><span class="p">,</span>
     <span class="n">Imin</span><span class="p">,</span>
@@ -8583,7 +8589,9 @@ plot : str
 
     <span class="c1"># Plotting radial profiles with peaks</span>
     <span class="n">ax3</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="n">nrow</span><span class="p">,</span> <span class="n">ncol</span><span class="p">),</span> <span class="p">(</span><span class="n">irow</span><span class="p">,</span> <span class="n">icol</span><span class="p">),</span> <span class="n">colspan</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">profile</span><span class="p">,</span> <span class="n">tth</span> <span class="o">=</span> <span class="n">azimuthal_integration</span><span class="p">(</span><span class="n">powder</span><span class="p">,</span> <span class="n">detector</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="n">distance</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">profile</span><span class="p">,</span> <span class="n">tth</span> <span class="o">=</span> <span class="n">azimuthal_integration</span><span class="p">(</span>
+        <span class="n">powder</span><span class="p">,</span> <span class="n">detector</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="n">distance</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="p">)</span>
     <span class="n">qs</span> <span class="o">=</span> <span class="n">theta2q</span><span class="p">(</span><span class="n">tth</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrant</span><span class="o">.</span><span class="n">wavelength</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">plot_radial_integration</span><span class="p">(</span><span class="n">qs</span><span class="p">,</span> <span class="n">profile</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrant</span><span class="p">,</span> <span class="n">ax3</span><span class="p">)</span>
     <span class="n">irow</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -9138,9 +9146,7 @@ plot : str
 
             <details class="quote">
               <summary>Source code in <code>lute/tasks/_bayfai2.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1712</span>
-<span class="normal">1713</span>
-<span class="normal">1714</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1714</span>
 <span class="normal">1715</span>
 <span class="normal">1716</span>
 <span class="normal">1717</span>
@@ -9318,7 +9324,9 @@ plot : str
 <span class="normal">1889</span>
 <span class="normal">1890</span>
 <span class="normal">1891</span>
-<span class="normal">1892</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_summary_plot</span><span class="p">(</span>
+<span class="normal">1892</span>
+<span class="normal">1893</span>
+<span class="normal">1894</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_summary_plot</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">powder</span><span class="p">,</span>
     <span class="n">Imin</span><span class="p">,</span>
