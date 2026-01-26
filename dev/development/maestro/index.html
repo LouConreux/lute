@@ -11,6 +11,10 @@
       
       
       
+        <link rel="prev" href="../dynamic_workflows/">
+      
+      
+        <link rel="next" href="../tests/">
       
       
         
@@ -21,7 +25,7 @@
     
     
       
-        <title>[ADR-7] Task Configuration is Stored in a Database Managed by Executors - LUTE</title>
+        <title>Maestro Documentation - LUTE</title>
       
     
     
@@ -64,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#adr-7-task-configuration-is-stored-in-a-database-managed-by-executors" class="md-skip">
+        <a href="#maestro-architecture-and-documentation" class="md-skip">
           Skip to content
         </a>
       
@@ -100,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              [ADR-7] Task Configuration is Stored in a Database Managed by Executors
+              Maestro Documentation
             
           </span>
         </div>
@@ -549,18 +553,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -581,7 +587,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -599,7 +605,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/architecture/" class="md-nav__link">
+      <a href="../architecture/" class="md-nav__link">
         
   
   
@@ -674,7 +680,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/new_task/overview/" class="md-nav__link">
+      <a href="../new_task/overview/" class="md-nav__link">
         
   
   
@@ -702,7 +708,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/new_task/first_party/" class="md-nav__link">
+      <a href="../new_task/first_party/" class="md-nav__link">
         
   
   
@@ -730,7 +736,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/new_task/third_party/" class="md-nav__link">
+      <a href="../new_task/third_party/" class="md-nav__link">
         
   
   
@@ -813,7 +819,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/creating_workflows/" class="md-nav__link">
+      <a href="../creating_workflows/" class="md-nav__link">
         
   
   
@@ -841,7 +847,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/creating_workflows_maestro/" class="md-nav__link">
+      <a href="../creating_workflows_maestro/" class="md-nav__link">
         
   
   
@@ -869,7 +875,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/creating_workflows_airflow/" class="md-nav__link">
+      <a href="../creating_workflows_airflow/" class="md-nav__link">
         
   
   
@@ -897,7 +903,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/dynamic_workflows/" class="md-nav__link">
+      <a href="../dynamic_workflows/" class="md-nav__link">
         
   
   
@@ -930,10 +936,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../development/maestro/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maestro Documentation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -949,6 +982,154 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-and-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture and Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rest-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        REST API
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jobstep-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JobStep class
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="JobStep class">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#triggerrule-defining-when-a-step-should-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TriggerRule - Defining when a step should run
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#launcher-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Launcher classes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Launcher classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#handler-implementations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Handler implementations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managerparameters-and-manager-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ManagerParameters and Manager creation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running workflows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running workflows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rough-mechanism" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rough mechanism
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-bindings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python bindings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -961,7 +1142,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/tests/" class="md-nav__link">
+      <a href="../tests/" class="md-nav__link">
         
   
   
@@ -2879,10 +3060,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#status" class="md-nav__link">
+  <a href="#architecture-and-components" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Status
+        Architecture and Components
       
     </span>
   </a>
@@ -2890,10 +3071,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#context-and-problem-statement" class="md-nav__link">
+  <a href="#rest-api" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Context and Problem Statement
+        REST API
       
     </span>
   </a>
@@ -2901,33 +3082,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#decision" class="md-nav__link">
+  <a href="#jobstep-class" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Decision
+        JobStep class
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Decision">
+    <nav class="md-nav" aria-label="JobStep class">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#decision-drivers" class="md-nav__link">
+  <a href="#triggerrule-defining-when-a-step-should-run" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Decision Drivers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#considered-options" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Considered Options
+        TriggerRule - Defining when a step should run
       
     </span>
   </a>
@@ -2940,10 +3110,38 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#consequences" class="md-nav__link">
+  <a href="#launcher-classes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Consequences
+        Launcher classes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Launcher classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#handler-implementations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Handler implementations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managerparameters-and-manager-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ManagerParameters and Manager creation
       
     </span>
   </a>
@@ -2951,24 +3149,41 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#compliance" class="md-nav__link">
+  <a href="#running-workflows" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Compliance
+        Running workflows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running workflows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rough-mechanism" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rough mechanism
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#metadata" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#python-bindings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Metadata
+        Python bindings
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2992,42 +3207,232 @@
   
 
 
-<h1 id="adr-7-task-configuration-is-stored-in-a-database-managed-by-executors">[ADR-7] <code>Task</code> Configuration is Stored in a Database Managed by <code>Executor</code>s</h1>
-<p><strong>Date:</strong> 2024-02-12</p>
-<h2 id="status">Status</h2>
-<p><strong>Proposed</strong></p>
-<h2 id="context-and-problem-statement">Context and Problem Statement</h2>
+<h1 id="maestro-architecture-and-documentation">Maestro Architecture and Documentation</h1>
+<p>As the <code>maestro</code> workflow manager is written as part of the LUTE project, some additional documentation on the architecture and features is warranted. Documentation for the other workflow backends (Airflow, Prefect) can be found from their respective developers.</p>
+<p>This page is a work in progress.</p>
+<h2 id="architecture-and-components">Architecture and Components</h2>
+<p>The <code>maestro</code> workflow manager is built from a number of basic components:</p>
 <ul>
-<li>For metadata publishing reasons, need a mechanism to maintain a history of <code>Task</code> parameter configurations.</li>
-<li>Each <code>Task</code>'s code is designed to be independent of other <code>Task</code>'s aside from code shared by inheritance.</li>
-<li>Dependencies between <code>Task</code>s are intended to be defined only at the level of workflows.</li>
-<li>Nonetheless, some <code>Task</code>s may have implicit dependencies on others. E.g. one <code>Task</code> may use the output files of another, and so could benefit from having knowledge of where they were written.</li>
+<li>
+<p>A <code>Server</code> class which implements an HTTP server.</p>
+</li>
+<li>
+<p>There are some additional classes and components for implementing the HTTP protocol (Requests, Responses, Methods, etc.).</p>
+</li>
+<li>
+<p>In general, the only additional component which will be relevant for most developers is the <code>Handler</code> class - this implements a functor which is used as a callback run for specific REST API endpoints.</p>
+</li>
+<li>
+<p>A <code>Launcher</code> class which provides an abstraction for job step submission. Sub-classes implement different ways of submitting a step in a workflow (e.g. via running a SLURM submission script to launch the step as a batch job).</p>
+</li>
+<li>
+<p>These server the same role that <code>Operators</code> did for Airflow, for example.</p>
+</li>
+<li>
+<p>A <code>ThreadPool</code> class which manages a number of threads for running job steps, and a queue to run them in the correct order.</p>
+</li>
+<li>A <code>Manager</code> class which links all the above components together.</li>
 </ul>
-<h2 id="decision">Decision</h2>
-<p>Upon <code>Task</code> completion the managing <code>Executor</code> will write the <code>AnalysisConfig</code> object, including <code>TaskParameters</code>, results and generic configuration information to a database. Some entries from this database can be retrieved to provide default files for <code>TaskParameter</code> fields; however, the <code>Task</code> itself has no knowledge, and does not access to the database.</p>
-<h3 id="decision-drivers">Decision Drivers</h3>
+<p>The workflow manager, composed of the components above, runs workflows which are defined using a <code>JobStep</code> class. This class fully describes all information required to run a single step in a workflow. A workflow is just a vector of these objects. A vector defines steps which can execute in parallel. The serial dependencies of the workflow (or DAG - directed acyclic graph) are defined by the <code>JobStep</code> class itself. The implementation is reminiscent of a linked-list, with downstream steps linked to the upstream steps via a <code>next</code> member. See below for more details on the class.</p>
+<h2 id="rest-api">REST API</h2>
+<p>The workflow manager may make use of the HTTP server for communication with the various steps in the workflow. The use of this server is dependent on the <code>Launcher</code> implementation - the <code>Launcher</code> subclass must provide the various callback functors (via subclasses of a <code>Handler</code> class) in order to use the HTTP server. Currently, the two implemented <code>Launcher</code> types use the HTTP server. The following is the currently used REST API. All calls are intended to be initiated by the <code>Executor</code> to the <code>maestro</code> workflow manager.</p>
+<p>Currently, the <code>launch_maestro.py</code> script (refer to the <a href="development/creating_workflows_maestro.md">creating workflows with maestro</a> documentation) sets the <code>LUTE_MANAGER_URL</code> environment variable with the <code>hostname:port</code> pair that can be used to communicate with the workflow manager. It will be passed to each step of the workflow. The <code>Executor</code> can use this environment variable to determine where to send API requests.</p>
+<p><strong>Important:</strong> HTTPS is <strong>NOT</strong> implemented - this communication is not intended to run over anything but a trusted local network (such as within the batch cluster).</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Endpoint</th>
+<th style="text-align: center;">Message Structure</th>
+<th style="text-align: center;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>/status</code></td>
+<td style="text-align: center;"><code>{"managed_task":"...","status":"..."}</code></td>
+<td style="text-align: center;"><code>{"managed_task": "SmallDataProducer", "status": "STARTED"}</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>/log</code></td>
+<td style="text-align: center;"><code>{"managed_task":"...","message":"..."}</code></td>
+<td style="text-align: center;"><code>{"managed_task": "SmallDataProducer", "message": "Test message"}</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="jobstep-class"><code>JobStep</code> class</h2>
+<p>The <code>JobStep</code> class is defined in <code>workflows/maestro/src/lwm/job.hh</code>. It provides all information required to run a single step of a workflow. It is reproduced here for convenience.</p>
+<pre><code class="language-c++">  class JobParameters {
+  public:
+    std::string lute_location;
+    std::string executable_subdir;
+    std::string config_file;
+    bool debug;
+  };
+
+  class JobStep {
+  public:
+    JobStep(std::string _task_name,
+            TriggerRule _trigger_rule,
+            JobParameters _parameters,
+            std::string _extra_parameters,
+            std::vector&lt;JobStep&gt; _next)
+      : managed_task_name(_task_name)
+      , trigger_rule(_trigger_rule)
+      , parameters(_parameters)
+      , extra_parameters(_extra_parameters)
+      , next(_next)
+    {}
+
+    std::string managed_task_name;
+    TriggerRule trigger_rule;
+    JobParameters parameters;
+    std::string extra_parameters;
+    std::vector&lt;JobStep&gt; next;
+  };
+</code></pre>
+<p>The following table provides an overview of the uses of the various member fields.
+| Member              | Used                                                                                            |
+|:-------------------:|:------------------------------------------------------------------------------------------------|
+| <code>managed_task_name</code> | The name of the <strong>managed</strong> <code>Task</code> to run.                                                      |
+| <code>trigger_rule</code>      | The trigger rule determining the dependence of this step on those upstreams (see below).        |
+| <code>parameters</code>        | A set of general parameters determining the LUTE installation/clone to use and the config file. |
+| <code>extra_parameters</code>  | A <code>Launcher</code> specific set of parameters. Currently used by the <code>SlurmLauncher</code> for SLURM args.  |
+| <code>next</code>              | A vector of <code>JobStep</code>s to run after this one completes.                                         |</p>
+<h3 id="triggerrule-defining-when-a-step-should-run"><code>TriggerRule</code> - Defining when a step should run</h3>
+<p>The following enum class defines a number of trigger rules that are currently implemented.</p>
+<pre><code class="language-c++">  enum class TriggerRule {
+    ALL_SUCCESS=0,
+    ANY_SUCCESS=1,
+    ALL_COMPLETED=2,
+
+    ALL_FAILED=3,
+    ANY_FAILED=4,
+
+    ALWAYS=5
+  };
+</code></pre>
+<p>In order, these mean:</p>
 <ul>
-<li>Want to reduce explicit dependencies between <code>Task</code>s while allowing information to be shared between them.</li>
-<li>Have <code>Task</code>-independent IO be managed solely at the <code>Executor</code> level.</li>
+<li><code>ALL_SUCCESS</code>: This job step will only be submitted if all previous steps in its branch succeed (This is the default)</li>
+<li><code>ANY_SUCCESS</code>: This job step will be submitted as soon as any previous step in its branch succeed.</li>
+<li><code>ALL_COMPLETED</code>: This job step will be submitted as soon as all previous steps complete, whether they succeed or fail.</li>
+<li><code>ALL_FAILED</code>: This job step will be submitted only if all previous steps have failed.</li>
+<li><code>ANY_FAILED</code>: This job step will be submitted as soon as any previous step fails.</li>
+<li><code>ALWAYS</code>: This job step will always run as soon as it is reached in the DAG.</li>
 </ul>
-<h3 id="considered-options">Considered Options</h3>
+<h2 id="launcher-classes"><code>Launcher</code> classes</h2>
+<p>There are currently two <code>Launcher</code> implementations. They are selected via the <code>LauncherType</code> enum passed to the <code>Manager</code>.</p>
+<pre><code class="language-c++">  enum class LauncherType {
+    PythonLauncherType = 0,
+    SlurmLauncherType = 1
+  };
+</code></pre>
 <ul>
-<li><code>Task</code>s write the database.</li>
-<li><code>Task</code>s pass information through other mechanisms, such as Airflow.</li>
+<li>The <code>PythonLauncher</code> runs the job steps directly calling the <code>python</code> interpreter - this is a blocking call.</li>
+<li>The <code>SlurmLauncher</code> submits the <code>submit_slurm.sh</code> batch script to launch the <code>JobStep</code> as a batch job.</li>
 </ul>
-<h2 id="consequences">Consequences</h2>
+<h3 id="handler-implementations"><code>Handler</code> implementations</h3>
+<p>Side-by-side with the actual <code>Launcher</code> implementations a set of <code>Handler</code>s have been defined that implement the REST API. These are used by both the <code>PythonLauncher</code> and <code>SlurmLauncher</code>.</p>
 <ul>
-<li>Requires a database.</li>
-<li>Additional dependency, although at least one backend can be the standard <code>sqlite</code> which should make everything transferrable.</li>
-<li>Allows for information to be passed between <code>Task</code>s without any explicit code dependencies/linkages between them.</li>
-<li>The dependency is still mostly determined by the workflow definition. Default values can be provided by the database if needed.</li>
+<li><code>JsonStatusHandler</code>: Implements the callback for status updates from the <code>Executor</code>.</li>
+<li><code>JsonLogHandler</code>: Implements the callback for log updates from the <code>Executor</code>. If the unbuffered logs option is passed to the launch script then this handler will print log messages as they come in.</li>
 </ul>
-<h2 id="compliance">Compliance</h2>
-<h2 id="metadata">Metadata</h2>
+<p>As both <code>Launcher</code> implementations use (and expect) the HTTP server, the <code>m_expects_server</code> bool is set to <code>true</code> for the implementations. Setting this boolean allows the <code>Manager</code> to register the callback handlers with the HTTP server.</p>
+<h2 id="managerparameters-and-manager-creation"><code>ManagerParameters</code> and <code>Manager</code> creation</h2>
+<p>A number of constructors are provided for the <code>Manager</code> class; however, the most complete (and the one accessible via Python bindings) is the one that defines a set of <code>ManagerParameters</code>. This allows for full configuration of the workflow manager. The parameters object is reproduced below.</p>
+<pre><code class="language-c++">  class ManagerParameters {
+  public:
+    /**
+     * Number of threads for the manager. This should probably match the number
+     * of Managed Task's that will run concurrently.
+     */
+    unsigned num_manager_threads{2};
+    /**
+     * Number of threads for the server process. This probably doesn't need to be
+     * very high unless you expect a lot of HTTP traffic.
+     */
+    unsigned num_server_threads{2};
+    /**
+     * Whether to print logs immediately or only at the end of each JobStep by
+     * pulling them from the log file.
+     */
+    bool unbuffered_logs{false};
+
+    /**
+     * HTTP server host IP (usually 0.0.0.0)
+     */
+    std::string host{&quot;0.0.0.0&quot;};
+    /**
+     * HTTP server port.
+     */
+    std::uint16_t port{8080};
+    /**
+     * What kind of job launching to employ (SLURM, Python, etc.)
+     */
+    LauncherType launch_type{LauncherType::PythonLauncherType};
+    /**
+     * Whether the experiment/workflow is LCLS2. This affects the base environment used.
+     */
+    bool is_daq2{false};
+    /**
+     * What the run type is for this experiment run.
+     */
+    std::string run_type{&quot;&quot;};
+  };
+</code></pre>
+<p>The construct then takes an instance of this class:</p>
+<pre><code class="language-c++">Manager::Manager(const ManagerParameters&amp; params);
+</code></pre>
+<h2 id="running-workflows">Running workflows</h2>
+<p>After creating a <code>Manager</code> instance, there are two steps to run a workflow.</p>
 <ul>
-<li>This ADR WILL be revisited during the post-mortem of the first prototype.</li>
-<li>Compliance section will be updated as prototype evolves.</li>
+<li>
+<p>First, the <code>queue_workflow</code> member function is called (<code>Manager::queue_workflow(const WfDefinition&amp; wf_defn)</code>)</p>
+</li>
+<li>
+<p><code>WfDefinition</code> is a type alias for <code>std::vector&lt;JobStep&gt;</code></p>
+</li>
+<li>
+<p>After queueing a workflow, the <code>run_workflow</code> function is called.</p>
+</li>
 </ul>
+<h3 id="rough-mechanism">Rough mechanism</h3>
+<p>When the <code>Manager</code> was created, it created a <code>ThreadPool</code> instance in line with the set of parameters passed to the constructor. A <code>Launcher</code> type was also selected. As it recurses through the workflow, it will queue the <code>JobStep</code> objects to the <code>ThreadPool</code> queue to be run using the <code>Launcher::launch_task</code> function.</p>
+<ul>
+<li>Specifically, a lambda is used to to queue the selected <code>Launcher::launch_task</code> into the <code>ThreadPool</code>'s work queue.</li>
+</ul>
+<p>The main function for doing this is <code>Manager::recurse_workflow</code> (in <code>workflows/maestro/src/lwm/manager.cc</code>). It is reproduced below for convenience:</p>
+<pre><code class="language-c++">  void Manager::recurse_workflow(const WfDefinition&amp; wf, MaybeJobFutures_t wait_for=std::nullopt) {
+    auto launch_func = [&amp;](const JobStep &amp;job,
+                           bool is_daq2,
+                           MaybeJobFutures_t wait_for = std::nullopt) -&gt; JobReturn {
+      return m_launcher-&gt;launch_task(job, is_daq2, wait_for);
+    };
+
+    for (const auto&amp; step : wf) {
+      auto next_wait_for = std::shared_future&lt;JobReturn&gt;(m_job_pool.enqueue(launch_func,
+                                                                            step,
+                                                                            m_params.is_daq2,
+                                                                            wait_for));
+      m_all_futures-&gt;push_back(next_wait_for);
+      if (!step.next.empty()) {
+        recurse_workflow(step.next, std::optional&lt;decltype(next_wait_for)&gt;(next_wait_for));
+      }
+    }
+  }
+</code></pre>
+<p>After queueing the work to the <code>ThreadPool</code> queue, the <code>Manager</code> receives a future it can check for job completion. Once all <code>JobStep</code>s are queued, the rest of the <code>run_workflow</code> function consists of a loop checking the set of collected futures for completion.</p>
+<h3 id="python-bindings">Python bindings</h3>
+<p>A number of objects are exposed to Python using the <code>pybind11</code> library. The top-level API provides only a single function which creates the workflow manager and runs a workflow:</p>
+<pre><code class="language-c++">std::string run_workflow(LWM::WfDefinition wf_defn,
+                         LWM::ManagerParameters manager_params) {
+  LWM::Manager manager = LWM::Manager(manager_params);
+  manager.queue_workflow(wf_defn);
+
+  return manager.run_workflow();
+}
+</code></pre>
+<p>How to call this function (and create the manager parameters) from Python can be seen in <code>workflows/maestro/src/maestro/launch_maestro.py</code>.</p>
 
 
 

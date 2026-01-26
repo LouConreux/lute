@@ -11,6 +11,10 @@
       
       
       
+        <link rel="prev" href="../configuration/">
+      
+      
+        <link rel="next" href="../running_lute/">
       
       
         
@@ -21,7 +25,7 @@
     
     
       
-        <title>[ADR-7] Task Configuration is Stored in a Database Managed by Executors - LUTE</title>
+        <title>Installation - LUTE</title>
       
     
     
@@ -64,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#adr-7-task-configuration-is-stored-in-a-database-managed-by-executors" class="md-skip">
+        <a href="#installing-lute" class="md-skip">
           Skip to content
         </a>
       
@@ -100,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              [ADR-7] Task Configuration is Stored in a Database Managed by Executors
+              Installation
             
           </span>
         </div>
@@ -244,18 +248,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -276,7 +282,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -294,7 +300,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/configuration/" class="md-nav__link">
+      <a href="../configuration/" class="md-nav__link">
         
   
   
@@ -319,10 +325,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../usage/installation/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -338,6 +371,48 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#source-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source Code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-the-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building the Package
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -350,7 +425,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/running_lute/" class="md-nav__link">
+      <a href="../running_lute/" class="md-nav__link">
         
   
   
@@ -378,7 +453,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/hello_world/" class="md-nav__link">
+      <a href="../hello_world/" class="md-nav__link">
         
   
   
@@ -453,7 +528,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/tasks/smalldata_tools/" class="md-nav__link">
+      <a href="../tasks/smalldata_tools/" class="md-nav__link">
         
   
   
@@ -481,7 +556,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/tasks/xtc1_to_xtc2_conversion/" class="md-nav__link">
+      <a href="../tasks/xtc1_to_xtc2_conversion/" class="md-nav__link">
         
   
   
@@ -509,7 +584,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/tasks/bayfai.md" class="md-nav__link">
+      <a href="../tasks/bayfai.md" class="md-nav__link">
         
   
   
@@ -2879,10 +2954,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#status" class="md-nav__link">
+  <a href="#source-code" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Status
+        Source Code
       
     </span>
   </a>
@@ -2890,82 +2965,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#context-and-problem-statement" class="md-nav__link">
+  <a href="#building-the-package" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Context and Problem Statement
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Decision
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Decision">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#decision-drivers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Decision Drivers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#considered-options" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Considered Options
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#consequences" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Consequences
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#compliance" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Compliance
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metadata" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Metadata
+        Building the Package
       
     </span>
   </a>
@@ -2992,42 +2995,23 @@
   
 
 
-<h1 id="adr-7-task-configuration-is-stored-in-a-database-managed-by-executors">[ADR-7] <code>Task</code> Configuration is Stored in a Database Managed by <code>Executor</code>s</h1>
-<p><strong>Date:</strong> 2024-02-12</p>
-<h2 id="status">Status</h2>
-<p><strong>Proposed</strong></p>
-<h2 id="context-and-problem-statement">Context and Problem Statement</h2>
-<ul>
-<li>For metadata publishing reasons, need a mechanism to maintain a history of <code>Task</code> parameter configurations.</li>
-<li>Each <code>Task</code>'s code is designed to be independent of other <code>Task</code>'s aside from code shared by inheritance.</li>
-<li>Dependencies between <code>Task</code>s are intended to be defined only at the level of workflows.</li>
-<li>Nonetheless, some <code>Task</code>s may have implicit dependencies on others. E.g. one <code>Task</code> may use the output files of another, and so could benefit from having knowledge of where they were written.</li>
-</ul>
-<h2 id="decision">Decision</h2>
-<p>Upon <code>Task</code> completion the managing <code>Executor</code> will write the <code>AnalysisConfig</code> object, including <code>TaskParameters</code>, results and generic configuration information to a database. Some entries from this database can be retrieved to provide default files for <code>TaskParameter</code> fields; however, the <code>Task</code> itself has no knowledge, and does not access to the database.</p>
-<h3 id="decision-drivers">Decision Drivers</h3>
-<ul>
-<li>Want to reduce explicit dependencies between <code>Task</code>s while allowing information to be shared between them.</li>
-<li>Have <code>Task</code>-independent IO be managed solely at the <code>Executor</code> level.</li>
-</ul>
-<h3 id="considered-options">Considered Options</h3>
-<ul>
-<li><code>Task</code>s write the database.</li>
-<li><code>Task</code>s pass information through other mechanisms, such as Airflow.</li>
-</ul>
-<h2 id="consequences">Consequences</h2>
-<ul>
-<li>Requires a database.</li>
-<li>Additional dependency, although at least one backend can be the standard <code>sqlite</code> which should make everything transferrable.</li>
-<li>Allows for information to be passed between <code>Task</code>s without any explicit code dependencies/linkages between them.</li>
-<li>The dependency is still mostly determined by the workflow definition. Default values can be provided by the database if needed.</li>
-</ul>
-<h2 id="compliance">Compliance</h2>
-<h2 id="metadata">Metadata</h2>
-<ul>
-<li>This ADR WILL be revisited during the post-mortem of the first prototype.</li>
-<li>Compliance section will be updated as prototype evolves.</li>
-</ul>
+<h1 id="installing-lute">Installing <code>LUTE</code></h1>
+<h2 id="source-code">Source Code</h2>
+<p>The source code for <code>LUTE</code> is available on GitHub at <a href="https://github.com/slac-lcls/lute">slac-lcls/lute</a>.</p>
+<p>It can therefore be retrieved on the command-line using:</p>
+<pre><code class="language-bash">&gt; git clone git@github.com:slac-lcls/lute
+# or git clone https://github.com/slac-lcls/lute.git for https
+</code></pre>
+<h2 id="building-the-package">Building the Package</h2>
+<p>At the top level of the directory is a script <code>build.sh</code> for building the code on S3DF.</p>
+<p>You can run it using:</p>
+<pre><code class="language-bash">&gt; ./build.sh # in top level of the repository you just cloned
+</code></pre>
+<p>This will create an <code>install</code> directory inside the top-level of <code>LUTE</code>, and build and install all components there.</p>
+<p>The installation can be "activated" after being built. This will put all the relevant scripts and binaries into your path.</p>
+<pre><code class="language-bash">&gt; source install/bin/activate_installation
+</code></pre>
+<p>This activation script is sourced automatically by submission scripts to make the LUTE code available to various job steps.</p>
 
 
 

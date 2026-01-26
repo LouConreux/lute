@@ -14,7 +14,7 @@
         <link rel="prev" href="../new_task/third_party/">
       
       
-        <link rel="next" href="../creating_workflows_airflow/">
+        <link rel="next" href="../creating_workflows_maestro/">
       
       
         
@@ -326,6 +326,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../usage/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../usage/running_lute/" class="md-nav__link">
         
   
@@ -334,6 +362,34 @@
     
   
     Running LUTE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/hello_world/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A complete simple example
   
 
     
@@ -362,10 +418,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
         
           
-          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
             
   
   
@@ -383,8 +439,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_3">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -393,6 +449,62 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/tasks/smalldata_tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using smalldata_tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/tasks/xtc1_to_xtc2_conversion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Converting XTC1 to XTC2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -747,6 +859,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../creating_workflows_maestro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    With Maestro
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../creating_workflows_airflow/" class="md-nav__link">
         
   
@@ -799,6 +939,34 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../maestro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maestro Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -2745,9 +2913,10 @@
 <ol>
 <li><code>Airflow</code>: This is the recommended workflow orchestrator for production use. There are two instances running, one for testing, and the production instance. Workflows (generally) need to be explicitly defined beforehand, and then synced to the Airflow instance, however, which can make the development cycle slightly more difficult.</li>
 <li><code>Prefect</code>: <code>Prefect</code> is a newer platform than Airflow, and an experimental instance has been setup. It offers some nice features for the LUTE use-case, such as the ability to dynamically define workflows fitting more naturally into the prefect model. Currently, however, there are fewer resources allocated to the prefect instance, and it is generally not as stable.</li>
-<li><code>SLURM</code>-job: As a backup, when all else fails, a special script has been developed that can perform workflow orchestration from within a batch job on S3DF. This is intended as backup option only.</li>
+<li><code>maestro</code>: A light-weight standalone manager that is built with LUTE. It has a minimal feature set, but covers all used features in LUTE workflows so far.</li>
+<li><code>SLURM_v1</code>-job: As a backup, when all else fails, the predecessor to <code>maestro</code> is kept. It is a single Python script with a very sparse set of features. This is intended as backup option only, and given the availability of <code>maestro</code> it may be removed entirely at any point.</li>
 </ol>
-<p>For experiment analysis during the beamtime, use the <code>Airflow</code> backend for the time being. In the future, the recommendation may be switched to <code>prefect</code>.</p>
+<p>For experiment analysis during the beamtime, use the <code>maestro</code> backend as the first choice. In the future, the recommendation may change.</p>
 
 
 

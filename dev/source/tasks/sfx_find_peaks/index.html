@@ -326,6 +326,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../usage/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../usage/running_lute/" class="md-nav__link">
         
   
@@ -334,6 +362,34 @@
     
   
     Running LUTE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../usage/hello_world/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A complete simple example
   
 
     
@@ -362,10 +418,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
         
           
-          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
             
   
   
@@ -383,8 +439,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_3">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -393,6 +449,62 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../usage/tasks/smalldata_tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using smalldata_tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../usage/tasks/xtc1_to_xtc2_conversion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Converting XTC1 to XTC2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -733,6 +845,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../development/creating_workflows_maestro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    With Maestro
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../development/creating_workflows_airflow/" class="md-nav__link">
         
   
@@ -785,6 +925,34 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../development/maestro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maestro Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -4768,9 +4936,7 @@ writes the peak information to CXI files.</p>
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>lute/tasks/sfx_find_peaks.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">610</span>
-<span class="normal">611</span>
-<span class="normal">612</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">612</span>
 <span class="normal">613</span>
 <span class="normal">614</span>
 <span class="normal">615</span>
@@ -5145,7 +5311,9 @@ writes the peak information to CXI files.</p>
 <span class="normal">984</span>
 <span class="normal">985</span>
 <span class="normal">986</span>
-<span class="normal">987</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">FindPeaksPyAlgos</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
+<span class="normal">987</span>
+<span class="normal">988</span>
+<span class="normal">989</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">FindPeaksPyAlgos</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Task that performs peak finding using the PyAlgos peak finding algorithms and</span>
 <span class="sd">    writes the peak information to CXI files.</span>
@@ -5627,9 +5795,7 @@ generally be of shape (n_panels, ss, fs)</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/sfx_find_peaks.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">890</span>
-<span class="normal">891</span>
-<span class="normal">892</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">892</span>
 <span class="normal">893</span>
 <span class="normal">894</span>
 <span class="normal">895</span>
@@ -5655,7 +5821,9 @@ generally be of shape (n_panels, ss, fs)</p>
 <span class="normal">915</span>
 <span class="normal">916</span>
 <span class="normal">917</span>
-<span class="normal">918</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_assemble_image</span><span class="p">(</span>
+<span class="normal">918</span>
+<span class="normal">919</span>
+<span class="normal">920</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_assemble_image</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">det</span><span class="p">:</span> <span class="n">Detector</span><span class="p">,</span> <span class="n">img</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">float64</span><span class="p">]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Assemble an image based on psana geometry.</span>
@@ -5795,9 +5963,7 @@ misses across the run.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/sfx_find_peaks.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">920</span>
-<span class="normal">921</span>
-<span class="normal">922</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">922</span>
 <span class="normal">923</span>
 <span class="normal">924</span>
 <span class="normal">925</span>
@@ -5862,7 +6028,9 @@ misses across the run.</p>
 <span class="normal">984</span>
 <span class="normal">985</span>
 <span class="normal">986</span>
-<span class="normal">987</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_create_powder_plots</span><span class="p">(</span>
+<span class="normal">987</span>
+<span class="normal">988</span>
+<span class="normal">989</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_create_powder_plots</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">det</span><span class="p">:</span> <span class="n">Detector</span><span class="p">,</span>
     <span class="n">powder_hits</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -5970,9 +6138,7 @@ peaks (Any): Peak information as returned by psana.
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/sfx_find_peaks.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">589</span>
-<span class="normal">590</span>
-<span class="normal">591</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">591</span>
 <span class="normal">592</span>
 <span class="normal">593</span>
 <span class="normal">594</span>
@@ -5988,7 +6154,9 @@ peaks (Any): Peak information as returned by psana.
 <span class="normal">604</span>
 <span class="normal">605</span>
 <span class="normal">606</span>
-<span class="normal">607</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_peaks_to_libpressio_configuration</span><span class="p">(</span><span class="n">lp_json</span><span class="p">,</span> <span class="n">peaks</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="normal">607</span>
+<span class="normal">608</span>
+<span class="normal">609</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_peaks_to_libpressio_configuration</span><span class="p">(</span><span class="n">lp_json</span><span class="p">,</span> <span class="n">peaks</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Add peak infromation to libpressio configuration</span>
 
@@ -6045,9 +6213,7 @@ for the libpressio library
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/sfx_find_peaks.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">501</span>
-<span class="normal">502</span>
-<span class="normal">503</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">503</span>
 <span class="normal">504</span>
 <span class="normal">505</span>
 <span class="normal">506</span>
@@ -6130,7 +6296,9 @@ for the libpressio library
 <span class="normal">583</span>
 <span class="normal">584</span>
 <span class="normal">585</span>
-<span class="normal">586</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">generate_libpressio_configuration</span><span class="p">(</span>
+<span class="normal">586</span>
+<span class="normal">587</span>
+<span class="normal">588</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">generate_libpressio_configuration</span><span class="p">(</span>
     <span class="n">compressor</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;sz3&quot;</span><span class="p">,</span> <span class="s2">&quot;qoz&quot;</span><span class="p">],</span>
     <span class="n">roi_window_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">bin_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
@@ -6359,7 +6527,9 @@ n_hits_total (int): Total number of hits found across all nodes.
 <span class="normal">495</span>
 <span class="normal">496</span>
 <span class="normal">497</span>
-<span class="normal">498</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">write_master_file</span><span class="p">(</span>
+<span class="normal">498</span>
+<span class="normal">499</span>
+<span class="normal">500</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">write_master_file</span><span class="p">(</span>
     <span class="n">mpi_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">outdir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -6418,7 +6588,8 @@ n_hits_total (int): Total number of hits found across all nodes.
     <span class="c1"># Compute cumulative powder hits and misses for all files</span>
     <span class="c1"># Copy mask as well</span>
     <span class="n">mask</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">NDArray</span><span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">uint16</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">powder_hits</span><span class="p">,</span> <span class="n">powder_misses</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+    <span class="n">powder_hits</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">NDArray</span><span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">float64</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">powder_misses</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">NDArray</span><span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">float64</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">fnames</span><span class="p">:</span>
         <span class="n">f</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">mask</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -6427,6 +6598,7 @@ n_hits_total (int): Total number of hits found across all nodes.
             <span class="n">powder_hits</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;entry_1/data_1/powderHits&quot;</span><span class="p">][:]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
             <span class="n">powder_misses</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;entry_1/data_1/powderMisses&quot;</span><span class="p">][:]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">powder_misses</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
             <span class="n">powder_hits</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span>
                 <span class="n">powder_hits</span><span class="p">,</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;entry_1/data_1/powderHits&quot;</span><span class="p">][:]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
             <span class="p">)</span>

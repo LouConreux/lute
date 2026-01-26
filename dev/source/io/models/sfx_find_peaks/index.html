@@ -326,6 +326,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../usage/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../usage/running_lute/" class="md-nav__link">
         
   
@@ -334,6 +362,34 @@
     
   
     Running LUTE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../usage/hello_world/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A complete simple example
   
 
     
@@ -362,10 +418,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
         
           
-          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
             
   
   
@@ -383,8 +439,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_3">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -393,6 +449,62 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../usage/tasks/smalldata_tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using smalldata_tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../usage/tasks/xtc1_to_xtc2_conversion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Converting XTC1 to XTC2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -733,6 +845,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../development/creating_workflows_maestro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    With Maestro
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../development/creating_workflows_airflow/" class="md-nav__link">
         
   
@@ -785,6 +925,34 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../development/maestro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maestro Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -3064,8 +3232,7 @@ NOTE: This Task is deprecated and provided for compatibility only.</p>
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>lute/io/models/sfx_find_peaks.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">137</span>
-<span class="normal">138</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">138</span>
 <span class="normal">139</span>
 <span class="normal">140</span>
 <span class="normal">141</span>
@@ -3255,16 +3422,7 @@ NOTE: This Task is deprecated and provided for compatibility only.</p>
 <span class="normal">325</span>
 <span class="normal">326</span>
 <span class="normal">327</span>
-<span class="normal">328</span>
-<span class="normal">329</span>
-<span class="normal">330</span>
-<span class="normal">331</span>
-<span class="normal">332</span>
-<span class="normal">333</span>
-<span class="normal">334</span>
-<span class="normal">335</span>
-<span class="normal">336</span>
-<span class="normal">337</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">FindPeaksPsocakeParameters</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="p">):</span>
+<span class="normal">328</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">FindPeaksPsocakeParameters</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Parameters for crystallographic (Bragg) peak finding using Psocake.</span>
 
 <span class="sd">    This peak finding Task optionally has the ability to compress/decompress</span>
@@ -3278,16 +3436,6 @@ NOTE: This Task is deprecated and provided for compatibility only.</p>
 
         <span class="n">result_from_params</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Defines a result from the parameters. Use a validator to do so.&quot;&quot;&quot;</span>
-
-    <span class="k">class</span><span class="w"> </span><span class="nc">SZParameters</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-        <span class="n">compressor</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;qoz&quot;</span><span class="p">,</span> <span class="s2">&quot;sz3&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="s2">&quot;qoz&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;SZ compression algorithm (qoz, sz3)&quot;</span>
-        <span class="p">)</span>
-        <span class="n">binSize</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;SZ compression&#39;s bin size paramater&quot;</span><span class="p">)</span>
-        <span class="n">roiWindowSize</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="mi">2</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;SZ compression&#39;s ROI window size paramater&quot;</span>
-        <span class="p">)</span>
-        <span class="n">absError</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">descriptionp</span><span class="o">=</span><span class="s2">&quot;Maximum absolute error value&quot;</span><span class="p">)</span>
 
     <span class="n">executable</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">&quot;mpirun&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;MPI executable.&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
     <span class="n">np</span><span class="p">:</span> <span class="n">PositiveInt</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
@@ -3416,7 +3564,7 @@ NOTE: This Task is deprecated and provided for compatibility only.</p>
         <span class="p">),</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Template information for the sz.json file&quot;</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">sz_parameters</span><span class="p">:</span> <span class="n">SZParameters</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+    <span class="n">sz_parameters</span><span class="p">:</span> <span class="n">SZCompressorParameters</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Configuration parameters for SZ Compression&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
     <span class="p">)</span>
 
@@ -3442,18 +3590,18 @@ NOTE: This Task is deprecated and provided for compatibility only.</p>
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;sz_parameters&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_sz_compression_parameters</span><span class="p">(</span>
-        <span class="bp">cls</span><span class="p">,</span> <span class="n">sz_parameters</span><span class="p">:</span> <span class="n">SZParameters</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">sz_parameters</span><span class="p">:</span> <span class="n">SZCompressorParameters</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">values</span><span class="p">[</span><span class="s2">&quot;compressor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sz_parameters</span><span class="o">.</span><span class="n">compressor</span>
-        <span class="n">values</span><span class="p">[</span><span class="s2">&quot;binSize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sz_parameters</span><span class="o">.</span><span class="n">binSize</span>
-        <span class="n">values</span><span class="p">[</span><span class="s2">&quot;roiWindowSize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sz_parameters</span><span class="o">.</span><span class="n">roiWindowSize</span>
+        <span class="n">values</span><span class="p">[</span><span class="s2">&quot;binSize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sz_parameters</span><span class="o">.</span><span class="n">bin_size</span>
+        <span class="n">values</span><span class="p">[</span><span class="s2">&quot;roiWindowSize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sz_parameters</span><span class="o">.</span><span class="n">roi_window_size</span>
         <span class="k">if</span> <span class="n">sz_parameters</span><span class="o">.</span><span class="n">compressor</span> <span class="o">==</span> <span class="s2">&quot;qoz&quot;</span><span class="p">:</span>
             <span class="n">values</span><span class="p">[</span><span class="s2">&quot;pressio_opts&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="s2">&quot;pressio:abs&quot;</span><span class="p">:</span> <span class="n">sz_parameters</span><span class="o">.</span><span class="n">absError</span><span class="p">,</span>
+                <span class="s2">&quot;pressio:abs&quot;</span><span class="p">:</span> <span class="n">sz_parameters</span><span class="o">.</span><span class="n">abs_error</span><span class="p">,</span>
                 <span class="s2">&quot;qoz&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;qoz:stride&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">},</span>
             <span class="p">}</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">values</span><span class="p">[</span><span class="s2">&quot;pressio_opts&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;pressio:abs&quot;</span><span class="p">:</span> <span class="n">sz_parameters</span><span class="o">.</span><span class="n">absError</span><span class="p">}</span>
+            <span class="n">values</span><span class="p">[</span><span class="s2">&quot;pressio_opts&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;pressio:abs&quot;</span><span class="p">:</span> <span class="n">sz_parameters</span><span class="o">.</span><span class="n">abs_error</span><span class="p">}</span>
         <span class="k">return</span> <span class="kc">None</span>
 
     <span class="nd">@root_validator</span><span class="p">(</span><span class="n">pre</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -3506,12 +3654,12 @@ NOTE: This Task is deprecated and provided for compatibility only.</p>
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>lute/io/models/sfx_find_peaks.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">145</span>
-<span class="normal">146</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">146</span>
 <span class="normal">147</span>
 <span class="normal">148</span>
 <span class="normal">149</span>
-<span class="normal">150</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">TaskParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
+<span class="normal">150</span>
+<span class="normal">151</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">TaskParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
     <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether the Executor should mark a specified parameter as a result.&quot;&quot;&quot;</span>
 
@@ -3626,19 +3774,7 @@ data with SZ for the purpose of compression validation.</p>
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>lute/io/models/sfx_find_peaks.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 10</span>
-<span class="normal"> 11</span>
-<span class="normal"> 12</span>
-<span class="normal"> 13</span>
-<span class="normal"> 14</span>
-<span class="normal"> 15</span>
-<span class="normal"> 16</span>
-<span class="normal"> 17</span>
-<span class="normal"> 18</span>
-<span class="normal"> 19</span>
-<span class="normal"> 20</span>
-<span class="normal"> 21</span>
-<span class="normal"> 22</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 22</span>
 <span class="normal"> 23</span>
 <span class="normal"> 24</span>
 <span class="normal"> 25</span>
@@ -3750,7 +3886,8 @@ data with SZ for the purpose of compression validation.</p>
 <span class="normal">131</span>
 <span class="normal">132</span>
 <span class="normal">133</span>
-<span class="normal">134</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">FindPeaksPyAlgosParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
+<span class="normal">134</span>
+<span class="normal">135</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">FindPeaksPyAlgosParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Parameters for crystallographic (Bragg) peak finding using PyAlgos.</span>
 
 <span class="sd">    This peak finding Task optionally has the ability to compress/decompress</span>
@@ -3760,17 +3897,6 @@ data with SZ for the purpose of compression validation.</p>
     <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">TaskParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
         <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Whether the Executor should mark a specified parameter as a result.&quot;&quot;&quot;</span>
-
-    <span class="k">class</span><span class="w"> </span><span class="nc">SZCompressorParameters</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-        <span class="n">compressor</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;qoz&quot;</span><span class="p">,</span> <span class="s2">&quot;sz3&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="s2">&quot;qoz&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Compression algorithm (&quot;qoz&quot; or &quot;sz3&quot;)&#39;</span>
-        <span class="p">)</span>
-        <span class="n">abs_error</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Absolute error bound&quot;</span><span class="p">)</span>
-        <span class="n">bin_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Bin size&quot;</span><span class="p">)</span>
-        <span class="n">roi_window_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="mi">9</span><span class="p">,</span>
-            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Default window size&quot;</span><span class="p">,</span>
-        <span class="p">)</span>
 
     <span class="n">outdir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Output directory for cxi files&quot;</span><span class="p">,</span>
@@ -3916,9 +4042,9 @@ data with SZ for the purpose of compression validation.</p>
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>lute/io/models/sfx_find_peaks.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">TaskParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">TaskParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
     <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether the Executor should mark a specified parameter as a result.&quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>

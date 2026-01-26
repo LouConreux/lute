@@ -326,6 +326,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../../usage/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../../usage/running_lute/" class="md-nav__link">
         
   
@@ -334,6 +362,34 @@
     
   
     Running LUTE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../usage/hello_world/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A complete simple example
   
 
     
@@ -362,10 +418,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
         
           
-          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
             
   
   
@@ -383,8 +439,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_3">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -393,6 +449,62 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../usage/tasks/smalldata_tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using smalldata_tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../usage/tasks/xtc1_to_xtc2_conversion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Converting XTC1 to XTC2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -733,6 +845,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../../development/creating_workflows_maestro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    With Maestro
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../../development/creating_workflows_airflow/" class="md-nav__link">
         
   
@@ -785,6 +925,34 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../development/maestro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maestro Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -3490,14 +3658,7 @@ set of parameters.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/io/_db/v2/_sqlite.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">770</span>
-<span class="normal">771</span>
-<span class="normal">772</span>
-<span class="normal">773</span>
-<span class="normal">774</span>
-<span class="normal">775</span>
-<span class="normal">776</span>
-<span class="normal">777</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">777</span>
 <span class="normal">778</span>
 <span class="normal">779</span>
 <span class="normal">780</span>
@@ -3521,7 +3682,14 @@ set of parameters.</p>
 <span class="normal">798</span>
 <span class="normal">799</span>
 <span class="normal">800</span>
-<span class="normal">801</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_add_env_vars</span><span class="p">(</span>
+<span class="normal">801</span>
+<span class="normal">802</span>
+<span class="normal">803</span>
+<span class="normal">804</span>
+<span class="normal">805</span>
+<span class="normal">806</span>
+<span class="normal">807</span>
+<span class="normal">808</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_add_env_vars</span><span class="p">(</span>
     <span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">env_vars</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">execution_id</span><span class="p">:</span> <span class="nb">int</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Add all environment variables into the `environment` table for `execution_id`.</span>
@@ -3726,7 +3894,14 @@ to this set of parameters. It may be None if preparing a placeholder.</p>
 <span class="normal">754</span>
 <span class="normal">755</span>
 <span class="normal">756</span>
-<span class="normal">757</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_add_parameters</span><span class="p">(</span>
+<span class="normal">757</span>
+<span class="normal">758</span>
+<span class="normal">759</span>
+<span class="normal">760</span>
+<span class="normal">761</span>
+<span class="normal">762</span>
+<span class="normal">763</span>
+<span class="normal">764</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_add_parameters</span><span class="p">(</span>
     <span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span>
     <span class="n">params</span><span class="p">:</span> <span class="n">TaskParameters</span><span class="p">,</span>
     <span class="n">execution_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -3773,8 +3948,15 @@ to this set of parameters. It may be None if preparing a placeholder.</p>
         <span class="p">)</span>
         <span class="n">raw_val</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">param_dict</span><span class="p">[</span><span class="n">param</span><span class="p">]</span>
         <span class="n">json_val</span><span class="p">:</span> <span class="nb">str</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">raw_val</span><span class="p">,</span> <span class="n">TemplateParameters</span><span class="p">):</span>
-            <span class="n">json_val</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">raw_val</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+        <span class="c1"># Type checking may not work because of the parameters hack to support different</span>
+        <span class="c1"># environments -- so check the class name... not great...</span>
+        <span class="k">if</span> <span class="n">raw_val</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;TemplateParameters&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">raw_val</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="s2">&quot;dict&quot;</span><span class="p">):</span>
+                <span class="n">json_val</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">raw_val</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">dict</span><span class="p">())</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">json_val</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">raw_val</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">raw_val</span><span class="p">,</span> <span class="s2">&quot;dict&quot;</span><span class="p">):</span>
+            <span class="n">json_val</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">raw_val</span><span class="o">.</span><span class="n">dict</span><span class="p">())</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">json_val</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">raw_val</span><span class="p">)</span>
         <span class="n">param_entries</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
@@ -6113,14 +6295,7 @@ after Task completion.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/io/_db/v2/_sqlite.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">859</span>
-<span class="normal">860</span>
-<span class="normal">861</span>
-<span class="normal">862</span>
-<span class="normal">863</span>
-<span class="normal">864</span>
-<span class="normal">865</span>
-<span class="normal">866</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">866</span>
 <span class="normal">867</span>
 <span class="normal">868</span>
 <span class="normal">869</span>
@@ -6200,7 +6375,14 @@ after Task completion.</p>
 <span class="normal">943</span>
 <span class="normal">944</span>
 <span class="normal">945</span>
-<span class="normal">946</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_execution</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">DescribedAnalysis</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">946</span>
+<span class="normal">947</span>
+<span class="normal">948</span>
+<span class="normal">949</span>
+<span class="normal">950</span>
+<span class="normal">951</span>
+<span class="normal">952</span>
+<span class="normal">953</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_execution</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">DescribedAnalysis</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Write an DescribedAnalysis object to the database.</span>
 
 <span class="sd">    This will unpack all the values from the object and distribute the entries</span>
@@ -6384,14 +6566,7 @@ layer should then call <code>update_execution</code> to fill in the rest of the 
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/io/_db/v2/_sqlite.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1015</span>
-<span class="normal">1016</span>
-<span class="normal">1017</span>
-<span class="normal">1018</span>
-<span class="normal">1019</span>
-<span class="normal">1020</span>
-<span class="normal">1021</span>
-<span class="normal">1022</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1022</span>
 <span class="normal">1023</span>
 <span class="normal">1024</span>
 <span class="normal">1025</span>
@@ -6443,7 +6618,14 @@ layer should then call <code>update_execution</code> to fill in the rest of the 
 <span class="normal">1071</span>
 <span class="normal">1072</span>
 <span class="normal">1073</span>
-<span class="normal">1074</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_placeholder_execution</span><span class="p">(</span>
+<span class="normal">1074</span>
+<span class="normal">1075</span>
+<span class="normal">1076</span>
+<span class="normal">1077</span>
+<span class="normal">1078</span>
+<span class="normal">1079</span>
+<span class="normal">1080</span>
+<span class="normal">1081</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_placeholder_execution</span><span class="p">(</span>
     <span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">TaskParameters</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RowIds</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Write a TaskParameters object to the database.</span>
@@ -6703,14 +6885,7 @@ An example of how to manipulate this data is in <code>utilities/src/dbview.py</c
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/io/_db/v2/_sqlite.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1172</span>
-<span class="normal">1173</span>
-<span class="normal">1174</span>
-<span class="normal">1175</span>
-<span class="normal">1176</span>
-<span class="normal">1177</span>
-<span class="normal">1178</span>
-<span class="normal">1179</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1179</span>
 <span class="normal">1180</span>
 <span class="normal">1181</span>
 <span class="normal">1182</span>
@@ -6737,7 +6912,14 @@ An example of how to manipulate this data is in <code>utilities/src/dbview.py</c
 <span class="normal">1203</span>
 <span class="normal">1204</span>
 <span class="normal">1205</span>
-<span class="normal">1206</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">executions_summary</span><span class="p">(</span>
+<span class="normal">1206</span>
+<span class="normal">1207</span>
+<span class="normal">1208</span>
+<span class="normal">1209</span>
+<span class="normal">1210</span>
+<span class="normal">1211</span>
+<span class="normal">1212</span>
+<span class="normal">1213</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">executions_summary</span><span class="p">(</span>
     <span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return some summary fields of all executions recorded.</span>
@@ -6873,14 +7055,7 @@ NOTE: The paremeter_types.definition will be repeated in each row, but
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/io/_db/v2/_sqlite.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1247</span>
-<span class="normal">1248</span>
-<span class="normal">1249</span>
-<span class="normal">1250</span>
-<span class="normal">1251</span>
-<span class="normal">1252</span>
-<span class="normal">1253</span>
-<span class="normal">1254</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1254</span>
 <span class="normal">1255</span>
 <span class="normal">1256</span>
 <span class="normal">1257</span>
@@ -6910,7 +7085,14 @@ NOTE: The paremeter_types.definition will be repeated in each row, but
 <span class="normal">1281</span>
 <span class="normal">1282</span>
 <span class="normal">1283</span>
-<span class="normal">1284</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_task_parameters_definition_and_params</span><span class="p">(</span>
+<span class="normal">1284</span>
+<span class="normal">1285</span>
+<span class="normal">1286</span>
+<span class="normal">1287</span>
+<span class="normal">1288</span>
+<span class="normal">1289</span>
+<span class="normal">1290</span>
+<span class="normal">1291</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_task_parameters_definition_and_params</span><span class="p">(</span>
     <span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">row_ids</span><span class="p">:</span> <span class="n">RowIds</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return parameters and their definition, given row IDs.</span>
@@ -7098,14 +7280,7 @@ the Python object.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/io/_db/v2/_sqlite.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1077</span>
-<span class="normal">1078</span>
-<span class="normal">1079</span>
-<span class="normal">1080</span>
-<span class="normal">1081</span>
-<span class="normal">1082</span>
-<span class="normal">1083</span>
-<span class="normal">1084</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1084</span>
 <span class="normal">1085</span>
 <span class="normal">1086</span>
 <span class="normal">1087</span>
@@ -7190,7 +7365,14 @@ the Python object.</p>
 <span class="normal">1166</span>
 <span class="normal">1167</span>
 <span class="normal">1168</span>
-<span class="normal">1169</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">select_param_from_db</span><span class="p">(</span>
+<span class="normal">1169</span>
+<span class="normal">1170</span>
+<span class="normal">1171</span>
+<span class="normal">1172</span>
+<span class="normal">1173</span>
+<span class="normal">1174</span>
+<span class="normal">1175</span>
+<span class="normal">1176</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">select_param_from_db</span><span class="p">(</span>
     <span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span>
     <span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">param_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -7384,14 +7566,7 @@ An example of how to manipulate this data is in <code>utilities/src/dbview.py</c
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/io/_db/v2/_sqlite.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1209</span>
-<span class="normal">1210</span>
-<span class="normal">1211</span>
-<span class="normal">1212</span>
-<span class="normal">1213</span>
-<span class="normal">1214</span>
-<span class="normal">1215</span>
-<span class="normal">1216</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1216</span>
 <span class="normal">1217</span>
 <span class="normal">1218</span>
 <span class="normal">1219</span>
@@ -7419,7 +7594,14 @@ An example of how to manipulate this data is in <code>utilities/src/dbview.py</c
 <span class="normal">1241</span>
 <span class="normal">1242</span>
 <span class="normal">1243</span>
-<span class="normal">1244</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">task_parameters_summary</span><span class="p">(</span>
+<span class="normal">1244</span>
+<span class="normal">1245</span>
+<span class="normal">1246</span>
+<span class="normal">1247</span>
+<span class="normal">1248</span>
+<span class="normal">1249</span>
+<span class="normal">1250</span>
+<span class="normal">1251</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">task_parameters_summary</span><span class="p">(</span>
     <span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return parameters for a specific task ordered by execution.</span>
@@ -7544,14 +7726,7 @@ Task.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/io/_db/v2/_sqlite.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 949</span>
-<span class="normal"> 950</span>
-<span class="normal"> 951</span>
-<span class="normal"> 952</span>
-<span class="normal"> 953</span>
-<span class="normal"> 954</span>
-<span class="normal"> 955</span>
-<span class="normal"> 956</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 956</span>
 <span class="normal"> 957</span>
 <span class="normal"> 958</span>
 <span class="normal"> 959</span>
@@ -7607,7 +7782,14 @@ Task.</p>
 <span class="normal">1009</span>
 <span class="normal">1010</span>
 <span class="normal">1011</span>
-<span class="normal">1012</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">update_execution</span><span class="p">(</span>
+<span class="normal">1012</span>
+<span class="normal">1013</span>
+<span class="normal">1014</span>
+<span class="normal">1015</span>
+<span class="normal">1016</span>
+<span class="normal">1017</span>
+<span class="normal">1018</span>
+<span class="normal">1019</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">update_execution</span><span class="p">(</span>
     <span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">DescribedAnalysis</span><span class="p">,</span> <span class="n">row_ids</span><span class="p">:</span> <span class="n">RowIds</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Update all entries associated with an Execution.</span>

@@ -11,21 +11,25 @@
       
       
       
+        <link rel="prev" href="../smalldata_tools/">
+      
+      
+        <link rel="next" href="../../../development/architecture/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>[ADR-7] Task Configuration is Stored in a Database Managed by Executors - LUTE</title>
+        <title>Converting XTC1 to XTC2 - LUTE</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
       
 
@@ -44,9 +48,9 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -64,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#adr-7-task-configuration-is-stored-in-a-database-managed-by-executors" class="md-skip">
+        <a href="#converting-xtc1-to-xtc2-files-convertxtc1to2" class="md-skip">
           Skip to content
         </a>
       
@@ -80,7 +84,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="LUTE" class="md-header__button md-logo" aria-label="LUTE" data-md-component="logo">
+    <a href="../../.." title="LUTE" class="md-header__button md-logo" aria-label="LUTE" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -100,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              [ADR-7] Task Configuration is Stored in a Database Managed by Executors
+              Converting XTC1 to XTC2
             
           </span>
         </div>
@@ -190,7 +194,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="LUTE" class="md-nav__button md-logo" aria-label="LUTE" data-md-component="logo">
+    <a href="../../.." title="LUTE" class="md-nav__button md-logo" aria-label="LUTE" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -220,7 +224,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../quick_start/" class="md-nav__link">
+      <a href="../../../quick_start/" class="md-nav__link">
         
   
   
@@ -244,18 +248,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -276,7 +282,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -294,7 +300,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/configuration/" class="md-nav__link">
+      <a href="../../configuration/" class="md-nav__link">
         
   
   
@@ -322,7 +328,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/installation/" class="md-nav__link">
+      <a href="../../installation/" class="md-nav__link">
         
   
   
@@ -350,7 +356,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/running_lute/" class="md-nav__link">
+      <a href="../../running_lute/" class="md-nav__link">
         
   
   
@@ -378,7 +384,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/hello_world/" class="md-nav__link">
+      <a href="../../hello_world/" class="md-nav__link">
         
   
   
@@ -403,18 +409,20 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" checked>
         
           
           <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
@@ -435,7 +443,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -453,7 +461,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/tasks/smalldata_tools/" class="md-nav__link">
+      <a href="../smalldata_tools/" class="md-nav__link">
         
   
   
@@ -478,10 +486,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../usage/tasks/xtc1_to_xtc2_conversion/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Converting XTC1 to XTC2
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -497,6 +532,109 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#command-line-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line help
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managed-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managed Tasks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implicit-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implicit parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selecting-events-eventfile-and-nevents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Selecting events: eventfile and nevents
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-location-output_file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output location: output_file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specifying-what-to-convert-and-how-xtc1_access_pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Specifying what to convert and how: xtc1_access_pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -509,7 +647,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/tasks/bayfai.md" class="md-nav__link">
+      <a href="../bayfai.md" class="md-nav__link">
         
   
   
@@ -599,7 +737,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/architecture/" class="md-nav__link">
+      <a href="../../../development/architecture/" class="md-nav__link">
         
   
   
@@ -674,7 +812,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/new_task/overview/" class="md-nav__link">
+      <a href="../../../development/new_task/overview/" class="md-nav__link">
         
   
   
@@ -702,7 +840,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/new_task/first_party/" class="md-nav__link">
+      <a href="../../../development/new_task/first_party/" class="md-nav__link">
         
   
   
@@ -730,7 +868,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/new_task/third_party/" class="md-nav__link">
+      <a href="../../../development/new_task/third_party/" class="md-nav__link">
         
   
   
@@ -813,7 +951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/creating_workflows/" class="md-nav__link">
+      <a href="../../../development/creating_workflows/" class="md-nav__link">
         
   
   
@@ -841,7 +979,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/creating_workflows_maestro/" class="md-nav__link">
+      <a href="../../../development/creating_workflows_maestro/" class="md-nav__link">
         
   
   
@@ -869,7 +1007,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/creating_workflows_airflow/" class="md-nav__link">
+      <a href="../../../development/creating_workflows_airflow/" class="md-nav__link">
         
   
   
@@ -897,7 +1035,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/dynamic_workflows/" class="md-nav__link">
+      <a href="../../../development/dynamic_workflows/" class="md-nav__link">
         
   
   
@@ -933,7 +1071,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/maestro/" class="md-nav__link">
+      <a href="../../../development/maestro/" class="md-nav__link">
         
   
   
@@ -961,7 +1099,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/tests/" class="md-nav__link">
+      <a href="../../../development/tests/" class="md-nav__link">
         
   
   
@@ -1043,7 +1181,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/managed_tasks/" class="md-nav__link">
+      <a href="../../../source/managed_tasks/" class="md-nav__link">
         
   
   
@@ -1118,7 +1256,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/execution/executor/" class="md-nav__link">
+      <a href="../../../source/execution/executor/" class="md-nav__link">
         
   
   
@@ -1146,7 +1284,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/execution/ipc/" class="md-nav__link">
+      <a href="../../../source/execution/ipc/" class="md-nav__link">
         
   
   
@@ -1174,7 +1312,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/execution/debug_utils/" class="md-nav__link">
+      <a href="../../../source/execution/debug_utils/" class="md-nav__link">
         
   
   
@@ -1202,7 +1340,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/execution/logging/" class="md-nav__link">
+      <a href="../../../source/execution/logging/" class="md-nav__link">
         
   
   
@@ -1285,7 +1423,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/task/" class="md-nav__link">
+      <a href="../../../source/tasks/task/" class="md-nav__link">
         
   
   
@@ -1313,7 +1451,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/tasklets/" class="md-nav__link">
+      <a href="../../../source/tasks/tasklets/" class="md-nav__link">
         
   
   
@@ -1341,7 +1479,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/dataclasses/" class="md-nav__link">
+      <a href="../../../source/tasks/dataclasses/" class="md-nav__link">
         
   
   
@@ -1369,7 +1507,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/bayfai/" class="md-nav__link">
+      <a href="../../../source/tasks/bayfai/" class="md-nav__link">
         
   
   
@@ -1397,7 +1535,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/_bayfai/" class="md-nav__link">
+      <a href="../../../source/tasks/_bayfai/" class="md-nav__link">
         
   
   
@@ -1425,7 +1563,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/_bayfai2/" class="md-nav__link">
+      <a href="../../../source/tasks/_bayfai2/" class="md-nav__link">
         
   
   
@@ -1453,7 +1591,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/geometry/" class="md-nav__link">
+      <a href="../../../source/tasks/geometry/" class="md-nav__link">
         
   
   
@@ -1481,7 +1619,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/_geometry/" class="md-nav__link">
+      <a href="../../../source/tasks/_geometry/" class="md-nav__link">
         
   
   
@@ -1509,7 +1647,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/sfx_find_peaks/" class="md-nav__link">
+      <a href="../../../source/tasks/sfx_find_peaks/" class="md-nav__link">
         
   
   
@@ -1537,7 +1675,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/sfx_index/" class="md-nav__link">
+      <a href="../../../source/tasks/sfx_index/" class="md-nav__link">
         
   
   
@@ -1565,7 +1703,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/smalldata/" class="md-nav__link">
+      <a href="../../../source/tasks/smalldata/" class="md-nav__link">
         
   
   
@@ -1593,7 +1731,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/_smalldata/" class="md-nav__link">
+      <a href="../../../source/tasks/_smalldata/" class="md-nav__link">
         
   
   
@@ -1621,7 +1759,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/math/" class="md-nav__link">
+      <a href="../../../source/tasks/math/" class="md-nav__link">
         
   
   
@@ -1649,7 +1787,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/test/" class="md-nav__link">
+      <a href="../../../source/tasks/test/" class="md-nav__link">
         
   
   
@@ -1677,7 +1815,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/mpi_test/" class="md-nav__link">
+      <a href="../../../source/tasks/mpi_test/" class="md-nav__link">
         
   
   
@@ -1752,7 +1890,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/util/html/" class="md-nav__link">
+      <a href="../../../source/tasks/util/html/" class="md-nav__link">
         
   
   
@@ -1780,7 +1918,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/util/environment/" class="md-nav__link">
+      <a href="../../../source/tasks/util/environment/" class="md-nav__link">
         
   
   
@@ -1918,7 +2056,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/models/base/" class="md-nav__link">
+      <a href="../../../source/io/models/base/" class="md-nav__link">
         
   
   
@@ -1946,7 +2084,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/models/bayfai/" class="md-nav__link">
+      <a href="../../../source/io/models/bayfai/" class="md-nav__link">
         
   
   
@@ -1974,7 +2112,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/models/geometry/" class="md-nav__link">
+      <a href="../../../source/io/models/geometry/" class="md-nav__link">
         
   
   
@@ -2002,7 +2140,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/models/sfx_find_peaks/" class="md-nav__link">
+      <a href="../../../source/io/models/sfx_find_peaks/" class="md-nav__link">
         
   
   
@@ -2030,7 +2168,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/models/sfx_index/" class="md-nav__link">
+      <a href="../../../source/io/models/sfx_index/" class="md-nav__link">
         
   
   
@@ -2058,7 +2196,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/models/sfx_merge/" class="md-nav__link">
+      <a href="../../../source/io/models/sfx_merge/" class="md-nav__link">
         
   
   
@@ -2086,7 +2224,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/models/sfx_solve/" class="md-nav__link">
+      <a href="../../../source/io/models/sfx_solve/" class="md-nav__link">
         
   
   
@@ -2114,7 +2252,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/models/smd/" class="md-nav__link">
+      <a href="../../../source/io/models/smd/" class="md-nav__link">
         
   
   
@@ -2142,7 +2280,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/models/validators/" class="md-nav__link">
+      <a href="../../../source/io/models/validators/" class="md-nav__link">
         
   
   
@@ -2170,7 +2308,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/models/tests/" class="md-nav__link">
+      <a href="../../../source/io/models/tests/" class="md-nav__link">
         
   
   
@@ -2198,7 +2336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/models/mpi_tests/" class="md-nav__link">
+      <a href="../../../source/io/models/mpi_tests/" class="md-nav__link">
         
   
   
@@ -2234,7 +2372,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/calib/" class="md-nav__link">
+      <a href="../../../source/io/calib/" class="md-nav__link">
         
   
   
@@ -2262,7 +2400,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/config/" class="md-nav__link">
+      <a href="../../../source/io/config/" class="md-nav__link">
         
   
   
@@ -2290,7 +2428,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/db/" class="md-nav__link">
+      <a href="../../../source/io/db/" class="md-nav__link">
         
   
   
@@ -2365,7 +2503,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/_db/common_sqlite/" class="md-nav__link">
+      <a href="../../../source/io/_db/common_sqlite/" class="md-nav__link">
         
   
   
@@ -2440,7 +2578,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/_db/v2/api/" class="md-nav__link">
+      <a href="../../../source/io/_db/v2/api/" class="md-nav__link">
         
   
   
@@ -2468,7 +2606,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/_db/v2/_sqlite/" class="md-nav__link">
+      <a href="../../../source/io/_db/v2/_sqlite/" class="md-nav__link">
         
   
   
@@ -2551,7 +2689,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/_db/v1/api/" class="md-nav__link">
+      <a href="../../../source/io/_db/v1/api/" class="md-nav__link">
         
   
   
@@ -2579,7 +2717,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/_db/v1/_sqlite/" class="md-nav__link">
+      <a href="../../../source/io/_db/v1/_sqlite/" class="md-nav__link">
         
   
   
@@ -2623,7 +2761,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/elog/" class="md-nav__link">
+      <a href="../../../source/io/elog/" class="md-nav__link">
         
   
   
@@ -2651,7 +2789,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/exceptions/" class="md-nav__link">
+      <a href="../../../source/io/exceptions/" class="md-nav__link">
         
   
   
@@ -2788,7 +2926,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../design/database_v2/" class="md-nav__link">
+      <a href="../../../design/database_v2/" class="md-nav__link">
         
   
   
@@ -2816,7 +2954,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../design/database/" class="md-nav__link">
+      <a href="../../../design/database/" class="md-nav__link">
         
   
   
@@ -2879,10 +3017,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#status" class="md-nav__link">
+  <a href="#command-line-help" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Status
+        Command-line help
       
     </span>
   </a>
@@ -2890,10 +3028,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#context-and-problem-statement" class="md-nav__link">
+  <a href="#managed-tasks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Context and Problem Statement
+        Managed Tasks
       
     </span>
   </a>
@@ -2901,22 +3039,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#decision" class="md-nav__link">
+  <a href="#configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Decision
+        Configuration
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Decision">
+    <nav class="md-nav" aria-label="Configuration">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#decision-drivers" class="md-nav__link">
+  <a href="#implicit-parameters" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Decision Drivers
+        Implicit parameters
       
     </span>
   </a>
@@ -2924,10 +3062,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#considered-options" class="md-nav__link">
+  <a href="#selecting-events-eventfile-and-nevents" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Considered Options
+        Selecting events: eventfile and nevents
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-location-output_file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output location: output_file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specifying-what-to-convert-and-how-xtc1_access_pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Specifying what to convert and how: xtc1_access_pattern
       
     </span>
   </a>
@@ -2936,39 +3096,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#consequences" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Consequences
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#compliance" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Compliance
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metadata" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Metadata
-      
-    </span>
-  </a>
   
 </li>
       
@@ -2992,42 +3119,132 @@
   
 
 
-<h1 id="adr-7-task-configuration-is-stored-in-a-database-managed-by-executors">[ADR-7] <code>Task</code> Configuration is Stored in a Database Managed by <code>Executor</code>s</h1>
-<p><strong>Date:</strong> 2024-02-12</p>
-<h2 id="status">Status</h2>
-<p><strong>Proposed</strong></p>
-<h2 id="context-and-problem-statement">Context and Problem Statement</h2>
+<h1 id="converting-xtc1-to-xtc2-files-convertxtc1to2">Converting XTC1 to XTC2 Files - <code>ConvertXtc1to2</code></h1>
+<h2 id="command-line-help">Command-line help</h2>
+<p>As a reminder, the <code>lute_help</code> command-line utility may be used to inspect the full set of command-line arguments. After sourcing the activation script upon building LUTE you will have the utility in your PATH.</p>
+<pre><code class="language-bash"># Assume the current working directory is the top of the LUTE repo, and the build
+# script was run
+&gt; source install/bin/activate_installation
+&gt; lute_help -T &lt;task&gt;
+</code></pre>
+<p>For help on the conversion <code>Task</code>, you can run:</p>
+<pre><code class="language-bash">&gt; lute_help -T ConvertXtc1to2
+# ...
+
+ConvertXtc1to2
+--------------
+Parameters for the xtc conversion Task.
+
+
+Required Parameters:
+--------------------
+lute_config (AnalysisHeader)
+    Unknown description.
+
+geometry (string)
+    Geometry file
+
+output_file (string)
+    Where to write the output XTC2 file.
+
+xtc1_access_pattern (object)
+    Provides information for how to access the data in XTC1. The top level keys will be used as the detector names in the XTC2 data.
+
+# ...
+</code></pre>
+<h2 id="managed-tasks">Managed <code>Task</code>s</h2>
+<p>There is currently only 1 <strong>managed</strong> <code>Task</code> that runs this specific <code>Task</code>: <code>Xtc1to2Converter</code>. It runs in either the psana1 or psana2 base environment since it will be launch and manage the psana1 and psana2 environments separately to control the reading and writing for the conversion process.</p>
+<h2 id="configuration">Configuration</h2>
+<p>A starting YAML for the conversion process may look like:</p>
+<pre><code class="language-yaml">ConvertXtc1to2:
+  node_id: &quot;1&quot;
+  eventfile: &quot;&quot;
+  nevents: 120
+  output_file: &quot;{{ XTC2_FILE_PATH }}/{{ XTC2_FILE_NAME }}&quot;
+  xtc1_access_pattern:
+    epix10k2M: # Name of the detector in the converted XTC2
+    # You can have a list of attributes you will convert that will be stored in
+    # this detector
+      - xtc2_attr_name: &quot;calib&quot;        # Name of this attribute in xtc2
+        object_name: &quot;epix10k2M&quot;       # Name of the detector in psana1
+        object_type: &quot;psana.Detector&quot;  # Name of the object type in psana1
+        object_field_name: &quot;calib&quot;     # Name of the per-event method to use in psana1
+    EBeam:
+      - xtc2_attr_name: &quot;photon_energy&quot;
+        object_name: &quot;EBeam&quot;
+        object_type: &quot;psana.Detector&quot;
+        object_field_name: [&quot;get&quot;,&quot;ebeamPhotonEnergy&quot;]
+</code></pre>
+<p>For the most part, <code>node_id</code> can be left as is. We will cover the various other parameters in detail below. The most important being the <code>xtc1_access_pattern</code> covered at the end.</p>
+<p>The documentation here assumes familiarity with both psana1 and psana2.</p>
+<h3 id="implicit-parameters">Implicit parameters</h3>
+<p>Like many other <code>Task</code>s, this conversion <code>Task</code> will select data based on the global <code>experiment</code> and <code>run</code> provided. This are either provided explicitly in the header document of the YAML file, or are retrieved by environment variable when running from the ARP/eLog. Alternatively, they are passed on the command-line using <code>-e</code> and <code>-r</code> command-line arguments.</p>
+<h3 id="selecting-events-eventfile-and-nevents">Selecting events: <code>eventfile</code> and <code>nevents</code></h3>
+<p>The default behaviour for the <code>Task</code> is to convert all the events in the XTC1 file(s) for the LCLS1 experiment to XTC2. You can optionally select a portion of these events using <code>eventfile</code> or <code>nevents</code>.</p>
 <ul>
-<li>For metadata publishing reasons, need a mechanism to maintain a history of <code>Task</code> parameter configurations.</li>
-<li>Each <code>Task</code>'s code is designed to be independent of other <code>Task</code>'s aside from code shared by inheritance.</li>
-<li>Dependencies between <code>Task</code>s are intended to be defined only at the level of workflows.</li>
-<li>Nonetheless, some <code>Task</code>s may have implicit dependencies on others. E.g. one <code>Task</code> may use the output files of another, and so could benefit from having knowledge of where they were written.</li>
+<li><code>eventfile</code>: Is the path to a file that contains a list of <strong>indices</strong> for the events. This file should be a <strong>CSV</strong> file (comma-separated file).</li>
+<li><code>nevents</code>: As an alternative, a specific number of events can instead be provided. This should be a single integer.</li>
 </ul>
-<h2 id="decision">Decision</h2>
-<p>Upon <code>Task</code> completion the managing <code>Executor</code> will write the <code>AnalysisConfig</code> object, including <code>TaskParameters</code>, results and generic configuration information to a database. Some entries from this database can be retrieved to provide default files for <code>TaskParameter</code> fields; however, the <code>Task</code> itself has no knowledge, and does not access to the database.</p>
-<h3 id="decision-drivers">Decision Drivers</h3>
-<ul>
-<li>Want to reduce explicit dependencies between <code>Task</code>s while allowing information to be shared between them.</li>
-<li>Have <code>Task</code>-independent IO be managed solely at the <code>Executor</code> level.</li>
-</ul>
-<h3 id="considered-options">Considered Options</h3>
-<ul>
-<li><code>Task</code>s write the database.</li>
-<li><code>Task</code>s pass information through other mechanisms, such as Airflow.</li>
-</ul>
-<h2 id="consequences">Consequences</h2>
-<ul>
-<li>Requires a database.</li>
-<li>Additional dependency, although at least one backend can be the standard <code>sqlite</code> which should make everything transferrable.</li>
-<li>Allows for information to be passed between <code>Task</code>s without any explicit code dependencies/linkages between them.</li>
-<li>The dependency is still mostly determined by the workflow definition. Default values can be provided by the database if needed.</li>
-</ul>
-<h2 id="compliance">Compliance</h2>
-<h2 id="metadata">Metadata</h2>
-<ul>
-<li>This ADR WILL be revisited during the post-mortem of the first prototype.</li>
-<li>Compliance section will be updated as prototype evolves.</li>
-</ul>
+<p>If both <code>eventfile</code> and <code>nevents</code> are provided, <code>eventfile</code> takes precedence.</p>
+<h3 id="output-location-output_file">Output location: <code>output_file</code></h3>
+<p>A single large XTC2 file will be written by this <code>Task</code>, and this parameter determines where that file will be written.</p>
+<p><strong>NOTE:</strong> There are restrictions on the format of this path!</p>
+<ol>
+<li>The filename must have a structure like: <code>&lt;exp&gt;-r&lt;run:04d&gt;-s000-c000.xtc2</code></li>
+<li>
+<p>The path must include the standard psana2 search structure, namely the final portion must be: <code>&lt;hutch&gt;/&lt;experiment&gt;/xtc/&lt;filename&gt;</code>.</p>
+</li>
+<li>
+<p>For example, a MFX experiment MFX12345, running on run 42, should have a filename and output path that looks like: <code>/rest_of_path/mfx/mfx12345/xtc/mfx12345-r0042-s000-c000.xtc2</code> . The rest of the path at the beginning is free to choose (as long as it is a valid path).</p>
+</li>
+</ol>
+<h3 id="specifying-what-to-convert-and-how-xtc1_access_pattern">Specifying what to convert and how: <code>xtc1_access_pattern</code></h3>
+<p>The main portion of the configuration is under this parameter. To understand how it works we will work from the provided example above:</p>
+<pre><code class="language-yaml">  xtc1_access_pattern:
+    epix10k2M: # Name of the detector in the converted XTC2
+    # You can have a list of attributes you will convert that will be stored in
+    # this detector
+      - xtc2_attr_name: &quot;calib&quot;        # Name of this attribute in xtc2
+        object_name: &quot;epix10k2M&quot;       # Name of the detector in psana1
+        object_type: &quot;psana.Detector&quot;  # Name of the object type in psana1
+        object_field_name: &quot;calib&quot;     # Name of the per-event method to use in psana1
+    EBeam:
+      - xtc2_attr_name: &quot;photon_energy&quot;
+        object_name: &quot;EBeam&quot;
+        object_type: &quot;psana.Detector&quot;
+        object_field_name: [&quot;get&quot;,&quot;ebeamPhotonEnergy&quot;]
+</code></pre>
+<p>The top level keys, <code>epix10k2M</code> and <code>EBeam</code>, describe what you want the names of the detectors to be in the new converted XTC2 files. I.e. you will be able to access the data from psana2 using <code>run.Detector("epix10k2M")</code> and <code>run.Detector("EBeam")</code>.</p>
+<p>Under each detector you define a <strong>list of dictionaries</strong>. Each <strong>dictionary</strong> in the list describes one component from the XTC1 data that you will want to translate into XTC2, and the manner in which you will do the translation. The keys of the dictionary are:</p>
+<ol>
+<li><code>xtc2_attr_name</code>: This will be the name of the method used to access the data from <strong>psana2</strong>.</li>
+<li><code>object_name</code>: This is the name of the object in <strong>psana1</strong></li>
+<li><code>object_type</code>: This is the type of object in <strong>psana1</strong></li>
+<li><code>object_field_name</code>: This is the method (or methods) used to access the data in <strong>psana1</strong>.</li>
+</ol>
+<p>So, taking the example for <code>epix10k2M</code> above, we are translating a single method from XTC1 to XTC2. The specification says that we will take the <code>calib</code> method from a psana1 object <code>psana.Detector("epix10k2M")</code> and attach it to a <code>calib</code> method for a psana2 object.</p>
+<p>Alternatively, in pseudo-Python we have:</p>
+<pre><code class="language-python"># Take this psana1 data
+object_type(&quot;object_name&quot;).object_field_name
+
+# And translate it to:
+epix10k2M.xtc1dump.calib
+</code></pre>
+<p><strong>NOTE:</strong> The converted data is always provided on a special "algorithm" called <code>xtc1dump</code>. So for the example above, you are creating the <code>calib</code> method for that algorithm. I.e.:</p>
+<pre><code class="language-python"># psana1 access of the form
+det = psana.Detector(&quot;epix10k2M&quot;)
+data = det.calib(evt)
+
+# is translated into psana2 access of the form
+det = run.Detector(&quot;epix10k2M&quot;)
+data = det.xtc1dump.calib(evt)
+</code></pre>
+<p>The example for <code>EBeam</code> is analogous, however it showcases a more involved case for psana1 access patterns. In this case, the data will be accessed from psana1 as follows:</p>
+<pre><code class="language-python">
+det = psana.Detector(&quot;epix10k2M&quot;)
+data = det.get(evt).ebeamPhotonEnergy()
+</code></pre>
+<p>That is, the first item in the list of <code>object_field_name</code> is the method that takes the psana1 event object. The second object in the list is called without argument.</p>
 
 
 
@@ -3081,10 +3298,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

@@ -11,21 +11,25 @@
       
       
       
+        <link rel="prev" href="../../hello_world/">
+      
+      
+        <link rel="next" href="../xtc1_to_xtc2_conversion/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>[ADR-7] Task Configuration is Stored in a Database Managed by Executors - LUTE</title>
+        <title>Using smalldata_tools - LUTE</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
       
 
@@ -44,9 +48,9 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -64,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#adr-7-task-configuration-is-stored-in-a-database-managed-by-executors" class="md-skip">
+        <a href="#running-smalldata_tools-submitsmd" class="md-skip">
           Skip to content
         </a>
       
@@ -80,7 +84,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="LUTE" class="md-header__button md-logo" aria-label="LUTE" data-md-component="logo">
+    <a href="../../.." title="LUTE" class="md-header__button md-logo" aria-label="LUTE" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -100,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              [ADR-7] Task Configuration is Stored in a Database Managed by Executors
+              Using smalldata_tools
             
           </span>
         </div>
@@ -190,7 +194,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="LUTE" class="md-nav__button md-logo" aria-label="LUTE" data-md-component="logo">
+    <a href="../../.." title="LUTE" class="md-nav__button md-logo" aria-label="LUTE" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -220,7 +224,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../quick_start/" class="md-nav__link">
+      <a href="../../../quick_start/" class="md-nav__link">
         
   
   
@@ -244,18 +248,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -276,7 +282,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -294,7 +300,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/configuration/" class="md-nav__link">
+      <a href="../../configuration/" class="md-nav__link">
         
   
   
@@ -322,7 +328,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/installation/" class="md-nav__link">
+      <a href="../../installation/" class="md-nav__link">
         
   
   
@@ -350,7 +356,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/running_lute/" class="md-nav__link">
+      <a href="../../running_lute/" class="md-nav__link">
         
   
   
@@ -378,7 +384,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/hello_world/" class="md-nav__link">
+      <a href="../../hello_world/" class="md-nav__link">
         
   
   
@@ -403,18 +409,20 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" checked>
         
           
           <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
@@ -435,7 +443,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -450,10 +458,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../usage/tasks/smalldata_tools/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using smalldata_tools
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -469,6 +504,126 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#command-line-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line help
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managed-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managed Tasks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#production-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Production parameters
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Production parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#roi-selection-getrois" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ROI Selection: getROIs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azimuthal-integration-getazintparams-and-getazintpyfaiparams" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Azimuthal integration: getAzIntParams and getAzIntPyFAIParams
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compression-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compression Verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -481,7 +636,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/tasks/xtc1_to_xtc2_conversion/" class="md-nav__link">
+      <a href="../xtc1_to_xtc2_conversion/" class="md-nav__link">
         
   
   
@@ -509,7 +664,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/tasks/bayfai.md" class="md-nav__link">
+      <a href="../bayfai.md" class="md-nav__link">
         
   
   
@@ -599,7 +754,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/architecture/" class="md-nav__link">
+      <a href="../../../development/architecture/" class="md-nav__link">
         
   
   
@@ -674,7 +829,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/new_task/overview/" class="md-nav__link">
+      <a href="../../../development/new_task/overview/" class="md-nav__link">
         
   
   
@@ -702,7 +857,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/new_task/first_party/" class="md-nav__link">
+      <a href="../../../development/new_task/first_party/" class="md-nav__link">
         
   
   
@@ -730,7 +885,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/new_task/third_party/" class="md-nav__link">
+      <a href="../../../development/new_task/third_party/" class="md-nav__link">
         
   
   
@@ -813,7 +968,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/creating_workflows/" class="md-nav__link">
+      <a href="../../../development/creating_workflows/" class="md-nav__link">
         
   
   
@@ -841,7 +996,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/creating_workflows_maestro/" class="md-nav__link">
+      <a href="../../../development/creating_workflows_maestro/" class="md-nav__link">
         
   
   
@@ -869,7 +1024,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/creating_workflows_airflow/" class="md-nav__link">
+      <a href="../../../development/creating_workflows_airflow/" class="md-nav__link">
         
   
   
@@ -897,7 +1052,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/dynamic_workflows/" class="md-nav__link">
+      <a href="../../../development/dynamic_workflows/" class="md-nav__link">
         
   
   
@@ -933,7 +1088,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/maestro/" class="md-nav__link">
+      <a href="../../../development/maestro/" class="md-nav__link">
         
   
   
@@ -961,7 +1116,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/tests/" class="md-nav__link">
+      <a href="../../../development/tests/" class="md-nav__link">
         
   
   
@@ -1043,7 +1198,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/managed_tasks/" class="md-nav__link">
+      <a href="../../../source/managed_tasks/" class="md-nav__link">
         
   
   
@@ -1118,7 +1273,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/execution/executor/" class="md-nav__link">
+      <a href="../../../source/execution/executor/" class="md-nav__link">
         
   
   
@@ -1146,7 +1301,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/execution/ipc/" class="md-nav__link">
+      <a href="../../../source/execution/ipc/" class="md-nav__link">
         
   
   
@@ -1174,7 +1329,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/execution/debug_utils/" class="md-nav__link">
+      <a href="../../../source/execution/debug_utils/" class="md-nav__link">
         
   
   
@@ -1202,7 +1357,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/execution/logging/" class="md-nav__link">
+      <a href="../../../source/execution/logging/" class="md-nav__link">
         
   
   
@@ -1285,7 +1440,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/task/" class="md-nav__link">
+      <a href="../../../source/tasks/task/" class="md-nav__link">
         
   
   
@@ -1313,7 +1468,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/tasklets/" class="md-nav__link">
+      <a href="../../../source/tasks/tasklets/" class="md-nav__link">
         
   
   
@@ -1341,7 +1496,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/dataclasses/" class="md-nav__link">
+      <a href="../../../source/tasks/dataclasses/" class="md-nav__link">
         
   
   
@@ -1369,7 +1524,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/bayfai/" class="md-nav__link">
+      <a href="../../../source/tasks/bayfai/" class="md-nav__link">
         
   
   
@@ -1397,7 +1552,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/_bayfai/" class="md-nav__link">
+      <a href="../../../source/tasks/_bayfai/" class="md-nav__link">
         
   
   
@@ -1425,7 +1580,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/_bayfai2/" class="md-nav__link">
+      <a href="../../../source/tasks/_bayfai2/" class="md-nav__link">
         
   
   
@@ -1453,7 +1608,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/geometry/" class="md-nav__link">
+      <a href="../../../source/tasks/geometry/" class="md-nav__link">
         
   
   
@@ -1481,7 +1636,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/_geometry/" class="md-nav__link">
+      <a href="../../../source/tasks/_geometry/" class="md-nav__link">
         
   
   
@@ -1509,7 +1664,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/sfx_find_peaks/" class="md-nav__link">
+      <a href="../../../source/tasks/sfx_find_peaks/" class="md-nav__link">
         
   
   
@@ -1537,7 +1692,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/sfx_index/" class="md-nav__link">
+      <a href="../../../source/tasks/sfx_index/" class="md-nav__link">
         
   
   
@@ -1565,7 +1720,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/smalldata/" class="md-nav__link">
+      <a href="../../../source/tasks/smalldata/" class="md-nav__link">
         
   
   
@@ -1593,7 +1748,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/_smalldata/" class="md-nav__link">
+      <a href="../../../source/tasks/_smalldata/" class="md-nav__link">
         
   
   
@@ -1621,7 +1776,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/math/" class="md-nav__link">
+      <a href="../../../source/tasks/math/" class="md-nav__link">
         
   
   
@@ -1649,7 +1804,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/test/" class="md-nav__link">
+      <a href="../../../source/tasks/test/" class="md-nav__link">
         
   
   
@@ -1677,7 +1832,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/mpi_test/" class="md-nav__link">
+      <a href="../../../source/tasks/mpi_test/" class="md-nav__link">
         
   
   
@@ -1752,7 +1907,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/util/html/" class="md-nav__link">
+      <a href="../../../source/tasks/util/html/" class="md-nav__link">
         
   
   
@@ -1780,7 +1935,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/tasks/util/environment/" class="md-nav__link">
+      <a href="../../../source/tasks/util/environment/" class="md-nav__link">
         
   
   
@@ -1918,7 +2073,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/models/base/" class="md-nav__link">
+      <a href="../../../source/io/models/base/" class="md-nav__link">
         
   
   
@@ -1946,7 +2101,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/models/bayfai/" class="md-nav__link">
+      <a href="../../../source/io/models/bayfai/" class="md-nav__link">
         
   
   
@@ -1974,7 +2129,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/models/geometry/" class="md-nav__link">
+      <a href="../../../source/io/models/geometry/" class="md-nav__link">
         
   
   
@@ -2002,7 +2157,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/models/sfx_find_peaks/" class="md-nav__link">
+      <a href="../../../source/io/models/sfx_find_peaks/" class="md-nav__link">
         
   
   
@@ -2030,7 +2185,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/models/sfx_index/" class="md-nav__link">
+      <a href="../../../source/io/models/sfx_index/" class="md-nav__link">
         
   
   
@@ -2058,7 +2213,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/models/sfx_merge/" class="md-nav__link">
+      <a href="../../../source/io/models/sfx_merge/" class="md-nav__link">
         
   
   
@@ -2086,7 +2241,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/models/sfx_solve/" class="md-nav__link">
+      <a href="../../../source/io/models/sfx_solve/" class="md-nav__link">
         
   
   
@@ -2114,7 +2269,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/models/smd/" class="md-nav__link">
+      <a href="../../../source/io/models/smd/" class="md-nav__link">
         
   
   
@@ -2142,7 +2297,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/models/validators/" class="md-nav__link">
+      <a href="../../../source/io/models/validators/" class="md-nav__link">
         
   
   
@@ -2170,7 +2325,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/models/tests/" class="md-nav__link">
+      <a href="../../../source/io/models/tests/" class="md-nav__link">
         
   
   
@@ -2198,7 +2353,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/models/mpi_tests/" class="md-nav__link">
+      <a href="../../../source/io/models/mpi_tests/" class="md-nav__link">
         
   
   
@@ -2234,7 +2389,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/calib/" class="md-nav__link">
+      <a href="../../../source/io/calib/" class="md-nav__link">
         
   
   
@@ -2262,7 +2417,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/config/" class="md-nav__link">
+      <a href="../../../source/io/config/" class="md-nav__link">
         
   
   
@@ -2290,7 +2445,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/db/" class="md-nav__link">
+      <a href="../../../source/io/db/" class="md-nav__link">
         
   
   
@@ -2365,7 +2520,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/_db/common_sqlite/" class="md-nav__link">
+      <a href="../../../source/io/_db/common_sqlite/" class="md-nav__link">
         
   
   
@@ -2440,7 +2595,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/_db/v2/api/" class="md-nav__link">
+      <a href="../../../source/io/_db/v2/api/" class="md-nav__link">
         
   
   
@@ -2468,7 +2623,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/_db/v2/_sqlite/" class="md-nav__link">
+      <a href="../../../source/io/_db/v2/_sqlite/" class="md-nav__link">
         
   
   
@@ -2551,7 +2706,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/_db/v1/api/" class="md-nav__link">
+      <a href="../../../source/io/_db/v1/api/" class="md-nav__link">
         
   
   
@@ -2579,7 +2734,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/_db/v1/_sqlite/" class="md-nav__link">
+      <a href="../../../source/io/_db/v1/_sqlite/" class="md-nav__link">
         
   
   
@@ -2623,7 +2778,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/elog/" class="md-nav__link">
+      <a href="../../../source/io/elog/" class="md-nav__link">
         
   
   
@@ -2651,7 +2806,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/io/exceptions/" class="md-nav__link">
+      <a href="../../../source/io/exceptions/" class="md-nav__link">
         
   
   
@@ -2788,7 +2943,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../design/database_v2/" class="md-nav__link">
+      <a href="../../../design/database_v2/" class="md-nav__link">
         
   
   
@@ -2816,7 +2971,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../design/database/" class="md-nav__link">
+      <a href="../../../design/database/" class="md-nav__link">
         
   
   
@@ -2879,10 +3034,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#status" class="md-nav__link">
+  <a href="#command-line-help" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Status
+        Command-line help
       
     </span>
   </a>
@@ -2890,10 +3045,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#context-and-problem-statement" class="md-nav__link">
+  <a href="#managed-tasks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Context and Problem Statement
+        Managed Tasks
       
     </span>
   </a>
@@ -2901,22 +3056,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#decision" class="md-nav__link">
+  <a href="#configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Decision
+        Configuration
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Decision">
+    <nav class="md-nav" aria-label="Configuration">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#decision-drivers" class="md-nav__link">
+  <a href="#command-line-arguments" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Decision Drivers
+        Command-line arguments
       
     </span>
   </a>
@@ -2924,10 +3079,44 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#considered-options" class="md-nav__link">
+  <a href="#production-parameters" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Considered Options
+        Production parameters
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Production parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#roi-selection-getrois" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ROI Selection: getROIs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azimuthal-integration-getazintparams-and-getazintpyfaiparams" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Azimuthal integration: getAzIntParams and getAzIntPyFAIParams
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compression-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compression Verification
       
     </span>
   </a>
@@ -2938,37 +3127,9 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#consequences" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Consequences
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#compliance" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Compliance
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metadata" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Metadata
-      
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2992,41 +3153,280 @@
   
 
 
-<h1 id="adr-7-task-configuration-is-stored-in-a-database-managed-by-executors">[ADR-7] <code>Task</code> Configuration is Stored in a Database Managed by <code>Executor</code>s</h1>
-<p><strong>Date:</strong> 2024-02-12</p>
-<h2 id="status">Status</h2>
-<p><strong>Proposed</strong></p>
-<h2 id="context-and-problem-statement">Context and Problem Statement</h2>
+<h1 id="running-smalldata_tools-submitsmd">Running smalldata_tools - <code>SubmitSMD</code></h1>
+<h2 id="command-line-help">Command-line help</h2>
+<p>As a reminder, the <code>lute_help</code> command-line utility may be used to inspect the full set of command-line arguments. After sourcing the activation script upon building LUTE you will have the utility in your PATH.</p>
+<pre><code class="language-bash"># Assume the current working directory is the top of the LUTE repo, and the build
+# script was run
+&gt; source install/bin/activate_installation
+&gt; lute_help -T &lt;task&gt;
+</code></pre>
+<p>For help on smalldata_tools, you can run:</p>
+<pre><code class="language-bash">&gt; lute_help -T SubmitSMD
+# ...
+
+ROIParams:
+ROI (array)
+    Definition of ROIs, can define multiple.
+
+writeArea (boolean) - Default: False
+    Whether to write out the area image of the ROI.
+
+# ...
+</code></pre>
+<h2 id="managed-tasks">Managed <code>Task</code>s</h2>
+<p>smalldata_tools (via the <code>Task</code> <code>SubmitSMD</code>) can be run in various environments using different <strong>managed</strong> <code>Task</code>s:</p>
 <ul>
-<li>For metadata publishing reasons, need a mechanism to maintain a history of <code>Task</code> parameter configurations.</li>
-<li>Each <code>Task</code>'s code is designed to be independent of other <code>Task</code>'s aside from code shared by inheritance.</li>
-<li>Dependencies between <code>Task</code>s are intended to be defined only at the level of workflows.</li>
-<li>Nonetheless, some <code>Task</code>s may have implicit dependencies on others. E.g. one <code>Task</code> may use the output files of another, and so could benefit from having knowledge of where they were written.</li>
+<li><code>SmallDataProducer</code>: Run the psana1 smalldata_tools production</li>
+<li><code>SmallDataProducer2</code>: Run the psana2 smalldata_tools production</li>
+<li><code>SmallDataProducerSpack</code>: Run the psana2 smalldata_tools production, <strong>in the spack environment</strong>. This is required for compression features.</li>
 </ul>
-<h2 id="decision">Decision</h2>
-<p>Upon <code>Task</code> completion the managing <code>Executor</code> will write the <code>AnalysisConfig</code> object, including <code>TaskParameters</code>, results and generic configuration information to a database. Some entries from this database can be retrieved to provide default files for <code>TaskParameter</code> fields; however, the <code>Task</code> itself has no knowledge, and does not access to the database.</p>
-<h3 id="decision-drivers">Decision Drivers</h3>
+<h2 id="configuration">Configuration</h2>
+<p>The starting YAML for smalldata_tools may look like:</p>
+<pre><code class="language-yaml">SubmitSMD:
+  # Command line arguments
+  #map_by: &quot;core&quot;   # MPI resource mapping - take care with changing unless familiar
+  #bind_to: &quot;core&quot;  # MPI resource binding - take care with changing unless familiar
+  #np: 5
+  #producer: &quot;/path/to/producer&quot;
+  #run: &quot;{{ run }}&quot;
+  #experiment: &quot;{{ experiment }}&quot;
+  #stn: 0
+  #nevents: 5
+  #interactive: false
+  #directory: &quot;/output/hdf5/directory&quot;
+  #psdm_dir: &quot;/special/sit_psdm_data/directory&quot;
+  #config: &quot;mfx_cctbx&quot;
+  #gather_interval: 25
+  #norecorder: False
+  #url: &quot;https://pswww.slac.stanford.edu&quot;
+  #epicsAll: False
+  #full: False
+  #fullSum: False
+  #default: true
+  #image: False
+  #tiff: False
+  #centerpix: False
+  #postRuntable: False
+  #wait: False
+  #xtcav: False
+  #noarch: False
+  # Producer variables. These are substituted into the producer to run specific
+  # data reduction algorithms. Uncomment and modify as needed.
+  # If you prefer to modify the producer file directly, leave commented.
+  # Beginning with `getROIs`, you will need to modify the first entry to be a
+  # detector. This detector MUST MATCH one of the detectors in `detnames`.
+  # In the future this will be automated. If you have multiple detectors you can
+  # add them with their own set of parameters.
+  #detnames: [&quot;epix10k2M&quot;]
+  #epicsPV: []
+  #ttCalib: []
+  #getPressioCompression:
+  #  epix10k2M:
+  #    compressor_id: &quot;sz3&quot;
+  #    # Specific arguments vary depending on compressor_id
+  #    compressor_args:
+  #      abs_error_bound: 10
+  # Provide detector image sum algorithms.
+  # If detSumAlgos is not defined, it will default to calib, calib_dropped and
+  # calib_dropped_square for every detector. You can add processing algorithms for
+  # single detectors (e.g. epix10k2M or Rayonix) as below, or add algorithms which
+  # will apply to every detector defined in detnames by placing them under &quot;all&quot;
+  #detSumAlgos:
+  #  all:
+  #    - &quot;calib&quot;
+  #    - &quot;calib_dropped&quot;
+  #    - &quot;calib_dropped_square&quot;
+  #    - &quot;calib_thresADU1&quot;
+  #  epix10k2M:
+  #    - &quot;calib_thresADU5&quot;
+  #    - &quot;calib_max&quot;
+  #  Rayonix:
+  #    - &quot;calib_skipFirst_thresADU1&quot;
+  #    - &quot;calib_skipFirst_max&quot;
+  #getROIs:
+  #  jungfrau1M:   # Change to detector name
+  #    - ROIs: [[[1, 2], [157, 487], [294, 598]]]
+  #      #name: &quot;abcd&quot; # Providing a name is only required if you are creating multiple ROIs
+  #      writeArea: True   # Whether to save ROI, if False, save sum but not img.
+  #      thresADU: None
+  #      calcPars: True
+  #getAzIntParams:
+  #  jungfrau:
+  #    eBeam: 18
+  #    center: [87526.79161840, 92773.3296889500]
+  #    dis_to_sam: 80.0
+  #    tx: 0
+  #    ty: 0
+  #    ADU_per_Photon: 1.0
+  #    phiBins: 1
+  #    qbin: 5e-3
+  #    thresRms: null
+  #    thresADUhigh: null
+  #    geomCorr: true
+  #    polCorr: true
+  #    userMask: &quot;/path/to/numpy_array.
+  #getAzIntPyFAIParams:
+  #  Rayonix:
+  #    pix_size: 176e-6
+  #    ai_kwargs:
+  #      dist: 1
+  #      poni1: 960 * 1.76e-4
+  #      poni2: 960 * 1.76e-4
+  #    npts: 512
+  #    int_units: &quot;2th_deg&quot;
+  #    return2d: False
+  #getPhotonsParams:
+  #  jungfrau1M:
+  #    ADU_per_photon: 9.5
+  #    thresADU: 0.8
+  #getDropletParams:
+  #  epix_1:
+  #    threshold: 5
+  #    thresholdLow: 5
+  #    thresADU: 60
+  #    useRms: True
+  #    nData: 1e5
+  #getDroplet2Photons:
+  #  epix_alc1:
+  #    droplet:
+  #      threshold: 10
+  #      thresholdLow: 3
+  #      thresADU: 10
+  #      useRms: True
+  #    d2p:
+  #      aduspphot: 162
+  #      mask: np.load('path_to_mask.npy')
+  #      cputime: True
+  #    nData: 3e4
+  #getSvdParams:
+  #  acq_0:
+  #    basis_file: None
+  #    n_pulse: 1
+  #    delay: None
+  #    return_reconstructed: True
+  #getAutocorrParams:
+  #  epix_2:
+  #    mask: &quot;/sdf/home/e/example/dataAna/mask_epix.npy&quot;
+  #    thresAdu: [72.0, 1.0e6]
+  #    save_range: [70, 50]
+  #    save_lineout: True
+</code></pre>
+<p>This set of parameters can be split into two sections, the command-line options, and the producer parameters. These can be discussed separately.</p>
+<h3 id="command-line-arguments">Command-line arguments</h3>
+<p>The following parameters control the behaviour of the job submission:</p>
+<pre><code class="language-yaml">  # Command line arguments
+  #map_by: &quot;core&quot;   # MPI resource mapping - take care with changing unless familiar
+  #bind_to: &quot;core&quot;  # MPI resource binding - take care with changing unless familiar
+  #np: 5
+  #producer: &quot;/path/to/producer&quot;
+  #run: &quot;{{ run }}&quot;
+  #experiment: &quot;{{ experiment }}&quot;
+  #stn: 0
+  #directory: &quot;/output/hdf5/directory&quot;
+  #psdm_dir: &quot;/special/sit_psdm_data/directory&quot;
+  #config: &quot;mfx_cctbx&quot;
+  #gather_interval: 25
+  #norecorder: False
+  #url: &quot;https://pswww.slac.stanford.edu&quot;
+  #epicsAll: False
+  #full: False
+  #fullSum: False
+  #default: true
+  #image: False
+  #tiff: False
+  #centerpix: False
+  #postRuntable: False
+  #wait: False
+  #xtcav: False
+  #noarch: False
+</code></pre>
+<p>For normal workflow operation, you probably do not need to modify any of these. However, you may be interested in setting some of them for testing. In particular:</p>
 <ul>
-<li>Want to reduce explicit dependencies between <code>Task</code>s while allowing information to be shared between them.</li>
-<li>Have <code>Task</code>-independent IO be managed solely at the <code>Executor</code> level.</li>
+<li><code>directory</code>: You can provide a separate output directory for the produced HDF5 files.</li>
+<li><code>nevents</code>: Provide a maximum number of events to process. Set this to be between 5 and 10 to run interactively.</li>
+<li><code>interactive</code>: Can set this to true to run "interactively" (i.e., if not submitting SLURM jobs)</li>
+<li><code>np</code>: The number of ranks/processes to use.</li>
 </ul>
-<h3 id="considered-options">Considered Options</h3>
+<p>As mentioned, in normal operation (in the context of a workflow, or SLURM submissions) you likely do not need to modify these. Sensible defaults exist, and where appropriate the values will also be computed as necessary.</p>
+<p>You may also want to specify <code>config</code> if you have multiple possible configuration files to use.</p>
+<p>The options for MPI resource mappings may be useful but care should be taken when modifying them:</p>
 <ul>
-<li><code>Task</code>s write the database.</li>
-<li><code>Task</code>s pass information through other mechanisms, such as Airflow.</li>
+<li><code>map_by</code> selects how MPI maps the ranks to various resources (cores, sockets).</li>
+<li><code>bind_to</code> changes how MPI then <strong>restricts</strong> (i.e. binds) the ranks to those resources.</li>
 </ul>
-<h2 id="consequences">Consequences</h2>
+<h3 id="production-parameters">Production parameters</h3>
+<h4 id="roi-selection-getrois">ROI Selection: <code>getROIs</code></h4>
+<p>One or more ROIs can be defined on a per detector basis using the parameters defined in this block:</p>
+<pre><code class="language-yaml">  getROIs:
+    jungfrau1M:   # Change to detector name
+      - ROI: [[[1, 2], [157, 487], [294, 598]]]
+        #name: &quot;abcd&quot; # Providing a name is only required if you are creating multiple ROIs
+        writeArea: True   # Whether to save ROI, if False, save sum but not img.
+        thresADU: None
+        calcPars: True
+</code></pre>
+<p>Note that under each detector there is a <strong>list</strong> of dictionaries because multiple ROIs can be defined. For each ROI, the parameters are as follows:</p>
 <ul>
-<li>Requires a database.</li>
-<li>Additional dependency, although at least one backend can be the standard <code>sqlite</code> which should make everything transferrable.</li>
-<li>Allows for information to be passed between <code>Task</code>s without any explicit code dependencies/linkages between them.</li>
-<li>The dependency is still mostly determined by the workflow definition. Default values can be provided by the database if needed.</li>
+<li>
+<p><code>ROI</code>: This defines the ROI. The format is a list of lists, where the inner lists define a set of indices for each dimension of the array of the data that the ROI will span. E.g. <code>[[1,2],[157,487],[294,598]]</code> defines an ROI spanning 1-2 (so the index 1) of the first dimension, 157-487 of the second dimension and 294-598 of the third dimension.</p>
+</li>
+<li>
+<p><strong>Note:</strong> You can alternatively set this option to <code>null</code> (as in, <code>ROI: null</code>). Instead of defining an ROI based on indices, <code>smalldata_tools</code> will take this to mean that you want to save the full detector image. As always, think if you really need to do this before choosing to do so. Things will take longer to process, will use more memory, and the data will double in size when saved to disk.</p>
+</li>
+<li>
+<p><code>name</code>: Provides a name for the ROI. There will be a default name; however, if you are defining multiple ROIs you should provide a unique name for each of them, otherwise they will overwrite each other.</p>
+</li>
+<li><code>thresADU</code>: A threshold to add to the ROI.</li>
+<li><code>calcPars</code>: Whether to output some summary statistics (mean, max, etc.) along with the ROI.</li>
+<li><code>writeArea</code>: A boolean indicating whether to write out the area, or just the sum of the ROI.</li>
 </ul>
-<h2 id="compliance">Compliance</h2>
-<h2 id="metadata">Metadata</h2>
+<h4 id="azimuthal-integration-getazintparams-and-getazintpyfaiparams">Azimuthal integration: <code>getAzIntParams</code> and <code>getAzIntPyFAIParams</code></h4>
+<p>Two algorithms for azimuthal integration are provided, the home grown implementation via <code>getAzIntParams</code> and the PyFAI implementation using <code>getAzIntPyFAIParams</code>. The two can be run simultaneously if really needed.</p>
+<pre><code class="language-yaml">  #getAzIntParams:
+  #  jungfrau:
+  #    eBeam: 18
+  #    center: [87526.79161840, 92773.3296889500]
+  #    dis_to_sam: 80.0
+  #    tx: 0
+  #    ty: 0
+  #    ADU_per_Photon: 1.0
+  #    phiBins: 1
+  #    qbin: 5e-3
+  #    thresRms: null
+  #    thresADUhigh: null
+  #    geomCorr: true
+  #    polCorr: true
+  #    userMask: &quot;/path/to/numpy_array.
+  #getAzIntPyFAIParams:
+  #  Rayonix:
+  #    pix_size: 176e-6
+  #    ai_kwargs:
+  #      dist: 1
+  #      poni1: 960 * 1.76e-4
+  #      poni2: 960 * 1.76e-4
+  #    npts: 512
+  #    int_units: &quot;2th_deg&quot;
+  #    return2d: False
+</code></pre>
+<h4 id="compression-verification">Compression Verification</h4>
+<p>Via libpressio (if using the <code>SmallDataProducerSpack</code> <strong>managed</strong> <code>Task</code> with the spack environment) a simple compression/decompression operation is provided. This will compress and immediately decompress the data before performing any other operations. The purpose of this is to provide a method for verifying whether the compression has any effect on the resultant output data. The configuration is as follows:</p>
+<pre><code class="language-yaml">  getPressioCompression:
+    epix10k2M:
+      compressor_id: &quot;sz3&quot;
+      # Specific arguments vary depending on compressor_id
+      compressor_args:
+        abs_error_bound: 10
+</code></pre>
+<p>These options are again provided per detector. The first option is the <code>compressor_id</code>. This is currently only <code>sz3</code>, however additional compressors may be supported in the future.</p>
+<p>For the specific compressor selected a set of arguments may be provided under <code>compressor_args</code>.</p>
 <ul>
-<li>This ADR WILL be revisited during the post-mortem of the first prototype.</li>
-<li>Compliance section will be updated as prototype evolves.</li>
+<li>
+<p>For <code>sz3</code> the following arguments are supported:</p>
+</li>
+<li>
+<p><code>abs_error_bound</code>: Provides the absolute bound on the error for the lossy compression.</p>
+</li>
 </ul>
 
 
@@ -3081,10 +3481,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

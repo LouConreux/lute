@@ -326,6 +326,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../usage/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../usage/running_lute/" class="md-nav__link">
         
   
@@ -334,6 +362,34 @@
     
   
     Running LUTE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../usage/hello_world/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A complete simple example
   
 
     
@@ -362,10 +418,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
         
           
-          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
             
   
   
@@ -383,8 +439,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_3">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -393,6 +449,62 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../usage/tasks/smalldata_tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using smalldata_tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../usage/tasks/xtc1_to_xtc2_conversion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Converting XTC1 to XTC2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -733,6 +845,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../development/creating_workflows_maestro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    With Maestro
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../development/creating_workflows_airflow/" class="md-nav__link">
         
   
@@ -785,6 +925,34 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../development/maestro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maestro Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -2922,10 +3090,7 @@ first node.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/util/environment.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 15</span>
-<span class="normal"> 16</span>
-<span class="normal"> 17</span>
-<span class="normal"> 18</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 18</span>
 <span class="normal"> 19</span>
 <span class="normal"> 20</span>
 <span class="normal"> 21</span>
@@ -3012,7 +3177,32 @@ first node.</p>
 <span class="normal">102</span>
 <span class="normal">103</span>
 <span class="normal">104</span>
-<span class="normal">105</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">setup_smd2_env</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">setup_smd2_env</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Setup environment variables smalldata_tools uses with psana2.</span>
 
 <span class="sd">    Tries to setup psana2 environment variables controlling the distribution of</span>
@@ -3028,6 +3218,26 @@ first node.</p>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># partition: str = ...</span>
     <span class="n">psana_vars</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">exp</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;EXPERIMENT&quot;</span><span class="p">)</span>
+    <span class="n">run</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;RUN_NUM&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">exp</span> <span class="ow">and</span> <span class="n">run</span><span class="p">:</span>
+        <span class="n">base_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;https://pswww.slac.stanford.edu/ws/lgbk/lgbk&quot;</span>
+        <span class="n">endpoint</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">exp</span><span class="si">}</span><span class="s2">/ws/</span><span class="si">{</span><span class="n">run</span><span class="si">}</span><span class="s2">/files_for_live_mode_at_location&quot;</span>
+        <span class="n">full_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">endpoint</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">resp</span><span class="p">:</span> <span class="n">requests</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                <span class="n">full_url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="s2">&quot;S3DF&quot;</span><span class="p">}</span>
+            <span class="p">)</span>
+            <span class="n">resp</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+            <span class="n">data_dir</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;value&quot;</span><span class="p">][</span><span class="s2">&quot;all_present&quot;</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="n">data_dir</span><span class="p">:</span>
+                <span class="n">psana_vars</span><span class="p">[</span><span class="s2">&quot;SIT_PSDM_DATA&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/sdf/data/lcls/ds&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">psana_vars</span><span class="p">[</span><span class="s2">&quot;SIT_PSDM_DATA&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/sdf/data/lcls/drpsrcf/ffb&quot;</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
     <span class="c1"># These values are the requests - may not be defined if --nodes and</span>
     <span class="c1"># --ntasks-per-node were not passed.</span>
     <span class="n">nodes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;SLURM_NNODES&quot;</span><span class="p">)</span>
@@ -3066,6 +3276,8 @@ first node.</p>
         <span class="n">srv_cores</span> <span class="o">=</span> <span class="n">default_srv_cores</span>
 
     <span class="n">default_eb_cores</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="p">(</span><span class="n">mpi_slots</span> <span class="o">-</span> <span class="n">srv_cores</span><span class="p">)</span> <span class="o">//</span> <span class="mi">16</span>
+    <span class="k">if</span> <span class="n">default_eb_cores</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">default_eb_cores</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">eb_cores</span><span class="p">:</span> <span class="nb">str</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">env_eb_cores</span> <span class="o">:=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;PS_EB_NODES&quot;</span><span class="p">))</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">eb_cores</span> <span class="o">=</span> <span class="n">env_eb_cores</span>
@@ -3078,28 +3290,28 @@ first node.</p>
     <span class="n">slurm_job_nodelist</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;SLURM_JOB_NODELIST&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">slurm_job_nodelist</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">psana_vars</span>
-    <span class="n">cmd</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;scontrol&quot;</span><span class="p">,</span> <span class="s2">&quot;show&quot;</span><span class="p">,</span> <span class="s2">&quot;hostnames&quot;</span><span class="p">,</span> <span class="n">slurm_job_nodelist</span><span class="p">]</span>
-    <span class="n">host_list_bytes</span><span class="p">:</span> <span class="nb">bytes</span>
-    <span class="n">host_list_bytes</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
+    <span class="c1"># cmd: List[str] = [&quot;scontrol&quot;, &quot;show&quot;, &quot;hostnames&quot;, slurm_job_nodelist]</span>
+    <span class="c1"># host_list_bytes: bytes</span>
+    <span class="c1"># host_list_bytes, _ = subprocess.Popen(cmd, stdout=subprocess.PIPE).communicate()</span>
 
-    <span class="n">host_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">host_list_bytes</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="c1"># host_list: List[str] = host_list_bytes.decode().split(&quot;\n&quot;)[:-1]</span>
 
     <span class="n">slurm_job_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;SLURM_JOB_ID&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">slurm_job_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">psana_vars</span>
-    <span class="n">host_file</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;slurm_host_</span><span class="si">{</span><span class="n">slurm_job_id</span><span class="si">}</span><span class="s2">&quot;</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">host_file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">host_list</span><span class="p">)):</span>
-            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">host_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2"> slots=1</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">host_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="c1"># host_file: str = f&quot;slurm_host_{slurm_job_id}&quot;</span>
+    <span class="c1"># with open(host_file, &quot;w&quot;) as f:</span>
+    <span class="c1">#     for i in range(len(host_list)):</span>
+    <span class="c1">#         if i == 0:</span>
+    <span class="c1">#             f.write(f&quot;{host_list[i]} slots=1\n&quot;)</span>
+    <span class="c1">#         else:</span>
+    <span class="c1">#             f.write(f&quot;{host_list[i]}\n&quot;)</span>
 
     <span class="c1"># This calculation may not work of --ntasks-per-node is not passed</span>
     <span class="c1"># But on the other hand, I cannot find PS_N_RANKS used in psana code.</span>
     <span class="n">n_ranks</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">cores_per_node</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
 
-    <span class="n">psana_vars</span><span class="p">[</span><span class="s2">&quot;PS_HOST_FILE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">host_file</span>
+    <span class="c1"># psana_vars[&quot;PS_HOST_FILE&quot;] = host_file</span>
     <span class="n">psana_vars</span><span class="p">[</span><span class="s2">&quot;PS_N_RANKS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">n_ranks</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">psana_vars</span>

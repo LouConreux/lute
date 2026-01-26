@@ -11,6 +11,10 @@
       
       
       
+        <link rel="prev" href="../creating_workflows/">
+      
+      
+        <link rel="next" href="../creating_workflows_airflow/">
       
       
         
@@ -21,7 +25,7 @@
     
     
       
-        <title>[ADR-7] Task Configuration is Stored in a Database Managed by Executors - LUTE</title>
+        <title>With Maestro - LUTE</title>
       
     
     
@@ -64,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#adr-7-task-configuration-is-stored-in-a-database-managed-by-executors" class="md-skip">
+        <a href="#workflows-with-maestro" class="md-skip">
           Skip to content
         </a>
       
@@ -100,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              [ADR-7] Task Configuration is Stored in a Database Managed by Executors
+              With Maestro
             
           </span>
         </div>
@@ -549,18 +553,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -581,7 +587,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -599,7 +605,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/architecture/" class="md-nav__link">
+      <a href="../architecture/" class="md-nav__link">
         
   
   
@@ -674,7 +680,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/new_task/overview/" class="md-nav__link">
+      <a href="../new_task/overview/" class="md-nav__link">
         
   
   
@@ -702,7 +708,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/new_task/first_party/" class="md-nav__link">
+      <a href="../new_task/first_party/" class="md-nav__link">
         
   
   
@@ -730,7 +736,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/new_task/third_party/" class="md-nav__link">
+      <a href="../new_task/third_party/" class="md-nav__link">
         
   
   
@@ -763,18 +769,20 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
@@ -795,7 +803,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -813,7 +821,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/creating_workflows/" class="md-nav__link">
+      <a href="../creating_workflows/" class="md-nav__link">
         
   
   
@@ -838,10 +846,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../development/creating_workflows_maestro/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    With Maestro
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -857,6 +892,104 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#relevant-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relevant Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#launchsubmission-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Launch/Submission Scripts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Launch/Submission Scripts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#launch_slurm-the-source-file-is-launch_maestropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        launch_slurm (The source file is: launch_maestro.py)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="launch_slurm (The source file is: launch_maestro.py)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lifetime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lifetime
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#submit_launch_slurmsh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        submit_launch_slurm.sh
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-new-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating a new workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -869,7 +1002,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/creating_workflows_airflow/" class="md-nav__link">
+      <a href="../creating_workflows_airflow/" class="md-nav__link">
         
   
   
@@ -897,7 +1030,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/dynamic_workflows/" class="md-nav__link">
+      <a href="../dynamic_workflows/" class="md-nav__link">
         
   
   
@@ -933,7 +1066,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/maestro/" class="md-nav__link">
+      <a href="../maestro/" class="md-nav__link">
         
   
   
@@ -961,7 +1094,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../development/tests/" class="md-nav__link">
+      <a href="../tests/" class="md-nav__link">
         
   
   
@@ -2879,10 +3012,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#status" class="md-nav__link">
+  <a href="#relevant-components" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Status
+        Relevant Components
       
     </span>
   </a>
@@ -2890,44 +3023,50 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#context-and-problem-statement" class="md-nav__link">
+  <a href="#launchsubmission-scripts" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Context and Problem Statement
+        Launch/Submission Scripts
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Decision
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Decision">
+    <nav class="md-nav" aria-label="Launch/Submission Scripts">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#decision-drivers" class="md-nav__link">
+  <a href="#launch_slurm-the-source-file-is-launch_maestropy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Decision Drivers
+        launch_slurm (The source file is: launch_maestro.py)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="launch_slurm (The source file is: launch_maestro.py)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lifetime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lifetime
       
     </span>
   </a>
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+        
           <li class="md-nav__item">
-  <a href="#considered-options" class="md-nav__link">
+  <a href="#submit_launch_slurmsh" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Considered Options
+        submit_launch_slurm.sh
       
     </span>
   </a>
@@ -2940,32 +3079,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#consequences" class="md-nav__link">
+  <a href="#creating-a-new-workflow" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Consequences
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#compliance" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Compliance
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metadata" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Metadata
+        Creating a new workflow
       
     </span>
   </a>
@@ -2992,42 +3109,131 @@
   
 
 
-<h1 id="adr-7-task-configuration-is-stored-in-a-database-managed-by-executors">[ADR-7] <code>Task</code> Configuration is Stored in a Database Managed by <code>Executor</code>s</h1>
-<p><strong>Date:</strong> 2024-02-12</p>
-<h2 id="status">Status</h2>
-<p><strong>Proposed</strong></p>
-<h2 id="context-and-problem-statement">Context and Problem Statement</h2>
+<h1 id="workflows-with-maestro">Workflows with Maestro</h1>
+<p><strong>Note:</strong> As with other backends, the term <strong>DAG</strong>, or directed acyclic graph, may be used to refer to "worflows". This page will use the terms workflow and DAG interchangeably.</p>
+<h2 id="relevant-components">Relevant Components</h2>
+<p>In addition to the core LUTE package, a number of components are generally involved to run a workflow.</p>
+<p>The main interface to the <code>maestro</code> workflow manager is:</p>
 <ul>
-<li>For metadata publishing reasons, need a mechanism to maintain a history of <code>Task</code> parameter configurations.</li>
-<li>Each <code>Task</code>'s code is designed to be independent of other <code>Task</code>'s aside from code shared by inheritance.</li>
-<li>Dependencies between <code>Task</code>s are intended to be defined only at the level of workflows.</li>
-<li>Nonetheless, some <code>Task</code>s may have implicit dependencies on others. E.g. one <code>Task</code> may use the output files of another, and so could benefit from having knowledge of where they were written.</li>
+<li><code>launch_maestro.py</code> (defined in source code). This is installed as <code>launch_slurm</code> when LUTE is built.</li>
+<li><code>submit_launch_slurm.sh</code> A wrapper script which submits the above as a batch job so it doesn't need to be watched interactively.</li>
 </ul>
-<h2 id="decision">Decision</h2>
-<p>Upon <code>Task</code> completion the managing <code>Executor</code> will write the <code>AnalysisConfig</code> object, including <code>TaskParameters</code>, results and generic configuration information to a database. Some entries from this database can be retrieved to provide default files for <code>TaskParameter</code> fields; however, the <code>Task</code> itself has no knowledge, and does not access to the database.</p>
-<h3 id="decision-drivers">Decision Drivers</h3>
+<p>The main components of the <code>maestro</code> sub-project are:</p>
 <ul>
-<li>Want to reduce explicit dependencies between <code>Task</code>s while allowing information to be shared between them.</li>
-<li>Have <code>Task</code>-independent IO be managed solely at the <code>Executor</code> level.</li>
+<li>A <code>Manager</code> which orchestrates the workflow.</li>
+<li>A <code>Server</code> which is used for HTTP communication.</li>
+<li><code>Launcher</code> objects which define how individual steps in the workflow are launched.</li>
 </ul>
-<h3 id="considered-options">Considered Options</h3>
+<p>Workflow definitions are all YAML documents similarly to what is described in the <a href="../dynamic_workflows/">dynamic workflows</a> page; however, there are a number of small differences between that format (which is used for Airflow and Prefect) and the <code>maestro</code>. The <code>maestro</code> format also supports a number of additional features.</p>
+<h2 id="launchsubmission-scripts">Launch/Submission Scripts</h2>
+<h3 id="launch_slurm-the-source-file-is-launch_maestropy"><code>launch_slurm</code> (The source file is: <code>launch_maestro.py</code>)</h3>
+<p>This script will parse a YAML workflow definition and then pass it to the <code>maestro</code> backend.</p>
+<p>The script takes the following parameters:</p>
+<pre><code class="language-bash">usage: launch_slurm [-h] -c CONFIG -W WORKFLOW_DEFN [-e EXPERIMENT] [-r RUN] [-d] [--num_server_threads NUM_SERVER_THREADS] [--unbuffered] [$SLURM_ARGS]
+
+A light-weight workflow manager which executes LUTE Managed Tasks.
+
+required arguments:
+  -c CONFIG, --config CONFIG
+                        Path to config YAML file.
+  -W WORKFLOW_DEFN, --workflow_defn WORKFLOW_DEFN
+                        Path to a YAML file with workflow.
+
+required arguments when running without the ARP:
+  -e EXPERIMENT, --experiment EXPERIMENT
+                        Provide an experiment if not running with ARP.
+  -r RUN, --run RUN     Provide a run number if not running with ARP.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -d, --debug           Run in debug mode.
+  --num_server_threads NUM_SERVER_THREADS
+                        Number of threads to use for the HTTP server.
+  --unbuffered          Flush logs immediately. Warning: This can make output confusing when running multiple managed Tasks are running in parallel.
+
+Refer to https://github.com/slac-lcls/lute for more information.
+</code></pre>
 <ul>
-<li><code>Task</code>s write the database.</li>
-<li><code>Task</code>s pass information through other mechanisms, such as Airflow.</li>
+<li><code>-c</code> refers to the path of the configuration YAML that contains the parameters for each <strong>managed</strong> <code>Task</code> in the requested workflow.</li>
+<li><code>-W</code> is the path to the custom DAG defined in YAML.</li>
+<li><code>-e | --experiment</code> is used to pass the experiment name. Needed if not using the ARP, i.e. running from the command-line.</li>
+<li>
+<p><code>-r | --run</code> is used to pass a run number. Needed if not using the ARP, i.e. running from the command-line.</p>
+</li>
+<li>
+<p><code>--debug</code> is an optional flag to run all steps of the workflow in debug mode for verbose logging and output.</p>
+</li>
+<li><code>--num_server_threads</code> is an optional flag which will override the default number of threads setup by the built-in HTTP server.</li>
+<li>
+<p><code>--unbuffered</code> is an optional flag which will display logs immediately as the are written. By default, logs are collected and displayed at the end of each step of the workflow. This unbuffered option will print them immediately. This is probably not useful if you have multiple things running in parallel as part of your workflow, but if all the steps are running serially it could be useful for more immediate feedback.</p>
+</li>
+<li>
+<p><code>SLURM_ARGS</code> are SLURM arguments to be passed to the <code>submit_slurm.sh</code> script which are used for each individual <strong>managed</strong> <code>Task</code>. These arguments to do NOT affect the submission parameters for the job running <code>launch_airflow.py</code> (if using <code>submit_launch_airflow.sh</code> below).</p>
+</li>
 </ul>
-<h2 id="consequences">Consequences</h2>
+<h4 id="lifetime">Lifetime</h4>
+<p>This script will run for the entire duration of the <strong>workflow (DAG)</strong>. After it launches the DAG, it will enter a status update loop which will keep track of each individual job (each job runs one managed <code>Task</code>). At the end of each job it will collect the log file, in addition to providing a few other status updates/debugging messages, and append it to its own log (if not using the <code>--unbuffered</code> flag described above). This allows all logging for the entire workflow (DAG) to be inspected from an individual file. This is particularly useful when running via the eLog, because only a single log file is displayed.</p>
+<h3 id="submit_launch_slurmsh"><code>submit_launch_slurm.sh</code></h3>
+<p>This script wraps the <code>launch_slurm</code> script and submits it as a batch job. This is useful to not have to keep a terminal window open to watch the process interactively when submitting manually. It is, <strong>however</strong>, required when submitting from the eLog. The initial job submitted by the ARP can not have a duration of longer than 30 seconds, as it will then time out. As the <code>launch_slurm</code> job will live for the entire duration of the workflow, it must be submitted as a batch a batch job.</p>
+<p>The interface is mostly indentical to <code>launch_slurm</code> itself, except the path to the actual <code>launch_slurm</code> script must be passed as the first argument.</p>
+<p>Currently, the wrapper submits the job with minimal resources, requesting only a single core for the workflow manager. In the future, this may be made configurable.</p>
+<p>Usage:</p>
+<pre><code class="language-bash">submit_launch_slurm.sh /path/to/launch_slurm [-h] -c CONFIG -W WORKFLOW_DEFN [-e EXPERIMENT] [-r RUN] [-d] [--num_server_threads NUM_SERVER_THREADS] [--unbuffered] [$SLURM_ARGS]
+</code></pre>
+<h2 id="creating-a-new-workflow">Creating a new workflow</h2>
+<p>Defining a new workflow involves creating a new YAML file.</p>
+<p>As an example we will consider the following test workflow.</p>
+<pre><code class="language-yaml">!LUTE_DAG
+- task_name: &quot;Tester&quot;
+  slurm_params: &quot;&quot;
+  next:
+  - !ALL_FAILED
+    task_name: &quot;SocketTester&quot;
+    slurm_params: &quot;&quot;
+    next: []
+- task_name: &quot;Tester&quot;
+  slurm_params: &quot;&quot;
+  next:
+  - !branch_daq2
+    daq2:
+      task_name: &quot;SocketTester&quot;
+      slurm_params: &quot;&quot;
+      next: []
+    daq1:
+      task_name: &quot;WriteTester&quot;
+      slurm_params: &quot;&quot;
+      next:
+      - task_name: &quot;ReadTester&quot;
+        slurm_params: &quot;&quot;
+        next: []
+</code></pre>
 <ul>
-<li>Requires a database.</li>
-<li>Additional dependency, although at least one backend can be the standard <code>sqlite</code> which should make everything transferrable.</li>
-<li>Allows for information to be passed between <code>Task</code>s without any explicit code dependencies/linkages between them.</li>
-<li>The dependency is still mostly determined by the workflow definition. Default values can be provided by the database if needed.</li>
+<li>All workflows <strong>must</strong> begin with a <code>!LUTE_DAG</code> tag. This tells the YAML parser that this should be parsed into the special <code>JobStep</code> structures that <code>maestro</code> recognizes as steps to be submitted.</li>
+<li>
+<p>Next, the top level of the workflow (the first <strong>managed</strong> <code>Task</code> (or <code>Task</code>s)) is setup.</p>
+</li>
+<li>
+<p>If there is only one step to launch initially, this can be a dictionary, otherwise it must be a list to define two steps to be launched in parallel.</p>
+</li>
+<li>
+<p>Each step in the workflow must contain:</p>
+</li>
+<li>
+<p>A <code>task_name</code>, which is the name of a <strong>managed</strong> <code>Task</code> to be submitted.</p>
+</li>
+<li>A custom string of SLURM arguments in <code>slurm_params</code>. This can be used to override the arguments which are passed in the command-line, but if it is provided, it must provide <strong>EVERY</strong> SLURM argument. Currently, only replacing some arguments is not supported.</li>
+<li>A field called <code>next</code> which is a list which sets up the <strong>managed</strong> <code>Task</code>s that will be submitted after this one completes. If it is left empty, then this branch of the workflow ends here.</li>
 </ul>
-<h2 id="compliance">Compliance</h2>
-<h2 id="metadata">Metadata</h2>
+<p>Additionally, a set of trigger rules can be provided before each step definition:</p>
 <ul>
-<li>This ADR WILL be revisited during the post-mortem of the first prototype.</li>
-<li>Compliance section will be updated as prototype evolves.</li>
+<li><code>!ALL_SUCCESS</code>: This job step will only be submitted if all previous steps in its branch succeed (This is the default)</li>
+<li><code>!ANY_SUCCESS</code>: This job step will be submitted as soon as any previous step in its branch succeed.</li>
+<li><code>!ALL_COMPLETED</code>: This job step will be submitted as soon as all previous steps complete, whether they succeed or fail.</li>
+<li><code>!ALL_FAILED</code>: This job step will be submitted only if all previous steps have failed.</li>
+<li><code>!ANY_FAILED</code>: This job step will be submitted as soon as any previous step fails.</li>
+<li><code>!ALWAYS</code>: This job step will always run as soon as it is reached in the DAG.</li>
 </ul>
+<p>A number of branching conditions can be defined as well. Currently supported are branching based on LCLS1 vs LCLS2 DAQ, and the run type. These are defined by using the tag <code>!branch_daq2</code> (for example) and defining two dictionaries underneath it for the various cases (<code>daq2</code> or <code>daq1</code> in this example).</p>
 
 
 
