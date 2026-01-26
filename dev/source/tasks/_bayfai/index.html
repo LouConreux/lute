@@ -6735,7 +6735,35 @@ run : int
 <span class="normal">1791</span>
 <span class="normal">1792</span>
 <span class="normal">1793</span>
-<span class="normal">1794</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BayFAIOpt</span><span class="p">:</span>
+<span class="normal">1794</span>
+<span class="normal">1795</span>
+<span class="normal">1796</span>
+<span class="normal">1797</span>
+<span class="normal">1798</span>
+<span class="normal">1799</span>
+<span class="normal">1800</span>
+<span class="normal">1801</span>
+<span class="normal">1802</span>
+<span class="normal">1803</span>
+<span class="normal">1804</span>
+<span class="normal">1805</span>
+<span class="normal">1806</span>
+<span class="normal">1807</span>
+<span class="normal">1808</span>
+<span class="normal">1809</span>
+<span class="normal">1810</span>
+<span class="normal">1811</span>
+<span class="normal">1812</span>
+<span class="normal">1813</span>
+<span class="normal">1814</span>
+<span class="normal">1815</span>
+<span class="normal">1816</span>
+<span class="normal">1817</span>
+<span class="normal">1818</span>
+<span class="normal">1819</span>
+<span class="normal">1820</span>
+<span class="normal">1821</span>
+<span class="normal">1822</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BayFAIOpt</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class to run BayFAI optimization on a powder image.</span>
 
@@ -6826,28 +6854,32 @@ run : int
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        powder_path : str</span>
-<span class="sd">            Path to the h5 file containing the powder data.</span>
+<span class="sd">            Path to the h5 or npy file containing the powder data.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        powder : npt.NDArray[np.float64]</span>
 <span class="sd">            The extracted powder image.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">powder_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">h5</span><span class="p">:</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">powder</span> <span class="o">=</span> <span class="n">h5</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Sums/</span><span class="si">{</span><span class="n">detname</span><span class="si">}</span><span class="s2">_calib_max&quot;</span><span class="p">][()]</span>
-            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;Cannot find </span><span class="si">{</span><span class="n">detname</span><span class="si">}</span><span class="s2"> Max powder in </span><span class="si">{</span><span class="n">powder_path</span><span class="si">}</span><span class="s2">, defaulting to </span><span class="si">{</span><span class="n">detname</span><span class="si">}</span><span class="s2"> Sum instead.&quot;</span>
-                <span class="p">)</span>
+        <span class="k">if</span> <span class="n">powder_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.npy&quot;</span><span class="p">):</span>
+            <span class="n">powder</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">powder_path</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">powder</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">powder_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">h5</span><span class="p">:</span>
                 <span class="k">try</span><span class="p">:</span>
-                    <span class="n">powder</span> <span class="o">=</span> <span class="n">h5</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Sums/</span><span class="si">{</span><span class="n">detname</span><span class="si">}</span><span class="s2">_calib&quot;</span><span class="p">][()]</span>
+                    <span class="n">powder</span> <span class="o">=</span> <span class="n">h5</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Sums/</span><span class="si">{</span><span class="n">detname</span><span class="si">}</span><span class="s2">_calib_max&quot;</span><span class="p">][()]</span>
                 <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-                    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
-                        <span class="sa">f</span><span class="s2">&quot;Cannot find </span><span class="si">{</span><span class="n">detname</span><span class="si">}</span><span class="s2"> Sum powder in </span><span class="si">{</span><span class="n">powder_path</span><span class="si">}</span><span class="s2">. Exiting...&quot;</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Cannot find </span><span class="si">{</span><span class="n">detname</span><span class="si">}</span><span class="s2"> Max powder in </span><span class="si">{</span><span class="n">powder_path</span><span class="si">}</span><span class="s2">, defaulting to </span><span class="si">{</span><span class="n">detname</span><span class="si">}</span><span class="s2"> Sum instead.&quot;</span>
                     <span class="p">)</span>
-                    <span class="k">raise</span>
-        <span class="k">return</span> <span class="n">powder</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">powder</span> <span class="o">=</span> <span class="n">h5</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Sums/</span><span class="si">{</span><span class="n">detname</span><span class="si">}</span><span class="s2">_calib&quot;</span><span class="p">][()]</span>
+                    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+                            <span class="sa">f</span><span class="s2">&quot;Cannot find </span><span class="si">{</span><span class="n">detname</span><span class="si">}</span><span class="s2"> Sum powder in </span><span class="si">{</span><span class="n">powder_path</span><span class="si">}</span><span class="s2">. Exiting...&quot;</span>
+                        <span class="p">)</span>
+                        <span class="k">raise</span>
+            <span class="k">return</span> <span class="n">powder</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">preprocess_powder</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -6906,7 +6938,7 @@ run : int
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        powder_path : str</span>
-<span class="sd">            Path to the h5 file containing the powder data.</span>
+<span class="sd">            Path to the h5 or npy file containing the powder data.</span>
 <span class="sd">        detname : str</span>
 <span class="sd">            Name of the detector</span>
 <span class="sd">        smooth : bool, optional</span>
@@ -7138,7 +7170,7 @@ run : int
 
     <span class="k">def</span><span class="w"> </span><span class="nf">score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="n">Imin</span><span class="p">,</span> <span class="n">max_rings</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Evaluate score at a given sampled geometry based on the number of detected Bragg peaks.</span>
+<span class="sd">        Evaluate score at a given sampled geometry based on the residual between predicted and observed Bragg peak positions.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -7181,7 +7213,9 @@ run : int
         <span class="n">ix</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
         <span class="n">iy</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
         <span class="n">ring</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
-        <span class="n">score</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">sg</span><span class="o">.</span><span class="n">geometry_refinement</span><span class="o">.</span><span class="n">residu2</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">ix</span><span class="p">,</span> <span class="n">iy</span><span class="p">,</span> <span class="n">ring</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span>
+            <span class="n">sg</span><span class="o">.</span><span class="n">geometry_refinement</span><span class="o">.</span><span class="n">residu2</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">ix</span><span class="p">,</span> <span class="n">iy</span><span class="p">,</span> <span class="n">ring</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="p">)</span>
         <span class="k">return</span> <span class="n">score</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">estimate_uncertainty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">refinement</span><span class="p">,</span> <span class="n">rel_eps</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">abs_eps</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">):</span>
@@ -7269,7 +7303,7 @@ run : int
         <span class="n">sigmas</span> <span class="o">=</span> <span class="n">f_min</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">cov</span><span class="p">)</span> <span class="o">/</span> <span class="n">dof</span>
         <span class="n">sigmas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sigmas</span><span class="p">)</span>
         <span class="n">is_min</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="n">penalty</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">cov</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span> 
+        <span class="n">penalty</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">cov</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span>
         <span class="k">return</span> <span class="n">sigmas</span><span class="p">,</span> <span class="n">is_min</span><span class="p">,</span> <span class="n">penalty</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">gradient_descent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">best_param</span><span class="p">,</span> <span class="n">resolutions</span><span class="p">,</span> <span class="n">Imin</span><span class="p">,</span> <span class="n">max_rings</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
@@ -7703,8 +7737,9 @@ run : int
             <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Distance (m)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$-\log\left(\frac</span><span class="si">{1}{N}</span><span class="s2">\sum (2\theta_g - 2\theta_c)^2\right)$&quot;</span><span class="p">,</span>
-            <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span>
+            <span class="sa">r</span><span class="s2">&quot;$-\log\left(\frac</span><span class="si">{1}{N}</span><span class="s2">\sum (2\theta_g - 2\theta_c)^2\right)$&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span>
+        <span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">get_offset_text</span><span class="p">()</span><span class="o">.</span><span class="n">set_fontsize</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
@@ -7735,13 +7770,20 @@ run : int
             <span class="bp">self</span><span class="o">.</span><span class="n">final_score</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">invalid</span><span class="p">],</span>
             <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
             <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span>
-            <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span>
+            <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span>
             <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
         <span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">distances</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_score</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">distances</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">],</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">final_score</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">],</span>
+            <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span>
+            <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+            <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Distance (m)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$-\log\left(\frac</span><span class="si">{1}{N}</span><span class="s2">\sum (2\theta_g - 2\theta_c)^2\right)$&quot;</span><span class="p">,</span>
-            <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span>
+            <span class="sa">r</span><span class="s2">&quot;$-\log\left(\frac</span><span class="si">{1}{N}</span><span class="s2">\sum (2\theta_g - 2\theta_c)^2\right)$&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span>
+        <span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">get_offset_text</span><span class="p">()</span><span class="o">.</span><span class="n">set_fontsize</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
@@ -7854,21 +7896,27 @@ run : int
 
         <span class="n">radii</span> <span class="o">=</span> <span class="n">calculate_radius</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">detector</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
         <span class="n">closest_pixel_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">radii</span><span class="p">)</span>
-        <span class="n">closest_pixel</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_index</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">closest_pixel_index</span><span class="p">],</span> <span class="n">x_index</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">closest_pixel_index</span><span class="p">])</span>
-        <span class="n">closest_q</span> <span class="o">=</span> <span class="n">theta2q</span><span class="p">(</span><span class="n">ttha</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">closest_pixel_index</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrant</span><span class="o">.</span><span class="n">wavelength</span><span class="p">)</span>
+        <span class="n">closest_pixel</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">y_index</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">closest_pixel_index</span><span class="p">],</span>
+            <span class="n">x_index</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">closest_pixel_index</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="n">closest_q</span> <span class="o">=</span> <span class="n">theta2q</span><span class="p">(</span>
+            <span class="n">ttha</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">closest_pixel_index</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrant</span><span class="o">.</span><span class="n">wavelength</span>
+        <span class="p">)</span>
         <span class="n">closest_resol</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">closest_q</span>
 
         <span class="n">furthest_pixel_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">radii</span><span class="p">)</span>
-        <span class="n">furthest_pixel</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_index</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">furthest_pixel_index</span><span class="p">],</span> <span class="n">x_index</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">furthest_pixel_index</span><span class="p">])</span>
-        <span class="n">furthest_q</span> <span class="o">=</span> <span class="n">theta2q</span><span class="p">(</span><span class="n">ttha</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">furthest_pixel_index</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrant</span><span class="o">.</span><span class="n">wavelength</span><span class="p">)</span>
+        <span class="n">furthest_pixel</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">y_index</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">furthest_pixel_index</span><span class="p">],</span>
+            <span class="n">x_index</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">furthest_pixel_index</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="n">furthest_q</span> <span class="o">=</span> <span class="n">theta2q</span><span class="p">(</span>
+            <span class="n">ttha</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">furthest_pixel_index</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrant</span><span class="o">.</span><span class="n">wavelength</span>
+        <span class="p">)</span>
         <span class="n">furthest_resol</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">furthest_q</span>
 
-        <span class="n">pixel_lvls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-            <span class="p">[</span><span class="n">closest_pixel</span><span class="p">,</span> <span class="n">furthest_pixel</span><span class="p">]</span>
-        <span class="p">)</span>
-        <span class="n">resol_lvls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-            <span class="p">[</span><span class="n">closest_resol</span><span class="p">,</span> <span class="n">furthest_resol</span><span class="p">]</span>
-        <span class="p">)</span>
+        <span class="n">pixel_lvls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">closest_pixel</span><span class="p">,</span> <span class="n">furthest_pixel</span><span class="p">])</span>
+        <span class="n">resol_lvls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">closest_resol</span><span class="p">,</span> <span class="n">furthest_resol</span><span class="p">])</span>
         <span class="k">for</span> <span class="n">pixel</span><span class="p">,</span> <span class="n">resol</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">pixel_lvls</span><span class="p">,</span> <span class="n">resol_lvls</span><span class="p">):</span>
             <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
                 <span class="n">pixel</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
@@ -7909,7 +7957,9 @@ run : int
             <span class="n">y_range</span><span class="o">=</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">),</span>
         <span class="p">)</span>
 
-        <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stacked_powder</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stacked_powder</span><span class="p">,</span> <span class="mi">95</span><span class="p">)</span>
+        <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stacked_powder</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stacked_powder</span><span class="p">,</span> <span class="mi">95</span>
+        <span class="p">)</span>
         <span class="n">color_mapper</span> <span class="o">=</span> <span class="n">LinearColorMapper</span><span class="p">(</span><span class="n">palette</span><span class="o">=</span><span class="n">Viridis256</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="n">vmax</span><span class="p">)</span>
 
         <span class="n">p</span><span class="o">.</span><span class="n">image</span><span class="p">(</span>
@@ -7936,21 +7986,27 @@ run : int
 
         <span class="n">radii</span> <span class="o">=</span> <span class="n">calculate_radius</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">detector</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
         <span class="n">closest_pixel_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">radii</span><span class="p">)</span>
-        <span class="n">closest_pixel</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">closest_pixel_index</span><span class="p">],</span> <span class="n">y</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">closest_pixel_index</span><span class="p">])</span>
-        <span class="n">closest_q</span> <span class="o">=</span> <span class="n">theta2q</span><span class="p">(</span><span class="n">ttha</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">closest_pixel_index</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrant</span><span class="o">.</span><span class="n">wavelength</span><span class="p">)</span>
+        <span class="n">closest_pixel</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">x</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">closest_pixel_index</span><span class="p">],</span>
+            <span class="n">y</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">closest_pixel_index</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="n">closest_q</span> <span class="o">=</span> <span class="n">theta2q</span><span class="p">(</span>
+            <span class="n">ttha</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">closest_pixel_index</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrant</span><span class="o">.</span><span class="n">wavelength</span>
+        <span class="p">)</span>
         <span class="n">closest_resol</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">closest_q</span>
 
         <span class="n">furthest_pixel_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">radii</span><span class="p">)</span>
-        <span class="n">furthest_pixel</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">furthest_pixel_index</span><span class="p">],</span> <span class="n">y</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">furthest_pixel_index</span><span class="p">])</span>
-        <span class="n">furthest_q</span> <span class="o">=</span> <span class="n">theta2q</span><span class="p">(</span><span class="n">ttha</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">furthest_pixel_index</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrant</span><span class="o">.</span><span class="n">wavelength</span><span class="p">)</span>
+        <span class="n">furthest_pixel</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">x</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">furthest_pixel_index</span><span class="p">],</span>
+            <span class="n">y</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">furthest_pixel_index</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="n">furthest_q</span> <span class="o">=</span> <span class="n">theta2q</span><span class="p">(</span>
+            <span class="n">ttha</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">furthest_pixel_index</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrant</span><span class="o">.</span><span class="n">wavelength</span>
+        <span class="p">)</span>
         <span class="n">furthest_resol</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">furthest_q</span>
 
-        <span class="n">pixel_lvls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-            <span class="p">[</span><span class="n">closest_pixel</span><span class="p">,</span> <span class="n">furthest_pixel</span><span class="p">]</span>
-        <span class="p">)</span>
-        <span class="n">resol_lvls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-            <span class="p">[</span><span class="n">closest_resol</span><span class="p">,</span> <span class="n">furthest_resol</span><span class="p">]</span>
-        <span class="p">)</span>
+        <span class="n">pixel_lvls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">closest_pixel</span><span class="p">,</span> <span class="n">furthest_pixel</span><span class="p">])</span>
+        <span class="n">resol_lvls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">closest_resol</span><span class="p">,</span> <span class="n">furthest_resol</span><span class="p">])</span>
         <span class="k">for</span> <span class="n">pixel</span><span class="p">,</span> <span class="n">resol</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">pixel_lvls</span><span class="p">,</span> <span class="n">resol_lvls</span><span class="p">):</span>
             <span class="n">label_annotation</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span>
                 <span class="n">x</span><span class="o">=</span><span class="n">pixel</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
@@ -8292,11 +8348,7 @@ run : int
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/_bayfai.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">414</span>
-<span class="normal">415</span>
-<span class="normal">416</span>
-<span class="normal">417</span>
-<span class="normal">418</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">418</span>
 <span class="normal">419</span>
 <span class="normal">420</span>
 <span class="normal">421</span>
@@ -8311,7 +8363,11 @@ run : int
 <span class="normal">430</span>
 <span class="normal">431</span>
 <span class="normal">432</span>
-<span class="normal">433</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">assemble_image</span><span class="p">(</span>
+<span class="normal">433</span>
+<span class="normal">434</span>
+<span class="normal">435</span>
+<span class="normal">436</span>
+<span class="normal">437</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">assemble_image</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">powder</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -8378,13 +8434,7 @@ seed : optional, int
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/_bayfai.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 888</span>
-<span class="normal"> 889</span>
-<span class="normal"> 890</span>
-<span class="normal"> 891</span>
-<span class="normal"> 892</span>
-<span class="normal"> 893</span>
-<span class="normal"> 894</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 894</span>
 <span class="normal"> 895</span>
 <span class="normal"> 896</span>
 <span class="normal"> 897</span>
@@ -8519,7 +8569,13 @@ seed : optional, int
 <span class="normal">1026</span>
 <span class="normal">1027</span>
 <span class="normal">1028</span>
-<span class="normal">1029</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@ignore_warnings</span><span class="p">(</span><span class="n">category</span><span class="o">=</span><span class="n">ConvergenceWarning</span><span class="p">)</span>
+<span class="normal">1029</span>
+<span class="normal">1030</span>
+<span class="normal">1031</span>
+<span class="normal">1032</span>
+<span class="normal">1033</span>
+<span class="normal">1034</span>
+<span class="normal">1035</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@ignore_warnings</span><span class="p">(</span><span class="n">category</span><span class="o">=</span><span class="n">ConvergenceWarning</span><span class="p">)</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">bayes_opt_distance</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">dist</span><span class="p">,</span>
@@ -8710,13 +8766,7 @@ seed : optional, int
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/_bayfai.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1031</span>
-<span class="normal">1032</span>
-<span class="normal">1033</span>
-<span class="normal">1034</span>
-<span class="normal">1035</span>
-<span class="normal">1036</span>
-<span class="normal">1037</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1037</span>
 <span class="normal">1038</span>
 <span class="normal">1039</span>
 <span class="normal">1040</span>
@@ -8791,7 +8841,13 @@ seed : optional, int
 <span class="normal">1109</span>
 <span class="normal">1110</span>
 <span class="normal">1111</span>
-<span class="normal">1112</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">bayfai_opt</span><span class="p">(</span>
+<span class="normal">1112</span>
+<span class="normal">1113</span>
+<span class="normal">1114</span>
+<span class="normal">1115</span>
+<span class="normal">1116</span>
+<span class="normal">1117</span>
+<span class="normal">1118</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">bayfai_opt</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">center</span><span class="p">,</span>
     <span class="n">bounds</span><span class="p">,</span>
@@ -8901,11 +8957,7 @@ seed : optional, int
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/_bayfai.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">457</span>
-<span class="normal">458</span>
-<span class="normal">459</span>
-<span class="normal">460</span>
-<span class="normal">461</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">461</span>
 <span class="normal">462</span>
 <span class="normal">463</span>
 <span class="normal">464</span>
@@ -8919,7 +8971,11 @@ seed : optional, int
 <span class="normal">472</span>
 <span class="normal">473</span>
 <span class="normal">474</span>
-<span class="normal">475</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">build_detector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pyFAI</span><span class="o">.</span><span class="n">detectors</span><span class="o">.</span><span class="n">Detector</span><span class="p">:</span>
+<span class="normal">475</span>
+<span class="normal">476</span>
+<span class="normal">477</span>
+<span class="normal">478</span>
+<span class="normal">479</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">build_detector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pyFAI</span><span class="o">.</span><span class="n">detectors</span><span class="o">.</span><span class="n">Detector</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Read the metrology data and build a pyFAI detector object.</span>
 
@@ -8967,35 +9023,7 @@ plot : str
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/_bayfai.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1523</span>
-<span class="normal">1524</span>
-<span class="normal">1525</span>
-<span class="normal">1526</span>
-<span class="normal">1527</span>
-<span class="normal">1528</span>
-<span class="normal">1529</span>
-<span class="normal">1530</span>
-<span class="normal">1531</span>
-<span class="normal">1532</span>
-<span class="normal">1533</span>
-<span class="normal">1534</span>
-<span class="normal">1535</span>
-<span class="normal">1536</span>
-<span class="normal">1537</span>
-<span class="normal">1538</span>
-<span class="normal">1539</span>
-<span class="normal">1540</span>
-<span class="normal">1541</span>
-<span class="normal">1542</span>
-<span class="normal">1543</span>
-<span class="normal">1544</span>
-<span class="normal">1545</span>
-<span class="normal">1546</span>
-<span class="normal">1547</span>
-<span class="normal">1548</span>
-<span class="normal">1549</span>
-<span class="normal">1550</span>
-<span class="normal">1551</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1551</span>
 <span class="normal">1552</span>
 <span class="normal">1553</span>
 <span class="normal">1554</span>
@@ -9096,7 +9124,35 @@ plot : str
 <span class="normal">1649</span>
 <span class="normal">1650</span>
 <span class="normal">1651</span>
-<span class="normal">1652</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_diagnostics_panel</span><span class="p">(</span>
+<span class="normal">1652</span>
+<span class="normal">1653</span>
+<span class="normal">1654</span>
+<span class="normal">1655</span>
+<span class="normal">1656</span>
+<span class="normal">1657</span>
+<span class="normal">1658</span>
+<span class="normal">1659</span>
+<span class="normal">1660</span>
+<span class="normal">1661</span>
+<span class="normal">1662</span>
+<span class="normal">1663</span>
+<span class="normal">1664</span>
+<span class="normal">1665</span>
+<span class="normal">1666</span>
+<span class="normal">1667</span>
+<span class="normal">1668</span>
+<span class="normal">1669</span>
+<span class="normal">1670</span>
+<span class="normal">1671</span>
+<span class="normal">1672</span>
+<span class="normal">1673</span>
+<span class="normal">1674</span>
+<span class="normal">1675</span>
+<span class="normal">1676</span>
+<span class="normal">1677</span>
+<span class="normal">1678</span>
+<span class="normal">1679</span>
+<span class="normal">1680</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_diagnostics_panel</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">detector</span><span class="p">,</span>
     <span class="n">distance</span><span class="p">,</span>
@@ -9248,27 +9304,7 @@ plot : str
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/_bayfai.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1426</span>
-<span class="normal">1427</span>
-<span class="normal">1428</span>
-<span class="normal">1429</span>
-<span class="normal">1430</span>
-<span class="normal">1431</span>
-<span class="normal">1432</span>
-<span class="normal">1433</span>
-<span class="normal">1434</span>
-<span class="normal">1435</span>
-<span class="normal">1436</span>
-<span class="normal">1437</span>
-<span class="normal">1438</span>
-<span class="normal">1439</span>
-<span class="normal">1440</span>
-<span class="normal">1441</span>
-<span class="normal">1442</span>
-<span class="normal">1443</span>
-<span class="normal">1444</span>
-<span class="normal">1445</span>
-<span class="normal">1446</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1446</span>
 <span class="normal">1447</span>
 <span class="normal">1448</span>
 <span class="normal">1449</span>
@@ -9343,7 +9379,35 @@ plot : str
 <span class="normal">1518</span>
 <span class="normal">1519</span>
 <span class="normal">1520</span>
-<span class="normal">1521</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_interactive_powder</span><span class="p">(</span>
+<span class="normal">1521</span>
+<span class="normal">1522</span>
+<span class="normal">1523</span>
+<span class="normal">1524</span>
+<span class="normal">1525</span>
+<span class="normal">1526</span>
+<span class="normal">1527</span>
+<span class="normal">1528</span>
+<span class="normal">1529</span>
+<span class="normal">1530</span>
+<span class="normal">1531</span>
+<span class="normal">1532</span>
+<span class="normal">1533</span>
+<span class="normal">1534</span>
+<span class="normal">1535</span>
+<span class="normal">1536</span>
+<span class="normal">1537</span>
+<span class="normal">1538</span>
+<span class="normal">1539</span>
+<span class="normal">1540</span>
+<span class="normal">1541</span>
+<span class="normal">1542</span>
+<span class="normal">1543</span>
+<span class="normal">1544</span>
+<span class="normal">1545</span>
+<span class="normal">1546</span>
+<span class="normal">1547</span>
+<span class="normal">1548</span>
+<span class="normal">1549</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_interactive_powder</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -9364,7 +9428,9 @@ plot : str
         <span class="n">y_range</span><span class="o">=</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">),</span>
     <span class="p">)</span>
 
-    <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stacked_powder</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stacked_powder</span><span class="p">,</span> <span class="mi">95</span><span class="p">)</span>
+    <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stacked_powder</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stacked_powder</span><span class="p">,</span> <span class="mi">95</span>
+    <span class="p">)</span>
     <span class="n">color_mapper</span> <span class="o">=</span> <span class="n">LinearColorMapper</span><span class="p">(</span><span class="n">palette</span><span class="o">=</span><span class="n">Viridis256</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="n">vmax</span><span class="p">)</span>
 
     <span class="n">p</span><span class="o">.</span><span class="n">image</span><span class="p">(</span>
@@ -9391,21 +9457,27 @@ plot : str
 
     <span class="n">radii</span> <span class="o">=</span> <span class="n">calculate_radius</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">detector</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
     <span class="n">closest_pixel_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">radii</span><span class="p">)</span>
-    <span class="n">closest_pixel</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">closest_pixel_index</span><span class="p">],</span> <span class="n">y</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">closest_pixel_index</span><span class="p">])</span>
-    <span class="n">closest_q</span> <span class="o">=</span> <span class="n">theta2q</span><span class="p">(</span><span class="n">ttha</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">closest_pixel_index</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrant</span><span class="o">.</span><span class="n">wavelength</span><span class="p">)</span>
+    <span class="n">closest_pixel</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">x</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">closest_pixel_index</span><span class="p">],</span>
+        <span class="n">y</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">closest_pixel_index</span><span class="p">],</span>
+    <span class="p">)</span>
+    <span class="n">closest_q</span> <span class="o">=</span> <span class="n">theta2q</span><span class="p">(</span>
+        <span class="n">ttha</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">closest_pixel_index</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrant</span><span class="o">.</span><span class="n">wavelength</span>
+    <span class="p">)</span>
     <span class="n">closest_resol</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">closest_q</span>
 
     <span class="n">furthest_pixel_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">radii</span><span class="p">)</span>
-    <span class="n">furthest_pixel</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">furthest_pixel_index</span><span class="p">],</span> <span class="n">y</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">furthest_pixel_index</span><span class="p">])</span>
-    <span class="n">furthest_q</span> <span class="o">=</span> <span class="n">theta2q</span><span class="p">(</span><span class="n">ttha</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">furthest_pixel_index</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrant</span><span class="o">.</span><span class="n">wavelength</span><span class="p">)</span>
+    <span class="n">furthest_pixel</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">x</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">furthest_pixel_index</span><span class="p">],</span>
+        <span class="n">y</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">furthest_pixel_index</span><span class="p">],</span>
+    <span class="p">)</span>
+    <span class="n">furthest_q</span> <span class="o">=</span> <span class="n">theta2q</span><span class="p">(</span>
+        <span class="n">ttha</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">furthest_pixel_index</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrant</span><span class="o">.</span><span class="n">wavelength</span>
+    <span class="p">)</span>
     <span class="n">furthest_resol</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">furthest_q</span>
 
-    <span class="n">pixel_lvls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-        <span class="p">[</span><span class="n">closest_pixel</span><span class="p">,</span> <span class="n">furthest_pixel</span><span class="p">]</span>
-    <span class="p">)</span>
-    <span class="n">resol_lvls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-        <span class="p">[</span><span class="n">closest_resol</span><span class="p">,</span> <span class="n">furthest_resol</span><span class="p">]</span>
-    <span class="p">)</span>
+    <span class="n">pixel_lvls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">closest_pixel</span><span class="p">,</span> <span class="n">furthest_pixel</span><span class="p">])</span>
+    <span class="n">resol_lvls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">closest_resol</span><span class="p">,</span> <span class="n">furthest_resol</span><span class="p">])</span>
     <span class="k">for</span> <span class="n">pixel</span><span class="p">,</span> <span class="n">resol</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">pixel_lvls</span><span class="p">,</span> <span class="n">resol_lvls</span><span class="p">):</span>
         <span class="n">label_annotation</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span>
             <span class="n">x</span><span class="o">=</span><span class="n">pixel</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
@@ -9475,11 +9547,7 @@ X_norm : np.ndarray
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/_bayfai.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">583</span>
-<span class="normal">584</span>
-<span class="normal">585</span>
-<span class="normal">586</span>
-<span class="normal">587</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">587</span>
 <span class="normal">588</span>
 <span class="normal">589</span>
 <span class="normal">590</span>
@@ -9521,7 +9589,11 @@ X_norm : np.ndarray
 <span class="normal">626</span>
 <span class="normal">627</span>
 <span class="normal">628</span>
-<span class="normal">629</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_search_space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dist</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">res</span><span class="p">):</span>
+<span class="normal">629</span>
+<span class="normal">630</span>
+<span class="normal">631</span>
+<span class="normal">632</span>
+<span class="normal">633</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_search_space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dist</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">res</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Discretize the search space for the free parameters.</span>
 
@@ -9597,35 +9669,7 @@ plot : str
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/_bayfai.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1654</span>
-<span class="normal">1655</span>
-<span class="normal">1656</span>
-<span class="normal">1657</span>
-<span class="normal">1658</span>
-<span class="normal">1659</span>
-<span class="normal">1660</span>
-<span class="normal">1661</span>
-<span class="normal">1662</span>
-<span class="normal">1663</span>
-<span class="normal">1664</span>
-<span class="normal">1665</span>
-<span class="normal">1666</span>
-<span class="normal">1667</span>
-<span class="normal">1668</span>
-<span class="normal">1669</span>
-<span class="normal">1670</span>
-<span class="normal">1671</span>
-<span class="normal">1672</span>
-<span class="normal">1673</span>
-<span class="normal">1674</span>
-<span class="normal">1675</span>
-<span class="normal">1676</span>
-<span class="normal">1677</span>
-<span class="normal">1678</span>
-<span class="normal">1679</span>
-<span class="normal">1680</span>
-<span class="normal">1681</span>
-<span class="normal">1682</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1682</span>
 <span class="normal">1683</span>
 <span class="normal">1684</span>
 <span class="normal">1685</span>
@@ -9737,7 +9781,35 @@ plot : str
 <span class="normal">1791</span>
 <span class="normal">1792</span>
 <span class="normal">1793</span>
-<span class="normal">1794</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_summary_plot</span><span class="p">(</span>
+<span class="normal">1794</span>
+<span class="normal">1795</span>
+<span class="normal">1796</span>
+<span class="normal">1797</span>
+<span class="normal">1798</span>
+<span class="normal">1799</span>
+<span class="normal">1800</span>
+<span class="normal">1801</span>
+<span class="normal">1802</span>
+<span class="normal">1803</span>
+<span class="normal">1804</span>
+<span class="normal">1805</span>
+<span class="normal">1806</span>
+<span class="normal">1807</span>
+<span class="normal">1808</span>
+<span class="normal">1809</span>
+<span class="normal">1810</span>
+<span class="normal">1811</span>
+<span class="normal">1812</span>
+<span class="normal">1813</span>
+<span class="normal">1814</span>
+<span class="normal">1815</span>
+<span class="normal">1816</span>
+<span class="normal">1817</span>
+<span class="normal">1818</span>
+<span class="normal">1819</span>
+<span class="normal">1820</span>
+<span class="normal">1821</span>
+<span class="normal">1822</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_summary_plot</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">detector</span><span class="p">,</span>
     <span class="n">distance</span><span class="p">,</span>
@@ -9903,11 +9975,7 @@ plot : str
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/_bayfai.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">522</span>
-<span class="normal">523</span>
-<span class="normal">524</span>
-<span class="normal">525</span>
-<span class="normal">526</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">526</span>
 <span class="normal">527</span>
 <span class="normal">528</span>
 <span class="normal">529</span>
@@ -9921,7 +9989,11 @@ plot : str
 <span class="normal">537</span>
 <span class="normal">538</span>
 <span class="normal">539</span>
-<span class="normal">540</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">define_calibrant</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calibrant_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pyFAI</span><span class="o">.</span><span class="n">calibrant</span><span class="o">.</span><span class="n">Calibrant</span><span class="p">:</span>
+<span class="normal">540</span>
+<span class="normal">541</span>
+<span class="normal">542</span>
+<span class="normal">543</span>
+<span class="normal">544</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">define_calibrant</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calibrant_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pyFAI</span><span class="o">.</span><span class="n">calibrant</span><span class="o">.</span><span class="n">Calibrant</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Define calibrant for optimization with appropriate wavelength</span>
 
@@ -9970,11 +10042,7 @@ res : float
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/_bayfai.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">559</span>
-<span class="normal">560</span>
-<span class="normal">561</span>
-<span class="normal">562</span>
-<span class="normal">563</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">563</span>
 <span class="normal">564</span>
 <span class="normal">565</span>
 <span class="normal">566</span>
@@ -9992,7 +10060,11 @@ res : float
 <span class="normal">578</span>
 <span class="normal">579</span>
 <span class="normal">580</span>
-<span class="normal">581</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">distribute_distances</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">res</span><span class="p">):</span>
+<span class="normal">581</span>
+<span class="normal">582</span>
+<span class="normal">583</span>
+<span class="normal">584</span>
+<span class="normal">585</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">distribute_distances</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">res</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Distribute distances across MPI ranks.</span>
 
@@ -10049,13 +10121,7 @@ is_min : bool
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/_bayfai.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">722</span>
-<span class="normal">723</span>
-<span class="normal">724</span>
-<span class="normal">725</span>
-<span class="normal">726</span>
-<span class="normal">727</span>
-<span class="normal">728</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">728</span>
 <span class="normal">729</span>
 <span class="normal">730</span>
 <span class="normal">731</span>
@@ -10135,7 +10201,13 @@ is_min : bool
 <span class="normal">805</span>
 <span class="normal">806</span>
 <span class="normal">807</span>
-<span class="normal">808</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">estimate_uncertainty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">refinement</span><span class="p">,</span> <span class="n">rel_eps</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">abs_eps</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">):</span>
+<span class="normal">808</span>
+<span class="normal">809</span>
+<span class="normal">810</span>
+<span class="normal">811</span>
+<span class="normal">812</span>
+<span class="normal">813</span>
+<span class="normal">814</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">estimate_uncertainty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">refinement</span><span class="p">,</span> <span class="n">rel_eps</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">abs_eps</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Estimate parameter uncertainties from the Hessian matrix.</span>
 
@@ -10220,7 +10292,7 @@ is_min : bool
     <span class="n">sigmas</span> <span class="o">=</span> <span class="n">f_min</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">cov</span><span class="p">)</span> <span class="o">/</span> <span class="n">dof</span>
     <span class="n">sigmas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sigmas</span><span class="p">)</span>
     <span class="n">is_min</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="n">penalty</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">cov</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span> 
+    <span class="n">penalty</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">cov</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span>
     <span class="k">return</span> <span class="n">sigmas</span><span class="p">,</span> <span class="n">is_min</span><span class="p">,</span> <span class="n">penalty</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -10242,7 +10314,7 @@ is_min : bool
         <p>Extract a powder image from smalldata analysis.</p>
 <h5 id="tasks._bayfai.BayFAIOpt.extract_powder--parameters">Parameters</h5>
 <p>powder_path : str
-    Path to the h5 file containing the powder data.</p>
+    Path to the h5 or npy file containing the powder data.</p>
 <h5 id="tasks._bayfai.BayFAIOpt.extract_powder--returns">Returns</h5>
 <p>powder : npt.NDArray[np.float64]
     The extracted powder image.</p>
@@ -10278,35 +10350,43 @@ is_min : bool
 <span class="normal">382</span>
 <span class="normal">383</span>
 <span class="normal">384</span>
-<span class="normal">385</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">extract_powder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">powder_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">detname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
+<span class="normal">385</span>
+<span class="normal">386</span>
+<span class="normal">387</span>
+<span class="normal">388</span>
+<span class="normal">389</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">extract_powder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">powder_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">detname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Extract a powder image from smalldata analysis.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    powder_path : str</span>
-<span class="sd">        Path to the h5 file containing the powder data.</span>
+<span class="sd">        Path to the h5 or npy file containing the powder data.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    powder : npt.NDArray[np.float64]</span>
 <span class="sd">        The extracted powder image.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">powder_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">h5</span><span class="p">:</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">powder</span> <span class="o">=</span> <span class="n">h5</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Sums/</span><span class="si">{</span><span class="n">detname</span><span class="si">}</span><span class="s2">_calib_max&quot;</span><span class="p">][()]</span>
-        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Cannot find </span><span class="si">{</span><span class="n">detname</span><span class="si">}</span><span class="s2"> Max powder in </span><span class="si">{</span><span class="n">powder_path</span><span class="si">}</span><span class="s2">, defaulting to </span><span class="si">{</span><span class="n">detname</span><span class="si">}</span><span class="s2"> Sum instead.&quot;</span>
-            <span class="p">)</span>
+    <span class="k">if</span> <span class="n">powder_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.npy&quot;</span><span class="p">):</span>
+        <span class="n">powder</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">powder_path</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">powder</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">powder_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">h5</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="n">powder</span> <span class="o">=</span> <span class="n">h5</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Sums/</span><span class="si">{</span><span class="n">detname</span><span class="si">}</span><span class="s2">_calib&quot;</span><span class="p">][()]</span>
+                <span class="n">powder</span> <span class="o">=</span> <span class="n">h5</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Sums/</span><span class="si">{</span><span class="n">detname</span><span class="si">}</span><span class="s2">_calib_max&quot;</span><span class="p">][()]</span>
             <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;Cannot find </span><span class="si">{</span><span class="n">detname</span><span class="si">}</span><span class="s2"> Sum powder in </span><span class="si">{</span><span class="n">powder_path</span><span class="si">}</span><span class="s2">. Exiting...&quot;</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Cannot find </span><span class="si">{</span><span class="n">detname</span><span class="si">}</span><span class="s2"> Max powder in </span><span class="si">{</span><span class="n">powder_path</span><span class="si">}</span><span class="s2">, defaulting to </span><span class="si">{</span><span class="n">detname</span><span class="si">}</span><span class="s2"> Sum instead.&quot;</span>
                 <span class="p">)</span>
-                <span class="k">raise</span>
-    <span class="k">return</span> <span class="n">powder</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">powder</span> <span class="o">=</span> <span class="n">h5</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Sums/</span><span class="si">{</span><span class="n">detname</span><span class="si">}</span><span class="s2">_calib&quot;</span><span class="p">][()]</span>
+                <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Cannot find </span><span class="si">{</span><span class="n">detname</span><span class="si">}</span><span class="s2"> Sum powder in </span><span class="si">{</span><span class="n">powder_path</span><span class="si">}</span><span class="s2">. Exiting...&quot;</span>
+                    <span class="p">)</span>
+                    <span class="k">raise</span>
+        <span class="k">return</span> <span class="n">powder</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -10327,7 +10407,7 @@ is_min : bool
         <p>Generate a preprocessed powder image from smalldata reduction.</p>
 <h5 id="tasks._bayfai.BayFAIOpt.generate_powder--parameters">Parameters</h5>
 <p>powder_path : str
-    Path to the h5 file containing the powder data.
+    Path to the h5 or npy file containing the powder data.
 detname : str
     Name of the detector
 smooth : bool, optional
@@ -10336,11 +10416,7 @@ smooth : bool, optional
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/_bayfai.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">435</span>
-<span class="normal">436</span>
-<span class="normal">437</span>
-<span class="normal">438</span>
-<span class="normal">439</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">439</span>
 <span class="normal">440</span>
 <span class="normal">441</span>
 <span class="normal">442</span>
@@ -10356,7 +10432,11 @@ smooth : bool, optional
 <span class="normal">452</span>
 <span class="normal">453</span>
 <span class="normal">454</span>
-<span class="normal">455</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">generate_powder</span><span class="p">(</span>
+<span class="normal">455</span>
+<span class="normal">456</span>
+<span class="normal">457</span>
+<span class="normal">458</span>
+<span class="normal">459</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">generate_powder</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">powder_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">detname</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">smooth</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -10365,7 +10445,7 @@ smooth : bool, optional
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    powder_path : str</span>
-<span class="sd">        Path to the h5 file containing the powder data.</span>
+<span class="sd">        Path to the h5 or npy file containing the powder data.</span>
 <span class="sd">    detname : str</span>
 <span class="sd">        Name of the detector</span>
 <span class="sd">    smooth : bool, optional</span>
@@ -10423,13 +10503,7 @@ is_min : bool
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/_bayfai.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">810</span>
-<span class="normal">811</span>
-<span class="normal">812</span>
-<span class="normal">813</span>
-<span class="normal">814</span>
-<span class="normal">815</span>
-<span class="normal">816</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">816</span>
 <span class="normal">817</span>
 <span class="normal">818</span>
 <span class="normal">819</span>
@@ -10499,7 +10573,13 @@ is_min : bool
 <span class="normal">883</span>
 <span class="normal">884</span>
 <span class="normal">885</span>
-<span class="normal">886</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">gradient_descent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">best_param</span><span class="p">,</span> <span class="n">resolutions</span><span class="p">,</span> <span class="n">Imin</span><span class="p">,</span> <span class="n">max_rings</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+<span class="normal">886</span>
+<span class="normal">887</span>
+<span class="normal">888</span>
+<span class="normal">889</span>
+<span class="normal">890</span>
+<span class="normal">891</span>
+<span class="normal">892</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">gradient_descent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">best_param</span><span class="p">,</span> <span class="n">resolutions</span><span class="p">,</span> <span class="n">Imin</span><span class="p">,</span> <span class="n">max_rings</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Evaluate geometry found by BO on pyFAI refinement tool</span>
 
@@ -10603,13 +10683,7 @@ ax : plt.Axes
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/_bayfai.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1182</span>
-<span class="normal">1183</span>
-<span class="normal">1184</span>
-<span class="normal">1185</span>
-<span class="normal">1186</span>
-<span class="normal">1187</span>
-<span class="normal">1188</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1188</span>
 <span class="normal">1189</span>
 <span class="normal">1190</span>
 <span class="normal">1191</span>
@@ -10634,7 +10708,13 @@ ax : plt.Axes
 <span class="normal">1210</span>
 <span class="normal">1211</span>
 <span class="normal">1212</span>
-<span class="normal">1213</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_bo_history</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
+<span class="normal">1213</span>
+<span class="normal">1214</span>
+<span class="normal">1215</span>
+<span class="normal">1216</span>
+<span class="normal">1217</span>
+<span class="normal">1218</span>
+<span class="normal">1219</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_bo_history</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plot the Bayesian Optimization history across all ranks</span>
 
@@ -10699,21 +10779,7 @@ ax : plt.Axes
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/_bayfai.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1288</span>
-<span class="normal">1289</span>
-<span class="normal">1290</span>
-<span class="normal">1291</span>
-<span class="normal">1292</span>
-<span class="normal">1293</span>
-<span class="normal">1294</span>
-<span class="normal">1295</span>
-<span class="normal">1296</span>
-<span class="normal">1297</span>
-<span class="normal">1298</span>
-<span class="normal">1299</span>
-<span class="normal">1300</span>
-<span class="normal">1301</span>
-<span class="normal">1302</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1302</span>
 <span class="normal">1303</span>
 <span class="normal">1304</span>
 <span class="normal">1305</span>
@@ -10764,7 +10830,21 @@ ax : plt.Axes
 <span class="normal">1350</span>
 <span class="normal">1351</span>
 <span class="normal">1352</span>
-<span class="normal">1353</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_intensity_hist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">powder</span><span class="p">,</span> <span class="n">Imin</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
+<span class="normal">1353</span>
+<span class="normal">1354</span>
+<span class="normal">1355</span>
+<span class="normal">1356</span>
+<span class="normal">1357</span>
+<span class="normal">1358</span>
+<span class="normal">1359</span>
+<span class="normal">1360</span>
+<span class="normal">1361</span>
+<span class="normal">1362</span>
+<span class="normal">1363</span>
+<span class="normal">1364</span>
+<span class="normal">1365</span>
+<span class="normal">1366</span>
+<span class="normal">1367</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_intensity_hist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">powder</span><span class="p">,</span> <span class="n">Imin</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plot histogram of pixel intensities in the powder image</span>
 
@@ -10855,21 +10935,7 @@ ax : plt.Axes
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/_bayfai.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1355</span>
-<span class="normal">1356</span>
-<span class="normal">1357</span>
-<span class="normal">1358</span>
-<span class="normal">1359</span>
-<span class="normal">1360</span>
-<span class="normal">1361</span>
-<span class="normal">1362</span>
-<span class="normal">1363</span>
-<span class="normal">1364</span>
-<span class="normal">1365</span>
-<span class="normal">1366</span>
-<span class="normal">1367</span>
-<span class="normal">1368</span>
-<span class="normal">1369</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1369</span>
 <span class="normal">1370</span>
 <span class="normal">1371</span>
 <span class="normal">1372</span>
@@ -10924,7 +10990,27 @@ ax : plt.Axes
 <span class="normal">1421</span>
 <span class="normal">1422</span>
 <span class="normal">1423</span>
-<span class="normal">1424</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_powder_and_resolution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="normal">1424</span>
+<span class="normal">1425</span>
+<span class="normal">1426</span>
+<span class="normal">1427</span>
+<span class="normal">1428</span>
+<span class="normal">1429</span>
+<span class="normal">1430</span>
+<span class="normal">1431</span>
+<span class="normal">1432</span>
+<span class="normal">1433</span>
+<span class="normal">1434</span>
+<span class="normal">1435</span>
+<span class="normal">1436</span>
+<span class="normal">1437</span>
+<span class="normal">1438</span>
+<span class="normal">1439</span>
+<span class="normal">1440</span>
+<span class="normal">1441</span>
+<span class="normal">1442</span>
+<span class="normal">1443</span>
+<span class="normal">1444</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_powder_and_resolution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plot the powder image with calibrated overlapping 2θ rings.</span>
 
@@ -10961,21 +11047,27 @@ ax : plt.Axes
 
     <span class="n">radii</span> <span class="o">=</span> <span class="n">calculate_radius</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">detector</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
     <span class="n">closest_pixel_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">radii</span><span class="p">)</span>
-    <span class="n">closest_pixel</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_index</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">closest_pixel_index</span><span class="p">],</span> <span class="n">x_index</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">closest_pixel_index</span><span class="p">])</span>
-    <span class="n">closest_q</span> <span class="o">=</span> <span class="n">theta2q</span><span class="p">(</span><span class="n">ttha</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">closest_pixel_index</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrant</span><span class="o">.</span><span class="n">wavelength</span><span class="p">)</span>
+    <span class="n">closest_pixel</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">y_index</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">closest_pixel_index</span><span class="p">],</span>
+        <span class="n">x_index</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">closest_pixel_index</span><span class="p">],</span>
+    <span class="p">)</span>
+    <span class="n">closest_q</span> <span class="o">=</span> <span class="n">theta2q</span><span class="p">(</span>
+        <span class="n">ttha</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">closest_pixel_index</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrant</span><span class="o">.</span><span class="n">wavelength</span>
+    <span class="p">)</span>
     <span class="n">closest_resol</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">closest_q</span>
 
     <span class="n">furthest_pixel_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">radii</span><span class="p">)</span>
-    <span class="n">furthest_pixel</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_index</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">furthest_pixel_index</span><span class="p">],</span> <span class="n">x_index</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">furthest_pixel_index</span><span class="p">])</span>
-    <span class="n">furthest_q</span> <span class="o">=</span> <span class="n">theta2q</span><span class="p">(</span><span class="n">ttha</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">furthest_pixel_index</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrant</span><span class="o">.</span><span class="n">wavelength</span><span class="p">)</span>
+    <span class="n">furthest_pixel</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">y_index</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">furthest_pixel_index</span><span class="p">],</span>
+        <span class="n">x_index</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">furthest_pixel_index</span><span class="p">],</span>
+    <span class="p">)</span>
+    <span class="n">furthest_q</span> <span class="o">=</span> <span class="n">theta2q</span><span class="p">(</span>
+        <span class="n">ttha</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">furthest_pixel_index</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrant</span><span class="o">.</span><span class="n">wavelength</span>
+    <span class="p">)</span>
     <span class="n">furthest_resol</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">furthest_q</span>
 
-    <span class="n">pixel_lvls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-        <span class="p">[</span><span class="n">closest_pixel</span><span class="p">,</span> <span class="n">furthest_pixel</span><span class="p">]</span>
-    <span class="p">)</span>
-    <span class="n">resol_lvls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-        <span class="p">[</span><span class="n">closest_resol</span><span class="p">,</span> <span class="n">furthest_resol</span><span class="p">]</span>
-    <span class="p">)</span>
+    <span class="n">pixel_lvls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">closest_pixel</span><span class="p">,</span> <span class="n">furthest_pixel</span><span class="p">])</span>
+    <span class="n">resol_lvls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">closest_resol</span><span class="p">,</span> <span class="n">furthest_resol</span><span class="p">])</span>
     <span class="k">for</span> <span class="n">pixel</span><span class="p">,</span> <span class="n">resol</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">pixel_lvls</span><span class="p">,</span> <span class="n">resol_lvls</span><span class="p">):</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
             <span class="n">pixel</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
@@ -11025,13 +11117,7 @@ ax : plt.Axes
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/_bayfai.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1141</span>
-<span class="normal">1142</span>
-<span class="normal">1143</span>
-<span class="normal">1144</span>
-<span class="normal">1145</span>
-<span class="normal">1146</span>
-<span class="normal">1147</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1147</span>
 <span class="normal">1148</span>
 <span class="normal">1149</span>
 <span class="normal">1150</span>
@@ -11064,7 +11150,13 @@ ax : plt.Axes
 <span class="normal">1177</span>
 <span class="normal">1178</span>
 <span class="normal">1179</span>
-<span class="normal">1180</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_radial_integration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qs</span><span class="p">,</span> <span class="n">radial</span><span class="p">,</span> <span class="n">calibrant</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="normal">1180</span>
+<span class="normal">1181</span>
+<span class="normal">1182</span>
+<span class="normal">1183</span>
+<span class="normal">1184</span>
+<span class="normal">1185</span>
+<span class="normal">1186</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_radial_integration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qs</span><span class="p">,</span> <span class="n">radial</span><span class="p">,</span> <span class="n">calibrant</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plot the radial integration of a powder image</span>
 
@@ -11129,14 +11221,7 @@ ax : plt.Axes
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/_bayfai.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1251</span>
-<span class="normal">1252</span>
-<span class="normal">1253</span>
-<span class="normal">1254</span>
-<span class="normal">1255</span>
-<span class="normal">1256</span>
-<span class="normal">1257</span>
-<span class="normal">1258</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1258</span>
 <span class="normal">1259</span>
 <span class="normal">1260</span>
 <span class="normal">1261</span>
@@ -11164,7 +11249,21 @@ ax : plt.Axes
 <span class="normal">1283</span>
 <span class="normal">1284</span>
 <span class="normal">1285</span>
-<span class="normal">1286</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_residual_distance_scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
+<span class="normal">1286</span>
+<span class="normal">1287</span>
+<span class="normal">1288</span>
+<span class="normal">1289</span>
+<span class="normal">1290</span>
+<span class="normal">1291</span>
+<span class="normal">1292</span>
+<span class="normal">1293</span>
+<span class="normal">1294</span>
+<span class="normal">1295</span>
+<span class="normal">1296</span>
+<span class="normal">1297</span>
+<span class="normal">1298</span>
+<span class="normal">1299</span>
+<span class="normal">1300</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_residual_distance_scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plot the residual scan over distance</span>
 
@@ -11186,13 +11285,20 @@ ax : plt.Axes
         <span class="bp">self</span><span class="o">.</span><span class="n">final_score</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">invalid</span><span class="p">],</span>
         <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
         <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span>
-        <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span>
+        <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span>
         <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">distances</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_score</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">distances</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">],</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">final_score</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">],</span>
+        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span>
+        <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+        <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Distance (m)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$-\log\left(\frac</span><span class="si">{1}{N}</span><span class="s2">\sum (2\theta_g - 2\theta_c)^2\right)$&quot;</span><span class="p">,</span>
-        <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span>
+        <span class="sa">r</span><span class="s2">&quot;$-\log\left(\frac</span><span class="si">{1}{N}</span><span class="s2">\sum (2\theta_g - 2\theta_c)^2\right)$&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span>
+    <span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">get_offset_text</span><span class="p">()</span><span class="o">.</span><span class="n">set_fontsize</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
@@ -11225,13 +11331,7 @@ ax : plt.Axes
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/_bayfai.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1215</span>
-<span class="normal">1216</span>
-<span class="normal">1217</span>
-<span class="normal">1218</span>
-<span class="normal">1219</span>
-<span class="normal">1220</span>
-<span class="normal">1221</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1221</span>
 <span class="normal">1222</span>
 <span class="normal">1223</span>
 <span class="normal">1224</span>
@@ -11259,7 +11359,14 @@ ax : plt.Axes
 <span class="normal">1246</span>
 <span class="normal">1247</span>
 <span class="normal">1248</span>
-<span class="normal">1249</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_score_distance_scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
+<span class="normal">1249</span>
+<span class="normal">1250</span>
+<span class="normal">1251</span>
+<span class="normal">1252</span>
+<span class="normal">1253</span>
+<span class="normal">1254</span>
+<span class="normal">1255</span>
+<span class="normal">1256</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_score_distance_scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plot the score scan over distance</span>
 
@@ -11285,8 +11392,9 @@ ax : plt.Axes
         <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Distance (m)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$-\log\left(\frac</span><span class="si">{1}{N}</span><span class="s2">\sum (2\theta_g - 2\theta_c)^2\right)$&quot;</span><span class="p">,</span>
-        <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span>
+        <span class="sa">r</span><span class="s2">&quot;$-\log\left(\frac</span><span class="si">{1}{N}</span><span class="s2">\sum (2\theta_g - 2\theta_c)^2\right)$&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">6</span>
+    <span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">get_offset_text</span><span class="p">()</span><span class="o">.</span><span class="n">set_fontsize</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
@@ -11323,11 +11431,7 @@ smooth : bool, optional
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/_bayfai.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">387</span>
-<span class="normal">388</span>
-<span class="normal">389</span>
-<span class="normal">390</span>
-<span class="normal">391</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">391</span>
 <span class="normal">392</span>
 <span class="normal">393</span>
 <span class="normal">394</span>
@@ -11348,7 +11452,11 @@ smooth : bool, optional
 <span class="normal">409</span>
 <span class="normal">410</span>
 <span class="normal">411</span>
-<span class="normal">412</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">preprocess_powder</span><span class="p">(</span>
+<span class="normal">412</span>
+<span class="normal">413</span>
+<span class="normal">414</span>
+<span class="normal">415</span>
+<span class="normal">416</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">preprocess_powder</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">powder</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
     <span class="n">mask</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">],</span>
@@ -11412,11 +11520,7 @@ prior : bool
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/_bayfai.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">631</span>
-<span class="normal">632</span>
-<span class="normal">633</span>
-<span class="normal">634</span>
-<span class="normal">635</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">635</span>
 <span class="normal">636</span>
 <span class="normal">637</span>
 <span class="normal">638</span>
@@ -11453,7 +11557,11 @@ prior : bool
 <span class="normal">669</span>
 <span class="normal">670</span>
 <span class="normal">671</span>
-<span class="normal">672</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">sample_initial_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">X_norm</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">,</span> <span class="n">prior</span><span class="p">):</span>
+<span class="normal">672</span>
+<span class="normal">673</span>
+<span class="normal">674</span>
+<span class="normal">675</span>
+<span class="normal">676</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">sample_initial_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">X_norm</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">,</span> <span class="n">prior</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Sample initial points from the search space.</span>
 
@@ -11512,7 +11620,7 @@ prior : bool
 
     <div class="doc doc-contents ">
 
-        <p>Evaluate score at a given sampled geometry based on the number of detected Bragg peaks.</p>
+        <p>Evaluate score at a given sampled geometry based on the residual between predicted and observed Bragg peak positions.</p>
 <h5 id="tasks._bayfai.BayFAIOpt.score--parameters">Parameters</h5>
 <p>sample : list
     Geometry parameters
@@ -11527,11 +11635,7 @@ max_rings : int
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/_bayfai.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">674</span>
-<span class="normal">675</span>
-<span class="normal">676</span>
-<span class="normal">677</span>
-<span class="normal">678</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">678</span>
 <span class="normal">679</span>
 <span class="normal">680</span>
 <span class="normal">681</span>
@@ -11573,9 +11677,15 @@ max_rings : int
 <span class="normal">717</span>
 <span class="normal">718</span>
 <span class="normal">719</span>
-<span class="normal">720</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="n">Imin</span><span class="p">,</span> <span class="n">max_rings</span><span class="p">):</span>
+<span class="normal">720</span>
+<span class="normal">721</span>
+<span class="normal">722</span>
+<span class="normal">723</span>
+<span class="normal">724</span>
+<span class="normal">725</span>
+<span class="normal">726</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="n">Imin</span><span class="p">,</span> <span class="n">max_rings</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Evaluate score at a given sampled geometry based on the number of detected Bragg peaks.</span>
+<span class="sd">    Evaluate score at a given sampled geometry based on the residual between predicted and observed Bragg peak positions.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -11618,7 +11728,9 @@ max_rings : int
     <span class="n">ix</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
     <span class="n">iy</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
     <span class="n">ring</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
-    <span class="n">score</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">sg</span><span class="o">.</span><span class="n">geometry_refinement</span><span class="o">.</span><span class="n">residu2</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">ix</span><span class="p">,</span> <span class="n">iy</span><span class="p">,</span> <span class="n">ring</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span>
+        <span class="n">sg</span><span class="o">.</span><span class="n">geometry_refinement</span><span class="o">.</span><span class="n">residu2</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">ix</span><span class="p">,</span> <span class="n">iy</span><span class="p">,</span> <span class="n">ring</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="p">)</span>
     <span class="k">return</span> <span class="n">score</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -11645,11 +11757,7 @@ max_rings : int
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/_bayfai.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">542</span>
-<span class="normal">543</span>
-<span class="normal">544</span>
-<span class="normal">545</span>
-<span class="normal">546</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">546</span>
 <span class="normal">547</span>
 <span class="normal">548</span>
 <span class="normal">549</span>
@@ -11660,7 +11768,11 @@ max_rings : int
 <span class="normal">554</span>
 <span class="normal">555</span>
 <span class="normal">556</span>
-<span class="normal">557</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">set_search_space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fixed</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">557</span>
+<span class="normal">558</span>
+<span class="normal">559</span>
+<span class="normal">560</span>
+<span class="normal">561</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">set_search_space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fixed</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Define the search space for the free parameters.</span>
 
@@ -11818,11 +11930,7 @@ out_file : str
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/_bayfai.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">477</span>
-<span class="normal">478</span>
-<span class="normal">479</span>
-<span class="normal">480</span>
-<span class="normal">481</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">481</span>
 <span class="normal">482</span>
 <span class="normal">483</span>
 <span class="normal">484</span>
@@ -11848,7 +11956,11 @@ out_file : str
 <span class="normal">504</span>
 <span class="normal">505</span>
 <span class="normal">506</span>
-<span class="normal">507</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">update_geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pyFAI</span><span class="o">.</span><span class="n">detectors</span><span class="o">.</span><span class="n">Detector</span><span class="p">:</span>
+<span class="normal">507</span>
+<span class="normal">508</span>
+<span class="normal">509</span>
+<span class="normal">510</span>
+<span class="normal">511</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">update_geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pyFAI</span><span class="o">.</span><span class="n">detectors</span><span class="o">.</span><span class="n">Detector</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Update the geometry and write a new .poni, .geom and .data file</span>
 
@@ -11906,18 +12018,18 @@ detname : str
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/_bayfai.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">509</span>
-<span class="normal">510</span>
-<span class="normal">511</span>
-<span class="normal">512</span>
-<span class="normal">513</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">513</span>
 <span class="normal">514</span>
 <span class="normal">515</span>
 <span class="normal">516</span>
 <span class="normal">517</span>
 <span class="normal">518</span>
 <span class="normal">519</span>
-<span class="normal">520</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">upload_geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">detname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">520</span>
+<span class="normal">521</span>
+<span class="normal">522</span>
+<span class="normal">523</span>
+<span class="normal">524</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">upload_geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">detname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Upload the optimized geometry to the experiment database.</span>
 
