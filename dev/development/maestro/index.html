@@ -3329,7 +3329,7 @@
 </code></pre>
 <ul>
 <li>The <code>PythonLauncher</code> runs the job steps directly calling the <code>python</code> interpreter - this is a blocking call.</li>
-<li>The <code>SlurmLauncher</code> submits the <code>submit_slurm.sh</code> batch script to launch the <code>JobStep</code> as a batch job.</li>
+<li>The <code>SlurmLauncher</code> submits the <code>submit_slurm</code> batch script to launch the <code>JobStep</code> as a batch job.</li>
 </ul>
 <h3 id="handler-implementations"><code>Handler</code> implementations</h3>
 <p>Side-by-side with the actual <code>Launcher</code> implementations a set of <code>Handler</code>s have been defined that implement the REST API. These are used by both the <code>PythonLauncher</code> and <code>SlurmLauncher</code>.</p>

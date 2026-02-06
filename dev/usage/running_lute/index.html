@@ -3416,7 +3416,7 @@
 <p>After a YAML file has been filled in you can run a <code>Task</code> (really, a <strong>managed</strong> <code>Task</code>). There are multiple ways to submit a <code>Task</code>, but there are 3 that are most likely:</p>
 <ol>
 <li>Run a single <strong>managed</strong> <code>Task</code> interactively by running <code>python ...</code></li>
-<li>Run a single <strong>managed</strong> <code>Task</code> as a batch job (e.g. on S3DF) via a SLURM submission <code>submit_slurm.sh ...</code></li>
+<li>Run a single <strong>managed</strong> <code>Task</code> as a batch job (e.g. on S3DF) via a SLURM submission <code>submit_slurm ...</code></li>
 <li>Run a DAG (workflow with multiple <strong>managed</strong> <code>Task</code>s).</li>
 </ol>
 <p>These will be covered in turn below; however, in general all methods will require two parameters: the path to a configuration YAML file, and the name of the <strong>managed</strong> <code>Task</code> or workflow you want to run. When submitting via SLURM or submitting an entire workflow there are additional parameters to control these processes.</p>
@@ -3440,8 +3440,8 @@
 </code></pre>
 <p>For additional debugging variables see the advanced usage section below.</p>
 <h3 id="submitting-a-single-managed-task-as-a-batch-job">Submitting a single managed <code>Task</code> as a batch job</h3>
-<p>On S3DF you can also submit individual <strong>managed</strong> <code>Task</code>s to run as batch jobs. To do so use <code>launch_scripts/submit_slurm.sh</code>. If you sourced the "activation" script described in the installation documentation, it is added to path as <code>submit_slurm.sh</code></p>
-<pre><code class="language-bash">&gt; submit_slurm.sh -t &lt;ManagedTaskName&gt; -c &lt;/path/to/config/yaml&gt; [--debug] [--psana2] $SLURM_ARGS
+<p>On S3DF you can also submit individual <strong>managed</strong> <code>Task</code>s to run as batch jobs. To do so use <code>launch_scripts/submit_slurm.py</code>. If you sourced the "activation" script described in the installation documentation, it is added to path as <code>submit_slurm</code></p>
+<pre><code class="language-bash">&gt; submit_slurm -t &lt;ManagedTaskName&gt; -c &lt;/path/to/config/yaml&gt; [--debug] [--psana2] $SLURM_ARGS
 </code></pre>
 <p>As before command-line arguments in square brackets <code>[]</code> are optional, while those in <code>&lt;&gt;</code> must be provided</p>
 <ul>
@@ -3462,7 +3462,7 @@
 <p>In general, it is best to prefer the long-form of the SLURM-argument (<code>--arg=&lt;...&gt;</code>) in order to avoid potential clashes with present or future LUTE arguments.</p>
 <h4 id="experiment-and-run-again">Experiment and run, again...</h4>
 <p>If you are not providing a specific experiment and run in your configuration YAML, you can additionally pass these values as arguments on the command-line:</p>
-<pre><code class="language-bash">&gt; submit_slurm.sh -t &lt;ManagedTaskName&gt; -c &lt;/path/to/config/yaml&gt; [-e EXPERIMENT] [-r RUN] [--debug] $SLURM_ARGS
+<pre><code class="language-bash">&gt; submit_slurm -t &lt;ManagedTaskName&gt; -c &lt;/path/to/config/yaml&gt; [-e EXPERIMENT] [-r RUN] [--debug] $SLURM_ARGS
 </code></pre>
 <h3 id="workflow-dag-submission">Workflow (DAG) submission</h3>
 <p>Finally, you can submit a full workflow (e.g. SFX analysis, smalldata production and summary results, geometry optimization...). This can be done using a single script, <code>submit_launch_slurm.sh</code>, similarly to the SLURM submission above:</p>
@@ -3505,7 +3505,7 @@
 <li><code>launch_scripts/submit_launch_airflow.sh</code> is run.</li>
 <li>This script runs the <code>launch_scripts/launch_airflow.py</code> script which was provided as the first argument. This is the <strong>true</strong> launch script</li>
 <li><code>launch_airflow.py</code> communicates with the Airflow API, requesting that a specific DAG be launched. It then continues to run, and gathers the individual logs and the exit status of each step of the DAG.</li>
-<li>Airflow will then enter a loop of communication where it asks the JID to submit each step of the requested DAG as batch job using <code>launch_scripts/submit_slurm.sh</code>.</li>
+<li>Airflow will then enter a loop of communication where it asks the JID to submit each step of the requested DAG as batch job using <code>launch_scripts/submit_slurm.py</code>.</li>
 </ol>
 <p>There are some specific reasons for this complexity:</p>
 <ul>

@@ -3168,7 +3168,7 @@ Refer to https://github.com/slac-lcls/lute for more information.
 <p><code>--unbuffered</code> is an optional flag which will display logs immediately as the are written. By default, logs are collected and displayed at the end of each step of the workflow. This unbuffered option will print them immediately. This is probably not useful if you have multiple things running in parallel as part of your workflow, but if all the steps are running serially it could be useful for more immediate feedback.</p>
 </li>
 <li>
-<p><code>SLURM_ARGS</code> are SLURM arguments to be passed to the <code>submit_slurm.sh</code> script which are used for each individual <strong>managed</strong> <code>Task</code>. These arguments to do NOT affect the submission parameters for the job running <code>launch_airflow.py</code> (if using <code>submit_launch_airflow.sh</code> below).</p>
+<p><code>SLURM_ARGS</code> are SLURM arguments to be passed to the <code>submit_slurm</code> script which are used for each individual <strong>managed</strong> <code>Task</code>. These arguments to do NOT affect the submission parameters for the job running <code>launch_airflow.py</code> (if using <code>submit_launch_airflow.sh</code> below).</p>
 </li>
 </ul>
 <h4 id="lifetime">Lifetime</h4>

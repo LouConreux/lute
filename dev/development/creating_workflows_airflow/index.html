@@ -999,10 +999,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#submit_slurmsh" class="md-nav__link">
+  <a href="#submit_slurm" class="md-nav__link">
     <span class="md-ellipsis">
       
-        submit_slurm.sh
+        submit_slurm
       
     </span>
   </a>
@@ -3186,10 +3186,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#submit_slurmsh" class="md-nav__link">
+  <a href="#submit_slurm" class="md-nav__link">
     <span class="md-ellipsis">
       
-        submit_slurm.sh
+        submit_slurm
       
     </span>
   </a>
@@ -3340,7 +3340,7 @@
 <p>For building and running workflows using SLURM and Airflow, the following components are necessary, and will be described in more detail below:
 - Airflow launch script: <code>launch_airflow.py</code>
   - This has a wrapper batch submission script: <code>submit_launch_airflow.sh</code> . When running using the ARP (from the eLog), you <strong>MUST</strong> use this wrapper script instead of the Python script directly.
-- SLURM submission script: <code>submit_slurm.sh</code>
+- SLURM submission script: <code>submit_slurm</code>
 - Airflow operators:
   - <code>JIDSlurmOperator</code></p>
 <h2 id="launchsubmission-scripts">Launch/Submission Scripts</h2>
@@ -3389,7 +3389,7 @@
 </ul>
 </li>
 <li>
-<p><code>SLURM_ARGS</code> are SLURM arguments to be passed to the <code>submit_slurm.sh</code> script which are used for each individual <strong>managed</strong> <code>Task</code>. These arguments to do NOT affect the submission parameters for the job running <code>launch_airflow.py</code> (if using <code>submit_launch_airflow.sh</code> below).</p>
+<p><code>SLURM_ARGS</code> are SLURM arguments to be passed to the <code>submit_slurm</code> script which are used for each individual <strong>managed</strong> <code>Task</code>. These arguments to do NOT affect the submission parameters for the job running <code>launch_airflow.py</code> (if using <code>submit_launch_airflow.sh</code> below).</p>
 </li>
 </ul>
 <h4 id="lifetime">Lifetime</h4>
@@ -3400,21 +3400,21 @@
 <p>Usage:</p>
 <pre><code class="language-bash">submit_launch_airflow.sh /path/to/launch_airflow.py [-a | --admin] -c &lt;path_to_config_yaml&gt; [-d | --debug] [--test] [--type &lt;TYPE&gt;] -w &lt;workflow_name&gt; [-W &lt;patch_to_dag] [-e &lt;exp&gt;] [-r &lt;run&gt;] [SLURM_ARGS]
 </code></pre>
-<h3 id="submit_slurmsh"><code>submit_slurm.sh</code></h3>
+<h3 id="submit_slurm"><code>submit_slurm</code></h3>
 <p>Launches a job on the S3DF batch nodes using the SLURM job scheduler. This script launches a single <strong>managed</strong> <code>Task</code> at a time. The usage is as follows:</p>
-<pre><code class="language-bash">submit_slurm.sh -c &lt;path_to_config_yaml&gt; -t &lt;MANAGED_task_name&gt; [--debug] [SLURM_ARGS ...]
+<pre><code class="language-bash">submit_slurm -c &lt;path_to_config_yaml&gt; -t &lt;MANAGED_task_name&gt; [--debug] [SLURM_ARGS ...]
 </code></pre>
 <p>As a reminder the <strong>managed</strong> <code>Task</code> refers to the <code>Executor</code>-<code>Task</code> combination. The script does not parse any SLURM specific parameters, and instead passes them transparently to SLURM. At least the following two SLURM arguments must be provided:</p>
 <pre><code class="language-bash">--partition=&lt;...&gt; # Usually partition=milano
 --account=&lt;...&gt; # Usually account=lcls:$EXPERIMENT
 </code></pre>
 <p>Generally, resource requests will also be included, such as the number of cores to use. A complete call may look like the following:</p>
-<pre><code class="language-bash">submit_slurm.sh -c /sdf/data/lcls/ds/hutch/experiment/scratch/config.yaml -t Tester --partition=milano --account=lcls:experiment --ntasks=100 [...]
+<pre><code class="language-bash">submit_slurm -c /sdf/data/lcls/ds/hutch/experiment/scratch/config.yaml -t Tester --partition=milano --account=lcls:experiment --ntasks=100 [...]
 </code></pre>
 <p>When running a workflow using the <code>launch_airflow.py</code> script, each step of the workflow will be submitted using this script.</p>
 <h2 id="operators">Operators</h2>
 <p><code>Operator</code>s are the objects submitted as individual steps of a DAG by Airflow. They are conceptually linked to the idea of a task in that each task of a workflow is generally an operator. Care should be taken, not to confuse them with LUTE <code>Task</code>s or <strong>managed</strong> <code>Task</code>s though. There is, however, usually a one-to-one correspondance between a <code>Task</code> and an <code>Operator</code>.</p>
-<p>Airflow runs on a K8S cluster which has no access to the experiment data. When we ask Airflow to run a DAG, it will launch an <code>Operator</code> for each step of the DAG. However, the <code>Operator</code> itself cannot perform productive analysis without access to the data. The solution employed by <code>LUTE</code> is to have a limited set of <code>Operator</code>s which do not perform analysis, but instead request that a <code>LUTE</code> <strong>managed</strong> <code>Task</code>s be submitted on the batch nodes where it can access the data. There may be small differences between how the various provided <code>Operator</code>s do this, but in general they will all make a request to the <strong>job interface daemon</strong> (JID) that a new SLURM job be scheduled using the <code>submit_slurm.sh</code> script described above.</p>
+<p>Airflow runs on a K8S cluster which has no access to the experiment data. When we ask Airflow to run a DAG, it will launch an <code>Operator</code> for each step of the DAG. However, the <code>Operator</code> itself cannot perform productive analysis without access to the data. The solution employed by <code>LUTE</code> is to have a limited set of <code>Operator</code>s which do not perform analysis, but instead request that a <code>LUTE</code> <strong>managed</strong> <code>Task</code>s be submitted on the batch nodes where it can access the data. There may be small differences between how the various provided <code>Operator</code>s do this, but in general they will all make a request to the <strong>job interface daemon</strong> (JID) that a new SLURM job be scheduled using the <code>submit_slurm</code> script described above.</p>
 <p>Therefore, running a typical Airflow DAG involves the following steps:</p>
 <ol>
 <li><code>launch_airflow.py</code> script is submitted, usually from a definition in the eLog.</li>
@@ -3512,7 +3512,7 @@ task1 &gt;&gt; task2
 task1 &gt;&gt; task3
 </code></pre>
 <p>As each DAG is defined in pure Python, standard control structures (loops, if statements, etc.) can be used to create more complex workflow arrangements.</p>
-<p><strong>Note:</strong> Your DAG will not be available to the production Airflow instance until your PR including the file you have defined is merged! Once merged the file will be synced with the Airflow instance and can be run using the scripts described earlier in this document. For testing it is generally preferred that you run each step of your DAG individually using the <code>submit_slurm.sh</code> script and the independent <strong>managed</strong> <code>Task</code> names. If, however, you want to test the behaviour of Airflow itself (in a modified form) you can either use the "dynamic" run-time DAGs described on the <a href="../dynamic_workflows/">dynamic workflows page</a>, or work against the test Airflow instance described below.</p>
+<p><strong>Note:</strong> Your DAG will not be available to the production Airflow instance until your PR including the file you have defined is merged! Once merged the file will be synced with the Airflow instance and can be run using the scripts described earlier in this document. For testing it is generally preferred that you run each step of your DAG individually using the <code>submit_slurm</code> script and the independent <strong>managed</strong> <code>Task</code> names. If, however, you want to test the behaviour of Airflow itself (in a modified form) you can either use the "dynamic" run-time DAGs described on the <a href="../dynamic_workflows/">dynamic workflows page</a>, or work against the test Airflow instance described below.</p>
 <h3 id="psdag-repository-and-the-production-vs-test-airflow-instances"><code>psdag</code> repository and the production vs test Airflow instances</h3>
 <p>Airflow runs in the S3DF k8s cluster without access to the filesystem on S3DF, or any knowledge of the LUTE repository. In order for workflows to become available to use via Airflow, the DAG definitions (the Python files described above) must be synced to the instance. This is currently accomplished using an additional repository: <a href="https://github.com/slac-lcls/psdag">psdag</a>. The structure of the repository is as follows:</p>
 <ul>
