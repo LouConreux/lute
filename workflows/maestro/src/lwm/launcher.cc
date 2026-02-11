@@ -11,9 +11,9 @@
 #include <filesystem>
 #include <fstream>
 #include <future>
-#include <iostream> // Consider removing this later!
 #include <memory>
 #include <mutex>
+#include <optional>
 #include <regex>
 #include <sstream>
 #include <stdexcept>
@@ -22,6 +22,41 @@
 #include <vector>
 
 namespace fs = std::filesystem;
+
+namespace {
+  /**
+   * RAII helper for temporary files.
+   * Uses mkstemp for unique filename generation and ensures the file is
+   * deleted upon destruction.
+   */
+  struct ScopedTempFile {
+    fs::path path;
+    int fd = -1;
+
+    ScopedTempFile() {
+      char temp_template[] = "/tmp/lute_maestro_XXXXXX";
+      fd = mkstemp(temp_template);
+      if (fd == -1) {
+        throw std::runtime_error("Failed to create temporary file using mkstemp");
+      }
+      path = temp_template;
+      // We close the descriptor immediately as we only need the unique filename
+      // for shell redirection. The file exists now with 0600 permissions.
+      close(fd);
+      fd = -1;
+    }
+
+    ~ScopedTempFile() {
+      if (fd != -1) {
+        close(fd);
+      }
+      if (!path.empty()) {
+        std::error_code ec;
+        fs::remove(path, ec);
+      }
+    }
+  };
+} // anonymous namespace
 
 namespace LWM {
 
@@ -222,23 +257,19 @@ namespace LWM {
   std::pair<std::string,int> SubprocessLauncher::run_subprocess_log(const std::string& cmd,
                                                                     bool return_output) {
     std::string final_cmd = cmd;
-    std::FILE* tmp_file;
-    std::string tmp_filename;
+    std::unique_ptr<ScopedTempFile> tmp_file;
+
     if (return_output) {
-      tmp_file = std::tmpfile();
-      if (!tmp_file) {
-        m_logger->critical("Cannot create a temporary file!");
-        throw std::runtime_error("Cannot create a temporary file.");
+      try {
+        tmp_file.reset(new ScopedTempFile());
+        m_logger->debug("Will redirect subprocess logs to: {}", tmp_file->path.string());
+        final_cmd = cmd + " > " + tmp_file->path.string() + " 2>&1";
+      } catch (const std::exception& e) {
+        m_logger->critical("Cannot create a temporary file: {}", e.what());
+        throw;
       }
-      tmp_filename = fs::read_symlink(
-        fs::path("/proc/self/fd") / std::to_string(fileno(tmp_file))
-      );
-      // This includes a `(deleted)` in the name
-      std::regex deleted_pattern("\\s*\\(deleted\\)");
-      tmp_filename = std::regex_replace(tmp_filename, deleted_pattern, "");
-      m_logger->trace("Will redirect subprocess logs to: " + tmp_filename);
-      final_cmd = cmd + " > " + tmp_filename + " 2>&1";
     }
+
     int status = std::system(final_cmd.c_str());
 
     if (WEXITSTATUS(status)) {
@@ -249,10 +280,10 @@ namespace LWM {
     }
 
     if (!return_output) {
-      return std::make_pair("",status);
+      return std::make_pair("", status);
     } else {
       std::string result;
-      std::ifstream in(tmp_filename);
+      std::ifstream in(tmp_file->path);
       if (in.is_open()) {
         result.assign((std::istreambuf_iterator<char>(in)),
                       std::istreambuf_iterator<char>());
@@ -260,12 +291,11 @@ namespace LWM {
       } else {
         std::string err =
           "Unable to open temporary command output file: ";
-        err += tmp_filename;
+        err += tmp_file->path.string();
         throw std::runtime_error(err.c_str());
       }
       return std::make_pair(result, status);
     }
-    return std::make_pair("", status);
   }
 
   JobReturn SubprocessLauncher::launch_task(const JobStep& job, bool is_daq2, MaybeJobFutures_t wait_for) {
@@ -292,7 +322,7 @@ namespace LWM {
       std::tie(log, ret_status) = run_subprocess_log(launch_cmd, true);
       if (ret_status != 0) {
         status = "SUBPROCESS_FAILED";
-        return std::move(JobReturn(managed_task_name, status, log, splits));
+        return JobReturn(managed_task_name, status, log, splits);
       }
       std::regex jobid_regex(R"(Submitted batch job ([0-9]{0,100}))");
       std::smatch jobid_match;
@@ -317,7 +347,7 @@ namespace LWM {
             }
           }
         }
-        logger()->debug(managed_task_name + "'s current status is " + status);
+        logger()->trace(managed_task_name + "'s current status is " + status);
       }
       JobRegistry::unregister_job(managed_task_name);
       update_log(log, jobid);
@@ -330,7 +360,7 @@ namespace LWM {
     }
     splits.end_point = std::chrono::steady_clock::now();
     m_status_handler->remove_running_splits(managed_task_name);
-    return std::move(JobReturn(managed_task_name, status, log, splits));
+    return JobReturn(managed_task_name, status, log, splits);
   }
 
   JobReturn SubprocessLauncher::operator()(const JobStep& job, bool is_daq2, MaybeJobFutures_t wait_for) {
