@@ -984,6 +984,62 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Creating a new workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trigger-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trigger Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-branching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting up branching
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameter-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameter generation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parameter generation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-does-this-actually-work-important-notes-for-developers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How does this actually work? Important notes for developers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1251,6 +1307,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../source/execution/debug_utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    debug_utils
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../source/execution/executor/" class="md-nav__link">
         
   
@@ -1307,14 +1391,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/execution/debug_utils/" class="md-nav__link">
+      <a href="../../source/execution/launch/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    debug_utils
+    launch
   
 
     
@@ -1343,6 +1427,34 @@
     
   
     logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/execution/subprocess_utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    subprocess_utils
   
 
     
@@ -3087,6 +3199,62 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Creating a new workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trigger-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trigger Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-branching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting up branching
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameter-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameter generation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parameter generation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-does-this-actually-work-important-notes-for-developers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How does this actually work? Important notes for developers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -3224,7 +3392,9 @@ Refer to https://github.com/slac-lcls/lute for more information.
 <li>A custom string of SLURM arguments in <code>slurm_params</code>. This can be used to override the arguments which are passed in the command-line, but if it is provided, it must provide <strong>EVERY</strong> SLURM argument. Currently, only replacing some arguments is not supported.</li>
 <li>A field called <code>next</code> which is a list which sets up the <strong>managed</strong> <code>Task</code>s that will be submitted after this one completes. If it is left empty, then this branch of the workflow ends here.</li>
 </ul>
-<p>Additionally, a set of trigger rules can be provided before each step definition:</p>
+<p>A number of additional special tags can be used as described below in the relevant sections.</p>
+<h3 id="trigger-rules">Trigger Rules</h3>
+<p>A set of trigger rules can be provided before each step definition with an appropriate tag:</p>
 <ul>
 <li><code>!ALL_SUCCESS</code>: This job step will only be submitted if all previous steps in its branch succeed (This is the default)</li>
 <li><code>!ANY_SUCCESS</code>: This job step will be submitted as soon as any previous step in its branch succeed.</li>
@@ -3233,7 +3403,55 @@ Refer to https://github.com/slac-lcls/lute for more information.
 <li><code>!ANY_FAILED</code>: This job step will be submitted as soon as any previous step fails.</li>
 <li><code>!ALWAYS</code>: This job step will always run as soon as it is reached in the DAG.</li>
 </ul>
+<h3 id="setting-up-branching">Setting up branching</h3>
 <p>A number of branching conditions can be defined as well. Currently supported are branching based on LCLS1 vs LCLS2 DAQ, and the run type. These are defined by using the tag <code>!branch_daq2</code> (for example) and defining two dictionaries underneath it for the various cases (<code>daq2</code> or <code>daq1</code> in this example).</p>
+<h3 id="parameter-generation">Parameter generation</h3>
+<p>A not infrequent requirement is to rerun a workflow where some set of the <code>Task</code> parameters is modified each time. Parameter "sweeps" or generation can be configured from the DAG definition to simplify this process.</p>
+<p>A <code>!param_sweep</code> tag can be prepended before the relevant step in the DAG. When adding this tag, in addition to <code>task_name</code>, <code>slurm_params</code>, and <code>next</code> keys which must be defined for every step in the DAG, a <code>param_matrix</code> key is included. Under this key, the set of <code>Task</code> parameter values should be provided.</p>
+<p>For example, the <code>SocketTester</code> <strong>managed</strong> <code>Task</code>, runs <code>TestSocket</code>. This has a parameter <code>num_arrays</code> which takes an integer. If we want to run that <code>Task</code> five times, with a different value each time for this parameter, we can define the DAG as:</p>
+<pre><code class="language-yaml">!LUTE_DAG
+task_name: Tester
+slurm_params: &quot;--partition=milano --account=lcls:data --ntasks=1&quot;
+next:
+- !param_sweep
+  task_name: SocketTester
+  param_matrix:
+    num_arrays: [5, 10, 15, 20, 25]
+  slurm_params: &quot;--partition=milano --account=lcls:data --ntasks=1&quot;
+  next: []
+</code></pre>
+<p>This will create a workflow which runs four instances of the <strong>managed</strong> <code>Task</code> <strong>IN PARALLEL</strong>.</p>
+<pre><code>          - SocketTester_0   # Has 5 for num_arrays
+        /
+       /  - SocketTester_1   # Has 10 for num_arrays
+      / /
+Tester    - SocketTester_2   # Has 15 for num_arrays
+      \ \
+       \  - SocketTester_2   # Has 20 for num_arrays
+        \
+          - SocketTester_3   # Has 25 for num_arrays
+</code></pre>
+<h4 id="how-does-this-actually-work-important-notes-for-developers">How does this actually work? Important notes for developers</h4>
+<p>The parameter generation mechanism works by creating a new temporary config YAML. The original that the user has provided is used as the starting point. When using parameter generation it is generally still required to provide a config YAML to start with.</p>
+<p>The <code>maestro</code> parser will take the parameter matrix provided in the DAG definition and create copies for the relevant <code>Task</code> that include modified versions of the specified parameters. Note how in the example above, the <strong>managed</strong> <code>Task</code>s have been denoted with a <code>_X</code> suffix. This suffix is intentional, and is used for determining which set of parameters each job will use. The suffix will be eventually removed; however, it is important for the lookup process.</p>
+<p>In particular, the process works as:</p>
+<ol>
+<li>
+<p>When <code>run_task.py</code> sees a <strong>managed</strong> <code>Task</code> with this suffix, it will look for the underlying <strong>managed</strong> <code>Task</code> that it corresponds to. E.g., using the above definition, it will see <code>SocketTester_0</code> and determine that it must run <code>SocketTester</code>.</p>
+<ul>
+<li>I.e., <code>SocketTester_0</code> -&gt; <code>SocketTester</code></li>
+</ul>
+</li>
+<li>
+<p>This determination is not enough, however. For this <strong>managed</strong> <code>Task</code> instance, it will then make sure that t modifies the name of the <code>Task</code> that it is running. So, it will take the stripped suffix and add it to the <code>Task</code> name. <code>TestSocket</code> will become <code>TestSocket_0</code>. This allows the underlying <code>Task</code> layer to lookup the information in the config YAML transparently.</p>
+<ul>
+<li>More specifically, it will do <code>SocketTester.task_name = "TestSocket"</code> -&gt; <code>SocketTester.task_name = "TestSocket_0"</code></li>
+</ul>
+</li>
+<li>
+<p>Both the Execution and Task layers, once the config lookup process has completed, will remove the suffix where appropriate. E.g., we don't want to store information in the database under a <code>Task</code> named <code>TestSocket_0</code>. Ultimately, all these instances are running <code>TestSocket</code>, and the database will reflect that. The suffixes are just used internally to facilitate the parameter generation process.</p>
+</li>
+</ol>
 
 
 

@@ -1401,6 +1401,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../source/execution/debug_utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    debug_utils
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../source/execution/executor/" class="md-nav__link">
         
   
@@ -1457,14 +1485,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../source/execution/debug_utils/" class="md-nav__link">
+      <a href="../../source/execution/launch/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    debug_utils
+    launch
   
 
     
@@ -1493,6 +1521,34 @@
     
   
     logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/execution/subprocess_utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    subprocess_utils
   
 
     
@@ -3497,7 +3553,8 @@
 <h2 id="advanced-usage">Advanced Usage</h2>
 <h3 id="maestro-launch-and-dag-execution-steps">Maestro Launch and DAG Execution Steps</h3>
 <p>The above steps describe use of the <code>maestro</code> workflow backend. LUTE supports the use of multiple backends for workflow management.</p>
-<p><code>maestro</code> is a new manager built for this project and additional documentation is in the works. For using other backends see below.</p>
+<p><code>maestro</code> is a new manager built for this project. For more information on actually writing DAGs with <code>maestro</code>, please refer to the <a href="/development/creating_workflows_maestro/#creating-a-new-workflow">creating workflows documentation</a>.</p>
+<p>For using other backends see below - do note that the preference is to run with <code>maestro</code> and while these backends are supported, development priority will be given to <code>maestro</code>.</p>
 <h3 id="other-backends">Other backends</h3>
 <h4 id="airflow-launch-and-dag-execution-steps">Airflow Launch and DAG Execution Steps</h4>
 <p>The Airflow launch process actually involves two steps. There is a wrapper prior to getting to the actual Airflow API communication.</p>
