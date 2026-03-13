@@ -339,9 +339,7 @@ class BayFAIOpt2:
             Minimum intensity value for identifying Bragg peaks
         """
         t_start = time.time()
-        logger.info(
-            f"[RANK {self.rank}] START setup wall_time={t_start:.2f}"
-        )
+        logger.info(f"[RANK {self.rank}] START setup wall_time={t_start:.2f}")
         self.detector = self.build_detector(detname)
         self.powder = self.generate_powder(h5, detname, smooth)
         self.stacked_powder = np.reshape(self.powder, self.detector.shape)
@@ -458,7 +456,8 @@ class BayFAIOpt2:
         return powder
 
     def build_detector(
-        self, detname: str,
+        self,
+        detname: str,
     ) -> pyFAI.detectors.Detector:
         """
         Read the metrology data and build a pyFAI detector object.
@@ -509,7 +508,11 @@ class BayFAIOpt2:
         detector = psana_to_pyfai.detector
         return detector
 
-    def define_calibrant(self, h5: str, calibrant_name: str, ) -> pyFAI.calibrant.Calibrant:
+    def define_calibrant(
+        self,
+        h5: str,
+        calibrant_name: str,
+    ) -> pyFAI.calibrant.Calibrant:
         """
         Define calibrant for optimization with appropriate wavelength
 
@@ -1069,11 +1072,10 @@ class BayFAIOpt2:
         logger.info(
             f"Rank {self.rank}: Running Bayesian Optimization on distance {dist:.4f} m"
         )
-        import time 
+        import time
+
         t_start = time.time()
-        logger.info(
-            f"[RANK {self.rank}] START BayFAI wall_time={t_start:.2f}"
-        )
+        logger.info(f"[RANK {self.rank}] START BayFAI wall_time={t_start:.2f}")
         bayfai_hyperparams = {
             "n_samples": n_samples,
             "n_iterations": n_iterations,
