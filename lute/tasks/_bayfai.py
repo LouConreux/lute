@@ -33,7 +33,6 @@ __author__ = "Louis Conreux"
 from lute.execution.logging import get_logger
 
 import os
-from psana import DataSource, Detector  # type: ignore
 import numpy as np
 import numpy.typing as npt
 from typing import Optional
@@ -58,7 +57,8 @@ from sklearn.utils._testing import ignore_warnings  # type: ignore
 from sklearn.exceptions import ConvergenceWarning  # type: ignore
 from mpi4py import MPI
 
-from LCLSGeom.psana.converter import PsanaToPyFAI, PyFAIToPsana, PyFAIToCrystFEL  # type: ignore
+from LCLSGeom.manager import get_geometry  # type: ignore 
+from LCLSGeom.converter import PsanaToPyFAI, PyFAIToPsana, PyFAIToCrystFEL  # type: ignore
 
 pyFAI.use_opencl = False
 
@@ -289,9 +289,6 @@ class BayFAIOpt:
     ):
         self.exp = exp
         self.run = run
-        self.ds = DataSource(f"exp={exp}:run={run}:idx")
-        self.runs = next(self.ds.runs())
-        self.evt = self.runs.event(self.runs.times()[0])
         self.comm = MPI.COMM_WORLD
         self.rank = self.comm.Get_rank()
         self.size = self.comm.Get_size()
@@ -317,11 +314,10 @@ class BayFAIOpt:
     def setup(
         self,
         detname: str,
-        powder: str,
+        h5: str,
         smooth: bool,
         calibrant: str,
         fixed: list,
-        in_file: str,
     ):
         """
         Setup the BayFAI optimization.
@@ -330,28 +326,26 @@ class BayFAIOpt:
         ----------
         detname : str
             Name of the detector
-        powder : str
-            Path to the powder image to use for calibration
+        h5 : str
+            Path to the h5 file to use for calibration
         smooth : bool
             If True, apply smoothing to the powder image
         calibrant : PyFAI.Calibrant
             PyFAI calibrant object
         fixed : list
             List of parameters to keep fixed during optimization
-        in_file : str
-            Path to the input geometry file
 
         Returns
         -------
         Imin : float
             Minimum intensity value for identifying Bragg peaks
         """
-        self.detector = self.build_detector(in_file)
-        self.powder = self.generate_powder(powder, detname, smooth)
+        self.detector = self.build_detector(detname)
+        self.powder = self.generate_powder(h5, detname, smooth)
         self.stacked_powder = np.reshape(self.powder, self.detector.shape)
         pos_pix = self.powder[self.powder > 0]
         self.Imin = np.percentile(pos_pix, 95)
-        self.calibrant = self.define_calibrant(calibrant)
+        self.calibrant = self.define_calibrant(h5, calibrant)
         self.set_search_space(fixed)
 
     def extract_powder(self, powder_path: str, detname: str) -> npt.NDArray[np.float64]:
@@ -472,10 +466,8 @@ class BayFAIOpt:
         pyFAI.Detector
             Configured pyFAI detector object
         """
-        psana_to_pyfai = PsanaToPyFAI(
-            in_file=in_file,
-        )
-        detector = psana_to_pyfai.detector
+        in_file = get_geometry(detname)
+        detector = PsanaToPyFAI.convert(in_file, detname)
         return detector
 
     def update_geometry(self, out_file: str) -> pyFAI.detectors.Detector:
@@ -510,36 +502,22 @@ class BayFAIOpt:
         detector = psana_to_pyfai.detector
         return detector
 
-    def upload_geometry(self, out_file: str, detname: str) -> None:
-        """
-        Upload the optimized geometry to the experiment database.
-
-        Parameters
-        ----------
-        out_file : str
-            Path to the output file
-        detname : str
-            Name of the detector
-        """
-        pass
-
-    def define_calibrant(self, calibrant_name: str) -> pyFAI.calibrant.Calibrant:
+    def define_calibrant(self, h5: str, calibrant_name: str, ) -> pyFAI.calibrant.Calibrant:
         """
         Define calibrant for optimization with appropriate wavelength
 
         Parameters
         ----------
+        h5 : str
+            Path to the h5 file containing the wavelength data
         calibrant_name : str
             Name of the calibrant
         """
         self.calibrant_name = calibrant_name
         calibrant = CALIBRANT_FACTORY(calibrant_name)
-        try:
-            det_photon_energy = Detector("EBeam")
-            photon_energy = det_photon_energy.get(self.evt).ebeamPhotonEnergy()
-            wavelength = 1.23984197386209e-06 / photon_energy
-        except Exception:
-            wavelength = self.ds.env().epicsStore().value("SIOC:SYS0:ML00:AO192") * 1e-9
+        with h5py.File(h5) as f:
+            photon_energy = np.mean(f["ebeamh"]["ebeamPhotonEnergy"][:])
+        wavelength = 1.23984197386209e-06 / photon_energy
         calibrant.wavelength = wavelength
         return calibrant
 

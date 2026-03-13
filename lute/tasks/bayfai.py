@@ -26,6 +26,8 @@ from lute.tasks.task import Task
 from lute.tasks.dataclasses import TaskStatus, ElogSummaryPlots
 from lute.execution.logging import get_logger
 
+# from LCLSGeom.manager import push  # type: ignore
+
 import os
 import logging
 import panel as pn  # type: ignore
@@ -57,11 +59,10 @@ class BayFAI(Task):
             )
         optimizer.setup(
             detname=self._task_parameters.detname,
-            powder=self._task_parameters.powder,
+            h5=self._task_parameters.h5,
             smooth=self._task_parameters.preprocess,
             calibrant=self._task_parameters.calibrant,
             fixed=self._task_parameters.fixed,
-            in_file=self._task_parameters.in_file,
         )
         bayfai_hyperparams = {
             "n_samples": self._task_parameters.bo_params.n_samples,
@@ -99,9 +100,6 @@ class BayFAI(Task):
             os.makedirs(fig_folder, exist_ok=True)
             plot = f"{fig_folder}/bayFAI_summary_{optimizer.exp}_r{optimizer.run:0>4}_{self._task_parameters.detname}.png"
             calib_detector = optimizer.update_geometry(self._task_parameters.out_file)
-            optimizer.upload_geometry(
-                self._task_parameters.out_file, self._task_parameters.detname
-            )
             powder_plot, qs, resolutions = optimizer.create_interactive_powder()
             diagnostics_plot = optimizer.create_diagnostics_panel(
                 detector=calib_detector,
@@ -112,6 +110,13 @@ class BayFAI(Task):
                 distance=distance,
                 plot=plot,
             )
+            # if IS_PSANA2:
+            #     push(
+            #         self._task_parameters.lute_config.experiment,
+            #         self._task_parameters.lute_config.run,
+            #         self._task_parameters.detname,
+            #         self._task_parameters.out_file,
+            #     )
             pn.extension("matplotlib", "bokeh")
             plots = pn.Row(
                 pn.pane.Matplotlib(diagnostics_plot, sizing_mode="fixed"),

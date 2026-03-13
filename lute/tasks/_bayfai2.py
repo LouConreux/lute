@@ -33,10 +33,6 @@ __author__ = "Louis Conreux"
 from lute.execution.logging import get_logger
 
 import os
-from psana import DataSource  # type: ignore
-import psana.pscalib.calib.MDBUtils as mu  # type: ignore
-import psana.pscalib.calib.MDBWebUtils as wu  # type: ignore
-import psana.detector.UtilsCalib as uc  # type: ignore
 import numpy as np
 import numpy.typing as npt
 from typing import Optional
@@ -60,12 +56,12 @@ from sklearn.gaussian_process.kernels import RBF, ConstantKernel, WhiteKernel  #
 from sklearn.utils._testing import ignore_warnings  # type: ignore
 from sklearn.exceptions import ConvergenceWarning  # type: ignore
 from mpi4py import MPI
+import time
 
-from LCLSGeom.psana2.converter import PsanaToPyFAI, PyFAIToPsana, PyFAIToCrystFEL  # type: ignore
+from LCLSGeom.manager import get_geometry  # type: ignore
+from LCLSGeom.converter import PsanaToPyFAI, PyFAIToPsana, PyFAIToCrystFEL  # type: ignore
 
 pyFAI.use_opencl = False
-
-cc = wu.cc
 
 logger: logging.Logger = get_logger(__name__)
 
@@ -291,36 +287,9 @@ class BayFAIOpt2:
     ):
         self.exp = exp
         self.run = run
-        self.ds = DataSource(exp=exp, run=run, skip_calib_load="all", max_events=1)
-        self.runs = next(self.ds.runs())
         self.comm = MPI.COMM_WORLD
         self.rank = self.comm.Get_rank()
         self.size = self.comm.Get_size()
-        world_group: MPI.Group = self.comm.Get_group()
-        bd_group: MPI.Group = self.ds.comms._bd_only_group
-        bd_comm = self.comm.Create_group(bd_group)
-        self._bd_root_in_world: int = bd_group.Translate_ranks([0], world_group)[0]
-        if bd_comm != MPI.COMM_NULL:
-            if bd_comm.Get_rank() == 0:
-                self.evt = next(
-                    self.runs.events()
-                )  # First event is accessed on BD root
-            else:
-                self.evt = None
-            bd_comm.Barrier()  # Make sure BD root has read the event
-            try:
-                _ = next(
-                    self.runs.events()
-                )  # To EB node to exit, access on all other BD nodes
-            except StopIteration:
-                ...
-        else:
-            try:
-                self.evt = next(
-                    self.runs.events()
-                )  # Recover processes on SMD0 and EB nodes
-            except StopIteration:
-                self.evt = None
         if self.rank == 0:
             logger.info(f"Getting {self.size} processes for BayFAIOpt task")
 
@@ -343,11 +312,10 @@ class BayFAIOpt2:
     def setup(
         self,
         detname: str,
-        powder: str,
+        h5: str,
         smooth: bool,
         calibrant: str,
         fixed: list,
-        in_file: str,
     ):
         """
         Setup the BayFAI optimization.
@@ -356,29 +324,35 @@ class BayFAIOpt2:
         ----------
         detname : str
             Name of the detector
-        powder : str
-            Path to the powder image to use for calibration
+        h5 : str
+            Path to the h5 file to use for calibration
         smooth : bool
             If True, apply smoothing to the powder image
         calibrant : PyFAI.Calibrant
             PyFAI calibrant object
         fixed : list
             List of parameters to keep fixed during optimization
-        in_file : str
-            Path to the input geometry file
 
         Returns
         -------
         Imin : float
             Minimum intensity value for identifying Bragg peaks
         """
-        self.detector = self.build_detector(detname, in_file)
-        self.powder = self.generate_powder(powder, detname, smooth)
+        t_start = time.time()
+        logger.info(
+            f"[RANK {self.rank}] START setup wall_time={t_start:.2f}"
+        )
+        self.detector = self.build_detector(detname)
+        self.powder = self.generate_powder(h5, detname, smooth)
         self.stacked_powder = np.reshape(self.powder, self.detector.shape)
         non_zero_pixels = self.powder[self.powder > 0]
         self.Imin = np.percentile(non_zero_pixels, 95)
-        self.calibrant = self.define_calibrant(calibrant)
+        self.calibrant = self.define_calibrant(h5, calibrant)
         self.set_search_space(fixed)
+        t_end = time.time()
+        logger.info(
+            f"[RANK {self.rank}] END setup wall_time={t_end:.2f} elapsed={t_end - t_start:.2f} seconds"
+        )
 
     def extract_powder(self, powder_path: str, detname: str) -> npt.NDArray[np.float64]:
         """
@@ -484,7 +458,7 @@ class BayFAIOpt2:
         return powder
 
     def build_detector(
-        self, detname: str, in_file: Optional[str] = None
+        self, detname: str,
     ) -> pyFAI.detectors.Detector:
         """
         Read the metrology data and build a pyFAI detector object.
@@ -499,17 +473,8 @@ class BayFAIOpt2:
         pyFAI.Detector
             Configured pyFAI detector object
         """
-        if in_file:
-            psana_to_pyfai = PsanaToPyFAI(
-                input=in_file,
-            )
-            detector = psana_to_pyfai.detector
-            return detector
-        detector = self.runs.Detector(detname)
-        psana_to_pyfai = PsanaToPyFAI(
-            input=detector,
-        )
-        detector = psana_to_pyfai.detector
+        in_file = get_geometry(detname)
+        detector = PsanaToPyFAI.convert(in_file, detname)
         return detector
 
     def update_geometry(self, out_file: str) -> pyFAI.detectors.Detector:
@@ -544,74 +509,22 @@ class BayFAIOpt2:
         detector = psana_to_pyfai.detector
         return detector
 
-    def upload_geometry(self, out_file: str, detname: str) -> None:
-        """
-        Upload the geometry to the calibration database.
-
-        Parameters
-        ----------
-        out_file : str
-            Path to the output .data file
-        detname : str
-            Name of the detector
-        """
-        ctype = "geometry"
-        dtype = "str"
-        data = mu.data_from_file(out_file, ctype, dtype, verb="DEBUG")
-        detector = self.runs.Detector(detname)
-        longname: str = detector.raw._uniqueid
-        shortname: str = uc.detector_name_short(longname)
-        det_type: str = detector._dettype
-        run_orig: int = self.run
-        run_beg: int = self.run
-        run_end: str = "end"
-        run: int = run_beg
-        kwa = {
-            "iofname": out_file,
-            "experiment": self.exp,
-            "ctype": ctype,
-            "dtype": dtype,
-            "detector": shortname,
-            "shortname": shortname,
-            "detname": detname,
-            "longname": longname,
-            "run": run,
-            "run_beg": run_beg,
-            "run_end": run_end,
-            "run_orig": run_orig,
-            "dettype": det_type,
-        }
-        _ = wu.deploy_constants(
-            data,
-            self.exp,
-            longname,
-            url=cc.URL_KRB,
-            krbheaders=cc.KRBHEADERS,
-            **kwa,
-        )
-
-    def define_calibrant(self, calibrant_name: str) -> pyFAI.calibrant.Calibrant:
+    def define_calibrant(self, h5: str, calibrant_name: str, ) -> pyFAI.calibrant.Calibrant:
         """
         Define calibrant for optimization with appropriate wavelength
 
         Parameters
         ----------
+        h5 : str
+            Path to the h5 file containing the wavelength data
         calibrant_name : str
             Name of the calibrant
         """
         self.calibrant_name = calibrant_name
         calibrant = CALIBRANT_FACTORY(calibrant_name)
-        if self.rank == self._bd_root_in_world:
-            try:
-                det_photon_energy = self.runs.Detector("ebeamh")
-                photon_energy = det_photon_energy.raw.ebeamPhotonEnergy(self.evt)
-                wavelength = 1.23984197386209e-06 / photon_energy
-            except Exception:
-                det_wavelength = self.runs.Detector("SIOC:SYS0:ML00:AO192")
-                wavelength = det_wavelength(self.evt) * 1e-9
-        else:
-            wavelength = None
-        wavelength = self.comm.bcast(wavelength, root=self._bd_root_in_world)
+        with h5py.File(h5) as f:
+            photon_energy = np.mean(f["ebeamh"]["ebeamPhotonEnergy"][:])
+        wavelength = 1.23984197386209e-06 / photon_energy
         calibrant.wavelength = wavelength
         return calibrant
 
@@ -653,7 +566,7 @@ class BayFAIOpt2:
         distances = center["dist"] + offsets
         distances = np.round(distances, 6)
         self.distances = distances
-        dist = distances[self.rank]
+        dist = self.distances[self.rank]
         return dist
 
     def create_search_space(self, dist, center, bounds, res):
@@ -1156,7 +1069,11 @@ class BayFAIOpt2:
         logger.info(
             f"Rank {self.rank}: Running Bayesian Optimization on distance {dist:.4f} m"
         )
-
+        import time 
+        t_start = time.time()
+        logger.info(
+            f"[RANK {self.rank}] START BayFAI wall_time={t_start:.2f}"
+        )
         bayfai_hyperparams = {
             "n_samples": n_samples,
             "n_iterations": n_iterations,
@@ -1175,7 +1092,10 @@ class BayFAIOpt2:
             res,
             **bayfai_hyperparams,
         )
-
+        t_end = time.time()
+        logger.info(
+            f"[RANK {self.rank}] END BayFAI wall_time={t_end:.2f} elapsed={t_end - t_start:.2f} seconds"
+        )
         self.comm.Barrier()
 
         self.scan = {}
