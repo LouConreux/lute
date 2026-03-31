@@ -57,7 +57,7 @@ from sklearn.utils._testing import ignore_warnings  # type: ignore
 from sklearn.exceptions import ConvergenceWarning  # type: ignore
 from mpi4py import MPI
 
-from LCLSGeom.manager import get_geometry  # type: ignore 
+from LCLSGeom.manager import get_geometry  # type: ignore
 from LCLSGeom.converter import PsanaToPyFAI, PyFAIToPsana, PyFAIToCrystFEL  # type: ignore
 
 pyFAI.use_opencl = False
@@ -502,7 +502,11 @@ class BayFAIOpt:
         )
         return detector
 
-    def define_calibrant(self, calibrant_name: str, h5: str, wavelength: float) -> pyFAI.calibrant.Calibrant:
+    def define_calibrant(
+        self,
+        h5: str,
+        calibrant_name: str,
+    ) -> pyFAI.calibrant.Calibrant:
         """
         Define calibrant for optimization with appropriate wavelength
 
