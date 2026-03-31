@@ -452,7 +452,8 @@ class BayFAIOpt:
         return powder
 
     def build_detector(
-        self, detname: str,
+        self,
+        detname: str,
     ) -> pyFAI.detectors.Detector:
         """
         Read the metrology data and build a pyFAI detector object.
@@ -532,7 +533,9 @@ class BayFAIOpt:
                 photon_energy = np.mean(f[ebeam_key]["photon_energy"][()])
                 wavelength = 1.23984193e-6 / photon_energy
         except Exception as e:
-            logger.warning(f"Could not read photon energy from {h5} due to {e}, defaulting to provided wavelength {wavelength} m")
+            logger.warning(
+                f"Could not read photon energy from {h5} due to {e}, defaulting to provided wavelength {wavelength} m"
+            )
         calibrant.wavelength = wavelength
         return calibrant
 

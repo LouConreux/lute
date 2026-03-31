@@ -90,7 +90,9 @@ class BayFAI(Task):
             )
             os.makedirs(fig_folder, exist_ok=True)
             plot = f"{fig_folder}/bayFAI_summary_{optimizer.exp}_r{optimizer.run:0>4}_{self._task_parameters.detname}.png"
-            calib_detector = optimizer.update_geometry(self._task_parameters.out_file, self._task_parameters.detname)
+            calib_detector = optimizer.update_geometry(
+                self._task_parameters.out_file, self._task_parameters.detname
+            )
             powder_plot, qs, resolutions = optimizer.create_interactive_powder()
             diagnostics_plot = optimizer.create_diagnostics_panel(
                 detector=calib_detector,
