@@ -224,22 +224,4 @@ CheetahRunner.shell_source("/sdf/group/lcls/ds/tools/om/setup-om.sh")
 #######
 BayFAIOptimizer: MPIExecutor = MPIExecutor("BayFAI")
 """Optimize LCLS detector geometry using BayFAI: PyFAI coupled with Bayesian Optimization."""
-BayFAIOptimizer.update_environment(
-    {
-        "NUMEXPR_MAX_THREADS": "16",
-        "NUMEXPR_NUM_THREADS": "16",
-        "PYTHONPATH": "/sdf/group/lcls/ds/tools/LCLSGeom",
-    }
-)
-
-BayFAIOptimizer2: MPIExecutor = MPIExecutor("BayFAI")
-"""Optimize LCLS2 detector geometry using BayFAI: PyFAI coupled with Bayesian Optimization."""
-BayFAIOptimizer2.update_environment(
-    {
-        "NUMEXPR_MAX_THREADS": "16",
-        "NUMEXPR_NUM_THREADS": "16",
-        "PS_SRV_NODES": "0",
-        "PS_EB_NODES": "1",
-        "PYTHONPATH": "/sdf/group/lcls/ds/tools/LCLSGeom",
-    }
-)
+BayFAIOptimizer.shell_source("/sdf/group/lcls/ds/ana/sw/conda2/manage/bin/xpp_drp_cpu.sh")

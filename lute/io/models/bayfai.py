@@ -133,6 +133,11 @@ class BayFAIParameters(TaskParameters):
         description="Calibrant used for the calibration supported by pyFAI: https://github.com/silx-kit/pyFAI/tree/main/src/pyFAI/resources/calibration, \n e.g. Silver Behenate 'AgBh', LaB6 'CeO2', etc.",
     )
 
+    wavelength: float = Field(
+        1e-10,
+        description="Wavelength in meters. Required for the calibration.",
+    )
+
     h5: str = Field(
         "",
         description="Smalldata hdf5 file path to be used for the calibration.",

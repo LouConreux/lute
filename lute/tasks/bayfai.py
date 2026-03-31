@@ -12,21 +12,18 @@ __author__ = "Louis Conreux"
 import psana  # type: ignore
 
 if hasattr(psana, "xtc_version"):
-    from lute.tasks._bayfai2 import BayFAIOpt2
-
     IS_PSANA2 = True
 else:
-    from lute.tasks._bayfai import BayFAIOpt
-
     IS_PSANA2 = False
 
 from lute.io.models.bayfai import BayFAIParameters
+from lute.tasks._bayfai import BayFAIOpt
 
 from lute.tasks.task import Task
 from lute.tasks.dataclasses import TaskStatus, ElogSummaryPlots
 from lute.execution.logging import get_logger
 
-# from LCLSGeom.manager import push  # type: ignore
+from LCLSGeom.manager import push_to_database  # type: ignore
 
 import os
 import logging
@@ -46,23 +43,17 @@ class BayFAI(Task):
     def _run(self) -> None:
         start_time = time.time()
         assert isinstance(self._task_parameters, BayFAIParameters)
-        optimizer: Union[BayFAIOpt, BayFAIOpt2]
-        if IS_PSANA2:
-            optimizer = BayFAIOpt2(
-                exp=self._task_parameters.lute_config.experiment,
-                run=int(self._task_parameters.lute_config.run),
-            )
-        else:
-            optimizer = BayFAIOpt(
-                exp=self._task_parameters.lute_config.experiment,
-                run=int(self._task_parameters.lute_config.run),
-            )
+        optimizer = BayFAIOpt(
+            exp=self._task_parameters.lute_config.experiment,
+            run=int(self._task_parameters.lute_config.run),
+        )
         optimizer.setup(
+            fixed=self._task_parameters.fixed,
             detname=self._task_parameters.detname,
             h5=self._task_parameters.h5,
             smooth=self._task_parameters.preprocess,
             calibrant=self._task_parameters.calibrant,
-            fixed=self._task_parameters.fixed,
+            wavelength=self._task_parameters.wavelength,
         )
         bayfai_hyperparams = {
             "n_samples": self._task_parameters.bo_params.n_samples,
@@ -99,7 +90,7 @@ class BayFAI(Task):
             )
             os.makedirs(fig_folder, exist_ok=True)
             plot = f"{fig_folder}/bayFAI_summary_{optimizer.exp}_r{optimizer.run:0>4}_{self._task_parameters.detname}.png"
-            calib_detector = optimizer.update_geometry(self._task_parameters.out_file)
+            calib_detector = optimizer.update_geometry(self._task_parameters.out_file, self._task_parameters.detname)
             powder_plot, qs, resolutions = optimizer.create_interactive_powder()
             diagnostics_plot = optimizer.create_diagnostics_panel(
                 detector=calib_detector,
@@ -110,13 +101,13 @@ class BayFAI(Task):
                 distance=distance,
                 plot=plot,
             )
-            # if IS_PSANA2:
-            #     push(
-            #         self._task_parameters.lute_config.experiment,
-            #         self._task_parameters.lute_config.run,
-            #         self._task_parameters.detname,
-            #         self._task_parameters.out_file,
-            #     )
+            if IS_PSANA2:
+                push_to_database(
+                    self._task_parameters.lute_config.experiment,
+                    self._task_parameters.lute_config.run,
+                    self._task_parameters.detname,
+                    self._task_parameters.out_file,
+                )
             pn.extension("matplotlib", "bokeh")
             plots = pn.Row(
                 pn.pane.Matplotlib(diagnostics_plot, sizing_mode="fixed"),

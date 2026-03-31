@@ -2,7 +2,7 @@
 Classes for geometry optimization tasks.
 
 Classes:
-    BayFAIOpt: optimize LCLS1 detector geometry using PyFAI coupled with Bayesian Optimization.
+    BayFAIOpt: optimize LCLS detector geometry using PyFAI coupled with Bayesian Optimization.
 
 Functions:
     Miscellaneous functions for geometry-related calculations:
@@ -211,11 +211,7 @@ def azimuthal_integration(
         6 Geometry parameters: distance, x-shift, y-shift, Rx, Ry, Rz
     """
     tth = calculate_2theta(detector, params)
-    if "Jungfrau" in detector.detname:
-        res = 2000 * detector.n_modules
-    else:
-        res = 500 * detector.n_modules
-    nbins = round(len(tth.ravel()) / res)
+    nbins = 1024
     intensity, bin_edges = np.histogram(
         tth.ravel(), bins=nbins, range=(tth.min(), tth.max()), weights=powder.ravel()
     )
@@ -313,17 +309,20 @@ class BayFAIOpt:
 
     def setup(
         self,
+        fixed: list,
         detname: str,
         h5: str,
         smooth: bool,
         calibrant: str,
-        fixed: list,
+        wavelength: float,
     ):
         """
         Setup the BayFAI optimization.
 
         Parameters
         ----------
+        fixed : list
+            List of parameters to keep fixed during optimization
         detname : str
             Name of the detector
         h5 : str
@@ -332,8 +331,8 @@ class BayFAIOpt:
             If True, apply smoothing to the powder image
         calibrant : PyFAI.Calibrant
             PyFAI calibrant object
-        fixed : list
-            List of parameters to keep fixed during optimization
+        wavelength : float
+            X-ray wavelength in meters
 
         Returns
         -------
@@ -344,8 +343,8 @@ class BayFAIOpt:
         self.powder = self.generate_powder(h5, detname, smooth)
         self.stacked_powder = np.reshape(self.powder, self.detector.shape)
         pos_pix = self.powder[self.powder > 0]
-        self.Imin = np.percentile(pos_pix, 95)
-        self.calibrant = self.define_calibrant(h5, calibrant)
+        self.Imin = np.percentile(pos_pix, 98)
+        self.calibrant = self.define_calibrant(calibrant, h5, wavelength)
         self.set_search_space(fixed)
 
     def extract_powder(self, powder_path: str, detname: str) -> npt.NDArray[np.float64]:
@@ -446,20 +445,22 @@ class BayFAIOpt:
             If True, apply smoothing to the powder image.
         """
         mask = self.detector.geo.get_pixel_mask(mbits=3)
-        mask = np.squeeze(mask, axis=0)
+        mask = np.squeeze(mask)
         powder = self.extract_powder(powder_path, detname)
         powder = self.preprocess_powder(powder, mask, smooth)
         self.assembled_powder = self.assemble_image(powder)
         return powder
 
-    def build_detector(self, in_file: str) -> pyFAI.detectors.Detector:
+    def build_detector(
+        self, detname: str,
+    ) -> pyFAI.detectors.Detector:
         """
         Read the metrology data and build a pyFAI detector object.
 
         Parameters
         ----------
-        in_file : str
-            Path to the Geometry .data file
+        detname : str
+            Name of the detector
 
         Returns
         -------
@@ -470,39 +471,38 @@ class BayFAIOpt:
         detector = PsanaToPyFAI.convert(in_file, detname)
         return detector
 
-    def update_geometry(self, out_file: str) -> pyFAI.detectors.Detector:
+    def update_geometry(self, out_file: str, detname: str) -> pyFAI.detectors.Detector:
         """
         Update the geometry and write a new .poni, .geom and .data file
 
         Parameters
         ----------
-        optimizer : BayesGeomOpt
-            Optimizer object
         out_file : str
             Path to the output file
+        detname : str
+            Name of the detector
         """
         path = os.path.dirname(out_file)
         poni_file = os.path.join(path, f"r{self.run:0>4}.poni")
         self.gr.save(poni_file)
-        PyFAIToPsana(
+        PyFAIToPsana.convert(
             in_file=poni_file,
             detector=self.detector,
             out_file=out_file,
         )
         geom_file = os.path.join(path, f"r{self.run:0>4}.geom")
-        PyFAIToCrystFEL(
+        PyFAIToCrystFEL.convert(
             in_file=poni_file,
             detector=self.detector,
             out_file=geom_file,
         )
-        psana_to_pyfai = PsanaToPyFAI(
+        detector = PsanaToPyFAI.convert(
             in_file=out_file,
-            rotate=False,
+            detname=detname,
         )
-        detector = psana_to_pyfai.detector
         return detector
 
-    def define_calibrant(self, h5: str, calibrant_name: str, ) -> pyFAI.calibrant.Calibrant:
+    def define_calibrant(self, calibrant_name: str, h5: str, wavelength: float) -> pyFAI.calibrant.Calibrant:
         """
         Define calibrant for optimization with appropriate wavelength
 
@@ -512,12 +512,23 @@ class BayFAIOpt:
             Path to the h5 file containing the wavelength data
         calibrant_name : str
             Name of the calibrant
+        wavelength : float
+            X-ray wavelength in meters
         """
         self.calibrant_name = calibrant_name
         calibrant = CALIBRANT_FACTORY(calibrant_name)
-        with h5py.File(h5) as f:
-            photon_energy = np.mean(f["ebeamh"]["ebeamPhotonEnergy"][:])
-        wavelength = 1.23984197386209e-06 / photon_energy
+        try:
+            with h5py.File(h5) as f:
+                if "ebeam" in f:
+                    ebeam_key = "ebeam"
+                elif "ebeamh" in f:
+                    ebeam_key = "ebeamh"
+                else:
+                    raise KeyError("Neither 'ebeam' nor 'ebeamh' found in h5 file")
+                photon_energy = np.mean(f[ebeam_key]["photon_energy"][()])
+                wavelength = 1.23984193e-6 / photon_energy
+        except Exception as e:
+            logger.warning(f"Could not read photon energy from {h5} due to {e}, defaulting to provided wavelength {wavelength} m")
         calibrant.wavelength = wavelength
         return calibrant
 

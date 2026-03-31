@@ -1,13 +1,13 @@
 !LUTE_DAG
-task_name: "SmallDataProducer"
+task_name: "SmallDataProducer2"
 slurm_params: ""
 next:
 - task_name: "SmallDataXSSAnalyzer"
-  slurm_params: ""
-  next: []
+slurm_params: ""
+next: []
 - task_name: "SmallDataXASAnalyzer"
-  slurm_params: ""
-  next: []
+slurm_params: ""
+next: []
 - task_name: "SmallDataXESAnalyzer"
-  slurm_params: ""
-  next: []
+slurm_params: ""
+next: []
