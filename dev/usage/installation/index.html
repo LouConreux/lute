@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -406,6 +406,34 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Building the Package">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#important-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Important Notes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-for-different-python-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running for Different Python Versions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3029,6 +3057,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Building the Package">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#important-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Important Notes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-for-different-python-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running for Different Python Versions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -3061,10 +3117,10 @@
 <h2 id="building-the-package">Building the Package</h2>
 <p>At the top level of the directory is a script <code>build.sh</code> for building the code on S3DF.</p>
 <p>You can run it using:</p>
-<pre><code class="language-bash">&gt; ./build.sh # in top level of the repository you just cloned
+<pre><code class="language-bash">&gt; ./build.sh -e # in top level of the repository you just cloned
 </code></pre>
 <p>This will create an <code>install</code> directory inside the top-level of <code>LUTE</code>, and build and install all components there.</p>
-<p>The <code>build.sh</code> script will create a build environment and cache it in your home directory (under <code>~/.cache/lute_build_env_XXXX</code>). The full path is determined from a hash of the installation location. Caching this build environment speeds up subsequent re-builds significantly; however, it can be deleted by passing <code>-c</code> to the <code>build.sh</code> script when it is run. The full set of options for this script are:</p>
+<p>The <code>build.sh</code> script will create a build environment and cache it in your home directory (under <code>~/.cache/lute_build_env_XXXX_{PYVER}</code>). The full path is determined from a hash of the installation location. Caching this build environment speeds up subsequent re-builds significantly; however, it can be deleted by passing <code>-c</code> to the <code>build.sh</code> script when it is run. The full set of options for this script are:</p>
 <pre><code class="language-bash">&gt; ./build.sh -h
 build.sh:
     Build an installation of LUTE.
@@ -3092,11 +3148,30 @@ build.sh:
           Re-run the meson setup. This is only required if meson.build files have been
           modified, or meson options/the install prefix have changed since the last
           time it was run.
+        -s|--source_pyenv
+          Use an additional source environment. Can be used to build multiple versions
+          of the extensions. E.g. to have 3.9 and 3.11 Python extension libraries.
 </code></pre>
 <p>The installation can be "activated" after being built. This will put all the relevant scripts and binaries into your path.</p>
 <pre><code class="language-bash">&gt; source install/bin/activate_installation
 </code></pre>
 <p>This activation script is sourced automatically by submission scripts to make the LUTE code available to various job steps.</p>
+<h3 id="important-notes">Important Notes</h3>
+<ul>
+<li>You should run the script the first time using the <code>-e</code> flag - this will create the Python entry points, i.e. the executables you will use.</li>
+<li>You may want to provide the <code>--source_pyenv</code> flag and build a <strong>second</strong> time. This allows you to have multiple versions of LUTE for different Python versions. LUTE is capable of submitting Tasks across Python versions; however, any C-extensions require that a version be compiled for the target <code>Task</code> Python. See example below.</li>
+</ul>
+<h3 id="running-for-different-python-versions">Running for Different Python Versions</h3>
+<p>You may find that you have a first-party <code>Task</code> that requires an environment that uses a different Python version than the base-environment that LUTE uses. In this case, you can build LUTE for both the base environment, and the target <code>Task</code> environment.</p>
+<p>An example of this sort of setup is when runnning the <code>FindPeaksSFXXpp</code> <code>Task</code>s. The base environment is Python 3.9, but the <code>..._xpp.sh</code> environments are Python 3.11. The peak finding algorithms are C-extensions so need to be compiled against that interpreter version.</p>
+<p>To deal with this situation, you will build twice.</p>
+<pre><code class="language-bash"># First time pass `-e` to get the entry-points/executables
+&gt; ./build.sh -e
+# ... building ...
+&gt; ./build.sh --source_pyenv /sdf/group/lcls/ds/ana/sw/conda2/manage/bin/xpp_drp_cpu.sh
+# ... building ...
+</code></pre>
+<p>After running twice, you will have two <code>_buildXYZ</code> directories. In <code>install/lib</code> you will see a <code>python3.9</code> and <code>python3.11</code> installation.</p>
 
 
 

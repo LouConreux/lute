@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -3229,23 +3229,19 @@
 <li><code>-f, --fresh_install</code>: Install a new version of LUTE in the experiment folder. This allows for local modifications of code. Otherwise, the central installation will be used (which cannot be modified).</li>
 <li><code>--test</code>: Use test Airflow instance. Only needed for bleeding-edge workflows.</li>
 <li><code>-v VERSION, --version VERSION</code>: Version of LUTE to use. Corresponds to release tag or <code>dev</code>. Defaults to <code>dev</code>.</li>
-<li><code>-w WORKFLOW, --workflow WORKFLOW</code>: Which analysis workflow to run. Defaults to <code>smd_summaries</code>.</li>
+<li><code>-W WORKFLOW, --workflow WORKFLOW</code>: Which analysis workflow to run. Defaults to <code>smd</code>.</li>
 <li><code>-d, --debug</code>: Turn on verbose logging.</li>
 <li><code>[SLURM ARGS]</code>: This is any number of SLURM arguments you want to run your workflow with. You will likely want to provide <code>--ntasks</code> at a minimum.</li>
 </ul>
-<p>The only required argument is <code>-e &lt;EXPERIMENT&gt;</code>. This should be the experiment you are setting up for. You will likely also want to provide the <code>-w &lt;WORKFLOW&gt;</code> argument. This determines what default job to setup (i.e., the workflow to run). The current list of workflows is:</p>
+<p>The only required argument is <code>-e &lt;EXPERIMENT&gt;</code>. This should be the experiment you are setting up for. You will likely also want to provide the <code>-W &lt;WORKFLOW&gt;</code> argument. These are written in YAML, and will be copied in from the <code>workflows/common</code> directory (see description below). Because these are YAML, it is recommended (and highly likely) that you will modify the definition slightly.</p>
+<p>The example starting points are:</p>
 <ul>
-<li><code>find_peaks_index</code> : Perform peak finding and indexing.</li>
-<li><code>psocake_sfx_phasing</code> : Perform end-to-end SFX analysis with experimental phasing. This uses a legacy peak finder and is <strong>not</strong> recommended unless you need experimental phasing.</li>
-<li><code>pyalgos_sfx</code> : Perform end-to-end SFX analysis with molecular replacement. Also sets up <code>smalldata_tools</code>.</li>
+<li><code>bayfai</code> : Perform geometry optimization using BayFAI.</li>
+<li><code>sfx</code> : Perform end-to-end SFX analysis with molecular replacement.</li>
 <li><code>smd</code> : Run managed <code>smalldata_tools</code> and downstream analysis/summaries.</li>
-<li><code>smd_summaries</code> : Perform XAS, XES, and XSS analysis of <code>smalldata_tools</code> reduction. Does not setup <code>smalldata_tools</code>.</li>
-<li><code>smd_xss</code> : Perform only XSS analysis of <code>smalldata_tools</code> reduction. Does not setup <code>smalldata_tools</code>.</li>
-<li><code>smd_xes</code> : Perform only XES analysis of <code>smalldata_tools</code> reduction. Does not setup <code>smalldata_tools</code>.</li>
-<li><code>smd_xas</code> : Perform only XAS analysis of <code>smalldata_tools</code> reduction. Does not setup <code>smalldata_tools</code>.</li>
 </ul>
 <p>Providing SLURM arguments is not required, but <strong>highly recommended</strong>. The setup script will try to set some default values for <code>--partition</code>, <code>--account</code>, and <code>--ntasks</code>, depending on the experiment and workflow you are running. If these three arguments are not provided, it will prompt you for each one and tell you the default it has selected. Press enter (or any key) to accept. Otherwise, press <code>Ctrl-C</code> to exit the setup, and pass the arguments manually.</p>
-<p>The <code>setup_lute</code> script will create the eLog job for your selected workflow. Results will be presented back to you in the eLog. The script will also produce a configuration file which will live at <code>/sdf/data/lcls/ds/&lt;hutch&gt;/&lt;experiment&gt;/results/&lt;hutch&gt;.yaml</code>. You will want to modify this configuration prior to running. See <code>Basic Usage</code> below for more information.</p>
+<p>The <code>setup_lute</code> script will create the eLog job for your selected workflow. Results will be presented back to you in the eLog. The script will also produce a configuration file which will live at <code>/sdf/data/lcls/ds/&lt;hutch&gt;/&lt;experiment&gt;/results/lute_output/&lt;hutch&gt;.yaml</code>. You will want to modify this configuration prior to running. See <a href="/#basic-usage">Basic Usage</a> below for more information.</p>
 <h4 id="locally-or-otherwise">Locally or otherwise</h4>
 <p>LUTE is publically available on <a href="https://github.com/slac-lcls/lute">GitHub</a>. In order to run it, the first step is to clone the repository:</p>
 <pre><code class="language-bash"># Navigate to the directory of your choice.
@@ -3255,33 +3251,40 @@ git clone@github.com:slac-lcls/lute
 <pre><code>lute
   |--- config             # Configuration YAML files (see below) and templates for third party config
   |--- docs               # Documentation (including this page)
+  |--- extensions         # Python extensions (written in C and C++), includes algorithms like Peakfinder8
   |--- launch_scripts     # Entry points for using SLURM and communicating with Airflow
   |--- lute               # Code
         |--- run_task.py  # Script to run an individual managed Task
         |--- ...
+  |--- subprojects        # Vendored dependencies (should not be relevant for most users)
+  |--- tests              # As you'd expect
   |--- utilities          # Help utility programs
   |--- workflows          # This directory contains workflow definitions. It is synced elsewhere and not used directly.
-
+        |--- airflow      # DAGs and components written for the Airflow backend
+        |--- common       # Examples (only examples!) for YAML DAGs
+        |--- maestro      # *** Contains the source code for the `maestro` workflow manager
+        |--- prefect      # DAGs and components written for the Prefect backend
 </code></pre>
 <p>In general, most interactions with the software will be through scripts located in the <code>launch_scripts</code> directory. Some users (for certain use-cases) may also choose to run the <code>run_task.py</code> script directly - it's location has been highlighted within hierarchy. To begin with you will need a YAML file, templates for which are available in the <code>config</code> directory. The structure of the YAML file and how to use the various launch scripts are described in more detail in the Usage and Developer documentation on this site.</p>
 <h2 id="basic-usage">Basic Usage</h2>
 <h3 id="overview">Overview</h3>
-<p>LUTE runs code as <code>Task</code>s that are managed by an <code>Executor</code>. The <code>Executor</code> provides modifications to the environment the <code>Task</code> runs in, as well as controls details of inter-process communication, reporting results to the eLog, etc. Combinations of specific <code>Executor</code>s and <code>Task</code>s are already provided, and are referred to as <strong>managed</strong> <code>Task</code>s. <strong>Managed</strong> <code>Task</code>s are submitted as a single unit. They can be run individually, or a series of independent steps can be submitted all at once in the form of a workflow, or <strong>directed acyclic graph</strong> (<strong>DAG</strong>). This latter option makes use of Airflow to manage the individual execution steps.</p>
+<p>LUTE runs code as <code>Task</code>s that are managed by an <code>Executor</code>. The <code>Executor</code> provides modifications to the environment the <code>Task</code> runs in, as well as controls details of inter-process communication, reporting results to the eLog, etc. Combinations of specific <code>Executor</code>s and <code>Task</code>s are already provided, and are referred to as <strong>managed</strong> <code>Task</code>s.</p>
+<p><strong>Managed</strong> <code>Task</code>s are submitted as a single unit. They can be run individually, or a series of independent steps can be submitted all at once in the form of a workflow, or <strong>directed acyclic graph</strong> (<strong>DAG</strong>). This latter option makes use of <a href="/development/maestro">maestro</a>, a workflow manager built for this project, to manage the individual execution steps. Additional backends, such as Airflow and Prefect, are also supported, but are not the default.</p>
 <p>Running analysis with LUTE is the process of submitting one or more <strong>managed</strong> <code>Task</code>s. This is generally a two step process.</p>
 <ol>
 <li>First, a configuration YAML file is prepared. This contains the parameterizations of all the <code>Task</code>s which you may run.</li>
 <li>Individual <strong>managed</strong> <code>Task</code> submission, or workflow (<strong>DAG</strong>) submission.</li>
 </ol>
-<p><strong>Note:</strong> You configure <code>Task</code>s, but submit <strong>managed</strong> <code>Task</code>s. If you run the help utility described below, and in the usage manual, you can find which <strong>managed</strong> <code>Task</code>s correspond to which <code>Task</code>s. In general, <code>Task</code>s are verbs and the <code>Executor</code>s that run them (i.e. <strong>managed</strong> <code>Task</code>s) are nouns. E.g. the <code>FindPeaksPyAlgos</code> <code>Task</code>, is run by submitting the <code>PeakFinderPyAlgos</code> <strong>managed</strong> <code>Task</code>.</p>
+<p><strong>Note:</strong> You configure <code>Task</code>s, but submit <strong>managed</strong> <code>Task</code>s. If you run the help utility described below, and in the usage manual, you can find which <strong>managed</strong> <code>Task</code>s correspond to which <code>Task</code>s. In general, <code>Task</code>s are verbs and the <code>Executor</code>s that run them (i.e. <strong>managed</strong> <code>Task</code>s) are nouns. E.g. the <code>FindPeaksSFX</code> <code>Task</code>, is run by submitting the <code>PeakFinderSFX</code> <strong>managed</strong> <code>Task</code>. There may be many <strong>managed</strong> <code>Task</code>s which submit the same underlying <code>Task</code>, but in different environments.</p>
 <h3 id="config-yaml">Config YAML</h3>
 <p>If you ran the <code>setup_lute</code> script you will already have a <code>&lt;hutch&gt;.yaml</code> file located in your experiment results folder. This YAML file is commented by <code>Task</code>. You will <strong>need</strong> to modify a few of these parameters for some of the <code>Task</code>s. E.g. a partial example of the config file may look like this:</p>
 <pre><code class="language-yaml">%YAML 1.3
 ---
-title: &quot;LUTE Task Configuration&quot; # Include experiment description if desired
+title: &quot;Doing Peakfinding&quot; # Include experiment description if desired
 experiment: &quot;{{ $EXPERIMENT }}&quot;
 #run: &quot;{{ $RUN }}&quot;
 date: &quot;2023/10/25&quot;
-lute_version: 0.1.1      # Do not be change unless need to force older version
+lute_version: 0.2.0      # Do not be change unless need to force older version
 task_timeout: 6000
 work_dir: &quot;&quot;
 ...
@@ -3295,26 +3298,29 @@ work_dir: &quot;&quot;
 # It can be a PV, or alternative a float for a fixed offset
 # Example PVs are commented below, ask beamline staff for relevant PV
 # Change outdir to an appropriate directory for CXI files.
-FindPeaksPyAlgos:
-    outdir: &quot;/path/to/cxi_out&quot;
-    det_name: &quot;epix10k2M&quot;
-    event_receiver: &quot;evr0&quot;
-    tag: &quot;lyso&quot;
-    event_logic: false
-    psana_mask: false
-    mask_file: null
-    min_peaks: 10
-    max_peaks: 2048
-    npix_min: 2
-    npix_max: 30
-    amax_thr: 40
-    atot_thr: 180
-    son_min: 10.0
-    peak_rank: 3
-    r0: 3.0
-    dr: 2.0
-    nsigm: 10.0
-    #pv_camera_length: &quot;MFX:ROB:CONT:POS:Z&quot;  # MFX epix10k2M
+FindPeaksSFX:
+  algorithm: &quot;Peakfinder8&quot;
+  outdir: &quot;/path/to/cxi_out&quot;
+  det_name: &quot;epix10k2M&quot;
+  event_receiver: &quot;evr0&quot;
+  tag: &quot;lyso&quot;
+  event_logic: false
+  psana_mask: false
+  mask_file: null
+  min_peaks: 10
+  max_peaks: 2048
+  npix_min: 2
+  npix_max: 30
+  amax_thr: 40
+  atot_thr: 180
+  son_min: 10.0
+  peak_rank: 3
+  r0: 3.0
+  dr: 2.0
+  nsigm: 10.0
+  #pv_camera_length: &quot;MFX:ROB:CONT:POS:Z&quot;  # MFX epix10k2M
+  make_powder_plots: true
+  geometry_file: /path/to/my/crystfel.geom
 </code></pre>
 <p>If you are running from the eLog you do not need to modify the first section at all, unless you want to provide a title for your experiment. You may want to adjust the <code>task_timeout</code> if you believe some of your <code>Task</code>s are long running. It is in units of seconds. You can change the <code>work_dir</code> parameter if you want to write output to some other location, when running the setup script it will be automatically set to your experiment results folder.</p>
 <p>The provided comments and <code>Task</code> name should be enough to get you started. If there are any questions, first try running the utilities described below, then refer to the more in depth usage manual on <code>Task</code> configuration located in this documentation. Contact the maintainers if anything is still unclear.</p>
@@ -3323,7 +3329,8 @@ FindPeaksPyAlgos:
 <p>In the <code>utilities</code> directory (in the main <code>lute</code> directory) there are two useful programs to provide assistance with using the software:</p>
 <ul>
 <li><code>utilities/dbview</code>: LUTE stores all parameters for every analysis routine it runs (as well as results) in a database. This database is stored in the <code>work_dir</code> defined in the YAML file. The <code>dbview</code> utility is a TUI application (Text-based user interface) which runs in the terminal. It allows you to navigate a LUTE database using the arrow keys, etc. Usage is: <code>utilities/dbview -p &lt;path/to/lute.db&gt;</code>. You will only have a database after your first <strong>managed</strong> <code>Task</code> completes (whether it succeeds or not). (<strong>NOTE:</strong> If using the new database specification v0.2, you can additionally pass the <code>--summarize</code> option to <code>utilities/dbview</code>. This will pivot and reorganize the data since the table structure is harder to parse at a glance in the new specification.)</li>
-<li><code>utilities/lute_help</code>: This utility provides help and usage information for running LUTE software. It provides access to parameter descriptions to assist in properly filling out a configuration YAML. It's usage is described in slightly more detail in the <code>Usage Manual</code>. Briefly you can run <code>lute_help -t &lt;TaskName&gt;</code> to retrieve parameters for a single <code>Task</code> (to put in your configuration YAML), or <code>lute_help -l</code> to list all <code>Task</code>s (and their associated <strong>managed</strong> <code>Task</code>s).</li>
+<li><code>utilities/help</code>: Source code here builds the <code>lute_help</code> utility. This utility provides help and usage information for running LUTE software. It provides access to parameter descriptions to assist in properly filling out a configuration YAML. It's usage is described in slightly more detail in the <code>Usage Manual</code>. Briefly you can run <code>lute_help -t &lt;TaskName&gt;</code> to retrieve parameters for a single <code>Task</code> (to put in your configuration YAML), or <code>lute_help -l</code> to list all <code>Task</code>s (and their associated <strong>managed</strong> <code>Task</code>s).</li>
+<li><code>utilities/setup</code>: Source code for building the setup script described at the top.</li>
 </ul>
 
 

@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -830,6 +830,17 @@
     <span class="md-ellipsis">
       
         Message signals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-use-case-ipc-with-other-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced use case: IPC with other Tasks
       
     </span>
   </a>
@@ -3195,6 +3206,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#advanced-use-case-ipc-with-other-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced use case: IPC with other Tasks
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3546,9 +3568,47 @@ class RunTaskNewEnv(Task): # Inherit from Task
     &quot;TASK_DONE&quot;,
     &quot;TASK_CANCELLED&quot;,
     &quot;TASK_RESULT&quot;,
+    &quot;TASK_REQUEST&quot;,
+    &quot;TASK_RESPONSE&quot;,
+    &quot;TASK_METADATA&quot;,
 }
 </code></pre>
 <p>Each of these signals is associated with a hook on the <code>Executor</code>-side. They are for the most part used by base classes; however, you can choose to make use of them manually as well.</p>
+<h3 id="advanced-use-case-ipc-with-other-tasks">Advanced use case: IPC with other <code>Task</code>s</h3>
+<p>When using <code>maestro</code> as a backend workflow manager (support for the below is not yet available for other backends), it is possible to communicate with other <strong>managed</strong> <code>Task</code>s that are running in parallel.</p>
+<p>Specifically, <code>maestro</code> supports a number of REST API endpoints to facilitate this:</p>
+<ul>
+<li><code>GET /tasks</code> : Get a list of all running <strong>managed</strong> <code>Task</code>s and any metadata that they have published.</li>
+<li><code>GET/POST /rpc?task=....</code> : Remote procedure call for the provided <code>task</code> as the query parameter.</li>
+</ul>
+<p>While knowledge of these APIs is useful, from the perspective of <code>Task</code> code, direct calls to them is not needed. All <code>Task</code> communication goes via the <code>Executor</code>. A number of methods have been provided in the base <code>Task</code> class in order to facilitate communication.</p>
+<ul>
+<li><code>task_request(for_task: str, request: Any, wait_for_resp: bool = True)</code>: Send a <code>request</code> to <code>for_task</code>. You can either block (by setting <code>wait_for_resp</code> to <code>True</code>) or check back later.</li>
+<li><code>get_running_tasks() -&gt; Message</code>: Get a current list of running <code>Task</code>s and any metadata they have published already.<ul>
+<li>The data will be returned in the following format (in <code>Message.contents</code>). The dictionary will have a <code>managed_tasks</code> key, which has a list of dictionaries for each running <strong>managed</strong> <code>Task</code>. There will always be a <code>name</code>, <code>status</code> and <code>task</code> key. Any other keys can change.</li>
+</ul>
+</li>
+</ul>
+<pre><code>{
+    &quot;managed_tasks&quot;: [
+        {
+            &quot;name&quot;: &quot;managed_task_name1&quot;,
+            &quot;status&quot;: &quot;RUNNING&quot;,
+            &quot;task&quot;: &quot;task_name1&quot;,
+            &quot;meta_key1&quot;: &quot;val1&quot;,
+        }, # May have other keys
+        {
+            &quot;name&quot;: &quot;managed_task_name2&quot;,
+            &quot;status&quot;: &quot;RUNNING&quot;,
+            &quot;task&quot;: &quot;task_name2&quot;,
+            &quot;meta_key2&quot;: &quot;val2&quot;,
+        }, # May have other keys
+}
+</code></pre>
+<ul>
+<li><code>publish_metadata(metadata: Dict[str, Any])</code>: Publish a dictionary that will be attached to the metadata stored for the running <code>Task</code>. It will then be retrievable by the other <code>Task</code>s if they call <code>get_running_tasks</code>.</li>
+</ul>
+<p>Note: To use metadata as a means of communication between the various <code>Task</code>s, you must know what the other <code>Task</code> will be publishing. Currently, there are only a few standardized sets of metadata which include hostnames. Beyond this, it is all <code>Task</code>-specific.</p>
 <h2 id="making-your-task-available">Making your <code>Task</code> available</h2>
 <p>Once the <code>Task</code> has been written, it needs to be made available for import. Since different <code>Task</code>s can have conflicting dependencies and environments, this is managed through an import function. When the <code>Task</code> is done, or ready for testing, a condition is added to <code>lute.tasks.__init__.import_task</code>. For example, assume the <code>Task</code> is called <code>RunXASAnalysis</code> and it's defined in a module called <code>xas.py</code>, we would add the following lines to the <code>import_task</code> function:</p>
 <pre><code class="language-py"># in lute.tasks.__init__

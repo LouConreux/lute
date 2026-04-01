@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -1281,10 +1281,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#managed_tasks.PeakFinderPyAlgos" class="md-nav__link">
+  <a href="#managed_tasks.PeakFinderSFX" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PeakFinderPyAlgos
+        PeakFinderSFX
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managed_tasks.PeakFinderSFXXpp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PeakFinderSFXXpp
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managed_tasks.PeakFinderSFXXppGpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PeakFinderSFXXppGpu
       
     </span>
   </a>
@@ -1296,6 +1318,17 @@
     <span class="md-ellipsis">
       
         ReadTester
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managed_tasks.RequestTester" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RequestTester
       
     </span>
   </a>
@@ -3521,10 +3554,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#managed_tasks.PeakFinderPyAlgos" class="md-nav__link">
+  <a href="#managed_tasks.PeakFinderSFX" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PeakFinderPyAlgos
+        PeakFinderSFX
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managed_tasks.PeakFinderSFXXpp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PeakFinderSFXXpp
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managed_tasks.PeakFinderSFXXppGpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PeakFinderSFXXppGpu
       
     </span>
   </a>
@@ -3536,6 +3591,17 @@
     <span class="md-ellipsis">
       
         ReadTester
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managed_tasks.RequestTester" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RequestTester
       
     </span>
   </a>
@@ -4091,8 +4157,8 @@ here.</p>
 
 
 
-<h2 id="managed_tasks.PeakFinderPyAlgos" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">PeakFinderPyAlgos</span> <span class="o">=</span> <span class="n">MPIExecutor</span><span class="p">(</span><span class="s1">&#39;FindPeaksPyAlgos&#39;</span><span class="p">)</span></code>
+<h2 id="managed_tasks.PeakFinderSFX" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">PeakFinderSFX</span> <span class="o">=</span> <span class="n">MPIExecutor</span><span class="p">(</span><span class="s1">&#39;FindPeaksSFX&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
@@ -4103,7 +4169,51 @@ here.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Performs Bragg peak finding using the PyAlgos algorithm.</p>
+        <p>Performs Bragg peak finding using the PyAlgos or Peakfinder8 algorithm.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="managed_tasks.PeakFinderSFXXpp" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">PeakFinderSFXXpp</span> <span class="o">=</span> <span class="n">MPIExecutor</span><span class="p">(</span><span class="s1">&#39;FindPeaksSFX&#39;</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Performs Bragg peak finding using the PyAlgos or Peakfinder8 algorithm.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="managed_tasks.PeakFinderSFXXppGpu" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">PeakFinderSFXXppGpu</span> <span class="o">=</span> <span class="n">MPIExecutor</span><span class="p">(</span><span class="s1">&#39;FindPeaksSFX&#39;</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Performs Bragg peak finding using the PyAlgos or Peakfinder8 algorithm.</p>
 
     </div>
 
@@ -4126,6 +4236,28 @@ here.</p>
     <div class="doc doc-contents ">
 
         <p>Runs a test to confirm database reading.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="managed_tasks.RequestTester" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">RequestTester</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="s1">&#39;TestRequest&#39;</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Runs a test whether requests go from Task to Executor to Workflow manager.</p>
 
     </div>
 

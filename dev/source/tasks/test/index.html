@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -1802,6 +1802,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#tasks.test.TestRequest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TestRequest
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#tasks.test.TestSocket" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3072,6 +3083,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#tasks.test.TestRequest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TestRequest
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#tasks.test.TestSocket" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3347,6 +3369,157 @@ database access.</p>
     <span class="k">def</span><span class="w"> </span><span class="nf">_post_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_post_run</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_result</span><span class="o">.</span><span class="n">summary</span> <span class="o">=</span> <span class="s2">&quot;Was able to load data.&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_result</span><span class="o">.</span><span class="n">payload</span> <span class="o">=</span> <span class="s2">&quot;This Task produces no output.&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_result</span><span class="o">.</span><span class="n">task_status</span> <span class="o">=</span> <span class="n">TaskStatus</span><span class="o">.</span><span class="n">COMPLETED</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="tasks.test.TestRequest" class="doc doc-heading">
+            <code>TestRequest</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="lute.tasks.task.Task">Task</span></code></p>
+
+
+
+        <p>Simple test Task to try to send requests to and from via workflow manager.</p>
+
+
+
+
+
+
+
+
+              <details class="mkdocstrings-source">
+                <summary>Source code in <code>lute/tasks/test.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">TestRequest</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Simple test Task to try to send requests to and from via workflow manager.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">TestReadOutputParameters</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_parse_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resp</span><span class="p">:</span> <span class="n">Message</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">running_managed_tasks</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">running_tasks</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">contents</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">managed_task_dict</span> <span class="ow">in</span> <span class="n">resp</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="s2">&quot;managed_tasks&quot;</span><span class="p">]:</span>
+                <span class="n">running_managed_tasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">managed_task_dict</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
+                <span class="n">running_tasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">managed_task_dict</span><span class="p">[</span><span class="s2">&quot;task&quot;</span><span class="p">])</span>
+
+        <span class="n">n_tasks</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">running_managed_tasks</span><span class="p">)</span>
+        <span class="n">msg_str</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;TestRequest acknowledges that </span><span class="si">{</span><span class="n">n_tasks</span><span class="si">}</span><span class="s2"> Tasks are running</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">msg_str</span> <span class="o">+=</span> <span class="s2">&quot;Their names are: &quot;</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">running_managed_tasks</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_report_to_executor</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="n">Message</span><span class="p">(</span><span class="n">contents</span><span class="o">=</span><span class="n">msg_str</span><span class="p">))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_report_to_executor</span><span class="p">(</span><span class="n">Message</span><span class="p">(</span><span class="n">contents</span><span class="o">=</span><span class="s2">&quot;Got to run&quot;</span><span class="p">))</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Format should be:</span>
+        <span class="c1"># {</span>
+        <span class="c1">#     &quot;managed_tasks&quot;: [</span>
+        <span class="c1">#         { &quot;name&quot;: &quot;...&quot;, &quot;status&quot;: &quot;...&quot;, &quot;task&quot;: &quot;...&quot;, OTHER KEYS MAYBE },</span>
+        <span class="c1">#         { &quot;name&quot;: &quot;...&quot;, &quot;status&quot;: &quot;...&quot;, &quot;task&quot;: &quot;...&quot;, OTHER KEYS MAYBE },</span>
+        <span class="c1">#     ]</span>
+        <span class="c1"># }</span>
+        <span class="n">resp</span><span class="p">:</span> <span class="n">Message</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_running_tasks</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parse_response</span><span class="p">(</span><span class="n">resp</span><span class="o">=</span><span class="n">resp</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_running_tasks</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parse_response</span><span class="p">(</span><span class="n">resp</span><span class="o">=</span><span class="n">resp</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_running_tasks</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parse_response</span><span class="p">(</span><span class="n">resp</span><span class="o">=</span><span class="n">resp</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_report_to_executor</span><span class="p">(</span><span class="n">Message</span><span class="p">(</span><span class="n">contents</span><span class="o">=</span><span class="s2">&quot;And done...&quot;</span><span class="p">))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_post_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_post_run</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_result</span><span class="o">.</span><span class="n">summary</span> <span class="o">=</span> <span class="s2">&quot;Was able to request via workflow manager..&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_result</span><span class="o">.</span><span class="n">payload</span> <span class="o">=</span> <span class="s2">&quot;This Task produces no output.&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_result</span><span class="o">.</span><span class="n">task_status</span> <span class="o">=</span> <span class="n">TaskStatus</span><span class="o">.</span><span class="n">COMPLETED</span>
 </code></pre></div></td></tr></table></div>
