@@ -1,6 +1,5 @@
 py_sources = [
     '_bayfai.py',
-    '_bayfai2.py',
     'bayfai.py',
     'dataclasses.py',
     '_geometry.py',
