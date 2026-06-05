@@ -576,7 +576,7 @@ class BayFAIOpt:
         """
         low = bounds["dist"][0]
         high = bounds["dist"][1]
-        distances = np.linspace(low, high, self.size+1)
+        distances = np.linspace(low, high, self.size + 1)
         distances = np.round(distances, 6)
         self.distances = distances[:-1]
         dist = self.distances[self.rank]
@@ -1083,7 +1083,9 @@ class BayFAIOpt:
             Random seed for reproducibility
         """
         dist = self.distribute_distances(bounds)
-        logger.info(f"Rank {self.rank}: Running Bayesian Optimization around distance {dist:.3f} m")
+        logger.info(
+            f"Rank {self.rank}: Running Bayesian Optimization around distance {dist:.3f} m"
+        )
 
         bayfai_hyperparams = {
             "n_samples": n_samples,
@@ -1104,9 +1106,7 @@ class BayFAIOpt:
             center,
             **bayfai_hyperparams,
         )
-        logger.info(
-            f"Rank {self.rank}: elapsed time {time() - start_time:.2f} seconds"
-        )
+        logger.info(f"Rank {self.rank}: elapsed time {time() - start_time:.2f} seconds")
         self.comm.Barrier()
 
         self.scan = {}
