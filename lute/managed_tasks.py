@@ -224,6 +224,3 @@ CheetahRunner.shell_source("/sdf/group/lcls/ds/tools/om/setup-om.sh")
 #######
 BayFAIOptimizer: MPIExecutor = MPIExecutor("BayFAI")
 """Optimize LCLS detector geometry using BayFAI: PyFAI coupled with Bayesian Optimization."""
-BayFAIOptimizer.shell_source(
-    "/sdf/group/lcls/ds/ana/sw/conda2/manage/bin/xpp_drp_cpu.sh"
-)

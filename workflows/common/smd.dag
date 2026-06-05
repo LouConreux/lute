@@ -1,13 +1,28 @@
 !LUTE_DAG
-task_name: "SmallDataProducer"
-slurm_params: ""
-next:
-- task_name: "SmallDataXSSAnalyzer"
-  slurm_params: ""
-  next: []
-- task_name: "SmallDataXASAnalyzer"
-  slurm_params: ""
-  next: []
-- task_name: "SmallDataXESAnalyzer"
-  slurm_params: ""
-  next: []
+- !branch_daq2
+  daq2:
+    task_name: SmallDataProducer2
+    slurm_params: ""
+    next:
+      - !run_type
+        GEOM:
+          task_name: BayFAIOptimizer
+          slurm_params: ""
+          next: []
+        NOT_DARK:
+          task_name: BeamlineSummaryRunner
+          slurm_params: ""
+          next: []
+  daq1:
+    task_name: SmallDataProducer
+    slurm_params: ""
+    next:
+      - !run_type
+        GEOM:
+          task_name: BayFAIOptimizer
+          slurm_params: ""
+          next: []
+        NOT_DARK:
+          task_name: BeamlineSummaryRunner
+          slurm_params: ""
+          next: []

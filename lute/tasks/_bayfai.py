@@ -33,6 +33,7 @@ __author__ = "Louis Conreux"
 from lute.execution.logging import get_logger
 
 import os
+from time import time
 import numpy as np
 import numpy.typing as npt
 from typing import Optional
@@ -52,7 +53,7 @@ from pyFAI.geometryRefinement import GeometryRefinement  # type: ignore
 from pyFAI.calibrant import CALIBRANT_FACTORY  # type: ignore
 from pyFAI.units import RADIAL_UNITS  # type: ignore
 from sklearn.gaussian_process import GaussianProcessRegressor  # type: ignore
-from sklearn.gaussian_process.kernels import RBF, ConstantKernel, WhiteKernel  # type: ignore
+from sklearn.gaussian_process.kernels import Matern, RBF, ConstantKernel, WhiteKernel  # type: ignore
 from sklearn.utils._testing import ignore_warnings  # type: ignore
 from sklearn.exceptions import ConvergenceWarning  # type: ignore
 from mpi4py import MPI
@@ -123,9 +124,9 @@ def correct_geom(detector: pyFAI.detectors.Detector, params: Optional[list] = No
     else:
         if z is None:
             z = np.zeros_like(x)
-    x = np.reshape(x, detector.raw_shape)
-    y = np.reshape(y, detector.raw_shape)
-    z = np.reshape(z, detector.raw_shape)
+    x = np.reshape(x, detector.calib_shape)
+    y = np.reshape(y, detector.calib_shape)
+    z = np.reshape(z, detector.calib_shape)
     return x, y, z
 
 
@@ -148,7 +149,7 @@ def calculate_radius(
         map of pixels' radii
     """
     x, y, _ = correct_geom(detector, params)
-    r = np.zeros(detector.raw_shape)
+    r = np.zeros(detector.calib_shape)
     for p in range(detector.n_modules):
         r[p] = np.sqrt(x[p] ** 2 + y[p] ** 2)
     return r
@@ -168,7 +169,7 @@ def calculate_2theta(
         6 Geometry parameters: distance, x-shift, y-shift, Rx, Ry, Rz
     """
     x, y, z = correct_geom(detector, params)
-    tth = np.zeros(detector.raw_shape)
+    tth = np.zeros(detector.calib_shape)
     for p in range(detector.n_modules):
         tth[p] = np.arctan2(np.sqrt(x[p] * x[p] + y[p] * y[p]), z[p])
     return tth
@@ -505,36 +506,37 @@ class BayFAIOpt:
 
     def define_calibrant(
         self,
-        h5: str,
         calibrant_name: str,
+        h5_file: str,
+        wavelength: Optional[float] = None,
     ) -> pyFAI.calibrant.Calibrant:
         """
         Define calibrant for optimization with appropriate wavelength
 
         Parameters
         ----------
-        h5 : str
-            Path to the h5 file containing the wavelength data
         calibrant_name : str
             Name of the calibrant
+        h5_file : str
+            Path to the h5 file containing the wavelength data
         wavelength : float
             X-ray wavelength in meters
         """
         self.calibrant_name = calibrant_name
         calibrant = CALIBRANT_FACTORY(calibrant_name)
         try:
-            with h5py.File(h5) as f:
+            with h5py.File(h5_file) as f:
                 if "ebeam" in f:
                     ebeam_key = "ebeam"
                 elif "ebeamh" in f:
                     ebeam_key = "ebeamh"
                 else:
                     raise KeyError("Neither 'ebeam' nor 'ebeamh' found in h5 file")
-                photon_energy = np.mean(f[ebeam_key]["photon_energy"][()])
+                photon_energy = np.mean(f[ebeam_key]["ebeamPhotonEnergy"][()])
                 wavelength = 1.23984193e-6 / photon_energy
         except Exception as e:
             logger.warning(
-                f"Could not read photon energy from {h5} due to {e}, defaulting to provided wavelength {wavelength} m"
+                f"Could not read photon energy from {h5_file} due to {e}, defaulting to provided wavelength {wavelength} m"
             )
         calibrant.wavelength = wavelength
         return calibrant
@@ -556,7 +558,7 @@ class BayFAIOpt:
             if p not in fixed and p not in parallelized:
                 self.space.append(p)
 
-    def distribute_distances(self, center, res):
+    def distribute_distances(self, bounds):
         """
         Distribute distances across MPI ranks.
 
@@ -572,15 +574,15 @@ class BayFAIOpt:
         dist : float
             The distance assigned to this MPI rank
         """
-        half = self.size // 2
-        offsets = (np.arange(self.size) - half) * res["dist"]
-        distances = center["dist"] + offsets
+        low = bounds["dist"][0]
+        high = bounds["dist"][1]
+        distances = np.linspace(low, high, self.size+1)
         distances = np.round(distances, 6)
-        self.distances = distances
-        dist = distances[self.rank]
+        self.distances = distances[:-1]
+        dist = self.distances[self.rank]
         return dist
 
-    def create_search_space(self, dist, center, bounds, res):
+    def create_search_space(self, dist, bounds, resolutions, center):
         """
         Discretize the search space for the free parameters.
 
@@ -588,12 +590,12 @@ class BayFAIOpt:
         ----------
         dist : float
             Distance on this MPI rank
-        center : dict
-            Center values for each parameter
         bounds : dict
             Bounds for each parameter, format: {param: (lower, upper)}
-        res : dict
+        resolutions : dict
             Resolution per parameter
+        center : dict
+            Center values for each parameter
 
         Returns
         -------
@@ -607,11 +609,11 @@ class BayFAIOpt:
         search_params = {}
         for p in self.order:
             if p in self.space:
-                low = center[p] + bounds[p][0]
-                high = center[p] + bounds[p][1]
+                low = bounds[p][0]
+                high = bounds[p][1]
                 if high < low:
                     low, high = high, low
-                step = res[p]
+                step = resolutions[p]
                 full_params[p] = np.arange(low, high + step, step)
                 search_params[p] = full_params[p]
             else:
@@ -891,9 +893,9 @@ class BayFAIOpt:
     def bayes_opt_distance(
         self,
         dist,
-        center,
         bounds,
-        res,
+        resolutions,
+        center,
         n_samples,
         n_iterations,
         Imin,
@@ -910,12 +912,12 @@ class BayFAIOpt:
         ----------
         dist : float
             Distance on this MPI rank
-        center : dict
-            Dictionary of center values for each parameter
         bounds : dict
             Dictionary of bounds for each parameter
-        res : dict
+        resolutions : dict
             Dictionary of resolution for each parameter
+        center : dict
+                Dictionary of center values for each parameter
         n_samples : int
             Number of samples to initialize the Gaussian Process
         n_iterations : int
@@ -927,7 +929,7 @@ class BayFAIOpt:
         beta : float
             Exploration-exploitation trade-off parameter for UCB acquisition function
         step : int
-            Size of the refinement space around best parameters
+            Size of the refinement space around best parameters for gradient descent
         prior : bool
             Whether to sample initial points around the center or randomly
         seed : optional, int
@@ -937,7 +939,7 @@ class BayFAIOpt:
             np.random.seed(seed)
 
         # 1. Create the search space
-        X, X_norm = self.create_search_space(dist, center, bounds, res)
+        X, X_norm = self.create_search_space(dist, bounds, resolutions, center)
 
         # 2. Sample initial points
         X_samples, X_norm_samples = self.sample_initial_points(
@@ -955,7 +957,7 @@ class BayFAIOpt:
         if np.all(y == 0.0):
             result = {
                 "bo_history": bo_history,
-                "params": [dist, 0, 0, 0, 0, 0],
+                "params": [0.1, 0, 0, 0, 0, 0],
                 "score": 0.0,
                 "sigma": [np.inf] * 5,
                 "penalty": 0.0,
@@ -982,13 +984,14 @@ class BayFAIOpt:
             constant_value=1.0, constant_value_bounds=(0.5, 1.5)
         ) + WhiteKernel(noise_level=0.001, noise_level_bounds="fixed")
         gp_model = GaussianProcessRegressor(
-            kernel=kernel, n_restarts_optimizer=10, random_state=0
+            kernel=kernel, n_restarts_optimizer=10, random_state=seed
         )
         gp_model.fit(X_norm_samples, y_norm)
         visited_idx = list([])
 
         # 5. Run the Bayesian Optimization loop
         for i in range(n_iterations):
+            t0 = time()
             # 6. Select the next point to evaluate
             next = self.UCB(X_norm, gp_model, visited_idx, beta)
             next_sample = X[next]
@@ -1008,15 +1011,18 @@ class BayFAIOpt:
 
             # 8. Update the Gaussian Process model
             gp_model.fit(X_norm_samples, y_norm)
+            logger.info(
+                f"Rank {self.rank} Iteration {i+1}/{n_iterations}: score={score:3e}, time={time() - t0:.2f} seconds"
+            )
 
         # 9. Gather results
         best_idx = np.argmax(y)
         best_param = X_samples[best_idx]
         score, sigma, penalty, size, params, is_min = self.gradient_descent(
-            best_param, res, Imin, max_rings, step
+            best_param, resolutions, Imin, max_rings, step
         )
         logger.info(
-            f"Rank {self.rank} dist={dist:.4f}m: score={score:3e}, size={size}, penalty={penalty:3e}"
+            f"Rank {self.rank} seed={seed}: score={score:3e}, size={size}, penalty={penalty:3e}"
         )
         result = {
             "bo_history": bo_history,
@@ -1032,9 +1038,9 @@ class BayFAIOpt:
 
     def bayfai_opt(
         self,
-        center,
         bounds,
-        res,
+        resolutions,
+        center,
         n_samples,
         n_iterations,
         Imin,
@@ -1053,12 +1059,12 @@ class BayFAIOpt:
 
         Parameters
         ----------
-        center : dict
-            Dictionary of center values for each parameter
         bounds : dict
             Dictionary of bounds for each parameter
-        res : dict
+        resolutions : dict
             Dictionary of resolution for each parameter
+        center : dict
+            Dictionary of center values for each parameter
         n_samples : int
             Number of samples to initialize the Gaussian Process
         n_iterations : int
@@ -1070,16 +1076,14 @@ class BayFAIOpt:
         beta : float
             Exploration-exploitation trade-off parameter for UCB acquisition function
         step : int
-            Size of the refinement space around best parameters
+            Size of the refinement space around best parameters for gradient descent
         prior : bool
             Whether to sample initial points around the center or randomly
         seed : optional, int
             Random seed for reproducibility
         """
-        dist = self.distribute_distances(center, res)
-        logger.info(
-            f"Rank {self.rank}: Running Bayesian Optimization on distance {dist:.4f} m"
-        )
+        dist = self.distribute_distances(bounds)
+        logger.info(f"Rank {self.rank}: Running Bayesian Optimization around distance {dist:.3f} m")
 
         bayfai_hyperparams = {
             "n_samples": n_samples,
@@ -1092,14 +1096,17 @@ class BayFAIOpt:
             "seed": seed,
         }
 
+        start_time = time()
         results = self.bayes_opt_distance(
             dist,
-            center,
             bounds,
-            res,
+            resolutions,
+            center,
             **bayfai_hyperparams,
         )
-
+        logger.info(
+            f"Rank {self.rank}: elapsed time {time() - start_time:.2f} seconds"
+        )
         self.comm.Barrier()
 
         self.scan = {}
@@ -1374,8 +1381,8 @@ class BayFAIOpt:
         if ax is None:
             _fig, ax = plt.subplots()
         pixel_index_map = self.detector.pixel_index_map
-        y_index = pixel_index_map[..., 0]
-        x_index = pixel_index_map[..., 1]
+        i = pixel_index_map[..., 0]
+        j = pixel_index_map[..., 1]
 
         ax.imshow(
             self.assembled_powder,
@@ -1385,11 +1392,11 @@ class BayFAIOpt:
         tth = np.array(self.calibrant.get_2th())
         ttha = calculate_2theta(self.detector, params=self.params)
         for p in range(self.detector.n_modules):
-            y = pixel_index_map[p, ..., 0]
-            x = pixel_index_map[p, ..., 1]
+            i_p = pixel_index_map[p, ..., 0]
+            j_p = pixel_index_map[p, ..., 1]
             ax.contour(
-                x,
-                y,
+                j_p,
+                i_p,
                 ttha[p],
                 levels=tth,
                 cmap="autumn",
@@ -1400,8 +1407,8 @@ class BayFAIOpt:
         radii = calculate_radius(self.detector, params=self.params)
         closest_pixel_index = np.argmin(radii)
         closest_pixel = (
-            y_index.flatten()[closest_pixel_index],
-            x_index.flatten()[closest_pixel_index],
+            i.flatten()[closest_pixel_index],
+            j.flatten()[closest_pixel_index],
         )
         closest_q = theta2q(
             ttha.flatten()[closest_pixel_index], self.calibrant.wavelength
@@ -1410,8 +1417,8 @@ class BayFAIOpt:
 
         furthest_pixel_index = np.argmax(radii)
         furthest_pixel = (
-            y_index.flatten()[furthest_pixel_index],
-            x_index.flatten()[furthest_pixel_index],
+            i.flatten()[furthest_pixel_index],
+            j.flatten()[furthest_pixel_index],
         )
         furthest_q = theta2q(
             ttha.flatten()[furthest_pixel_index], self.calibrant.wavelength

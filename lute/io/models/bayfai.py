@@ -94,14 +94,14 @@ class BayFAIParameters(TaskParameters):
         description="Center of the search space for the detector geometry parameters.",
     )
 
-    bounds: Dict[str, Tuple[float, float]] = Field(
+    bounds: Dict[str, List[float]] = Field(
         {
-            "dist": (-0.05, 0.05),
-            "poni1": (-0.005, 0.005),
-            "poni2": (-0.005, 0.005),
-            "rot1": (-0.1, 0.1),
-            "rot2": (-0.1, 0.1),
-            "rot3": (-0.1, 0.1),
+            "dist": [0.04, 0.36],
+            "poni1": [-0.005, 0.005],
+            "poni2": [-0.005, 0.005],
+            "rot1": [-0.1, 0.1],
+            "rot2": [-0.1, 0.1],
+            "rot3": [-0.1, 0.1],
         },
         description="Bounds of the search space for the detector geometry parameters.",
     )

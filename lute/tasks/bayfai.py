@@ -9,13 +9,6 @@ Classes:
 __all__ = ["BayFAI"]
 __author__ = "Louis Conreux"
 
-import psana  # type: ignore
-
-if hasattr(psana, "xtc_version"):
-    IS_PSANA2 = True
-else:
-    IS_PSANA2 = False
-
 from lute.io.models.bayfai import BayFAIParameters
 from lute.tasks._bayfai import BayFAIOpt
 
@@ -66,9 +59,9 @@ class BayFAI(Task):
             "seed": self._task_parameters.bo_params.seed,
         }
         optimizer.bayfai_opt(
-            center=self._task_parameters.center,
             bounds=self._task_parameters.bounds,
-            res=self._task_parameters.resolutions,
+            resolutions=self._task_parameters.resolutions,
+            center=self._task_parameters.center,
             **bayfai_hyperparams,
         )
         if optimizer.rank == 0:
@@ -103,13 +96,6 @@ class BayFAI(Task):
                 distance=distance,
                 plot=plot,
             )
-            if IS_PSANA2:
-                push_to_database(
-                    self._task_parameters.lute_config.experiment,
-                    self._task_parameters.lute_config.run,
-                    self._task_parameters.detname,
-                    self._task_parameters.out_file,
-                )
             pn.extension("matplotlib", "bokeh")
             plots = pn.Row(
                 pn.pane.Matplotlib(diagnostics_plot, sizing_mode="fixed"),
