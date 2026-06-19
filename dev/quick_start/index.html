@@ -2883,6 +2883,62 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../source/io/parameters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    parameters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../source/io/version_utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    version_utils
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3331,6 +3387,7 @@ FindPeaksSFX:
 <li><code>utilities/dbview</code>: LUTE stores all parameters for every analysis routine it runs (as well as results) in a database. This database is stored in the <code>work_dir</code> defined in the YAML file. The <code>dbview</code> utility is a TUI application (Text-based user interface) which runs in the terminal. It allows you to navigate a LUTE database using the arrow keys, etc. Usage is: <code>utilities/dbview -p &lt;path/to/lute.db&gt;</code>. You will only have a database after your first <strong>managed</strong> <code>Task</code> completes (whether it succeeds or not). (<strong>NOTE:</strong> If using the new database specification v0.2, you can additionally pass the <code>--summarize</code> option to <code>utilities/dbview</code>. This will pivot and reorganize the data since the table structure is harder to parse at a glance in the new specification.)</li>
 <li><code>utilities/help</code>: Source code here builds the <code>lute_help</code> utility. This utility provides help and usage information for running LUTE software. It provides access to parameter descriptions to assist in properly filling out a configuration YAML. It's usage is described in slightly more detail in the <code>Usage Manual</code>. Briefly you can run <code>lute_help -t &lt;TaskName&gt;</code> to retrieve parameters for a single <code>Task</code> (to put in your configuration YAML), or <code>lute_help -l</code> to list all <code>Task</code>s (and their associated <strong>managed</strong> <code>Task</code>s).</li>
 <li><code>utilities/setup</code>: Source code for building the setup script described at the top.</li>
+<li><code>utilities/lute_cfg</code>: Source code for the <code>lute_cfg</code> utility for reconstructing YAML files from the LUTE database. Sourcing the LUTE <code>activate_installation</code> script for a given installation will add this utility to your PATH.</li>
 </ul>
 
 

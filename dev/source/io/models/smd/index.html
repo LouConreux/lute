@@ -2325,6 +2325,28 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#io.models.smd.SubmitSMDParameters.Config.task_version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        task_version
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#io.models.smd.SubmitSMDParameters.Config.version_specifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        version_specifier
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2881,6 +2903,62 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../parameters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    parameters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../version_utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    version_utils
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3175,6 +3253,28 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#io.models.smd.SubmitSMDParameters.Config.task_version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        task_version
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#io.models.smd.SubmitSMDParameters.Config.version_specifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        version_specifier
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3318,51 +3418,54 @@ scanned motors.</p>
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>lute/io/models/smd.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">662</span>
-<span class="normal">663</span>
-<span class="normal">664</span>
-<span class="normal">665</span>
-<span class="normal">666</span>
-<span class="normal">667</span>
-<span class="normal">668</span>
-<span class="normal">669</span>
-<span class="normal">670</span>
-<span class="normal">671</span>
-<span class="normal">672</span>
-<span class="normal">673</span>
-<span class="normal">674</span>
-<span class="normal">675</span>
-<span class="normal">676</span>
-<span class="normal">677</span>
-<span class="normal">678</span>
-<span class="normal">679</span>
-<span class="normal">680</span>
-<span class="normal">681</span>
-<span class="normal">682</span>
-<span class="normal">683</span>
-<span class="normal">684</span>
-<span class="normal">685</span>
-<span class="normal">686</span>
-<span class="normal">687</span>
-<span class="normal">688</span>
-<span class="normal">689</span>
-<span class="normal">690</span>
-<span class="normal">691</span>
-<span class="normal">692</span>
-<span class="normal">693</span>
-<span class="normal">694</span>
-<span class="normal">695</span>
-<span class="normal">696</span>
-<span class="normal">697</span>
-<span class="normal">698</span>
-<span class="normal">699</span>
-<span class="normal">700</span>
-<span class="normal">701</span>
-<span class="normal">702</span>
-<span class="normal">703</span>
-<span class="normal">704</span>
-<span class="normal">705</span>
-<span class="normal">706</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalyzeSmallDataXASParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">706</span>
+<span class="normal">707</span>
+<span class="normal">708</span>
+<span class="normal">709</span>
+<span class="normal">710</span>
+<span class="normal">711</span>
+<span class="normal">712</span>
+<span class="normal">713</span>
+<span class="normal">714</span>
+<span class="normal">715</span>
+<span class="normal">716</span>
+<span class="normal">717</span>
+<span class="normal">718</span>
+<span class="normal">719</span>
+<span class="normal">720</span>
+<span class="normal">721</span>
+<span class="normal">722</span>
+<span class="normal">723</span>
+<span class="normal">724</span>
+<span class="normal">725</span>
+<span class="normal">726</span>
+<span class="normal">727</span>
+<span class="normal">728</span>
+<span class="normal">729</span>
+<span class="normal">730</span>
+<span class="normal">731</span>
+<span class="normal">732</span>
+<span class="normal">733</span>
+<span class="normal">734</span>
+<span class="normal">735</span>
+<span class="normal">736</span>
+<span class="normal">737</span>
+<span class="normal">738</span>
+<span class="normal">739</span>
+<span class="normal">740</span>
+<span class="normal">741</span>
+<span class="normal">742</span>
+<span class="normal">743</span>
+<span class="normal">744</span>
+<span class="normal">745</span>
+<span class="normal">746</span>
+<span class="normal">747</span>
+<span class="normal">748</span>
+<span class="normal">749</span>
+<span class="normal">750</span>
+<span class="normal">751</span>
+<span class="normal">752</span>
+<span class="normal">753</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalyzeSmallDataXASParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;TaskParameter model for AnalyzeSmallDataXAS Task.</span>
 
 <span class="sd">    This Task does basic analysis of XAS data based on a SmallData HDF5 output</span>
@@ -3370,7 +3473,7 @@ scanned motors.</p>
 <span class="sd">    scanned motors.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">class</span><span class="w"> </span><span class="nc">Thresholds</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">IntensityThresholds</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
         <span class="n">min_Iscat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="mf">10.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Minimum scattering intensity to use for filtering.&quot;</span>
         <span class="p">)</span>
@@ -3402,7 +3505,10 @@ scanned motors.</p>
     <span class="n">ccm_set</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name of the PV for the setpoint of the CCM.&quot;</span>
     <span class="p">)</span>
-    <span class="n">thresholds</span><span class="p">:</span> <span class="n">Thresholds</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">Thresholds</span><span class="p">(</span><span class="n">min_Iscat</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">min_ipm</span><span class="o">=</span><span class="mf">1000.0</span><span class="p">))</span>
+    <span class="n">intensity_thresholds</span><span class="p">:</span> <span class="n">IntensityThresholds</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">IntensityThresholds</span><span class="p">(</span><span class="n">min_Iscat</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">min_ipm</span><span class="o">=</span><span class="mf">1000.0</span><span class="p">),</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Intensity thresholds for XAS analysis.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
     <span class="n">element</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Element under investigation. Currently unused. For future EXAFS.&quot;</span><span class="p">,</span>
@@ -3462,58 +3568,61 @@ scanned motors.</p>
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>lute/io/models/smd.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">709</span>
-<span class="normal">710</span>
-<span class="normal">711</span>
-<span class="normal">712</span>
-<span class="normal">713</span>
-<span class="normal">714</span>
-<span class="normal">715</span>
-<span class="normal">716</span>
-<span class="normal">717</span>
-<span class="normal">718</span>
-<span class="normal">719</span>
-<span class="normal">720</span>
-<span class="normal">721</span>
-<span class="normal">722</span>
-<span class="normal">723</span>
-<span class="normal">724</span>
-<span class="normal">725</span>
-<span class="normal">726</span>
-<span class="normal">727</span>
-<span class="normal">728</span>
-<span class="normal">729</span>
-<span class="normal">730</span>
-<span class="normal">731</span>
-<span class="normal">732</span>
-<span class="normal">733</span>
-<span class="normal">734</span>
-<span class="normal">735</span>
-<span class="normal">736</span>
-<span class="normal">737</span>
-<span class="normal">738</span>
-<span class="normal">739</span>
-<span class="normal">740</span>
-<span class="normal">741</span>
-<span class="normal">742</span>
-<span class="normal">743</span>
-<span class="normal">744</span>
-<span class="normal">745</span>
-<span class="normal">746</span>
-<span class="normal">747</span>
-<span class="normal">748</span>
-<span class="normal">749</span>
-<span class="normal">750</span>
-<span class="normal">751</span>
-<span class="normal">752</span>
-<span class="normal">753</span>
-<span class="normal">754</span>
-<span class="normal">755</span>
-<span class="normal">756</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">756</span>
 <span class="normal">757</span>
 <span class="normal">758</span>
 <span class="normal">759</span>
-<span class="normal">760</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalyzeSmallDataXESParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
+<span class="normal">760</span>
+<span class="normal">761</span>
+<span class="normal">762</span>
+<span class="normal">763</span>
+<span class="normal">764</span>
+<span class="normal">765</span>
+<span class="normal">766</span>
+<span class="normal">767</span>
+<span class="normal">768</span>
+<span class="normal">769</span>
+<span class="normal">770</span>
+<span class="normal">771</span>
+<span class="normal">772</span>
+<span class="normal">773</span>
+<span class="normal">774</span>
+<span class="normal">775</span>
+<span class="normal">776</span>
+<span class="normal">777</span>
+<span class="normal">778</span>
+<span class="normal">779</span>
+<span class="normal">780</span>
+<span class="normal">781</span>
+<span class="normal">782</span>
+<span class="normal">783</span>
+<span class="normal">784</span>
+<span class="normal">785</span>
+<span class="normal">786</span>
+<span class="normal">787</span>
+<span class="normal">788</span>
+<span class="normal">789</span>
+<span class="normal">790</span>
+<span class="normal">791</span>
+<span class="normal">792</span>
+<span class="normal">793</span>
+<span class="normal">794</span>
+<span class="normal">795</span>
+<span class="normal">796</span>
+<span class="normal">797</span>
+<span class="normal">798</span>
+<span class="normal">799</span>
+<span class="normal">800</span>
+<span class="normal">801</span>
+<span class="normal">802</span>
+<span class="normal">803</span>
+<span class="normal">804</span>
+<span class="normal">805</span>
+<span class="normal">806</span>
+<span class="normal">807</span>
+<span class="normal">808</span>
+<span class="normal">809</span>
+<span class="normal">810</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalyzeSmallDataXESParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;TaskParameter model for AnalyzeSmallDataXES Task.</span>
 
 <span class="sd">    This Task does basic analysis of XES data based on a SmallData HDF5 output</span>
@@ -3521,7 +3630,7 @@ scanned motors.</p>
 <span class="sd">    scanned motors.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">class</span><span class="w"> </span><span class="nc">Thresholds</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">IntensityThresholds</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
         <span class="n">min_Iscat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="mf">10.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Minimum scattering intensity to use for filtering.&quot;</span>
         <span class="p">)</span>
@@ -3549,7 +3658,10 @@ scanned motors.</p>
             <span class="s2">&quot;E.g. lxt, lens_h, etc.&quot;</span>
         <span class="p">),</span>
     <span class="p">)</span>
-    <span class="n">thresholds</span><span class="p">:</span> <span class="n">Thresholds</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">Thresholds</span><span class="p">(</span><span class="n">min_Iscat</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">min_ipm</span><span class="o">=</span><span class="mf">1000.0</span><span class="p">))</span>
+    <span class="n">intensity_thresholds</span><span class="p">:</span> <span class="n">IntensityThresholds</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">IntensityThresholds</span><span class="p">(</span><span class="n">min_Iscat</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">min_ipm</span><span class="o">=</span><span class="mf">1000.0</span><span class="p">),</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Intensity thresholds for XES analysis.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
     <span class="n">invert_xes_axes</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
@@ -3620,26 +3732,7 @@ scanned motors.</p>
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>lute/io/models/smd.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">620</span>
-<span class="normal">621</span>
-<span class="normal">622</span>
-<span class="normal">623</span>
-<span class="normal">624</span>
-<span class="normal">625</span>
-<span class="normal">626</span>
-<span class="normal">627</span>
-<span class="normal">628</span>
-<span class="normal">629</span>
-<span class="normal">630</span>
-<span class="normal">631</span>
-<span class="normal">632</span>
-<span class="normal">633</span>
-<span class="normal">634</span>
-<span class="normal">635</span>
-<span class="normal">636</span>
-<span class="normal">637</span>
-<span class="normal">638</span>
-<span class="normal">639</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">639</span>
 <span class="normal">640</span>
 <span class="normal">641</span>
 <span class="normal">642</span>
@@ -3658,7 +3751,52 @@ scanned motors.</p>
 <span class="normal">655</span>
 <span class="normal">656</span>
 <span class="normal">657</span>
-<span class="normal">658</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalyzeSmallDataXSSParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
+<span class="normal">658</span>
+<span class="normal">659</span>
+<span class="normal">660</span>
+<span class="normal">661</span>
+<span class="normal">662</span>
+<span class="normal">663</span>
+<span class="normal">664</span>
+<span class="normal">665</span>
+<span class="normal">666</span>
+<span class="normal">667</span>
+<span class="normal">668</span>
+<span class="normal">669</span>
+<span class="normal">670</span>
+<span class="normal">671</span>
+<span class="normal">672</span>
+<span class="normal">673</span>
+<span class="normal">674</span>
+<span class="normal">675</span>
+<span class="normal">676</span>
+<span class="normal">677</span>
+<span class="normal">678</span>
+<span class="normal">679</span>
+<span class="normal">680</span>
+<span class="normal">681</span>
+<span class="normal">682</span>
+<span class="normal">683</span>
+<span class="normal">684</span>
+<span class="normal">685</span>
+<span class="normal">686</span>
+<span class="normal">687</span>
+<span class="normal">688</span>
+<span class="normal">689</span>
+<span class="normal">690</span>
+<span class="normal">691</span>
+<span class="normal">692</span>
+<span class="normal">693</span>
+<span class="normal">694</span>
+<span class="normal">695</span>
+<span class="normal">696</span>
+<span class="normal">697</span>
+<span class="normal">698</span>
+<span class="normal">699</span>
+<span class="normal">700</span>
+<span class="normal">701</span>
+<span class="normal">702</span>
+<span class="normal">703</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalyzeSmallDataXSSParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;TaskParameter model for AnalyzeSmallDataXSS Task.</span>
 
 <span class="sd">    This Task does basic analysis of XSS data based on a SmallData HDF5 output</span>
@@ -3666,7 +3804,7 @@ scanned motors.</p>
 <span class="sd">    scanned motors.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">class</span><span class="w"> </span><span class="nc">Thresholds</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">IntensityThresholds</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
         <span class="n">min_Iscat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="mf">10.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Minimum scattering intensity to use for filtering.&quot;</span>
         <span class="p">)</span>
@@ -3674,9 +3812,27 @@ scanned motors.</p>
             <span class="mf">1000.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Minimum X-ray intensity to use for filtering.&quot;</span>
         <span class="p">)</span>
 
-    <span class="k">class</span><span class="w"> </span><span class="nc">AnalysisFlags</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-        <span class="n">use_pyfai</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="n">use_asymls</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">XSSProcessingParameters</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+        <span class="n">q_norm</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+            <span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">),</span>
+            <span class="n">description</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Q-range to use for normalization of scattering signal.&quot;</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">median_filter_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+            <span class="mi">12</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Size of median filter to apply to scattering profiles.&quot;</span>
+        <span class="p">)</span>
+        <span class="n">water_qs</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+            <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.93</span><span class="p">),</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Q-range for water peak.&quot;</span>
+        <span class="p">)</span>
+        <span class="n">water_ratio</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+            <span class="mf">1.25</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Ratio of water peak intensity between low and high Q to filter bad water shots.&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">water_sigma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+            <span class="mf">2.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Standard deviation for filtering bad water shots.&quot;</span>
+        <span class="p">)</span>
+        <span class="n">num_intensity_bins</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+            <span class="mi">20</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of bins for total intensity based subsampling.&quot;</span>
+        <span class="p">)</span>
 
     <span class="n">_find_smd_path</span> <span class="o">=</span> <span class="n">validate_smd_path</span><span class="p">(</span><span class="s2">&quot;smd_path&quot;</span><span class="p">)</span>
 
@@ -3685,6 +3841,9 @@ scanned motors.</p>
     <span class="p">)</span>
     <span class="n">xss_detname</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name of the detector with scattering data.&quot;</span>
+    <span class="p">)</span>
+    <span class="n">xss_event_codes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;List of event codes to use for XSS T-Jump analysis.&quot;</span>
     <span class="p">)</span>
     <span class="n">ipm_var</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name of the IPM to use for X-Ray intensity filtering.&quot;</span>
@@ -3696,7 +3855,12 @@ scanned motors.</p>
             <span class="s2">&quot;E.g. lxt, lens_h, etc.&quot;</span>
         <span class="p">),</span>
     <span class="p">)</span>
-    <span class="n">thresholds</span><span class="p">:</span> <span class="n">Thresholds</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">Thresholds</span><span class="p">(</span><span class="n">min_Iscat</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">min_ipm</span><span class="o">=</span><span class="mf">1000.0</span><span class="p">))</span>
+    <span class="n">intensity_thresholds</span><span class="p">:</span> <span class="n">IntensityThresholds</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">IntensityThresholds</span><span class="p">(),</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Intensity thresholds for XSS analysis.&quot;</span>
+    <span class="p">)</span>
+    <span class="n">xss_processing_parameters</span><span class="p">:</span> <span class="n">XSSProcessingParameters</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">XSSProcessingParameters</span><span class="p">(),</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Parameters for processing XSS data.&quot;</span>
+    <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -4320,7 +4484,26 @@ scanned motors.</p>
 <span class="normal">614</span>
 <span class="normal">615</span>
 <span class="normal">616</span>
-<span class="normal">617</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SubmitSMDParameters</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="p">):</span>
+<span class="normal">617</span>
+<span class="normal">618</span>
+<span class="normal">619</span>
+<span class="normal">620</span>
+<span class="normal">621</span>
+<span class="normal">622</span>
+<span class="normal">623</span>
+<span class="normal">624</span>
+<span class="normal">625</span>
+<span class="normal">626</span>
+<span class="normal">627</span>
+<span class="normal">628</span>
+<span class="normal">629</span>
+<span class="normal">630</span>
+<span class="normal">631</span>
+<span class="normal">632</span>
+<span class="normal">633</span>
+<span class="normal">634</span>
+<span class="normal">635</span>
+<span class="normal">636</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SubmitSMDParameters</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Parameters for running smalldata to produce reduced HDF5 files.&quot;&quot;&quot;</span>
 
     <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
@@ -4331,6 +4514,12 @@ scanned motors.</p>
 
         <span class="n">result_from_params</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Defines a result from the parameters. Use a validator to do so.&quot;&quot;&quot;</span>
+
+        <span class="n">version_specifier</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">6</span>  <span class="c1"># 2 (git hash) | 4 (git diff) = 6</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Indicator of how to determine version information from the field below.&quot;&quot;&quot;</span>
+
+        <span class="n">task_version</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Filled by LUTE IO infrastructure for us</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Task&#39;s version information. May be filled dynamically.&quot;&quot;&quot;</span>
 
     <span class="k">class</span><span class="w"> </span><span class="nc">ProducerParameters</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
         <span class="k">class</span><span class="w"> </span><span class="nc">IntgParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
@@ -4892,6 +5081,19 @@ scanned motors.</p>
 
         <span class="bp">cls</span><span class="o">.</span><span class="n">Config</span><span class="o">.</span><span class="n">result_from_params</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">directory</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="k">return</span> <span class="n">values</span>
+
+    <span class="nd">@root_validator</span><span class="p">(</span><span class="n">pre</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">define_version_specifier</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="n">producer_folder</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;producer&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">parent</span>
+        <span class="n">smd_root</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">producer_folder</span><span class="o">.</span><span class="n">parent</span><span class="p">)</span>
+
+        <span class="c1"># Provide helpers so the infrastructure can record version info properly</span>
+        <span class="c1"># Set the repo location for commit hashes and diffs to be the root of repo</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">Config</span><span class="o">.</span><span class="n">version_location</span> <span class="o">=</span> <span class="n">smd_root</span>
+
+        <span class="c1"># Only record the diff for the smalldata_tools folder</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">Config</span><span class="o">.</span><span class="n">version_diff_args</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;smalldata_tools&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">values</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -4942,7 +5144,13 @@ scanned motors.</p>
 <span class="normal">53</span>
 <span class="normal">54</span>
 <span class="normal">55</span>
-<span class="normal">56</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Identical to super-class Config but includes a result.&quot;&quot;&quot;</span>
 
     <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
@@ -4950,6 +5158,12 @@ scanned motors.</p>
 
     <span class="n">result_from_params</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Defines a result from the parameters. Use a validator to do so.&quot;&quot;&quot;</span>
+
+    <span class="n">version_specifier</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">6</span>  <span class="c1"># 2 (git hash) | 4 (git diff) = 6</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Indicator of how to determine version information from the field below.&quot;&quot;&quot;</span>
+
+    <span class="n">task_version</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Filled by LUTE IO infrastructure for us</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task&#39;s version information. May be filled dynamically.&quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -5004,6 +5218,52 @@ scanned motors.</p>
     <div class="doc doc-contents ">
 
         <p>Whether the Executor should mark a specified parameter as a result.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="io.models.smd.SubmitSMDParameters.Config.task_version" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">task_version</span> <span class="o">=</span> <span class="kc">None</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Task's version information. May be filled dynamically.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="io.models.smd.SubmitSMDParameters.Config.version_specifier" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">version_specifier</span> <span class="o">=</span> <span class="mi">6</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Indicator of how to determine version information from the field below.</p>
 
     </div>
 

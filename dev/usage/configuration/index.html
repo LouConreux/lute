@@ -388,6 +388,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#restoring-a-configuration-yaml-from-a-previous-run-lute_cfg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Restoring a Configuration YAML from a Previous Run (lute_cfg)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#variable-substitution-in-yaml-files" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2837,6 +2848,62 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/parameters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    parameters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../source/io/version_utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    version_utils
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3072,6 +3139,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#restoring-a-configuration-yaml-from-a-previous-run-lute_cfg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Restoring a Configuration YAML from a Previous Run (lute_cfg)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#variable-substitution-in-yaml-files" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3273,6 +3351,29 @@ Task List
     scanned motors.
 </code></pre>
 <p><strong>NOTE:</strong> Associated <strong>managed</strong> <code>Task</code>s are provided under each <code>Task</code> name. These will be the names passed to submission scripts.</p>
+<h2 id="restoring-a-configuration-yaml-from-a-previous-run-lute_cfg">Restoring a Configuration YAML from a Previous Run (<code>lute_cfg</code>)</h2>
+<p>The LUTE database holds a record of all parameters used for all <code>Task</code>s that have been run. It also contains information about the version of the code that was used each time any of those <code>Task</code>s was run. E.g., this may be important in the case of <code>Task</code>s, like <code>smalldata_tools</code> (<code>SubmitSMD</code>) that are run on top of checked-out repositories containing Python code that can be modified between executions.</p>
+<p>LUTE provides a utility to extract the information from this database and, if relevant, restore various code bases to the state they were in when a specific experimental run was analyzed.</p>
+<p>To use the utility, first source your standard Python environment and setup the LUTE installation. For example, on S3DF this may look like:</p>
+<pre><code class="language-bash">&gt; cd /sdf/&lt;MY EXPERIMENT OF INTEREST&gt;/results/lute
+&gt; source /sdf/group/lcls/ds/ana/sw/conda2/manage/bin/psconda.sh
+&gt; source install/bin/activate_installation
+</code></pre>
+<p>Then you can run the <code>lute_cfg</code> utility to create a config YAML based on the datbase for a particular run.</p>
+<pre><code class="language-bash">&gt; lute_cfg --help
+usage: lute_cfg [-h] -d DATABASE -r RUN -o OUTPUT
+
+Reconstruct LUTE config YAML and restore git repositories to their state during a specific run.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -d DATABASE, --database DATABASE
+                        Path to the LUTE database.
+  -r RUN, --run RUN     Run number to reconstruct config for.
+  -o OUTPUT, --output OUTPUT
+                        Location to output the new config YAML (directory or file path).
+</code></pre>
+<p>The YAML will be output to the location indicated by the <code>-o</code> flag. It does NOT overwrite any other YAML files unless you set this flag to the path of an existing file. The <code>-d</code> flag is used to point to the LUTE sqlite database. For example, on S3DF this is usually in <code>/sdf/&lt;MY EXPERIMENT OF INTEREST/results/lute_output/lute.db</code>.</p>
 <h2 id="variable-substitution-in-yaml-files">Variable Substitution in YAML Files</h2>
 <p>Using <code>validator</code>s, it is possible to define (generally, default) model parameters for a <code>Task</code> in terms of other parameters. It is also possible to use validated Pydantic model parameters to substitute values into a configuration file required to run a third party <code>Task</code> (e.g. some <code>Task</code>s may require their own JSON, TOML files, etc. to run properly). For more information on these types of substitutions, refer to the <code>Creating a new Task</code> documentation on <code>Task</code> creation (in the Developer Documentation).</p>
 <p>These types of substitutions, however, have a limitation in that they are not easily adapted at run time. They therefore address only a small number of the possible combinations in the dependencies between different input parameters. In order to support more complex relationships between parameters, variable substitutions can also be used in the configuration YAML itself. Using a syntax similar to <code>Jinja</code> templates, you can define values for YAML parameters in terms of other parameters or environment variables. The values are substituted before Pydantic attempts to validate the configuration.</p>

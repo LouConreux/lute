@@ -2870,6 +2870,62 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../parameters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    parameters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../version_utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    version_utils
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3406,37 +3462,37 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Bayesian optimization hyperparameters.&quot;&quot;&quot;</span>
 
         <span class="n">n_samples</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="mi">20</span><span class="p">,</span>
+            <span class="n">default</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of samples to initialize the Gaussian Process.&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="n">n_iterations</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="mi">80</span><span class="p">,</span>
+            <span class="n">default</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of iterations of Bayesian Optimization&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="n">max_rings</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="mi">6</span><span class="p">,</span>
+            <span class="n">default</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Maximum number of rings to search for Bragg peaks.&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="n">prior</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="kc">True</span><span class="p">,</span>
+            <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Whether to sample initial points around the center of search space or randomly.&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="n">beta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="mf">1.96</span><span class="p">,</span>
+            <span class="n">default</span><span class="o">=</span><span class="mf">1.96</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Exploration-exploitation trade-off hyperparameter for Upper Confidence Bound acquisition function.&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="n">step</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="mi">5</span><span class="p">,</span>
+            <span class="n">default</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Size of the refinement space around best parameters.&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="n">seed</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="kc">None</span><span class="p">,</span>
+            <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Random seed for reproducibility.&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
@@ -3605,37 +3661,37 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Bayesian optimization hyperparameters.&quot;&quot;&quot;</span>
 
     <span class="n">n_samples</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="mi">20</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of samples to initialize the Gaussian Process.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="n">n_iterations</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="mi">80</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of iterations of Bayesian Optimization&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="n">max_rings</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="mi">6</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Maximum number of rings to search for Bragg peaks.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="n">prior</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">True</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Whether to sample initial points around the center of search space or randomly.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="n">beta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="mf">1.96</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="mf">1.96</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Exploration-exploitation trade-off hyperparameter for Upper Confidence Bound acquisition function.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="n">step</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="mi">5</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Size of the refinement space around best parameters.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="n">seed</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Random seed for reproducibility.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
