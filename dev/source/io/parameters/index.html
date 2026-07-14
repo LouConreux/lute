@@ -4182,7 +4182,21 @@ a sub-class thereof), but this method recursively constructs all objects.</p>
 <span class="normal">483</span>
 <span class="normal">484</span>
 <span class="normal">485</span>
-<span class="normal">486</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">construct_task_parameters</span><span class="p">(</span><span class="n">schema</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+<span class="normal">486</span>
+<span class="normal">487</span>
+<span class="normal">488</span>
+<span class="normal">489</span>
+<span class="normal">490</span>
+<span class="normal">491</span>
+<span class="normal">492</span>
+<span class="normal">493</span>
+<span class="normal">494</span>
+<span class="normal">495</span>
+<span class="normal">496</span>
+<span class="normal">497</span>
+<span class="normal">498</span>
+<span class="normal">499</span>
+<span class="normal">500</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">construct_task_parameters</span><span class="p">(</span><span class="n">schema</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Construct a TaskParameters object from a schema and parameter values.</span>
 
 <span class="sd">    This function will create a new `TaskParameters` object from a pydantic schema</span>
@@ -4242,8 +4256,19 @@ a sub-class thereof), but this method recursively constructs all objects.</p>
             <span class="n">new_field</span><span class="p">:</span> <span class="n">Any</span>
             <span class="n">cast_as</span><span class="p">:</span> <span class="nb">type</span>
             <span class="k">if</span> <span class="n">type_info</span> <span class="o">==</span> <span class="s2">&quot;array&quot;</span><span class="p">:</span>
-                <span class="n">cast_as</span> <span class="o">=</span> <span class="n">BASE_SCHEMA_TYPE_MAP</span><span class="p">[</span><span class="n">param_info</span><span class="p">[</span><span class="s2">&quot;items&quot;</span><span class="p">][</span><span class="s2">&quot;type&quot;</span><span class="p">]]</span>
-                <span class="n">new_field</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">cast_as</span><span class="p">,</span> <span class="n">working_value</span><span class="p">))</span>
+                <span class="n">individual_types</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span>
+                    <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="o">...</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+                <span class="p">]</span> <span class="o">=</span> <span class="n">param_info</span><span class="p">[</span><span class="s2">&quot;items&quot;</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">individual_types</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span>
+                    <span class="n">individual_types</span><span class="p">,</span> <span class="nb">tuple</span>
+                <span class="p">):</span>
+                    <span class="n">new_field</span> <span class="o">=</span> <span class="p">[]</span>
+                    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">individual_types</span><span class="p">):</span>
+                        <span class="n">cast_as</span> <span class="o">=</span> <span class="n">BASE_SCHEMA_TYPE_MAP</span><span class="p">[</span><span class="n">t</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]]</span>
+                        <span class="n">new_field</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cast_as</span><span class="p">(</span><span class="n">working_value</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">cast_as</span> <span class="o">=</span> <span class="n">BASE_SCHEMA_TYPE_MAP</span><span class="p">[</span><span class="n">individual_types</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]]</span>
+                    <span class="n">new_field</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">cast_as</span><span class="p">,</span> <span class="n">working_value</span><span class="p">))</span>
             <span class="k">elif</span> <span class="n">type_info</span> <span class="o">==</span> <span class="s2">&quot;null&quot;</span><span class="p">:</span>
                 <span class="n">new_field</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="k">elif</span> <span class="n">type_info</span> <span class="o">==</span> <span class="s2">&quot;object&quot;</span><span class="p">:</span>
@@ -4285,7 +4310,10 @@ a sub-class thereof), but this method recursively constructs all objects.</p>
                     <span class="k">if</span> <span class="s2">&quot;type&quot;</span> <span class="ow">in</span> <span class="n">possibility</span><span class="p">:</span>
                         <span class="n">type_info</span> <span class="o">=</span> <span class="n">possibility</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span>
                         <span class="k">if</span> <span class="n">type_info</span> <span class="o">==</span> <span class="s2">&quot;array&quot;</span><span class="p">:</span>
-                            <span class="n">cast_as</span> <span class="o">=</span> <span class="n">BASE_SCHEMA_TYPE_MAP</span><span class="p">[</span><span class="n">possibility</span><span class="p">[</span><span class="s2">&quot;items&quot;</span><span class="p">][</span><span class="s2">&quot;type&quot;</span><span class="p">]]</span>
+                            <span class="n">items_schema</span> <span class="o">=</span> <span class="n">possibility</span><span class="p">[</span><span class="s2">&quot;items&quot;</span><span class="p">]</span>
+                            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">items_schema</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                                <span class="n">items_schema</span> <span class="o">=</span> <span class="n">items_schema</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                            <span class="n">cast_as</span> <span class="o">=</span> <span class="n">BASE_SCHEMA_TYPE_MAP</span><span class="p">[</span><span class="n">items_schema</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]]</span>
                             <span class="k">try</span><span class="p">:</span>
                                 <span class="n">fields_for_params</span><span class="p">[</span><span class="n">param_name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
                                     <span class="nb">map</span><span class="p">(</span><span class="n">cast_as</span><span class="p">,</span> <span class="n">working_value</span><span class="p">)</span>

@@ -3247,11 +3247,7 @@ a SmallData file.</p>
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>lute/tasks/smalldata.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">124</span>
-<span class="normal">125</span>
-<span class="normal">126</span>
-<span class="normal">127</span>
-<span class="normal">128</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">128</span>
 <span class="normal">129</span>
 <span class="normal">130</span>
 <span class="normal">131</span>
@@ -3329,13 +3325,25 @@ a SmallData file.</p>
 <span class="normal">203</span>
 <span class="normal">204</span>
 <span class="normal">205</span>
-<span class="normal">206</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalyzeSmallDataXAS</span><span class="p">(</span><span class="n">AnalyzeSmallData</span><span class="p">):</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalyzeSmallDataXAS</span><span class="p">(</span><span class="n">AnalyzeSmallData</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Task to analyze XAS data stored in a SmallData HDF5 file.&quot;&quot;&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">AnalyzeSmallDataXASParameters</span><span class="p">,</span> <span class="n">use_mpi</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">params</span><span class="p">:</span> <span class="n">AnalyzeSmallDataXASParameters</span><span class="p">,</span>
+        <span class="n">use_mpi</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">row_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">use_mpi</span><span class="o">=</span><span class="n">use_mpi</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">use_mpi</span><span class="o">=</span><span class="n">use_mpi</span><span class="p">,</span> <span class="n">row_ids</span><span class="o">=</span><span class="n">row_ids</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_pre_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># Currently scattering data is extracted as standard since its used</span>
@@ -3464,15 +3472,7 @@ a SmallData file.</p>
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>lute/tasks/smalldata.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">209</span>
-<span class="normal">210</span>
-<span class="normal">211</span>
-<span class="normal">212</span>
-<span class="normal">213</span>
-<span class="normal">214</span>
-<span class="normal">215</span>
-<span class="normal">216</span>
-<span class="normal">217</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">217</span>
 <span class="normal">218</span>
 <span class="normal">219</span>
 <span class="normal">220</span>
@@ -3540,13 +3540,29 @@ a SmallData file.</p>
 <span class="normal">282</span>
 <span class="normal">283</span>
 <span class="normal">284</span>
-<span class="normal">285</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalyzeSmallDataXES</span><span class="p">(</span><span class="n">AnalyzeSmallData</span><span class="p">):</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalyzeSmallDataXES</span><span class="p">(</span><span class="n">AnalyzeSmallData</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Task to analyze XES data stored in a SmallData HDF5 file.&quot;&quot;&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">AnalyzeSmallDataXESParameters</span><span class="p">,</span> <span class="n">use_mpi</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">params</span><span class="p">:</span> <span class="n">AnalyzeSmallDataXESParameters</span><span class="p">,</span>
+        <span class="n">use_mpi</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">row_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">use_mpi</span><span class="o">=</span><span class="n">use_mpi</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">use_mpi</span><span class="o">=</span><span class="n">use_mpi</span><span class="p">,</span> <span class="n">row_ids</span><span class="o">=</span><span class="n">row_ids</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_pre_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># Currently scattering data is extracted as standard since its used</span>
@@ -3730,13 +3746,21 @@ a SmallData file.</p>
 <span class="normal">118</span>
 <span class="normal">119</span>
 <span class="normal">120</span>
-<span class="normal">121</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalyzeSmallDataXSS</span><span class="p">(</span><span class="n">AnalyzeSmallData</span><span class="p">):</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalyzeSmallDataXSS</span><span class="p">(</span><span class="n">AnalyzeSmallData</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Task to analyze XSS profiles stored in a SmallData HDF5 file.&quot;&quot;&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">AnalyzeSmallDataXSSParameters</span><span class="p">,</span> <span class="n">use_mpi</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">params</span><span class="p">:</span> <span class="n">AnalyzeSmallDataXSSParameters</span><span class="p">,</span>
+        <span class="n">use_mpi</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">row_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">use_mpi</span><span class="o">=</span><span class="n">use_mpi</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">use_mpi</span><span class="o">=</span><span class="n">use_mpi</span><span class="p">,</span> <span class="n">row_ids</span><span class="o">=</span><span class="n">row_ids</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
             <span class="n">AnalyzeSmallDataXSSParameters</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span>
         <span class="p">)</span>
@@ -3759,8 +3783,8 @@ a SmallData file.</p>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mpi_size</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">diff</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mpi_comm</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="n">op</span><span class="o">=</span><span class="n">sum_diff</span><span class="p">)</span>
-            <span class="n">laser_on</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mpi_comm</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">laser_on</span><span class="p">,</span> <span class="n">op</span><span class="o">=</span><span class="n">laser_on_mean</span><span class="p">)</span>
-            <span class="n">laser_off</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mpi_comm</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">laser_off</span><span class="p">,</span> <span class="n">op</span><span class="o">=</span><span class="n">laser_off_mean</span><span class="p">)</span>
+            <span class="n">laser_on</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mpi_comm</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">laser_on</span><span class="p">,</span> <span class="n">op</span><span class="o">=</span><span class="n">sum_laser_on</span><span class="p">)</span>
+            <span class="n">laser_off</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mpi_comm</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">laser_off</span><span class="p">,</span> <span class="n">op</span><span class="o">=</span><span class="n">sum_laser_off</span><span class="p">)</span>
             <span class="n">tjumps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mpi_comm</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">tjumps</span><span class="p">,</span> <span class="n">op</span><span class="o">=</span><span class="n">sum_tjump</span><span class="p">)</span>
             <span class="n">processed_tjumps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mpi_comm</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">processed_tjumps</span><span class="p">,</span> <span class="n">op</span><span class="o">=</span><span class="n">sum_tjump</span><span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span>

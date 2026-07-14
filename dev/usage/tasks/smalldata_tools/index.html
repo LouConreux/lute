@@ -578,6 +578,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#saving-pvs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Saving PVs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#roi-selection-getrois" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3203,6 +3214,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#saving-pvs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Saving PVs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#roi-selection-getrois" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3330,99 +3352,103 @@ writeArea (boolean) - Default: False
   # detector. This detector MUST MATCH one of the detectors in `detnames`.
   # In the future this will be automated. If you have multiple detectors you can
   # add them with their own set of parameters.
-  #detnames: [&quot;epix10k2M&quot;]
-  #epicsPV: []
-  #ttCalib: []
-  #getPressioCompression:
-  #  epix10k2M:
-  #    compressor_id: &quot;sz3&quot;
-  #    # Specific arguments vary depending on compressor_id
-  #    compressor_args:
-  #      abs_error_bound: 10
-  # Provide detector image sum algorithms.
-  # If detSumAlgos is not defined, it will default to calib, calib_dropped and
-  # calib_dropped_square for every detector. You can add processing algorithms for
-  # single detectors (e.g. epix10k2M or Rayonix) as below, or add algorithms which
-  # will apply to every detector defined in detnames by placing them under &quot;all&quot;
-  #detSumAlgos:
-  #  all:
-  #    - &quot;calib&quot;
-  #    - &quot;calib_dropped&quot;
-  #    - &quot;calib_dropped_square&quot;
-  #    - &quot;calib_thresADU1&quot;
-  #  epix10k2M:
-  #    - &quot;calib_thresADU5&quot;
-  #    - &quot;calib_max&quot;
-  #  Rayonix:
-  #    - &quot;calib_skipFirst_thresADU1&quot;
-  #    - &quot;calib_skipFirst_max&quot;
-  #getROIs:
-  #  jungfrau1M:   # Change to detector name
-  #    - ROI: [[[1, 2], [157, 487], [294, 598]]]
-  #      #name: &quot;abcd&quot; # Providing a name is only required if you are creating multiple ROIs
-  #      writeArea: True   # Whether to save ROI, if False, save sum but not img.
-  #      thresADU: None
-  #      calcPars: True
-  #getAzIntParams:
-  #  jungfrau:
-  #    eBeam: 18
-  #    center: [87526.79161840, 92773.3296889500]
-  #    dis_to_sam: 80.0
-  #    tx: 0
-  #    ty: 0
-  #    ADU_per_Photon: 1.0
-  #    phiBins: 1
-  #    qbin: 5e-3
-  #    thresRms: null
-  #    thresADUhigh: null
-  #    geomCorr: true
-  #    polCorr: true
-  #    userMask: &quot;/path/to/numpy_array.
-  #getAzIntPyFAIParams:
-  #  Rayonix:
-  #    pix_size: 176e-6
-  #    ai_kwargs:
-  #      dist: 1
-  #      poni1: 960 * 1.76e-4
-  #      poni2: 960 * 1.76e-4
-  #    npts: 512
-  #    int_units: &quot;2th_deg&quot;
-  #    return2d: False
-  #getPhotonsParams:
-  #  jungfrau1M:
-  #    ADU_per_photon: 9.5
-  #    thresADU: 0.8
-  #getDropletParams:
-  #  epix_1:
-  #    threshold: 5
-  #    thresholdLow: 5
-  #    thresADU: 60
-  #    useRms: True
-  #    nData: 1e5
-  #getDroplet2Photons:
-  #  epix_alc1:
-  #    droplet:
-  #      threshold: 10
-  #      thresholdLow: 3
-  #      thresADU: 10
-  #      useRms: True
-  #    d2p:
-  #      aduspphot: 162
-  #      mask: np.load('path_to_mask.npy')
-  #      cputime: True
-  #    nData: 3e4
-  #getSvdParams:
-  #  acq_0:
-  #    basis_file: None
-  #    n_pulse: 1
-  #    delay: None
-  #    return_reconstructed: True
-  #getAutocorrParams:
-  #  epix_2:
-  #    mask: &quot;/sdf/home/e/example/dataAna/mask_epix.npy&quot;
-  #    thresAdu: [72.0, 1.0e6]
-  #    save_range: [70, 50]
-  #    save_lineout: True
+  #producer_parameters:
+    #detnames: [&quot;epix10k2M&quot;]
+    #epicsPV: []
+    #epicsOncePV: []
+    #epicsArchFilePV:
+    #  - [[&quot;pv&quot;], [&quot;alias&quot;]]
+    #ttCalib: []
+    #getPressioCompression:
+    #  epix10k2M:
+    #    compressor_id: &quot;sz3&quot;
+    #    # Specific arguments vary depending on compressor_id
+    #    compressor_args:
+    #      abs_error_bound: 10
+    # Provide detector image sum algorithms.
+    # If detSumAlgos is not defined, it will default to calib, calib_dropped and
+    # calib_dropped_square for every detector. You can add processing algorithms for
+    # single detectors (e.g. epix10k2M or Rayonix) as below, or add algorithms which
+    # will apply to every detector defined in detnames by placing them under &quot;all&quot;
+    #detSumAlgos:
+    #  all:
+    #    - &quot;calib&quot;
+    #    - &quot;calib_dropped&quot;
+    #    - &quot;calib_dropped_square&quot;
+    #    - &quot;calib_thresADU1&quot;
+    #  epix10k2M:
+    #    - &quot;calib_thresADU5&quot;
+    #    - &quot;calib_max&quot;
+    #  Rayonix:
+    #    - &quot;calib_skipFirst_thresADU1&quot;
+    #    - &quot;calib_skipFirst_max&quot;
+    #getROIs:
+    #  jungfrau1M:   # Change to detector name
+    #    - ROI: [[[1, 2], [157, 487], [294, 598]]]
+    #      #name: &quot;abcd&quot; # Providing a name is only required if you are creating multiple ROIs
+    #      writeArea: True   # Whether to save ROI, if False, save sum but not img.
+    #      thresADU: None
+    #      calcPars: True
+    #getAzIntParams:
+    #  jungfrau:
+    #    eBeam: 18
+    #    center: [87526.79161840, 92773.3296889500]
+    #    dis_to_sam: 80.0
+    #    tx: 0
+    #    ty: 0
+    #    ADU_per_Photon: 1.0
+    #    phiBins: 1
+    #    qbin: 5e-3
+    #    thresRms: null
+    #    thresADUhigh: null
+    #    geomCorr: true
+    #    polCorr: true
+    #    userMask: &quot;/path/to/numpy_array.
+    #getAzIntPyFAIParams:
+    #  Rayonix:
+    #    pix_size: 176e-6
+    #    ai_kwargs:
+    #      dist: 1
+    #      poni1: 960 * 1.76e-4
+    #      poni2: 960 * 1.76e-4
+    #    npts: 512
+    #    int_units: &quot;2th_deg&quot;
+    #    return2d: False
+    #getPhotonsParams:
+    #  jungfrau1M:
+    #    ADU_per_photon: 9.5
+    #    thresADU: 0.8
+    #getDropletParams:
+    #  epix_1:
+    #    threshold: 5
+    #    thresholdLow: 5
+    #    thresADU: 60
+    #    useRms: True
+    #    nData: 1e5
+    #getDroplet2Photons:
+    #  epix_alc1:
+    #    droplet:
+    #      threshold: 10
+    #      thresholdLow: 3
+    #      thresADU: 10
+    #      useRms: True
+    #    d2p:
+    #      aduspphot: 162
+    #      mask: np.load('path_to_mask.npy')
+    #      cputime: True
+    #    nData: 3e4
+    #getSvdParams:
+    #  acq_0:
+    #    basis_file: None
+    #    n_pulse: 1
+    #    delay: None
+    #    return_reconstructed: True
+    #getAutocorrParams:
+    #  epix_2:
+    #    mask: &quot;/sdf/home/e/example/dataAna/mask_epix.npy&quot;
+    #    thresAdu: [72.0, 1.0e6]
+    #    save_range: [70, 50]
+    #    save_lineout: True
 </code></pre>
 <p>This set of parameters can be split into two sections, the command-line options, and the producer parameters. These can be discussed separately.</p>
 <h3 id="command-line-arguments">Command-line arguments</h3>
@@ -3468,6 +3494,26 @@ writeArea (boolean) - Default: False
 <li><code>bind_to</code> changes how MPI then <strong>restricts</strong> (i.e. binds) the ranks to those resources.</li>
 </ul>
 <h3 id="production-parameters">Production parameters</h3>
+<h4 id="saving-pvs">Saving PVs</h4>
+<p>Three parameters control which EPICS PVs are saved by the smalldata producer:</p>
+<ul>
+<li><code>epicsPV</code>: PVs recorded on every event. Available on both LCLS1 and LCLS2.</li>
+<li><code>epicsOncePV</code>: PVs recorded once per run. Available on both LCLS1 and LCLS2.</li>
+<li><code>epicsArchFilePV</code>: PVs retrieved from the EPICS archiver. <strong>LCLS2 only.</strong></li>
+</ul>
+<p>All three are specified under <code>producer_parameters</code> in the YAML configuration:</p>
+<pre><code class="language-yaml">SubmitSMD:
+  producer_parameters:
+    epicsPV: ['las_fs14_controller_time']
+    epicsOncePV: ['m0c0_vset']
+    epicsArchFilePV:
+      - [&quot;pv_name_1&quot;, &quot;alias_1&quot;]
+      - [&quot;pv_name_2&quot;, &quot;alias_2&quot;]
+</code></pre>
+<p>Note that <code>epicsArchFilePV</code> entries are each a two-element list <code>[pv, alias]</code>. In the YAML this is written as a list of lists. The template will render them as Python tuples in the producer configuration:</p>
+<pre><code class="language-python">epicsArchFilePV = [(&quot;pv_name_1&quot;, &quot;alias_1&quot;), (&quot;pv_name_2&quot;, &quot;alias_2&quot;)]
+</code></pre>
+<p><strong>Important:</strong> These parameters must live under <code>producer_parameters</code> so that they are correctly validated by the parameter model and substituted into the producer template. Placing them directly under <code>SubmitSMD</code> (outside of <code>producer_parameters</code>) will bypass validation and the values will not be passed to the producer.</p>
 <h4 id="roi-selection-getrois">ROI Selection: <code>getROIs</code></h4>
 <p>One or more ROIs can be defined on a per detector basis using the parameters defined in this block:</p>
 <pre><code class="language-yaml">  getROIs:

@@ -1193,6 +1193,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#managed_tasks.CCTBXScaler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CCTBXScaler
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#managed_tasks.CheetahRunner" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3522,6 +3533,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#managed_tasks.CCTBXScaler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CCTBXScaler
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#managed_tasks.CheetahRunner" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4028,6 +4050,30 @@ here.</p>
     <div class="doc doc-contents ">
 
         <p>Runs crystallographic merging using cctbx.xfel.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h2 id="managed_tasks.CCTBXScaler" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">CCTBXScaler</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="s1">&#39;ScaleCCTBXXFEL&#39;</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Runs crystallographic scaling using cctbx.xfel (scaling-only pipeline).</p>
+<p>Produces scaled .expt/.refl files and stores the output directory in the LUTE
+database so that a downstream CCTBXMerger task can auto-resolve input_path.</p>
 
     </div>
 

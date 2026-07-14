@@ -3995,7 +3995,14 @@ experimental runs.</p>
 <span class="normal">820</span>
 <span class="normal">821</span>
 <span class="normal">822</span>
-<span class="normal">823</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">IndexCCTBXXFELParameters</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="p">):</span>
+<span class="normal">823</span>
+<span class="normal">824</span>
+<span class="normal">825</span>
+<span class="normal">826</span>
+<span class="normal">827</span>
+<span class="normal">828</span>
+<span class="normal">829</span>
+<span class="normal">830</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">IndexCCTBXXFELParameters</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Parameters for indexing with cctbx.xfel.&quot;&quot;&quot;</span>
 
     <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
@@ -4041,6 +4048,14 @@ experimental runs.</p>
         <span class="n">output_logging_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Directory output log files will be placed&quot;</span>
         <span class="p">)</span>
+        <span class="n">output_logging_option</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+            <span class="s2">&quot;suppressed&quot;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="p">(</span>
+                <span class="s2">&quot;Logging verbosity option. One of: normal, suppressed, disabled. &quot;</span>
+                <span class="s2">&quot;&#39;suppressed&#39; silences per-image log output (recommended for MPI jobs). &quot;</span>
+                <span class="s2">&quot;&#39;normal&#39; writes a log file per MPI rank. &#39;disabled&#39; turns off logging.&quot;</span>
+            <span class="p">),</span>
+        <span class="p">)</span>
 
         <span class="c1"># Dispatch settings: dispatch_</span>
         <span class="n">dispatch_index</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
@@ -4056,8 +4071,7 @@ experimental runs.</p>
         <span class="n">dispatch_integrate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="kc">True</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-                <span class="s2">&quot;Integrate indexed images. Ignored if index=False or &quot;</span>
-                <span class="s2">&quot;find_spots=False&quot;</span>
+                <span class="s2">&quot;Integrate indexed images. Ignored if index=False or find_spots=False&quot;</span>
             <span class="p">),</span>
         <span class="p">)</span>
 
@@ -4197,12 +4211,12 @@ experimental runs.</p>
     <span class="n">_set_phil_template_parameters</span> <span class="o">=</span> <span class="n">template_parameter_validator</span><span class="p">(</span><span class="s2">&quot;phil_parameters&quot;</span><span class="p">)</span>
 
     <span class="n">executable</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;/sdf/group/lcls/ds/tools/cctbx/conda_base/bin/mpirun&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/sdf/group/lcls/ds/tools/cctbx/psana2/conda_base_psana2/bin/mpirun&quot;</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;MPI executable.&quot;</span><span class="p">,</span>
         <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">cctbx_executable</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;/sdf/group/lcls/ds/tools/cctbx/build/bin/dials.stills_process&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/sdf/group/lcls/ds/tools/cctbx/psana2/build/bin/dials.stills_process&quot;</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;CCTBX indexing program (DIALS).&quot;</span><span class="p">,</span>
         <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
     <span class="p">)</span>
@@ -4584,7 +4598,14 @@ experimental runs.</p>
 <span class="normal">740</span>
 <span class="normal">741</span>
 <span class="normal">742</span>
-<span class="normal">743</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">PhilParameters</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="normal">743</span>
+<span class="normal">744</span>
+<span class="normal">745</span>
+<span class="normal">746</span>
+<span class="normal">747</span>
+<span class="normal">748</span>
+<span class="normal">749</span>
+<span class="normal">750</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">PhilParameters</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Template parameters for CCTBX phil file.&quot;&quot;&quot;</span>
 
     <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">BaseModel</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>  <span class="c1"># type: ignore</span>
@@ -4623,6 +4644,14 @@ experimental runs.</p>
     <span class="n">output_logging_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Directory output log files will be placed&quot;</span>
     <span class="p">)</span>
+    <span class="n">output_logging_option</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="s2">&quot;suppressed&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="p">(</span>
+            <span class="s2">&quot;Logging verbosity option. One of: normal, suppressed, disabled. &quot;</span>
+            <span class="s2">&quot;&#39;suppressed&#39; silences per-image log output (recommended for MPI jobs). &quot;</span>
+            <span class="s2">&quot;&#39;normal&#39; writes a log file per MPI rank. &#39;disabled&#39; turns off logging.&quot;</span>
+        <span class="p">),</span>
+    <span class="p">)</span>
 
     <span class="c1"># Dispatch settings: dispatch_</span>
     <span class="n">dispatch_index</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
@@ -4638,8 +4667,7 @@ experimental runs.</p>
     <span class="n">dispatch_integrate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">True</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;Integrate indexed images. Ignored if index=False or &quot;</span>
-            <span class="s2">&quot;find_spots=False&quot;</span>
+            <span class="s2">&quot;Integrate indexed images. Ignored if index=False or find_spots=False&quot;</span>
         <span class="p">),</span>
     <span class="p">)</span>
 

@@ -3307,11 +3307,15 @@
 <span class="normal">160</span>
 <span class="normal">161</span>
 <span class="normal">162</span>
-<span class="normal">163</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BayFAI</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BayFAI</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Optimize detector geometry using PyFAI coupled with Bayesian Optimization.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">BayFAIParameters</span><span class="p">,</span> <span class="n">use_mpi</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">use_mpi</span><span class="o">=</span><span class="n">use_mpi</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">BayFAIParameters</span><span class="p">,</span> <span class="n">use_mpi</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">row_ids</span><span class="o">=</span><span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">use_mpi</span><span class="o">=</span><span class="n">use_mpi</span><span class="p">,</span> <span class="n">row_ids</span><span class="o">=</span><span class="n">row_ids</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
@@ -3371,9 +3375,9 @@
             <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">fig_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="n">plot</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">fig_folder</span><span class="si">}</span><span class="s2">/bayFAI_summary_</span><span class="si">{</span><span class="n">optimizer</span><span class="o">.</span><span class="n">exp</span><span class="si">}</span><span class="s2">_r</span><span class="si">{</span><span class="n">optimizer</span><span class="o">.</span><span class="n">run</span><span class="si">:</span><span class="s2">0&gt;4</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">detname</span><span class="si">}</span><span class="s2">.png&quot;</span>
             <span class="n">calib_detector</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">update_geometry</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">out_file</span><span class="p">)</span>
-            <span class="n">optimizer</span><span class="o">.</span><span class="n">upload_geometry</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">out_file</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">detname</span>
-            <span class="p">)</span>
+            <span class="c1"># optimizer.upload_geometry(</span>
+            <span class="c1">#     self._task_parameters.out_file, self._task_parameters.detname</span>
+            <span class="c1"># )</span>
             <span class="n">powder_plot</span><span class="p">,</span> <span class="n">qs</span><span class="p">,</span> <span class="n">resolutions</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">create_interactive_powder</span><span class="p">()</span>
             <span class="n">diagnostics_plot</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">create_diagnostics_panel</span><span class="p">(</span>
                 <span class="n">detector</span><span class="o">=</span><span class="n">calib_detector</span><span class="p">,</span>
