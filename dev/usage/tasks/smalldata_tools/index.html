@@ -543,6 +543,56 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#running-with-a-virtual-environment-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running with a Virtual Environment Install
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running with a Virtual Environment Install">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fields-to-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fields to set
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lcls1-psana1-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LCLS1 (psana1) example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lcls2-psana2-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LCLS2 (psana2) example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3179,6 +3229,56 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#running-with-a-virtual-environment-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running with a Virtual Environment Install
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running with a Virtual Environment Install">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fields-to-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fields to set
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lcls1-psana1-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LCLS1 (psana1) example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lcls2-psana2-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LCLS2 (psana2) example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3315,6 +3415,77 @@ writeArea (boolean) - Default: False
 <li><code>SmallDataProducer2</code>: Run the psana2 smalldata_tools production</li>
 <li><code>SmallDataProducerSpack</code>: Run the psana2 smalldata_tools production, <strong>in the spack environment</strong>. This is required for compression features.</li>
 </ul>
+<h2 id="running-with-a-virtual-environment-install">Running with a Virtual Environment Install</h2>
+<p>When LUTE is installed with <code>setup_lute -fi</code> (the <code>--fresh_install</code> virtual-environment
+path), the executor runs inside the venv Python. The psana conda environment is only
+sourced in the batch script that spawns the Task subprocess — <strong>after</strong> parameter
+parsing. This matters for <code>SubmitSMD</code> because two Pydantic validators in
+<code>lute/io/models/smd.py</code> (lines 573–646, <code>validate_producer_path</code> and <code>use_producer</code>)
+call <code>import psana</code> at parse time to auto-determine the correct producer path and
+template. In the venv <code>psana</code> is absent, so these validators raise:</p>
+<pre><code>ValueError: psana not available, cannot determine producer path
+</code></pre>
+<p>To avoid this error you must set <code>producer</code> and <code>lute_template_cfg</code> explicitly in
+your YAML.</p>
+<h3 id="fields-to-set">Fields to set</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>producer</code></td>
+<td>string</td>
+<td>Absolute path to <code>smd_producer.py</code> for the target DAQ generation</td>
+</tr>
+<tr>
+<td><code>lute_template_cfg</code></td>
+<td>mapping</td>
+<td>Nested object with <code>template_name</code> and <code>output_path</code></td>
+</tr>
+<tr>
+<td><code>producer_parameters</code></td>
+<td>mapping</td>
+<td>Nested object with <code>detnames</code> and <code>smalldata</code> reduction algorithms</td>
+</tr>
+</tbody>
+</table>
+<p>Both fields live directly under <code>SubmitSMD:</code> (not under <code>producer_parameters:</code>).</p>
+<h3 id="lcls1-psana1-example">LCLS1 (psana1) example</h3>
+<pre><code class="language-yaml">SubmitSMD:
+  producer: &quot;{{ work_dir }}/smalldata_tools/lcls1_producers/smd_producer.py&quot;
+  lute_template_cfg:
+    template_name: &quot;smd1_prod_config_template.py&quot;
+    output_path: &quot;{{ work_dir }}/smalldata_tools/lcls1_producers/prod_config_&lt;hutch&gt;.py&quot;
+  producer_parameters:
+    detnames: [&quot;epix10k2M&quot;]
+    # ...
+</code></pre>
+<h3 id="lcls2-psana2-example">LCLS2 (psana2) example</h3>
+<pre><code class="language-yaml">SubmitSMD:
+  producer: &quot;{{ work_dir }}/smalldata_tools/lcls2_producers/smd_producer.py&quot;
+  lute_template_cfg:
+    template_name: &quot;smd2_prod_config_template.py&quot;
+    output_path: &quot;{{ work_dir }}/smalldata_tools/lcls2_producers/prod_config_&lt;hutch&gt;.py&quot;
+  producer_parameters:
+    detnames: [&quot;jungfrau&quot;]
+    # ...
+</code></pre>
+<p>The <code>{{ work_dir }}</code> placeholder is substituted before Pydantic validation runs, so
+these paths resolve to real filesystem paths by the time the validators execute.
+<code>smalldata_tools</code> itself will be cloned to <code>&lt;work_dir&gt;/smalldata_tools/</code> (three
+<code>.parent</code> steps up from the <code>producer</code> path, as implemented in
+<code>lute/tasks/tasklets.py:186</code>).</p>
+<blockquote>
+<p><strong>Important:</strong> <code>producer_parameters</code> must always be nested under that key — not
+directly under <code>SubmitSMD</code> — or the values are silently ignored and never passed
+to the producer.</p>
+</blockquote>
+<hr />
 <h2 id="configuration">Configuration</h2>
 <p>The starting YAML for smalldata_tools may look like:</p>
 <pre><code class="language-yaml">SubmitSMD:
@@ -3323,6 +3494,9 @@ writeArea (boolean) - Default: False
   #bind_to: &quot;core&quot;  # MPI resource binding - take care with changing unless familiar
   #np: 5
   #producer: &quot;/path/to/producer&quot;
+  #lute_template_cfg:
+    #template_name: &quot;smdX_prod_config_template.py&quot;
+    #output_path: &quot;path/to/prod_config_hutch&quot;
   #run: &quot;{{ run }}&quot;
   #experiment: &quot;{{ experiment }}&quot;
   #stn: 0

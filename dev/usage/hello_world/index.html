@@ -3021,8 +3021,13 @@
 <h1 id="running-the-test-task">"Running the <code>Test</code> <code>Task</code></h1>
 <p>This simple example will walk you through running the <code>Test</code> <code>Task</code>, which simply counts to 10 and then succeed or fails depending on the configuration.
 Please note that this should be run on psana in S3DF, as for now it relies on the specific path of the <code>psconda</code> environment.</p>
-<p>Clone the Lute repository and run the installation script:</p>
-<pre><code class="language-bash">&gt; ./build.sh
+<p>Install LUTE using <code>setup_lute</code> (see <a href="/usage/installation">Installation</a> for full details).
+The recommended path is the virtual environment install:</p>
+<pre><code class="language-bash"># Recommended: virtual environment install (no compilation required)
+&gt; setup_lute -fi -e &lt;EXPERIMENT&gt;
+
+# Alternative: source build (for developers who need to modify C-extensions)
+&gt; setup_lute -fb -e &lt;EXPERIMENT&gt;
 </code></pre>
 <p>Start by creating the following <code>yaml</code> configuration file for the <code>Task</code>.
 Note: this file can created anywhere, it does not need (and probably should not) be under the LUTE repository.</p>
@@ -3049,8 +3054,12 @@ Test:
 <p>Start by sourcing the relevant environments:</p>
 <pre><code class="language-bash">&gt; source /sdf/group/lcls/ds/ana/sw/conda1/manage/bin/psconda.sh
 </code></pre>
-<p>and</p>
-<pre><code class="language-bash">&gt; source &lt;PATH_TO_LUTE&gt;/install/bin/activate_installation
+<p>and activate the LUTE installation. The activation step depends on how LUTE was installed:</p>
+<pre><code class="language-bash"># If you used --fresh_install (virtual environment):
+source lute_envs/lute_env_py311/bin/activate   # or lute_env_py39
+
+# If you used --fresh_build (source build):
+source &lt;PATH_TO_LUTE&gt;/install/bin/activate_installation
 </code></pre>
 <p>Now, simply call</p>
 <pre><code class="language-bash">&gt; run_task -t Tester -c &lt;PATH_TO_YOUR_YAML_FILE&gt;

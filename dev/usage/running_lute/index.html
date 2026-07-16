@@ -596,6 +596,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#task-timeouts-heartbeats-and-preventing-hangs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task Timeouts, Heartbeats and Preventing Hangs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#environment-variables" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -606,6 +617,28 @@
   
     <nav class="md-nav" aria-label="Environment Variables">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#virtual-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Virtual Environment Variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status-monitoring-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status Monitoring Variables
+      
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#debug-environment-variables" class="md-nav__link">
@@ -632,6 +665,17 @@
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-lute_help-for-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using lute_help for environment variables
+      
+    </span>
+  </a>
   
 </li>
         
@@ -3454,6 +3498,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#task-timeouts-heartbeats-and-preventing-hangs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task Timeouts, Heartbeats and Preventing Hangs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#environment-variables" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3464,6 +3519,28 @@
   
     <nav class="md-nav" aria-label="Environment Variables">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#virtual-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Virtual Environment Variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status-monitoring-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status Monitoring Variables
+      
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#debug-environment-variables" class="md-nav__link">
@@ -3490,6 +3567,17 @@
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-lute_help-for-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using lute_help for environment variables
+      
+    </span>
+  </a>
   
 </li>
         
@@ -3666,6 +3754,12 @@ next:
 <pre><code class="language-bash">/path/to/lute/launch_scripts/submit_launch_airflow.sh /path/to/lute/launch_scripts/launch_airflow.py -e &lt;exp&gt; -r &lt;run&gt; -c /path/to/config -W &lt;path_to_dag&gt; --test [--debug] [SLURM_ARGS]
 </code></pre>
 <p>Note that fewer options are currently supported for configuring the operators for each step of the DAG.  The slurm arguments can be replaced in their entirety using a custom <code>slurm_params</code> string but individual options cannot be modified.</p>
+<h3 id="task-timeouts-heartbeats-and-preventing-hangs">Task Timeouts, Heartbeats and Preventing Hangs</h3>
+<p>The LUTE (and <code>maestro</code>) workflow system provides a number of tunable parameters to address issues of hung jobs, or jobs taking too long to complete. In particular, there are two principle mechanisms to be aware of:</p>
+<ol>
+<li>The <code>task_timeout</code> is a value set in seconds inside the configuration YAML file. It will apply to all <code>Task</code>s that are launched using that specific config YAML. Any job that takes longer than the time interval specified there will be killed via <code>SIGALRM</code>.</li>
+<li>The status monitoring system. There is a hierarchical status monitoring system that does its best to conservatively address the concern of unresponsive/hung jobs. This can occassionally occur in various analysis jobs, where the code is not from LUTE itself, but rather than underlying processing code. When using <code>maestro</code> as the workflow backend, it will expect regular updates from the <code>Executor</code> to ensure that the LUTE infrastructure is healthy. Furthermore, the <code>Executor</code> itself will manage the analysis <code>Task</code> looking for any sign of life whatsoever (generating logs, making forward progress, sending status updates, etc.). Failure of the <code>Task</code> to show life for an extended period of time will result in a job cancellation. The various values associated to these status monitoring features are configurable by environment variable described below.</li>
+</ol>
 <h3 id="environment-variables">Environment Variables</h3>
 <p>A number of environment variables can be set to control certain aspects of LUTE behaviour.</p>
 <ul>
@@ -3674,7 +3768,46 @@ next:
 <li><code>LUTE_DB_SPEC_VERSION</code>: Set to determine the database specification version. Either 1 or 2, currently.</li>
 <li><code>LUTE_MAESTRO_LOG_LEVEL</code>: Set the logging level for the workflow manager <code>maestro</code>. Can be <code>trace</code>, <code>debug</code>, <code>info</code>, <code>warning</code>, <code>error</code>. The settings can also be set per logger. E.g. <code>LUTE_MAESTRO_LOG_LEVEL=debug,HTTP:Server=trace</code>.</li>
 </ul>
+<h4 id="virtual-environment-variables">Virtual Environment Variables</h4>
+<p>When LUTE is installed via <code>setup_lute -fi</code> (virtual environment install), the submission
+scripts automatically detect the install type and export additional variables:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Set by</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LUTE_VIRTUAL_ENV</code></td>
+<td><code>submit_slurm.sh</code> (venv path)</td>
+<td>Path to the active primary virtual environment directory</td>
+</tr>
+<tr>
+<td><code>LUTE_VIRTUAL_ENV_PY39</code></td>
+<td><code>submit_slurm.sh</code> (venv path)</td>
+<td>Path to the Python 3.9 interpreter in the sibling <code>lute_env_py39</code> virtual environment</td>
+</tr>
+<tr>
+<td><code>LUTE_VIRTUAL_ENV_PY311</code></td>
+<td><code>submit_slurm.sh</code> (venv path)</td>
+<td>Path to the Python 3.11 interpreter in the sibling <code>lute_env_py311</code> virtual environment</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Install-type detection:</strong> the submit scripts check whether <code>bin/activate</code> is present
+in the LUTE bin path. If so, the venv path is used and the variables above are exported.
+Otherwise, <code>bin/activate_installation</code> (meson/prefix build) is sourced instead.</p>
 <p>A number of other environment variables are used (<code>LUTE_PATH</code>, <code>LUTE_EXECUTOR_HOST</code>, as examples). These, however, are set internally and are not intended to be managed by users. They will appear in the database records, however.</p>
+<h4 id="status-monitoring-variables">Status Monitoring Variables</h4>
+<p>Three variables control the status monitoring system.</p>
+<ul>
+<li><code>LUTE_MAESTRO_HEARTBEAT</code>: This is the period at which the Executor sends sign of life updates to the <code>maestro</code> workflow manager. The heartbeat period is used to judge whether a managed Task has become unresponsive. The value is set in seconds. The default is 30 seconds.</li>
+<li><code>LUTE_NO_HEARTBEAT_TTL</code>: This sets the time after which <code>maestro</code> will use a fallback strategy to check job status. The fallback strategy is used if it has not received a heartbeat update after this amount of seconds has elapsed. E.g., when using a SLURM Launcher, <code>maestro</code> will check the SLURMDB for the submitted job to see if it is still running. If the fallback strategy shows the job has exited, the job will be marked as failed. The value is set in seconds, with a default of 120 seconds (2 minutes).</li>
+<li><code>LUTE_NO_HEARTBEAT_KILL</code>: This sets the time after which an unresponsive job will be killed. The time limit applies to monitoring at both the Execution and maestro levels. The Executor monitors the Task for responsiveness, and likewise, <code>maestro</code> monitors the Executor. The value is set in seconds, with a default of 900 seconds (15 minutes).</li>
+</ul>
 <h4 id="debug-environment-variables">Debug Environment Variables</h4>
 <p>Special markers have been inserted at certain points in the execution flow for LUTE. These can be enabled by setting the environment variables detailed below. These are intended to allow developers to exit the program at certain points to investigate behaviour or a bug. For instance, when working on configuration parsing, an environment variable can be set which exits the program after passing this step. This allows you to run LUTE otherwise as normal (described above), without having to modify any additional code or insert your own early exits.</p>
 <p>Types of debug markers:</p>
@@ -3698,6 +3831,8 @@ def my_code() -&gt; None:
 <li><code>LUTE_DEBUG_EXIT_AT_YAML</code>: Exits the program after reading in a YAML configuration file and performing variable substitutions, but BEFORE Pydantic validation.</li>
 <li><code>LUTE_DEBUG_BEFORE_TPP_EXEC</code>: Exits the program after a ThirdPartyTask has prepared its submission command, but before <code>exec</code> is used to run it.</li>
 </ul>
+<h4 id="using-lute_help-for-environment-variables">Using <code>lute_help</code> for environment variables</h4>
+<p>The <code>lute_help</code> utility can be used to display information about the environment variables and their current settings. Using <code>lute_help -e</code> will display a short-list summary of their variables and their settings. <code>lute_help -e &lt;var&gt;</code> can then be used to get the detailed description of the specific environment variable <code>&lt;var&gt;</code>.</p>
 
 
 
