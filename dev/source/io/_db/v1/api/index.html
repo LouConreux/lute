@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -3442,27 +3442,27 @@ the most recent entry from a database for a specific Task.</p>
 <span class="normal">67</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_cfg_to_exec_entry_cols</span><span class="p">(</span>
     <span class="n">cfg</span><span class="p">:</span> <span class="n">DescribedAnalysis</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts AnalysisConfig to be entered into a exec_cfg table.</span>
+<span class="w">    </span><span class="sd">"""Converts AnalysisConfig to be entered into a exec_cfg table.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        entries (Dict[str, Any]): Converted {name:value} dictionary.</span>
 
 <span class="sd">        columns (Dict[str, str]): Converted {name:type} dictionary.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">selected_env_vars</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
         <span class="n">key</span><span class="p">:</span> <span class="n">cfg</span><span class="o">.</span><span class="n">task_env</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">cfg</span><span class="o">.</span><span class="n">task_env</span>
-        <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;LUTE_&quot;</span> <span class="ow">in</span> <span class="n">key</span> <span class="ow">and</span> <span class="s2">&quot;_TENV_&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">key</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;SLURM_&quot;</span> <span class="ow">in</span> <span class="n">key</span>
+        <span class="k">if</span> <span class="p">(</span><span class="s2">"LUTE_"</span> <span class="ow">in</span> <span class="n">key</span> <span class="ow">and</span> <span class="s2">"_TENV_"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">key</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">"SLURM_"</span> <span class="ow">in</span> <span class="n">key</span>
     <span class="p">}</span>
     <span class="n">entry</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;env&quot;</span><span class="p">:</span> <span class="s2">&quot;;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">selected_env_vars</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span>
-        <span class="s2">&quot;poll_interval&quot;</span><span class="p">:</span> <span class="n">cfg</span><span class="o">.</span><span class="n">poll_interval</span><span class="p">,</span>
-        <span class="s2">&quot;communicator_desc&quot;</span><span class="p">:</span> <span class="s2">&quot;;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">desc</span> <span class="k">for</span> <span class="n">desc</span> <span class="ow">in</span> <span class="n">cfg</span><span class="o">.</span><span class="n">communicator_desc</span><span class="p">),</span>
+        <span class="s2">"env"</span><span class="p">:</span> <span class="s2">";"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">selected_env_vars</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span>
+        <span class="s2">"poll_interval"</span><span class="p">:</span> <span class="n">cfg</span><span class="o">.</span><span class="n">poll_interval</span><span class="p">,</span>
+        <span class="s2">"communicator_desc"</span><span class="p">:</span> <span class="s2">";"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">desc</span> <span class="k">for</span> <span class="n">desc</span> <span class="ow">in</span> <span class="n">cfg</span><span class="o">.</span><span class="n">communicator_desc</span><span class="p">),</span>
     <span class="p">}</span>
     <span class="n">columns</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;env&quot;</span><span class="p">:</span> <span class="s2">&quot;TEXT&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;poll_interval&quot;</span><span class="p">:</span> <span class="s2">&quot;REAL&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;communicator_desc&quot;</span><span class="p">:</span> <span class="s2">&quot;TEXT&quot;</span><span class="p">,</span>
+        <span class="s2">"env"</span><span class="p">:</span> <span class="s2">"TEXT"</span><span class="p">,</span>
+        <span class="s2">"poll_interval"</span><span class="p">:</span> <span class="s2">"REAL"</span><span class="p">,</span>
+        <span class="s2">"communicator_desc"</span><span class="p">:</span> <span class="s2">"TEXT"</span><span class="p">,</span>
     <span class="p">}</span>
 
     <span class="k">return</span> <span class="n">entry</span><span class="p">,</span> <span class="n">columns</span>
@@ -3498,15 +3498,15 @@ the most recent entry from a database for a specific Task.</p>
 <span class="normal">161</span>
 <span class="normal">162</span>
 <span class="normal">163</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_check_type</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return SQL type for a value.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Return SQL type for a value."""</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s2">&quot;INTEGER&quot;</span>
+        <span class="k">return</span> <span class="s2">"INTEGER"</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s2">&quot;REAL&quot;</span>
+        <span class="k">return</span> <span class="s2">"REAL"</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s2">&quot;TEXT&quot;</span>
+        <span class="k">return</span> <span class="s2">"TEXT"</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">&quot;BLOB&quot;</span>
+        <span class="k">return</span> <span class="s2">"BLOB"</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -3517,7 +3517,7 @@ the most recent entry from a database for a specific Task.</p>
 
 
 <h2 id="io._db.v1.api._dict_to_flatdicts" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">_dict_to_flatdicts</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">curr_key</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">_dict_to_flatdicts</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">curr_key</span><span class="o">=</span><span class="s1">''</span><span class="p">)</span></code>
 
 </h2>
 
@@ -3679,16 +3679,16 @@ Types are one of TEXT, INTEGER, REAL.</p>
 <span class="normal">256</span>
 <span class="normal">257</span>
 <span class="normal">258</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_dict_to_flatdicts</span><span class="p">(</span>
-    <span class="n">d</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">curr_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">d</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">curr_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">""</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Flattens a dictionary delimiting parameters with a &#39;.&#39;.</span>
+<span class="w">    </span><span class="sd">"""Flattens a dictionary delimiting parameters with a '.'.</span>
 
 <span class="sd">    Works recursively. Also returns the type of each flattened value.</span>
 <span class="sd">    Tuples/lists are handled flattened as well, using an indexing scheme. E.g.</span>
-<span class="sd">    a[&quot;b&quot;] in the nested dictionaries below:</span>
+<span class="sd">    a["b"] in the nested dictionaries below:</span>
 <span class="sd">                          {</span>
-<span class="sd">                              &quot;a&quot;: {</span>
-<span class="sd">                                  &quot;b&quot;: (1, 2),</span>
+<span class="sd">                              "a": {</span>
+<span class="sd">                                  "b": (1, 2),</span>
 <span class="sd">                              },</span>
 <span class="sd">                              # ...</span>
 <span class="sd">                          }</span>
@@ -3706,15 +3706,15 @@ Types are one of TEXT, INTEGER, REAL.</p>
 
 <span class="sd">        flattened_types (Dict[str, str]): Dictionary of flatkey:type(value) pairs.</span>
 <span class="sd">            Types are one of TEXT, INTEGER, REAL.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">param_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">type_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="n">flat_key</span><span class="p">:</span> <span class="nb">str</span>
-        <span class="k">if</span> <span class="n">curr_key</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">curr_key</span> <span class="o">==</span> <span class="s2">""</span><span class="p">:</span>
             <span class="n">flat_key</span> <span class="o">=</span> <span class="n">key</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">flat_key</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">curr_key</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">flat_key</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">curr_key</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">"</span>
         <span class="n">corrected_value</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">value</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">corrected_value</span><span class="p">,</span> <span class="n">TemplateParameters</span><span class="p">):</span>
             <span class="n">corrected_value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">params</span>
@@ -3745,7 +3745,7 @@ Types are one of TEXT, INTEGER, REAL.</p>
 
 
 <h2 id="io._db.v1.api._list_to_flatlists" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">_list_to_flatlists</span><span class="p">(</span><span class="n">l_entry</span><span class="p">,</span> <span class="n">curr_key</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">_list_to_flatlists</span><span class="p">(</span><span class="n">l_entry</span><span class="p">,</span> <span class="n">curr_key</span><span class="o">=</span><span class="s1">''</span><span class="p">)</span></code>
 
 </h2>
 
@@ -3875,11 +3875,11 @@ Types are one of TEXT, INTEGER, REAL</p>
 <span class="normal">197</span>
 <span class="normal">198</span>
 <span class="normal">199</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_list_to_flatlists</span><span class="p">(</span>
-    <span class="n">l_entry</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">],</span> <span class="n">curr_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">l_entry</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">],</span> <span class="n">curr_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">""</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Flatten lists for database storage.</span>
+<span class="w">    </span><span class="sd">"""Flatten lists for database storage.</span>
 
-<span class="sd">    Indexes entries in the list using &quot;[idx]&quot; notation.</span>
+<span class="sd">    Indexes entries in the list using "[idx]" notation.</span>
 <span class="sd">    Nested lists are handled with multiple indices [x][y][...]. This</span>
 <span class="sd">    function is called recursively to handle nesting.</span>
 
@@ -3893,13 +3893,13 @@ Types are one of TEXT, INTEGER, REAL</p>
 
 <span class="sd">        flattened_types (List[Tuple[str, str]]): List of (indexed_key, type) pairs.</span>
 <span class="sd">            Types are one of TEXT, INTEGER, REAL</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">param_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">type_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">idx</span><span class="p">:</span> <span class="nb">int</span>
     <span class="n">indexed_value</span><span class="p">:</span> <span class="n">Any</span>
     <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">indexed_value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">l_entry</span><span class="p">):</span>
-        <span class="n">indexed_curr_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">curr_key</span><span class="si">}</span><span class="s2">[</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">]&quot;</span>
+        <span class="n">indexed_curr_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">curr_key</span><span class="si">}</span><span class="s2">[</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">]"</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">indexed_value</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">indexed_value</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
             <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">_list_to_flatlists</span><span class="p">(</span><span class="n">indexed_value</span><span class="p">,</span> <span class="n">indexed_curr_key</span><span class="p">)</span>
             <span class="n">param_list</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -4093,17 +4093,17 @@ information dictionary.</p>
     <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
     <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span>
 <span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Adapts a TaskParameters object to be entered into a table.</span>
+<span class="w">    </span><span class="sd">"""Adapts a TaskParameters object to be entered into a table.</span>
 
 <span class="sd">    Extracts the appropriate names and types from a TaskParameters object.</span>
 <span class="sd">    Compound types (e.g. dicts) are recursively extracted and are given names</span>
-<span class="sd">    where subparameters are delimited by &quot;.&quot;. E.g. a parameter such as:</span>
+<span class="sd">    where subparameters are delimited by ".". E.g. a parameter such as:</span>
 <span class="sd">        my_param = {</span>
-<span class="sd">            &quot;a&quot;: 1,</span>
-<span class="sd">            &quot;b&quot;: 0.1,</span>
+<span class="sd">            "a": 1,</span>
+<span class="sd">            "b": 0.1,</span>
 <span class="sd">        }</span>
 <span class="sd">    will be converted into the following entries:</span>
-<span class="sd">        (&quot;my_param.a&quot;, &quot;INTEGER&quot;), (&quot;my_param.b&quot;, &quot;REAL&quot;).</span>
+<span class="sd">        ("my_param.a", "INTEGER"), ("my_param.b", "REAL").</span>
 
 <span class="sd">    The `lute_config` analysis header is separated out and returned as a separate</span>
 <span class="sd">    set of entries and columns. This particular field of the `TaskParameters`</span>
@@ -4124,7 +4124,7 @@ information dictionary.</p>
 
 <span class="sd">        gen_columns (Dict[str, str]): General configuration type</span>
 <span class="sd">            information dictionary.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">gen_entry</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
     <span class="n">gen_columns</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
     <span class="n">entry</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
@@ -4236,24 +4236,24 @@ information dictionary.</p>
 <span class="normal">151</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_result_to_entry_cols</span><span class="p">(</span>
     <span class="n">result</span><span class="p">:</span> <span class="n">TaskResult</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Adapts the required fields from a TaskResult to be entered into a table.</span>
+<span class="w">    </span><span class="sd">"""Adapts the required fields from a TaskResult to be entered into a table.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        entries (Dict[str, Any]): Converted {name:value} dictionary.</span>
 
 <span class="sd">        columns (Dict[str, str]): Converted {name:type} dictionary.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">entry</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;result.task_status&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">task_status</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span>
-        <span class="s2">&quot;result.summary&quot;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="p">,</span>
-        <span class="s2">&quot;result.payload&quot;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">payload</span><span class="p">,</span>
-        <span class="s2">&quot;result.impl_schemas&quot;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">impl_schemas</span><span class="p">,</span>
+        <span class="s2">"result.task_status"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">task_status</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"."</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span>
+        <span class="s2">"result.summary"</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="p">,</span>
+        <span class="s2">"result.payload"</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">payload</span><span class="p">,</span>
+        <span class="s2">"result.impl_schemas"</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">impl_schemas</span><span class="p">,</span>
     <span class="p">}</span>
     <span class="n">columns</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;result.task_status&quot;</span><span class="p">:</span> <span class="s2">&quot;TEXT&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;result.summary&quot;</span><span class="p">:</span> <span class="s2">&quot;TEXT&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;result.payload&quot;</span><span class="p">:</span> <span class="s2">&quot;BLOB&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;result.impl_schemas&quot;</span><span class="p">:</span> <span class="s2">&quot;TEXT&quot;</span><span class="p">,</span>
+        <span class="s2">"result.task_status"</span><span class="p">:</span> <span class="s2">"TEXT"</span><span class="p">,</span>
+        <span class="s2">"result.summary"</span><span class="p">:</span> <span class="s2">"TEXT"</span><span class="p">,</span>
+        <span class="s2">"result.payload"</span><span class="p">:</span> <span class="s2">"BLOB"</span><span class="p">,</span>
+        <span class="s2">"result.impl_schemas"</span><span class="p">:</span> <span class="s2">"TEXT"</span><span class="p">,</span>
     <span class="p">}</span>
 
     <span class="k">return</span> <span class="n">entry</span><span class="p">,</span> <span class="n">columns</span>
@@ -4267,7 +4267,7 @@ information dictionary.</p>
 
 
 <h2 id="io._db.v1.api.read_latest_db_entry" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">read_latest_db_entry</span><span class="p">(</span><span class="n">db_dir</span><span class="p">,</span> <span class="n">task_name</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">valid_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">for_run</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;RUN&#39;</span><span class="p">))</span></code>
+            <code class="highlight language-python"><span class="n">read_latest_db_entry</span><span class="p">(</span><span class="n">db_dir</span><span class="p">,</span> <span class="n">task_name</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">valid_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">for_run</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">'RUN'</span><span class="p">))</span></code>
 
 </h2>
 
@@ -4463,9 +4463,9 @@ that can be found in the database. Returns None if nothing found.</p>
     <span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">param</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">valid_only</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="n">for_run</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;RUN&quot;</span><span class="p">),</span>
+    <span class="n">for_run</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"RUN"</span><span class="p">),</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read most recent value entered into the database for a Task parameter.</span>
+<span class="w">    </span><span class="sd">"""Read most recent value entered into the database for a Task parameter.</span>
 
 <span class="sd">    (Will be updated for schema compliance as well as Task name.)</span>
 
@@ -4486,23 +4486,23 @@ that can be found in the database. Returns None if nothing found.</p>
 <span class="sd">    Returns:</span>
 <span class="sd">        val (Any): The most recently entered value for `param` of `task_name`</span>
 <span class="sd">            that can be found in the database. Returns None if nothing found.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">._sqlite</span><span class="w"> </span><span class="kn">import</span> <span class="n">_select_from_db</span>
 
-    <span class="n">db_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">db_dir</span><span class="si">}</span><span class="s2">/lute.db&quot;</span>
+    <span class="n">db_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">db_dir</span><span class="si">}</span><span class="s2">/lute.db"</span>
     <span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">(</span><span class="n">db_path</span><span class="p">)</span>
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">cond</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
             <span class="k">if</span> <span class="n">valid_only</span><span class="p">:</span>
-                <span class="n">cond</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;valid_flag&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">}</span>
+                <span class="n">cond</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"valid_flag"</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">}</span>
             <span class="n">entries</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">_select_from_db</span><span class="p">(</span>
-                <span class="n">con</span><span class="p">,</span> <span class="n">task_name</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;gen_cfg_id,&quot;</span><span class="si">{</span><span class="n">param</span><span class="si">}</span><span class="s1">&quot;&#39;</span><span class="p">,</span> <span class="n">cond</span>
+                <span class="n">con</span><span class="p">,</span> <span class="n">task_name</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'gen_cfg_id,"</span><span class="si">{</span><span class="n">param</span><span class="si">}</span><span class="s1">"'</span><span class="p">,</span> <span class="n">cond</span>
             <span class="p">)</span>
             <span class="k">if</span> <span class="n">for_run</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">gen_cfg_entries</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">_select_from_db</span><span class="p">(</span>
-                    <span class="n">con</span><span class="p">,</span> <span class="s2">&quot;gen_cfg&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;run&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">for_run</span><span class="p">)}</span>
+                    <span class="n">con</span><span class="p">,</span> <span class="s2">"gen_cfg"</span><span class="p">,</span> <span class="s2">"id"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"run"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">for_run</span><span class="p">)}</span>
                 <span class="p">)</span>
                 <span class="n">task_entries_for_run</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
                     <span class="n">entry</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">entries</span> <span class="k">if</span> <span class="p">(</span><span class="n">entry</span><span class="p">[</span><span class="mi">0</span><span class="p">],)</span> <span class="ow">in</span> <span class="n">gen_cfg_entries</span>
@@ -4513,7 +4513,7 @@ that can be found in the database. Returns None if nothing found.</p>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">entries</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">OperationalError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cannot retrieve value </span><span class="si">{</span><span class="n">param</span><span class="si">}</span><span class="s2"> due to: </span><span class="si">{</span><span class="n">err</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Cannot retrieve value </span><span class="si">{</span><span class="n">param</span><span class="si">}</span><span class="s2"> due to: </span><span class="si">{</span><span class="n">err</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">None</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -4621,14 +4621,14 @@ some of the information can be shared across multiple Tasks. Refer to
 <span class="normal">337</span>
 <span class="normal">338</span>
 <span class="normal">339</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">record_analysis_db</span><span class="p">(</span><span class="n">cfg</span><span class="p">:</span> <span class="n">DescribedAnalysis</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Write an DescribedAnalysis object to the database.</span>
+<span class="w">    </span><span class="sd">"""Write an DescribedAnalysis object to the database.</span>
 
 <span class="sd">    The DescribedAnalysis object is maintained by the Executor and contains all</span>
 <span class="sd">    information necessary to fully describe a single `Task` execution. The</span>
 <span class="sd">    contained fields are split across multiple tables within the database as</span>
 <span class="sd">    some of the information can be shared across multiple Tasks. Refer to</span>
 <span class="sd">    `docs/design/database.md` for more information on the database specification.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">._sqlite</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
         <span class="n">_make_shared_table</span><span class="p">,</span>
@@ -4643,8 +4643,8 @@ some of the information can be shared across multiple Tasks. Refer to
     <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
             <span class="p">(</span>
-                <span class="s2">&quot;Unable to access TaskParameters object. Likely wasn&#39;t created. &quot;</span>
-                <span class="s2">&quot;Cannot store result.&quot;</span>
+                <span class="s2">"Unable to access TaskParameters object. Likely wasn't created. "</span>
+                <span class="s2">"Cannot store result."</span>
             <span class="p">)</span>
         <span class="p">)</span>
         <span class="k">return</span>
@@ -4664,25 +4664,25 @@ some of the information can be shared across multiple Tasks. Refer to
     <span class="n">task_entry</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="n">task_columns</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 
-    <span class="n">db_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">/lute.db&quot;</span>
+    <span class="n">db_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">/lute.db"</span>
     <span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">(</span><span class="n">db_path</span><span class="p">)</span>
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="c1"># --- Table Creation ---#</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">_make_shared_table</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="s2">&quot;gen_cfg&quot;</span><span class="p">,</span> <span class="n">gen_columns</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="n">DatabaseError</span><span class="p">(</span><span class="s2">&quot;Could not make general configuration table!&quot;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">_make_shared_table</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="s2">&quot;exec_cfg&quot;</span><span class="p">,</span> <span class="n">exec_columns</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="n">DatabaseError</span><span class="p">(</span><span class="s2">&quot;Could not make Executor configuration table!&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">_make_shared_table</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="s2">"gen_cfg"</span><span class="p">,</span> <span class="n">gen_columns</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">DatabaseError</span><span class="p">(</span><span class="s2">"Could not make general configuration table!"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">_make_shared_table</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="s2">"exec_cfg"</span><span class="p">,</span> <span class="n">exec_columns</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">DatabaseError</span><span class="p">(</span><span class="s2">"Could not make Executor configuration table!"</span><span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">_make_task_table</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="n">task_name</span><span class="p">,</span> <span class="n">task_columns</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="n">DatabaseError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not make Task table for: </span><span class="si">{</span><span class="n">task_name</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">DatabaseError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Could not make Task table for: </span><span class="si">{</span><span class="n">task_name</span><span class="si">}</span><span class="s2">!"</span><span class="p">)</span>
 
             <span class="c1"># --- Row Addition ---#</span>
-            <span class="n">gen_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">_add_row_no_duplicate</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="s2">&quot;gen_cfg&quot;</span><span class="p">,</span> <span class="n">gen_entry</span><span class="p">)</span>
-            <span class="n">exec_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">_add_row_no_duplicate</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="s2">&quot;exec_cfg&quot;</span><span class="p">,</span> <span class="n">exec_entry</span><span class="p">)</span>
+            <span class="n">gen_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">_add_row_no_duplicate</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="s2">"gen_cfg"</span><span class="p">,</span> <span class="n">gen_entry</span><span class="p">)</span>
+            <span class="n">exec_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">_add_row_no_duplicate</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="s2">"exec_cfg"</span><span class="p">,</span> <span class="n">exec_entry</span><span class="p">)</span>
 
             <span class="n">full_task_entry</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="s2">&quot;gen_cfg_id&quot;</span><span class="p">:</span> <span class="n">gen_id</span><span class="p">,</span>
-                <span class="s2">&quot;exec_cfg_id&quot;</span><span class="p">:</span> <span class="n">exec_id</span><span class="p">,</span>
+                <span class="s2">"gen_cfg_id"</span><span class="p">:</span> <span class="n">gen_id</span><span class="p">,</span>
+                <span class="s2">"exec_cfg_id"</span><span class="p">:</span> <span class="n">exec_id</span><span class="p">,</span>
             <span class="p">}</span>
             <span class="n">full_task_entry</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">task_entry</span><span class="p">)</span>
             <span class="c1"># Prepare flag to indicate whether the task entry is valid or not</span>
@@ -4690,15 +4690,15 @@ some of the information can be shared across multiple Tasks. Refer to
             <span class="n">valid_flag</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="p">(</span>
                 <span class="mi">1</span> <span class="k">if</span> <span class="n">cfg</span><span class="o">.</span><span class="n">task_result</span><span class="o">.</span><span class="n">task_status</span> <span class="o">==</span> <span class="n">TaskStatus</span><span class="o">.</span><span class="n">COMPLETED</span> <span class="k">else</span> <span class="mi">0</span>
             <span class="p">)</span>
-            <span class="n">full_task_entry</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;valid_flag&quot;</span><span class="p">:</span> <span class="n">valid_flag</span><span class="p">})</span>
+            <span class="n">full_task_entry</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">"valid_flag"</span><span class="p">:</span> <span class="n">valid_flag</span><span class="p">})</span>
 
             <span class="n">_add_task_entry</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="n">task_name</span><span class="p">,</span> <span class="n">full_task_entry</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">OperationalError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Database storage error: </span><span class="si">{</span><span class="n">err</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Database storage error: </span><span class="si">{</span><span class="n">err</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">os</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="n">db_path</span><span class="p">,</span> <span class="mo">0o664</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Cannot setup permissions on database!&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">"Cannot setup permissions on database!"</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -4768,7 +4768,7 @@ some of the information can be shared across multiple Tasks. Refer to
       <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": [], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

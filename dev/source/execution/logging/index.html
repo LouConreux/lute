@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -3268,7 +3268,7 @@ reduce logging from libraries which output many messages.</p>
 
 
 <h2 id="execution.logging.LUTE_TASK_LOG_FORMAT" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">LUTE_TASK_LOG_FORMAT</span> <span class="o">=</span> <span class="s1">&#39;TASK_LOG -- </span><span class="si">%(levelname)s</span><span class="s1">:</span><span class="si">%(name)s</span><span class="s1">: </span><span class="si">%(message)s</span><span class="s1">&#39;</span></code>
+            <code class="highlight language-python"><span class="n">LUTE_TASK_LOG_FORMAT</span> <span class="o">=</span> <span class="s1">'TASK_LOG -- </span><span class="si">%(levelname)s</span><span class="s1">:</span><span class="si">%(name)s</span><span class="s1">: </span><span class="si">%(message)s</span><span class="s1">'</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
@@ -3290,7 +3290,7 @@ reduce logging from libraries which output many messages.</p>
 
 
 <h2 id="execution.logging.STD_PYTHON_LOG_FORMAT" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">STD_PYTHON_LOG_FORMAT</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%(levelname)s</span><span class="s1">:</span><span class="si">%(name)s</span><span class="s1">:</span><span class="si">%(message)s</span><span class="s1">&#39;</span></code>
+            <code class="highlight language-python"><span class="n">STD_PYTHON_LOG_FORMAT</span> <span class="o">=</span> <span class="s1">'</span><span class="si">%(levelname)s</span><span class="s1">:</span><span class="si">%(name)s</span><span class="s1">:</span><span class="si">%(message)s</span><span class="s1">'</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
@@ -3372,18 +3372,18 @@ reduce logging from libraries which output many messages.</p>
 <span class="normal">73</span>
 <span class="normal">74</span>
 <span class="normal">75</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ColorFormatter</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Provide color text formatting for a logger.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Provide color text formatting for a logger."""</span>
 
-    <span class="n">WARNING_COLOR_FMT</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\x1b</span><span class="s2">[33;20m&quot;</span>
-    <span class="n">ERROR_COLOR_FMT</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\x1b</span><span class="s2">[31;20m&quot;</span>
-    <span class="n">CRITICAL_COLOR_FMT</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\x1b</span><span class="s2">[31;1m&quot;</span>
-    <span class="n">RESET_COLOR_FMT</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\x1b</span><span class="s2">[0m&quot;</span>
+    <span class="n">WARNING_COLOR_FMT</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"</span><span class="se">\x1b</span><span class="s2">[33;20m"</span>
+    <span class="n">ERROR_COLOR_FMT</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"</span><span class="se">\x1b</span><span class="s2">[31;20m"</span>
+    <span class="n">CRITICAL_COLOR_FMT</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"</span><span class="se">\x1b</span><span class="s2">[31;1m"</span>
+    <span class="n">RESET_COLOR_FMT</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"</span><span class="se">\x1b</span><span class="s2">[0m"</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">fmt</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">datefmt</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">style</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;%&quot;</span><span class="p">,</span> <span class="s2">&quot;{&quot;</span><span class="p">,</span> <span class="s2">&quot;$&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;%&quot;</span><span class="p">,</span>
+        <span class="n">style</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"%"</span><span class="p">,</span> <span class="s2">"{"</span><span class="p">,</span> <span class="s2">"$"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"%"</span><span class="p">,</span>
         <span class="n">validate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
         <span class="n">is_task</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
@@ -3395,11 +3395,11 @@ reduce logging from libraries which output many messages.</p>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">log_format</span> <span class="o">=</span> <span class="n">STD_PYTHON_LOG_FORMAT</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">level_formats</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">log_format</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">log_format</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">WARNING_COLOR_FMT</span><span class="si">}{</span><span class="n">log_format</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">RESET_COLOR_FMT</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">ERROR_COLOR_FMT</span><span class="si">}{</span><span class="n">log_format</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">RESET_COLOR_FMT</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">CRITICAL</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">CRITICAL_COLOR_FMT</span><span class="si">}{</span><span class="n">log_format</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">RESET_COLOR_FMT</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">log_format</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">log_format</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">WARNING_COLOR_FMT</span><span class="si">}{</span><span class="n">log_format</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">RESET_COLOR_FMT</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">ERROR_COLOR_FMT</span><span class="si">}{</span><span class="n">log_format</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">RESET_COLOR_FMT</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">CRITICAL</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">CRITICAL_COLOR_FMT</span><span class="si">}{</span><span class="n">log_format</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">RESET_COLOR_FMT</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
         <span class="p">}</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">format</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -3470,7 +3470,7 @@ reduce logging from libraries which output many messages.</p>
 <span class="normal">36</span>
 <span class="normal">37</span>
 <span class="normal">38</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SocketCommunicatorHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Handler</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Logging handler which passes messages via SocketCommunicator objects.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Logging handler which passes messages via SocketCommunicator objects."""</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -3479,7 +3479,7 @@ reduce logging from libraries which output many messages.</p>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">emit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">LogRecord</span><span class="p">):</span>
         <span class="n">formatted_message</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
-        <span class="n">msg</span><span class="p">:</span> <span class="n">Message</span> <span class="o">=</span> <span class="n">Message</span><span class="p">(</span><span class="n">contents</span><span class="o">=</span><span class="n">formatted_message</span><span class="p">,</span> <span class="n">signal</span><span class="o">=</span><span class="s2">&quot;TASK_LOG&quot;</span><span class="p">)</span>
+        <span class="n">msg</span><span class="p">:</span> <span class="n">Message</span> <span class="o">=</span> <span class="n">Message</span><span class="p">(</span><span class="n">contents</span><span class="o">=</span><span class="n">formatted_message</span><span class="p">,</span> <span class="n">signal</span><span class="o">=</span><span class="s2">"TASK_LOG"</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_communicator</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
               </details>
@@ -3624,7 +3624,7 @@ particularly useful when running in debug mode.</p>
 <span class="normal">119</span>
 <span class="normal">120</span>
 <span class="normal">121</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_logger</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">is_task</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">logging</span><span class="o">.</span><span class="n">Logger</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Retrieve a logger with LUTE handler and set log levels of other loggers.</span>
+<span class="w">    </span><span class="sd">"""Retrieve a logger with LUTE handler and set log levels of other loggers.</span>
 
 <span class="sd">    This function returns a logger with correct log level set by the debug flag.</span>
 <span class="sd">    In addition, it silences (or reduces) logs from commonly imported libraries</span>
@@ -3636,17 +3636,17 @@ particularly useful when running in debug mode.</p>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        logger (logging.Logger): Custom logger.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">for</span> <span class="n">other_name</span><span class="p">,</span> <span class="n">other_logger</span> <span class="ow">in</span> <span class="n">logging</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">manager</span><span class="o">.</span><span class="n">loggerDict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="k">if</span> <span class="s2">&quot;matplotlib&quot;</span> <span class="ow">in</span> <span class="n">other_name</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span>
+        <span class="k">if</span> <span class="s2">"matplotlib"</span> <span class="ow">in</span> <span class="n">other_name</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span>
             <span class="n">other_logger</span><span class="p">,</span> <span class="n">logging</span><span class="o">.</span><span class="n">PlaceHolder</span>
         <span class="p">):</span>
             <span class="n">other_logger</span><span class="o">.</span><span class="n">disabled</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="k">elif</span> <span class="s2">&quot;pyFAI&quot;</span> <span class="ow">in</span> <span class="n">other_name</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span>
+        <span class="k">elif</span> <span class="s2">"pyFAI"</span> <span class="ow">in</span> <span class="n">other_name</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span>
             <span class="n">other_logger</span><span class="p">,</span> <span class="n">logging</span><span class="o">.</span><span class="n">PlaceHolder</span>
         <span class="p">):</span>
             <span class="n">other_logger</span><span class="o">.</span><span class="n">disabled</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="k">elif</span> <span class="s2">&quot;numpy&quot;</span> <span class="ow">in</span> <span class="n">other_name</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span>
+        <span class="k">elif</span> <span class="s2">"numpy"</span> <span class="ow">in</span> <span class="n">other_name</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span>
             <span class="n">other_logger</span><span class="p">,</span> <span class="n">logging</span><span class="o">.</span><span class="n">PlaceHolder</span>
         <span class="p">):</span>
             <span class="n">other_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">CRITICAL</span><span class="p">)</span>
@@ -3736,7 +3736,7 @@ particularly useful when running in debug mode.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

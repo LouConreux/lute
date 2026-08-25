@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -3345,7 +3345,7 @@
 <span class="normal">47</span>
 <span class="normal">48</span>
 <span class="normal">49</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">EnvLaunchInfo</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Subset of workflow info retrievable via eLog or environment variables.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Subset of workflow info retrievable via eLog or environment variables."""</span>
 
     <span class="n">experiment</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">run_num</span><span class="p">:</span> <span class="nb">str</span>
@@ -3422,7 +3422,7 @@
 <span class="normal">37</span>
 <span class="normal">38</span>
 <span class="normal">39</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">LuteLaunchConfig</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Complete description of config options required for workflow execution.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Complete description of config options required for workflow execution."""</span>
 
     <span class="n">experiment</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">run_id</span><span class="p">:</span> <span class="nb">str</span>
@@ -3532,22 +3532,22 @@ environment.</p>
 <span class="normal">232</span>
 <span class="normal">233</span>
 <span class="normal">234</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">clean_python_path</span><span class="p">(</span><span class="n">is_daq2</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Cleanup PYTHONPATH environment leakage.</span>
+<span class="w">    </span><span class="sd">"""Cleanup PYTHONPATH environment leakage.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        is_daq2 (Optional[bool]): Whether running a job for a psana2 experiment. If not,</span>
 <span class="sd">            we can make sure to remove the PYTHONPATH modifications from the</span>
 <span class="sd">            environment.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">curr_pythonpath</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;PYTHONPATH&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="sd">    """</span>
+    <span class="n">curr_pythonpath</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PYTHONPATH"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">curr_pythonpath</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">is_daq2</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">is_daq2</span><span class="p">:</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Cleaning PYTHONPATH of LCLS2 environment modifications.&quot;</span><span class="p">)</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;PYTHONPATH&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;:&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Cleaning PYTHONPATH of LCLS2 environment modifications."</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"PYTHONPATH"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">":"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
                 <span class="p">[</span>
                     <span class="n">pp</span>
-                    <span class="k">for</span> <span class="n">pp</span> <span class="ow">in</span> <span class="n">curr_pythonpath</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="s2">&quot;conda2&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">pp</span> <span class="ow">and</span> <span class="s2">&quot;lcls2&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">pp</span>
+                    <span class="k">for</span> <span class="n">pp</span> <span class="ow">in</span> <span class="n">curr_pythonpath</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">":"</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="s2">"conda2"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">pp</span> <span class="ow">and</span> <span class="s2">"lcls2"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">pp</span>
                 <span class="p">]</span>
             <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -3674,7 +3674,7 @@ script that will be built with the parser.</p>
 <span class="normal">141</span>
 <span class="normal">142</span>
 <span class="normal">143</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_base_launch_parser</span><span class="p">(</span><span class="n">description</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a base ArgumentParser with common arguments.</span>
+<span class="w">    </span><span class="sd">"""Create a base ArgumentParser with common arguments.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        description (str): A string to go in the help message for the launch</span>
@@ -3682,42 +3682,42 @@ script that will be built with the parser.</p>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        parser (argparse.ArgumentParser): The script command-line parser.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
         <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span>
-        <span class="n">epilog</span><span class="o">=</span><span class="s2">&quot;Refer to https://github.com/slac-lcls/lute for more information.&quot;</span><span class="p">,</span>
+        <span class="n">epilog</span><span class="o">=</span><span class="s2">"Refer to https://github.com/slac-lcls/lute for more information."</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-c&quot;</span><span class="p">,</span> <span class="s2">&quot;--config&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Path to config YAML file.&quot;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-d&quot;</span><span class="p">,</span> <span class="s2">&quot;--debug&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Run in debug mode.&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">"-c"</span><span class="p">,</span> <span class="s2">"--config"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">"Path to config YAML file."</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">"-d"</span><span class="p">,</span> <span class="s2">"--debug"</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">"Run in debug mode."</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">"store_true"</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;-W&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;--workflow_defn&quot;</span><span class="p">,</span>
+        <span class="s2">"-W"</span><span class="p">,</span>
+        <span class="s2">"--workflow_defn"</span><span class="p">,</span>
         <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
-        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Path to a YAML file with workflow.&quot;</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">"Path to a YAML file with workflow."</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;-e&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;--experiment&quot;</span><span class="p">,</span>
+        <span class="s2">"-e"</span><span class="p">,</span>
+        <span class="s2">"--experiment"</span><span class="p">,</span>
         <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
-        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Provide an experiment if not running with ARP.&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">"Provide an experiment if not running with ARP."</span><span class="p">,</span>
         <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;-r&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;--run&quot;</span><span class="p">,</span>
+        <span class="s2">"-r"</span><span class="p">,</span>
+        <span class="s2">"--run"</span><span class="p">,</span>
         <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
-        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Provide a run number if not running with ARP.&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">"Provide a run number if not running with ARP."</span><span class="p">,</span>
         <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;--type&quot;</span><span class="p">,</span>
+        <span class="s2">"--type"</span><span class="p">,</span>
         <span class="n">help</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;Provide a run type to describe this workflow submission. &quot;</span>
-            <span class="s2">&quot;Overrides the eLog type provided by the DAQ (if present).&quot;</span>
+            <span class="s2">"Provide a run type to describe this workflow submission. "</span>
+            <span class="s2">"Overrides the eLog type provided by the DAQ (if present)."</span>
         <span class="p">),</span>
         <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="k">return</span> <span class="n">parser</span>
 </code></pre></div></td></tr></table></div>
@@ -3826,7 +3826,7 @@ parallel at any given time.</p>
 <span class="normal">376</span>
 <span class="normal">377</span>
 <span class="normal">378</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_concurrent_job_steps</span><span class="p">(</span><span class="n">wf</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the maximum number of concurrent JobSteps.</span>
+<span class="w">    </span><span class="sd">"""Return the maximum number of concurrent JobSteps.</span>
 
 <span class="sd">    This can be used to determine how many threads to add to the threadpool for the</span>
 <span class="sd">    workflow manager.</span>
@@ -3841,11 +3841,11 @@ parallel at any given time.</p>
 <span class="sd">    Returns:</span>
 <span class="sd">        max_concurrent_jobs (int): The maximum number of jobs found to run in</span>
 <span class="sd">            parallel at any given time.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">num_concurrent_steps</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">wf</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">wf</span><span class="p">:</span>
-        <span class="c1"># Assuming step has a &#39;next&#39; attribute which is a list of JobSteps</span>
-        <span class="n">next_concurrent_steps</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">get_concurrent_job_steps</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="s2">&quot;next&quot;</span><span class="p">,</span> <span class="p">[]))</span>
+        <span class="c1"># Assuming step has a 'next' attribute which is a list of JobSteps</span>
+        <span class="n">next_concurrent_steps</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">get_concurrent_job_steps</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="s2">"next"</span><span class="p">,</span> <span class="p">[]))</span>
         <span class="n">num_concurrent_steps</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">num_concurrent_steps</span><span class="p">,</span> <span class="n">next_concurrent_steps</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">num_concurrent_steps</span>
@@ -4086,7 +4086,7 @@ basename of the current working directory.</p>
     <span class="n">lute_location</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">executable_subdir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LuteLaunchConfig</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Construct the standardized LUTE launch configuration dictionary.</span>
+<span class="w">    </span><span class="sd">"""Construct the standardized LUTE launch configuration dictionary.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        launch_info (EnvLaunchInfo): The set of launch information retrievable from</span>
@@ -4110,28 +4110,28 @@ basename of the current working directory.</p>
 <span class="sd">        executable_subdir (Optional[str]): The subdirectory where the launch</span>
 <span class="sd">            executable is located. If not provided, it is assumed to be the</span>
 <span class="sd">            basename of the current working directory.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">lute_location</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">lute_location</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;..&quot;</span><span class="p">))</span>
+        <span class="n">lute_location</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">".."</span><span class="p">))</span>
     <span class="k">if</span> <span class="n">executable_subdir</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">executable_subdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
 
     <span class="k">return</span> <span class="p">{</span>
-        <span class="s2">&quot;experiment&quot;</span><span class="p">:</span> <span class="n">launch_info</span><span class="p">[</span><span class="s2">&quot;experiment&quot;</span><span class="p">],</span>
-        <span class="s2">&quot;run_id&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">launch_info</span><span class="p">[</span><span class="s1">&#39;run_num&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;JID_UPDATE_COUNTERS&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;JID_UPDATE_COUNTERS&quot;</span><span class="p">),</span>
-        <span class="s2">&quot;ARP_ROOT_JOB_ID&quot;</span><span class="p">:</span> <span class="n">launch_info</span><span class="p">[</span><span class="s2">&quot;arp_job_id&quot;</span><span class="p">],</span>
-        <span class="s2">&quot;ARP_LOCATION&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;ARP_LOCATION&quot;</span><span class="p">,</span> <span class="s2">&quot;S3DF&quot;</span><span class="p">),</span>
-        <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="n">launch_info</span><span class="p">[</span><span class="s2">&quot;authorization&quot;</span><span class="p">],</span>
-        <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">(),</span>
-        <span class="s2">&quot;lute_location&quot;</span><span class="p">:</span> <span class="n">lute_location</span><span class="p">,</span>
-        <span class="s2">&quot;executable_subdir&quot;</span><span class="p">:</span> <span class="n">executable_subdir</span><span class="p">,</span>
-        <span class="s2">&quot;kerb_file&quot;</span><span class="p">:</span> <span class="n">launch_info</span><span class="p">[</span><span class="s2">&quot;kerb_file&quot;</span><span class="p">],</span>
-        <span class="s2">&quot;lute_params&quot;</span><span class="p">:</span> <span class="n">lute_params</span><span class="p">,</span>
-        <span class="s2">&quot;slurm_params&quot;</span><span class="p">:</span> <span class="n">slurm_params</span><span class="p">,</span>
-        <span class="s2">&quot;workflow&quot;</span><span class="p">:</span> <span class="n">workflow_defn</span><span class="p">,</span>
-        <span class="s2">&quot;run_type&quot;</span><span class="p">:</span> <span class="n">run_type</span><span class="p">,</span>
-        <span class="s2">&quot;is_daq2&quot;</span><span class="p">:</span> <span class="n">is_daq2</span><span class="p">,</span>
+        <span class="s2">"experiment"</span><span class="p">:</span> <span class="n">launch_info</span><span class="p">[</span><span class="s2">"experiment"</span><span class="p">],</span>
+        <span class="s2">"run_id"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">launch_info</span><span class="p">[</span><span class="s1">'run_num'</span><span class="p">]</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+        <span class="s2">"JID_UPDATE_COUNTERS"</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"JID_UPDATE_COUNTERS"</span><span class="p">),</span>
+        <span class="s2">"ARP_ROOT_JOB_ID"</span><span class="p">:</span> <span class="n">launch_info</span><span class="p">[</span><span class="s2">"arp_job_id"</span><span class="p">],</span>
+        <span class="s2">"ARP_LOCATION"</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"ARP_LOCATION"</span><span class="p">,</span> <span class="s2">"S3DF"</span><span class="p">),</span>
+        <span class="s2">"Authorization"</span><span class="p">:</span> <span class="n">launch_info</span><span class="p">[</span><span class="s2">"authorization"</span><span class="p">],</span>
+        <span class="s2">"user"</span><span class="p">:</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">(),</span>
+        <span class="s2">"lute_location"</span><span class="p">:</span> <span class="n">lute_location</span><span class="p">,</span>
+        <span class="s2">"executable_subdir"</span><span class="p">:</span> <span class="n">executable_subdir</span><span class="p">,</span>
+        <span class="s2">"kerb_file"</span><span class="p">:</span> <span class="n">launch_info</span><span class="p">[</span><span class="s2">"kerb_file"</span><span class="p">],</span>
+        <span class="s2">"lute_params"</span><span class="p">:</span> <span class="n">lute_params</span><span class="p">,</span>
+        <span class="s2">"slurm_params"</span><span class="p">:</span> <span class="n">slurm_params</span><span class="p">,</span>
+        <span class="s2">"workflow"</span><span class="p">:</span> <span class="n">workflow_defn</span><span class="p">,</span>
+        <span class="s2">"run_type"</span><span class="p">:</span> <span class="n">run_type</span><span class="p">,</span>
+        <span class="s2">"is_daq2"</span><span class="p">:</span> <span class="n">is_daq2</span><span class="p">,</span>
     <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -4274,7 +4274,7 @@ equal or longer than the duration of the workflow's execution time.</p>
 <span class="normal">92</span>
 <span class="normal">93</span>
 <span class="normal">94</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">request_arp_token</span><span class="p">(</span><span class="n">exp</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">lifetime</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">300</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Request an ARP token via Kerberos endpoint.</span>
+<span class="w">    </span><span class="sd">"""Request an ARP token via Kerberos endpoint.</span>
 
 <span class="sd">    A token is required for job submission.</span>
 
@@ -4286,35 +4286,35 @@ equal or longer than the duration of the workflow's execution time.</p>
 <span class="sd">            expires, it can no longer be used for job submission. The maximum</span>
 <span class="sd">            time you can request is 480 minutes (i.e. 8 hours). NOTE: since this</span>
 <span class="sd">            token is used for the entirety of a workflow, it must have a lifetime</span>
-<span class="sd">            equal or longer than the duration of the workflow&#39;s execution time.</span>
+<span class="sd">            equal or longer than the duration of the workflow's execution time.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        formatted_token (str): The formated ARP token.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">kerberos</span><span class="w"> </span><span class="kn">import</span> <span class="n">GSSError</span>  <span class="c1"># type: ignore</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">krtc</span><span class="w"> </span><span class="kn">import</span> <span class="n">KerberosTicket</span>  <span class="c1"># type: ignore</span>
     <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Kerberos/KRTC not installed. Cannot request ARP token.&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">"Kerberos/KRTC not installed. Cannot request ARP token."</span><span class="p">)</span>
         <span class="k">raise</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="n">krbheaders</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">KerberosTicket</span><span class="p">(</span>
-            <span class="s2">&quot;HTTP@pswww.slac.stanford.edu&quot;</span>
+            <span class="s2">"HTTP@pswww.slac.stanford.edu"</span>
         <span class="p">)</span><span class="o">.</span><span class="n">getAuthHeaders</span><span class="p">()</span>
     <span class="k">except</span> <span class="n">GSSError</span><span class="p">:</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
-            <span class="s2">&quot;Cannot proceed without credentials. Try running `kinit` from the command-line.&quot;</span>
+            <span class="s2">"Cannot proceed without credentials. Try running `kinit` from the command-line."</span>
         <span class="p">)</span>
         <span class="k">raise</span>
-    <span class="n">base_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;https://pswww.slac.stanford.edu/ws-kerb/lgbk/lgbk&quot;</span>
+    <span class="n">base_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"https://pswww.slac.stanford.edu/ws-kerb/lgbk/lgbk"</span>
     <span class="n">token_endpoint</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">exp</span><span class="si">}</span><span class="s2">/ws/generate_arp_token?token_lifetime=</span><span class="si">{</span><span class="n">lifetime</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">exp</span><span class="si">}</span><span class="s2">/ws/generate_arp_token?token_lifetime=</span><span class="si">{</span><span class="n">lifetime</span><span class="si">}</span><span class="s2">"</span>
     <span class="p">)</span>
     <span class="n">resp</span><span class="p">:</span> <span class="n">requests</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">token_endpoint</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">krbheaders</span><span class="p">)</span>
     <span class="n">resp</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
-    <span class="n">token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
-    <span class="n">formatted_token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">"value"</span><span class="p">]</span>
+    <span class="n">formatted_token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">"</span>
     <span class="k">return</span> <span class="n">formatted_token</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -4326,7 +4326,7 @@ equal or longer than the duration of the workflow's execution time.</p>
 
 
 <h2 id="execution.launch.retrieve_run_info" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">retrieve_run_info</span><span class="p">(</span><span class="n">experiment</span><span class="p">,</span> <span class="n">run_num</span><span class="p">,</span> <span class="n">authorization</span><span class="p">,</span> <span class="n">override_type</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">retrieve_run_info</span><span class="p">(</span><span class="n">experiment</span><span class="p">,</span> <span class="n">run_num</span><span class="p">,</span> <span class="n">authorization</span><span class="p">,</span> <span class="n">override_type</span><span class="o">=</span><span class="s1">''</span><span class="p">)</span></code>
 
 </h2>
 
@@ -4511,9 +4511,9 @@ it could be determined.</p>
 <span class="normal">291</span>
 <span class="normal">292</span>
 <span class="normal">293</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">retrieve_run_info</span><span class="p">(</span>
-    <span class="n">experiment</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">run_num</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">authorization</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">override_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">experiment</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">run_num</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">authorization</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">override_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">""</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Retrieve run type and DAQ version from eLog API.</span>
+<span class="w">    </span><span class="sd">"""Retrieve run type and DAQ version from eLog API.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        experiment (str): The experiment.</span>
@@ -4532,37 +4532,37 @@ it could be determined.</p>
 
 <span class="sd">        is_daq2 (Optional[bool]): Whether this is an LCLS1 or LCLS2 experiment if</span>
 <span class="sd">            it could be determined.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">headers</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="n">authorization</span><span class="p">,</span>
+        <span class="s2">"Authorization"</span><span class="p">:</span> <span class="n">authorization</span><span class="p">,</span>
     <span class="p">}</span>
-    <span class="n">base_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;https://pswww.slac.stanford.edu/ws-jwt/lgbk/lgbk&quot;</span>
-    <span class="n">run_doc_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">experiment</span><span class="si">}</span><span class="s2">/ws/runs/</span><span class="si">{</span><span class="n">run_num</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">base_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"https://pswww.slac.stanford.edu/ws-jwt/lgbk/lgbk"</span>
+    <span class="n">run_doc_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">experiment</span><span class="si">}</span><span class="s2">/ws/runs/</span><span class="si">{</span><span class="n">run_num</span><span class="si">}</span><span class="s2">"</span>
 
-    <span class="n">run_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;UNKNOWN&quot;</span>
+    <span class="n">run_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"UNKNOWN"</span>
     <span class="n">is_daq2</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">run_doc_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
-                <span class="s2">&quot;Unable to retrieve run document! No `run_type` information will be used! &quot;</span>
-                <span class="s2">&quot;No information about psana1/psana2 can be retrieved.&quot;</span>
+                <span class="s2">"Unable to retrieve run document! No `run_type` information will be used! "</span>
+                <span class="s2">"No information about psana1/psana2 can be retrieved."</span>
             <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
-            <span class="n">run_type</span> <span class="o">=</span> <span class="n">override_type</span> <span class="k">if</span> <span class="n">override_type</span> <span class="k">else</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">,</span> <span class="s2">&quot;UNKNOWN&quot;</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">"value"</span><span class="p">]</span>
+            <span class="n">run_type</span> <span class="o">=</span> <span class="n">override_type</span> <span class="k">if</span> <span class="n">override_type</span> <span class="k">else</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"type"</span><span class="p">,</span> <span class="s2">"UNKNOWN"</span><span class="p">)</span>
 
-            <span class="c1"># Try checking for &quot;psana1&quot; vs &quot;psana2&quot; by searching for &quot;drp&quot; in detector names</span>
-            <span class="n">params</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;params&quot;</span><span class="p">,</span> <span class="p">{})</span>
+            <span class="c1"># Try checking for "psana1" vs "psana2" by searching for "drp" in detector names</span>
+            <span class="n">params</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"params"</span><span class="p">,</span> <span class="p">{})</span>
             <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-                <span class="k">if</span> <span class="s2">&quot;/drp/&quot;</span> <span class="ow">in</span> <span class="n">key</span><span class="p">:</span>
+                <span class="k">if</span> <span class="s2">"/drp/"</span> <span class="ow">in</span> <span class="n">key</span><span class="p">:</span>
                     <span class="n">is_daq2</span> <span class="o">=</span> <span class="kc">True</span>
                     <span class="k">break</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">is_daq2</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error retrieving run info: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error retrieving run info: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
     <span class="n">clean_python_path</span><span class="p">(</span><span class="n">is_daq2</span><span class="o">=</span><span class="n">is_daq2</span><span class="p">)</span>
 
@@ -4715,7 +4715,7 @@ scripts (submit_slurm) during workflow execution.</p>
 <span class="normal">211</span>
 <span class="normal">212</span>
 <span class="normal">213</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">setup_launch_env</span><span class="p">(</span><span class="n">args</span><span class="p">:</span> <span class="n">argparse</span><span class="o">.</span><span class="n">Namespace</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">EnvLaunchInfo</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Setup experiment, run, and authorization information.</span>
+<span class="w">    </span><span class="sd">"""Setup experiment, run, and authorization information.</span>
 
 <span class="sd">    Checks environment variables first (ARP submission), then falls back to</span>
 <span class="sd">    arguments and manual token request.</span>
@@ -4727,27 +4727,27 @@ scripts (submit_slurm) during workflow execution.</p>
 <span class="sd">        env_cmd_vars (EnvLaunchInfo): A dictionary of variables which will</span>
 <span class="sd">            be passed either via environment or command-line to the job submission</span>
 <span class="sd">            scripts (submit_slurm) during workflow execution.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">cache_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;KRB5CCNAME&quot;</span><span class="p">)</span>
+<span class="sd">    """</span>
+    <span class="n">cache_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"KRB5CCNAME"</span><span class="p">)</span>
 
-    <span class="n">experiment</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;EXPERIMENT&quot;</span><span class="p">)</span>
-    <span class="n">run_num</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;RUN_NUM&quot;</span><span class="p">)</span>
-    <span class="n">jid_authorization</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;Authorization&quot;</span><span class="p">)</span>
-    <span class="n">arp_job_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;ARP_JOB_ID&quot;</span><span class="p">)</span>
+    <span class="n">experiment</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"EXPERIMENT"</span><span class="p">)</span>
+    <span class="n">run_num</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"RUN_NUM"</span><span class="p">)</span>
+    <span class="n">jid_authorization</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"Authorization"</span><span class="p">)</span>
+    <span class="n">arp_job_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"ARP_JOB_ID"</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">jid_authorization</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">experiment</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">run_num</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">cache_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
-                <span class="s2">&quot;No Kerberos cache - may find issues. Try running `kinit` and resubmitting.&quot;</span>
+                <span class="s2">"No Kerberos cache - may find issues. Try running `kinit` and resubmitting."</span>
             <span class="p">)</span>
 
         <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">experiment</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">args</span><span class="o">.</span><span class="n">run</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
                 <span class="p">(</span>
-                    <span class="s2">&quot;You must provide a `-e $</span><span class="si">{EXPERIMENT}</span><span class="s2">` and `-r $</span><span class="si">{RUN_NUM}</span><span class="s2">` &quot;</span>
-                    <span class="s2">&quot;if not running with the ARP!</span><span class="se">\n</span><span class="s2">&quot;</span>
-                    <span class="s2">&quot;If you submitted this from the eLog and are seeing this error &quot;</span>
-                    <span class="s2">&quot;please contact the maintainers.&quot;</span>
+                    <span class="s2">"You must provide a `-e $</span><span class="si">{EXPERIMENT}</span><span class="s2">` and `-r $</span><span class="si">{RUN_NUM}</span><span class="s2">` "</span>
+                    <span class="s2">"if not running with the ARP!</span><span class="se">\n</span><span class="s2">"</span>
+                    <span class="s2">"If you submitted this from the eLog and are seeing this error "</span>
+                    <span class="s2">"please contact the maintainers."</span>
                 <span class="p">)</span>
             <span class="p">)</span>
             <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
@@ -4756,31 +4756,31 @@ scripts (submit_slurm) during workflow execution.</p>
         <span class="n">run_num</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">run</span>
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">experiment</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">run_num</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;EXPERIMENT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">experiment</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;RUN_NUM&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">run_num</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"EXPERIMENT"</span><span class="p">]</span> <span class="o">=</span> <span class="n">experiment</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"RUN_NUM"</span><span class="p">]</span> <span class="o">=</span> <span class="n">run_num</span>
 
         <span class="k">try</span><span class="p">:</span>
             <span class="kn">from</span><span class="w"> </span><span class="nn">kerberos</span><span class="w"> </span><span class="kn">import</span> <span class="n">GSSError</span>  <span class="c1"># type: ignore</span>
 
             <span class="n">jid_authorization</span> <span class="o">=</span> <span class="n">request_arp_token</span><span class="p">(</span><span class="n">experiment</span><span class="p">)</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;Authorization&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">jid_authorization</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"Authorization"</span><span class="p">]</span> <span class="o">=</span> <span class="n">jid_authorization</span>
         <span class="k">except</span> <span class="p">(</span><span class="ne">ImportError</span><span class="p">,</span> <span class="n">GSSError</span><span class="p">):</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
-                <span class="s2">&quot;Unable to use Kerberos and request JWTs. &quot;</span>
-                <span class="s2">&quot;eLog and other integrations may not work!&quot;</span>
+                <span class="s2">"Unable to use Kerberos and request JWTs. "</span>
+                <span class="s2">"eLog and other integrations may not work!"</span>
             <span class="p">)</span>
-            <span class="n">jid_authorization</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">jid_authorization</span> <span class="o">=</span> <span class="s2">""</span>
 
         <span class="k">if</span> <span class="n">arp_job_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">arp_job_id</span> <span class="o">=</span> <span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">()</span><span class="o">.</span><span class="n">hex</span><span class="p">[:</span><span class="mi">24</span><span class="p">]</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;ARP_JOB_ID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">arp_job_id</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"ARP_JOB_ID"</span><span class="p">]</span> <span class="o">=</span> <span class="n">arp_job_id</span>
 
     <span class="k">return</span> <span class="p">{</span>
-        <span class="s2">&quot;experiment&quot;</span><span class="p">:</span> <span class="n">experiment</span><span class="p">,</span>
-        <span class="s2">&quot;run_num&quot;</span><span class="p">:</span> <span class="n">run_num</span><span class="p">,</span>
-        <span class="s2">&quot;authorization&quot;</span><span class="p">:</span> <span class="n">jid_authorization</span><span class="p">,</span>
-        <span class="s2">&quot;arp_job_id&quot;</span><span class="p">:</span> <span class="n">cast</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">arp_job_id</span><span class="p">),</span>
-        <span class="s2">&quot;kerb_file&quot;</span><span class="p">:</span> <span class="n">cache_file</span><span class="p">,</span>
+        <span class="s2">"experiment"</span><span class="p">:</span> <span class="n">experiment</span><span class="p">,</span>
+        <span class="s2">"run_num"</span><span class="p">:</span> <span class="n">run_num</span><span class="p">,</span>
+        <span class="s2">"authorization"</span><span class="p">:</span> <span class="n">jid_authorization</span><span class="p">,</span>
+        <span class="s2">"arp_job_id"</span><span class="p">:</span> <span class="n">cast</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">arp_job_id</span><span class="p">),</span>
+        <span class="s2">"kerb_file"</span><span class="p">:</span> <span class="n">cache_file</span><span class="p">,</span>
     <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -4851,7 +4851,7 @@ scripts (submit_slurm) during workflow execution.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

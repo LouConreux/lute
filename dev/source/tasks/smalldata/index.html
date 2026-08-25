@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -3334,7 +3334,7 @@ a SmallData file.</p>
 <span class="normal">212</span>
 <span class="normal">213</span>
 <span class="normal">214</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalyzeSmallDataXAS</span><span class="p">(</span><span class="n">AnalyzeSmallData</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task to analyze XAS data stored in a SmallData HDF5 file.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Task to analyze XAS data stored in a SmallData HDF5 file."""</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -3364,7 +3364,7 @@ a SmallData file.</p>
         <span class="n">ccm_bins</span><span class="p">,</span> <span class="n">diff</span><span class="p">,</span> <span class="n">laser_on</span><span class="p">,</span> <span class="n">laser_off</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calc_binned_difference_xas</span><span class="p">()</span>
 
         <span class="c1"># We check None on ccm_bins because the monochromator is not always</span>
-        <span class="c1"># scanned -&gt; We return None if there aren&#39;t enough bins to be worth</span>
+        <span class="c1"># scanned -&gt; We return None if there aren't enough bins to be worth</span>
         <span class="c1"># plotting</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mpi_size</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">ccm_bins</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">diff</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mpi_comm</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="n">op</span><span class="o">=</span><span class="n">MPI</span><span class="o">.</span><span class="n">SUM</span><span class="p">)</span>
@@ -3391,7 +3391,7 @@ a SmallData file.</p>
             <span class="n">laser_on</span> <span class="o">/=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mpi_size</span>
             <span class="n">laser_off</span> <span class="o">/=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mpi_size</span>
             <span class="n">plots</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_all_xas</span><span class="p">(</span><span class="n">laser_on</span><span class="p">,</span> <span class="n">laser_off</span><span class="p">,</span> <span class="n">ccm_bins</span><span class="p">,</span> <span class="n">diff</span><span class="p">)</span>
-            <span class="n">plot_display_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;XAS/</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">plot_display_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"XAS/</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">"</span>
             <span class="n">all_plots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ElogSummaryPlots</span><span class="p">(</span><span class="n">plot_display_name</span><span class="p">,</span> <span class="n">plots</span><span class="p">))</span>
 
         <span class="n">scan_bins</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]]</span>
@@ -3410,11 +3410,11 @@ a SmallData file.</p>
         <span class="p">):</span>
             <span class="n">plots</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_xas_scan_hv</span><span class="p">(</span><span class="n">laser_on</span><span class="p">,</span> <span class="n">laser_off</span><span class="p">,</span> <span class="n">scan_bins</span><span class="p">,</span> <span class="n">diff</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">plots</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scan_var_name</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scan_var_name</span> <span class="k">else</span> <span class="s2">&quot;by_event&quot;</span>
-                <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;by_event&quot;</span><span class="p">:</span>
-                    <span class="n">plot_display_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;XAS/</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">_by_event&quot;</span>
+                <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scan_var_name</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scan_var_name</span> <span class="k">else</span> <span class="s2">"by_event"</span>
+                <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">"by_event"</span><span class="p">:</span>
+                    <span class="n">plot_display_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"XAS/</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">_by_event"</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">plot_display_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;XAS/</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="n">plot_display_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"XAS/</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span>
 
                 <span class="n">all_plots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ElogSummaryPlots</span><span class="p">(</span><span class="n">plot_display_name</span><span class="p">,</span> <span class="n">plots</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_result</span><span class="o">.</span><span class="n">payload</span> <span class="o">=</span> <span class="n">all_plots</span>
@@ -3553,7 +3553,7 @@ a SmallData file.</p>
 <span class="normal">295</span>
 <span class="normal">296</span>
 <span class="normal">297</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalyzeSmallDataXES</span><span class="p">(</span><span class="n">AnalyzeSmallData</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task to analyze XES data stored in a SmallData HDF5 file.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Task to analyze XES data stored in a SmallData HDF5 file."""</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -3605,7 +3605,7 @@ a SmallData file.</p>
             <span class="n">laser_off</span> <span class="o">/=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mpi_size</span>
             <span class="n">energy_bins</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="n">plots</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_xes_hv</span><span class="p">(</span><span class="n">laser_on</span><span class="p">,</span> <span class="n">laser_off</span><span class="p">,</span> <span class="n">energy_bins</span><span class="p">,</span> <span class="n">diff</span><span class="p">)</span>
-            <span class="n">plot_display_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;XES/</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">plot_display_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"XES/</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">"</span>
             <span class="n">all_plots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ElogSummaryPlots</span><span class="p">(</span><span class="n">plot_display_name</span><span class="p">,</span> <span class="n">plots</span><span class="p">))</span>
 
         <span class="n">scan_bins</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]</span>
@@ -3623,11 +3623,11 @@ a SmallData file.</p>
         <span class="p">):</span>
             <span class="n">plots</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_xes_scan_hv</span><span class="p">(</span><span class="n">laser_on</span><span class="p">,</span> <span class="n">laser_off</span><span class="p">,</span> <span class="n">scan_bins</span><span class="p">,</span> <span class="n">diff</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">plots</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scan_var_name</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scan_var_name</span> <span class="k">else</span> <span class="s2">&quot;by_event&quot;</span>
-                <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;by_event&quot;</span><span class="p">:</span>
-                    <span class="n">plot_display_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;XES/</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">_by_event&quot;</span>
+                <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scan_var_name</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scan_var_name</span> <span class="k">else</span> <span class="s2">"by_event"</span>
+                <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">"by_event"</span><span class="p">:</span>
+                    <span class="n">plot_display_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"XES/</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">_by_event"</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">plot_display_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;XES/</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="n">plot_display_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"XES/</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span>
 
                 <span class="n">all_plots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ElogSummaryPlots</span><span class="p">(</span><span class="n">plot_display_name</span><span class="p">,</span> <span class="n">plots</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_result</span><span class="o">.</span><span class="n">payload</span> <span class="o">=</span> <span class="n">all_plots</span>
@@ -3751,7 +3751,7 @@ a SmallData file.</p>
 <span class="normal">123</span>
 <span class="normal">124</span>
 <span class="normal">125</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalyzeSmallDataXSS</span><span class="p">(</span><span class="n">AnalyzeSmallData</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task to analyze XSS profiles stored in a SmallData HDF5 file.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Task to analyze XSS profiles stored in a SmallData HDF5 file."""</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -3800,7 +3800,7 @@ a SmallData file.</p>
             <span class="n">laser_off</span> <span class="o">/=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_total_num_events</span>
             <span class="n">tjumps</span> <span class="o">/=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mpi_size</span>
             <span class="n">processed_tjumps</span> <span class="o">/=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mpi_size</span>
-            <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scan_var_name</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scan_var_name</span> <span class="k">else</span> <span class="s2">&quot;by_event&quot;</span>
+            <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scan_var_name</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scan_var_name</span> <span class="k">else</span> <span class="s2">"by_event"</span>
             <span class="n">plots</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_all_xss</span><span class="p">(</span>
                 <span class="n">laser_on</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">diff</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">tjumps</span><span class="p">,</span> <span class="n">processed_tjumps</span>
             <span class="p">)</span>
@@ -3810,10 +3810,10 @@ a SmallData file.</p>
                 <span class="n">run</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">lute_config</span><span class="o">.</span><span class="n">run</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
                 <span class="n">run</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;by_event&quot;</span><span class="p">:</span>
-                <span class="n">plot_display_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;XSS/</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">_by_event&quot;</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">"by_event"</span><span class="p">:</span>
+                <span class="n">plot_display_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"XSS/</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">_by_event"</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">plot_display_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;XSS/</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="n">plot_display_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"XSS/</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">_result</span><span class="o">.</span><span class="n">payload</span> <span class="o">=</span> <span class="n">ElogSummaryPlots</span><span class="p">(</span><span class="n">plot_display_name</span><span class="p">,</span> <span class="n">plots</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -3904,7 +3904,7 @@ a SmallData file.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

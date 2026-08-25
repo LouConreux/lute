@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -3532,16 +3532,16 @@ from a <code>TaskParameters</code> object will be needed to run the Tasklet:
 <span class="normal">185</span>
 <span class="normal">186</span>
 <span class="normal">187</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">clone_smalldata</span><span class="p">(</span><span class="n">producer_location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">patch</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Clone smalldata_tools based on producer location.</span>
+<span class="w">    </span><span class="sd">"""Clone smalldata_tools based on producer location.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        producer_location (str): Full path to the producer to be used.</span>
 
 <span class="sd">        patch (Optional[str]): The path to a patch to apply (if desired).</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
-    <span class="n">repo</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;slac-lcls/smalldata_tools&quot;</span>
+    <span class="n">repo</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"slac-lcls/smalldata_tools"</span>
     <span class="n">location</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">producer_location</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span><span class="p">)</span>
     <span class="n">git_clone</span><span class="p">(</span><span class="n">repo</span><span class="p">,</span> <span class="n">location</span><span class="p">,</span> <span class="mo">0o777</span><span class="p">,</span> <span class="n">patch</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -3656,7 +3656,7 @@ from a <code>TaskParameters</code> object will be needed to run the Tasklet:
 <span class="normal">297</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compare_hkl_fom_summary</span><span class="p">(</span>
     <span class="n">shell_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">figure_display_name</span><span class="p">:</span> <span class="nb">str</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ElogSummaryPlots</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Analyze information produced by CrystFEL&#39;s compare_hkl.</span>
+<span class="w">    </span><span class="sd">"""Analyze information produced by CrystFEL's compare_hkl.</span>
 
 <span class="sd">    Extracts figures of merit information and produces text summary and plots.</span>
 
@@ -3664,13 +3664,13 @@ from a <code>TaskParameters</code> object will be needed to run the Tasklet:
 <span class="sd">        shell_file (str): Path to output `shell-file` containing FOM information.</span>
 
 <span class="sd">        figure_display_name (str): Display name of the figure in the eLog.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy.typing</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">npt</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">holoviews</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">hv</span>  <span class="c1"># type: ignore</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">panel</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pn</span>
 
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">shell_file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">shell_file</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">lines</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
 
     <span class="n">header</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -3680,16 +3680,16 @@ from a <code>TaskParameters</code> object will be needed to run the Tasklet:
     <span class="k">if</span> <span class="n">shells_arr</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">run_params</span><span class="p">,</span> <span class="kc">None</span>
 
-    <span class="n">hv</span><span class="o">.</span><span class="n">extension</span><span class="p">(</span><span class="s2">&quot;bokeh&quot;</span><span class="p">)</span>
+    <span class="n">hv</span><span class="o">.</span><span class="n">extension</span><span class="p">(</span><span class="s2">"bokeh"</span><span class="p">)</span>
     <span class="n">pn</span><span class="o">.</span><span class="n">extension</span><span class="p">()</span>
     <span class="n">xdim</span><span class="p">:</span> <span class="n">hv</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">dimension</span><span class="o">.</span><span class="n">Dimension</span> <span class="o">=</span> <span class="n">hv</span><span class="o">.</span><span class="n">Dimension</span><span class="p">(</span>
-        <span class="p">(</span><span class="s2">&quot;Resolution (A)&quot;</span><span class="p">,</span> <span class="s2">&quot;Resolution (A)&quot;</span><span class="p">)</span>
+        <span class="p">(</span><span class="s2">"Resolution (A)"</span><span class="p">,</span> <span class="s2">"Resolution (A)"</span><span class="p">)</span>
     <span class="p">)</span>
     <span class="n">ydim</span><span class="p">:</span> <span class="n">hv</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">dimension</span><span class="o">.</span><span class="n">Dimension</span> <span class="o">=</span> <span class="n">hv</span><span class="o">.</span><span class="n">Dimension</span><span class="p">((</span><span class="n">fom</span><span class="p">,</span> <span class="n">fom</span><span class="p">))</span>
 
     <span class="n">angs_bins</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]</span> <span class="o">=</span> <span class="mf">10.0</span> <span class="o">/</span> <span class="n">shells_arr</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
     <span class="n">pts</span><span class="p">:</span> <span class="n">hv</span><span class="o">.</span><span class="n">Points</span> <span class="o">=</span> <span class="n">hv</span><span class="o">.</span><span class="n">Points</span><span class="p">((</span><span class="n">angs_bins</span><span class="p">,</span> <span class="n">shells_arr</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]),</span> <span class="n">kdims</span><span class="o">=</span><span class="p">[</span><span class="n">xdim</span><span class="p">,</span> <span class="n">ydim</span><span class="p">])</span>
-    <span class="n">grid</span><span class="p">:</span> <span class="n">pn</span><span class="o">.</span><span class="n">GridSpec</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">GridSpec</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Figures of Merit&quot;</span><span class="p">)</span>
+    <span class="n">grid</span><span class="p">:</span> <span class="n">pn</span><span class="o">.</span><span class="n">GridSpec</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">GridSpec</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"Figures of Merit"</span><span class="p">)</span>
     <span class="n">grid</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">pts</span>
     <span class="n">tabs</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">Tabs</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">run_params</span><span class="p">,</span> <span class="n">ElogSummaryPlots</span><span class="p">(</span><span class="n">figure_display_name</span><span class="p">,</span> <span class="n">tabs</span><span class="p">)</span>
@@ -3802,7 +3802,7 @@ path. These will all be concatenated.</p>
 <span class="normal">100</span>
 <span class="normal">101</span>
 <span class="normal">102</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">concat_files</span><span class="p">(</span><span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">in_files_glob</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">out_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Concatenate a series of files into a single output file.</span>
+<span class="w">    </span><span class="sd">"""Concatenate a series of files into a single output file.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        location (str): Path to the files to concatenate.</span>
@@ -3811,18 +3811,18 @@ path. These will all be concatenated.</p>
 <span class="sd">            path. These will all be concatenated.</span>
 
 <span class="sd">        out_file (str): Name of the concatenated output.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">BinaryIO</span>
 
-    <span class="n">in_file_path</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">in_file_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">in_file_path</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">in_files_glob</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+    <span class="n">in_file_path</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">in_file_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">in_file_path</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">in_files_glob</span><span class="si">}</span><span class="s2">"</span><span class="p">))</span>
 
     <span class="n">wf</span><span class="p">:</span> <span class="n">BinaryIO</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">out_file</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">wf</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">out_file</span><span class="p">,</span> <span class="s2">"wb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">wf</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">in_file</span> <span class="ow">in</span> <span class="n">in_file_list</span><span class="p">:</span>
             <span class="n">rf</span><span class="p">:</span> <span class="n">BinaryIO</span>
-            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">in_file</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">rf</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">in_file</span><span class="p">,</span> <span class="s2">"rb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">rf</span><span class="p">:</span>
                 <span class="n">shutil</span><span class="o">.</span><span class="n">copyfileobj</span><span class="p">(</span><span class="n">rf</span><span class="p">,</span> <span class="n">wf</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -3987,32 +3987,32 @@ location.</p>
 <span class="normal">172</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">git_clone</span><span class="p">(</span>
     <span class="n">repo</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">permissions</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">patch</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Clone a git repository.</span>
+<span class="w">    </span><span class="sd">"""Clone a git repository.</span>
 
 <span class="sd">    Will not overwrite a directory of there is already a folder at the specified</span>
 <span class="sd">    location.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        repo (str): Name of the repository to clone. Should be specified as:</span>
-<span class="sd">            &quot;&lt;user_or_organization&gt;/&lt;repository_name&gt;&quot;</span>
+<span class="sd">            "&lt;user_or_organization&gt;/&lt;repository_name&gt;"</span>
 
 <span class="sd">        location (str): Path to the location to clone to.</span>
 
 <span class="sd">        permissions (str): Permissions to set on the repository.</span>
 
 <span class="sd">        patch (Optional[str]): The path to a patch to apply (if desired).</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">repo_only</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">repo</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">repo_only</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">):</span>
+<span class="sd">    """</span>
+    <span class="n">repo_only</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">repo</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">repo_only</span><span class="si">}</span><span class="s2">"</span><span class="p">):</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;Repository </span><span class="si">{</span><span class="n">repo</span><span class="si">}</span><span class="s2"> already exists at </span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2">. Will not overwrite.&quot;</span>
+            <span class="sa">f</span><span class="s2">"Repository </span><span class="si">{</span><span class="n">repo</span><span class="si">}</span><span class="s2"> already exists at </span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2">. Will not overwrite."</span>
         <span class="p">)</span>
         <span class="k">return</span>
     <span class="n">cmd</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s2">&quot;git&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;clone&quot;</span><span class="p">,</span>
-        <span class="sa">f</span><span class="s2">&quot;https://github.com/</span><span class="si">{</span><span class="n">repo</span><span class="si">}</span><span class="s2">.git&quot;</span><span class="p">,</span>
-        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">repo_only</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s2">"git"</span><span class="p">,</span>
+        <span class="s2">"clone"</span><span class="p">,</span>
+        <span class="sa">f</span><span class="s2">"https://github.com/</span><span class="si">{</span><span class="n">repo</span><span class="si">}</span><span class="s2">.git"</span><span class="p">,</span>
+        <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">repo_only</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
     <span class="p">]</span>
     <span class="n">out</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">out</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span>
@@ -4022,13 +4022,13 @@ location.</p>
     <span class="c1"># Apply patch if requested</span>
     <span class="k">if</span> <span class="n">patch</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">patch</span><span class="p">):</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Patch requested, but path does not exist: </span><span class="si">{</span><span class="n">patch</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Patch requested, but path does not exist: </span><span class="si">{</span><span class="n">patch</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">cwd</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">repo_only</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">repo_only</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
             <span class="n">patch_cmd</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
-                <span class="s2">&quot;git&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;apply&quot;</span><span class="p">,</span>
+                <span class="s2">"git"</span><span class="p">,</span>
+                <span class="s2">"apply"</span><span class="p">,</span>
                 <span class="n">patch</span><span class="p">,</span>
             <span class="p">]</span>
             <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span>
@@ -4037,10 +4037,10 @@ location.</p>
                 <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
                 <span class="n">universal_newlines</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="p">)</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Applied patch (</span><span class="si">{</span><span class="n">patch</span><span class="si">}</span><span class="s2">) to </span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">repo_only</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Applied patch (</span><span class="si">{</span><span class="n">patch</span><span class="si">}</span><span class="s2">) to </span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">repo_only</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
             <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">cwd</span><span class="p">)</span>
 
-    <span class="n">modify_permissions</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">repo_only</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">permissions</span><span class="p">)</span>
+    <span class="n">modify_permissions</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">repo_only</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">permissions</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -4154,7 +4154,7 @@ string if nothing is found.</p>
 <span class="normal">207</span>
 <span class="normal">208</span>
 <span class="normal">209</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">grep</span><span class="p">(</span><span class="n">match_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">in_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Grep for specific lines of text output.</span>
+<span class="w">    </span><span class="sd">"""Grep for specific lines of text output.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        match_str (str): String to search for.</span>
@@ -4164,14 +4164,14 @@ string if nothing is found.</p>
 <span class="sd">    Returns:</span>
 <span class="sd">        lines (List[str]): The matches. It may be a list with just an empty</span>
 <span class="sd">            string if nothing is found.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">cmd</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;grep&quot;</span><span class="p">,</span> <span class="n">match_str</span><span class="p">,</span> <span class="n">in_file</span><span class="p">]</span>
+<span class="sd">    """</span>
+    <span class="n">cmd</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"grep"</span><span class="p">,</span> <span class="n">match_str</span><span class="p">,</span> <span class="n">in_file</span><span class="p">]</span>
     <span class="n">out</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">out</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span>
         <span class="n">cmd</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">universal_newlines</span><span class="o">=</span><span class="kc">True</span>
     <span class="p">)</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
 
-    <span class="n">lines</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">lines</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">lines</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -4251,18 +4251,18 @@ string if nothing is found.</p>
 <span class="normal">253</span>
 <span class="normal">254</span>
 <span class="normal">255</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">indexamajig_summary_indexing_rate</span><span class="p">(</span><span class="n">stream_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return indexing rate from indexamajig output.</span>
+<span class="w">    </span><span class="sd">"""Return indexing rate from indexamajig output.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        stream_file (str): Input stream file.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">res</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">grep</span><span class="p">(</span><span class="s2">&quot;Cell parameters&quot;</span><span class="p">,</span> <span class="n">stream_file</span><span class="p">)</span>
+<span class="sd">    """</span>
+    <span class="n">res</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">grep</span><span class="p">(</span><span class="s2">"Cell parameters"</span><span class="p">,</span> <span class="n">stream_file</span><span class="p">)</span>
     <span class="n">n_indexed</span><span class="p">:</span> <span class="nb">int</span>
     <span class="k">if</span> <span class="n">res</span><span class="p">:</span>
         <span class="n">n_indexed</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">n_indexed</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="n">grep</span><span class="p">(</span><span class="s2">&quot;End chunk&quot;</span><span class="p">,</span> <span class="n">stream_file</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">grep</span><span class="p">(</span><span class="s2">"End chunk"</span><span class="p">,</span> <span class="n">stream_file</span><span class="p">)</span>
     <span class="n">n_hits</span><span class="p">:</span> <span class="nb">int</span>
     <span class="n">rate</span><span class="p">:</span> <span class="nb">float</span>
     <span class="k">if</span> <span class="n">res</span><span class="p">:</span>
@@ -4272,8 +4272,8 @@ string if nothing is found.</p>
         <span class="n">n_hits</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">rate</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="k">return</span> <span class="p">{</span>
-        <span class="s2">&quot;Number of lattices indexed&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">n_indexed</span><span class="p">),</span>
-        <span class="s2">&quot;Indexing rate&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">rate</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s2">"Number of lattices indexed"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">n_indexed</span><span class="p">),</span>
+        <span class="s2">"Indexing rate"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">rate</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
     <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -4306,7 +4306,7 @@ string if nothing is found.</p>
 <span class="normal">111</span>
 <span class="normal">112</span>
 <span class="normal">113</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">modify_permissions</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">permissions</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Recursively set permissions for a path.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Recursively set permissions for a path."""</span>
     <span class="n">os</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">permissions</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dirs</span><span class="p">:</span>
@@ -4458,7 +4458,7 @@ electron density in the eLog.</p>
 <span class="normal">355</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">setup_dimple_uglymol</span><span class="p">(</span>
     <span class="n">final_mtz</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">experiment</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">density_display_name</span><span class="p">:</span> <span class="nb">str</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Setup uglymol so electron density can be explored in eLog.</span>
+<span class="w">    </span><span class="sd">"""Setup uglymol so electron density can be explored in eLog.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        final_mtz (str): Path to the output MTZ file after running dimple.</span>
@@ -4467,47 +4467,47 @@ electron density in the eLog.</p>
 
 <span class="sd">        density_display_name (str): Name of the tabbed navigation to find the</span>
 <span class="sd">            electron density in the eLog.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="c1"># We will allow passing a file name to try and guess the display name to use</span>
     <span class="n">display_name</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="k">if</span> <span class="s2">&quot;.&quot;</span> <span class="ow">in</span> <span class="n">density_display_name</span><span class="p">:</span>
-        <span class="n">display_name</span> <span class="o">=</span> <span class="n">density_display_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="k">if</span> <span class="s2">&quot;/&quot;</span> <span class="ow">in</span> <span class="n">display_name</span><span class="p">:</span>
-            <span class="c1"># If it&#39;s a path we only want to keep last part of /path/to/filename</span>
+    <span class="k">if</span> <span class="s2">"."</span> <span class="ow">in</span> <span class="n">density_display_name</span><span class="p">:</span>
+        <span class="n">display_name</span> <span class="o">=</span> <span class="n">density_display_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"."</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s2">"/"</span> <span class="ow">in</span> <span class="n">display_name</span><span class="p">:</span>
+            <span class="c1"># If it's a path we only want to keep last part of /path/to/filename</span>
             <span class="c1"># The standard workflow will name the stream and downstream files</span>
             <span class="c1"># &lt;tag&gt;.stream, &lt;tag&gt;.hkl, ...</span>
-            <span class="n">display_name</span> <span class="o">=</span> <span class="n">display_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">display_name</span> <span class="o">=</span> <span class="n">display_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">display_name</span> <span class="o">=</span> <span class="s2">&quot;density&quot;</span>
+            <span class="n">display_name</span> <span class="o">=</span> <span class="s2">"density"</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">display_name</span> <span class="o">=</span> <span class="n">density_display_name</span>
 
     <span class="n">output_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="sa">f</span><span class="s2">&quot;/sdf/data/lcls/ds/</span><span class="si">{</span><span class="n">experiment</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">experiment</span><span class="si">}</span><span class="s2">/stats/summary/</span><span class="si">{</span><span class="n">display_name</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="sa">f</span><span class="s2">"/sdf/data/lcls/ds/</span><span class="si">{</span><span class="n">experiment</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">experiment</span><span class="si">}</span><span class="s2">/stats/summary/</span><span class="si">{</span><span class="n">display_name</span><span class="si">}</span><span class="s2">"</span>
     <span class="p">)</span>
-    <span class="n">wasm_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">/wasm&quot;</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Electron density path: </span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">wasm_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">/wasm"</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Electron density path: </span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">output_path</span><span class="p">):</span>
         <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">wasm_path</span><span class="p">)</span>
 
-    <span class="n">final_pdb</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">final_mtz</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">.pdb&quot;</span>
+    <span class="n">final_pdb</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">final_mtz</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'.'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">.pdb"</span>
     <span class="n">uglymol_js_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="s2">&quot;https://raw.githubusercontent.com/uglymol/uglymol/master/uglymol.js&quot;</span>
+        <span class="s2">"https://raw.githubusercontent.com/uglymol/uglymol/master/uglymol.js"</span>
     <span class="p">)</span>
     <span class="n">mtz_js_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="s2">&quot;https://raw.githubusercontent.com/uglymol/uglymol.github.io/master/wasm/mtz.js&quot;</span>
+        <span class="s2">"https://raw.githubusercontent.com/uglymol/uglymol.github.io/master/wasm/mtz.js"</span>
     <span class="p">)</span>
     <span class="n">mtz_wasm_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="s2">&quot;https://github.com/uglymol/uglymol.github.io/raw/master/wasm/mtz.wasm&quot;</span>
+        <span class="s2">"https://github.com/uglymol/uglymol.github.io/raw/master/wasm/mtz.wasm"</span>
     <span class="p">)</span>
 
     <span class="n">wget</span><span class="p">(</span><span class="n">uglymol_js_url</span><span class="p">,</span> <span class="n">output_path</span><span class="p">)</span>
     <span class="n">wget</span><span class="p">(</span><span class="n">mtz_js_url</span><span class="p">,</span> <span class="n">wasm_path</span><span class="p">)</span>
     <span class="n">wget</span><span class="p">(</span><span class="n">mtz_wasm_url</span><span class="p">,</span> <span class="n">wasm_path</span><span class="p">)</span>
-    <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">final_mtz</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">/final.mtz&quot;</span><span class="p">)</span>
-    <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">final_pdb</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">/final.pdb&quot;</span><span class="p">)</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">final_mtz</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">/final.mtz"</span><span class="p">)</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">final_pdb</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">/final.pdb"</span><span class="p">)</span>
 
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">/report.html&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">/report.html"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">lute.tasks.util.html</span><span class="w"> </span><span class="kn">import</span> <span class="n">DIMPLE_HTML</span>
 
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">DIMPLE_HTML</span><span class="p">)</span>
@@ -4599,7 +4599,7 @@ likely user scratch if running from the eLog.</p>
 <span class="normal">226</span>
 <span class="normal">227</span>
 <span class="normal">228</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">wget</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">out_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Pull down some resource.</span>
+<span class="w">    </span><span class="sd">"""Pull down some resource.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        url (str): URL of the resource.</span>
@@ -4607,10 +4607,10 @@ likely user scratch if running from the eLog.</p>
 <span class="sd">        out_dir (Optional[str]): Path of a directory to write the resource to.</span>
 <span class="sd">            If None, will write to the current working directory, which is</span>
 <span class="sd">            likely user scratch if running from the eLog.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">cmd</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;wget&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">]</span>
+<span class="sd">    """</span>
+    <span class="n">cmd</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"wget"</span><span class="p">,</span> <span class="n">url</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">out_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">cmd</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;-P&quot;</span><span class="p">,</span> <span class="n">out_dir</span><span class="p">])</span>
+        <span class="n">cmd</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">"-P"</span><span class="p">,</span> <span class="n">out_dir</span><span class="p">])</span>
 
     <span class="n">out</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span>
         <span class="n">cmd</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">universal_newlines</span><span class="o">=</span><span class="kc">True</span>
@@ -4684,7 +4684,7 @@ likely user scratch if running from the eLog.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

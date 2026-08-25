@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -3277,7 +3277,7 @@
 <span class="normal">13</span>
 <span class="normal">14</span>
 <span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">DatabaseError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;General LUTE database error.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""General LUTE database error."""</span>
 
     <span class="o">...</span>
 </code></pre></div></td></tr></table></div>
@@ -3411,7 +3411,7 @@ not present in <code>cols1</code>, returns <code>None</code>.</p>
 <span class="normal">127</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compare_cols</span><span class="p">(</span>
     <span class="n">cols1</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">cols2</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compare whether two sets of columns are identical.</span>
+<span class="w">    </span><span class="sd">"""Compare whether two sets of columns are identical.</span>
 
 <span class="sd">    The comparison is unidirectional - This function tests for columns present</span>
 <span class="sd">    in `cols2` which are not present in `cols1`, but NOT vice versa. Switch the</span>
@@ -3428,7 +3428,7 @@ not present in <code>cols1</code>, returns <code>None</code>.</p>
 <span class="sd">        diff (Dict[str, str] | None): Any columns present in `cols2` which</span>
 <span class="sd">            are not present in `cols1`. If `cols2` has no entries which are</span>
 <span class="sd">            not present in `cols1`, returns `None`.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">diff</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="k">for</span> <span class="n">col_name</span> <span class="ow">in</span> <span class="n">cols2</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
@@ -3546,7 +3546,7 @@ not present in <code>cols1</code>, returns <code>None</code>.</p>
 <span class="normal">33</span>
 <span class="normal">34</span>
 <span class="normal">35</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">does_table_exist</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check whether a table exists.</span>
+<span class="w">    </span><span class="sd">"""Check whether a table exists.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        con (sqlite3.Connection): Database connection.</span>
@@ -3555,9 +3555,9 @@ not present in <code>cols1</code>, returns <code>None</code>.</p>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        does_exist (bool): Whether the table exists.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">res</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
-        <span class="sa">f</span><span class="s2">&quot;SELECT name FROM sqlite_master WHERE name=&#39;</span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+        <span class="sa">f</span><span class="s2">"SELECT name FROM sqlite_master WHERE name='</span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">'"</span>
     <span class="p">)</span>
     <span class="k">if</span> <span class="n">res</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
@@ -3676,17 +3676,17 @@ not present in <code>cols1</code>, returns <code>None</code>.</p>
 <span class="normal">97</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_all_rows_for_table</span><span class="p">(</span>
     <span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="o">...</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return all rows for a requested table.</span>
+<span class="w">    </span><span class="sd">"""Return all rows for a requested table.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        con (sqlite3.Connection): Database connection.</span>
 
-<span class="sd">        table_name (str): The table&#39;s name.</span>
+<span class="sd">        table_name (str): The table's name.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        rows (List[Tuple[Any, ...]]): ALL rows for a table.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">sql</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;SELECT * FROM &quot;</span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s1">&quot;&#39;</span>
+<span class="sd">    """</span>
+    <span class="n">sql</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'SELECT * FROM "</span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s1">"'</span>
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
         <span class="n">res</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
 
@@ -3801,17 +3801,17 @@ not present in <code>cols1</code>, returns <code>None</code>.</p>
 <span class="normal">74</span>
 <span class="normal">75</span>
 <span class="normal">76</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_table_cols</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Retrieve the columns currently present in a table.</span>
+<span class="w">    </span><span class="sd">"""Retrieve the columns currently present in a table.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        con (sqlite3.Connection): Database connection.</span>
 
-<span class="sd">        table_name (str): The table&#39;s name.</span>
+<span class="sd">        table_name (str): The table's name.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        cols (Dict[str, str]): A dictionary of column names and types.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">res</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PRAGMA table_info(</span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="sd">    """</span>
+    <span class="n">res</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">"PRAGMA table_info(</span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
     <span class="c1"># Retrieves: list = [col_id, col_name, col_type, -, default_val, -]</span>
     <span class="n">table_info</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
 
@@ -3913,19 +3913,19 @@ not present in <code>cols1</code>, returns <code>None</code>.</p>
 <span class="normal">55</span>
 <span class="normal">56</span>
 <span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_tables</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Retrieve a list of all tables in a database.</span>
+<span class="w">    </span><span class="sd">"""Retrieve a list of all tables in a database.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        con (sqlite3.Connection): Database connection.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        tables (List[str]): A list of database tables.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># sql: str = &quot;SELECT name FROM sqlite_schema&quot;</span>
+<span class="sd">    """</span>
+    <span class="c1"># sql: str = "SELECT name FROM sqlite_schema"</span>
     <span class="n">sql</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="s2">&quot;SELECT name FROM sqlite_schema &quot;</span>
-        <span class="s2">&quot;WHERE type = &#39;table&#39; &quot;</span>
-        <span class="s2">&quot;AND name NOT LIKE &#39;sqlite_%&#39;&quot;</span>
+        <span class="s2">"SELECT name FROM sqlite_schema "</span>
+        <span class="s2">"WHERE type = 'table' "</span>
+        <span class="s2">"AND name NOT LIKE 'sqlite_%'"</span>
     <span class="p">)</span>
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
         <span class="n">res</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
@@ -4001,7 +4001,7 @@ not present in <code>cols1</code>, returns <code>None</code>.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

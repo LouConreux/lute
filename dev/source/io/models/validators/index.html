@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -3237,9 +3237,9 @@ command-line/when launching the third-party Task.</p>
 <span class="normal">47</span>
 <span class="normal">48</span>
 <span class="normal">49</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">template_parameter_validator</span><span class="p">(</span><span class="n">template_params_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Populates a TaskParameters model with a set of validated TemplateParameters.</span>
+<span class="w">    </span><span class="sd">"""Populates a TaskParameters model with a set of validated TemplateParameters.</span>
 
-<span class="sd">    This validator is intended for use with third-party Task&#39;s which use a</span>
+<span class="sd">    This validator is intended for use with third-party Task's which use a</span>
 <span class="sd">    templated configuration file. The validated template parameters are passed</span>
 <span class="sd">    as a dictionary through a single parameter in the TaskParameters model. This</span>
 <span class="sd">    dictionary is typically actually a separate pydantic BaseModel defined either</span>
@@ -3250,7 +3250,7 @@ command-line/when launching the third-party Task.</p>
 <span class="sd">    It then returns `None` for the initial parameter that held these parameters.</span>
 <span class="sd">    Returning None ensures that no attempt is made to pass the parameters on the</span>
 <span class="sd">    command-line/when launching the third-party Task.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_template_parameter_validator</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span> <span class="n">template_params</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
@@ -3312,24 +3312,24 @@ command-line/when launching the third-party Task.</p>
 <span class="normal">72</span>
 <span class="normal">73</span>
 <span class="normal">74</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">validate_smd_path</span><span class="p">(</span><span class="n">smd_path_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds the path to a valid Smalldata file or raises an error.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Finds the path to a valid Smalldata file or raises an error."""</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_validate_smd_path</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">smd_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">smd_path</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">smd_path</span> <span class="o">==</span> <span class="s2">""</span><span class="p">:</span>
             <span class="c1"># Try from database first</span>
             <span class="n">hdf5_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">read_latest_db_entry</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;lute_config&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;SubmitSMD&quot;</span><span class="p">,</span> <span class="s2">&quot;result.payload&quot;</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">'lute_config'</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"SubmitSMD"</span><span class="p">,</span> <span class="s2">"result.payload"</span>
             <span class="p">)</span>
             <span class="k">if</span> <span class="n">hdf5_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">hdf5_path</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">experiment</span>
-                <span class="n">run</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">run</span><span class="p">)</span>
+                <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">"lute_config"</span><span class="p">]</span><span class="o">.</span><span class="n">experiment</span>
+                <span class="n">run</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">"lute_config"</span><span class="p">]</span><span class="o">.</span><span class="n">run</span><span class="p">)</span>
                 <span class="n">hutch</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">exp</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
-                <span class="n">hdf5_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/sdf/data/lcls/ds/</span><span class="si">{</span><span class="n">hutch</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">exp</span><span class="si">}</span><span class="s2">/hdf5/smalldata/</span><span class="si">{</span><span class="n">exp</span><span class="si">}</span><span class="s2">_Run</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">.h5&quot;</span>
+                <span class="n">hdf5_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"/sdf/data/lcls/ds/</span><span class="si">{</span><span class="n">hutch</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">exp</span><span class="si">}</span><span class="s2">/hdf5/smalldata/</span><span class="si">{</span><span class="n">exp</span><span class="si">}</span><span class="s2">_Run</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">.h5"</span>
                 <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">hdf5_path</span><span class="p">):</span>
                     <span class="k">return</span> <span class="n">hdf5_path</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No path provided for hdf5 and cannot auto-determine!&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"No path provided for hdf5 and cannot auto-determine!"</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">smd_path</span>
 
@@ -3403,7 +3403,7 @@ command-line/when launching the third-party Task.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

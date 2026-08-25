@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -3655,7 +3655,7 @@ parameters, env).</p>
 <span class="normal">171</span>
 <span class="normal">172</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">DescribedAnalysis</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Complete analysis description. Held by an Executor.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Complete analysis description. Held by an Executor."""</span>
 
     <span class="n">task_result</span><span class="p">:</span> <span class="n">TaskResult</span>
     <span class="n">task_parameters</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TaskParameters</span><span class="p">]</span>
@@ -3799,16 +3799,16 @@ automatically.</p>
 <span class="normal">159</span>
 <span class="normal">160</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">ElogSummaryPlots</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Holds a graphical summary intended for display in the eLog.</span>
+<span class="w">    </span><span class="sd">"""Holds a graphical summary intended for display in the eLog.</span>
 
 <span class="sd">    Converts figures to a byte stream of HTML data to be written out, so the</span>
 <span class="sd">    eLog can properly display them.</span>
 
 <span class="sd">    Attributes:</span>
 <span class="sd">        display_name (str): This represents both a path and how the result will be</span>
-<span class="sd">            displayed in the eLog. Can include &quot;/&quot; characters. E.g.</span>
-<span class="sd">            `display_name = &quot;scans/my_motor_scan&quot;` will have plots shown</span>
-<span class="sd">            on a &quot;my_motor_scan&quot; page, under a &quot;scans&quot; tab. This format mirrors</span>
+<span class="sd">            displayed in the eLog. Can include "/" characters. E.g.</span>
+<span class="sd">            `display_name = "scans/my_motor_scan"` will have plots shown</span>
+<span class="sd">            on a "my_motor_scan" page, under a "scans" tab. This format mirrors</span>
 <span class="sd">            how the file is stored on disk as well.</span>
 
 <span class="sd">        figures (pn.Tabs, hv.Image, plt.Figure, bytes): The figures to be</span>
@@ -3816,7 +3816,7 @@ automatically.</p>
 <span class="sd">            plots as well as a raw series of bytes for the HTML file. Figures from</span>
 <span class="sd">            the plotting libraries will be converted to an HTML byte stream</span>
 <span class="sd">            automatically.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">display_name</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">figures</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">pn</span><span class="o">.</span><span class="n">Tabs</span><span class="p">,</span> <span class="n">hv</span><span class="o">.</span><span class="n">Image</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">Figure</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]</span>  <span class="c1"># type: ignore # noqa: F821</span>
@@ -3825,9 +3825,9 @@ automatically.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">_setup_figures</span><span class="p">()</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_setup_figures</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert figures to an HTML file in a byte stream.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Convert figures to an HTML file in a byte stream."""</span>
 
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">figures</span><span class="p">,</span> <span class="s2">&quot;save&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">figures</span><span class="p">,</span> <span class="s2">"save"</span><span class="p">):</span>
             <span class="n">f</span><span class="p">:</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">figures</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
             <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -3872,9 +3872,9 @@ automatically.</p>
 <span class="normal">158</span>
 <span class="normal">159</span>
 <span class="normal">160</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_setup_figures</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert figures to an HTML file in a byte stream.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Convert figures to an HTML file in a byte stream."""</span>
 
-    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">figures</span><span class="p">,</span> <span class="s2">&quot;save&quot;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">figures</span><span class="p">,</span> <span class="s2">"save"</span><span class="p">):</span>
         <span class="n">f</span><span class="p">:</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">figures</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
         <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -3976,7 +3976,7 @@ reconstructing the TaskParameters object.</p>
 <span class="normal">42</span>
 <span class="normal">43</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">TaskParametersDBReference</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Contains information about how to reconstruct a TaskParameters object.</span>
+<span class="w">    </span><span class="sd">"""Contains information about how to reconstruct a TaskParameters object.</span>
 
 <span class="sd">    Attributes:</span>
 <span class="sd">        db_dir (str): The path to the database containing the TaskParameters</span>
@@ -3984,7 +3984,7 @@ reconstructing the TaskParameters object.</p>
 
 <span class="sd">        row_ids (RowIds): The ids of the rows in the various tables required for</span>
 <span class="sd">            reconstructing the TaskParameters object.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">db_dir</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">row_ids</span><span class="p">:</span> <span class="n">RowIds</span>
@@ -4141,7 +4141,7 @@ multiple schemas. Multiple schemas are separated by ';', e.g.
 <span class="normal">106</span>
 <span class="normal">107</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">TaskResult</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for storing the result of a Task&#39;s execution with metadata.</span>
+<span class="w">    </span><span class="sd">"""Class for storing the result of a Task's execution with metadata.</span>
 
 <span class="sd">    Attributes:</span>
 <span class="sd">        task_name (str): Name of the associated task which produced it.</span>
@@ -4155,9 +4155,9 @@ multiple schemas. Multiple schemas are separated by ';', e.g.
 <span class="sd">        impl_schemas (Optional[str]): A string listing `Task` schemas implemented</span>
 <span class="sd">            by the associated `Task`. Schemas define the category and expected</span>
 <span class="sd">            output of the `Task`. An individual task may implement/conform to</span>
-<span class="sd">            multiple schemas. Multiple schemas are separated by &#39;;&#39;, e.g.</span>
-<span class="sd">                * impl_schemas = &quot;schema1;schema2&quot;</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">            multiple schemas. Multiple schemas are separated by ';', e.g.</span>
+<span class="sd">                * impl_schemas = "schema1;schema2"</span>
+<span class="sd">    """</span>
 
     <span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">task_status</span><span class="p">:</span> <span class="n">TaskStatus</span>
@@ -4251,40 +4251,40 @@ multiple schemas. Multiple schemas are separated by ';', e.g.
 <span class="normal">78</span>
 <span class="normal">79</span>
 <span class="normal">80</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">TaskStatus</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Possible Task statuses.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Possible Task statuses."""</span>
 
     <span class="n">PENDING</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Task has yet to run. Is Queued, or waiting for prior tasks.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">RUNNING</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Task is in the process of execution.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">COMPLETED</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Task has completed without fatal errors.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">FAILED</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Task encountered a fatal error.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">STOPPED</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Task was, potentially temporarily, stopped/suspended.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">CANCELLED</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Task was cancelled prior to completion or failure.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">TIMEDOUT</span> <span class="o">=</span> <span class="mi">6</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Task did not reach completion due to timeout.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">UNRESPONSIVE</span> <span class="o">=</span> <span class="mi">7</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Task has not responded in a long time. Considered stuck and failed.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -4529,13 +4529,13 @@ multiple schemas. Multiple schemas are separated by ';', e.g.
 <span class="normal">122</span>
 <span class="normal">123</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">VersionSpecifier</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
     <span class="n">NONE</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Version information lacking or not relevant.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Version information lacking or not relevant."""</span>
     <span class="n">LUTE_VERSION</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;For a first-party Task, indicates this tracks LUTE&#39;s version only.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""For a first-party Task, indicates this tracks LUTE's version only."""</span>
     <span class="n">GIT_SHA</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Specifies version as a specific commit hash.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Specifies version as a specific commit hash."""</span>
     <span class="n">GIT_DIFF</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Specifies version as a diff. Must be used combined with a GIT_SHA to diff.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Specifies version as a diff. Must be used combined with a GIT_SHA to diff."""</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -4716,7 +4716,7 @@ multiple schemas. Multiple schemas are separated by ';', e.g.
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

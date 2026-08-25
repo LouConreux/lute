@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -3534,57 +3534,57 @@ experimental runs.</p>
 <span class="normal">541</span>
 <span class="normal">542</span>
 <span class="normal">543</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ConcatenateStreamFilesParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parameters for stream concatenation.</span>
+<span class="w">    </span><span class="sd">"""Parameters for stream concatenation.</span>
 
 <span class="sd">    Concatenates the stream file output from CrystFEL indexing for multiple</span>
 <span class="sd">    experimental runs.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">TaskParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
         <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Whether the Executor should mark a specified parameter as a result.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Whether the Executor should mark a specified parameter as a result."""</span>
 
     <span class="n">in_file</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Root of directory tree storing stream files to merge.&quot;</span><span class="p">,</span>
+        <span class="s2">""</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Root of directory tree storing stream files to merge."</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="n">tag</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Tag identifying the stream files to merge.&quot;</span><span class="p">,</span>
+        <span class="s2">""</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Tag identifying the stream files to merge."</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="n">out_file</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Path to merged output stream file.&quot;</span><span class="p">,</span> <span class="n">is_result</span><span class="o">=</span><span class="kc">True</span>
+        <span class="s2">""</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Path to merged output stream file."</span><span class="p">,</span> <span class="n">is_result</span><span class="o">=</span><span class="kc">True</span>
     <span class="p">)</span>
 
-    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;in_file&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">"in_file"</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">validate_in_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">in_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">in_file</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">in_file</span> <span class="o">==</span> <span class="s2">""</span><span class="p">:</span>
             <span class="n">stream_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">read_latest_db_entry</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;lute_config&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;IndexCrystFEL&quot;</span><span class="p">,</span> <span class="s2">&quot;out_file&quot;</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">'lute_config'</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"IndexCrystFEL"</span><span class="p">,</span> <span class="s2">"out_file"</span>
             <span class="p">)</span>
             <span class="k">if</span> <span class="n">stream_file</span><span class="p">:</span>
                 <span class="n">stream_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">stream_file</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="p">)</span>
                 <span class="k">return</span> <span class="n">stream_dir</span>
         <span class="k">return</span> <span class="n">in_file</span>
 
-    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">"tag"</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">validate_tag</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">tag</span> <span class="o">==</span> <span class="s2">""</span><span class="p">:</span>
             <span class="n">stream_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">read_latest_db_entry</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;lute_config&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;IndexCrystFEL&quot;</span><span class="p">,</span> <span class="s2">&quot;out_file&quot;</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">'lute_config'</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"IndexCrystFEL"</span><span class="p">,</span> <span class="s2">"out_file"</span>
             <span class="p">)</span>
             <span class="k">if</span> <span class="n">stream_file</span><span class="p">:</span>
-                <span class="n">stream_tag</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">stream_file</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">stream_tag</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">stream_file</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"."</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
                 <span class="k">return</span> <span class="n">stream_tag</span>
         <span class="k">return</span> <span class="n">tag</span>
 
-    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;out_file&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">"out_file"</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">validate_out_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">tag</span> <span class="o">==</span> <span class="s2">""</span><span class="p">:</span>
             <span class="n">stream_out_file</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span>
-                <span class="n">Path</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;in_file&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;tag&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">.stream&quot;</span>
+                <span class="n">Path</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">"in_file"</span><span class="p">])</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">'tag'</span><span class="p">]</span><span class="si">}</span><span class="s2">.stream"</span>
             <span class="p">)</span>
             <span class="k">return</span> <span class="n">stream_out_file</span>
         <span class="k">return</span> <span class="n">tag</span>
@@ -3633,7 +3633,7 @@ experimental runs.</p>
 <span class="normal">497</span>
 <span class="normal">498</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">TaskParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
     <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether the Executor should mark a specified parameter as a result.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Whether the Executor should mark a specified parameter as a result."""</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -4003,57 +4003,57 @@ experimental runs.</p>
 <span class="normal">828</span>
 <span class="normal">829</span>
 <span class="normal">830</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">IndexCCTBXXFELParameters</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parameters for indexing with cctbx.xfel.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Parameters for indexing with cctbx.xfel."""</span>
 
     <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
         <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Whether the Executor should mark a specified parameter as a result.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Whether the Executor should mark a specified parameter as a result."""</span>
 
     <span class="k">class</span><span class="w"> </span><span class="nc">PhilParameters</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Template parameters for CCTBX phil file.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Template parameters for CCTBX phil file."""</span>
 
         <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">BaseModel</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>  <span class="c1"># type: ignore</span>
-            <span class="n">extra</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;allow&quot;</span>
+            <span class="n">extra</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"allow"</span>
 
         <span class="c1"># Generic input settings: input_</span>
         <span class="n">input_reference_geometry</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="kc">None</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-                <span class="s2">&quot;Provide an models.expt file with exactly one detector model. Data &quot;</span>
-                <span class="s2">&quot;processing will use that geometry instead of the geometry found &quot;</span>
-                <span class="s2">&quot;in the image headers.&quot;</span>
+                <span class="s2">"Provide an models.expt file with exactly one detector model. Data "</span>
+                <span class="s2">"processing will use that geometry instead of the geometry found "</span>
+                <span class="s2">"in the image headers."</span>
             <span class="p">),</span>
         <span class="p">)</span>
 
         <span class="c1"># Generic geometry: geometry_</span>
         <span class="n">geometry_detector_panel_origin</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="kc">None</span><span class="p">,</span>
-            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Override the panel origin. Requires fast_axis and slow_axis.&quot;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">"Override the panel origin. Requires fast_axis and slow_axis."</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="c1"># Generic output settings: output_</span>
         <span class="n">output_output_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="s2">&quot;&quot;</span><span class="p">,</span>
-            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Directory output files will be placed&quot;</span><span class="p">,</span>
+            <span class="s2">""</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">"Directory output files will be placed"</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">output_composite_output</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="kc">True</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-                <span class="s2">&quot;If True, save one set of experiment/reflection files per process, &quot;</span>
-                <span class="s2">&quot;where each is a concatenated list of all the successful events &quot;</span>
-                <span class="s2">&quot;examined by that process. If False, output a separate &quot;</span>
-                <span class="s2">&quot;experiment/reflection file per image (generates a lot of files).&quot;</span>
+                <span class="s2">"If True, save one set of experiment/reflection files per process, "</span>
+                <span class="s2">"where each is a concatenated list of all the successful events "</span>
+                <span class="s2">"examined by that process. If False, output a separate "</span>
+                <span class="s2">"experiment/reflection file per image (generates a lot of files)."</span>
             <span class="p">),</span>
         <span class="p">)</span>
         <span class="n">output_logging_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Directory output log files will be placed&quot;</span>
+            <span class="s2">""</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Directory output log files will be placed"</span>
         <span class="p">)</span>
         <span class="n">output_logging_option</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="s2">&quot;suppressed&quot;</span><span class="p">,</span>
+            <span class="s2">"suppressed"</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-                <span class="s2">&quot;Logging verbosity option. One of: normal, suppressed, disabled. &quot;</span>
-                <span class="s2">&quot;&#39;suppressed&#39; silences per-image log output (recommended for MPI jobs). &quot;</span>
-                <span class="s2">&quot;&#39;normal&#39; writes a log file per MPI rank. &#39;disabled&#39; turns off logging.&quot;</span>
+                <span class="s2">"Logging verbosity option. One of: normal, suppressed, disabled. "</span>
+                <span class="s2">"'suppressed' silences per-image log output (recommended for MPI jobs). "</span>
+                <span class="s2">"'normal' writes a log file per MPI rank. 'disabled' turns off logging."</span>
             <span class="p">),</span>
         <span class="p">)</span>
 
@@ -4061,80 +4061,80 @@ experimental runs.</p>
         <span class="n">dispatch_index</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="kc">True</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-                <span class="s2">&quot;Attempt to index images. find_spots also needs to be True for &quot;</span>
-                <span class="s2">&quot;this to work&quot;</span>
+                <span class="s2">"Attempt to index images. find_spots also needs to be True for "</span>
+                <span class="s2">"this to work"</span>
             <span class="p">),</span>
         <span class="p">)</span>
         <span class="n">dispatch_refine</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;If True, after indexing, refine the experimental models&quot;</span>
+            <span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"If True, after indexing, refine the experimental models"</span>
         <span class="p">)</span>
         <span class="n">dispatch_integrate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="kc">True</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-                <span class="s2">&quot;Integrate indexed images. Ignored if index=False or find_spots=False&quot;</span>
+                <span class="s2">"Integrate indexed images. Ignored if index=False or find_spots=False"</span>
             <span class="p">),</span>
         <span class="p">)</span>
 
         <span class="c1"># Parallel processing parameters: mp_</span>
         <span class="n">mp_method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="s2">&quot;mpi&quot;</span><span class="p">,</span>  <span class="c1"># *multiprocessing sge lsf pbs mpi</span>
-            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The multiprocessing method to use&quot;</span><span class="p">,</span>
+            <span class="s2">"mpi"</span><span class="p">,</span>  <span class="c1"># *multiprocessing sge lsf pbs mpi</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">"The multiprocessing method to use"</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="c1"># Spotfinding parameters: spotfinder_</span>
         <span class="n">spotfinder_lookup_mask</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The path to the mask file.&quot;</span>
+            <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"The path to the mask file."</span>
         <span class="p">)</span>
         <span class="n">spotfinder_threshold_dispersion_gain</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="kc">None</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-                <span class="s2">&quot;Use a flat gain map for the entire detector to act as a &quot;</span>
-                <span class="s2">&quot;multiplier for the gain set by the format. Cannot be used in &quot;</span>
-                <span class="s2">&quot;conjunction with lookup.gain_map parameter.&quot;</span>
+                <span class="s2">"Use a flat gain map for the entire detector to act as a "</span>
+                <span class="s2">"multiplier for the gain set by the format. Cannot be used in "</span>
+                <span class="s2">"conjunction with lookup.gain_map parameter."</span>
             <span class="p">),</span>
         <span class="p">)</span>
         <span class="n">spotfinder_threshold_dispersion_sigma_bkgnd</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="mi">6</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-                <span class="s2">&quot;The number of standard deviations of the index of dispersion &quot;</span>
-                <span class="s2">&quot;(variance / mean) in the local area below which the pixel &quot;</span>
-                <span class="s2">&quot;will be classified as background.&quot;</span>
+                <span class="s2">"The number of standard deviations of the index of dispersion "</span>
+                <span class="s2">"(variance / mean) in the local area below which the pixel "</span>
+                <span class="s2">"will be classified as background."</span>
             <span class="p">),</span>
         <span class="p">)</span>
         <span class="n">spotfinder_threshold_dispersion_sigma_strong</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="mi">3</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-                <span class="s2">&quot;The number of standard deviations above the mean in the local &quot;</span>
-                <span class="s2">&quot;area above which the pixel will be classified as strong.&quot;</span>
+                <span class="s2">"The number of standard deviations above the mean in the local "</span>
+                <span class="s2">"area above which the pixel will be classified as strong."</span>
             <span class="p">),</span>
         <span class="p">)</span>
         <span class="n">spotfinder_threshold_dispersion_global_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="mi">0</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-                <span class="s2">&quot;The global threshold value. Consider all pixels less than &quot;</span>
-                <span class="s2">&quot;this value to be part of the background.&quot;</span>
+                <span class="s2">"The global threshold value. Consider all pixels less than "</span>
+                <span class="s2">"this value to be part of the background."</span>
             <span class="p">),</span>
         <span class="p">)</span>
         <span class="n">spotfinder_threshold_dispersion_kernel_size</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
             <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-                <span class="s2">&quot;The size of the local area around the spot in which to &quot;</span>
-                <span class="s2">&quot;calculate the mean and variance. The kernel is given as a box &quot;</span>
-                <span class="s2">&quot;of size (2 * nx + 1, 2 * ny + 1) centred at the pixel.&quot;</span>
+                <span class="s2">"The size of the local area around the spot in which to "</span>
+                <span class="s2">"calculate the mean and variance. The kernel is given as a box "</span>
+                <span class="s2">"of size (2 * nx + 1, 2 * ny + 1) centred at the pixel."</span>
             <span class="p">),</span>
         <span class="p">)</span>
         <span class="n">spotfinder_filter_min_spot_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="mi">3</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-                <span class="s2">&quot;The minimum number of contiguous pixels for a spot to be &quot;</span>
-                <span class="s2">&quot;accepted by the filtering algorithm.&quot;</span>
+                <span class="s2">"The minimum number of contiguous pixels for a spot to be "</span>
+                <span class="s2">"accepted by the filtering algorithm."</span>
             <span class="p">),</span>
         <span class="p">)</span>
         <span class="n">spotfinder_filter_d_min</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="kc">None</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-                <span class="s2">&quot;The high resolution limit in Angstrom for a pixel to be &quot;</span>
-                <span class="s2">&quot;accepted by the filtering algorithm.&quot;</span>
+                <span class="s2">"The high resolution limit in Angstrom for a pixel to be "</span>
+                <span class="s2">"accepted by the filtering algorithm."</span>
             <span class="p">),</span>
         <span class="p">)</span>
 
@@ -4142,149 +4142,149 @@ experimental runs.</p>
         <span class="n">indexing_stills_refine_candidates_with_known_symmetry</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="kc">False</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-                <span class="s2">&quot;If False, when choosing the best set of candidate basis &quot;</span>
-                <span class="s2">&quot;solutions, refine the candidates in the P1 setting. If True, &quot;</span>
-                <span class="s2">&quot;after indexing in P1, convert the candidates to the known &quot;</span>
-                <span class="s2">&quot;symmetry and apply the corresponding change of basis to the &quot;</span>
-                <span class="s2">&quot;indexed reflections.&quot;</span>
+                <span class="s2">"If False, when choosing the best set of candidate basis "</span>
+                <span class="s2">"solutions, refine the candidates in the P1 setting. If True, "</span>
+                <span class="s2">"after indexing in P1, convert the candidates to the known "</span>
+                <span class="s2">"symmetry and apply the corresponding change of basis to the "</span>
+                <span class="s2">"indexed reflections."</span>
             <span class="p">),</span>
         <span class="p">)</span>
         <span class="n">indexing_stills_refine_all_candidates</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="kc">True</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-                <span class="s2">&quot;If False, no attempt is made to refine the model from initial &quot;</span>
-                <span class="s2">&quot;basis vector selection. The indexing solution with the best &quot;</span>
-                <span class="s2">&quot;RMSD is chosen.&quot;</span>
+                <span class="s2">"If False, no attempt is made to refine the model from initial "</span>
+                <span class="s2">"basis vector selection. The indexing solution with the best "</span>
+                <span class="s2">"RMSD is chosen."</span>
             <span class="p">),</span>
         <span class="p">)</span>
         <span class="n">indexing_known_symmetry_space_group</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Target space group for indexing.&quot;</span>
+            <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Target space group for indexing."</span>
         <span class="p">)</span>
         <span class="n">indexing_known_symmetry_unit_cell</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Target unit cell for indexing.&quot;</span>
+            <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Target unit cell for indexing."</span>
         <span class="p">)</span>
 
         <span class="c1"># Integration parameters: integration_</span>
         <span class="n">integration_background_simple_outlier_plane_n_sigma</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="mi">10</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-                <span class="s2">&quot;The number of standard deviations above the threshold &quot;</span>
-                <span class="s2">&quot;plane to use in rejecting outliers from background &quot;</span>
-                <span class="s2">&quot;calculation.&quot;</span>
+                <span class="s2">"The number of standard deviations above the threshold "</span>
+                <span class="s2">"plane to use in rejecting outliers from background "</span>
+                <span class="s2">"calculation."</span>
             <span class="p">),</span>
         <span class="p">)</span>
         <span class="n">integration_summation_detector_gain</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="mf">1.0</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-                <span class="s2">&quot;Multiplier for variances after integration of still images. See &quot;</span>
-                <span class="s2">&quot;Leslie 1999.&quot;</span>
+                <span class="s2">"Multiplier for variances after integration of still images. See "</span>
+                <span class="s2">"Leslie 1999."</span>
             <span class="p">),</span>
         <span class="p">)</span>
 
         <span class="c1"># Profiling parameters: profile_</span>
         <span class="n">profile_gaussian_rs_centroid_definition</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="s2">&quot;com&quot;</span><span class="p">,</span>
-            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The centroid to use as beam divergence (centre of mass or s1)&quot;</span><span class="p">,</span>
+            <span class="s2">"com"</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">"The centroid to use as beam divergence (centre of mass or s1)"</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="c1"># Refinement options: refinement_</span>
         <span class="n">refinement_reflections_outlier_algorithm</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="kc">None</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-                <span class="s2">&quot;Outlier rejection algorithm. If auto is selected, the &quot;</span>
-                <span class="s2">&quot;algorithm is chosen automatically.&quot;</span>
+                <span class="s2">"Outlier rejection algorithm. If auto is selected, the "</span>
+                <span class="s2">"algorithm is chosen automatically."</span>
             <span class="p">),</span>
         <span class="p">)</span>
 
-        <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;output_output_dir&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="nd">@validator</span><span class="p">(</span><span class="s2">"output_output_dir"</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="k">def</span><span class="w"> </span><span class="nf">set_output_dir</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">output</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">output</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;LUTE_WORK_DIR&quot;</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">output</span> <span class="o">==</span> <span class="s2">""</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"LUTE_WORK_DIR"</span><span class="p">,</span> <span class="s2">"."</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">output</span>
 
-        <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;output_logging_dir&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="nd">@validator</span><span class="p">(</span><span class="s2">"output_logging_dir"</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="k">def</span><span class="w"> </span><span class="nf">set_output_log_dir</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">output</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">output</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;output_output_dir&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">output</span> <span class="o">==</span> <span class="s2">""</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="s2">"output_output_dir"</span><span class="p">]</span>
             <span class="k">return</span> <span class="n">output</span>
 
-    <span class="n">_set_phil_template_parameters</span> <span class="o">=</span> <span class="n">template_parameter_validator</span><span class="p">(</span><span class="s2">&quot;phil_parameters&quot;</span><span class="p">)</span>
+    <span class="n">_set_phil_template_parameters</span> <span class="o">=</span> <span class="n">template_parameter_validator</span><span class="p">(</span><span class="s2">"phil_parameters"</span><span class="p">)</span>
 
     <span class="n">executable</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;/sdf/group/lcls/ds/tools/cctbx/psana2/conda_base_psana2/bin/mpirun&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;MPI executable.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">"/sdf/group/lcls/ds/tools/cctbx/psana2/conda_base_psana2/bin/mpirun"</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"MPI executable."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">cctbx_executable</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;/sdf/group/lcls/ds/tools/cctbx/psana2/build/bin/dials.stills_process&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;CCTBX indexing program (DIALS).&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">"/sdf/group/lcls/ds/tools/cctbx/psana2/build/bin/dials.stills_process"</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"CCTBX indexing program (DIALS)."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">in_file</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">""</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;The location of a data specification for LCLS. &quot;</span>
-            <span class="s2">&quot;This file will be written for you based on the data_spec parameter. &quot;</span>
-            <span class="s2">&quot;If not running at LCLS, this can be an input file, or a glob.&quot;</span>
+            <span class="s2">"The location of a data specification for LCLS. "</span>
+            <span class="s2">"This file will be written for you based on the data_spec parameter. "</span>
+            <span class="s2">"If not running at LCLS, this can be an input file, or a glob."</span>
         <span class="p">),</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">data_spec</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Provide a CCTBX specification for data access.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Provide a CCTBX specification for data access."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">phil_file</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Location of the input settings (&#39;phil&#39;) file.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">""</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Location of the input settings ('phil') file."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">phil_parameters</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PhilParameters</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Optional template parameters to fill in a CCTBX phil file.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1"># Does nothing since always None by time it&#39;s seen by Task</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Optional template parameters to fill in a CCTBX phil file."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span>  <span class="c1"># Does nothing since always None by time it's seen by Task</span>
     <span class="p">)</span>
     <span class="n">lute_template_cfg</span><span class="p">:</span> <span class="n">TemplateConfig</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="n">TemplateConfig</span><span class="p">(</span>
-            <span class="n">template_name</span><span class="o">=</span><span class="s2">&quot;cctbx_index.phil&quot;</span><span class="p">,</span>
-            <span class="n">output_path</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="n">template_name</span><span class="o">=</span><span class="s2">"cctbx_index.phil"</span><span class="p">,</span>
+            <span class="n">output_path</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span>
         <span class="p">),</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Template information for the cctbx_index file.&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Template information for the cctbx_index file."</span><span class="p">,</span>
     <span class="p">)</span>
 
-    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;phil_file&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">"phil_file"</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_default_phil_path</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">phil_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">phil_file</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;lute_config&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">/cctbx_index.phil&quot;</span>
+        <span class="k">if</span> <span class="n">phil_file</span> <span class="o">==</span> <span class="s2">""</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">'lute_config'</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">/cctbx_index.phil"</span>
         <span class="k">return</span> <span class="n">phil_file</span>
 
-    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;lute_template_cfg&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">"lute_template_cfg"</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_phil_template_path</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span> <span class="n">lute_template_cfg</span><span class="p">:</span> <span class="n">TemplateConfig</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TemplateConfig</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">lute_template_cfg</span><span class="o">.</span><span class="n">output_path</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
-            <span class="n">lute_template_cfg</span><span class="o">.</span><span class="n">output_path</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;phil_file&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">lute_template_cfg</span><span class="o">.</span><span class="n">output_path</span> <span class="o">==</span> <span class="s2">""</span><span class="p">:</span>
+            <span class="n">lute_template_cfg</span><span class="o">.</span><span class="n">output_path</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">"phil_file"</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">lute_template_cfg</span>
 
-    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;in_file&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">"in_file"</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_in_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">in_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">in_file</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
-            <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">experiment</span>
-            <span class="n">run</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">run</span><span class="p">)</span>
-            <span class="n">work_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span>
-            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">/data_</span><span class="si">{</span><span class="n">exp</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">run</span><span class="si">}</span><span class="s2">.loc&quot;</span>
+        <span class="k">if</span> <span class="n">in_file</span> <span class="o">==</span> <span class="s2">""</span><span class="p">:</span>
+            <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">"lute_config"</span><span class="p">]</span><span class="o">.</span><span class="n">experiment</span>
+            <span class="n">run</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">"lute_config"</span><span class="p">]</span><span class="o">.</span><span class="n">run</span><span class="p">)</span>
+            <span class="n">work_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">"lute_config"</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">/data_</span><span class="si">{</span><span class="n">exp</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">run</span><span class="si">}</span><span class="s2">.loc"</span>
         <span class="k">return</span> <span class="n">in_file</span>
 
-    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;data_spec&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">"data_spec"</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">write_data_spec_file</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
         <span class="n">data_spec</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]],</span>
         <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">data_spec</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;in_file&quot;</span><span class="p">],</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">"in_file"</span><span class="p">],</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
                 <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">data_spec</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                    <span class="n">spec_line</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="n">spec_line</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span>
                     <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">spec_line</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">None</span>
 </code></pre></div></td></tr></table></div>
@@ -4332,7 +4332,7 @@ experimental runs.</p>
 <span class="normal">550</span>
 <span class="normal">551</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
     <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether the Executor should mark a specified parameter as a result.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Whether the Executor should mark a specified parameter as a result."""</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -4606,50 +4606,50 @@ experimental runs.</p>
 <span class="normal">748</span>
 <span class="normal">749</span>
 <span class="normal">750</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">PhilParameters</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Template parameters for CCTBX phil file.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Template parameters for CCTBX phil file."""</span>
 
     <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">BaseModel</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>  <span class="c1"># type: ignore</span>
-        <span class="n">extra</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;allow&quot;</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"allow"</span>
 
     <span class="c1"># Generic input settings: input_</span>
     <span class="n">input_reference_geometry</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;Provide an models.expt file with exactly one detector model. Data &quot;</span>
-            <span class="s2">&quot;processing will use that geometry instead of the geometry found &quot;</span>
-            <span class="s2">&quot;in the image headers.&quot;</span>
+            <span class="s2">"Provide an models.expt file with exactly one detector model. Data "</span>
+            <span class="s2">"processing will use that geometry instead of the geometry found "</span>
+            <span class="s2">"in the image headers."</span>
         <span class="p">),</span>
     <span class="p">)</span>
 
     <span class="c1"># Generic geometry: geometry_</span>
     <span class="n">geometry_detector_panel_origin</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Override the panel origin. Requires fast_axis and slow_axis.&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Override the panel origin. Requires fast_axis and slow_axis."</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="c1"># Generic output settings: output_</span>
     <span class="n">output_output_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Directory output files will be placed&quot;</span><span class="p">,</span>
+        <span class="s2">""</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Directory output files will be placed"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">output_composite_output</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">True</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;If True, save one set of experiment/reflection files per process, &quot;</span>
-            <span class="s2">&quot;where each is a concatenated list of all the successful events &quot;</span>
-            <span class="s2">&quot;examined by that process. If False, output a separate &quot;</span>
-            <span class="s2">&quot;experiment/reflection file per image (generates a lot of files).&quot;</span>
+            <span class="s2">"If True, save one set of experiment/reflection files per process, "</span>
+            <span class="s2">"where each is a concatenated list of all the successful events "</span>
+            <span class="s2">"examined by that process. If False, output a separate "</span>
+            <span class="s2">"experiment/reflection file per image (generates a lot of files)."</span>
         <span class="p">),</span>
     <span class="p">)</span>
     <span class="n">output_logging_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Directory output log files will be placed&quot;</span>
+        <span class="s2">""</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Directory output log files will be placed"</span>
     <span class="p">)</span>
     <span class="n">output_logging_option</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;suppressed&quot;</span><span class="p">,</span>
+        <span class="s2">"suppressed"</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;Logging verbosity option. One of: normal, suppressed, disabled. &quot;</span>
-            <span class="s2">&quot;&#39;suppressed&#39; silences per-image log output (recommended for MPI jobs). &quot;</span>
-            <span class="s2">&quot;&#39;normal&#39; writes a log file per MPI rank. &#39;disabled&#39; turns off logging.&quot;</span>
+            <span class="s2">"Logging verbosity option. One of: normal, suppressed, disabled. "</span>
+            <span class="s2">"'suppressed' silences per-image log output (recommended for MPI jobs). "</span>
+            <span class="s2">"'normal' writes a log file per MPI rank. 'disabled' turns off logging."</span>
         <span class="p">),</span>
     <span class="p">)</span>
 
@@ -4657,80 +4657,80 @@ experimental runs.</p>
     <span class="n">dispatch_index</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">True</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;Attempt to index images. find_spots also needs to be True for &quot;</span>
-            <span class="s2">&quot;this to work&quot;</span>
+            <span class="s2">"Attempt to index images. find_spots also needs to be True for "</span>
+            <span class="s2">"this to work"</span>
         <span class="p">),</span>
     <span class="p">)</span>
     <span class="n">dispatch_refine</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;If True, after indexing, refine the experimental models&quot;</span>
+        <span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"If True, after indexing, refine the experimental models"</span>
     <span class="p">)</span>
     <span class="n">dispatch_integrate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">True</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;Integrate indexed images. Ignored if index=False or find_spots=False&quot;</span>
+            <span class="s2">"Integrate indexed images. Ignored if index=False or find_spots=False"</span>
         <span class="p">),</span>
     <span class="p">)</span>
 
     <span class="c1"># Parallel processing parameters: mp_</span>
     <span class="n">mp_method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;mpi&quot;</span><span class="p">,</span>  <span class="c1"># *multiprocessing sge lsf pbs mpi</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The multiprocessing method to use&quot;</span><span class="p">,</span>
+        <span class="s2">"mpi"</span><span class="p">,</span>  <span class="c1"># *multiprocessing sge lsf pbs mpi</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"The multiprocessing method to use"</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="c1"># Spotfinding parameters: spotfinder_</span>
     <span class="n">spotfinder_lookup_mask</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The path to the mask file.&quot;</span>
+        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"The path to the mask file."</span>
     <span class="p">)</span>
     <span class="n">spotfinder_threshold_dispersion_gain</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;Use a flat gain map for the entire detector to act as a &quot;</span>
-            <span class="s2">&quot;multiplier for the gain set by the format. Cannot be used in &quot;</span>
-            <span class="s2">&quot;conjunction with lookup.gain_map parameter.&quot;</span>
+            <span class="s2">"Use a flat gain map for the entire detector to act as a "</span>
+            <span class="s2">"multiplier for the gain set by the format. Cannot be used in "</span>
+            <span class="s2">"conjunction with lookup.gain_map parameter."</span>
         <span class="p">),</span>
     <span class="p">)</span>
     <span class="n">spotfinder_threshold_dispersion_sigma_bkgnd</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="mi">6</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;The number of standard deviations of the index of dispersion &quot;</span>
-            <span class="s2">&quot;(variance / mean) in the local area below which the pixel &quot;</span>
-            <span class="s2">&quot;will be classified as background.&quot;</span>
+            <span class="s2">"The number of standard deviations of the index of dispersion "</span>
+            <span class="s2">"(variance / mean) in the local area below which the pixel "</span>
+            <span class="s2">"will be classified as background."</span>
         <span class="p">),</span>
     <span class="p">)</span>
     <span class="n">spotfinder_threshold_dispersion_sigma_strong</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="mi">3</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;The number of standard deviations above the mean in the local &quot;</span>
-            <span class="s2">&quot;area above which the pixel will be classified as strong.&quot;</span>
+            <span class="s2">"The number of standard deviations above the mean in the local "</span>
+            <span class="s2">"area above which the pixel will be classified as strong."</span>
         <span class="p">),</span>
     <span class="p">)</span>
     <span class="n">spotfinder_threshold_dispersion_global_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="mi">0</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;The global threshold value. Consider all pixels less than &quot;</span>
-            <span class="s2">&quot;this value to be part of the background.&quot;</span>
+            <span class="s2">"The global threshold value. Consider all pixels less than "</span>
+            <span class="s2">"this value to be part of the background."</span>
         <span class="p">),</span>
     <span class="p">)</span>
     <span class="n">spotfinder_threshold_dispersion_kernel_size</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;The size of the local area around the spot in which to &quot;</span>
-            <span class="s2">&quot;calculate the mean and variance. The kernel is given as a box &quot;</span>
-            <span class="s2">&quot;of size (2 * nx + 1, 2 * ny + 1) centred at the pixel.&quot;</span>
+            <span class="s2">"The size of the local area around the spot in which to "</span>
+            <span class="s2">"calculate the mean and variance. The kernel is given as a box "</span>
+            <span class="s2">"of size (2 * nx + 1, 2 * ny + 1) centred at the pixel."</span>
         <span class="p">),</span>
     <span class="p">)</span>
     <span class="n">spotfinder_filter_min_spot_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="mi">3</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;The minimum number of contiguous pixels for a spot to be &quot;</span>
-            <span class="s2">&quot;accepted by the filtering algorithm.&quot;</span>
+            <span class="s2">"The minimum number of contiguous pixels for a spot to be "</span>
+            <span class="s2">"accepted by the filtering algorithm."</span>
         <span class="p">),</span>
     <span class="p">)</span>
     <span class="n">spotfinder_filter_d_min</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;The high resolution limit in Angstrom for a pixel to be &quot;</span>
-            <span class="s2">&quot;accepted by the filtering algorithm.&quot;</span>
+            <span class="s2">"The high resolution limit in Angstrom for a pixel to be "</span>
+            <span class="s2">"accepted by the filtering algorithm."</span>
         <span class="p">),</span>
     <span class="p">)</span>
 
@@ -4738,70 +4738,70 @@ experimental runs.</p>
     <span class="n">indexing_stills_refine_candidates_with_known_symmetry</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;If False, when choosing the best set of candidate basis &quot;</span>
-            <span class="s2">&quot;solutions, refine the candidates in the P1 setting. If True, &quot;</span>
-            <span class="s2">&quot;after indexing in P1, convert the candidates to the known &quot;</span>
-            <span class="s2">&quot;symmetry and apply the corresponding change of basis to the &quot;</span>
-            <span class="s2">&quot;indexed reflections.&quot;</span>
+            <span class="s2">"If False, when choosing the best set of candidate basis "</span>
+            <span class="s2">"solutions, refine the candidates in the P1 setting. If True, "</span>
+            <span class="s2">"after indexing in P1, convert the candidates to the known "</span>
+            <span class="s2">"symmetry and apply the corresponding change of basis to the "</span>
+            <span class="s2">"indexed reflections."</span>
         <span class="p">),</span>
     <span class="p">)</span>
     <span class="n">indexing_stills_refine_all_candidates</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">True</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;If False, no attempt is made to refine the model from initial &quot;</span>
-            <span class="s2">&quot;basis vector selection. The indexing solution with the best &quot;</span>
-            <span class="s2">&quot;RMSD is chosen.&quot;</span>
+            <span class="s2">"If False, no attempt is made to refine the model from initial "</span>
+            <span class="s2">"basis vector selection. The indexing solution with the best "</span>
+            <span class="s2">"RMSD is chosen."</span>
         <span class="p">),</span>
     <span class="p">)</span>
     <span class="n">indexing_known_symmetry_space_group</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Target space group for indexing.&quot;</span>
+        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Target space group for indexing."</span>
     <span class="p">)</span>
     <span class="n">indexing_known_symmetry_unit_cell</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Target unit cell for indexing.&quot;</span>
+        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Target unit cell for indexing."</span>
     <span class="p">)</span>
 
     <span class="c1"># Integration parameters: integration_</span>
     <span class="n">integration_background_simple_outlier_plane_n_sigma</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="mi">10</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;The number of standard deviations above the threshold &quot;</span>
-            <span class="s2">&quot;plane to use in rejecting outliers from background &quot;</span>
-            <span class="s2">&quot;calculation.&quot;</span>
+            <span class="s2">"The number of standard deviations above the threshold "</span>
+            <span class="s2">"plane to use in rejecting outliers from background "</span>
+            <span class="s2">"calculation."</span>
         <span class="p">),</span>
     <span class="p">)</span>
     <span class="n">integration_summation_detector_gain</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="mf">1.0</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;Multiplier for variances after integration of still images. See &quot;</span>
-            <span class="s2">&quot;Leslie 1999.&quot;</span>
+            <span class="s2">"Multiplier for variances after integration of still images. See "</span>
+            <span class="s2">"Leslie 1999."</span>
         <span class="p">),</span>
     <span class="p">)</span>
 
     <span class="c1"># Profiling parameters: profile_</span>
     <span class="n">profile_gaussian_rs_centroid_definition</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;com&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The centroid to use as beam divergence (centre of mass or s1)&quot;</span><span class="p">,</span>
+        <span class="s2">"com"</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"The centroid to use as beam divergence (centre of mass or s1)"</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="c1"># Refinement options: refinement_</span>
     <span class="n">refinement_reflections_outlier_algorithm</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;Outlier rejection algorithm. If auto is selected, the &quot;</span>
-            <span class="s2">&quot;algorithm is chosen automatically.&quot;</span>
+            <span class="s2">"Outlier rejection algorithm. If auto is selected, the "</span>
+            <span class="s2">"algorithm is chosen automatically."</span>
         <span class="p">),</span>
     <span class="p">)</span>
 
-    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;output_output_dir&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">"output_output_dir"</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_output_dir</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">output</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">output</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;LUTE_WORK_DIR&quot;</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">output</span> <span class="o">==</span> <span class="s2">""</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"LUTE_WORK_DIR"</span><span class="p">,</span> <span class="s2">"."</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">output</span>
 
-    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;output_logging_dir&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">"output_logging_dir"</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_output_log_dir</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">output</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">output</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;output_output_dir&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">output</span> <span class="o">==</span> <span class="s2">""</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="s2">"output_output_dir"</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">output</span>
 </code></pre></div></td></tr></table></div>
               </details>
@@ -5319,247 +5319,247 @@ https://www.desy.de/~twhite/crystfel/manual-indexamajig.html</p>
 <span class="normal">484</span>
 <span class="normal">485</span>
 <span class="normal">486</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">IndexCrystFELParameters</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parameters for CrystFEL&#39;s `indexamajig`.</span>
+<span class="w">    </span><span class="sd">"""Parameters for CrystFEL's `indexamajig`.</span>
 
 <span class="sd">    There are many parameters, and many combinations. For more information on</span>
 <span class="sd">    usage, please refer to the CrystFEL documentation, here:</span>
 <span class="sd">    https://www.desy.de/~twhite/crystfel/manual-indexamajig.html</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
         <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Whether the Executor should mark a specified parameter as a result.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Whether the Executor should mark a specified parameter as a result."""</span>
 
         <span class="n">long_flags_use_eq</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Whether long command-line arguments are passed like `--long=arg`.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Whether long command-line arguments are passed like `--long=arg`."""</span>
 
     <span class="n">executable</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;/sdf/group/lcls/ds/tools/crystfel/0.10.2/bin/indexamajig&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;CrystFEL&#39;s indexing binary.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">"/sdf/group/lcls/ds/tools/crystfel/0.10.2/bin/indexamajig"</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"CrystFEL's indexing binary."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="c1"># Basic options</span>
     <span class="n">in_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Path to input file.&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;i&quot;</span>
+        <span class="s2">""</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Path to input file."</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"-"</span><span class="p">,</span> <span class="n">rename_param</span><span class="o">=</span><span class="s2">"i"</span>
     <span class="p">)</span>
     <span class="n">out_file</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Path to output file.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span>
+        <span class="s2">""</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Path to output file."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"-"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span>
         <span class="n">is_result</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">peaks</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;Peak finding algorithm, or file type. E.g. peakfinder8 to peak find, &quot;</span>
-            <span class="s2">&quot;or use cxi for CXI files.&quot;</span>
+            <span class="s2">"Peak finding algorithm, or file type. E.g. peakfinder8 to peak find, "</span>
+            <span class="s2">"or use cxi for CXI files."</span>
         <span class="p">),</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">geometry</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Path to geometry file.&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;g&quot;</span>
+        <span class="s2">""</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Path to geometry file."</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"-"</span><span class="p">,</span> <span class="n">rename_param</span><span class="o">=</span><span class="s2">"g"</span>
     <span class="p">)</span>
     <span class="n">zmq_input</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;ZMQ address to receive data over. `input` and `zmq-input` are mutually exclusive&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;zmq-input&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"ZMQ address to receive data over. `input` and `zmq-input` are mutually exclusive"</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"zmq-input"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">zmq_subscribe</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>  <span class="c1"># Can be used multiple times...</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Subscribe to ZMQ message of type `tag`&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;zmq-subscribe&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Subscribe to ZMQ message of type `tag`"</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"zmq-subscribe"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">zmq_request</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">AnyUrl</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Request new data over ZMQ by sending this value&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;zmq-request&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Request new data over ZMQ by sending this value"</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"zmq-request"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">asapo_endpoint</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;ASAP::O endpoint. zmq-input and this are mutually exclusive.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;asapo-endpoint&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"ASAP::O endpoint. zmq-input and this are mutually exclusive."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"asapo-endpoint"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">asapo_token</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;ASAP::O authentication token.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;asapo-token&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"ASAP::O authentication token."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"asapo-token"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">asapo_beamtime</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;ASAP::O beatime.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;asapo-beamtime&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"ASAP::O beatime."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"asapo-beamtime"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">asapo_source</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;ASAP::O data source.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;asapo-source&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"ASAP::O data source."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"asapo-source"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">asapo_group</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;ASAP::O consumer group.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;asapo-group&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"ASAP::O consumer group."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"asapo-group"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">asapo_stream</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;ASAP::O stream.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;asapo-stream&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"ASAP::O stream."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"asapo-stream"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">asapo_wait_for_stream</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;If ASAP::O stream does not exist, wait for it to appear.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;asapo-wait-for-stream&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"If ASAP::O stream does not exist, wait for it to appear."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"asapo-wait-for-stream"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">data_format</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Specify format for ZMQ or ASAP::O. `msgpack`, `hdf5` or `seedee`.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;data-format&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Specify format for ZMQ or ASAP::O. `msgpack`, `hdf5` or `seedee`."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"data-format"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">basename</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Remove directory parts of filenames. Acts before prefix if prefix also given.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Remove directory parts of filenames. Acts before prefix if prefix also given."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">prefix</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Add a prefix to the filenames from the infile argument.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="c1"># rename_param=&quot;asapo-stream&quot;,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Add a prefix to the filenames from the infile argument."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="c1"># rename_param="asapo-stream",</span>
     <span class="p">)</span>
     <span class="n">nthreads</span><span class="p">:</span> <span class="n">PositiveInt</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;SLURM_NPROCS&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">sched_getaffinity</span><span class="p">(</span><span class="mi">0</span><span class="p">))))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of threads to use. See also `max_indexer_threads`.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;j&quot;</span><span class="p">,</span>
+        <span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"SLURM_NPROCS"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">sched_getaffinity</span><span class="p">(</span><span class="mi">0</span><span class="p">))))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Number of threads to use. See also `max_indexer_threads`."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"-"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"j"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">no_check_prefix</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Don&#39;t attempt to correct the prefix if it seems incorrect.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;no-check-prefix&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Don't attempt to correct the prefix if it seems incorrect."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"no-check-prefix"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">highres</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Mark all pixels greater than `x` has bad.&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Mark all pixels greater than `x` has bad."</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="n">profile</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Display timing data to monitor performance.&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Display timing data to monitor performance."</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="n">temp_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Specify a path for the temp files folder.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;temp-dir&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Specify a path for the temp files folder."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"temp-dir"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">wait_for_file</span><span class="p">:</span> <span class="n">conint</span><span class="p">(</span><span class="n">gt</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>  <span class="c1"># type: ignore</span>
         <span class="mi">0</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Wait at most `x` seconds for a file to be created. A value of -1 means wait forever.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;wait-for-file&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Wait at most `x` seconds for a file to be created. A value of -1 means wait forever."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"wait-for-file"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">no_image_data</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Load only the metadata, no iamges. Can check indexability without high data requirements.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;no-image-data&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Load only the metadata, no iamges. Can check indexability without high data requirements."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"no-image-data"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="c1"># Peak-finding options</span>
     <span class="c1"># ....</span>
     <span class="c1"># Indexing options</span>
     <span class="n">indexing</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Comma-separated list of supported indexing algorithms to use. Default is to automatically detect.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Comma-separated list of supported indexing algorithms to use. Default is to automatically detect."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">fromfile_input_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;If replaying, the filename to use for indexing results.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;fromfile-input-file&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"If replaying, the filename to use for indexing results."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"fromfile-input-file"</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="n">cell_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Path to a file containing unit cell information (PDB or CrystFEL format).&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;p&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Path to a file containing unit cell information (PDB or CrystFEL format)."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"-"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"p"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">tolerance</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;5,5,5,1.5&quot;</span><span class="p">,</span>
+        <span class="s2">"5,5,5,1.5"</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;Tolerances (in percent) for unit cell comparison. &quot;</span>
-            <span class="s2">&quot;Comma-separated list a,b,c,angle. Default=5,5,5,1.5&quot;</span>
+            <span class="s2">"Tolerances (in percent) for unit cell comparison. "</span>
+            <span class="s2">"Comma-separated list a,b,c,angle. Default=5,5,5,1.5"</span>
         <span class="p">),</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">no_check_cell</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Do not check cell parameters against unit cell. Replaces &#39;-raw&#39; method.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;no-check-cell&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Do not check cell parameters against unit cell. Replaces '-raw' method."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"no-check-cell"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">no_check_peaks</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Do not verify peaks are accounted for by solution.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;no-check-peaks&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Do not verify peaks are accounted for by solution."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"no-check-peaks"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">multi</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Enable multi-lattice indexing.&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Enable multi-lattice indexing."</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="n">wavelength_estimate</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Estimate for X-ray wavelength. Required for some methods.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;wavelength-estimate&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Estimate for X-ray wavelength. Required for some methods."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"wavelength-estimate"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">camera_length_estimate</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Estimate for camera distance. Required for some methods.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;camera-length-estimate&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Estimate for camera distance. Required for some methods."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"camera-length-estimate"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">max_indexer_threads</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PositiveInt</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="c1"># 1,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Some indexing algos can use multiple threads. In addition to image-based.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;max-indexer-threads&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Some indexing algos can use multiple threads. In addition to image-based."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"max-indexer-threads"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">no_retry</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Do not remove weak peaks and try again.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;no-retry&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Do not remove weak peaks and try again."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"no-retry"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">no_refine</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Skip refinement step.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;no-refine&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Skip refinement step."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"no-refine"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">no_revalidate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Skip revalidation step.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;no-revalidate&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Skip revalidation step."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"no-revalidate"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="c1"># TakeTwo specific parameters</span>
     <span class="n">taketwo_member_threshold</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PositiveInt</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="c1"># 20,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Minimum number of vectors to consider.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;taketwo-member-threshold&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Minimum number of vectors to consider."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"taketwo-member-threshold"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">taketwo_len_tolerance</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PositiveFloat</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="c1"># 0.001,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;TakeTwo length tolerance in Angstroms.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;taketwo-len-tolerance&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"TakeTwo length tolerance in Angstroms."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"taketwo-len-tolerance"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">taketwo_angle_tolerance</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PositiveFloat</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="c1"># 0.6,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;TakeTwo angle tolerance in degrees.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;taketwo-angle-tolerance&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"TakeTwo angle tolerance in degrees."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"taketwo-angle-tolerance"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">taketwo_trace_tolerance</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PositiveFloat</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="c1"># 3,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Matrix trace tolerance in degrees.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;taketwo-trace-tolerance&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Matrix trace tolerance in degrees."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"taketwo-trace-tolerance"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="c1"># Felix-specific parameters</span>
     <span class="c1"># felix_domega</span>
@@ -5575,198 +5575,198 @@ https://www.desy.de/~twhite/crystfel/manual-indexamajig.html</p>
     <span class="c1"># XGANDALF-specific parameters</span>
     <span class="n">xgandalf_sampling_pitch</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">NonNegativeInt</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="c1"># 6,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Density of reciprocal space sampling.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;xgandalf-sampling-pitch&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Density of reciprocal space sampling."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"xgandalf-sampling-pitch"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">xgandalf_grad_desc_iterations</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">NonNegativeInt</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="c1"># 4,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of gradient descent iterations.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;xgandalf-grad-desc-iterations&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Number of gradient descent iterations."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"xgandalf-grad-desc-iterations"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">xgandalf_tolerance</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PositiveFloat</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="c1"># 0.02,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Relative tolerance of lattice vectors&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;xgandalf-tolerance&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Relative tolerance of lattice vectors"</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"xgandalf-tolerance"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">xgandalf_no_deviation_from_provided_cell</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Found unit cell must match provided.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;xgandalf-no-deviation-from-provided-cell&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Found unit cell must match provided."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"xgandalf-no-deviation-from-provided-cell"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">xgandalf_min_lattice_vector_length</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PositiveFloat</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="c1"># 30,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Minimum possible lattice length.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;xgandalf-min-lattice-vector-length&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Minimum possible lattice length."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"xgandalf-min-lattice-vector-length"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">xgandalf_max_lattice_vector_length</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PositiveFloat</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="c1"># 250,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Minimum possible lattice length.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;xgandalf-max-lattice-vector-length&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Minimum possible lattice length."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"xgandalf-max-lattice-vector-length"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">xgandalf_max_peaks</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PositiveInt</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="c1"># 250,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Maximum number of peaks to use for indexing.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;xgandalf-max-peaks&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Maximum number of peaks to use for indexing."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"xgandalf-max-peaks"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">xgandalf_fast_execution</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Shortcut to set sampling-pitch=2, and grad-desc-iterations=3.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;xgandalf-fast-execution&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Shortcut to set sampling-pitch=2, and grad-desc-iterations=3."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"xgandalf-fast-execution"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="c1"># pinkIndexer parameters</span>
     <span class="c1"># ...</span>
-    <span class="c1"># asdf_fast: bool = Field(False, description=&quot;Enable fast mode for asdf. 3x faster for 7% loss in accuracy.&quot;, flag_type=&quot;--&quot;, rename_param=&quot;asdf-fast&quot;)</span>
+    <span class="c1"># asdf_fast: bool = Field(False, description="Enable fast mode for asdf. 3x faster for 7% loss in accuracy.", flag_type="--", rename_param="asdf-fast")</span>
     <span class="c1"># Integration parameters</span>
     <span class="n">integration</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;rings-nocen&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Method for integrating reflections.&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="s2">"rings-nocen"</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Method for integrating reflections."</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="n">fix_profile_radius</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Fix the profile radius (m^{-1})&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;fix-profile-radius&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Fix the profile radius (m^{-1})"</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"fix-profile-radius"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">fix_divergence</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="mi">0</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Fix the divergence (rad, full angle).&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;fix-divergence&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Fix the divergence (rad, full angle)."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"fix-divergence"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">int_radius</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;4,5,7&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Inner, middle, and outer radii for 3-ring integration.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;int-radius&quot;</span><span class="p">,</span>
+        <span class="s2">"4,5,7"</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Inner, middle, and outer radii for 3-ring integration."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"int-radius"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">int_diag</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;none&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Show detailed information on integration when condition is met.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;int-diag&quot;</span><span class="p">,</span>
+        <span class="s2">"none"</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Show detailed information on integration when condition is met."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"int-diag"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">push_res</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;infinity&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Integrate `x` higher than apparent resolution limit (nm-1).&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;push-res&quot;</span><span class="p">,</span>
+        <span class="s2">"infinity"</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Integrate `x` higher than apparent resolution limit (nm-1)."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"push-res"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">overpredict</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Over-predict reflections. Maybe useful with post-refinement.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Over-predict reflections. Maybe useful with post-refinement."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">cell_parameters_only</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Do not predict refletions at all&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Do not predict refletions at all"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="c1"># Output parameters</span>
     <span class="n">no_non_hits_in_stream</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Exclude non-hits from the stream file.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;no-non-hits-in-stream&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Exclude non-hits from the stream file."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"no-non-hits-in-stream"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">copy_hheader</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Copy information from header in the image to output stream.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;copy-hheader&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Copy information from header in the image to output stream."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"copy-hheader"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">no_peaks_in_stream</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Do not record peaks in stream file.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;no-peaks-in-stream&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Do not record peaks in stream file."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"no-peaks-in-stream"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">no_refls_in_stream</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Do not record reflections in stream.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;no-refls-in-stream&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Do not record reflections in stream."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"no-refls-in-stream"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">serial_offset</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PositiveInt</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Start numbering at `x` instead of 1.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;serial-offset&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Start numbering at `x` instead of 1."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"serial-offset"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">harvest_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Write parameters to file in JSON format.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;harvest-file&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Write parameters to file in JSON format."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"harvest-file"</span><span class="p">,</span>
     <span class="p">)</span>
 
-    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;in_file&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">"in_file"</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">validate_in_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">in_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">in_file</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">in_file</span> <span class="o">==</span> <span class="s2">""</span><span class="p">:</span>
             <span class="c1"># Check Cheetah first</span>
             <span class="n">filename</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">read_latest_db_entry</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;lute_config&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;RunCheetah&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;result.payload&quot;</span><span class="p">,</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">'lute_config'</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+                <span class="s2">"RunCheetah"</span><span class="p">,</span>
+                <span class="s2">"result.payload"</span><span class="p">,</span>
             <span class="p">)</span>
             <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="c1"># Check FindPeaksSFX</span>
                 <span class="n">filename</span> <span class="o">=</span> <span class="n">read_latest_db_entry</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;lute_config&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;FindPeaksSFX&quot;</span><span class="p">,</span> <span class="s2">&quot;out_file&quot;</span>
+                    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">'lute_config'</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"FindPeaksSFX"</span><span class="p">,</span> <span class="s2">"out_file"</span>
                 <span class="p">)</span>
                 <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="c1"># Check Psocake last</span>
-                    <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">experiment</span>
-                    <span class="n">run</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">run</span><span class="p">)</span>
+                    <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">"lute_config"</span><span class="p">]</span><span class="o">.</span><span class="n">experiment</span>
+                    <span class="n">run</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">"lute_config"</span><span class="p">]</span><span class="o">.</span><span class="n">run</span><span class="p">)</span>
                     <span class="n">tag</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">read_latest_db_entry</span><span class="p">(</span>
-                        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;lute_config&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;FindPeaksPsocake&quot;</span><span class="p">,</span> <span class="s2">&quot;tag&quot;</span>
+                        <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">'lute_config'</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"FindPeaksPsocake"</span><span class="p">,</span> <span class="s2">"tag"</span>
                     <span class="p">)</span>
                     <span class="n">psocake_out_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">read_latest_db_entry</span><span class="p">(</span>
-                        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;lute_config&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-                        <span class="s2">&quot;FindPeaksPsocake&quot;</span><span class="p">,</span>
-                        <span class="s2">&quot;outDir&quot;</span><span class="p">,</span>
+                        <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">'lute_config'</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+                        <span class="s2">"FindPeaksPsocake"</span><span class="p">,</span>
+                        <span class="s2">"outDir"</span><span class="p">,</span>
                     <span class="p">)</span>
                     <span class="k">if</span> <span class="n">psocake_out_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                        <span class="n">fname</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">psocake_out_dir</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">exp</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">&quot;</span>
+                        <span class="n">fname</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">psocake_out_dir</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">exp</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">"</span>
                         <span class="k">if</span> <span class="n">tag</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                            <span class="n">fname</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s2">&quot;</span>
-                        <span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s2">.lst&quot;</span>
+                            <span class="n">fname</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s2">"</span>
+                        <span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s2">.lst"</span>
             <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">filename</span>
         <span class="k">return</span> <span class="n">in_file</span>
 
-    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;out_file&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">"out_file"</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">validate_out_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">out_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">out_file</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">out_file</span> <span class="o">==</span> <span class="s2">""</span><span class="p">:</span>
             <span class="c1"># Check Cheetah first</span>
             <span class="n">new_out_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="n">cheetah_out_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">read_latest_db_entry</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;lute_config&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;RunCheetah&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;cheetah.processed_directory&quot;</span><span class="p">,</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">'lute_config'</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+                <span class="s2">"RunCheetah"</span><span class="p">,</span>
+                <span class="s2">"cheetah.processed_directory"</span><span class="p">,</span>
             <span class="p">)</span>
             <span class="k">if</span> <span class="n">cheetah_out_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="c1"># These should be defined</span>
                 <span class="n">cheetah_prefix</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">read_latest_db_entry</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;lute_config&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-                    <span class="s2">&quot;RunCheetah&quot;</span><span class="p">,</span>
-                    <span class="s2">&quot;cheetah.processed_filename_prefix&quot;</span><span class="p">,</span>
+                    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">'lute_config'</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+                    <span class="s2">"RunCheetah"</span><span class="p">,</span>
+                    <span class="s2">"cheetah.processed_filename_prefix"</span><span class="p">,</span>
                 <span class="p">)</span>
-                <span class="n">new_out_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">cheetah_out_dir</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">cheetah_prefix</span><span class="si">}</span><span class="s2">.stream&quot;</span>
+                <span class="n">new_out_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">cheetah_out_dir</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">cheetah_prefix</span><span class="si">}</span><span class="s2">.stream"</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">expmt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">experiment</span>
-                <span class="n">run</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">run</span><span class="p">)</span>
-                <span class="n">work_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span>
+                <span class="n">expmt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">"lute_config"</span><span class="p">]</span><span class="o">.</span><span class="n">experiment</span>
+                <span class="n">run</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">"lute_config"</span><span class="p">]</span><span class="o">.</span><span class="n">run</span><span class="p">)</span>
+                <span class="n">work_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">"lute_config"</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span>
                 <span class="n">tag</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">read_latest_db_entry</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;lute_config&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;FindPeaksSFX&quot;</span><span class="p">,</span> <span class="s2">&quot;tag&quot;</span>
+                    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">'lute_config'</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"FindPeaksSFX"</span><span class="p">,</span> <span class="s2">"tag"</span>
                 <span class="p">)</span>
                 <span class="k">if</span> <span class="n">tag</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">tag</span> <span class="o">=</span> <span class="n">read_latest_db_entry</span><span class="p">(</span>
-                        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;lute_config&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;FindPeaksPsocake&quot;</span><span class="p">,</span> <span class="s2">&quot;tag&quot;</span>
+                        <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">'lute_config'</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"FindPeaksPsocake"</span><span class="p">,</span> <span class="s2">"tag"</span>
                     <span class="p">)</span>
-                <span class="n">fname</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">expmt</span><span class="si">}</span><span class="s2">_r</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="n">fname</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">expmt</span><span class="si">}</span><span class="s2">_r</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">"</span>
                 <span class="k">if</span> <span class="n">tag</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">fname</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s2">&quot;</span>
-                <span class="n">new_out_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s2">.stream&quot;</span>
+                    <span class="n">fname</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s2">"</span>
+                <span class="n">new_out_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s2">.stream"</span>
             <span class="k">if</span> <span class="n">new_out_file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">new_out_file</span>
         <span class="k">return</span> <span class="n">out_file</span>
@@ -5818,10 +5818,10 @@ https://www.desy.de/~twhite/crystfel/manual-indexamajig.html</p>
 <span class="normal">47</span>
 <span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
     <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether the Executor should mark a specified parameter as a result.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Whether the Executor should mark a specified parameter as a result."""</span>
 
     <span class="n">long_flags_use_eq</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether long command-line arguments are passed like `--long=arg`.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Whether long command-line arguments are passed like `--long=arg`."""</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -5965,7 +5965,7 @@ https://www.desy.de/~twhite/crystfel/manual-indexamajig.html</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

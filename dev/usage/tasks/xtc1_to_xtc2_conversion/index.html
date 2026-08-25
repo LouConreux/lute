@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#converting-xtc1-to-xtc2-files-convertxtc1to2" class="md-skip">
+        <a href="#converting-xtc1-to-xtc2-files-readxtc1-and-writextc2" class="md-skip">
           Skip to content
         </a>
       
@@ -549,6 +549,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#introduction-overview-of-the-xtc2-format-with-chunks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction - Overview of the XTC2 Format with Chunks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#command-line-help" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -564,6 +575,17 @@
     <span class="md-ellipsis">
       
         Managed Tasks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dagworkflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DAG/Workflow
       
     </span>
   </a>
@@ -3129,6 +3151,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#introduction-overview-of-the-xtc2-format-with-chunks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction - Overview of the XTC2 Format with Chunks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#command-line-help" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3144,6 +3177,17 @@
     <span class="md-ellipsis">
       
         Managed Tasks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dagworkflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DAG/Workflow
       
     </span>
   </a>
@@ -3231,7 +3275,31 @@
   
 
 
-<h1 id="converting-xtc1-to-xtc2-files-convertxtc1to2">Converting XTC1 to XTC2 Files - <code>ConvertXtc1to2</code></h1>
+<h1 id="converting-xtc1-to-xtc2-files-readxtc1-and-writextc2">Converting XTC1 to XTC2 Files - <code>ReadXtc1</code> and <code>WriteXtc2</code></h1>
+<h2 id="introduction-overview-of-the-xtc2-format-with-chunks">Introduction - Overview of the XTC2 Format with Chunks</h2>
+<p>As the conversion from the XTC1 file format to the XTC2 format requires access to two different environments (i.e. psana1 and psana2), the actual conversion requires running <strong>two</strong> <code>Task</code>s in parallel with a workflow. The two basic <code>Task</code>s are:</p>
+<ul>
+<li><code>ReadXtc1</code></li>
+<li><code>WriteXtc2</code></li>
+</ul>
+<p>A working DAG/workflow, currently requires that the two <strong>managed</strong> <code>Task</code>s be given an equivalent number of ranks and are launched in parallel. The conversion process then proceeds in the following fashion:</p>
+<ol>
+<li><code>WriteXtc2</code> binds a socket on rank 0.</li>
+<li><code>WriteXtc2</code> publishes the port that was bound to the workflow manager <code>maestro</code>.</li>
+<li><code>ReadXtc1</code> queries <code>maestro</code> to discover which port to use.</li>
+<li><strong>Every</strong> rank from <code>ReadXtc1</code> then connects to a socket, transmitting data via ZMQ to <code>WriteXtc2</code>. Each rank tags its transmitted data so that the <code>WriteXtc2</code> processes can determine who will write it.</li>
+<li>As only rank 0 for <code>WriteXtc2</code> has bound the socket, rank 0 internally redistributes the data using MPI IPC to the correct rank using the tag that was provided by <code>ReadXtc1</code>.</li>
+</ol>
+<p>Ultimately, each rank of <code>WriteXtc2</code> will write a separate XTC2 <strong>chunk</strong> file (<code>-cXYZ</code> file). The XTC2 file format, or rather, more specifically, psana2 requires that the separate chunk files and the corresponding <code>.smd.xtc2</code> file be constructed as follows:</p>
+<ol>
+<li>Rank 0 opens chunk file <code>-c000.xtc2</code> and the <code>-c000.smd.xtc2</code> file. There will only ever be <strong>one</strong> <code>.smd.xtc2</code> file, as required by psana2.</li>
+<li>Rank 0 writes the initial transitions (Configure, BeginRun, etc.). It will also include any <strong>calibration constants</strong> as modified <code>SlowUpdate</code> transitions during this phase (<code>SlowUpdate</code> normally would contain EPICS data, but psana2 has been modified to understand these special transitions containing calibration constants).</li>
+<li>All ranks then write their <code>-cXYZ.xtc2</code> files in parallel. The data is distributed chronologically: the <code>L1Accept</code> (event) data in <code>-c001.xtc2</code> comes directly after the <code>L1Accept</code> data in <code>-c000.xtc2</code>, and before that in <code>-c002.xtc2</code>.</li>
+<li>As the ranks write their data, they record the timestamp, local offset of the datagram in their big data chunk file, and the size of the datagram they're writing. This will be used at the end to finalize the <code>.smd.xtc2</code> file.</li>
+<li>When a rank has written all its corresponding event data, it then will either write a <code>Disable</code>, <code>EndStep</code>, <code>BeginStep</code> and <code>Enable</code> transition if it is a rank less than <code>(MPI_SIZE - 1)</code>. The <code>Enable</code> transition is special in that it will also include a special <code>chunkinfo</code> XTC which points to the next chunk file to read. E.g., <code>-c000.xtc2</code>'s final <code>Enable</code> transition will have a chunkinfo that includes a <code>chunkid = 1</code> and the filename for the <code>-c001.xtc2</code> file.</li>
+<li>On the other hand, when <code>rank == (MPI_SIZE - 1)</code> completes, it instead writes the following transitions to complete the run: <code>Disable</code>, <code>EndStep</code>, <code>EndRun</code>.</li>
+<li>Finally, all the ranks will send the recorded tuples of (<code>timestamp</code>, <code>offset</code>, <code>dgram_size</code>) to rank 0. Rank 0 will then write them out to the <code>.smd.xtc2</code> file. This is fast since it is small data.</li>
+</ol>
 <h2 id="command-line-help">Command-line help</h2>
 <p>As a reminder, the <code>lute_help</code> command-line utility may be used to inspect the full set of command-line arguments. After sourcing the activation script upon building LUTE you will have the utility in your PATH.</p>
 <pre><code class="language-bash"># Assume the current working directory is the top of the LUTE repo, and the build
@@ -3239,12 +3307,12 @@
 &gt; source install/bin/activate_installation
 &gt; lute_help -T &lt;task&gt;
 </code></pre>
-<p>For help on the conversion <code>Task</code>, you can run:</p>
-<pre><code class="language-bash">&gt; lute_help -T ConvertXtc1to2
-# ...
-
-ConvertXtc1to2
---------------
+<p>For help on the conversion <code>Task</code>s, you can run:</p>
+<pre><code class="language-bash">&gt; lute_help -T ReadXtc1
+DEBUG:lute.execution.ipc:Preference of ZMQ usage not specified. Defaulting to using ZMQ.
+INFO:lute_utilities.help.task_parameters:Fetching parameter information for ReadXtc1.
+ReadXtc1
+--------
 Parameters for the xtc conversion Task.
 
 
@@ -3253,8 +3321,53 @@ Required Parameters:
 lute_config (AnalysisHeader)
     Unknown description.
 
-geometry (string)
-    Geometry file
+xtc1_access_pattern (object)
+    Provides information for how to access the data in XTC1. The top level keys will be used as the detector names in the XTC2 data.
+
+
+
+All Parameters:
+---------------
+lute_config (AnalysisHeader)
+    Unknown description.
+
+eventfile (string) - Default: &lt;Empty String&gt; - May be populated by validator
+    CSV file with event numbers. Otherwise will process all events.
+
+nevents (integer)
+    Optionally specify the number of events to use. If providing eventfile as well, that option will supercede this one.
+
+xtc1_access_pattern (object)
+    Provides information for how to access the data in XTC1. The top level keys will be used as the detector names in the XTC2 data.
+
+Template Parameters:
+--------------------
+ConversionSpecification:
+xtc2_attr_name (string)
+    The name this field will have in the XTC2 file.
+
+object_name (string)
+    The name used to access the object in psana1. E.g. `epix10k2M` if you would create the object as `psana.Detector('epix10k2M')`
+
+object_type (string)
+    The psana1 object type used. E.g. `psana.Detector`
+
+object_field_name ()
+    The field (or fields) on the constructed psana1 object used to get the per event data. E.g. `'calib'` if using `det.calib(evt)`. Or `('get', 'ebeamPhotonEnergy')` if using `det.get(evt).ebeamPhotonEnergy()`
+
+
+&gt; lute_help -T WriteXtc2
+DEBUG:lute.execution.ipc:Preference of ZMQ usage not specified. Defaulting to using ZMQ.
+INFO:lute_utilities.help.task_parameters:Fetching parameter information for WriteXtc2.
+WriteXtc2
+---------
+Parameters for the xtc conversion Task.
+
+
+Required Parameters:
+--------------------
+lute_config (AnalysisHeader)
+    Unknown description.
 
 output_file (string)
     Where to write the output XTC2 file.
@@ -3262,36 +3375,100 @@ output_file (string)
 xtc1_access_pattern (object)
     Provides information for how to access the data in XTC1. The top level keys will be used as the detector names in the XTC2 data.
 
-# ...
+
+
+All Parameters:
+---------------
+lute_config (AnalysisHeader)
+    Unknown description.
+
+node_id (string) - Default: 1
+    Node ID for the detector
+
+output_file (string)
+    Where to write the output XTC2 file.
+
+xtc1_access_pattern (object)
+    Provides information for how to access the data in XTC1. The top level keys will be used as the detector names in the XTC2 data.
+
+Template Parameters:
+--------------------
+ConversionSpecification:
+xtc2_attr_name (string)
+    The name this field will have in the XTC2 file.
+
+object_name (string)
+    The name used to access the object in psana1. E.g. `epix10k2M` if you would create the object as `psana.Detector('epix10k2M')`
+
+object_type (string)
+    The psana1 object type used. E.g. `psana.Detector`
+
+object_field_name ()
+    The field (or fields) on the constructed psana1 object used to get the per event data. E.g. `'calib'` if using `det.calib(evt)`. Or `('get', 'ebeamPhotonEnergy')` if using `det.get(evt).ebeamPhotonEnergy()`
+
+
 </code></pre>
 <h2 id="managed-tasks">Managed <code>Task</code>s</h2>
-<p>There is currently only 1 <strong>managed</strong> <code>Task</code> that runs this specific <code>Task</code>: <code>Xtc1to2Converter</code>. It runs in either the psana1 or psana2 base environment since it will be launch and manage the psana1 and psana2 environments separately to control the reading and writing for the conversion process.</p>
+<p>There are currently only 2 <strong>managed</strong> <code>Task</code>s that must be run in parallel. Each will run in the respective psana1 or psana2 environment to run their <code>Task</code>:</p>
+<ul>
+<li><code>Xtc1Reader</code></li>
+<li><code>Xtc2Writer</code></li>
+</ul>
+<h2 id="dagworkflow">DAG/Workflow</h2>
+<p>The following DAG shows an example setup for running the two <code>Task</code>s in parallel:</p>
+<pre><code class="language-yaml">!LUTE_DAG
+- task_name: &quot;Xtc1Reader&quot;
+  slurm_params: &quot;--psana1 --nodes=1 --tasks-per-node=11 --partition=milano --account=lcls:&lt;EXPERIMENT&gt;&quot;
+  next: []
+- task_name: &quot;Xtc2Writer&quot;
+  slurm_params: &quot;--nodes=1 --tasks-per-node=11 --partition=milano --account=lcls:&lt;EXPERIMENT&gt;&quot;
+  next: []
+</code></pre>
+<p>In this example, ten ranks will be used. (Remember: the <code>Executor</code> uses 1 core, so passing 11 to <code>ntasks-per-node</code> means 10 CPU cores will be available to the <code>Task</code>).</p>
+<p><strong>NOTE:</strong> It is currently a <strong>REQUIREMENT</strong> that the number of cores in each <code>Task</code>s request be identical! (11 in both cases, in this example)</p>
 <h2 id="configuration">Configuration</h2>
 <p>A starting YAML for the conversion process may look like:</p>
-<pre><code class="language-yaml">ConvertXtc1to2:
-  node_id: &quot;1&quot;
-  eventfile: &quot;&quot;
-  nevents: 120
-  output_file: &quot;{{ XTC2_FILE_PATH }}/{{ XTC2_FILE_NAME }}&quot;
+<pre><code class="language-yaml">ReadXtc1:               # All variables are given as strings
+  # eventfile: &quot;&quot;
+  nevents: 200          # Uncomment to do only some events - otherwise whole run.
   xtc1_access_pattern:
-    epix10k2M: # Name of the detector in the converted XTC2
+    jungfrau1M: # Name of the detector in the converted XTC2
     # You can have a list of attributes you will convert that will be stored in
     # this detector
-      - xtc2_attr_name: &quot;calib&quot;        # Name of this attribute in xtc2
-        object_name: &quot;epix10k2M&quot;       # Name of the detector in psana1
-        object_type: &quot;psana.Detector&quot;  # Name of the object type in psana1
-        object_field_name: &quot;calib&quot;     # Name of the per-event method to use in psana1
-    EBeam:
-      - xtc2_attr_name: &quot;photon_energy&quot;
-        object_name: &quot;EBeam&quot;
+      - xtc2_attr_name: &quot;calib&quot;          # Name of this attribute in xtc2
+        object_name: &quot;jungfrau1M&quot; # Name of the detector in psana1
+        object_type: &quot;psana.Detector&quot;    # Name of the object type in psana1
+        object_field_name: &quot;calib&quot;       # Name of the per-event method to use in psana1
+    lxt_fast:
+      - xtc2_attr_name: &quot;lxt_fast&quot;
+        object_name: &quot;lxt_fast&quot;
         object_type: &quot;psana.Detector&quot;
-        object_field_name: [&quot;get&quot;,&quot;ebeamPhotonEnergy&quot;]
+        object_field_name: &quot;__call__&quot;
+
+WriteXtc2:                    # All variables are given as strings
+  node_id: &quot;1&quot;                # Node ID for the detector
+  output_file: &quot;{{ XTC2_FILE_PATH }}/{{ XTC2_FILE_NAME }}&quot;
+  xtc1_access_pattern:
+    jungfrau1M: # Name of the detector in the converted XTC2
+    # You can have a list of attributes you will convert that will be stored in
+    # this detector
+      - xtc2_attr_name: &quot;calib&quot;          # Name of this attribute in xtc2
+        object_name: &quot;jungfrau1M&quot; # Name of the detector in psana1
+        object_type: &quot;psana.Detector&quot;    # Name of the object type in psana1
+        object_field_name: &quot;calib&quot;       # Name of the per-event method to use in psana1
+    lxt_fast:
+      - xtc2_attr_name: &quot;lxt_fast&quot;
+        object_name: &quot;lxt_fast&quot;
+        object_type: &quot;psana.Detector&quot;
+        object_field_name: &quot;__call__&quot;
+
 </code></pre>
-<p>For the most part, <code>node_id</code> can be left as is. We will cover the various other parameters in detail below. The most important being the <code>xtc1_access_pattern</code> covered at the end.</p>
+<p>For the most part, <code>node_id</code> can be left as is. We will cover the various other parameters in detail below. The most important being the <code>xtc1_access_pattern</code> covered at the end. This <strong>MUST</strong> be provided to <strong>both</strong> <code>Task</code>s in the current setup.</p>
 <p>The documentation here assumes familiarity with both psana1 and psana2.</p>
 <h3 id="implicit-parameters">Implicit parameters</h3>
 <p>Like many other <code>Task</code>s, this conversion <code>Task</code> will select data based on the global <code>experiment</code> and <code>run</code> provided. This are either provided explicitly in the header document of the YAML file, or are retrieved by environment variable when running from the ARP/eLog. Alternatively, they are passed on the command-line using <code>-e</code> and <code>-r</code> command-line arguments.</p>
 <h3 id="selecting-events-eventfile-and-nevents">Selecting events: <code>eventfile</code> and <code>nevents</code></h3>
+<p>Under the configuration for <code>ReadXtc1</code> you can select how many events will be converted.</p>
 <p>The default behaviour for the <code>Task</code> is to convert all the events in the XTC1 file(s) for the LCLS1 experiment to XTC2. You can optionally select a portion of these events using <code>eventfile</code> or <code>nevents</code>.</p>
 <ul>
 <li><code>eventfile</code>: Is the path to a file that contains a list of <strong>indices</strong> for the events. This file should be a <strong>CSV</strong> file (comma-separated file).</li>
@@ -3299,6 +3476,7 @@ xtc1_access_pattern (object)
 </ul>
 <p>If both <code>eventfile</code> and <code>nevents</code> are provided, <code>eventfile</code> takes precedence.</p>
 <h3 id="output-location-output_file">Output location: <code>output_file</code></h3>
+<p>Under the <code>WriteXtc2</code> configuration, you can specify where to write the output.</p>
 <p>A single large XTC2 file will be written by this <code>Task</code>, and this parameter determines where that file will be written.</p>
 <p><strong>NOTE:</strong> There are restrictions on the format of this path!</p>
 <ol>
@@ -3310,23 +3488,26 @@ xtc1_access_pattern (object)
 <p>For example, a MFX experiment MFX12345, running on run 42, should have a filename and output path that looks like: <code>/rest_of_path/mfx/mfx12345/xtc/mfx12345-r0042-s000-c000.xtc2</code> . The rest of the path at the beginning is free to choose (as long as it is a valid path).</p>
 </li>
 </ol>
+<p><strong>NOTE:</strong> The expectation is that you provide only the name of the file for chunk 0 (<code>-c000.xtc2</code>). The <code>Task</code> will then modify this base filename appropriately for each chunk file that it writes.</p>
 <h3 id="specifying-what-to-convert-and-how-xtc1_access_pattern">Specifying what to convert and how: <code>xtc1_access_pattern</code></h3>
+<p><strong>NOTE:</strong> Currently, this information must be duplicated in the configuration for <strong>BOTH</strong> <code>ReadXtc1</code> and <code>WriteXtc2</code> as both require knowledge of it. A future update may allow for this information to be transmitted via <code>maestro</code> (as the port number is). However, that is not currently implemented, so the configuration should be written for one <code>Task</code> and copied to the other.</p>
 <p>The main portion of the configuration is under this parameter. To understand how it works we will work from the provided example above:</p>
 <pre><code class="language-yaml">  xtc1_access_pattern:
-    epix10k2M: # Name of the detector in the converted XTC2
+    jungfrau1M: # Name of the detector in the converted XTC2
     # You can have a list of attributes you will convert that will be stored in
     # this detector
-      - xtc2_attr_name: &quot;calib&quot;        # Name of this attribute in xtc2
-        object_name: &quot;epix10k2M&quot;       # Name of the detector in psana1
-        object_type: &quot;psana.Detector&quot;  # Name of the object type in psana1
-        object_field_name: &quot;calib&quot;     # Name of the per-event method to use in psana1
-    EBeam:
-      - xtc2_attr_name: &quot;photon_energy&quot;
-        object_name: &quot;EBeam&quot;
+      - xtc2_attr_name: &quot;calib&quot;          # Name of this attribute in xtc2
+        object_name: &quot;jungfrau1M&quot;        # Name of the detector in psana1
+        object_type: &quot;psana.Detector&quot;    # Name of the object type in psana1
+        object_field_name: &quot;calib&quot;       # Name of the per-event method to use in psana1
+    lxt_fast:
+      - xtc2_attr_name: &quot;lxt_fast&quot;
+        object_name: &quot;lxt_fast&quot;
         object_type: &quot;psana.Detector&quot;
-        object_field_name: [&quot;get&quot;,&quot;ebeamPhotonEnergy&quot;]
+        object_field_name: &quot;__call__&quot;
+
 </code></pre>
-<p>The top level keys, <code>epix10k2M</code> and <code>EBeam</code>, describe what you want the names of the detectors to be in the new converted XTC2 files. I.e. you will be able to access the data from psana2 using <code>run.Detector("epix10k2M")</code> and <code>run.Detector("EBeam")</code>.</p>
+<p>The top level keys, <code>lxt_fast</code> and <code>jungfrau1M</code>, describe what you want the names of the detectors to be in the new converted XTC2 files. I.e. you will be able to access the data from psana2 using <code>run.Detector("jungfrau1M")</code> and <code>run.Detector("lxt_fast")</code>.</p>
 <p>Under each detector you define a <strong>list of dictionaries</strong>. Each <strong>dictionary</strong> in the list describes one component from the XTC1 data that you will want to translate into XTC2, and the manner in which you will do the translation. The keys of the dictionary are:</p>
 <ol>
 <li><code>xtc2_attr_name</code>: This will be the name of the method used to access the data from <strong>psana2</strong>.</li>
@@ -3334,26 +3515,41 @@ xtc1_access_pattern (object)
 <li><code>object_type</code>: This is the type of object in <strong>psana1</strong></li>
 <li><code>object_field_name</code>: This is the method (or methods) used to access the data in <strong>psana1</strong>.</li>
 </ol>
-<p>So, taking the example for <code>epix10k2M</code> above, we are translating a single method from XTC1 to XTC2. The specification says that we will take the <code>calib</code> method from a psana1 object <code>psana.Detector("epix10k2M")</code> and attach it to a <code>calib</code> method for a psana2 object.</p>
+<p>So, taking the example for <code>jungfrau1M</code> above, we are translating a single method from XTC1 to XTC2. The specification says that we will take the <code>calib</code> method from a psana1 object <code>psana.Detector("jungfrau1M")</code> and attach it to a <code>calib</code> method for a psana2 object.</p>
 <p>Alternatively, in pseudo-Python we have:</p>
 <pre><code class="language-python"># Take this psana1 data
 object_type(&quot;object_name&quot;).object_field_name
 
 # And translate it to:
-epix10k2M.xtc1dump.calib
+jungfrau1M.xtc1dump.calib
 </code></pre>
 <p><strong>NOTE:</strong> The converted data is always provided on a special "algorithm" called <code>xtc1dump</code>. So for the example above, you are creating the <code>calib</code> method for that algorithm. I.e.:</p>
 <pre><code class="language-python"># psana1 access of the form
-det = psana.Detector(&quot;epix10k2M&quot;)
+det = psana.Detector(&quot;jungfrau1M&quot;)
 data = det.calib(evt)
 
 # is translated into psana2 access of the form
-det = run.Detector(&quot;epix10k2M&quot;)
+det = run.Detector(&quot;jungfrau1M&quot;)
 data = det.xtc1dump.calib(evt)
 </code></pre>
-<p>The example for <code>EBeam</code> is analogous, however it showcases a more involved case for psana1 access patterns. In this case, the data will be accessed from psana1 as follows:</p>
-<pre><code class="language-python">
-det = psana.Detector(&quot;epix10k2M&quot;)
+<p>The example for <code>lxt_fast</code> is analogous, however it uses a different method to access the data:</p>
+<pre><code class="language-python"># psana1 access of the form
+det = psana.Detector(&quot;lxt_fast&quot;)
+data = det(evt) # __call__ is identical to usage as a function
+
+# Is now translated into psana2 access of the form
+det = run.Detector(&quot;lxt_fast&quot;)
+lxt_fast.xtc1dump.lxt_fast(evt)
+</code></pre>
+<p>A more involved case is exemplified by dealing with BLD. For example, the <code>EBeam</code> BLD could be accessed using the following YAML configuration:</p>
+<pre><code class="language-yaml">    EBeam:
+      - xtc2_attr_name: &quot;photon_energy&quot;
+        object_name: &quot;EBeam&quot;
+        object_type: &quot;psana.Detector&quot;
+        object_field_name: [&quot;get&quot;,&quot;ebeamPhotonEnergy&quot;]
+</code></pre>
+<p>In Python, this would correspond to the following psana1 access pattern:</p>
+<pre><code class="language-python">det = psana.Detector(&quot;EBeam&quot;)
 data = det.get(evt).ebeamPhotonEnergy()
 </code></pre>
 <p>That is, the first item in the list of <code>object_field_name</code> is the method that takes the psana1 event object. The second object in the list is called without argument.</p>
@@ -3413,7 +3609,7 @@ data = det.get(evt).ebeamPhotonEnergy()
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

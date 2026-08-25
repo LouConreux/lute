@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -3293,7 +3293,7 @@ required to have occurred at some point to enter correct values into the databas
 <span class="normal">148</span>
 <span class="normal">149</span>
 <span class="normal">150</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalysisHeader</span><span class="p">(</span><span class="n">ContainerBase</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Header information for LUTE analysis runs.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Header information for LUTE analysis runs."""</span>
 
     <span class="n">_schema</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
@@ -3590,7 +3590,7 @@ are passed as <code>--long=arg</code>. ThirdPartyTask-specific.</p>
 <span class="normal">228</span>
 <span class="normal">229</span>
 <span class="normal">230</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ParameterConfig</span><span class="p">(</span><span class="n">ContainerBase</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration for parameters model.</span>
+<span class="w">    </span><span class="sd">"""Configuration for parameters model.</span>
 
 <span class="sd">    The Config class holds Pydantic configuration. A number of LUTE-specific</span>
 <span class="sd">    configuration has also been placed here.</span>
@@ -3631,7 +3631,7 @@ are passed as <code>--long=arg</code>. ThirdPartyTask-specific.</p>
 <span class="sd">        result_from_params (Optional[str]): None. Optionally used to define</span>
 <span class="sd">            results from information available in the model using a custom</span>
 <span class="sd">            validator. E.g. use a `outdir` and `filename` field to set</span>
-<span class="sd">            `result_from_params=f&quot;{outdir}/{filename}`, etc. Only used if</span>
+<span class="sd">            `result_from_params=f"{outdir}/{filename}`, etc. Only used if</span>
 <span class="sd">            `set_result==True`</span>
 
 <span class="sd">        result_summary (Optional[str]): None. Defines a result summary that</span>
@@ -3645,12 +3645,12 @@ are passed as <code>--long=arg</code>. ThirdPartyTask-specific.</p>
 <span class="sd">        -----------------------</span>
 <span class="sd">        ThirdPartyTask-specific:</span>
 
-<span class="sd">        short_flags_use_eq (bool): False. If True, &quot;short&quot; command-line args</span>
+<span class="sd">        short_flags_use_eq (bool): False. If True, "short" command-line args</span>
 <span class="sd">            are passed as `-x=arg`. ThirdPartyTask-specific.</span>
 
-<span class="sd">        long_flags_use_eq (bool): False. If True, &quot;long&quot; command-line args</span>
+<span class="sd">        long_flags_use_eq (bool): False. If True, "long" command-line args</span>
 <span class="sd">            are passed as `--long=arg`. ThirdPartyTask-specific.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -3772,7 +3772,7 @@ rendered template to.</p>
 <span class="normal">292</span>
 <span class="normal">293</span>
 <span class="normal">294</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">TemplateConfig</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parameters used for templating of third party configuration files.</span>
+<span class="w">    </span><span class="sd">"""Parameters used for templating of third party configuration files.</span>
 
 <span class="sd">    Attributes:</span>
 <span class="sd">        template_name (str): The name of the template to use. This template must</span>
@@ -3780,7 +3780,7 @@ rendered template to.</p>
 
 <span class="sd">        output_path (str): The FULL path, including filename to write the</span>
 <span class="sd">            rendered template to.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">_schema</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 
@@ -3869,7 +3869,7 @@ positional argument instantiation of the <code>params</code> Field.</p>
 <span class="normal">274</span>
 <span class="normal">275</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">TemplateParameters</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for representing parameters for third party configuration files.</span>
+<span class="w">    </span><span class="sd">"""Class for representing parameters for third party configuration files.</span>
 
 <span class="sd">    These parameters can represent arbitrary data types and are used in</span>
 <span class="sd">    conjunction with templates for modifying third party configuration files</span>
@@ -3879,9 +3879,9 @@ positional argument instantiation of the <code>params</code> Field.</p>
 <span class="sd">    is done by jinja using the complementary template.</span>
 <span class="sd">    All data is stored in the single model variable `params.`</span>
 
-<span class="sd">    The pydantic &quot;dataclass&quot; is used over the BaseModel/Settings to allow</span>
+<span class="sd">    The pydantic "dataclass" is used over the BaseModel/Settings to allow</span>
 <span class="sd">    positional argument instantiation of the `params` Field.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">params</span><span class="p">:</span> <span class="n">Any</span>
 </code></pre></div></td></tr></table></div>
@@ -4197,7 +4197,7 @@ a sub-class thereof), but this method recursively constructs all objects.</p>
 <span class="normal">498</span>
 <span class="normal">499</span>
 <span class="normal">500</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">construct_task_parameters</span><span class="p">(</span><span class="n">schema</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Construct a TaskParameters object from a schema and parameter values.</span>
+<span class="w">    </span><span class="sd">"""Construct a TaskParameters object from a schema and parameter values.</span>
 
 <span class="sd">    This function will create a new `TaskParameters` object from a pydantic schema</span>
 <span class="sd">    (usually retrieved from the database). This is a simplified container defined in</span>
@@ -4219,67 +4219,67 @@ a sub-class thereof), but this method recursively constructs all objects.</p>
 <span class="sd">    Returns:</span>
 <span class="sd">        new_obj (object): Usually this will be the `TaskParameters` instance (or a</span>
 <span class="sd">            a sub-class thereof), but this method recursively constructs all objects.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="c1"># Parameter may not be here but in properties</span>
     <span class="n">fields_for_params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">class_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span>
+    <span class="n">class_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">schema</span><span class="p">[</span><span class="s2">"title"</span><span class="p">]</span>
     <span class="n">param_config_obj_vals</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">if</span> <span class="s2">&quot;definitions&quot;</span> <span class="ow">in</span> <span class="n">schema</span> <span class="ow">and</span> <span class="s2">&quot;Config&quot;</span> <span class="ow">in</span> <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;definitions&quot;</span><span class="p">]:</span>
-        <span class="n">config_properties</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;definitions&quot;</span><span class="p">][</span><span class="s2">&quot;Config&quot;</span><span class="p">][</span>
-            <span class="s2">&quot;properties&quot;</span>
+    <span class="k">if</span> <span class="s2">"definitions"</span> <span class="ow">in</span> <span class="n">schema</span> <span class="ow">and</span> <span class="s2">"Config"</span> <span class="ow">in</span> <span class="n">schema</span><span class="p">[</span><span class="s2">"definitions"</span><span class="p">]:</span>
+        <span class="n">config_properties</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">schema</span><span class="p">[</span><span class="s2">"definitions"</span><span class="p">][</span><span class="s2">"Config"</span><span class="p">][</span>
+            <span class="s2">"properties"</span>
         <span class="p">]</span>
         <span class="k">for</span> <span class="n">config_prop</span> <span class="ow">in</span> <span class="n">config_properties</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">config_prop</span> <span class="ow">in</span> <span class="n">LUTE_PARAMETER_CONFIG_KEYS</span><span class="p">:</span>
                 <span class="c1"># We put the value of the Config option as a `const` field in the defn</span>
-                <span class="n">config_prop_val</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">config_properties</span><span class="p">[</span><span class="n">config_prop</span><span class="p">][</span><span class="s2">&quot;const&quot;</span><span class="p">]</span>
+                <span class="n">config_prop_val</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">config_properties</span><span class="p">[</span><span class="n">config_prop</span><span class="p">][</span><span class="s2">"const"</span><span class="p">]</span>
                 <span class="n">param_config_obj_vals</span><span class="p">[</span><span class="n">config_prop</span><span class="p">]</span> <span class="o">=</span> <span class="n">config_prop_val</span>
-        <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;definitions&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;Config&quot;</span><span class="p">)</span>
+        <span class="n">schema</span><span class="p">[</span><span class="s2">"definitions"</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"Config"</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">param_name</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">param_info</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="n">param_name</span><span class="p">]</span>
+            <span class="n">param_info</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">schema</span><span class="p">[</span><span class="s2">"properties"</span><span class="p">][</span><span class="n">param_name</span><span class="p">]</span>
         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">defn</span> <span class="ow">in</span> <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;definitions&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="k">if</span> <span class="n">param_name</span> <span class="ow">in</span> <span class="n">defn</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">]:</span>
-                    <span class="n">param_info</span> <span class="o">=</span> <span class="n">defn</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="n">param_name</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">defn</span> <span class="ow">in</span> <span class="n">schema</span><span class="p">[</span><span class="s2">"definitions"</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">param_name</span> <span class="ow">in</span> <span class="n">defn</span><span class="p">[</span><span class="s2">"properties"</span><span class="p">]:</span>
+                    <span class="n">param_info</span> <span class="o">=</span> <span class="n">defn</span><span class="p">[</span><span class="s2">"properties"</span><span class="p">][</span><span class="n">param_name</span><span class="p">]</span>
                     <span class="k">break</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cannot find </span><span class="si">{</span><span class="n">param_name</span><span class="si">}</span><span class="s2"> in schema&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Cannot find </span><span class="si">{</span><span class="n">param_name</span><span class="si">}</span><span class="s2"> in schema"</span><span class="p">)</span>
         <span class="n">working_value</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="n">param_name</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">working_value</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;TemplateParameters&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">working_value</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"TemplateParameters"</span><span class="p">:</span>
             <span class="n">working_value</span> <span class="o">=</span> <span class="n">working_value</span><span class="o">.</span><span class="n">params</span>
         <span class="k">if</span> <span class="n">working_value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">fields_for_params</span><span class="p">[</span><span class="n">param_name</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="k">continue</span>
-        <span class="k">if</span> <span class="s2">&quot;type&quot;</span> <span class="ow">in</span> <span class="n">param_info</span><span class="p">:</span>
-            <span class="n">type_info</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">param_info</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s2">"type"</span> <span class="ow">in</span> <span class="n">param_info</span><span class="p">:</span>
+            <span class="n">type_info</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">param_info</span><span class="p">[</span><span class="s2">"type"</span><span class="p">]</span>
             <span class="c1"># new_field: Field</span>
             <span class="n">new_field</span><span class="p">:</span> <span class="n">Any</span>
             <span class="n">cast_as</span><span class="p">:</span> <span class="nb">type</span>
-            <span class="k">if</span> <span class="n">type_info</span> <span class="o">==</span> <span class="s2">&quot;array&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">type_info</span> <span class="o">==</span> <span class="s2">"array"</span><span class="p">:</span>
                 <span class="n">individual_types</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span>
                     <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="o">...</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
-                <span class="p">]</span> <span class="o">=</span> <span class="n">param_info</span><span class="p">[</span><span class="s2">&quot;items&quot;</span><span class="p">]</span>
+                <span class="p">]</span> <span class="o">=</span> <span class="n">param_info</span><span class="p">[</span><span class="s2">"items"</span><span class="p">]</span>
                 <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">individual_types</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span>
                     <span class="n">individual_types</span><span class="p">,</span> <span class="nb">tuple</span>
                 <span class="p">):</span>
                     <span class="n">new_field</span> <span class="o">=</span> <span class="p">[]</span>
                     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">individual_types</span><span class="p">):</span>
-                        <span class="n">cast_as</span> <span class="o">=</span> <span class="n">BASE_SCHEMA_TYPE_MAP</span><span class="p">[</span><span class="n">t</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]]</span>
+                        <span class="n">cast_as</span> <span class="o">=</span> <span class="n">BASE_SCHEMA_TYPE_MAP</span><span class="p">[</span><span class="n">t</span><span class="p">[</span><span class="s2">"type"</span><span class="p">]]</span>
                         <span class="n">new_field</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cast_as</span><span class="p">(</span><span class="n">working_value</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">cast_as</span> <span class="o">=</span> <span class="n">BASE_SCHEMA_TYPE_MAP</span><span class="p">[</span><span class="n">individual_types</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]]</span>
+                    <span class="n">cast_as</span> <span class="o">=</span> <span class="n">BASE_SCHEMA_TYPE_MAP</span><span class="p">[</span><span class="n">individual_types</span><span class="p">[</span><span class="s2">"type"</span><span class="p">]]</span>
                     <span class="n">new_field</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">cast_as</span><span class="p">,</span> <span class="n">working_value</span><span class="p">))</span>
-            <span class="k">elif</span> <span class="n">type_info</span> <span class="o">==</span> <span class="s2">&quot;null&quot;</span><span class="p">:</span>
+            <span class="k">elif</span> <span class="n">type_info</span> <span class="o">==</span> <span class="s2">"null"</span><span class="p">:</span>
                 <span class="n">new_field</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="k">elif</span> <span class="n">type_info</span> <span class="o">==</span> <span class="s2">&quot;object&quot;</span><span class="p">:</span>
-                <span class="c1"># Ideally we shouldn&#39;t get here, but it can happen if there is a</span>
+            <span class="k">elif</span> <span class="n">type_info</span> <span class="o">==</span> <span class="s2">"object"</span><span class="p">:</span>
+                <span class="c1"># Ideally we shouldn't get here, but it can happen if there is a</span>
                 <span class="c1"># complex object passed as a parameter but no model defined.</span>
-                <span class="c1"># E.g. this will happen if a dict {&quot;a&quot;:1, &quot;b&quot;:2} is the parameter</span>
+                <span class="c1"># E.g. this will happen if a dict {"a":1, "b":2} is the parameter</span>
                 <span class="c1"># without having a separate BaseModel defined for it.</span>
                 <span class="c1"># We cannot type check, so we just hope json deserialization worked.</span>
                 <span class="n">new_field</span> <span class="o">=</span> <span class="n">working_value</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">cast_as</span> <span class="o">=</span> <span class="n">BASE_SCHEMA_TYPE_MAP</span><span class="p">[</span><span class="n">param_info</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]]</span>
+                <span class="n">cast_as</span> <span class="o">=</span> <span class="n">BASE_SCHEMA_TYPE_MAP</span><span class="p">[</span><span class="n">param_info</span><span class="p">[</span><span class="s2">"type"</span><span class="p">]]</span>
                 <span class="n">new_field</span> <span class="o">=</span> <span class="n">cast_as</span><span class="p">(</span><span class="n">working_value</span><span class="p">)</span>
             <span class="n">fields_for_params</span><span class="p">[</span><span class="n">param_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_field</span>
         <span class="k">else</span><span class="p">:</span>
@@ -4288,32 +4288,32 @@ a sub-class thereof), but this method recursively constructs all objects.</p>
             <span class="c1"># See also:</span>
             <span class="c1"># https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#data-types</span>
             <span class="c1"># Have to look up definitions</span>
-            <span class="k">if</span> <span class="s2">&quot;oneOf&quot;</span> <span class="ow">in</span> <span class="n">param_info</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">"oneOf"</span> <span class="ow">in</span> <span class="n">param_info</span><span class="p">:</span>
                 <span class="c1"># Case of Union[Obj1,Obj2,...]</span>
                 <span class="o">...</span>
-            <span class="k">elif</span> <span class="s2">&quot;allOf&quot;</span> <span class="ow">in</span> <span class="n">param_info</span><span class="p">:</span>
-                <span class="c1"># Will be a str like &quot;#/definitions/ClassName&quot;</span>
+            <span class="k">elif</span> <span class="s2">"allOf"</span> <span class="ow">in</span> <span class="n">param_info</span><span class="p">:</span>
+                <span class="c1"># Will be a str like "#/definitions/ClassName"</span>
                 <span class="n">sub_schema</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">schema</span>
-                <span class="n">ref</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">param_info</span><span class="p">[</span><span class="s2">&quot;allOf&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;$ref&quot;</span><span class="p">]</span>  <span class="c1"># .split(&quot;/&quot;)</span>
-                <span class="n">ref_parts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+                <span class="n">ref</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">param_info</span><span class="p">[</span><span class="s2">"allOf"</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">"$ref"</span><span class="p">]</span>  <span class="c1"># .split("/")</span>
+                <span class="n">ref_parts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span>
                 <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">ref_parts</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="n">part</span> <span class="o">==</span> <span class="s2">&quot;#&quot;</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">part</span> <span class="o">==</span> <span class="s2">"#"</span><span class="p">:</span>
                         <span class="k">continue</span>
                     <span class="k">else</span><span class="p">:</span>
                         <span class="n">sub_schema</span> <span class="o">=</span> <span class="n">sub_schema</span><span class="p">[</span><span class="n">part</span><span class="p">]</span>
                 <span class="n">fields_for_params</span><span class="p">[</span><span class="n">param_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">construct_task_parameters</span><span class="p">(</span>
                     <span class="n">sub_schema</span><span class="p">,</span> <span class="n">working_value</span>
                 <span class="p">)</span>
-            <span class="k">elif</span> <span class="s2">&quot;anyOf&quot;</span> <span class="ow">in</span> <span class="n">param_info</span><span class="p">:</span>
-                <span class="k">for</span> <span class="n">possibility</span> <span class="ow">in</span> <span class="n">param_info</span><span class="p">[</span><span class="s2">&quot;anyOf&quot;</span><span class="p">]:</span>
+            <span class="k">elif</span> <span class="s2">"anyOf"</span> <span class="ow">in</span> <span class="n">param_info</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">possibility</span> <span class="ow">in</span> <span class="n">param_info</span><span class="p">[</span><span class="s2">"anyOf"</span><span class="p">]:</span>
                     <span class="c1"># If we can successfully cast on the first type we will.</span>
-                    <span class="k">if</span> <span class="s2">&quot;type&quot;</span> <span class="ow">in</span> <span class="n">possibility</span><span class="p">:</span>
-                        <span class="n">type_info</span> <span class="o">=</span> <span class="n">possibility</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span>
-                        <span class="k">if</span> <span class="n">type_info</span> <span class="o">==</span> <span class="s2">&quot;array&quot;</span><span class="p">:</span>
-                            <span class="n">items_schema</span> <span class="o">=</span> <span class="n">possibility</span><span class="p">[</span><span class="s2">&quot;items&quot;</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="s2">"type"</span> <span class="ow">in</span> <span class="n">possibility</span><span class="p">:</span>
+                        <span class="n">type_info</span> <span class="o">=</span> <span class="n">possibility</span><span class="p">[</span><span class="s2">"type"</span><span class="p">]</span>
+                        <span class="k">if</span> <span class="n">type_info</span> <span class="o">==</span> <span class="s2">"array"</span><span class="p">:</span>
+                            <span class="n">items_schema</span> <span class="o">=</span> <span class="n">possibility</span><span class="p">[</span><span class="s2">"items"</span><span class="p">]</span>
                             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">items_schema</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
                                 <span class="n">items_schema</span> <span class="o">=</span> <span class="n">items_schema</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-                            <span class="n">cast_as</span> <span class="o">=</span> <span class="n">BASE_SCHEMA_TYPE_MAP</span><span class="p">[</span><span class="n">items_schema</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]]</span>
+                            <span class="n">cast_as</span> <span class="o">=</span> <span class="n">BASE_SCHEMA_TYPE_MAP</span><span class="p">[</span><span class="n">items_schema</span><span class="p">[</span><span class="s2">"type"</span><span class="p">]]</span>
                             <span class="k">try</span><span class="p">:</span>
                                 <span class="n">fields_for_params</span><span class="p">[</span><span class="n">param_name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
                                     <span class="nb">map</span><span class="p">(</span><span class="n">cast_as</span><span class="p">,</span> <span class="n">working_value</span><span class="p">)</span>
@@ -4322,17 +4322,17 @@ a sub-class thereof), but this method recursively constructs all objects.</p>
                             <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
                                 <span class="c1"># Maybe the next type will work</span>
                                 <span class="k">continue</span>
-                        <span class="k">elif</span> <span class="n">type_info</span> <span class="o">==</span> <span class="s2">&quot;null&quot;</span><span class="p">:</span>
+                        <span class="k">elif</span> <span class="n">type_info</span> <span class="o">==</span> <span class="s2">"null"</span><span class="p">:</span>
                             <span class="n">fields_for_params</span><span class="p">[</span><span class="n">param_name</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
                         <span class="k">else</span><span class="p">:</span>
                             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span>
-                                <span class="n">working_value</span><span class="p">,</span> <span class="n">BASE_SCHEMA_TYPE_MAP</span><span class="p">[</span><span class="n">possibility</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]]</span>
+                                <span class="n">working_value</span><span class="p">,</span> <span class="n">BASE_SCHEMA_TYPE_MAP</span><span class="p">[</span><span class="n">possibility</span><span class="p">[</span><span class="s2">"type"</span><span class="p">]]</span>
                             <span class="p">):</span>
                                 <span class="n">fields_for_params</span><span class="p">[</span><span class="n">param_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">working_value</span>
                                 <span class="k">break</span>
                             <span class="k">else</span><span class="p">:</span>
                                 <span class="k">try</span><span class="p">:</span>
-                                    <span class="n">cast_as</span> <span class="o">=</span> <span class="n">BASE_SCHEMA_TYPE_MAP</span><span class="p">[</span><span class="n">possibility</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]]</span>
+                                    <span class="n">cast_as</span> <span class="o">=</span> <span class="n">BASE_SCHEMA_TYPE_MAP</span><span class="p">[</span><span class="n">possibility</span><span class="p">[</span><span class="s2">"type"</span><span class="p">]]</span>
                                     <span class="n">fields_for_params</span><span class="p">[</span><span class="n">param_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">cast_as</span><span class="p">(</span>
                                         <span class="n">working_value</span>
                                     <span class="p">)</span>
@@ -4342,23 +4342,23 @@ a sub-class thereof), but this method recursively constructs all objects.</p>
                                     <span class="k">continue</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                        <span class="sa">f</span><span class="s2">&quot;Could not construct Field for parameter: </span><span class="si">{</span><span class="n">param_name</span><span class="si">}</span><span class="s2">&quot;</span>
+                        <span class="sa">f</span><span class="s2">"Could not construct Field for parameter: </span><span class="si">{</span><span class="n">param_name</span><span class="si">}</span><span class="s2">"</span>
                     <span class="p">)</span>
 
     <span class="n">obj_type</span><span class="p">:</span> <span class="nb">type</span>
-    <span class="k">if</span> <span class="n">class_name</span> <span class="o">==</span> <span class="s2">&quot;TaskParameters&quot;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">class_name</span> <span class="o">==</span> <span class="s2">"TaskParameters"</span><span class="p">:</span>
         <span class="n">obj_type</span> <span class="o">=</span> <span class="n">TaskParameters</span>
-    <span class="k">elif</span> <span class="n">class_name</span> <span class="o">==</span> <span class="s2">&quot;AnalysisHeader&quot;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">class_name</span> <span class="o">==</span> <span class="s2">"AnalysisHeader"</span><span class="p">:</span>
         <span class="n">obj_type</span> <span class="o">=</span> <span class="n">AnalysisHeader</span>
-    <span class="k">elif</span> <span class="n">class_name</span> <span class="o">==</span> <span class="s2">&quot;TemplateConfig&quot;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">class_name</span> <span class="o">==</span> <span class="s2">"TemplateConfig"</span><span class="p">:</span>
         <span class="n">obj_type</span> <span class="o">=</span> <span class="n">TemplateConfig</span>
-    <span class="k">elif</span> <span class="n">class_name</span> <span class="o">==</span> <span class="s2">&quot;TemplateParameters&quot;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">class_name</span> <span class="o">==</span> <span class="s2">"TemplateParameters"</span><span class="p">:</span>
         <span class="n">obj_type</span> <span class="o">=</span> <span class="n">TemplateParameters</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">base_classes</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">type</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">TaskParameters</span><span class="p">,)</span>
         <span class="n">class_attrs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">TaskParameters</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
         <span class="c1"># Remove bad fields</span>
-        <span class="n">ignore_keys</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;__weakref__&quot;</span><span class="p">,</span> <span class="s2">&quot;__dict__&quot;</span><span class="p">}</span>
+        <span class="n">ignore_keys</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"__weakref__"</span><span class="p">,</span> <span class="s2">"__dict__"</span><span class="p">}</span>
         <span class="n">safe_class_attrs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">class_attrs</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">ignore_keys</span><span class="p">:</span>
@@ -4370,17 +4370,17 @@ a sub-class thereof), but this method recursively constructs all objects.</p>
     <span class="k">if</span> <span class="n">param_config_obj_vals</span><span class="p">:</span>
         <span class="c1"># We only have a non-empty dict if this type has a Config attr</span>
         <span class="n">param_config</span> <span class="o">=</span> <span class="n">ParameterConfig</span><span class="p">(</span><span class="o">**</span><span class="n">param_config_obj_vals</span><span class="p">)</span>
-        <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">obj_type</span><span class="p">,</span> <span class="s2">&quot;Config&quot;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">obj_type</span><span class="p">,</span> <span class="s2">"Config"</span><span class="p">)</span>
         <span class="n">obj_type</span><span class="o">.</span><span class="n">Config</span> <span class="o">=</span> <span class="n">param_config</span>
 
     <span class="n">obj</span><span class="p">:</span> <span class="n">Any</span>
-    <span class="k">if</span> <span class="n">obj_type</span> <span class="o">==</span> <span class="s2">&quot;TemplateParameters&quot;</span><span class="p">:</span>
-        <span class="c1"># This is the only base class that doesn&#39;t retain a schema</span>
+    <span class="k">if</span> <span class="n">obj_type</span> <span class="o">==</span> <span class="s2">"TemplateParameters"</span><span class="p">:</span>
+        <span class="c1"># This is the only base class that doesn't retain a schema</span>
         <span class="n">obj</span> <span class="o">=</span> <span class="n">obj_type</span><span class="p">(</span><span class="o">**</span><span class="n">fields_for_params</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">obj</span> <span class="o">=</span> <span class="n">obj_type</span><span class="p">(</span><span class="n">schema</span><span class="p">,</span> <span class="o">**</span><span class="n">fields_for_params</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s2">&quot;_dict&quot;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s2">"_dict"</span><span class="p">):</span>
         <span class="c1"># This is messy - leftover from the object construction.</span>
         <span class="c1"># TODO: The above process should be cleaned up at some point.</span>
         <span class="k">del</span> <span class="n">obj</span><span class="o">.</span><span class="n">_dict</span>
@@ -4410,7 +4410,7 @@ a sub-class thereof), but this method recursively constructs all objects.</p>
 <span class="normal">108</span>
 <span class="normal">109</span>
 <span class="normal">110</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">handle_field_attrs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">""""""</span>
     <span class="k">for</span> <span class="n">param_name</span><span class="p">,</span> <span class="n">param_val</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param_name</span><span class="p">,</span> <span class="n">param_val</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_dict</span><span class="p">[</span><span class="n">param_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">param_val</span>
@@ -4483,7 +4483,7 @@ a sub-class thereof), but this method recursively constructs all objects.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

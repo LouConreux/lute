@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -1006,6 +1006,45 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Setting up branching">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#daq-type-branching-branch_key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DAQ type branching (!branch_&lt;key&gt;)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-type-branching-run_type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run-type branching (!run_type)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combining-both-mechanisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Combining both mechanisms
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -3278,6 +3317,45 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Setting up branching">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#daq-type-branching-branch_key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DAQ type branching (!branch_&lt;key&gt;)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-type-branching-run_type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run-type branching (!run_type)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combining-both-mechanisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Combining both mechanisms
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -3460,7 +3538,95 @@ Refer to https://github.com/slac-lcls/lute for more information.
 <li><code>!ALWAYS</code>: This job step will always run as soon as it is reached in the DAG.</li>
 </ul>
 <h3 id="setting-up-branching">Setting up branching</h3>
-<p>A number of branching conditions can be defined as well. Currently supported are branching based on LCLS1 vs LCLS2 DAQ, and the run type. These are defined by using the tag <code>!branch_daq2</code> (for example) and defining two dictionaries underneath it for the various cases (<code>daq2</code> or <code>daq1</code> in this example).</p>
+<p>Two independent branching mechanisms are available. They work differently and can be composed together.</p>
+<h4 id="daq-type-branching-branch_key">DAQ type branching (<code>!branch_&lt;key&gt;</code>)</h4>
+<p>This is a <strong>binary, exclusive</strong> branch — exactly one sub-tree is selected and the other is discarded. The tag name encodes the condition key (e.g. <code>!branch_daq2</code>), and the two sub-trees underneath it must be keyed by the condition name (<code>daq2</code>) and by any other name (conventionally <code>daq1</code>).</p>
+<pre><code class="language-yaml">- !branch_daq2
+  daq2:
+    task_name: SmallDataProducer2   # taken when running on LCLS-II DAQ
+    slurm_params: &quot;...&quot;
+    next: []
+  daq1:
+    task_name: SmallDataProducer    # taken when running on LCLS-I DAQ
+    slurm_params: &quot;...&quot;
+    next: []
+</code></pre>
+<p>The branch key is resolved at launch time from eLog metadata (<code>is_daq2</code>). Only <code>!branch_daq2</code> is currently populated; other <code>!branch_&lt;key&gt;</code> tags can be defined in YAML but require a matching entry in <code>branch_conditions</code> passed to the parser.</p>
+<blockquote>
+<p><strong>Only binary branching is supported.</strong> If more than two sub-trees appear under a <code>!branch_&lt;key&gt;</code> tag, a <code>RuntimeWarning</code> is emitted and one of the non-primary branches will be selected.</p>
+</blockquote>
+<h4 id="run-type-branching-run_type">Run-type branching (<code>!run_type</code>)</h4>
+<p>This is an <strong>additive</strong> branch — every key in the block is evaluated independently, and <strong>all matching branches fire in parallel</strong>. The run type string (e.g. <code>GEOM</code>, <code>DARK</code>, <code>DATA</code>, ...) is retrieved from the eLog at launch time.</p>
+<p>Two kinds of keys are supported:</p>
+<ul>
+<li><strong>Exact match</strong> (e.g. <code>DATA:</code>) — fires only when <code>run_type</code> equals the key exactly.</li>
+<li><strong>Negative match</strong> (e.g. <code>NOT_DARK:</code>) — fires when <code>run_type</code> is <em>not</em> the excluded type. The prefix <code>NOT_</code> is stripped to derive the excluded type.</li>
+</ul>
+<pre><code class="language-yaml">next:
+  - !run_type
+    DATA:
+      task_name: SmallDataXSSAnalyzer
+      slurm_params: &quot;...&quot;
+      next: []
+    GEOM:
+      task_name: BayFAIOptimizer
+      slurm_params: &quot;...&quot;
+      next: []
+    NOT_DARK:
+      task_name: BeamlineSummarizer
+      slurm_params: &quot;...&quot;
+      next: []
+</code></pre>
+<p>Because matching is additive, a single run can launch multiple downstream tasks simultaneously. Using the example above:</p>
+<table>
+<thead>
+<tr>
+<th><code>run_type</code></th>
+<th><code>DATA:</code></th>
+<th><code>GEOM:</code></th>
+<th><code>NOT_DARK:</code></th>
+<th>Tasks launched</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DATA</code></td>
+<td>✓</td>
+<td>✗</td>
+<td>✓</td>
+<td><code>SmallDataXSSAnalyzer</code> + <code>BeamlineSummarizer</code></td>
+</tr>
+<tr>
+<td><code>GEOM</code></td>
+<td>✗</td>
+<td>✓</td>
+<td>✓</td>
+<td><code>BayFAIOptimizer</code> + <code>BeamlineSummarizer</code></td>
+</tr>
+<tr>
+<td><code>DUMMY</code></td>
+<td>✗</td>
+<td>✗</td>
+<td>✓</td>
+<td><code>BeamlineSummarizer</code> only</td>
+</tr>
+<tr>
+<td><code>DARK</code></td>
+<td>✗</td>
+<td>✗</td>
+<td>✗</td>
+<td>nothing — warning is logged</td>
+</tr>
+</tbody>
+</table>
+<p>Key points:</p>
+<ul>
+<li><strong><code>NOT_</code> is additive, not exclusive-OR.</strong> A <code>GEOM</code> run matches both <code>GEOM:</code> and <code>NOT_DARK:</code> — both tasks are launched in parallel. If you want a task to run only for <code>GEOM</code> and not for other non-dark run types, use only the exact-match <code>GEOM:</code> key.</li>
+<li><strong>No match → no tasks, with a warning.</strong> If <code>run_type</code> matches no key in the block, no downstream tasks are scheduled and a warning is logged. There is no silent fallback to a default branch.</li>
+<li><strong>Unknown run type → no tasks, with a warning.</strong> If the eLog could not be reached or the run is not yet registered, <code>run_type</code> will be <code>None</code>. In this case all <code>!run_type</code> branches are skipped (a <code>NOT_</code> key would otherwise incorrectly match <code>None != "DARK"</code>).</li>
+</ul>
+<h4 id="combining-both-mechanisms">Combining both mechanisms</h4>
+<p>The two mechanisms compose naturally. <code>!branch_daq2</code> selects which variant of a task to run (e.g. <code>SmallDataProducer2</code> vs <code>SmallDataProducer</code>), and <code>!run_type</code> then selects which downstream analyses to launch based on the run type. See <code>run_type_branching.yaml</code> in the repository root for a complete worked example.</p>
 <h3 id="parameter-generation">Parameter generation</h3>
 <p>A not infrequent requirement is to rerun a workflow where some set of the <code>Task</code> parameters is modified each time. Parameter "sweeps" or generation can be configured from the DAG definition to simplify this process.</p>
 <p>A <code>!param_sweep</code> tag can be prepended before the relevant step in the DAG. When adding this tag, in addition to <code>task_name</code>, <code>slurm_params</code>, and <code>next</code> keys which must be defined for every step in the DAG, a <code>param_matrix</code> key is included. Under this key, the set of <code>Task</code> parameter values should be provided.</p>
@@ -3564,7 +3730,7 @@ Tester    - SocketTester_2   # Has 15 for num_arrays
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

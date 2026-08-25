@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -3848,7 +3848,7 @@ set of parameters.</p>
 <span class="normal">910</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_add_env_vars</span><span class="p">(</span>
     <span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">env_vars</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">execution_id</span><span class="p">:</span> <span class="nb">int</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add all environment variables into the `environment` table for `execution_id`.</span>
+<span class="w">    </span><span class="sd">"""Add all environment variables into the `environment` table for `execution_id`.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        con (sqlite3.Connection): A connection to the database.</span>
@@ -3857,23 +3857,23 @@ set of parameters.</p>
 
 <span class="sd">        execution_id (int): The row id in the `executions` table associated to this</span>
 <span class="sd">            set of parameters.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">selected_env_vars</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
         <span class="n">key</span><span class="p">:</span> <span class="n">env_vars</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">env_vars</span>
-        <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;LUTE_&quot;</span> <span class="ow">in</span> <span class="n">key</span> <span class="ow">and</span> <span class="s2">&quot;_TENV_&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">key</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;SLURM_&quot;</span> <span class="ow">in</span> <span class="n">key</span>
+        <span class="k">if</span> <span class="p">(</span><span class="s2">"LUTE_"</span> <span class="ow">in</span> <span class="n">key</span> <span class="ow">and</span> <span class="s2">"_TENV_"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">key</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">"SLURM_"</span> <span class="ow">in</span> <span class="n">key</span>
     <span class="p">}</span>
     <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">selected_env_vars</span><span class="p">:</span>
         <span class="n">entries</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;execution_id&quot;</span><span class="p">:</span> <span class="n">execution_id</span><span class="p">,</span>
-            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">key</span><span class="p">,</span>
-            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">selected_env_vars</span><span class="p">[</span><span class="n">key</span><span class="p">],</span>
+            <span class="s2">"execution_id"</span><span class="p">:</span> <span class="n">execution_id</span><span class="p">,</span>
+            <span class="s2">"name"</span><span class="p">:</span> <span class="n">key</span><span class="p">,</span>
+            <span class="s2">"value"</span><span class="p">:</span> <span class="n">selected_env_vars</span><span class="p">[</span><span class="n">key</span><span class="p">],</span>
         <span class="p">}</span>
-        <span class="c1"># We should allow redundant entries, so don&#39;t ignore.</span>
+        <span class="c1"># We should allow redundant entries, so don't ignore.</span>
         <span class="c1"># If we get a constraint-based error, something has gone wrong.</span>
-        <span class="c1"># We don&#39;t care about the returned id in this case.</span>
+        <span class="c1"># We don't care about the returned id in this case.</span>
         <span class="n">_insert_maybe_ignore_return_id</span><span class="p">(</span>
-            <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">&quot;environment&quot;</span><span class="p">,</span> <span class="n">entries</span><span class="o">=</span><span class="n">entries</span><span class="p">,</span> <span class="n">ignore</span><span class="o">=</span><span class="kc">False</span>
+            <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">"environment"</span><span class="p">,</span> <span class="n">entries</span><span class="o">=</span><span class="n">entries</span><span class="p">,</span> <span class="n">ignore</span><span class="o">=</span><span class="kc">False</span>
         <span class="p">)</span>
 
     <span class="k">return</span> <span class="kc">None</span>
@@ -4063,7 +4063,7 @@ to this set of parameters. It may be None if preparing a placeholder.</p>
     <span class="n">execution_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">return_ids</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add all parameters into the `parameters` table for `execution_id`.</span>
+<span class="w">    </span><span class="sd">"""Add all parameters into the `parameters` table for `execution_id`.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        con (sqlite3.Connection): A connection to the database.</span>
@@ -4074,25 +4074,25 @@ to this set of parameters. It may be None if preparing a placeholder.</p>
 <span class="sd">            to this set of parameters. It may be None if preparing a placeholder.</span>
 
 <span class="sd">        return_ids (bool): If True, return the set of ids for the rows inserted.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">schema</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">schema</span><span class="p">()</span>
     <span class="n">param_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">dict</span><span class="p">()</span>
     <span class="n">row_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="c1"># Note that `Config` is added to the schema, but doesn&#39;t appear in params.dict()</span>
+    <span class="c1"># Note that `Config` is added to the schema, but doesn't appear in params.dict()</span>
     <span class="c1"># This is intentional: It can be retrieved via schema validation, but as an</span>
-    <span class="c1"># internal set of options it doesn&#39;t reflect a &quot;true&quot; parameter</span>
+    <span class="c1"># internal set of options it doesn't reflect a "true" parameter</span>
     <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">param_dict</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">props</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="n">param</span><span class="p">]</span>
+            <span class="n">props</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">schema</span><span class="p">[</span><span class="s2">"properties"</span><span class="p">][</span><span class="n">param</span><span class="p">]</span>
         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
             <span class="c1"># It may not be defined at top level if nested</span>
-            <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">defn</span> <span class="ow">in</span> <span class="n">schema</span><span class="p">[</span><span class="s2">&quot;definitions&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="k">if</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">defn</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">]:</span>
-                    <span class="n">props</span> <span class="o">=</span> <span class="n">defn</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="n">param</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">defn</span> <span class="ow">in</span> <span class="n">schema</span><span class="p">[</span><span class="s2">"definitions"</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">defn</span><span class="p">[</span><span class="s2">"properties"</span><span class="p">]:</span>
+                    <span class="n">props</span> <span class="o">=</span> <span class="n">defn</span><span class="p">[</span><span class="s2">"properties"</span><span class="p">][</span><span class="n">param</span><span class="p">]</span>
                     <span class="k">break</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;Unable to parse parameter </span><span class="si">{</span><span class="n">param</span><span class="si">}</span><span class="s2"> properly! Metadata will be incorrect!&quot;</span>
+                    <span class="sa">f</span><span class="s2">"Unable to parse parameter </span><span class="si">{</span><span class="n">param</span><span class="si">}</span><span class="s2"> properly! Metadata will be incorrect!"</span>
                 <span class="p">)</span>
                 <span class="n">props</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">param_meta_entries</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
@@ -4100,31 +4100,31 @@ to this set of parameters. It may be None if preparing a placeholder.</p>
             <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">LUTE_PARAMETER_FIELD_ATTRS</span>
         <span class="p">}</span>
         <span class="n">param_meta_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">_insert_maybe_ignore_return_id</span><span class="p">(</span>
-            <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">&quot;param_meta&quot;</span><span class="p">,</span> <span class="n">entries</span><span class="o">=</span><span class="n">param_meta_entries</span><span class="p">,</span> <span class="n">ignore</span><span class="o">=</span><span class="kc">True</span>
+            <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">"param_meta"</span><span class="p">,</span> <span class="n">entries</span><span class="o">=</span><span class="n">param_meta_entries</span><span class="p">,</span> <span class="n">ignore</span><span class="o">=</span><span class="kc">True</span>
         <span class="p">)</span>
         <span class="n">raw_val</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">param_dict</span><span class="p">[</span><span class="n">param</span><span class="p">]</span>
         <span class="n">json_val</span><span class="p">:</span> <span class="nb">str</span>
         <span class="c1"># Type checking may not work because of the parameters hack to support different</span>
         <span class="c1"># environments -- so check the class name... not great...</span>
-        <span class="k">if</span> <span class="n">raw_val</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;TemplateParameters&quot;</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">raw_val</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="s2">&quot;dict&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">raw_val</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"TemplateParameters"</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">raw_val</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="s2">"dict"</span><span class="p">):</span>
                 <span class="n">json_val</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">raw_val</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">dict</span><span class="p">(),</span> <span class="n">default</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">json_val</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">raw_val</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">raw_val</span><span class="p">,</span> <span class="s2">&quot;dict&quot;</span><span class="p">):</span>
+        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">raw_val</span><span class="p">,</span> <span class="s2">"dict"</span><span class="p">):</span>
             <span class="n">json_val</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">raw_val</span><span class="o">.</span><span class="n">dict</span><span class="p">(),</span> <span class="n">default</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">json_val</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">raw_val</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
         <span class="n">param_entries</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;execution_id&quot;</span><span class="p">:</span> <span class="n">execution_id</span><span class="p">,</span>
-            <span class="s2">&quot;meta_id&quot;</span><span class="p">:</span> <span class="n">param_meta_id</span><span class="p">,</span>
-            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">param</span><span class="p">,</span>
-            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">json_val</span><span class="p">,</span>
+            <span class="s2">"execution_id"</span><span class="p">:</span> <span class="n">execution_id</span><span class="p">,</span>
+            <span class="s2">"meta_id"</span><span class="p">:</span> <span class="n">param_meta_id</span><span class="p">,</span>
+            <span class="s2">"name"</span><span class="p">:</span> <span class="n">param</span><span class="p">,</span>
+            <span class="s2">"value"</span><span class="p">:</span> <span class="n">json_val</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="c1"># We should allow redundant entries, so don&#39;t ignore.</span>
+        <span class="c1"># We should allow redundant entries, so don't ignore.</span>
         <span class="c1"># If we get a constraint-based error, something has gone wrong.</span>
         <span class="n">param_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">_insert_maybe_ignore_return_id</span><span class="p">(</span>
-            <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">&quot;parameters&quot;</span><span class="p">,</span> <span class="n">entries</span><span class="o">=</span><span class="n">param_entries</span><span class="p">,</span> <span class="n">ignore</span><span class="o">=</span><span class="kc">False</span>
+            <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">"parameters"</span><span class="p">,</span> <span class="n">entries</span><span class="o">=</span><span class="n">param_entries</span><span class="p">,</span> <span class="n">ignore</span><span class="o">=</span><span class="kc">False</span>
         <span class="p">)</span>
         <span class="k">if</span> <span class="n">return_ids</span><span class="p">:</span>
             <span class="n">row_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">param_id</span><span class="p">)</span>
@@ -4232,7 +4232,7 @@ combination of various entries in this table.</p>
 <span class="normal">420</span>
 <span class="normal">421</span>
 <span class="normal">422</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_create_base_schema_table</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Setup the `base_schema` table.</span>
+<span class="w">    </span><span class="sd">"""Setup the `base_schema` table.</span>
 
 <span class="sd">    The `base_schema` table holds information about the atomic schema that can</span>
 <span class="sd">    be implemented as `impl_schema` by a `Task`. The total `schema` may be a</span>
@@ -4250,17 +4250,17 @@ combination of various entries in this table.</p>
 
 <span class="sd">    Args:</span>
 <span class="sd">        con (sqlite3.Connection): A connection to the database.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">create_query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="sd">    """</span>
+    <span class="n">create_query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">    CREATE TABLE IF NOT EXISTS base_schema (</span>
 <span class="s2">        id INTEGER PRIMARY KEY,</span>
 <span class="s2">        name TEXT UNIQUE,</span>
 <span class="s2">        CHECK (id == 0 OR (id &gt; 0 AND (id &amp; (id - 1)) = 0))</span>
 <span class="s2">    );</span>
-<span class="s2">    &quot;&quot;&quot;</span>
+<span class="s2">    """</span>
 
     <span class="c1"># In addition to creation, we will add base_schema that we already know about</span>
-    <span class="n">insert_query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;INSERT OR IGNORE INTO base_schema (id, name) VALUES (?, ?)&quot;</span>
+    <span class="n">insert_query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"INSERT OR IGNORE INTO base_schema (id, name) VALUES (?, ?)"</span>
 
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
         <span class="n">con</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="n">PRAGMAS</span><span class="p">)</span>
@@ -4361,7 +4361,7 @@ combination of various entries in this table.</p>
 <span class="normal">295</span>
 <span class="normal">296</span>
 <span class="normal">297</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_create_communicators_table</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Setup the `communicators` table.</span>
+<span class="w">    </span><span class="sd">"""Setup the `communicators` table.</span>
 
 <span class="sd">    The `communicators` table holds information about the possible types of</span>
 <span class="sd">    `Communicator`s that may be used by `Executors` (and `Task`s) for IPC.</span>
@@ -4377,9 +4377,9 @@ combination of various entries in this table.</p>
 
 <span class="sd">    Args:</span>
 <span class="sd">        con (sqlite3.Connection): A connection to the database.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="c1"># id is a power of two</span>
-    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">    CREATE TABLE IF NOT EXISTS communicators (</span>
 <span class="s2">        id integer PRIMARY KEY,</span>
 <span class="s2">        name TEXT,</span>
@@ -4387,7 +4387,7 @@ combination of various entries in this table.</p>
 <span class="s2">        CHECK (id == 0 OR (id &gt; 0 AND (id &amp; (id - 1)) = 0)),</span>
 <span class="s2">        UNIQUE(name, description)</span>
 <span class="s2">    );</span>
-<span class="s2">    &quot;&quot;&quot;</span>
+<span class="s2">    """</span>
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
         <span class="n">con</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="n">PRAGMAS</span><span class="p">)</span>
         <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
@@ -4479,7 +4479,7 @@ shared between many executions of many <code>Task</code>s.</p>
 <span class="normal">112</span>
 <span class="normal">113</span>
 <span class="normal">114</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_create_config_table</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Setup the `config` table.</span>
+<span class="w">    </span><span class="sd">"""Setup the `config` table.</span>
 
 <span class="sd">    The `config` table holds information from the AnalysisHeader which is often</span>
 <span class="sd">    shared between many executions of many `Task`s.</span>
@@ -4491,8 +4491,8 @@ shared between many executions of many <code>Task</code>s.</p>
 
 <span class="sd">    Args:</span>
 <span class="sd">        con (sqlite3.Connection): A connection to the database.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="sd">    """</span>
+    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">    CREATE TABLE IF NOT EXISTS config (</span>
 <span class="s2">        id integer PRIMARY KEY,</span>
 <span class="s2">        title TEXT,</span>
@@ -4503,7 +4503,7 @@ shared between many executions of many <code>Task</code>s.</p>
 <span class="s2">        task_timeout real,</span>
 <span class="s2">        UNIQUE(title, experiment, run, date, lute_version, task_timeout)</span>
 <span class="s2">    );</span>
-<span class="s2">    &quot;&quot;&quot;</span>
+<span class="s2">    """</span>
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
         <span class="n">con</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="n">PRAGMAS</span><span class="p">)</span>
         <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
@@ -4593,7 +4593,7 @@ redundant entries.</p>
 <span class="normal">324</span>
 <span class="normal">325</span>
 <span class="normal">326</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_create_environment_table</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Setup the `environment` table.</span>
+<span class="w">    </span><span class="sd">"""Setup the `environment` table.</span>
 
 <span class="sd">    The `environment` table holds the environment variable/value pairs associated</span>
 <span class="sd">    to an execution. Each environment variable is entered into this table.</span>
@@ -4606,8 +4606,8 @@ redundant entries.</p>
 
 <span class="sd">    Args:</span>
 <span class="sd">        con (sqlite3.Connection): A connection to the database.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="sd">    """</span>
+    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">    CREATE TABLE IF NOT EXISTS environment (</span>
 <span class="s2">        id integer PRIMARY KEY,</span>
 <span class="s2">        execution_id INTEGER,</span>
@@ -4615,7 +4615,7 @@ redundant entries.</p>
 <span class="s2">        value TEXT,</span>
 <span class="s2">        FOREIGN KEY (execution_id) REFERENCES executions (id)</span>
 <span class="s2">    );</span>
-<span class="s2">    &quot;&quot;&quot;</span>
+<span class="s2">    """</span>
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
         <span class="n">con</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="n">PRAGMAS</span><span class="p">)</span>
         <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
@@ -4709,7 +4709,7 @@ redundant entries.</p>
 <span class="normal">81</span>
 <span class="normal">82</span>
 <span class="normal">83</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_create_executions_table</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Setup the `executions` table.</span>
+<span class="w">    </span><span class="sd">"""Setup the `executions` table.</span>
 
 <span class="sd">    The `executions` table holds pointers to all tables to describe the execution</span>
 <span class="sd">    each time a `Task` is run. A new row is added each time LUTE is run.</span>
@@ -4719,8 +4719,8 @@ redundant entries.</p>
 
 <span class="sd">    Args:</span>
 <span class="sd">        con (sqlite3.Connection): A connection to the database.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="sd">    """</span>
+    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">    CREATE TABLE IF NOT EXISTS executions (</span>
 <span class="s2">        id integer PRIMARY KEY,</span>
 <span class="s2">        task_id INTEGER,</span>
@@ -4737,7 +4737,7 @@ redundant entries.</p>
 <span class="s2">        FOREIGN KEY (config_id) REFERENCES config(id),</span>
 <span class="s2">        FOREIGN KEY (result_id) REFERENCES results(id)</span>
 <span class="s2">    );</span>
-<span class="s2">    &quot;&quot;&quot;</span>
+<span class="s2">    """</span>
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
         <span class="n">con</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="n">PRAGMAS</span><span class="p">)</span>
         <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
@@ -4830,7 +4830,7 @@ executions.</p>
 <span class="normal">262</span>
 <span class="normal">263</span>
 <span class="normal">264</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_create_executors_table</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Setup the `executors` table.</span>
+<span class="w">    </span><span class="sd">"""Setup the `executors` table.</span>
 
 <span class="sd">    The `executors` table holds information about the `Executor`s used for various</span>
 <span class="sd">    executions.</span>
@@ -4844,8 +4844,8 @@ executions.</p>
 
 <span class="sd">    Args:</span>
 <span class="sd">        con (sqlite3.Connection): A connection to the database.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="sd">    """</span>
+    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">    CREATE TABLE IF NOT EXISTS executors (</span>
 <span class="s2">        id integer PRIMARY KEY,</span>
 <span class="s2">        name TEXT,</span>
@@ -4853,7 +4853,7 @@ executions.</p>
 <span class="s2">        comm INTEGER,</span>
 <span class="s2">        UNIQUE(name, poll_interval, comm)</span>
 <span class="s2">    );</span>
-<span class="s2">    &quot;&quot;&quot;</span>
+<span class="s2">    """</span>
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
         <span class="n">con</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="n">PRAGMAS</span><span class="p">)</span>
         <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
@@ -4955,7 +4955,7 @@ re-validating a config file, or even having access to pydantic.</p>
 <span class="normal">232</span>
 <span class="normal">233</span>
 <span class="normal">234</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_create_param_meta_table</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Setup the `param_meta` table.</span>
+<span class="w">    </span><span class="sd">"""Setup the `param_meta` table.</span>
 
 <span class="sd">    The `param_meta` table holds meta-data attributes for the Field definitions</span>
 <span class="sd">    of various parameters (that in turn comprise a TaskParameters object). These</span>
@@ -4972,8 +4972,8 @@ re-validating a config file, or even having access to pydantic.</p>
 
 <span class="sd">    Args:</span>
 <span class="sd">        con (sqlite3.Connection): A connection to the database.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="sd">    """</span>
+    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">    CREATE TABLE IF NOT EXISTS param_meta (</span>
 <span class="s2">        id integer PRIMARY KEY,</span>
 <span class="s2">        rename_param TEXT NULL,</span>
@@ -4982,7 +4982,7 @@ re-validating a config file, or even having access to pydantic.</p>
 <span class="s2">        is_result INTEGER NULL,</span>
 <span class="s2">        UNIQUE(rename_param, description, flag_type, is_result)</span>
 <span class="s2">    );</span>
-<span class="s2">    &quot;&quot;&quot;</span>
+<span class="s2">    """</span>
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
         <span class="n">con</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="n">PRAGMAS</span><span class="p">)</span>
         <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
@@ -5085,7 +5085,7 @@ parameters do not need to also reference this table.</p>
 <span class="normal">198</span>
 <span class="normal">199</span>
 <span class="normal">200</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_create_parameter_types_table</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Setup the `parameter_types` table.</span>
+<span class="w">    </span><span class="sd">"""Setup the `parameter_types` table.</span>
 
 <span class="sd">    The `parameter_types` table holds the schema information of the TaskParameters</span>
 <span class="sd">    object associated to a specific execution in the `executions` table.</span>
@@ -5104,14 +5104,14 @@ parameters do not need to also reference this table.</p>
 
 <span class="sd">    Args:</span>
 <span class="sd">        con (sqlite3.Connection): A connection to the database.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="sd">    """</span>
+    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">    CREATE TABLE IF NOT EXISTS parameter_types (</span>
 <span class="s2">        id integer PRIMARY KEY,</span>
 <span class="s2">        type_name TEXT,</span>
 <span class="s2">        definition TEXT NOT NULL UNIQUE</span>
 <span class="s2">    );</span>
-<span class="s2">    &quot;&quot;&quot;</span>
+<span class="s2">    """</span>
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
         <span class="n">con</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="n">PRAGMAS</span><span class="p">)</span>
         <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
@@ -5204,7 +5204,7 @@ redundant entries.</p>
 <span class="normal">165</span>
 <span class="normal">166</span>
 <span class="normal">167</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_create_parameters_table</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Setup the `parameters` table.</span>
+<span class="w">    </span><span class="sd">"""Setup the `parameters` table.</span>
 
 <span class="sd">    The `parameters` table holds parameter/value combinations. It also contains</span>
 <span class="sd">    an `execution_id` which references the specific row in the `executions` table</span>
@@ -5217,8 +5217,8 @@ redundant entries.</p>
 
 <span class="sd">    Args:</span>
 <span class="sd">        con (sqlite3.Connection): A connection to the database.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="sd">    """</span>
+    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">    CREATE TABLE IF NOT EXISTS parameters (</span>
 <span class="s2">        id integer PRIMARY KEY,</span>
 <span class="s2">        execution_id INTEGER,</span>
@@ -5228,7 +5228,7 @@ redundant entries.</p>
 <span class="s2">        FOREIGN KEY (execution_id) REFERENCES executions (id),</span>
 <span class="s2">        FOREIGN KEY (meta_id) REFERENCES param_meta (id)</span>
 <span class="s2">    );</span>
-<span class="s2">    &quot;&quot;&quot;</span>
+<span class="s2">    """</span>
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
         <span class="n">con</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="n">PRAGMAS</span><span class="p">)</span>
         <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
@@ -5317,7 +5317,7 @@ redundant entries.</p>
 <span class="normal">354</span>
 <span class="normal">355</span>
 <span class="normal">356</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_create_results_table</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Setup the `results` table.</span>
+<span class="w">    </span><span class="sd">"""Setup the `results` table.</span>
 
 <span class="sd">    The `results` table holds information about the result of each execution.</span>
 
@@ -5327,8 +5327,8 @@ redundant entries.</p>
 
 <span class="sd">    Args:</span>
 <span class="sd">        con (sqlite3.Connection): A connection to the database.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="sd">    """</span>
+    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">    CREATE TABLE IF NOT EXISTS results (</span>
 <span class="s2">        id integer PRIMARY KEY,</span>
 <span class="s2">        schema_id INTEGER,</span>
@@ -5340,7 +5340,7 @@ redundant entries.</p>
 <span class="s2">        FOREIGN KEY (schema_id) REFERENCES schema (id),</span>
 <span class="s2">        UNIQUE(schema_id, payload, summary, status, valid_flag)</span>
 <span class="s2">    );</span>
-<span class="s2">    &quot;&quot;&quot;</span>
+<span class="s2">    """</span>
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
         <span class="n">con</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="n">PRAGMAS</span><span class="p">)</span>
         <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
@@ -5430,7 +5430,7 @@ may implement as part of its result.</p>
 <span class="normal">381</span>
 <span class="normal">382</span>
 <span class="normal">383</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_create_schema_table</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Setup the `schema` table.</span>
+<span class="w">    </span><span class="sd">"""Setup the `schema` table.</span>
 
 <span class="sd">    The `schema` table holds information about the `impl_schemas` that a Task</span>
 <span class="sd">    may implement as part of its result.</span>
@@ -5444,13 +5444,13 @@ may implement as part of its result.</p>
 
 <span class="sd">    Args:</span>
 <span class="sd">        con (sqlite3.Connection): A connection to the database.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="sd">    """</span>
+    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">    CREATE TABLE IF NOT EXISTS schema (</span>
 <span class="s2">        id INTEGER PRIMARY KEY,</span>
 <span class="s2">        schema INTEGER UNIQUE</span>
 <span class="s2">    );</span>
-<span class="s2">    &quot;&quot;&quot;</span>
+<span class="s2">    """</span>
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
         <span class="n">con</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="n">PRAGMAS</span><span class="p">)</span>
         <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
@@ -5541,7 +5541,7 @@ underlying <code>Task</code> code that was run for that specific <code>Task</cod
 <span class="normal">448</span>
 <span class="normal">449</span>
 <span class="normal">450</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_create_task_version_table</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Setup the `task_version` table.</span>
+<span class="w">    </span><span class="sd">"""Setup the `task_version` table.</span>
 
 <span class="sd">    The `task_version` table holds information about the specific version of the</span>
 <span class="sd">    underlying `Task` code that was run for that specific `Task`.</span>
@@ -5555,14 +5555,14 @@ underlying <code>Task</code> code that was run for that specific <code>Task</cod
 
 <span class="sd">    Args:</span>
 <span class="sd">        con (sqlite3.Connection): A connection to the database.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="sd">    """</span>
+    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">    CREATE TABLE IF NOT EXISTS task_version (</span>
 <span class="s2">        id INTEGER PRIMARY KEY,</span>
 <span class="s2">        version_specifier INTEGER,</span>
 <span class="s2">        version_info TEXT NOT NULL UNIQUE</span>
 <span class="s2">    );</span>
-<span class="s2">    &quot;&quot;&quot;</span>
+<span class="s2">    """</span>
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
         <span class="n">con</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="n">PRAGMAS</span><span class="p">)</span>
         <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
@@ -5642,7 +5642,7 @@ underlying <code>Task</code> code that was run for that specific <code>Task</cod
 <span class="normal">134</span>
 <span class="normal">135</span>
 <span class="normal">136</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_create_tasks_table</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Setup the `tasks` table.</span>
+<span class="w">    </span><span class="sd">"""Setup the `tasks` table.</span>
 
 <span class="sd">    The `tasks` table holds the names of `Task`s.</span>
 
@@ -5651,13 +5651,13 @@ underlying <code>Task</code> code that was run for that specific <code>Task</cod
 
 <span class="sd">    Args:</span>
 <span class="sd">        con (sqlite3.Connection): A connection to the database.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="sd">    """</span>
+    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">    CREATE TABLE IF NOT EXISTS tasks (</span>
 <span class="s2">        id integer PRIMARY KEY,</span>
 <span class="s2">        name TEXT UNIQUE</span>
 <span class="s2">    );</span>
-<span class="s2">    &quot;&quot;&quot;</span>
+<span class="s2">    """</span>
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
         <span class="n">con</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="n">PRAGMAS</span><span class="p">)</span>
         <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
@@ -5767,7 +5767,7 @@ Task that is run from a cloned git repository.</p>
 <span class="normal">491</span>
 <span class="normal">492</span>
 <span class="normal">493</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_create_version_specifiers_table</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Setup the `version_specifiers` table.</span>
+<span class="w">    </span><span class="sd">"""Setup the `version_specifiers` table.</span>
 
 <span class="sd">    The `version_specifiers` table holds information about how to understand the</span>
 <span class="sd">    version information for an execution. The enumerators defined here define a</span>
@@ -5787,18 +5787,18 @@ Task that is run from a cloned git repository.</p>
 
 <span class="sd">    Args:</span>
 <span class="sd">        con (sqlite3.Connection): A connection to the database.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">create_query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="sd">    """</span>
+    <span class="n">create_query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">    CREATE TABLE IF NOT EXISTS version_specifiers (</span>
 <span class="s2">        id INTEGER PRIMARY KEY,</span>
 <span class="s2">        name TEXT UNIQUE,</span>
 <span class="s2">        CHECK (id == 0 OR (id &gt; 0 AND (id &amp; (id - 1)) = 0))</span>
 <span class="s2">    );</span>
-<span class="s2">    &quot;&quot;&quot;</span>
+<span class="s2">    """</span>
 
     <span class="c1"># In addition to creation, we will add version specifiers that we already know about</span>
     <span class="n">insert_query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="s2">&quot;INSERT OR IGNORE INTO version_specifiers (id, name) VALUES (?, ?)&quot;</span>
+        <span class="s2">"INSERT OR IGNORE INTO version_specifiers (id, name) VALUES (?, ?)"</span>
     <span class="p">)</span>
 
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
@@ -6006,7 +6006,7 @@ inserted, or pre-existing.</p>
 <span class="normal">676</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_insert_maybe_ignore_return_id</span><span class="p">(</span>
     <span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">entries</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">ignore</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Insert entries into a table.</span>
+<span class="w">    </span><span class="sd">"""Insert entries into a table.</span>
 
 <span class="sd">    This function will try to insert a new row into the requested table. It may</span>
 <span class="sd">    ignore (depending on the value of the `ignore` argument) errors due to table</span>
@@ -6031,25 +6031,25 @@ inserted, or pre-existing.</p>
 <span class="sd">    Returns:</span>
 <span class="sd">        id (int): The id of the row matching `entries`. This will be either newly</span>
 <span class="sd">            inserted, or pre-existing.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">entries</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-    <span class="n">keys_clause</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;(</span><span class="si">{</span><span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span><span class="si">}</span><span class="s1">)&#39;</span>
-    <span class="n">values_clause</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;(</span><span class="si">{</span><span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;:</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">keys</span><span class="p">)</span><span class="si">}</span><span class="s1">)&#39;</span>
+    <span class="n">keys_clause</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'(</span><span class="si">{</span><span class="s2">","</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span><span class="si">}</span><span class="s1">)'</span>
+    <span class="n">values_clause</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'(</span><span class="si">{</span><span class="s2">","</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">":</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">keys</span><span class="p">)</span><span class="si">}</span><span class="s1">)'</span>
 
-    <span class="n">match_clause</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot; AND &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-        <span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">&quot; = :</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">if</span> <span class="n">val</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">&quot; IS NULL&#39;</span>
+    <span class="n">match_clause</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">" AND "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s1">'"</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">" = :</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">'</span> <span class="k">if</span> <span class="n">val</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="sa">f</span><span class="s1">'"</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">" IS NULL'</span>
         <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">entries</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
     <span class="p">)</span>
     <span class="n">insert_query</span><span class="p">:</span> <span class="nb">str</span>
     <span class="k">if</span> <span class="n">ignore</span><span class="p">:</span>
         <span class="n">insert_query</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="sa">f</span><span class="s1">&#39;INSERT OR IGNORE INTO &quot;</span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s1">&quot; </span><span class="si">{</span><span class="n">keys_clause</span><span class="si">}</span><span class="s1"> VALUES </span><span class="si">{</span><span class="n">values_clause</span><span class="si">}</span><span class="s1">&#39;</span>
+            <span class="sa">f</span><span class="s1">'INSERT OR IGNORE INTO "</span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s1">" </span><span class="si">{</span><span class="n">keys_clause</span><span class="si">}</span><span class="s1"> VALUES </span><span class="si">{</span><span class="n">values_clause</span><span class="si">}</span><span class="s1">'</span>
         <span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">insert_query</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;INSERT INTO &quot;</span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s1">&quot; </span><span class="si">{</span><span class="n">keys_clause</span><span class="si">}</span><span class="s1"> VALUES </span><span class="si">{</span><span class="n">values_clause</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="n">insert_query</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'INSERT INTO "</span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s1">" </span><span class="si">{</span><span class="n">keys_clause</span><span class="si">}</span><span class="s1"> VALUES </span><span class="si">{</span><span class="n">values_clause</span><span class="si">}</span><span class="s1">'</span>
 
     <span class="n">select_query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="sa">f</span><span class="s1">&#39;SELECT id FROM &quot;</span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s1">&quot; WHERE </span><span class="si">{</span><span class="n">match_clause</span><span class="si">}</span><span class="s1"> ORDER BY id DESC LIMIT 1&#39;</span>
+        <span class="sa">f</span><span class="s1">'SELECT id FROM "</span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s1">" WHERE </span><span class="si">{</span><span class="n">match_clause</span><span class="si">}</span><span class="s1"> ORDER BY id DESC LIMIT 1'</span>
     <span class="p">)</span>
 
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
@@ -6061,11 +6061,11 @@ inserted, or pre-existing.</p>
         <span class="n">row</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="n">row</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">table</span> <span class="o">==</span> <span class="s2">&quot;executions&quot;</span><span class="p">:</span>
-                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Selecting </span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2"> row: </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">table</span> <span class="o">==</span> <span class="s2">"executions"</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Selecting </span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2"> row: </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">DatabaseError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to insert or find a row for </span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">DatabaseError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Failed to insert or find a row for </span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -6245,7 +6245,7 @@ inserted, or pre-existing.</p>
 <span class="normal">743</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_insert_pow2_id_return_id</span><span class="p">(</span>
     <span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">entries</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Insert entries into a table with a power of 2 constraint on the id.</span>
+<span class="w">    </span><span class="sd">"""Insert entries into a table with a power of 2 constraint on the id.</span>
 
 <span class="sd">    This function will see if the entries already exist in the table. If not it</span>
 <span class="sd">    will calculate the next power of 2 id, and insert them.</span>
@@ -6261,13 +6261,13 @@ inserted, or pre-existing.</p>
 <span class="sd">    Returns:</span>
 <span class="sd">        id (int): The id of the row matching `entries`. This will be either newly</span>
 <span class="sd">            inserted, or pre-existing.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">keys</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">entries</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 
-    <span class="n">match_clause</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot; AND &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">&quot; = :</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">)</span>
-    <span class="n">select_query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;SELECT id FROM &quot;</span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s1">&quot; WHERE </span><span class="si">{</span><span class="n">match_clause</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="n">match_clause</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">" AND "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s1">'"</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">" = :</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">'</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">)</span>
+    <span class="n">select_query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'SELECT id FROM "</span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s1">" WHERE </span><span class="si">{</span><span class="n">match_clause</span><span class="si">}</span><span class="s1">'</span>
 
-    <span class="n">select_max_id_query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;SELECT MAX(id) FROM </span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">select_max_id_query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"SELECT MAX(id) FROM </span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2">"</span>
 
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
         <span class="n">con</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="n">PRAGMAS</span><span class="p">)</span>
@@ -6291,21 +6291,21 @@ inserted, or pre-existing.</p>
                     <span class="n">new_id</span> <span class="o">=</span> <span class="n">max_id</span> <span class="o">*</span> <span class="mi">2</span>
                 <span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">entries</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
                 <span class="c1"># Add id to keys/entries</span>
-                <span class="n">keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
-                <span class="n">entries</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_id</span>
+                <span class="n">keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"id"</span><span class="p">)</span>
+                <span class="n">entries</span><span class="p">[</span><span class="s2">"id"</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_id</span>
                 <span class="c1"># Reconstruct query</span>
-                <span class="n">keys_clause</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;(</span><span class="si">{</span><span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span><span class="si">}</span><span class="s1">)&#39;</span>
-                <span class="n">values_clause</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;(</span><span class="si">{</span><span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;:</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">keys</span><span class="p">)</span><span class="si">}</span><span class="s1">)&#39;</span>
+                <span class="n">keys_clause</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'(</span><span class="si">{</span><span class="s2">","</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span><span class="si">}</span><span class="s1">)'</span>
+                <span class="n">values_clause</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'(</span><span class="si">{</span><span class="s2">","</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">":</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">keys</span><span class="p">)</span><span class="si">}</span><span class="s1">)'</span>
                 <span class="n">insert_query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="p">(</span>
-                    <span class="sa">f</span><span class="s1">&#39;INSERT INTO &quot;</span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s1">&quot; </span><span class="si">{</span><span class="n">keys_clause</span><span class="si">}</span><span class="s1"> VALUES </span><span class="si">{</span><span class="n">values_clause</span><span class="si">}</span><span class="s1">&#39;</span>
+                    <span class="sa">f</span><span class="s1">'INSERT INTO "</span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s1">" </span><span class="si">{</span><span class="n">keys_clause</span><span class="si">}</span><span class="s1"> VALUES </span><span class="si">{</span><span class="n">values_clause</span><span class="si">}</span><span class="s1">'</span>
                 <span class="p">)</span>
                 <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">insert_query</span><span class="p">,</span> <span class="n">entries</span><span class="p">)</span>
-                <span class="c1"># Assuming successful, we don&#39;t need to query again since we specified id</span>
+                <span class="c1"># Assuming successful, we don't need to query again since we specified id</span>
                 <span class="c1"># Will throw error if there is some other issue</span>
                 <span class="k">return</span> <span class="n">new_id</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="n">DatabaseError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;Failed to insert or find a row (with ID = power of 2) for </span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2">.&quot;</span>
+                    <span class="sa">f</span><span class="s2">"Failed to insert or find a row (with ID = power of 2) for </span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2">."</span>
                 <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -6448,7 +6448,7 @@ inserted, or pre-existing.</p>
 <span class="normal">574</span>
 <span class="normal">575</span>
 <span class="normal">576</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_setup_triggers_and_indices</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Setup the trigger constraints and unique indices.</span>
+<span class="w">    </span><span class="sd">"""Setup the trigger constraints and unique indices.</span>
 
 <span class="sd">    This function sets up some additional triggers to implement constraints:</span>
 <span class="sd">    - Enforcing that the `executors.comm` column is a BITWISE OR of the entries</span>
@@ -6461,8 +6461,8 @@ inserted, or pre-existing.</p>
 
 <span class="sd">    Args:</span>
 <span class="sd">        con (sqlite3.Connection): A connection to the database.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="sd">    """</span>
+    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">    CREATE UNIQUE INDEX environment_index_0 ON environment (execution_id, name);</span>
 
 <span class="s2">    CREATE TRIGGER check_schema_update</span>
@@ -6471,7 +6471,7 @@ inserted, or pre-existing.</p>
 <span class="s2">        SELECT</span>
 <span class="s2">        CASE</span>
 <span class="s2">            WHEN NEW.schema &gt; (SELECT SUM(id) FROM base_schema)</span>
-<span class="s2">            THEN RAISE(ABORT, &#39;schema value exceeds total base_schema sum&#39;)</span>
+<span class="s2">            THEN RAISE(ABORT, 'schema value exceeds total base_schema sum')</span>
 <span class="s2">        END;</span>
 <span class="s2">    END;</span>
 
@@ -6481,7 +6481,7 @@ inserted, or pre-existing.</p>
 <span class="s2">        SELECT</span>
 <span class="s2">        CASE</span>
 <span class="s2">            WHEN NEW.schema &gt; (SELECT SUM(id) FROM base_schema)</span>
-<span class="s2">            THEN RAISE(ABORT, &#39;schema value exceeds total base_schema sum&#39;)</span>
+<span class="s2">            THEN RAISE(ABORT, 'schema value exceeds total base_schema sum')</span>
 <span class="s2">        END;</span>
 <span class="s2">    END;</span>
 
@@ -6491,7 +6491,7 @@ inserted, or pre-existing.</p>
 <span class="s2">        SELECT</span>
 <span class="s2">        CASE</span>
 <span class="s2">            WHEN NEW.version_specifier &gt; (SELECT SUM(id) FROM version_specifiers)</span>
-<span class="s2">            THEN RAISE(ABORT, &#39;version_specifier value exceeds total version_specifiers sum&#39;)</span>
+<span class="s2">            THEN RAISE(ABORT, 'version_specifier value exceeds total version_specifiers sum')</span>
 <span class="s2">        END;</span>
 <span class="s2">    END;</span>
 
@@ -6501,7 +6501,7 @@ inserted, or pre-existing.</p>
 <span class="s2">        SELECT</span>
 <span class="s2">        CASE</span>
 <span class="s2">            WHEN NEW.version_specifier &gt; (SELECT SUM(id) FROM version_specifiers)</span>
-<span class="s2">            THEN RAISE(ABORT, &#39;version_specifier value exceeds total version_specifiers sum&#39;)</span>
+<span class="s2">            THEN RAISE(ABORT, 'version_specifier value exceeds total version_specifiers sum')</span>
 <span class="s2">        END;</span>
 <span class="s2">    END;</span>
 
@@ -6511,7 +6511,7 @@ inserted, or pre-existing.</p>
 <span class="s2">        SELECT</span>
 <span class="s2">        CASE</span>
 <span class="s2">            WHEN NEW.comm &gt; (SELECT SUM(id) FROM communicators)</span>
-<span class="s2">            THEN RAISE(ABORT, &#39;comm value exceeds total communicators sum&#39;)</span>
+<span class="s2">            THEN RAISE(ABORT, 'comm value exceeds total communicators sum')</span>
 <span class="s2">        END;</span>
 <span class="s2">    END;</span>
 
@@ -6521,10 +6521,10 @@ inserted, or pre-existing.</p>
 <span class="s2">        SELECT</span>
 <span class="s2">        CASE</span>
 <span class="s2">            WHEN NEW.comm &gt; (SELECT SUM(id) FROM communicators)</span>
-<span class="s2">            THEN RAISE(ABORT, &#39;comm value exceeds total communicators sum&#39;)</span>
+<span class="s2">            THEN RAISE(ABORT, 'comm value exceeds total communicators sum')</span>
 <span class="s2">        END;</span>
 <span class="s2">    END;</span>
-<span class="s2">    &quot;&quot;&quot;</span>
+<span class="s2">    """</span>
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
         <span class="n">con</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="n">PRAGMAS</span><span class="p">)</span>
         <span class="n">con</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
@@ -6658,7 +6658,7 @@ key/value pairs to be inserted into <code>table</code>.</p>
 <span class="normal">771</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_update_row</span><span class="p">(</span>
     <span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">entries</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">row_id</span><span class="p">:</span> <span class="nb">int</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Update entries in a row of a table, given the row_id.</span>
+<span class="w">    </span><span class="sd">"""Update entries in a row of a table, given the row_id.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        con (sqlite3.Connection): A connection to the database.</span>
@@ -6669,14 +6669,14 @@ key/value pairs to be inserted into <code>table</code>.</p>
 <span class="sd">            key/value pairs to be inserted into `table`.</span>
 
 <span class="sd">        row_id (int): Row to update.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">set_clause</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-        <span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">&quot; = :</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">if</span> <span class="n">val</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">&quot; IS NULL&#39;</span>
+<span class="sd">    """</span>
+    <span class="n">set_clause</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s1">'"</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">" = :</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">'</span> <span class="k">if</span> <span class="n">val</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="sa">f</span><span class="s1">'"</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">" IS NULL'</span>
         <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">entries</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
     <span class="p">)</span>
-    <span class="n">where_clause</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;id = :id&quot;</span>
-    <span class="n">update_query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;UPDATE &quot;</span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s1">&quot; SET </span><span class="si">{</span><span class="n">set_clause</span><span class="si">}</span><span class="s1"> WHERE </span><span class="si">{</span><span class="n">where_clause</span><span class="si">}</span><span class="s1">&#39;</span>
-    <span class="n">entries</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">row_id</span>
+    <span class="n">where_clause</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"id = :id"</span>
+    <span class="n">update_query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'UPDATE "</span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s1">" SET </span><span class="si">{</span><span class="n">set_clause</span><span class="si">}</span><span class="s1"> WHERE </span><span class="si">{</span><span class="n">where_clause</span><span class="si">}</span><span class="s1">'</span>
+    <span class="n">entries</span><span class="p">[</span><span class="s2">"id"</span><span class="p">]</span> <span class="o">=</span> <span class="n">row_id</span>
 
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
         <span class="n">con</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="n">PRAGMAS</span><span class="p">)</span>
@@ -6879,7 +6879,7 @@ after Task completion.</p>
 <span class="normal">1127</span>
 <span class="normal">1128</span>
 <span class="normal">1129</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_execution</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">DescribedAnalysis</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Write an DescribedAnalysis object to the database.</span>
+<span class="w">    </span><span class="sd">"""Write an DescribedAnalysis object to the database.</span>
 
 <span class="sd">    This will unpack all the values from the object and distribute the entries</span>
 <span class="sd">    across all the various tables.</span>
@@ -6889,14 +6889,14 @@ after Task completion.</p>
 
 <span class="sd">        cfg (DescribedAnalysis): The DescribedAnalysis completed by the Executor</span>
 <span class="sd">            after Task completion.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">cfg</span><span class="o">.</span><span class="n">task_parameters</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span>
     <span class="n">entries</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="c1"># Task</span>
-    <span class="n">entries</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">task_result</span><span class="o">.</span><span class="n">task_name</span>
+    <span class="n">entries</span><span class="p">[</span><span class="s2">"name"</span><span class="p">]</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">task_result</span><span class="o">.</span><span class="n">task_name</span>
     <span class="n">task_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">_insert_maybe_ignore_return_id</span><span class="p">(</span>
-        <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">&quot;tasks&quot;</span><span class="p">,</span> <span class="n">entries</span><span class="o">=</span><span class="n">entries</span><span class="p">,</span> <span class="n">ignore</span><span class="o">=</span><span class="kc">True</span>
+        <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">"tasks"</span><span class="p">,</span> <span class="n">entries</span><span class="o">=</span><span class="n">entries</span><span class="p">,</span> <span class="n">ignore</span><span class="o">=</span><span class="kc">True</span>
     <span class="p">)</span>
     <span class="k">del</span> <span class="n">cfg</span><span class="o">.</span><span class="n">task_result</span><span class="o">.</span><span class="n">task_name</span>
     <span class="n">entries</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
@@ -6907,7 +6907,7 @@ after Task completion.</p>
     <span class="n">lute_config</span><span class="p">:</span> <span class="n">AnalysisHeader</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">task_parameters</span><span class="o">.</span><span class="n">lute_config</span>
     <span class="k">del</span> <span class="n">cfg</span><span class="o">.</span><span class="n">task_parameters</span><span class="o">.</span><span class="n">lute_config</span>
     <span class="n">config_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">_insert_maybe_ignore_return_id</span><span class="p">(</span>
-        <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">&quot;config&quot;</span><span class="p">,</span> <span class="n">entries</span><span class="o">=</span><span class="n">lute_config</span><span class="o">.</span><span class="n">dict</span><span class="p">(),</span> <span class="n">ignore</span><span class="o">=</span><span class="kc">True</span>
+        <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">"config"</span><span class="p">,</span> <span class="n">entries</span><span class="o">=</span><span class="n">lute_config</span><span class="o">.</span><span class="n">dict</span><span class="p">(),</span> <span class="n">ignore</span><span class="o">=</span><span class="kc">True</span>
     <span class="p">)</span>
 
     <span class="c1"># Task Version information</span>
@@ -6918,14 +6918,14 @@ after Task completion.</p>
     <span class="c1"># In those cases, the version recording at parameter validation would not work</span>
     <span class="c1"># since the Executor would not have run the tasklet yet</span>
     <span class="k">if</span> <span class="n">version_specifier</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">version_specifier</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">version_info</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">version_info</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="ow">or</span> <span class="n">version_info</span> <span class="o">==</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">version_info</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">version_info</span> <span class="o">==</span> <span class="s2">""</span> <span class="ow">or</span> <span class="n">version_info</span> <span class="o">==</span> <span class="s2">"</span><span class="si">{}</span><span class="s2">"</span><span class="p">:</span>
             <span class="kn">from</span><span class="w"> </span><span class="nn">lute.io.version_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">record_version</span>
 
             <span class="n">location</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span>
-                <span class="n">cfg</span><span class="o">.</span><span class="n">task_parameters</span><span class="o">.</span><span class="n">Config</span><span class="p">,</span> <span class="s2">&quot;version_location&quot;</span><span class="p">,</span> <span class="kc">None</span>
+                <span class="n">cfg</span><span class="o">.</span><span class="n">task_parameters</span><span class="o">.</span><span class="n">Config</span><span class="p">,</span> <span class="s2">"version_location"</span><span class="p">,</span> <span class="kc">None</span>
             <span class="p">)</span>
             <span class="n">diff_args</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span>
-                <span class="n">cfg</span><span class="o">.</span><span class="n">task_parameters</span><span class="o">.</span><span class="n">Config</span><span class="p">,</span> <span class="s2">&quot;version_diff_args&quot;</span><span class="p">,</span> <span class="kc">None</span>
+                <span class="n">cfg</span><span class="o">.</span><span class="n">task_parameters</span><span class="o">.</span><span class="n">Config</span><span class="p">,</span> <span class="s2">"version_diff_args"</span><span class="p">,</span> <span class="kc">None</span>
             <span class="p">)</span>
 
             <span class="n">new_version_info</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">record_version</span><span class="p">(</span>
@@ -6935,8 +6935,8 @@ after Task completion.</p>
             <span class="p">)</span>
 
             <span class="c1"># Store where version information was taken from</span>
-            <span class="n">new_version_info</span><span class="p">[</span><span class="s2">&quot;version-location&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">location</span><span class="p">)</span>
-            <span class="n">new_version_info</span><span class="p">[</span><span class="s2">&quot;version-diff-args&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">diff_args</span><span class="p">)</span>
+            <span class="n">new_version_info</span><span class="p">[</span><span class="s2">"version-location"</span><span class="p">]</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">location</span><span class="p">)</span>
+            <span class="n">new_version_info</span><span class="p">[</span><span class="s2">"version-diff-args"</span><span class="p">]</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">diff_args</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="n">new_version_info</span><span class="p">:</span>
                 <span class="n">version_info</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">new_version_info</span><span class="p">)</span>
@@ -6956,14 +6956,14 @@ after Task completion.</p>
     <span class="c1"># Results</span>
     <span class="n">task_result</span><span class="p">:</span> <span class="n">TaskResult</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">task_result</span>
     <span class="n">entries</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;schema_id&quot;</span><span class="p">:</span> <span class="n">schema_id</span><span class="p">,</span>
-        <span class="s2">&quot;payload&quot;</span><span class="p">:</span> <span class="n">task_result</span><span class="o">.</span><span class="n">payload</span><span class="p">,</span>
-        <span class="s2">&quot;summary&quot;</span><span class="p">:</span> <span class="n">task_result</span><span class="o">.</span><span class="n">summary</span><span class="p">,</span>
-        <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">task_result</span><span class="o">.</span><span class="n">task_status</span><span class="p">),</span>
-        <span class="s2">&quot;valid_flag&quot;</span><span class="p">:</span> <span class="n">valid_flag</span><span class="p">,</span>
+        <span class="s2">"schema_id"</span><span class="p">:</span> <span class="n">schema_id</span><span class="p">,</span>
+        <span class="s2">"payload"</span><span class="p">:</span> <span class="n">task_result</span><span class="o">.</span><span class="n">payload</span><span class="p">,</span>
+        <span class="s2">"summary"</span><span class="p">:</span> <span class="n">task_result</span><span class="o">.</span><span class="n">summary</span><span class="p">,</span>
+        <span class="s2">"status"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">task_result</span><span class="o">.</span><span class="n">task_status</span><span class="p">),</span>
+        <span class="s2">"valid_flag"</span><span class="p">:</span> <span class="n">valid_flag</span><span class="p">,</span>
     <span class="p">}</span>
     <span class="n">result_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">_insert_maybe_ignore_return_id</span><span class="p">(</span>
-        <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">&quot;results&quot;</span><span class="p">,</span> <span class="n">entries</span><span class="o">=</span><span class="n">entries</span><span class="p">,</span> <span class="n">ignore</span><span class="o">=</span><span class="kc">True</span>
+        <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">"results"</span><span class="p">,</span> <span class="n">entries</span><span class="o">=</span><span class="n">entries</span><span class="p">,</span> <span class="n">ignore</span><span class="o">=</span><span class="kc">True</span>
     <span class="p">)</span>
     <span class="n">entries</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 
@@ -6972,24 +6972,24 @@ after Task completion.</p>
     <span class="c1"># Include the parameter type definition.</span>
     <span class="c1">## Have sets in the schema so we will convert those with `default=list`</span>
     <span class="n">entries</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;type_name&quot;</span><span class="p">:</span> <span class="n">cfg</span><span class="o">.</span><span class="n">task_parameters</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
-        <span class="s2">&quot;definition&quot;</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">task_parameters</span><span class="o">.</span><span class="n">schema</span><span class="p">(),</span> <span class="n">default</span><span class="o">=</span><span class="nb">list</span><span class="p">),</span>
+        <span class="s2">"type_name"</span><span class="p">:</span> <span class="n">cfg</span><span class="o">.</span><span class="n">task_parameters</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+        <span class="s2">"definition"</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">task_parameters</span><span class="o">.</span><span class="n">schema</span><span class="p">(),</span> <span class="n">default</span><span class="o">=</span><span class="nb">list</span><span class="p">),</span>
     <span class="p">}</span>
     <span class="n">parameter_type_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">_insert_maybe_ignore_return_id</span><span class="p">(</span>
-        <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">&quot;parameter_types&quot;</span><span class="p">,</span> <span class="n">entries</span><span class="o">=</span><span class="n">entries</span><span class="p">,</span> <span class="n">ignore</span><span class="o">=</span><span class="kc">True</span>
+        <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">"parameter_types"</span><span class="p">,</span> <span class="n">entries</span><span class="o">=</span><span class="n">entries</span><span class="p">,</span> <span class="n">ignore</span><span class="o">=</span><span class="kc">True</span>
     <span class="p">)</span>
     <span class="n">entries</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 
     <span class="n">entries</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;task_id&quot;</span><span class="p">:</span> <span class="n">task_id</span><span class="p">,</span>
-        <span class="s2">&quot;task_version_id&quot;</span><span class="p">:</span> <span class="n">task_version_id</span><span class="p">,</span>
-        <span class="s2">&quot;parameter_type_id&quot;</span><span class="p">:</span> <span class="n">parameter_type_id</span><span class="p">,</span>
-        <span class="s2">&quot;executor_id&quot;</span><span class="p">:</span> <span class="n">executor_id</span><span class="p">,</span>
-        <span class="s2">&quot;config_id&quot;</span><span class="p">:</span> <span class="n">config_id</span><span class="p">,</span>
-        <span class="s2">&quot;result_id&quot;</span><span class="p">:</span> <span class="n">result_id</span><span class="p">,</span>
+        <span class="s2">"task_id"</span><span class="p">:</span> <span class="n">task_id</span><span class="p">,</span>
+        <span class="s2">"task_version_id"</span><span class="p">:</span> <span class="n">task_version_id</span><span class="p">,</span>
+        <span class="s2">"parameter_type_id"</span><span class="p">:</span> <span class="n">parameter_type_id</span><span class="p">,</span>
+        <span class="s2">"executor_id"</span><span class="p">:</span> <span class="n">executor_id</span><span class="p">,</span>
+        <span class="s2">"config_id"</span><span class="p">:</span> <span class="n">config_id</span><span class="p">,</span>
+        <span class="s2">"result_id"</span><span class="p">:</span> <span class="n">result_id</span><span class="p">,</span>
     <span class="p">}</span>
     <span class="n">execution_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">_insert_maybe_ignore_return_id</span><span class="p">(</span>
-        <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">&quot;executions&quot;</span><span class="p">,</span> <span class="n">entries</span><span class="o">=</span><span class="n">entries</span><span class="p">,</span> <span class="n">ignore</span><span class="o">=</span><span class="kc">False</span>
+        <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">"executions"</span><span class="p">,</span> <span class="n">entries</span><span class="o">=</span><span class="n">entries</span><span class="p">,</span> <span class="n">ignore</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">)</span>
 
     <span class="c1"># Add individual param/values and their param_meta</span>
@@ -7170,7 +7170,7 @@ layer should then call <code>update_execution</code> to fill in the rest of the 
 <span class="normal">1301</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_placeholder_execution</span><span class="p">(</span>
     <span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">TaskParameters</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RowIds</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Write a TaskParameters object to the database.</span>
+<span class="w">    </span><span class="sd">"""Write a TaskParameters object to the database.</span>
 
 <span class="sd">    This will unpack all the values from the object and distribute the entries</span>
 <span class="sd">    across all the various tables.</span>
@@ -7185,21 +7185,21 @@ layer should then call <code>update_execution</code> to fill in the rest of the 
 
 <span class="sd">    Returns:</span>
 <span class="sd">        row_ids (RowIds): The set of row ids for all entries that were inserted.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">params</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span>
     <span class="n">entries</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="c1"># Task</span>
-    <span class="n">entries</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">[:</span><span class="o">-</span><span class="mi">10</span><span class="p">]</span>
+    <span class="n">entries</span><span class="p">[</span><span class="s2">"name"</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">[:</span><span class="o">-</span><span class="mi">10</span><span class="p">]</span>
     <span class="n">task_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">_insert_maybe_ignore_return_id</span><span class="p">(</span>
-        <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">&quot;tasks&quot;</span><span class="p">,</span> <span class="n">entries</span><span class="o">=</span><span class="n">entries</span><span class="p">,</span> <span class="n">ignore</span><span class="o">=</span><span class="kc">True</span>
+        <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">"tasks"</span><span class="p">,</span> <span class="n">entries</span><span class="o">=</span><span class="n">entries</span><span class="p">,</span> <span class="n">ignore</span><span class="o">=</span><span class="kc">True</span>
     <span class="p">)</span>
     <span class="n">entries</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 
     <span class="c1"># Config</span>
     <span class="n">lute_config</span><span class="p">:</span> <span class="n">AnalysisHeader</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">lute_config</span>
     <span class="n">config_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">_insert_maybe_ignore_return_id</span><span class="p">(</span>
-        <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">&quot;config&quot;</span><span class="p">,</span> <span class="n">entries</span><span class="o">=</span><span class="n">lute_config</span><span class="o">.</span><span class="n">dict</span><span class="p">(),</span> <span class="n">ignore</span><span class="o">=</span><span class="kc">True</span>
+        <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">"config"</span><span class="p">,</span> <span class="n">entries</span><span class="o">=</span><span class="n">lute_config</span><span class="o">.</span><span class="n">dict</span><span class="p">(),</span> <span class="n">ignore</span><span class="o">=</span><span class="kc">True</span>
     <span class="p">)</span>
 
     <span class="c1"># Task Version information</span>
@@ -7212,11 +7212,11 @@ layer should then call <code>update_execution</code> to fill in the rest of the 
     <span class="c1"># Include the parameter type definition.</span>
     <span class="c1">## Have sets in the schema so we will convert those with `default=list`</span>
     <span class="n">entries</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;type_name&quot;</span><span class="p">:</span> <span class="n">params</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
-        <span class="s2">&quot;definition&quot;</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">schema</span><span class="p">(),</span> <span class="n">default</span><span class="o">=</span><span class="nb">list</span><span class="p">),</span>
+        <span class="s2">"type_name"</span><span class="p">:</span> <span class="n">params</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+        <span class="s2">"definition"</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">schema</span><span class="p">(),</span> <span class="n">default</span><span class="o">=</span><span class="nb">list</span><span class="p">),</span>
     <span class="p">}</span>
     <span class="n">parameter_type_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">_insert_maybe_ignore_return_id</span><span class="p">(</span>
-        <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">&quot;parameter_types&quot;</span><span class="p">,</span> <span class="n">entries</span><span class="o">=</span><span class="n">entries</span><span class="p">,</span> <span class="n">ignore</span><span class="o">=</span><span class="kc">True</span>
+        <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">"parameter_types"</span><span class="p">,</span> <span class="n">entries</span><span class="o">=</span><span class="n">entries</span><span class="p">,</span> <span class="n">ignore</span><span class="o">=</span><span class="kc">True</span>
     <span class="p">)</span>
     <span class="n">entries</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 
@@ -7227,11 +7227,11 @@ layer should then call <code>update_execution</code> to fill in the rest of the 
     <span class="n">parameter_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">_add_parameters</span><span class="p">(</span><span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">return_ids</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
     <span class="n">row_ids</span><span class="p">:</span> <span class="n">RowIds</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;task_id&quot;</span><span class="p">:</span> <span class="n">task_id</span><span class="p">,</span>
-        <span class="s2">&quot;task_version_id&quot;</span><span class="p">:</span> <span class="n">task_version_id</span><span class="p">,</span>
-        <span class="s2">&quot;parameter_type_id&quot;</span><span class="p">:</span> <span class="n">parameter_type_id</span><span class="p">,</span>
-        <span class="s2">&quot;config_id&quot;</span><span class="p">:</span> <span class="n">config_id</span><span class="p">,</span>
-        <span class="s2">&quot;parameter_ids&quot;</span><span class="p">:</span> <span class="n">parameter_ids</span><span class="p">,</span>
+        <span class="s2">"task_id"</span><span class="p">:</span> <span class="n">task_id</span><span class="p">,</span>
+        <span class="s2">"task_version_id"</span><span class="p">:</span> <span class="n">task_version_id</span><span class="p">,</span>
+        <span class="s2">"parameter_type_id"</span><span class="p">:</span> <span class="n">parameter_type_id</span><span class="p">,</span>
+        <span class="s2">"config_id"</span><span class="p">:</span> <span class="n">config_id</span><span class="p">,</span>
+        <span class="s2">"parameter_ids"</span><span class="p">:</span> <span class="n">parameter_ids</span><span class="p">,</span>
     <span class="p">}</span>
 
     <span class="k">return</span> <span class="n">row_ids</span>
@@ -7322,14 +7322,14 @@ layer should then call <code>update_execution</code> to fill in the rest of the 
 <span class="normal">609</span>
 <span class="normal">610</span>
 <span class="normal">611</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_tables</span><span class="p">(</span><span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Setup the full database.</span>
+<span class="w">    </span><span class="sd">"""Setup the full database.</span>
 
 <span class="sd">    See individual table function calls for more information</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        con (sqlite3.Connection): A connection to the database.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">does_table_exist</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="s2">&quot;executions&quot;</span><span class="p">):</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">does_table_exist</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="s2">"executions"</span><span class="p">):</span>
         <span class="k">return</span> <span class="kc">None</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">_create_tasks_table</span><span class="p">(</span><span class="n">con</span><span class="p">)</span>
@@ -7478,7 +7478,7 @@ An example of how to manipulate this data is in <code>utilities/src/dbview.py</c
 <span class="normal">1443</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">executions_summary</span><span class="p">(</span>
     <span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return some summary fields of all executions recorded.</span>
+<span class="w">    </span><span class="sd">"""Return some summary fields of all executions recorded.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        con (sqlite3.Connection): A connection to the database.</span>
@@ -7496,8 +7496,8 @@ An example of how to manipulate this data is in <code>utilities/src/dbview.py</c
 <span class="sd">                results.valid_flag,</span>
 <span class="sd">            ).</span>
 <span class="sd">            An example of how to manipulate this data is in `utilities/src/dbview.py`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">join_query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="sd">    """</span>
+    <span class="n">join_query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">        SELECT e.id, e.timestamp, t.name, r.summary, r.payload, r.status, r.valid_flag</span>
 <span class="s2">        FROM parameters p</span>
 <span class="s2">        JOIN executions e ON p.execution_id = e.id</span>
@@ -7505,7 +7505,7 @@ An example of how to manipulate this data is in <code>utilities/src/dbview.py</c
 <span class="s2">        JOIN results r ON e.result_id = r.id</span>
 <span class="s2">        JOIN tasks t ON e.task_id = t.id</span>
 <span class="s2">        ORDER BY e.timestamp ASC</span>
-<span class="s2">    &quot;&quot;&quot;</span>
+<span class="s2">    """</span>
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
         <span class="n">cur</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">join_query</span><span class="p">)</span>
         <span class="n">rows</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
@@ -7651,7 +7651,7 @@ NOTE: The paremeter_types.definition will be repeated in each row, but
 <span class="normal">1521</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_task_parameters_definition_and_params</span><span class="p">(</span>
     <span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">row_ids</span><span class="p">:</span> <span class="n">RowIds</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return parameters and their definition, given row IDs.</span>
+<span class="w">    </span><span class="sd">"""Return parameters and their definition, given row IDs.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        con (sqlite3.Connection): A connection to the database.</span>
@@ -7669,20 +7669,20 @@ NOTE: The paremeter_types.definition will be repeated in each row, but
 <span class="sd">            ).</span>
 <span class="sd">            NOTE: The paremeter_types.definition will be repeated in each row, but</span>
 <span class="sd">                  is identical.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
-    <span class="n">parameters_id_in_clause</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;?&quot;</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">row_ids</span><span class="p">[</span><span class="s2">&quot;parameter_ids&quot;</span><span class="p">])</span>
-    <span class="n">parameters_id_in_clause</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">parameters_id_in_clause</span><span class="si">}</span><span class="s2">)&quot;</span>
+    <span class="n">parameters_id_in_clause</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">"?"</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">row_ids</span><span class="p">[</span><span class="s2">"parameter_ids"</span><span class="p">])</span>
+    <span class="n">parameters_id_in_clause</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"(</span><span class="si">{</span><span class="n">parameters_id_in_clause</span><span class="si">}</span><span class="s2">)"</span>
 
-    <span class="n">join_query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+    <span class="n">join_query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"""</span>
 <span class="s2">        SELECT types.definition, p.name, p.value</span>
 <span class="s2">        FROM parameters p</span>
 <span class="s2">        JOIN parameter_types types ON types.id = ?</span>
 <span class="s2">        WHERE p.id IN </span><span class="si">{</span><span class="n">parameters_id_in_clause</span><span class="si">}</span>
-<span class="s2">    &quot;&quot;&quot;</span>
+<span class="s2">    """</span>
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
-        <span class="n">substitutions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">row_ids</span><span class="p">[</span><span class="s2">&quot;parameter_type_id&quot;</span><span class="p">]]</span>
-        <span class="n">substitutions</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">row_ids</span><span class="p">[</span><span class="s2">&quot;parameter_ids&quot;</span><span class="p">])</span>
+        <span class="n">substitutions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">row_ids</span><span class="p">[</span><span class="s2">"parameter_type_id"</span><span class="p">]]</span>
+        <span class="n">substitutions</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">row_ids</span><span class="p">[</span><span class="s2">"parameter_ids"</span><span class="p">])</span>
         <span class="n">cur</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">join_query</span><span class="p">,</span> <span class="n">substitutions</span><span class="p">)</span>
         <span class="n">rows</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">rows</span>
@@ -7945,7 +7945,7 @@ the Python object.</p>
     <span class="n">condition</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span>
     <span class="n">is_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Retrieve a specific value for a parameter subject to conditions.</span>
+<span class="w">    </span><span class="sd">"""Retrieve a specific value for a parameter subject to conditions.</span>
 
 <span class="sd">    If multiple parameter/value pairs match the provided conditions, this function</span>
 <span class="sd">    will return the latest entry.</span>
@@ -7959,7 +7959,7 @@ the Python object.</p>
 <span class="sd">            `is_result` is True.</span>
 
 <span class="sd">        condition (Dict[str, str]): A dictionary of conditions. Currently supports:</span>
-<span class="sd">            - valid_flag: 1/0 # Only include &quot;valid&quot; results.</span>
+<span class="sd">            - valid_flag: 1/0 # Only include "valid" results.</span>
 <span class="sd">            - run: XYZ # Only look at entries from this run. Otherwise, take the latest.</span>
 
 <span class="sd">        is_result (bool): If True, select the field from the results table instead</span>
@@ -7971,41 +7971,41 @@ the Python object.</p>
 <span class="sd">            None if nothing is found (or potentially if the value is None). Values</span>
 <span class="sd">            are stored serialized as json. This function deserializes and returns</span>
 <span class="sd">            the Python object.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">safe_condition</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">condition</span><span class="p">)</span>
 
-    <span class="n">safe_condition</span><span class="p">[</span><span class="s2">&quot;param&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">param_name</span>
-    <span class="n">safe_condition</span><span class="p">[</span><span class="s2">&quot;task&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">task_name</span>
+    <span class="n">safe_condition</span><span class="p">[</span><span class="s2">"param"</span><span class="p">]</span> <span class="o">=</span> <span class="n">param_name</span>
+    <span class="n">safe_condition</span><span class="p">[</span><span class="s2">"task"</span><span class="p">]</span> <span class="o">=</span> <span class="n">task_name</span>
 
     <span class="n">formatted_conditions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">safe_condition</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;valid_flag&quot;</span><span class="p">:</span>
-            <span class="n">formatted_conditions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;r.valid_flag = :valid_flag&quot;</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;run&quot;</span><span class="p">:</span>
-            <span class="n">formatted_conditions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;c.run = :run&quot;</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;param&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">"valid_flag"</span><span class="p">:</span>
+            <span class="n">formatted_conditions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"r.valid_flag = :valid_flag"</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">"run"</span><span class="p">:</span>
+            <span class="n">formatted_conditions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"c.run = :run"</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">"param"</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">is_result</span><span class="p">:</span>
-                <span class="n">formatted_conditions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;p.name = :param&quot;</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;task&quot;</span><span class="p">:</span>
-            <span class="n">formatted_conditions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;t.name = :task&quot;</span><span class="p">)</span>
+                <span class="n">formatted_conditions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"p.name = :param"</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">"task"</span><span class="p">:</span>
+            <span class="n">formatted_conditions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"t.name = :task"</span><span class="p">)</span>
 
     <span class="n">where_clause</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="sa">f</span><span class="s2">&quot;WHERE </span><span class="si">{</span><span class="s1">&#39; AND &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">formatted_conditions</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">formatted_conditions</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+        <span class="sa">f</span><span class="s2">"WHERE </span><span class="si">{</span><span class="s1">' AND '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">formatted_conditions</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span> <span class="k">if</span> <span class="n">formatted_conditions</span> <span class="k">else</span> <span class="s2">""</span>
     <span class="p">)</span>
 
     <span class="n">join_query</span><span class="p">:</span> <span class="nb">str</span>
     <span class="k">if</span> <span class="n">is_result</span><span class="p">:</span>
         <span class="n">result_keys</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="s2">&quot;schema_id&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;payload&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;summary&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;status&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;valid_flag&quot;</span><span class="p">,</span>
+            <span class="s2">"schema_id"</span><span class="p">,</span>
+            <span class="s2">"payload"</span><span class="p">,</span>
+            <span class="s2">"summary"</span><span class="p">,</span>
+            <span class="s2">"status"</span><span class="p">,</span>
+            <span class="s2">"valid_flag"</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="k">if</span> <span class="n">param_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">result_keys</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">DatabaseError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cannot search results table for </span><span class="si">{</span><span class="n">param_name</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">DatabaseError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Cannot search results table for </span><span class="si">{</span><span class="n">param_name</span><span class="si">}</span><span class="s2">!"</span><span class="p">)</span>
 
-        <span class="n">join_query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+        <span class="n">join_query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"""</span>
 <span class="s2">        SELECT r.</span><span class="si">{</span><span class="n">param_name</span><span class="si">}</span>
 <span class="s2">        FROM results r</span>
 <span class="s2">        JOIN executions e ON e.result_id = r.id</span>
@@ -8014,9 +8014,9 @@ the Python object.</p>
 <span class="s2">        </span><span class="si">{</span><span class="n">where_clause</span><span class="si">}</span>
 <span class="s2">        ORDER BY e.timestamp DESC</span>
 <span class="s2">        LIMIT 1</span>
-<span class="s2">        &quot;&quot;&quot;</span>
+<span class="s2">        """</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">join_query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+        <span class="n">join_query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"""</span>
 <span class="s2">        SELECT p.value</span>
 <span class="s2">        FROM parameters p</span>
 <span class="s2">        JOIN executions e ON p.execution_id = e.id</span>
@@ -8026,7 +8026,7 @@ the Python object.</p>
 <span class="s2">        </span><span class="si">{</span><span class="n">where_clause</span><span class="si">}</span>
 <span class="s2">        ORDER BY e.timestamp DESC</span>
 <span class="s2">        LIMIT 1</span>
-<span class="s2">        &quot;&quot;&quot;</span>
+<span class="s2">        """</span>
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
         <span class="n">con</span><span class="o">.</span><span class="n">executescript</span><span class="p">(</span><span class="n">PRAGMAS</span><span class="p">)</span>
 
@@ -8180,7 +8180,7 @@ An example of how to manipulate this data is in <code>utilities/src/dbview.py</c
 <span class="normal">1481</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">task_parameters_summary</span><span class="p">(</span>
     <span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return parameters for a specific task ordered by execution.</span>
+<span class="w">    </span><span class="sd">"""Return parameters for a specific task ordered by execution.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        con (sqlite3.Connection): A connection to the database.</span>
@@ -8198,8 +8198,8 @@ An example of how to manipulate this data is in <code>utilities/src/dbview.py</c
 <span class="sd">                parameters.value,</span>
 <span class="sd">            ).</span>
 <span class="sd">            An example of how to manipulate this data is in `utilities/src/dbview.py`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">join_query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="sd">    """</span>
+    <span class="n">join_query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">        SELECT e.id, e.timestamp, r.valid_flag, p.name, p.value</span>
 <span class="s2">        FROM parameters p</span>
 <span class="s2">        JOIN executions e ON p.execution_id = e.id</span>
@@ -8208,7 +8208,7 @@ An example of how to manipulate this data is in <code>utilities/src/dbview.py</c
 <span class="s2">        JOIN tasks t ON e.task_id = t.id</span>
 <span class="s2">        WHERE t.name = ?</span>
 <span class="s2">        ORDER BY e.timestamp ASC</span>
-<span class="s2">    &quot;&quot;&quot;</span>
+<span class="s2">    """</span>
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
         <span class="n">cur</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">join_query</span><span class="p">,</span> <span class="p">(</span><span class="n">task_name</span><span class="p">,))</span>
         <span class="n">rows</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
@@ -8404,7 +8404,7 @@ Task.</p>
 <span class="normal">1231</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">update_execution</span><span class="p">(</span>
     <span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">DescribedAnalysis</span><span class="p">,</span> <span class="n">row_ids</span><span class="p">:</span> <span class="n">RowIds</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Update all entries associated with an Execution.</span>
+<span class="w">    </span><span class="sd">"""Update all entries associated with an Execution.</span>
 
 <span class="sd">    This is intended to be called after completion of Task execution, when the</span>
 <span class="sd">    Task has previously populated a subset of required entries.</span>
@@ -8417,7 +8417,7 @@ Task.</p>
 
 <span class="sd">        row_ids (RowIds): A dictionary containing the entries previously added by the</span>
 <span class="sd">            Task.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">cfg</span><span class="o">.</span><span class="n">task_parameters</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span>
     <span class="n">entries</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
@@ -8433,14 +8433,14 @@ Task.</p>
     <span class="c1"># Results</span>
     <span class="n">task_result</span><span class="p">:</span> <span class="n">TaskResult</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">task_result</span>
     <span class="n">entries</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;schema_id&quot;</span><span class="p">:</span> <span class="n">schema_id</span><span class="p">,</span>
-        <span class="s2">&quot;payload&quot;</span><span class="p">:</span> <span class="n">task_result</span><span class="o">.</span><span class="n">payload</span><span class="p">,</span>
-        <span class="s2">&quot;summary&quot;</span><span class="p">:</span> <span class="n">task_result</span><span class="o">.</span><span class="n">summary</span><span class="p">,</span>
-        <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">task_result</span><span class="o">.</span><span class="n">task_status</span><span class="p">),</span>
-        <span class="s2">&quot;valid_flag&quot;</span><span class="p">:</span> <span class="n">valid_flag</span><span class="p">,</span>
+        <span class="s2">"schema_id"</span><span class="p">:</span> <span class="n">schema_id</span><span class="p">,</span>
+        <span class="s2">"payload"</span><span class="p">:</span> <span class="n">task_result</span><span class="o">.</span><span class="n">payload</span><span class="p">,</span>
+        <span class="s2">"summary"</span><span class="p">:</span> <span class="n">task_result</span><span class="o">.</span><span class="n">summary</span><span class="p">,</span>
+        <span class="s2">"status"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">task_result</span><span class="o">.</span><span class="n">task_status</span><span class="p">),</span>
+        <span class="s2">"valid_flag"</span><span class="p">:</span> <span class="n">valid_flag</span><span class="p">,</span>
     <span class="p">}</span>
     <span class="n">result_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">_insert_maybe_ignore_return_id</span><span class="p">(</span>
-        <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">&quot;results&quot;</span><span class="p">,</span> <span class="n">entries</span><span class="o">=</span><span class="n">entries</span><span class="p">,</span> <span class="n">ignore</span><span class="o">=</span><span class="kc">True</span>
+        <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">"results"</span><span class="p">,</span> <span class="n">entries</span><span class="o">=</span><span class="n">entries</span><span class="p">,</span> <span class="n">ignore</span><span class="o">=</span><span class="kc">True</span>
     <span class="p">)</span>
     <span class="n">entries</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 
@@ -8449,17 +8449,17 @@ Task.</p>
     <span class="c1"># since the Executor would not have run the tasklet yet</span>
     <span class="n">version_specifier</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">task_parameters</span><span class="o">.</span><span class="n">Config</span><span class="o">.</span><span class="n">version_specifier</span>
     <span class="n">task_version</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">task_parameters</span><span class="o">.</span><span class="n">Config</span><span class="o">.</span><span class="n">task_version</span>
-    <span class="n">task_version_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">row_ids</span><span class="p">[</span><span class="s2">&quot;task_version_id&quot;</span><span class="p">]</span>
+    <span class="n">task_version_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">row_ids</span><span class="p">[</span><span class="s2">"task_version_id"</span><span class="p">]</span>
 
     <span class="k">if</span> <span class="n">version_specifier</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">version_specifier</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">task_version</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">task_version</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="ow">or</span> <span class="n">task_version</span> <span class="o">==</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">task_version</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">task_version</span> <span class="o">==</span> <span class="s2">""</span> <span class="ow">or</span> <span class="n">task_version</span> <span class="o">==</span> <span class="s2">"</span><span class="si">{}</span><span class="s2">"</span><span class="p">:</span>
             <span class="kn">from</span><span class="w"> </span><span class="nn">lute.io.version_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">record_version</span>
 
             <span class="n">location</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span>
-                <span class="n">cfg</span><span class="o">.</span><span class="n">task_parameters</span><span class="o">.</span><span class="n">Config</span><span class="p">,</span> <span class="s2">&quot;version_location&quot;</span><span class="p">,</span> <span class="kc">None</span>
+                <span class="n">cfg</span><span class="o">.</span><span class="n">task_parameters</span><span class="o">.</span><span class="n">Config</span><span class="p">,</span> <span class="s2">"version_location"</span><span class="p">,</span> <span class="kc">None</span>
             <span class="p">)</span>
             <span class="n">diff_args</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span>
-                <span class="n">cfg</span><span class="o">.</span><span class="n">task_parameters</span><span class="o">.</span><span class="n">Config</span><span class="p">,</span> <span class="s2">&quot;version_diff_args&quot;</span><span class="p">,</span> <span class="kc">None</span>
+                <span class="n">cfg</span><span class="o">.</span><span class="n">task_parameters</span><span class="o">.</span><span class="n">Config</span><span class="p">,</span> <span class="s2">"version_diff_args"</span><span class="p">,</span> <span class="kc">None</span>
             <span class="p">)</span>
 
             <span class="n">new_version_info</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">record_version</span><span class="p">(</span>
@@ -8469,8 +8469,8 @@ Task.</p>
             <span class="p">)</span>
 
             <span class="c1"># Store where version information was taken from</span>
-            <span class="n">new_version_info</span><span class="p">[</span><span class="s2">&quot;version-location&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">location</span><span class="p">)</span>
-            <span class="n">new_version_info</span><span class="p">[</span><span class="s2">&quot;version-diff-args&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">diff_args</span><span class="p">)</span>
+            <span class="n">new_version_info</span><span class="p">[</span><span class="s2">"version-location"</span><span class="p">]</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">location</span><span class="p">)</span>
+            <span class="n">new_version_info</span><span class="p">[</span><span class="s2">"version-diff-args"</span><span class="p">]</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">diff_args</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="n">new_version_info</span><span class="p">:</span>
                 <span class="n">task_version_id</span> <span class="o">=</span> <span class="n">_add_version</span><span class="p">(</span>
@@ -8480,19 +8480,19 @@ Task.</p>
                 <span class="p">)</span>
 
     <span class="n">entries</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;task_id&quot;</span><span class="p">:</span> <span class="n">row_ids</span><span class="p">[</span><span class="s2">&quot;task_id&quot;</span><span class="p">],</span>
-        <span class="s2">&quot;task_version_id&quot;</span><span class="p">:</span> <span class="n">task_version_id</span><span class="p">,</span>
-        <span class="s2">&quot;parameter_type_id&quot;</span><span class="p">:</span> <span class="n">row_ids</span><span class="p">[</span><span class="s2">&quot;parameter_type_id&quot;</span><span class="p">],</span>
-        <span class="s2">&quot;executor_id&quot;</span><span class="p">:</span> <span class="n">executor_id</span><span class="p">,</span>
-        <span class="s2">&quot;config_id&quot;</span><span class="p">:</span> <span class="n">row_ids</span><span class="p">[</span><span class="s2">&quot;config_id&quot;</span><span class="p">],</span>
-        <span class="s2">&quot;result_id&quot;</span><span class="p">:</span> <span class="n">result_id</span><span class="p">,</span>  <span class="c1"># row_ids[&quot;result_id&quot;],</span>
+        <span class="s2">"task_id"</span><span class="p">:</span> <span class="n">row_ids</span><span class="p">[</span><span class="s2">"task_id"</span><span class="p">],</span>
+        <span class="s2">"task_version_id"</span><span class="p">:</span> <span class="n">task_version_id</span><span class="p">,</span>
+        <span class="s2">"parameter_type_id"</span><span class="p">:</span> <span class="n">row_ids</span><span class="p">[</span><span class="s2">"parameter_type_id"</span><span class="p">],</span>
+        <span class="s2">"executor_id"</span><span class="p">:</span> <span class="n">executor_id</span><span class="p">,</span>
+        <span class="s2">"config_id"</span><span class="p">:</span> <span class="n">row_ids</span><span class="p">[</span><span class="s2">"config_id"</span><span class="p">],</span>
+        <span class="s2">"result_id"</span><span class="p">:</span> <span class="n">result_id</span><span class="p">,</span>  <span class="c1"># row_ids["result_id"],</span>
     <span class="p">}</span>
     <span class="n">execution_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">_insert_maybe_ignore_return_id</span><span class="p">(</span>
-        <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">&quot;executions&quot;</span><span class="p">,</span> <span class="n">entries</span><span class="o">=</span><span class="n">entries</span><span class="p">,</span> <span class="n">ignore</span><span class="o">=</span><span class="kc">False</span>
+        <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">"executions"</span><span class="p">,</span> <span class="n">entries</span><span class="o">=</span><span class="n">entries</span><span class="p">,</span> <span class="n">ignore</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">)</span>
 
     <span class="n">_update_parameters</span><span class="p">(</span>
-        <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">param_ids</span><span class="o">=</span><span class="n">row_ids</span><span class="p">[</span><span class="s2">&quot;parameter_ids&quot;</span><span class="p">],</span> <span class="n">execution_id</span><span class="o">=</span><span class="n">execution_id</span>
+        <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">param_ids</span><span class="o">=</span><span class="n">row_ids</span><span class="p">[</span><span class="s2">"parameter_ids"</span><span class="p">],</span> <span class="n">execution_id</span><span class="o">=</span><span class="n">execution_id</span>
     <span class="p">)</span>
 
     <span class="c1"># Add all environment variable/values</span>
@@ -8570,7 +8570,7 @@ Task.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": [], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

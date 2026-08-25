@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -3249,65 +3249,65 @@ based on a powder image produced from acquiring a run of Ag Behenate.</p>
 <span class="normal">78</span>
 <span class="normal">79</span>
 <span class="normal">80</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">OptimizeAgBhGeometryExhaustiveParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;TaskParameter model for OptimizeAgBhGeometryExhaustive Task.</span>
+<span class="w">    </span><span class="sd">"""TaskParameter model for OptimizeAgBhGeometryExhaustive Task.</span>
 
 <span class="sd">    This Task does geometry optimization of detector distance and beam center</span>
 <span class="sd">    based on a powder image produced from acquiring a run of Ag Behenate.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
-    <span class="n">_find_smd_path</span> <span class="o">=</span> <span class="n">validate_smd_path</span><span class="p">(</span><span class="s2">&quot;powder&quot;</span><span class="p">)</span>
+    <span class="n">_find_smd_path</span> <span class="o">=</span> <span class="n">validate_smd_path</span><span class="p">(</span><span class="s2">"powder"</span><span class="p">)</span>
 
-    <span class="n">detname</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name of the detector to optimize geometry for.&quot;</span><span class="p">)</span>
+    <span class="n">detname</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">"Name of the detector to optimize geometry for."</span><span class="p">)</span>
 
     <span class="n">powder</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Path to the powder image, or file containing it.&quot;</span>
+        <span class="s2">""</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Path to the powder image, or file containing it."</span>
     <span class="p">)</span>
 
     <span class="n">geom_out_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Directory to write new geometry files to.&quot;</span>
+        <span class="s2">""</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Directory to write new geometry files to."</span>
     <span class="p">)</span>
 
     <span class="n">mask</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Path to a detector mask, or file containing it.&quot;</span>
+        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Path to a detector mask, or file containing it."</span>
     <span class="p">)</span>
 
-    <span class="n">n_peaks</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">n_peaks</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span>
 
     <span class="n">n_iterations</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="mi">5</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of optimization iterations. Per MPI rank.&quot;</span>
+        <span class="mi">5</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Number of optimization iterations. Per MPI rank."</span>
     <span class="p">)</span>
 
     <span class="n">threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="mf">1e6</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;Pixels in the powder image with an intensity above this threshold &quot;</span>
-            <span class="s2">&quot;are set to 0.&quot;</span>
+            <span class="s2">"Pixels in the powder image with an intensity above this threshold "</span>
+            <span class="s2">"are set to 0."</span>
         <span class="p">),</span>
     <span class="p">)</span>
 
     <span class="n">dx</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;Defines the search radius for beam center x position as offsets from &quot;</span>
-            <span class="s2">&quot;the image center. Format: (left, right, num_steps). In units of pixels.&quot;</span>
+            <span class="s2">"Defines the search radius for beam center x position as offsets from "</span>
+            <span class="s2">"the image center. Format: (left, right, num_steps). In units of pixels."</span>
         <span class="p">),</span>
     <span class="p">)</span>
 
     <span class="n">dy</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;Defines the search radius for beam center y position as offsets from &quot;</span>
-            <span class="s2">&quot;the image center. Format: (up, down, num_steps). In units of pixels.&quot;</span>
+            <span class="s2">"Defines the search radius for beam center y position as offsets from "</span>
+            <span class="s2">"the image center. Format: (up, down, num_steps). In units of pixels."</span>
         <span class="p">),</span>
     <span class="p">)</span>
 
     <span class="n">center_guess</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Provide an optional starting guess for the beam center.&quot;</span><span class="p">)</span>
+        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="p">(</span><span class="s2">"Provide an optional starting guess for the beam center."</span><span class="p">)</span>
     <span class="p">)</span>
 
     <span class="n">distance_guess</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Provide an optional starting guess for the detector distance (mm).&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Provide an optional starting guess for the detector distance (mm)."</span><span class="p">,</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
               </details>
@@ -3397,7 +3397,7 @@ based on a powder image produced from acquiring a run of Ag Behenate.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

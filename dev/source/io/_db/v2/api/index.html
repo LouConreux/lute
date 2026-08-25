@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -3418,7 +3418,7 @@ An example of how to manipulate this data is in <code>utilities/src/dbview.py</c
 <span class="normal">262</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_executions_summary</span><span class="p">(</span>
     <span class="n">db_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return some summary fields of all executions recorded.</span>
+<span class="w">    </span><span class="sd">"""Return some summary fields of all executions recorded.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        db_dir (str): Database location.</span>
@@ -3436,11 +3436,11 @@ An example of how to manipulate this data is in <code>utilities/src/dbview.py</c
 <span class="sd">                results.valid_flag,</span>
 <span class="sd">            ).</span>
 <span class="sd">            An example of how to manipulate this data is in `utilities/src/dbview.py`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">._sqlite</span><span class="w"> </span><span class="kn">import</span> <span class="n">executions_summary</span>
 
-    <span class="n">db_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">db_dir</span><span class="si">}</span><span class="s2">/lute.db&quot;</span>
+    <span class="n">db_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">db_dir</span><span class="si">}</span><span class="s2">/lute.db"</span>
     <span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">(</span><span class="n">db_path</span><span class="p">)</span>
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">executions_summary</span><span class="p">(</span><span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">)</span>
@@ -3584,7 +3584,7 @@ TaskParameters definition and the various parameters.</p>
     <span class="n">db_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">row_ids</span><span class="p">:</span> <span class="n">RowIds</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a TaskParameters definition, and the param/value pairs.</span>
+<span class="w">    </span><span class="sd">"""Return a TaskParameters definition, and the param/value pairs.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        db_dir (str): Database location.</span>
@@ -3596,11 +3596,11 @@ TaskParameters definition and the various parameters.</p>
 <span class="sd">        definition (Dict[str, Any]): The TaskParameters definition (JSON schema).</span>
 
 <span class="sd">        param_values (Dict[str, Any]): The parameter: value dictionary.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">._sqlite</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_task_parameters_definition_and_params</span>
 
-    <span class="n">db_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">db_dir</span><span class="si">}</span><span class="s2">/lute.db&quot;</span>
+    <span class="n">db_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">db_dir</span><span class="si">}</span><span class="s2">/lute.db"</span>
     <span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">(</span><span class="n">db_path</span><span class="p">)</span>
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
         <span class="n">rows</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">get_task_parameters_definition_and_params</span><span class="p">(</span>
@@ -3746,7 +3746,7 @@ An example of how to manipulate this data is in <code>utilities/src/dbview.py</c
 <span class="normal">293</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_task_parameters_summary</span><span class="p">(</span>
     <span class="n">db_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return parameters for a specific task ordered by execution.</span>
+<span class="w">    </span><span class="sd">"""Return parameters for a specific task ordered by execution.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        db_dir (str): Database location.</span>
@@ -3764,11 +3764,11 @@ An example of how to manipulate this data is in <code>utilities/src/dbview.py</c
 <span class="sd">                parameters.value,</span>
 <span class="sd">            ).</span>
 <span class="sd">            An example of how to manipulate this data is in `utilities/src/dbview.py`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">._sqlite</span><span class="w"> </span><span class="kn">import</span> <span class="n">task_parameters_summary</span>
 
-    <span class="n">db_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">db_dir</span><span class="si">}</span><span class="s2">/lute.db&quot;</span>
+    <span class="n">db_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">db_dir</span><span class="si">}</span><span class="s2">/lute.db"</span>
     <span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">(</span><span class="n">db_path</span><span class="p">)</span>
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">task_parameters_summary</span><span class="p">(</span><span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">task_name</span><span class="o">=</span><span class="n">task_name</span><span class="p">)</span>
@@ -3782,7 +3782,7 @@ An example of how to manipulate this data is in <code>utilities/src/dbview.py</c
 
 
 <h2 id="io._db.v2.api.read_latest_db_entry" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">read_latest_db_entry</span><span class="p">(</span><span class="n">db_dir</span><span class="p">,</span> <span class="n">task_name</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">valid_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">for_run</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;RUN&#39;</span><span class="p">))</span></code>
+            <code class="highlight language-python"><span class="n">read_latest_db_entry</span><span class="p">(</span><span class="n">db_dir</span><span class="p">,</span> <span class="n">task_name</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">valid_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">for_run</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">'RUN'</span><span class="p">))</span></code>
 
 </h2>
 
@@ -3980,9 +3980,9 @@ that can be found in the database. Returns None if nothing found.</p>
     <span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">param</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">valid_only</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="n">for_run</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;RUN&quot;</span><span class="p">),</span>
+    <span class="n">for_run</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"RUN"</span><span class="p">),</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read most recent value entered into the database for a Task parameter.</span>
+<span class="w">    </span><span class="sd">"""Read most recent value entered into the database for a Task parameter.</span>
 
 <span class="sd">    (Will be updated for schema compliance as well as Task name.)</span>
 
@@ -4003,25 +4003,25 @@ that can be found in the database. Returns None if nothing found.</p>
 <span class="sd">    Returns:</span>
 <span class="sd">        val (Any): The most recently entered value for `param` of `task_name`</span>
 <span class="sd">            that can be found in the database. Returns None if nothing found.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">._sqlite</span><span class="w"> </span><span class="kn">import</span> <span class="n">select_param_from_db</span>
 
-    <span class="n">db_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">db_dir</span><span class="si">}</span><span class="s2">/lute.db&quot;</span>
+    <span class="n">db_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">db_dir</span><span class="si">}</span><span class="s2">/lute.db"</span>
     <span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">(</span><span class="n">db_path</span><span class="p">)</span>
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">cond</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
             <span class="k">if</span> <span class="n">valid_only</span><span class="p">:</span>
-                <span class="n">cond</span><span class="p">[</span><span class="s2">&quot;valid_flag&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span>
+                <span class="n">cond</span><span class="p">[</span><span class="s2">"valid_flag"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"1"</span>
 
             <span class="k">if</span> <span class="n">for_run</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">cond</span><span class="p">[</span><span class="s2">&quot;run&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">for_run</span><span class="p">)</span>
+                <span class="n">cond</span><span class="p">[</span><span class="s2">"run"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">for_run</span><span class="p">)</span>
 
             <span class="n">new_param</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">param</span>
             <span class="n">is_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
-            <span class="k">if</span> <span class="s2">&quot;result.&quot;</span> <span class="ow">in</span> <span class="n">param</span><span class="p">:</span>
-                <span class="n">new_param</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">if</span> <span class="s2">"result."</span> <span class="ow">in</span> <span class="n">param</span><span class="p">:</span>
+                <span class="n">new_param</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"."</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
                 <span class="n">is_result</span> <span class="o">=</span> <span class="kc">True</span>
 
             <span class="k">return</span> <span class="n">select_param_from_db</span><span class="p">(</span>
@@ -4032,7 +4032,7 @@ that can be found in the database. Returns None if nothing found.</p>
                 <span class="n">is_result</span><span class="o">=</span><span class="n">is_result</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">OperationalError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cannot retrieve value </span><span class="si">{</span><span class="n">param</span><span class="si">}</span><span class="s2"> due to: </span><span class="si">{</span><span class="n">err</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Cannot retrieve value </span><span class="si">{</span><span class="n">param</span><span class="si">}</span><span class="s2"> due to: </span><span class="si">{</span><span class="n">err</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">None</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -4152,7 +4152,7 @@ after Task completion.</p>
 <span class="normal">96</span>
 <span class="normal">97</span>
 <span class="normal">98</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">record_analysis_db</span><span class="p">(</span><span class="n">cfg</span><span class="p">:</span> <span class="n">DescribedAnalysis</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Write an DescribedAnalysis object to the database.</span>
+<span class="w">    </span><span class="sd">"""Write an DescribedAnalysis object to the database.</span>
 
 <span class="sd">    The DescribedAnalysis object is maintained by the Executor and contains all</span>
 <span class="sd">    information necessary to fully describe a single `Task` execution. The</span>
@@ -4168,7 +4168,7 @@ after Task completion.</p>
 <span class="sd">    Args:</span>
 <span class="sd">        cfg (DescribedAnalysis): The DescribedAnalysis completed by the Executor</span>
 <span class="sd">            after Task completion.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">._sqlite</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_tables</span><span class="p">,</span> <span class="n">add_execution</span>
 
@@ -4176,20 +4176,20 @@ after Task completion.</p>
 
     <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">task_parameters</span><span class="p">,</span> <span class="n">TaskParameters</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">task_parameters</span><span class="p">,</span> <span class="s2">&quot;lute_config&quot;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">task_parameters</span><span class="p">,</span> <span class="s2">"lute_config"</span><span class="p">)</span>
         <span class="n">work_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">task_parameters</span><span class="o">.</span><span class="n">lute_config</span><span class="o">.</span><span class="n">work_dir</span>
     <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
             <span class="p">(</span>
-                <span class="s2">&quot;Unable to access TaskParameters object. Likely wasn&#39;t created. &quot;</span>
-                <span class="s2">&quot;Cannot store result.&quot;</span>
+                <span class="s2">"Unable to access TaskParameters object. Likely wasn't created. "</span>
+                <span class="s2">"Cannot store result."</span>
             <span class="p">)</span>
         <span class="p">)</span>
         <span class="k">return</span>
-    <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">task_parameters</span><span class="p">,</span> <span class="s2">&quot;lute_config&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">task_parameters</span><span class="p">,</span> <span class="s2">"lute_config"</span><span class="p">)</span>
     <span class="k">del</span> <span class="n">cfg</span><span class="o">.</span><span class="n">task_parameters</span><span class="o">.</span><span class="n">lute_config</span><span class="o">.</span><span class="n">work_dir</span>
 
-    <span class="n">db_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">/lute.db&quot;</span>
+    <span class="n">db_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">/lute.db"</span>
     <span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">(</span><span class="n">db_path</span><span class="p">)</span>
     <span class="n">create_tables</span><span class="p">(</span><span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">)</span>
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
@@ -4197,15 +4197,15 @@ after Task completion.</p>
             <span class="n">create_tables</span><span class="p">(</span><span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">)</span>
             <span class="n">add_execution</span><span class="p">(</span><span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">cfg</span><span class="o">=</span><span class="n">cfg</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">OperationalError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Database storage error: </span><span class="si">{</span><span class="n">err</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Database storage error: </span><span class="si">{</span><span class="n">err</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
     <span class="n">db_stat</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">stat_result</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="n">db_path</span><span class="p">)</span>
     <span class="n">db_perms</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="nb">oct</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">S_IMODE</span><span class="p">(</span><span class="n">db_stat</span><span class="o">.</span><span class="n">st_mode</span><span class="p">))</span>
-    <span class="k">if</span> <span class="n">db_perms</span> <span class="o">!=</span> <span class="s2">&quot;0o664&quot;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">db_perms</span> <span class="o">!=</span> <span class="s2">"0o664"</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">os</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="n">db_path</span><span class="p">,</span> <span class="mo">0o664</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Cannot setup permissions on database!&quot;</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"Cannot setup permissions on database!"</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -4313,7 +4313,7 @@ with all information which was excluded.</p>
 <span class="normal">148</span>
 <span class="normal">149</span>
 <span class="normal">150</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">record_parameters_db</span><span class="p">(</span><span class="n">params</span><span class="p">:</span> <span class="n">TaskParameters</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RowIds</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Write all tables that are possible using only the TaskParameters.</span>
+<span class="w">    </span><span class="sd">"""Write all tables that are possible using only the TaskParameters.</span>
 
 <span class="sd">    This function is intended to be called at the Task layer, prior to completing</span>
 <span class="sd">    execution. It allows saving state into the database.</span>
@@ -4323,7 +4323,7 @@ with all information which was excluded.</p>
 
 <span class="sd">    Args:</span>
 <span class="sd">        params (TaskParameters): The TaskParameters object - fully validated.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">._sqlite</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_tables</span><span class="p">,</span> <span class="n">add_placeholder_execution</span>
 
@@ -4331,20 +4331,20 @@ with all information which was excluded.</p>
 
     <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">TaskParameters</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="s2">&quot;lute_config&quot;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="s2">"lute_config"</span><span class="p">)</span>
         <span class="n">work_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">lute_config</span><span class="o">.</span><span class="n">work_dir</span>
     <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
             <span class="p">(</span>
-                <span class="s2">&quot;Unable to access TaskParameters object. Likely wasn&#39;t created. &quot;</span>
-                <span class="s2">&quot;Cannot store result.&quot;</span>
+                <span class="s2">"Unable to access TaskParameters object. Likely wasn't created. "</span>
+                <span class="s2">"Cannot store result."</span>
             <span class="p">)</span>
         <span class="p">)</span>
         <span class="k">return</span>
-    <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="s2">&quot;lute_config&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="s2">"lute_config"</span><span class="p">)</span>
     <span class="k">del</span> <span class="n">params</span><span class="o">.</span><span class="n">lute_config</span><span class="o">.</span><span class="n">work_dir</span>
 
-    <span class="n">db_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">/lute.db&quot;</span>
+    <span class="n">db_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">/lute.db"</span>
     <span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">(</span><span class="n">db_path</span><span class="p">)</span>
     <span class="n">create_tables</span><span class="p">(</span><span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">)</span>
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
@@ -4354,12 +4354,12 @@ with all information which was excluded.</p>
                 <span class="n">con</span><span class="o">=</span><span class="n">con</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span>
             <span class="p">)</span>
         <span class="k">except</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">OperationalError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Database storage error: </span><span class="si">{</span><span class="n">err</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Database storage error: </span><span class="si">{</span><span class="n">err</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
             <span class="n">row_ids</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">os</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="n">db_path</span><span class="p">,</span> <span class="mo">0o664</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Cannot setup permissions on database!&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">"Cannot setup permissions on database!"</span><span class="p">)</span>
     <span class="n">params</span><span class="o">.</span><span class="n">lute_config</span><span class="o">.</span><span class="n">work_dir</span> <span class="o">=</span> <span class="n">work_dir</span>
     <span class="k">return</span> <span class="n">row_ids</span>
 </code></pre></div></td></tr></table></div>
@@ -4431,7 +4431,7 @@ with all information which was excluded.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": [], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

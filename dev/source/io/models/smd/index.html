@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -3466,52 +3466,52 @@ scanned motors.</p>
 <span class="normal">791</span>
 <span class="normal">792</span>
 <span class="normal">793</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalyzeSmallDataXASParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;TaskParameter model for AnalyzeSmallDataXAS Task.</span>
+<span class="w">    </span><span class="sd">"""TaskParameter model for AnalyzeSmallDataXAS Task.</span>
 
 <span class="sd">    This Task does basic analysis of XAS data based on a SmallData HDF5 output</span>
 <span class="sd">    file. It calculates difference absorption and signal binned by various</span>
 <span class="sd">    scanned motors.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">class</span><span class="w"> </span><span class="nc">IntensityThresholds</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
         <span class="n">min_Iscat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="mf">10.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Minimum scattering intensity to use for filtering.&quot;</span>
+            <span class="mf">10.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Minimum scattering intensity to use for filtering."</span>
         <span class="p">)</span>
         <span class="n">min_ipm</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="mf">1000.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Minimum X-ray intensity to use for filtering.&quot;</span>
+            <span class="mf">1000.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Minimum X-ray intensity to use for filtering."</span>
         <span class="p">)</span>
 
-    <span class="n">_find_smd_path</span> <span class="o">=</span> <span class="n">validate_smd_path</span><span class="p">(</span><span class="s2">&quot;smd_path&quot;</span><span class="p">)</span>
+    <span class="n">_find_smd_path</span> <span class="o">=</span> <span class="n">validate_smd_path</span><span class="p">(</span><span class="s2">"smd_path"</span><span class="p">)</span>
 
     <span class="n">smd_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Path to the Small Data HDF5 file to analyze.&quot;</span>
+        <span class="s2">""</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Path to the Small Data HDF5 file to analyze."</span>
     <span class="p">)</span>
-    <span class="n">xas_detname</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name of the detector with absorption data.&quot;</span><span class="p">)</span>
+    <span class="n">xas_detname</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">"Name of the detector with absorption data."</span><span class="p">)</span>
     <span class="n">xss_detname</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name of the detector with scattering data, for normalization.&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Name of the detector with scattering data, for normalization."</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">ipm_var</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name of the IPM to use for X-Ray intensity filtering.&quot;</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Name of the IPM to use for X-Ray intensity filtering."</span>
     <span class="p">)</span>
     <span class="n">scan_var</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;Name of a scan variable or a list of scan variables to analyze. &quot;</span>
-            <span class="s2">&quot;E.g. lxt, lens_h, etc.&quot;</span>
+            <span class="s2">"Name of a scan variable or a list of scan variables to analyze. "</span>
+            <span class="s2">"E.g. lxt, lens_h, etc."</span>
         <span class="p">),</span>
     <span class="p">)</span>
-    <span class="n">ccm</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name of the PV for CCM position readback.&quot;</span><span class="p">)</span>
+    <span class="n">ccm</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">"Name of the PV for CCM position readback."</span><span class="p">)</span>
     <span class="n">ccm_set</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name of the PV for the setpoint of the CCM.&quot;</span>
+        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Name of the PV for the setpoint of the CCM."</span>
     <span class="p">)</span>
     <span class="n">intensity_thresholds</span><span class="p">:</span> <span class="n">IntensityThresholds</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="n">IntensityThresholds</span><span class="p">(</span><span class="n">min_Iscat</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">min_ipm</span><span class="o">=</span><span class="mf">1000.0</span><span class="p">),</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Intensity thresholds for XAS analysis.&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Intensity thresholds for XAS analysis."</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">element</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Element under investigation. Currently unused. For future EXAFS.&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Element under investigation. Currently unused. For future EXAFS."</span><span class="p">,</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
               </details>
@@ -3623,59 +3623,59 @@ scanned motors.</p>
 <span class="normal">848</span>
 <span class="normal">849</span>
 <span class="normal">850</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalyzeSmallDataXESParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;TaskParameter model for AnalyzeSmallDataXES Task.</span>
+<span class="w">    </span><span class="sd">"""TaskParameter model for AnalyzeSmallDataXES Task.</span>
 
 <span class="sd">    This Task does basic analysis of XES data based on a SmallData HDF5 output</span>
 <span class="sd">    file. It calculates difference emission and signal binned by various</span>
 <span class="sd">    scanned motors.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">class</span><span class="w"> </span><span class="nc">IntensityThresholds</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
         <span class="n">min_Iscat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="mf">10.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Minimum scattering intensity to use for filtering.&quot;</span>
+            <span class="mf">10.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Minimum scattering intensity to use for filtering."</span>
         <span class="p">)</span>
         <span class="n">min_ipm</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="mf">1000.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Minimum X-ray intensity to use for filtering.&quot;</span>
+            <span class="mf">1000.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Minimum X-ray intensity to use for filtering."</span>
         <span class="p">)</span>
 
-    <span class="n">_find_smd_path</span> <span class="o">=</span> <span class="n">validate_smd_path</span><span class="p">(</span><span class="s2">&quot;smd_path&quot;</span><span class="p">)</span>
+    <span class="n">_find_smd_path</span> <span class="o">=</span> <span class="n">validate_smd_path</span><span class="p">(</span><span class="s2">"smd_path"</span><span class="p">)</span>
 
     <span class="n">smd_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Path to the Small Data HDF5 file to analyze.&quot;</span>
+        <span class="s2">""</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Path to the Small Data HDF5 file to analyze."</span>
     <span class="p">)</span>
-    <span class="n">xes_detname</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name of the detector with absorption data.&quot;</span><span class="p">)</span>
+    <span class="n">xes_detname</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">"Name of the detector with absorption data."</span><span class="p">)</span>
     <span class="n">xss_detname</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name of the detector with scattering data, for normalization.&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Name of the detector with scattering data, for normalization."</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">ipm_var</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name of the IPM to use for X-Ray intensity filtering.&quot;</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Name of the IPM to use for X-Ray intensity filtering."</span>
     <span class="p">)</span>
     <span class="n">scan_var</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;Name of a scan variable or a list of scan variables to analyze. &quot;</span>
-            <span class="s2">&quot;E.g. lxt, lens_h, etc.&quot;</span>
+            <span class="s2">"Name of a scan variable or a list of scan variables to analyze. "</span>
+            <span class="s2">"E.g. lxt, lens_h, etc."</span>
         <span class="p">),</span>
     <span class="p">)</span>
     <span class="n">intensity_thresholds</span><span class="p">:</span> <span class="n">IntensityThresholds</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="n">IntensityThresholds</span><span class="p">(</span><span class="n">min_Iscat</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">min_ipm</span><span class="o">=</span><span class="mf">1000.0</span><span class="p">),</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Intensity thresholds for XES analysis.&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Intensity thresholds for XES analysis."</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">invert_xes_axes</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;Flip the projection axes depending on detector orientation. &quot;</span>
-            <span class="s2">&quot;Default is that projection along axis 1 is spectrum.&quot;</span>
+            <span class="s2">"Flip the projection axes depending on detector orientation. "</span>
+            <span class="s2">"Default is that projection along axis 1 is spectrum."</span>
         <span class="p">),</span>
     <span class="p">)</span>
     <span class="n">rot_angle</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Optionally rotate the ROIs by a small amount before projection.&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Optionally rotate the ROIs by a small amount before projection."</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="mi">0</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;If non-zero load ROIs in batches. Slower but may help OOM errors.&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"If non-zero load ROIs in batches. Slower but may help OOM errors."</span><span class="p">,</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
               </details>
@@ -3800,72 +3800,72 @@ scanned motors.</p>
 <span class="normal">741</span>
 <span class="normal">742</span>
 <span class="normal">743</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AnalyzeSmallDataXSSParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;TaskParameter model for AnalyzeSmallDataXSS Task.</span>
+<span class="w">    </span><span class="sd">"""TaskParameter model for AnalyzeSmallDataXSS Task.</span>
 
 <span class="sd">    This Task does basic analysis of XSS data based on a SmallData HDF5 output</span>
 <span class="sd">    file. It calculates difference scattering and signal binned by various</span>
 <span class="sd">    scanned motors.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">class</span><span class="w"> </span><span class="nc">IntensityThresholds</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
         <span class="n">min_Iscat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="n">default</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
-            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Minimum scattering intensity to use for filtering.&quot;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">"Minimum scattering intensity to use for filtering."</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">min_ipm</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="n">default</span><span class="o">=</span><span class="mf">1000.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Minimum X-ray intensity to use for filtering.&quot;</span>
+            <span class="n">default</span><span class="o">=</span><span class="mf">1000.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Minimum X-ray intensity to use for filtering."</span>
         <span class="p">)</span>
 
     <span class="k">class</span><span class="w"> </span><span class="nc">XSSProcessingParameters</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
         <span class="n">q_norm</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="n">default</span><span class="o">=</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">),</span>
-            <span class="n">description</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Q-range to use for normalization of scattering signal.&quot;</span><span class="p">),</span>
+            <span class="n">description</span><span class="o">=</span><span class="p">(</span><span class="s2">"Q-range to use for normalization of scattering signal."</span><span class="p">),</span>
         <span class="p">)</span>
         <span class="n">median_filter_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="n">default</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
-            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Size of median filter to apply to scattering profiles.&quot;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">"Size of median filter to apply to scattering profiles."</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">water_qs</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="n">default</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.93</span><span class="p">),</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Q-range for water peak.&quot;</span>
+            <span class="n">default</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.93</span><span class="p">),</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Q-range for water peak."</span>
         <span class="p">)</span>
         <span class="n">water_ratio</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="n">default</span><span class="o">=</span><span class="mf">1.25</span><span class="p">,</span>
-            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Ratio of water peak intensity between low and high Q to filter bad water shots.&quot;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">"Ratio of water peak intensity between low and high Q to filter bad water shots."</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">water_sigma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="n">default</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Standard deviation for filtering bad water shots.&quot;</span>
+            <span class="n">default</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Standard deviation for filtering bad water shots."</span>
         <span class="p">)</span>
         <span class="n">num_intensity_bins</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="n">default</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
-            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of bins for total intensity based subsampling.&quot;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">"Number of bins for total intensity based subsampling."</span><span class="p">,</span>
         <span class="p">)</span>
 
-    <span class="n">_find_smd_path</span> <span class="o">=</span> <span class="n">validate_smd_path</span><span class="p">(</span><span class="s2">&quot;smd_path&quot;</span><span class="p">)</span>
+    <span class="n">_find_smd_path</span> <span class="o">=</span> <span class="n">validate_smd_path</span><span class="p">(</span><span class="s2">"smd_path"</span><span class="p">)</span>
 
     <span class="n">smd_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Path to the Small Data HDF5 file to analyze.&quot;</span>
+        <span class="s2">""</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Path to the Small Data HDF5 file to analyze."</span>
     <span class="p">)</span>
     <span class="n">xss_detname</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name of the detector with scattering data.&quot;</span>
+        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Name of the detector with scattering data."</span>
     <span class="p">)</span>
     <span class="n">xss_event_codes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;List of event codes to use for XSS T-Jump analysis.&quot;</span>
+        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"List of event codes to use for XSS T-Jump analysis."</span>
     <span class="p">)</span>
     <span class="n">ipm_var</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name of the IPM to use for X-Ray intensity filtering.&quot;</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Name of the IPM to use for X-Ray intensity filtering."</span>
     <span class="p">)</span>
     <span class="n">scan_var</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;Name of a scan variable or a list of scan variables to analyze. &quot;</span>
-            <span class="s2">&quot;E.g. lxt, lens_h, etc.&quot;</span>
+            <span class="s2">"Name of a scan variable or a list of scan variables to analyze. "</span>
+            <span class="s2">"E.g. lxt, lens_h, etc."</span>
         <span class="p">),</span>
     <span class="p">)</span>
     <span class="n">intensity_thresholds</span><span class="p">:</span> <span class="n">IntensityThresholds</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">IntensityThresholds</span><span class="p">(),</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Intensity thresholds for XSS analysis.&quot;</span>
+        <span class="n">IntensityThresholds</span><span class="p">(),</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Intensity thresholds for XSS analysis."</span>
     <span class="p">)</span>
     <span class="n">xss_processing_parameters</span><span class="p">:</span> <span class="n">XSSProcessingParameters</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">XSSProcessingParameters</span><span class="p">(),</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Parameters for processing XSS data.&quot;</span>
+        <span class="n">XSSProcessingParameters</span><span class="p">(),</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Parameters for processing XSS data."</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
               </details>
@@ -4547,28 +4547,28 @@ scanned motors.</p>
 <span class="normal">671</span>
 <span class="normal">672</span>
 <span class="normal">673</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SubmitSMDParameters</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parameters for running smalldata to produce reduced HDF5 files.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Parameters for running smalldata to produce reduced HDF5 files."""</span>
 
     <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Identical to super-class Config but includes a result.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Identical to super-class Config but includes a result."""</span>
 
         <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Whether the Executor should mark a specified parameter as a result.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Whether the Executor should mark a specified parameter as a result."""</span>
 
-        <span class="n">result_from_params</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Defines a result from the parameters. Use a validator to do so.&quot;&quot;&quot;</span>
+        <span class="n">result_from_params</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">""</span>
+<span class="w">        </span><span class="sd">"""Defines a result from the parameters. Use a validator to do so."""</span>
 
         <span class="n">version_specifier</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">6</span>  <span class="c1"># 2 (git hash) | 4 (git diff) = 6</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Indicator of how to determine version information from the field below.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Indicator of how to determine version information from the field below."""</span>
 
         <span class="n">task_version</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Filled by LUTE IO infrastructure for us</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Task&#39;s version information. May be filled dynamically.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Task's version information. May be filled dynamically."""</span>
 
     <span class="k">class</span><span class="w"> </span><span class="nc">ProducerParameters</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
         <span class="k">class</span><span class="w"> </span><span class="nc">UserDetectorParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
             <span class="n">cmpars</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
                 <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                <span class="n">description</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+                <span class="n">description</span><span class="o">=</span><span class="s2">"""</span>
 <span class="s2">A 4-tuple describing if and how common-mode correction should be applied.</span>
 <span class="s2">  cmpars[0] - Algorithm number. Currently this is ignored.</span>
 <span class="s2">  cmpars[1] - Mode. A bitwise OR of directions to apply common-mode:</span>
@@ -4580,224 +4580,224 @@ scanned motors.</p>
 <span class="s2">  cmpars[2] - The maximum allowable correction (in keV). Correction applied for</span>
 <span class="s2">    that pixel if this value is exceeeded.</span>
 <span class="s2">  cmpars[3] - The minimum number of unmasked pixels required to use the correction.</span>
-<span class="s2">&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="s2">"""</span><span class="p">,</span>
             <span class="p">)</span>
 
         <span class="k">class</span><span class="w"> </span><span class="nc">IntgParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
             <span class="n">intg_main</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
                 <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-                    <span class="s2">&quot;The integrating detector to be passed to psana. &quot;</span>
-                    <span class="s2">&quot;Should be the SLOWEST integrating detector in the data.&quot;</span>
+                    <span class="s2">"The integrating detector to be passed to psana. "</span>
+                    <span class="s2">"Should be the SLOWEST integrating detector in the data."</span>
                 <span class="p">)</span>
             <span class="p">)</span>
             <span class="n">intg_addl</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
                 <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-                    <span class="s2">&quot;Additional detectors to be analyzed as integrating detectors. &quot;</span>
-                    <span class="s2">&quot;The readout frequency must be commensurate and in-phase with intg_main.&quot;</span>
+                    <span class="s2">"Additional detectors to be analyzed as integrating detectors. "</span>
+                    <span class="s2">"The readout frequency must be commensurate and in-phase with intg_main."</span>
                 <span class="p">)</span>
             <span class="p">)</span>
 
         <span class="k">class</span><span class="w"> </span><span class="nc">ROIParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
             <span class="n">ROI</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-                <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Definition of ROIs, can define multiple.&quot;</span>
+                <span class="n">description</span><span class="o">=</span><span class="s2">"Definition of ROIs, can define multiple."</span>
             <span class="p">)</span>
 
             <span class="n">writeArea</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-                <span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Whether to write out the area image of the ROI.&quot;</span>
+                <span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Whether to write out the area image of the ROI."</span>
             <span class="p">)</span>
 
             <span class="n">thresADU</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-                <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Optional threshold on ADU.&quot;</span>
+                <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Optional threshold on ADU."</span>
             <span class="p">)</span>
 
-            <span class="n">calcPars</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="p">)</span>
+            <span class="n">calcPars</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"..."</span><span class="p">)</span>
 
         <span class="k">class</span><span class="w"> </span><span class="nc">AzIntParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-            <span class="n">eBeam</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Beam energy in keV.&quot;</span><span class="p">)</span>
+            <span class="n">eBeam</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">"Beam energy in keV."</span><span class="p">)</span>
 
-            <span class="n">center</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Beam center in micrometers&quot;</span><span class="p">)</span>
+            <span class="n">center</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">"Beam center in micrometers"</span><span class="p">)</span>
 
-            <span class="n">dis_to_sam</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Detector distance in millimeters.&quot;</span><span class="p">)</span>
+            <span class="n">dis_to_sam</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">"Detector distance in millimeters."</span><span class="p">)</span>
 
-            <span class="n">tx</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Tilt in x, degrees&quot;</span><span class="p">)</span>
+            <span class="n">tx</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Tilt in x, degrees"</span><span class="p">)</span>
 
-            <span class="n">ty</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Tilt in y, degress&quot;</span><span class="p">)</span>
+            <span class="n">ty</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Tilt in y, degress"</span><span class="p">)</span>
 
-            <span class="n">ADU_per_Photon</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;ADU per photon.&quot;</span><span class="p">)</span>
+            <span class="n">ADU_per_Photon</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"ADU per photon."</span><span class="p">)</span>
 
-            <span class="n">phiBins</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of phi bins.&quot;</span><span class="p">)</span>
+            <span class="n">phiBins</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Number of phi bins."</span><span class="p">)</span>
 
-            <span class="n">qbin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mf">5e-3</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Width of Q bin.&quot;</span><span class="p">)</span>
+            <span class="n">qbin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mf">5e-3</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Width of Q bin."</span><span class="p">)</span>
 
             <span class="n">thresRms</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-                <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Lower threshold in RMS.&quot;</span>
+                <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Lower threshold in RMS."</span>
             <span class="p">)</span>
 
             <span class="n">thresADU</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-                <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Lower threshold in ADU.&quot;</span>
+                <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Lower threshold in ADU."</span>
             <span class="p">)</span>
 
             <span class="n">thresADUhigh</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-                <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;High threshold in ADU.&quot;</span>
+                <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"High threshold in ADU."</span>
             <span class="p">)</span>
 
             <span class="n">geomCorr</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-                <span class="kc">True</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Whether to apply geometric correction.&quot;</span>
+                <span class="kc">True</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Whether to apply geometric correction."</span>
             <span class="p">)</span>
 
             <span class="n">polCorr</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-                <span class="kc">True</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Whether to apply polarization correction.&quot;</span>
+                <span class="kc">True</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Whether to apply polarization correction."</span>
             <span class="p">)</span>
 
             <span class="n">userMask</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
                 <span class="kc">None</span><span class="p">,</span>
                 <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-                    <span class="s2">&quot;Path to a numpy array (.npy) to use as a mask for azimuthal &quot;</span>
-                    <span class="s2">&quot;integration.&quot;</span>
+                    <span class="s2">"Path to a numpy array (.npy) to use as a mask for azimuthal "</span>
+                    <span class="s2">"integration."</span>
                 <span class="p">),</span>
             <span class="p">)</span>
 
         <span class="k">class</span><span class="w"> </span><span class="nc">AzIntPyFAIParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
             <span class="k">class</span><span class="w"> </span><span class="nc">AiKwargs</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-                <span class="n">dist</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Detector distance.&quot;</span><span class="p">)</span>
-                <span class="n">poni1</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;First poni.&quot;</span><span class="p">)</span>
-                <span class="n">poni2</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Second poni.&quot;</span><span class="p">)</span>
+                <span class="n">dist</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">"Detector distance."</span><span class="p">)</span>
+                <span class="n">poni1</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">"First poni."</span><span class="p">)</span>
+                <span class="n">poni2</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">"Second poni."</span><span class="p">)</span>
 
             <span class="n">poni_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
                 <span class="kc">None</span><span class="p">,</span>
-                <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Path to a poni file. Must provide poni_file or ai_kwargs.&quot;</span><span class="p">,</span>
+                <span class="n">description</span><span class="o">=</span><span class="s2">"Path to a poni file. Must provide poni_file or ai_kwargs."</span><span class="p">,</span>
             <span class="p">)</span>
 
             <span class="n">ai_kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">AiKwargs</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-                <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Integration paramters if not using a poni file.&quot;</span>
+                <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Integration paramters if not using a poni file."</span>
             <span class="p">)</span>
 
-            <span class="n">npts</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of q points/bins.&quot;</span><span class="p">)</span>
+            <span class="n">npts</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Number of q points/bins."</span><span class="p">)</span>
 
-            <span class="n">npts_az</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of phi bins.&quot;</span><span class="p">)</span>
+            <span class="n">npts_az</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Number of phi bins."</span><span class="p">)</span>
 
-            <span class="n">int_units</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">&quot;2th_deg&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Integration units&quot;</span><span class="p">)</span>
+            <span class="n">int_units</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">"2th_deg"</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Integration units"</span><span class="p">)</span>
 
             <span class="n">return2d</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-                <span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Whether to return the 2D q/phi integration.&quot;</span>
+                <span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Whether to return the 2D q/phi integration."</span>
             <span class="p">)</span>
 
         <span class="k">class</span><span class="w"> </span><span class="nc">PhotonParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-            <span class="n">ADU_per_photon</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of ADU per photon.&quot;</span><span class="p">)</span>
+            <span class="n">ADU_per_photon</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mf">9.5</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Number of ADU per photon."</span><span class="p">)</span>
 
             <span class="n">thresADU</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-                <span class="mf">0.8</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Threshold in fraction of ADU_per_photon.&quot;</span>
+                <span class="mf">0.8</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Threshold in fraction of ADU_per_photon."</span>
             <span class="p">)</span>
 
         <span class="k">class</span><span class="w"> </span><span class="nc">DropletParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
             <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-                <span class="s2">&quot;droplet&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;HDF5 key name for storing droplet data.&quot;</span>
+                <span class="s2">"droplet"</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"HDF5 key name for storing droplet data."</span>
             <span class="p">)</span>
 
-            <span class="c1"># mask: Optional[np.ndarray] = Field(None, description=&quot;Optionally pass a separate mask.&quot;)</span>
+            <span class="c1"># mask: Optional[np.ndarray] = Field(None, description="Optionally pass a separate mask.")</span>
 
             <span class="n">threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
                 <span class="mi">5</span><span class="p">,</span>
-                <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Threshold for pixel to be part of a droplet. Sigma or ADU depending on useRms.&quot;</span><span class="p">,</span>
+                <span class="n">description</span><span class="o">=</span><span class="s2">"Threshold for pixel to be part of a droplet. Sigma or ADU depending on useRms."</span><span class="p">,</span>
             <span class="p">)</span>
 
             <span class="n">thresholdLow</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-                <span class="mi">5</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Lower threshold to make spectrum sharper.&quot;</span>
+                <span class="mi">5</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Lower threshold to make spectrum sharper."</span>
             <span class="p">)</span>
 
             <span class="n">thresADU</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-                <span class="mi">60</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Threshold on droplet ADU. Rejects droplets below this.&quot;</span>
+                <span class="mi">60</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Threshold on droplet ADU. Rejects droplets below this."</span>
             <span class="p">)</span>
 
             <span class="n">useRms</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
                 <span class="kc">True</span><span class="p">,</span>
-                <span class="n">description</span><span class="o">=</span><span class="s2">&quot;If True, threshold/thresholdLow are RMS of data, otherwise in ADU.&quot;</span><span class="p">,</span>
+                <span class="n">description</span><span class="o">=</span><span class="s2">"If True, threshold/thresholdLow are RMS of data, otherwise in ADU."</span><span class="p">,</span>
             <span class="p">)</span>
 
-            <span class="n">nData</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mf">1e5</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;(float,int or None).&quot;</span><span class="p">)</span>
+            <span class="n">nData</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mf">1e5</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"(float,int or None)."</span><span class="p">)</span>
 
             <span class="n">relabel</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-                <span class="kc">True</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;After initial finding, relabel image.&quot;</span>
+                <span class="kc">True</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"After initial finding, relabel image."</span>
             <span class="p">)</span>
 
         <span class="k">class</span><span class="w"> </span><span class="nc">Droplet2PhotonParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
             <span class="k">class</span><span class="w"> </span><span class="nc">DropletParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
                 <span class="n">threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
                     <span class="mi">5</span><span class="p">,</span>
-                    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Threshold for pixel to be part of a droplet. Sigma or ADU depending on useRms.&quot;</span><span class="p">,</span>
+                    <span class="n">description</span><span class="o">=</span><span class="s2">"Threshold for pixel to be part of a droplet. Sigma or ADU depending on useRms."</span><span class="p">,</span>
                 <span class="p">)</span>
 
                 <span class="n">thresholdLow</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-                    <span class="mi">5</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Lower threshold to make spectrum sharper.&quot;</span>
+                    <span class="mi">5</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Lower threshold to make spectrum sharper."</span>
                 <span class="p">)</span>
 
                 <span class="n">thresADU</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
                     <span class="mi">60</span><span class="p">,</span>
-                    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Threshold on droplet ADU. Rejects droplets below this.&quot;</span><span class="p">,</span>
+                    <span class="n">description</span><span class="o">=</span><span class="s2">"Threshold on droplet ADU. Rejects droplets below this."</span><span class="p">,</span>
                 <span class="p">)</span>
 
                 <span class="n">useRms</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
                     <span class="kc">True</span><span class="p">,</span>
-                    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;If True, threshold/thresholdLow are RMS of data, otherwise in ADU.&quot;</span><span class="p">,</span>
+                    <span class="n">description</span><span class="o">=</span><span class="s2">"If True, threshold/thresholdLow are RMS of data, otherwise in ADU."</span><span class="p">,</span>
                 <span class="p">)</span>
 
             <span class="n">droplet</span><span class="p">:</span> <span class="n">DropletParams</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
                 <span class="n">DropletParams</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">thresholdLow</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">thresADU</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">useRms</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
-                <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Droplet finding parameters.&quot;</span><span class="p">,</span>
+                <span class="n">description</span><span class="o">=</span><span class="s2">"Droplet finding parameters."</span><span class="p">,</span>
             <span class="p">)</span>
 
-            <span class="n">aduspphot</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">162</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="n">aduspphot</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">162</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span>
 
-            <span class="n">cputime</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="n">cputime</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span>
 
-            <span class="n">nData</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mf">3e4</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="n">nData</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mf">3e4</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span>
 
         <span class="k">class</span><span class="w"> </span><span class="nc">SvdParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-            <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">&quot;svdFit&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;DetObject name.&quot;</span><span class="p">)</span>
+            <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">"svdFit"</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"DetObject name."</span><span class="p">)</span>
 
             <span class="n">n_components</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-                <span class="mi">2</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of components to use. Max is 25.&quot;</span>
+                <span class="mi">2</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Number of components to use. Max is 25."</span>
             <span class="p">)</span>
 
-            <span class="n">basis_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="n">basis_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span>
 
-            <span class="n">n_pulse</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of pulses to fit.&quot;</span><span class="p">)</span>
+            <span class="n">n_pulse</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Number of pulses to fit."</span><span class="p">)</span>
 
             <span class="n">delay</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-                <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Delay between pulses.&quot;</span>
+                <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Delay between pulses."</span>
             <span class="p">)</span>
 
             <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-                <span class="s2">&quot;max&quot;</span><span class="p">,</span>
-                <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Method to calculate pulse amplitudes. max, norm, or both.&quot;</span><span class="p">,</span>
+                <span class="s2">"max"</span><span class="p">,</span>
+                <span class="n">description</span><span class="o">=</span><span class="s2">"Method to calculate pulse amplitudes. max, norm, or both."</span><span class="p">,</span>
             <span class="p">)</span>
             <span class="n">return_reconstructed</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-                <span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Return the reconstructed waveforms.&quot;</span>
+                <span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Return the reconstructed waveforms."</span>
             <span class="p">)</span>
 
         <span class="k">class</span><span class="w"> </span><span class="nc">AutocorrParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
             <span class="k">class</span><span class="w"> </span><span class="nc">IlluminationParams</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
                 <span class="n">correction</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-                    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Path to correction arrays. One per mask/ROI.&quot;</span>
+                    <span class="n">description</span><span class="o">=</span><span class="s2">"Path to correction arrays. One per mask/ROI."</span>
                 <span class="p">)</span>
 
                 <span class="n">kernel</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-                    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Kernel size used in the creation of the correction.&quot;</span>
+                    <span class="n">description</span><span class="o">=</span><span class="s2">"Kernel size used in the creation of the correction."</span>
                 <span class="p">)</span>
 
-            <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">&quot;autocorr&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;DetObject name.&quot;</span><span class="p">)</span>
+            <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">"autocorr"</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"DetObject name."</span><span class="p">)</span>
 
             <span class="n">threshADU</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-                <span class="p">[</span><span class="o">-</span><span class="mf">1e6</span><span class="p">,</span> <span class="mf">1e6</span><span class="p">],</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Low and high pixel intensity thresholds.&quot;</span>
+                <span class="p">[</span><span class="o">-</span><span class="mf">1e6</span><span class="p">,</span> <span class="mf">1e6</span><span class="p">],</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Low and high pixel intensity thresholds."</span>
             <span class="p">)</span>
 
             <span class="n">mask</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-                <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Mask to define a non-rectangular ROI.&quot;</span>
+                <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Mask to define a non-rectangular ROI."</span>
             <span class="p">)</span>
 
             <span class="n">save_lineout</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
                 <span class="kc">False</span><span class="p">,</span>
-                <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Save autocorr image or only vertical/horizontal lineouts.&quot;</span><span class="p">,</span>
+                <span class="n">description</span><span class="o">=</span><span class="s2">"Save autocorr image or only vertical/horizontal lineouts."</span><span class="p">,</span>
             <span class="p">)</span>
 
             <span class="n">save_range</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
@@ -4805,283 +4805,283 @@ scanned motors.</p>
                     <span class="mi">50</span><span class="p">,</span>
                     <span class="mi">50</span><span class="p">,</span>
                 <span class="p">),</span>
-                <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Size of the autocorr image to save.&quot;</span><span class="p">,</span>
+                <span class="n">description</span><span class="o">=</span><span class="s2">"Size of the autocorr image to save."</span><span class="p">,</span>
             <span class="p">)</span>
 
             <span class="n">illumination_correction</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">IlluminationParams</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-                <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Corrections for each mask/ROI.&quot;</span>
+                <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Corrections for each mask/ROI."</span>
             <span class="p">)</span>
 
         <span class="k">class</span><span class="w"> </span><span class="nc">PressioCompression</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
             <span class="k">class</span><span class="w"> </span><span class="nc">Sz3CompressorArgs</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
                 <span class="n">abs_error_bound</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
                     <span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-                    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The bound on absolute error for the compression.&quot;</span><span class="p">,</span>
+                    <span class="n">description</span><span class="o">=</span><span class="s2">"The bound on absolute error for the compression."</span><span class="p">,</span>
                 <span class="p">)</span>
 
-            <span class="n">compressor_id</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;sz3&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-                <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The type of compressor to use.&quot;</span>
+            <span class="n">compressor_id</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"sz3"</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+                <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"The type of compressor to use."</span>
             <span class="p">)</span>
             <span class="n">compressor_args</span><span class="p">:</span> <span class="n">Sz3CompressorArgs</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
                 <span class="n">default</span><span class="o">=</span><span class="n">Sz3CompressorArgs</span><span class="p">(),</span>
-                <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Compressor specific arguments.&quot;</span><span class="p">,</span>
+                <span class="n">description</span><span class="o">=</span><span class="s2">"Compressor specific arguments."</span><span class="p">,</span>
             <span class="p">)</span>
 
         <span class="n">detnames</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;List of detectors to process.&quot;</span>
+            <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"List of detectors to process."</span>
         <span class="p">)</span>
 
         <span class="n">xdetectors</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;List of detectors to exclude from loading by psana.&quot;</span>
+            <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"List of detectors to exclude from loading by psana."</span>
         <span class="p">)</span>
 
         <span class="n">integrating_detectors</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="kc">None</span><span class="p">,</span>
-            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;List of integrating detectors to process. Only for LCLS2.&quot;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">"List of integrating detectors to process. Only for LCLS2."</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="n">epicsPV</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="kc">None</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-                <span class="s2">&quot;LCLS1: List of PVs to save once per event. The lists are either &quot;</span>
-                <span class="s2">&quot;PV names, alias names, or tuples of (PV name, alias name).</span><span class="se">\n</span><span class="s2">&quot;</span>
-                <span class="s2">&quot;LCLS2: List of PVs to grab from the ARCHIVER. The lists are either &quot;</span>
-                <span class="s2">&quot;PV names or tuples of (PV name, alias name).</span><span class="se">\n</span><span class="s2">&quot;</span>
-                <span class="s2">&quot;NOTE: It appears to be shot-to-shot, but this is for convenience only.&quot;</span>
+                <span class="s2">"LCLS1: List of PVs to save once per event. The lists are either "</span>
+                <span class="s2">"PV names, alias names, or tuples of (PV name, alias name).</span><span class="se">\n</span><span class="s2">"</span>
+                <span class="s2">"LCLS2: List of PVs to grab from the ARCHIVER. The lists are either "</span>
+                <span class="s2">"PV names or tuples of (PV name, alias name).</span><span class="se">\n</span><span class="s2">"</span>
+                <span class="s2">"NOTE: It appears to be shot-to-shot, but this is for convenience only."</span>
             <span class="p">),</span>
         <span class="p">)</span>
 
         <span class="n">epicsArchFilePV</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="kc">None</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-                <span class="s2">&quot;List PVs to save shot-to-shot. NOTE: It appears to be shot-to-shot, &quot;</span>
-                <span class="s2">&quot;but this is for convenience only. The lists are either PV names, &quot;</span>
-                <span class="s2">&quot;alias names, or tuples of (PV name, alias name).&quot;</span>
+                <span class="s2">"List PVs to save shot-to-shot. NOTE: It appears to be shot-to-shot, "</span>
+                <span class="s2">"but this is for convenience only. The lists are either PV names, "</span>
+                <span class="s2">"alias names, or tuples of (PV name, alias name)."</span>
             <span class="p">),</span>
         <span class="p">)</span>
 
         <span class="n">epicsOncePV</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="kc">None</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-                <span class="s2">&quot;List of PVs to save once per run.The lists are either &quot;</span>
-                <span class="s2">&quot;PV names, alias names, or tuples of (PV name, alias name).&quot;</span>
+                <span class="s2">"List of PVs to save once per run.The lists are either "</span>
+                <span class="s2">"PV names, alias names, or tuples of (PV name, alias name)."</span>
             <span class="p">),</span>
         <span class="p">)</span>
 
         <span class="n">ttCalib</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Alternative calibration parameters for the timetool.&quot;</span>
+            <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Alternative calibration parameters for the timetool."</span>
         <span class="p">)</span>
 
         <span class="n">aioParams</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="kc">None</span><span class="p">,</span>
-            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Save analog inputs and give them nice names. [[inp],[&#39;name&#39;]]&quot;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">"Save analog inputs and give them nice names. [[inp],['name']]"</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="n">get_intg</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">IntgParams</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Integrating detector configuration. LCLS2 only.&quot;</span>
+            <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Integrating detector configuration. LCLS2 only."</span>
         <span class="p">)</span>
 
         <span class="n">getDetParams</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">UserDetectorParams</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="kc">None</span><span class="p">,</span>
-            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Dictionary of parameters for per-detector config like common-mode.&quot;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">"Dictionary of parameters for per-detector config like common-mode."</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="n">getROIs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">ROIParams</span><span class="p">]]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Dictionary of ROI parameters by detector.&quot;</span>
+            <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Dictionary of ROI parameters by detector."</span>
         <span class="p">)</span>
 
         <span class="n">getAzIntParams</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">AzIntParams</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="kc">None</span><span class="p">,</span>
-            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Dictionary of azimuthal integration parameters by detector.&quot;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">"Dictionary of azimuthal integration parameters by detector."</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="n">getAzIntPyFAIParams</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">AzIntPyFAIParams</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="kc">None</span><span class="p">,</span>
-            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Dictionary of azimuthal integration with PyFAI parameters.&quot;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">"Dictionary of azimuthal integration with PyFAI parameters."</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="n">getPhotonParams</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">PhotonParams</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="kc">None</span><span class="p">,</span>
-            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Dictionary of photon counting parameters by detector.&quot;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">"Dictionary of photon counting parameters by detector."</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="n">getDropletParams</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">DropletParams</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="kc">None</span><span class="p">,</span>
-            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Dictionary of droplet finding parameters by detector.&quot;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">"Dictionary of droplet finding parameters by detector."</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="n">getDroplet2Photons</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Droplet2PhotonParams</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="kc">None</span><span class="p">,</span>
-            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Dictionary of droplet2photon parameters by detector.&quot;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">"Dictionary of droplet2photon parameters by detector."</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="n">getSvdParams</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">SvdParams</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="kc">None</span><span class="p">,</span>
-            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Dictionary of SVD parameters by detector.&quot;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">"Dictionary of SVD parameters by detector."</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="n">getAutocorrParams</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">AutocorrParams</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="kc">None</span><span class="p">,</span>
-            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Dictionary of auto-correlation parameters by detector.&quot;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">"Dictionary of auto-correlation parameters by detector."</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="n">getPressioCompression</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">PressioCompression</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Per detector compression arguments.&quot;</span>
+            <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Per detector compression arguments."</span>
         <span class="p">)</span>
 
         <span class="n">detSumAlgos</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="kc">None</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-                <span class="s2">&quot;Detector sum algorithms. Can add a key for `all` to apply the algorithm &quot;</span>
-                <span class="s2">&quot;to all detectors, in addition to providing algorithms for each detector &quot;</span>
-                <span class="s2">&quot;individually.&quot;</span>
+                <span class="s2">"Detector sum algorithms. Can add a key for `all` to apply the algorithm "</span>
+                <span class="s2">"to all detectors, in addition to providing algorithms for each detector "</span>
+                <span class="s2">"individually."</span>
             <span class="p">),</span>
         <span class="p">)</span>
 
     <span class="n">_set_producer_template_parameters</span> <span class="o">=</span> <span class="n">template_parameter_validator</span><span class="p">(</span>
-        <span class="s2">&quot;producer_parameters&quot;</span>
+        <span class="s2">"producer_parameters"</span>
     <span class="p">)</span>
 
-    <span class="n">executable</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">&quot;mpirun&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;MPI executable.&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">executable</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">"mpirun"</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"MPI executable."</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span>
     <span class="n">np</span><span class="p">:</span> <span class="n">PositiveInt</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;SLURM_NPROCS&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">sched_getaffinity</span><span class="p">(</span><span class="mi">0</span><span class="p">))))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of processes&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+        <span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"SLURM_NPROCS"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">sched_getaffinity</span><span class="p">(</span><span class="mi">0</span><span class="p">))))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Number of processes"</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"-"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="c1"># This will interfere with affinities set by executor -- need smarter handling</span>
     <span class="n">map_by</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;MPI rank mapping.&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;map-by&quot;</span>
+        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"MPI rank mapping."</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span> <span class="n">rename_param</span><span class="o">=</span><span class="s2">"map-by"</span>
     <span class="p">)</span>
     <span class="n">bind_to</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;MPI rank to resource binding.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;bind-to&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"MPI rank to resource binding."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"bind-to"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">p_arg1</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Executable to run with mpi (i.e. python).&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+        <span class="s2">"python"</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Executable to run with mpi (i.e. python)."</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">""</span>
     <span class="p">)</span>
     <span class="n">u</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Python option for unbuffered output.&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;-&quot;</span>
+        <span class="s2">""</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Python option for unbuffered output."</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"-"</span>
     <span class="p">)</span>
     <span class="n">m</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;mpi4py.run&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Python option to execute a module&#39;s contents as __main__ module.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+        <span class="s2">"mpi4py.run"</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Python option to execute a module's contents as __main__ module."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"-"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">producer</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Path to the SmallData producer Python script.&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+        <span class="s2">""</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Path to the SmallData producer Python script."</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">""</span>
     <span class="p">)</span>
     <span class="n">run</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;RUN_NUM&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;DAQ Run Number.&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"RUN_NUM"</span><span class="p">,</span> <span class="s2">""</span><span class="p">),</span> <span class="n">description</span><span class="o">=</span><span class="s2">"DAQ Run Number."</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="n">experiment</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;EXPERIMENT&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;LCLS Experiment Number.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"EXPERIMENT"</span><span class="p">,</span> <span class="s2">""</span><span class="p">),</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"LCLS Experiment Number."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">stn</span><span class="p">:</span> <span class="n">NonNegativeInt</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Hutch endstation.&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+    <span class="n">stn</span><span class="p">:</span> <span class="n">NonNegativeInt</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Hutch endstation."</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">)</span>
     <span class="n">psdm_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Optionally override SIT_PSDM_DATA.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Optionally override SIT_PSDM_DATA."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Alternative config file to use for producer configuration&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Alternative config file to use for producer configuration"</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">nevents</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="nb">int</span><span class="p">(</span><span class="mf">1e9</span><span class="p">),</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of events to process.&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="nb">int</span><span class="p">(</span><span class="mf">1e9</span><span class="p">),</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Number of events to process."</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="n">directory</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Optional output directory. If None, will be in $</span><span class="si">{EXP_FOLDER}</span><span class="s2">/hdf5/smalldata.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Optional output directory. If None, will be in $</span><span class="si">{EXP_FOLDER}</span><span class="s2">/hdf5/smalldata."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="c1">## Need mechanism to set result_from_param=True ...</span>
     <span class="n">gather_interval</span><span class="p">:</span> <span class="n">PositiveInt</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="mi">25</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of events to collect at a time.&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="mi">25</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Number of events to collect at a time."</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="n">norecorder</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Whether to ignore recorder streams.&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Whether to ignore recorder streams."</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="n">url</span><span class="p">:</span> <span class="n">HttpUrl</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;https://pswww.slac.stanford.edu/ws-auth/lgbk&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Base URL for eLog posting.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="s2">"https://pswww.slac.stanford.edu/ws-auth/lgbk"</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Base URL for eLog posting."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">epicsAll</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Whether to store all EPICS PVs. Use with care.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Whether to store all EPICS PVs. Use with care."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">full</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Whether to store all data. Use with EXTRA care.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Whether to store all data. Use with EXTRA care."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">fullSum</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Whether to store sums for all area detector images.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Whether to store sums for all area detector images."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">default</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Whether to store only the default minimal set of data.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Whether to store only the default minimal set of data."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">image</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Whether to save everything as images. Use with care.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Whether to save everything as images. Use with care."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">tiff</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Whether to save all images as a single TIFF. Use with EXTRA care.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Whether to save all images as a single TIFF. Use with EXTRA care."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">centerpix</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Whether to mask center pixels for Epix10k2M detectors.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Whether to mask center pixels for Epix10k2M detectors."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">postRuntable</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Whether to post run tables. Also used as a trigger for summary jobs.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Whether to post run tables. Also used as a trigger for summary jobs."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">wait</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Whether to wait for a file to appear.&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Whether to wait for a file to appear."</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="n">xtcav</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Whether to add XTCAV processing to the HDF5 generation.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Whether to add XTCAV processing to the HDF5 generation."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">noarch</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Whether to not use archiver data.&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Whether to not use archiver data."</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
 
     <span class="n">lute_template_cfg</span><span class="p">:</span> <span class="n">TemplateConfig</span> <span class="o">=</span> <span class="n">TemplateConfig</span><span class="p">(</span>
-        <span class="n">template_name</span><span class="o">=</span><span class="s2">&quot;smd_producer_template.py&quot;</span><span class="p">,</span> <span class="n">output_path</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+        <span class="n">template_name</span><span class="o">=</span><span class="s2">"smd_producer_template.py"</span><span class="p">,</span> <span class="n">output_path</span><span class="o">=</span><span class="s2">""</span>
     <span class="p">)</span>
 
     <span class="n">producer_parameters</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ProducerParameters</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Optional parameters to fill in a producer file.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1"># Does nothing since always None by time it&#39;s seen by Task</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Optional parameters to fill in a producer file."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span>  <span class="c1"># Does nothing since always None by time it's seen by Task</span>
     <span class="p">)</span>
 
-    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;producer&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">"producer"</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">validate_producer_path</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">producer</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">producer</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
-            <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">experiment</span>
+        <span class="k">if</span> <span class="n">producer</span> <span class="o">==</span> <span class="s2">""</span><span class="p">:</span>
+            <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">"lute_config"</span><span class="p">]</span><span class="o">.</span><span class="n">experiment</span>
             <span class="n">hutch</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">exp</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
-            <span class="n">base_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/sdf/data/lcls/ds/</span><span class="si">{</span><span class="n">hutch</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">exp</span><span class="si">}</span><span class="s2">/results/smalldata_tools&quot;</span>
+            <span class="n">base_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"/sdf/data/lcls/ds/</span><span class="si">{</span><span class="n">hutch</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">exp</span><span class="si">}</span><span class="s2">/results/smalldata_tools"</span>
             <span class="n">path</span><span class="p">:</span> <span class="nb">str</span>
             <span class="n">is_daq2</span><span class="p">:</span> <span class="nb">bool</span>
-            <span class="k">if</span> <span class="s2">&quot;psdm_dir&quot;</span> <span class="ow">in</span> <span class="n">values</span> <span class="ow">and</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;psdm_dir&quot;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="s2">"psdm_dir"</span> <span class="ow">in</span> <span class="n">values</span> <span class="ow">and</span> <span class="n">values</span><span class="p">[</span><span class="s2">"psdm_dir"</span><span class="p">]:</span>
                 <span class="c1"># Assume we are only overriding SIT_PSDM_DATA if using converted xtc2</span>
                 <span class="n">is_daq2</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">else</span><span class="p">:</span>
@@ -5095,34 +5095,34 @@ scanned motors.</p>
                     <span class="c1"># psana not available (e.g. isolated venv without psana)</span>
                     <span class="c1"># producer needs to be passed explicitly</span>
                     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                        <span class="s2">&quot;psana not available, cannot determine producer path. &quot;</span>
-                        <span class="s2">&quot;Please provide a producer path explicitly.&quot;</span>
+                        <span class="s2">"psana not available, cannot determine producer path. "</span>
+                        <span class="s2">"Please provide a producer path explicitly."</span>
                     <span class="p">)</span>
                 <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
                     <span class="n">is_daq2</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">is_daq2</span><span class="p">:</span>
-                <span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_path</span><span class="si">}</span><span class="s2">/lcls1_producers/smd_producer.py&quot;</span>
+                <span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">base_path</span><span class="si">}</span><span class="s2">/lcls1_producers/smd_producer.py"</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_path</span><span class="si">}</span><span class="s2">/lcls2_producers/smd_producer.py&quot;</span>
+                <span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">base_path</span><span class="si">}</span><span class="s2">/lcls2_producers/smd_producer.py"</span>
             <span class="k">return</span> <span class="n">path</span>
         <span class="k">return</span> <span class="n">producer</span>
 
-    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;lute_template_cfg&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">"lute_template_cfg"</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">use_producer</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span> <span class="n">lute_template_cfg</span><span class="p">:</span> <span class="n">TemplateConfig</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TemplateConfig</span><span class="p">:</span>
-        <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">experiment</span>
+        <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">"lute_config"</span><span class="p">]</span><span class="o">.</span><span class="n">experiment</span>
         <span class="n">hutch</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">exp</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">lute_template_cfg</span><span class="o">.</span><span class="n">output_path</span><span class="p">:</span>
             <span class="n">cfg</span><span class="p">:</span> <span class="nb">str</span>
-            <span class="k">if</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;config&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">prod_cfg</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;prod_config_</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;config&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
-                <span class="n">cfg</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;producer&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="n">prod_cfg</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">values</span><span class="p">[</span><span class="s2">"config"</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">prod_cfg</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"prod_config_</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">'config'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
+                <span class="n">cfg</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">"producer"</span><span class="p">])</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="n">prod_cfg</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">cfg</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;producer&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;prod_config_</span><span class="si">{</span><span class="n">hutch</span><span class="si">}</span><span class="s2">.py&quot;</span><span class="p">)</span>
+                <span class="n">cfg</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">"producer"</span><span class="p">])</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"prod_config_</span><span class="si">{</span><span class="n">hutch</span><span class="si">}</span><span class="s2">.py"</span><span class="p">)</span>
             <span class="n">lute_template_cfg</span><span class="o">.</span><span class="n">output_path</span> <span class="o">=</span> <span class="n">cfg</span>
             <span class="n">is_daq2</span><span class="p">:</span> <span class="nb">bool</span>
-            <span class="k">if</span> <span class="s2">&quot;psdm_dir&quot;</span> <span class="ow">in</span> <span class="n">values</span> <span class="ow">and</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;psdm_dir&quot;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="s2">"psdm_dir"</span> <span class="ow">in</span> <span class="n">values</span> <span class="ow">and</span> <span class="n">values</span><span class="p">[</span><span class="s2">"psdm_dir"</span><span class="p">]:</span>
                 <span class="c1"># Assume we are only overriding SIT_PSDM_DATA if using converted xtc2</span>
                 <span class="n">is_daq2</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">else</span><span class="p">:</span>
@@ -5138,33 +5138,33 @@ scanned motors.</p>
                     <span class="c1"># psana not available (e.g. isolated venv without psana)</span>
                     <span class="c1"># template   needs to be passed explicitly</span>
                     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                        <span class="s2">&quot;psana not available, cannot determine template. &quot;</span>
-                        <span class="s2">&quot;Please provide a template name explicitly.&quot;</span>
+                        <span class="s2">"psana not available, cannot determine template. "</span>
+                        <span class="s2">"Please provide a template name explicitly."</span>
                     <span class="p">)</span>
                 <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
                     <span class="n">is_daq2</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">is_daq2</span><span class="p">:</span>
-                <span class="n">lute_template_cfg</span><span class="o">.</span><span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;smd1_prod_config_template.py&quot;</span>
+                <span class="n">lute_template_cfg</span><span class="o">.</span><span class="n">template_name</span> <span class="o">=</span> <span class="s2">"smd1_prod_config_template.py"</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">lute_template_cfg</span><span class="o">.</span><span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;smd2_prod_config_template.py&quot;</span>
+                <span class="n">lute_template_cfg</span><span class="o">.</span><span class="n">template_name</span> <span class="o">=</span> <span class="s2">"smd2_prod_config_template.py"</span>
         <span class="k">return</span> <span class="n">lute_template_cfg</span>
 
     <span class="nd">@root_validator</span><span class="p">(</span><span class="n">pre</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">define_result</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-        <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">experiment</span>
+        <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">"lute_config"</span><span class="p">]</span><span class="o">.</span><span class="n">experiment</span>
         <span class="n">hutch</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">exp</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
-        <span class="n">run</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">run</span><span class="p">)</span>
-        <span class="n">directory</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;directory&quot;</span><span class="p">]</span>
+        <span class="n">run</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">"lute_config"</span><span class="p">]</span><span class="o">.</span><span class="n">run</span><span class="p">)</span>
+        <span class="n">directory</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">"directory"</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">directory</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">directory</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/sdf/data/lcls/ds/</span><span class="si">{</span><span class="n">hutch</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">exp</span><span class="si">}</span><span class="s2">/hdf5/smalldata&quot;</span>
-        <span class="n">fname</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">exp</span><span class="si">}</span><span class="s2">_Run</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">.h5&quot;</span>
+            <span class="n">directory</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"/sdf/data/lcls/ds/</span><span class="si">{</span><span class="n">hutch</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">exp</span><span class="si">}</span><span class="s2">/hdf5/smalldata"</span>
+        <span class="n">fname</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">exp</span><span class="si">}</span><span class="s2">_Run</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">.h5"</span>
 
-        <span class="bp">cls</span><span class="o">.</span><span class="n">Config</span><span class="o">.</span><span class="n">result_from_params</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">directory</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">Config</span><span class="o">.</span><span class="n">result_from_params</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">directory</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s2">"</span>
         <span class="k">return</span> <span class="n">values</span>
 
     <span class="nd">@root_validator</span><span class="p">(</span><span class="n">pre</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">define_version_specifier</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-        <span class="n">producer_folder</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;producer&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">parent</span>
+        <span class="n">producer_folder</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">"producer"</span><span class="p">])</span><span class="o">.</span><span class="n">parent</span>
         <span class="n">smd_root</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">producer_folder</span><span class="o">.</span><span class="n">parent</span><span class="p">)</span>
 
         <span class="c1"># Provide helpers so the infrastructure can record version info properly</span>
@@ -5172,7 +5172,7 @@ scanned motors.</p>
         <span class="bp">cls</span><span class="o">.</span><span class="n">Config</span><span class="o">.</span><span class="n">version_location</span> <span class="o">=</span> <span class="n">smd_root</span>
 
         <span class="c1"># Only record the diff for the smalldata_tools folder</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">Config</span><span class="o">.</span><span class="n">version_diff_args</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;smalldata_tools&quot;</span><span class="p">]</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">Config</span><span class="o">.</span><span class="n">version_diff_args</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"smalldata_tools"</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">values</span>
 </code></pre></div></td></tr></table></div>
               </details>
@@ -5231,19 +5231,19 @@ scanned motors.</p>
 <span class="normal">60</span>
 <span class="normal">61</span>
 <span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Identical to super-class Config but includes a result.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Identical to super-class Config but includes a result."""</span>
 
     <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether the Executor should mark a specified parameter as a result.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Whether the Executor should mark a specified parameter as a result."""</span>
 
-    <span class="n">result_from_params</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Defines a result from the parameters. Use a validator to do so.&quot;&quot;&quot;</span>
+    <span class="n">result_from_params</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">""</span>
+<span class="w">    </span><span class="sd">"""Defines a result from the parameters. Use a validator to do so."""</span>
 
     <span class="n">version_specifier</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">6</span>  <span class="c1"># 2 (git hash) | 4 (git diff) = 6</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Indicator of how to determine version information from the field below.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Indicator of how to determine version information from the field below."""</span>
 
     <span class="n">task_version</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Filled by LUTE IO infrastructure for us</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task&#39;s version information. May be filled dynamically.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Task's version information. May be filled dynamically."""</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -5262,7 +5262,7 @@ scanned motors.</p>
 
 
 <h4 id="io.models.smd.SubmitSMDParameters.Config.result_from_params" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">result_from_params</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span></code>
+            <code class="highlight language-python"><span class="n">result_from_params</span> <span class="o">=</span> <span class="s1">''</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -5433,7 +5433,7 @@ scanned motors.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

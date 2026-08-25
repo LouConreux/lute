@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -3500,190 +3500,190 @@ https://ccp4.github.io/dimple/</p>
 <span class="normal">217</span>
 <span class="normal">218</span>
 <span class="normal">219</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">DimpleSolveParameters</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parameters for CCP4&#39;s dimple program.</span>
+<span class="w">    </span><span class="sd">"""Parameters for CCP4's dimple program.</span>
 
 <span class="sd">    There are many parameters. For more information on</span>
 <span class="sd">    usage, please refer to the CCP4 documentation, here:</span>
 <span class="sd">    https://ccp4.github.io/dimple/</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Identical to super-class Config but includes a result.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Identical to super-class Config but includes a result."""</span>
 
         <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Whether the Executor should mark a specified parameter as a result.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Whether the Executor should mark a specified parameter as a result."""</span>
 
-        <span class="n">result_from_params</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Defines a result from the parameters. Use a validator to do so.&quot;&quot;&quot;</span>
+        <span class="n">result_from_params</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">""</span>
+<span class="w">        </span><span class="sd">"""Defines a result from the parameters. Use a validator to do so."""</span>
 
     <span class="n">executable</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;/sdf/group/lcls/ds/tools/ccp4-8.0/bin/dimple&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;CCP4 Dimple for solving structures with MR.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">"/sdf/group/lcls/ds/tools/ccp4-8.0/bin/dimple"</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"CCP4 Dimple for solving structures with MR."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="c1"># Positional requirements - all required.</span>
     <span class="n">in_file</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Path to input mtz.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">""</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Path to input mtz."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">pdb</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Path to a PDB.&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-    <span class="n">out_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Output DIRECTORY.&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">pdb</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Path to a PDB."</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span>
+    <span class="n">out_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Output DIRECTORY."</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span>
     <span class="c1"># Most used options</span>
     <span class="n">mr_thresh</span><span class="p">:</span> <span class="n">PositiveFloat</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="mf">0.4</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Threshold for molecular replacement.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;mr-when-r&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Threshold for molecular replacement."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"mr-when-r"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">slow</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Perform more refinement.&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Perform more refinement."</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="c1"># Other options (IO)</span>
     <span class="n">hklout</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;final.mtz&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Output mtz file name.&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="s2">"final.mtz"</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Output mtz file name."</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="n">xyzout</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;final.pdb&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Output PDB file name.&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="s2">"final.pdb"</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Output PDB file name."</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="n">icolumn</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="c1"># &quot;IMEAN&quot;,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name for the I column.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="c1"># "IMEAN",</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Name for the I column."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">sigicolumn</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="c1"># &quot;SIG&lt;ICOL&gt;&quot;,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name for the Sig&lt;I&gt; column.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="c1"># "SIG&lt;ICOL&gt;",</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Name for the Sig&lt;I&gt; column."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">fcolumn</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="c1"># &quot;F&quot;,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name for the F column.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="c1"># "F",</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Name for the F column."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">sigfcolumn</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="c1"># &quot;F&quot;,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name for the Sig&lt;F&gt; column.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="c1"># "F",</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Name for the Sig&lt;F&gt; column."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">libin</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Ligand descriptions for refmac (LIBIN).&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Ligand descriptions for refmac (LIBIN)."</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="n">refmac_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Extra Refmac keywords to use in refinement.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;refmac-key&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Extra Refmac keywords to use in refinement."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"refmac-key"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">free_r_flags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Path to a mtz file with freeR flags.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;free-r-flags&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Path to a mtz file with freeR flags."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"free-r-flags"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">freecolumn</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="c1"># 0,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Refree column with an optional value.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Refree column with an optional value."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">img_format</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Format of generated images. (png, jpeg, none).&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;f&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Format of generated images. (png, jpeg, none)."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"-"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"f"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">white_bg</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Use a white background in Coot and in images.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;white-bg&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Use a white background in Coot and in images."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"white-bg"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">no_cleanup</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Retain intermediate files.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;no-cleanup&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Retain intermediate files."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"no-cleanup"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="c1"># Calculations</span>
     <span class="n">no_blob_search</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Do not search for unmodelled blobs.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;no-blob-search&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Do not search for unmodelled blobs."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"no-blob-search"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">anode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Use SHELX/AnoDe to find peaks in the anomalous map.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Use SHELX/AnoDe to find peaks in the anomalous map."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="c1"># Run customization</span>
     <span class="n">no_hetatm</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Remove heteroatoms from the given model.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;no-hetatm&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Remove heteroatoms from the given model."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"no-hetatm"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">rigid_cycles</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PositiveInt</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="c1"># 10,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of cycles of rigid-body refinement to perform.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;rigid-cycles&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Number of cycles of rigid-body refinement to perform."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"rigid-cycles"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">jelly</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PositiveInt</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="c1"># 4,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of cycles of jelly-body refinement to perform.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Number of cycles of jelly-body refinement to perform."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">restr_cycles</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PositiveInt</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="c1"># 8,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of cycles of refmac final refinement to perform.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;restr-cycles&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Number of cycles of refmac final refinement to perform."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"restr-cycles"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">lim_resolution</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PositiveFloat</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Limit the final resolution.&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;reso&quot;</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Limit the final resolution."</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span> <span class="n">rename_param</span><span class="o">=</span><span class="s2">"reso"</span>
     <span class="p">)</span>
     <span class="n">weight</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="c1"># &quot;auto-weight&quot;,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The refmac matrix weight.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="c1"># "auto-weight",</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"The refmac matrix weight."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">mr_prog</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="c1"># &quot;phaser&quot;,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Molecular replacement program. phaser or molrep.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;mr-prog&quot;</span><span class="p">,</span>
+        <span class="c1"># "phaser",</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Molecular replacement program. phaser or molrep."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"mr-prog"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">mr_num</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="c1"># &quot;auto&quot;,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of molecules to use for molecular replacement.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;mr-num&quot;</span><span class="p">,</span>
+        <span class="c1"># "auto",</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Number of molecules to use for molecular replacement."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"mr-num"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">mr_reso</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PositiveFloat</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="c1"># 3.25,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;High resolution for molecular replacement. If &gt;10 interpreted as eLLG.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;mr-reso&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"High resolution for molecular replacement. If &gt;10 interpreted as eLLG."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"mr-reso"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">itof_prog</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Program to calculate amplitudes. truncate, or ctruncate.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
-        <span class="n">rename_param</span><span class="o">=</span><span class="s2">&quot;ItoF-prog&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Program to calculate amplitudes. truncate, or ctruncate."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+        <span class="n">rename_param</span><span class="o">=</span><span class="s2">"ItoF-prog"</span><span class="p">,</span>
     <span class="p">)</span>
 
-    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;in_file&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">"in_file"</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">validate_in_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">in_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">in_file</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">in_file</span> <span class="o">==</span> <span class="s2">""</span><span class="p">:</span>
             <span class="n">get_hkl_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">read_latest_db_entry</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;lute_config&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;ManipulateHKL&quot;</span><span class="p">,</span> <span class="s2">&quot;out_file&quot;</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">'lute_config'</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"ManipulateHKL"</span><span class="p">,</span> <span class="s2">"out_file"</span>
             <span class="p">)</span>
             <span class="k">if</span> <span class="n">get_hkl_file</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">get_hkl_file</span>
         <span class="k">return</span> <span class="n">in_file</span>
 
-    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;out_dir&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">"out_dir"</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">validate_out_dir</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">out_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">out_dir</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">out_dir</span> <span class="o">==</span> <span class="s2">""</span><span class="p">:</span>
             <span class="n">get_hkl_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">read_latest_db_entry</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;lute_config&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;ManipulateHKL&quot;</span><span class="p">,</span> <span class="s2">&quot;out_file&quot;</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">'lute_config'</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"ManipulateHKL"</span><span class="p">,</span> <span class="s2">"out_file"</span>
             <span class="p">)</span>
             <span class="k">if</span> <span class="n">get_hkl_file</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">get_hkl_file</span><span class="p">)</span>
@@ -3691,12 +3691,12 @@ https://ccp4.github.io/dimple/</p>
 
     <span class="nd">@root_validator</span><span class="p">(</span><span class="n">pre</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">define_result</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-        <span class="n">out_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;out_dir&quot;</span><span class="p">]</span>
+        <span class="n">out_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">"out_dir"</span><span class="p">]</span>
         <span class="n">result</span><span class="p">:</span> <span class="nb">str</span>
-        <span class="k">if</span> <span class="n">out_dir</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">out_dir</span><span class="si">}</span><span class="s2">/final.mtz;</span><span class="si">{</span><span class="n">out_dir</span><span class="si">}</span><span class="s2">/final.pdb&quot;</span>
+        <span class="k">if</span> <span class="n">out_dir</span> <span class="o">!=</span> <span class="s2">""</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">out_dir</span><span class="si">}</span><span class="s2">/final.mtz;</span><span class="si">{</span><span class="n">out_dir</span><span class="si">}</span><span class="s2">/final.pdb"</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="s2">""</span>
         <span class="bp">cls</span><span class="o">.</span><span class="n">Config</span><span class="o">.</span><span class="n">result_from_params</span> <span class="o">=</span> <span class="n">result</span>
         <span class="k">return</span> <span class="n">values</span>
 </code></pre></div></td></tr></table></div>
@@ -3750,13 +3750,13 @@ https://ccp4.github.io/dimple/</p>
 <span class="normal">33</span>
 <span class="normal">34</span>
 <span class="normal">35</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Identical to super-class Config but includes a result.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Identical to super-class Config but includes a result."""</span>
 
     <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether the Executor should mark a specified parameter as a result.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Whether the Executor should mark a specified parameter as a result."""</span>
 
-    <span class="n">result_from_params</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Defines a result from the parameters. Use a validator to do so.&quot;&quot;&quot;</span>
+    <span class="n">result_from_params</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">""</span>
+<span class="w">    </span><span class="sd">"""Defines a result from the parameters. Use a validator to do so."""</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -3775,7 +3775,7 @@ https://ccp4.github.io/dimple/</p>
 
 
 <h4 id="io.models.sfx_solve.DimpleSolveParameters.Config.result_from_params" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">result_from_params</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span></code>
+            <code class="highlight language-python"><span class="n">result_from_params</span> <span class="o">=</span> <span class="s1">''</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -3904,41 +3904,41 @@ https://www.ccp4.ac.uk/html/crank.html</p>
 <span class="normal">256</span>
 <span class="normal">257</span>
 <span class="normal">258</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">RunSHELXCParameters</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parameters for CCP4&#39;s SHELXC program.</span>
+<span class="w">    </span><span class="sd">"""Parameters for CCP4's SHELXC program.</span>
 
 <span class="sd">    SHELXC prepares files for SHELXD and SHELXE.</span>
 
 <span class="sd">    For more information please refer to the official documentation:</span>
 <span class="sd">    https://www.ccp4.ac.uk/html/crank.html</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">executable</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;/sdf/group/lcls/ds/tools/ccp4-8.0/bin/shelxc&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;CCP4 SHELXC. Generates input files for SHELXD/SHELXE.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">"/sdf/group/lcls/ds/tools/ccp4-8.0/bin/shelxc"</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"CCP4 SHELXC. Generates input files for SHELXD/SHELXE."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">placeholder</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;xx&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Placeholder filename stem.&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+        <span class="s2">"xx"</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Placeholder filename stem."</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">""</span>
     <span class="p">)</span>
     <span class="n">in_file</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Input file for SHELXC with reflections AND proper records.&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">""</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Input file for SHELXC with reflections AND proper records."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span>
     <span class="p">)</span>
 
-    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;in_file&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">"in_file"</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">validate_in_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">in_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">in_file</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">in_file</span> <span class="o">==</span> <span class="s2">""</span><span class="p">:</span>
             <span class="c1"># get_hkl needed to be run to produce an XDS format file...</span>
             <span class="n">xds_format_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">read_latest_db_entry</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;lute_config&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;ManipulateHKL&quot;</span><span class="p">,</span> <span class="s2">&quot;out_file&quot;</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">'lute_config'</span><span class="p">]</span><span class="o">.</span><span class="n">work_dir</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"ManipulateHKL"</span><span class="p">,</span> <span class="s2">"out_file"</span>
             <span class="p">)</span>
             <span class="k">if</span> <span class="n">xds_format_file</span><span class="p">:</span>
                 <span class="n">in_file</span> <span class="o">=</span> <span class="n">xds_format_file</span>
-        <span class="k">if</span> <span class="n">in_file</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;&lt;&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">in_file</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">"&lt;"</span><span class="p">:</span>
             <span class="c1"># Need to add a redirection for this program</span>
             <span class="c1"># Runs like `shelxc xx &lt;input_file.xds`</span>
-            <span class="n">in_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&lt;</span><span class="si">{</span><span class="n">in_file</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">in_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"&lt;</span><span class="si">{</span><span class="n">in_file</span><span class="si">}</span><span class="s2">"</span>
         <span class="k">return</span> <span class="n">in_file</span>
 </code></pre></div></td></tr></table></div>
               </details>
@@ -4028,7 +4028,7 @@ https://www.ccp4.ac.uk/html/crank.html</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

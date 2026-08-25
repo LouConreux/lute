@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -3481,7 +3481,7 @@
     <span class="n">distance</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
     <span class="n">pv_camera_length</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Write new geometry files (.geom and .data for CrystFEL and psana).</span>
+<span class="w">    </span><span class="sd">"""Write new geometry files (.geom and .data for CrystFEL and psana).</span>
 
 <span class="sd">    Should be called with an optimized center and distance.</span>
 
@@ -3503,7 +3503,7 @@
 <span class="sd">        distance (float): Detector distance for new geometry.</span>
 
 <span class="sd">        pv_camera_length (str | None): PV associated with camera length.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">PSCalib</span>  <span class="c1"># type: ignore</span>
 
     <span class="c1"># retrieve original geometry</span>
@@ -3522,11 +3522,11 @@
     <span class="n">geom</span><span class="o">.</span><span class="n">move_geo</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">oname</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">dx</span><span class="o">=-</span><span class="n">dy</span><span class="p">,</span> <span class="n">dy</span><span class="o">=-</span><span class="n">dx</span><span class="p">,</span> <span class="n">dz</span><span class="o">=</span><span class="n">dz</span><span class="p">)</span>
 
     <span class="c1"># write optimized geometry files</span>
-    <span class="n">psana_file_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">out_dir</span><span class="si">}</span><span class="s2">/r</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">_end.data&quot;</span>
+    <span class="n">psana_file_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">out_dir</span><span class="si">}</span><span class="s2">/r</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">_end.data"</span>
     <span class="n">geom</span><span class="o">.</span><span class="n">save_pars_in_file</span><span class="p">(</span><span class="n">psana_file_path</span><span class="p">)</span>
 
-    <span class="n">cfel_file_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">out_dir</span><span class="si">}</span><span class="s2">/r</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">.geom&quot;</span>
-    <span class="n">tmp_cfel_file_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">cfel_file_path</span><span class="si">}</span><span class="s2">.tmp&quot;</span>
+    <span class="n">cfel_file_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">out_dir</span><span class="si">}</span><span class="s2">/r</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">.geom"</span>
+    <span class="n">tmp_cfel_file_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">cfel_file_path</span><span class="si">}</span><span class="s2">.tmp"</span>
     <span class="n">generate_geom_file</span><span class="p">(</span>
         <span class="n">exp</span><span class="p">,</span>
         <span class="n">run</span><span class="p">,</span>
@@ -3684,7 +3684,7 @@
     <span class="n">center</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
     <span class="n">num_pts</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate sample points along concentric circles.</span>
+<span class="w">    </span><span class="sd">"""Generate sample points along concentric circles.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        peak_radii (npt.NDArray[np.int64]): Radii indices.</span>
@@ -3695,7 +3695,7 @@
 
 <span class="sd">    Returns:</span>
 <span class="sd">        coords (npt.NDArray[np.float64]): X/Y coordinates of sample points.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="c1"># X,Y labelling seems backwards</span>
     <span class="n">cx</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">center</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">cy</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">center</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
@@ -3974,7 +3974,7 @@ geometry for this run, which is used to compute the coffset parameter.</p>
     <span class="n">det_dist</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">pv_camera_length</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate a Crystfel .geom file from either a psana or CrystFEL geometry.</span>
+<span class="w">    </span><span class="sd">"""Generate a Crystfel .geom file from either a psana or CrystFEL geometry.</span>
 
 <span class="sd">    This function also sets the coffset field for each panel based</span>
 <span class="sd">    on the estimated detector distance:</span>
@@ -3998,15 +3998,15 @@ geometry for this run, which is used to compute the coffset parameter.</p>
 <span class="sd">        det_dist (Optional[float]): Estimated sample-detector distance in mm</span>
 
 <span class="sd">        pv_camera_length (Optional[str]): PV associated with the camera length</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">psgeom</span><span class="w"> </span><span class="kn">import</span> <span class="n">camera</span><span class="p">,</span> <span class="n">sensors</span>  <span class="c1"># type: ignore</span>
 
-    <span class="k">if</span> <span class="n">input_file</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">input_file</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"."</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"data"</span><span class="p">:</span>
         <span class="n">geom</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">CompoundAreaCamera</span><span class="o">.</span><span class="n">from_psana_file</span><span class="p">(</span><span class="n">input_file</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">input_file</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;geom&quot;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">input_file</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"."</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"geom"</span><span class="p">:</span>
         <span class="k">if</span> <span class="p">(</span>
-            <span class="s2">&quot;epix10k2m&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">det</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-            <span class="ow">or</span> <span class="s2">&quot;epix10ka2m&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">det</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="s2">"epix10k2m"</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">det</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="ow">or</span> <span class="s2">"epix10ka2m"</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">det</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
         <span class="p">):</span>
             <span class="n">geom</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">CompoundAreaCamera</span><span class="o">.</span><span class="n">from_crystfel_file</span><span class="p">(</span>
                 <span class="n">input_file</span><span class="p">,</span> <span class="n">element_type</span><span class="o">=</span><span class="n">sensors</span><span class="o">.</span><span class="n">Epix10kaSegment</span>
@@ -4015,7 +4015,7 @@ geometry for this run, which is used to compute the coffset parameter.</p>
             <span class="n">geom</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">CompoundAreaCamera</span><span class="o">.</span><span class="n">from_crystfel_file</span><span class="p">(</span><span class="n">input_file</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
-            <span class="s2">&quot;Provided a geometry file that did not end in .data or .geom! Cannot guess type.&quot;</span>
+            <span class="s2">"Provided a geometry file that did not end in .data or .geom! Cannot guess type."</span>
         <span class="p">)</span>
 
     <span class="k">if</span> <span class="n">det_dist</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -4023,25 +4023,25 @@ geometry for this run, which is used to compute the coffset parameter.</p>
     <span class="n">pv_cl</span><span class="p">:</span> <span class="nb">str</span>
     <span class="k">if</span> <span class="n">pv_camera_length</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="p">(</span>
-            <span class="s2">&quot;epix10k2m&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">det</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-            <span class="ow">or</span> <span class="s2">&quot;epix10ka2m&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">det</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="s2">"epix10k2m"</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">det</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="ow">or</span> <span class="s2">"epix10ka2m"</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">det</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
         <span class="p">):</span>
-            <span class="k">if</span> <span class="s2">&quot;mfx&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">det</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
-                <span class="n">pv_cl</span> <span class="o">=</span> <span class="s2">&quot;MFX:ROB:CONT:POS:Z&quot;</span>
+            <span class="k">if</span> <span class="s2">"mfx"</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">det</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+                <span class="n">pv_cl</span> <span class="o">=</span> <span class="s2">"MFX:ROB:CONT:POS:Z"</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cannot guess camera length PV for: </span><span class="si">{</span><span class="n">det</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="s2">&quot;jungfrau4m&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">det</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
-            <span class="k">if</span> <span class="s2">&quot;cxi&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">det</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
-                <span class="n">pv_cl</span> <span class="o">=</span> <span class="s2">&quot;CXI:DS1:MMS:06.RBV&quot;</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Cannot guess camera length PV for: </span><span class="si">{</span><span class="n">det</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="s2">"jungfrau4m"</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">det</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="k">if</span> <span class="s2">"cxi"</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">det</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+                <span class="n">pv_cl</span> <span class="o">=</span> <span class="s2">"CXI:DS1:MMS:06.RBV"</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cannot guess camera length PV for: </span><span class="si">{</span><span class="n">det</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="s2">&quot;rayonix&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">det</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
-            <span class="k">if</span> <span class="s2">&quot;mfx&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">det</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
-                <span class="n">pv_cl</span> <span class="o">=</span> <span class="s2">&quot;MFX:DET:MMS:04.RBV&quot;</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Cannot guess camera length PV for: </span><span class="si">{</span><span class="n">det</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="s2">"rayonix"</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">det</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="k">if</span> <span class="s2">"mfx"</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">det</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+                <span class="n">pv_cl</span> <span class="o">=</span> <span class="s2">"MFX:DET:MMS:04.RBV"</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cannot guess camera length PV for: </span><span class="si">{</span><span class="n">det</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Cannot guess camera length PV for: </span><span class="si">{</span><span class="n">det</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cannot guess camera length PV for: </span><span class="si">{</span><span class="n">det</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Cannot guess camera length PV for: </span><span class="si">{</span><span class="n">det</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">pv_cl</span> <span class="o">=</span> <span class="n">pv_camera_length</span>
     <span class="n">coffset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="p">(</span><span class="n">det_dist</span> <span class="o">-</span> <span class="n">ds</span><span class="o">.</span><span class="n">env</span><span class="p">()</span><span class="o">.</span><span class="n">epicsStore</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">pv_cl</span><span class="p">))</span> <span class="o">/</span> <span class="mf">1000.0</span>
@@ -4170,7 +4170,7 @@ Center values are floats. Peaks are integers.</p>
 <span class="normal">76</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">geometry_optimize_residual</span><span class="p">(</span>
     <span class="n">params</span><span class="p">:</span> <span class="n">lmfit</span><span class="o">.</span><span class="n">Parameters</span><span class="p">,</span> <span class="n">powder</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Target function for OptimizeAgBhGeometryExhaustive geometry fitting.</span>
+<span class="w">    </span><span class="sd">"""Target function for OptimizeAgBhGeometryExhaustive geometry fitting.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        params (lmfit.Parameters): Parameters. [center_x, center_y, peaks...]</span>
@@ -4180,7 +4180,7 @@ Center values are floats. Peaks are integers.</p>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        pixel_values (npt.NDArray[np.float64]): Residuals for fitting.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="c1"># Unpack the parameters</span>
     <span class="n">params_l</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="n">val</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
     <span class="n">center_guess</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">params_l</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
@@ -4332,7 +4332,7 @@ Center values are floats. Peaks are integers.</p>
 <span class="normal">240</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">modify_crystfel_coffset_res</span><span class="p">(</span>
     <span class="n">input_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">output_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">coffset</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">res</span><span class="p">:</span> <span class="nb">float</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Overwrite coffset and res entries in a CrystFEL .geom file.</span>
+<span class="w">    </span><span class="sd">"""Overwrite coffset and res entries in a CrystFEL .geom file.</span>
 
 <span class="sd">    This is a hack to fix Rayonix geom files generated using the wrong pixel size.</span>
 
@@ -4344,19 +4344,19 @@ Center values are floats. Peaks are integers.</p>
 <span class="sd">        coffset (float): coffset (camera offset) value in meters.</span>
 
 <span class="sd">        res (float): Pixel resolution in um</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">outfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
+<span class="sd">    """</span>
+    <span class="n">outfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span>
 
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">input_file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">infile</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">input_file</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">infile</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">infile</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
 
-            <span class="k">if</span> <span class="s2">&quot;coffset&quot;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
-                <span class="n">start</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
-                <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">start</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">coffset</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s2">"coffset"</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                <span class="n">start</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"="</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">" "</span><span class="p">)</span>
+                <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">start</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">coffset</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
 
-            <span class="k">elif</span> <span class="s2">&quot;res = &quot;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
-                <span class="n">start</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
-                <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">start</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">res</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="s2">"res = "</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                <span class="n">start</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"="</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">" "</span><span class="p">)</span>
+                <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">start</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">res</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
 
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
@@ -4481,7 +4481,7 @@ Center values are floats. Peaks are integers.</p>
 <span class="normal">203</span>
 <span class="normal">204</span>
 <span class="normal">205</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">modify_crystfel_header</span><span class="p">(</span><span class="n">input_file</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Modify the header of a psgeom-generated Crystfel (.geom) file.</span>
+<span class="w">    </span><span class="sd">"""Modify the header of a psgeom-generated Crystfel (.geom) file.</span>
 
 <span class="sd">    This function performs the following modifications:</span>
 <span class="sd">        1. Uncomment lines indicating the mask file and LCLS parameters.</span>
@@ -4491,32 +4491,32 @@ Center values are floats. Peaks are integers.</p>
 <span class="sd">        input_file (str): Input .geom file generated by psgeom</span>
 
 <span class="sd">        output_file (str): Output modified .geom file</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">outfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
+<span class="sd">    """</span>
+    <span class="n">outfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span>
 
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">input_file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">infile</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">input_file</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">infile</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">infile</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
 
             <span class="c1"># uncomment by removing semicolon and space</span>
-            <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;;&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">";"</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span>
-                    <span class="s2">&quot;clen&quot;</span><span class="p">,</span>
-                    <span class="s2">&quot;photon_energy&quot;</span><span class="p">,</span>
-                    <span class="s2">&quot;adu_per_eV&quot;</span><span class="p">,</span>
-                    <span class="s2">&quot;mask&quot;</span><span class="p">,</span>
-                    <span class="s2">&quot;mask_good&quot;</span><span class="p">,</span>
-                    <span class="s2">&quot;mask_bad&quot;</span><span class="p">,</span>
+                    <span class="s2">"clen"</span><span class="p">,</span>
+                    <span class="s2">"photon_energy"</span><span class="p">,</span>
+                    <span class="s2">"adu_per_eV"</span><span class="p">,</span>
+                    <span class="s2">"mask"</span><span class="p">,</span>
+                    <span class="s2">"mask_good"</span><span class="p">,</span>
+                    <span class="s2">"mask_bad"</span><span class="p">,</span>
                 <span class="p">]:</span>
                     <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
 
             <span class="c1"># add these header lines for latest crystfel</span>
-            <span class="k">elif</span> <span class="s2">&quot;data = /entry_1/data_1/data&quot;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+            <span class="k">elif</span> <span class="s2">"data = /entry_1/data_1/data"</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
                 <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-                <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-                <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;peak_list = /entry_1/result_1</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-                <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;peak_list_type = cxi</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+                <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">"peak_list = /entry_1/result_1</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+                <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">"peak_list_type = cxi</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
 
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
@@ -4591,7 +4591,7 @@ Center values are floats. Peaks are integers.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

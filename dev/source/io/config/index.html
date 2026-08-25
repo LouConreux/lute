@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -3313,7 +3313,7 @@ converted to one. Otherwise returns the original string.</p>
 <span class="normal">52</span>
 <span class="normal">53</span>
 <span class="normal">54</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_check_str_numeric</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check if a string is an integer or float and return it as such.</span>
+<span class="w">    </span><span class="sd">"""Check if a string is an integer or float and return it as such.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        string (str): Input string to check.</span>
@@ -3321,7 +3321,7 @@ converted to one. Otherwise returns the original string.</p>
 <span class="sd">    Returns:</span>
 <span class="sd">        output (str | int | float): Returns an int or float if the string can be</span>
 <span class="sd">            converted to one. Otherwise returns the original string.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">string</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">():</span>
         <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">_isfloat</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
@@ -3338,7 +3338,7 @@ converted to one. Otherwise returns the original string.</p>
 
 
 <h2 id="io.config.parse_config" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">parse_config</span><span class="p">(</span><span class="n">task_name</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="n">config_path</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">parse_config</span><span class="p">(</span><span class="n">task_name</span><span class="o">=</span><span class="s1">'test'</span><span class="p">,</span> <span class="n">config_path</span><span class="o">=</span><span class="s1">''</span><span class="p">)</span></code>
 
 </h2>
 
@@ -3512,8 +3512,8 @@ file. Passed through from Pydantic.</p>
 <span class="normal">222</span>
 <span class="normal">223</span>
 <span class="normal">224</span>
-<span class="normal">225</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">parse_config</span><span class="p">(</span><span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">config_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TaskParameters</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parse a configuration file and validate the contents.</span>
+<span class="normal">225</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">parse_config</span><span class="p">(</span><span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"test"</span><span class="p">,</span> <span class="n">config_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">""</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TaskParameters</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Parse a configuration file and validate the contents.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        task_name (str): Name of the specific task that will be run.</span>
@@ -3522,39 +3522,39 @@ file. Passed through from Pydantic.</p>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        params (TaskParameters): A TaskParameters object of validated</span>
-<span class="sd">            task-specific parameters. Parameters are accessed with &quot;dot&quot;</span>
+<span class="sd">            task-specific parameters. Parameters are accessed with "dot"</span>
 <span class="sd">            notation. E.g. `params.param1`.</span>
 
 <span class="sd">    Raises:</span>
 <span class="sd">        ValidationError: Raised if there are problems with the configuration</span>
 <span class="sd">            file. Passed through from Pydantic.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">cleaned_task_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;_\d+$&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">task_name</span><span class="p">)</span>
-    <span class="n">task_config_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">cleaned_task_name</span><span class="si">}</span><span class="s2">Parameters&quot;</span>
+<span class="sd">    """</span>
+    <span class="n">cleaned_task_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">"_\d+$"</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="n">task_name</span><span class="p">)</span>
+    <span class="n">task_config_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">cleaned_task_name</span><span class="si">}</span><span class="s2">Parameters"</span>
 
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">config_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">config_path</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">docs</span><span class="p">:</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">load_all</span><span class="p">(</span><span class="n">stream</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">Loader</span><span class="o">=</span><span class="n">yaml</span><span class="o">.</span><span class="n">FullLoader</span><span class="p">)</span>
         <span class="n">header</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
         <span class="n">config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
     <span class="n">substitute_variables</span><span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="n">header</span><span class="p">)</span>
     <span class="n">substitute_variables</span><span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
-    <span class="n">LUTE_DEBUG_EXIT</span><span class="p">(</span><span class="s2">&quot;LUTE_DEBUG_EXIT_AT_YAML&quot;</span><span class="p">,</span> <span class="n">pprint</span><span class="o">.</span><span class="n">pformat</span><span class="p">(</span><span class="n">config</span><span class="p">))</span>
-    <span class="n">lute_config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">AnalysisHeader</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;lute_config&quot;</span><span class="p">:</span> <span class="n">AnalysisHeader</span><span class="p">(</span><span class="o">**</span><span class="n">header</span><span class="p">)}</span>
+    <span class="n">LUTE_DEBUG_EXIT</span><span class="p">(</span><span class="s2">"LUTE_DEBUG_EXIT_AT_YAML"</span><span class="p">,</span> <span class="n">pprint</span><span class="o">.</span><span class="n">pformat</span><span class="p">(</span><span class="n">config</span><span class="p">))</span>
+    <span class="n">lute_config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">AnalysisHeader</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"lute_config"</span><span class="p">:</span> <span class="n">AnalysisHeader</span><span class="p">(</span><span class="o">**</span><span class="n">header</span><span class="p">)}</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">task_config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="n">task_name</span><span class="p">])</span>
         <span class="n">lute_config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">task_config</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
         <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
             <span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">task_name</span><span class="si">}</span><span class="s2"> has no parameter definitions in YAML file.&quot;</span>
-                <span class="s2">&quot; Attempting default parameter initialization.&quot;</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">task_name</span><span class="si">}</span><span class="s2"> has no parameter definitions in YAML file."</span>
+                <span class="s2">" Attempting default parameter initialization."</span>
             <span class="p">)</span>
         <span class="p">)</span>
     <span class="n">parsed_parameters</span><span class="p">:</span> <span class="n">TaskParameters</span> <span class="o">=</span> <span class="nb">globals</span><span class="p">()[</span><span class="n">task_config_name</span><span class="p">](</span><span class="o">**</span><span class="n">lute_config</span><span class="p">)</span>
 
     <span class="c1"># Determine and record Task version information dynamically</span>
     <span class="n">version_specifier</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span>
-        <span class="n">parsed_parameters</span><span class="o">.</span><span class="n">Config</span><span class="p">,</span> <span class="s2">&quot;version_specifier&quot;</span><span class="p">,</span> <span class="kc">None</span>
+        <span class="n">parsed_parameters</span><span class="o">.</span><span class="n">Config</span><span class="p">,</span> <span class="s2">"version_specifier"</span><span class="p">,</span> <span class="kc">None</span>
     <span class="p">)</span>
     <span class="k">if</span> <span class="n">version_specifier</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">version_specifier</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
@@ -3562,18 +3562,18 @@ file. Passed through from Pydantic.</p>
         <span class="kn">from</span><span class="w"> </span><span class="nn">lute.io.version_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">record_version</span>
 
         <span class="n">location</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span>
-            <span class="n">parsed_parameters</span><span class="o">.</span><span class="n">Config</span><span class="p">,</span> <span class="s2">&quot;version_location&quot;</span><span class="p">,</span> <span class="kc">None</span>
+            <span class="n">parsed_parameters</span><span class="o">.</span><span class="n">Config</span><span class="p">,</span> <span class="s2">"version_location"</span><span class="p">,</span> <span class="kc">None</span>
         <span class="p">)</span>
         <span class="n">diff_args</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span>
-            <span class="n">parsed_parameters</span><span class="o">.</span><span class="n">Config</span><span class="p">,</span> <span class="s2">&quot;version_diff_args&quot;</span><span class="p">,</span> <span class="kc">None</span>
+            <span class="n">parsed_parameters</span><span class="o">.</span><span class="n">Config</span><span class="p">,</span> <span class="s2">"version_diff_args"</span><span class="p">,</span> <span class="kc">None</span>
         <span class="p">)</span>
         <span class="n">version_info</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">record_version</span><span class="p">(</span>
             <span class="n">version_specifier</span><span class="o">=</span><span class="n">version_specifier</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="n">location</span><span class="p">,</span> <span class="n">diff_args</span><span class="o">=</span><span class="n">diff_args</span>
         <span class="p">)</span>
 
         <span class="c1"># Store where version information was taken from</span>
-        <span class="n">version_info</span><span class="p">[</span><span class="s2">&quot;version-location&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">location</span><span class="p">)</span>
-        <span class="n">version_info</span><span class="p">[</span><span class="s2">&quot;version-diff-args&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">diff_args</span><span class="p">)</span>
+        <span class="n">version_info</span><span class="p">[</span><span class="s2">"version-location"</span><span class="p">]</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">location</span><span class="p">)</span>
+        <span class="n">version_info</span><span class="p">[</span><span class="s2">"version-diff-args"</span><span class="p">]</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">diff_args</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">version_info</span><span class="p">:</span>
             <span class="n">parsed_parameters</span><span class="o">.</span><span class="n">Config</span><span class="o">.</span><span class="n">task_version</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">version_info</span><span class="p">)</span>
@@ -3795,7 +3795,7 @@ needed.</p>
 <span class="normal">156</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">substitute_variables</span><span class="p">(</span>
     <span class="n">header</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">curr_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Performs variable substitutions on a dictionary read from config YAML file.</span>
+<span class="w">    </span><span class="sd">"""Performs variable substitutions on a dictionary read from config YAML file.</span>
 
 <span class="sd">    Can be used to define input parameters in terms of other input parameters.</span>
 <span class="sd">    This is similar to functionality employed by validators for parameters in</span>
@@ -3829,12 +3829,12 @@ needed.</p>
 <span class="sd">        subbed_config (Dict[str, Any]): The config dictionary after substitutions</span>
 <span class="sd">            have been made. May be identical to the input if no substitutions are</span>
 <span class="sd">            needed.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">_sub_pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\{\{[^}{]*\}\}&quot;</span>
+<span class="sd">    """</span>
+    <span class="n">_sub_pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"\{\{[^}{]*\}\}"</span>
     <span class="n">iterable</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">config</span>
     <span class="k">if</span> <span class="n">curr_key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># Need to handle nested levels by interpreting curr_key</span>
-        <span class="n">keys_by_level</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">curr_key</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+        <span class="n">keys_by_level</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">curr_key</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"."</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys_by_level</span><span class="p">:</span>
             <span class="n">iterable</span> <span class="o">=</span> <span class="n">iterable</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
@@ -3846,7 +3846,7 @@ needed.</p>
             <span class="k">if</span> <span class="n">curr_key</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">new_key</span> <span class="o">=</span> <span class="n">param</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">new_key</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">curr_key</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">param</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="n">new_key</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">curr_key</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">param</span><span class="si">}</span><span class="s2">"</span>
             <span class="n">substitute_variables</span><span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">curr_key</span><span class="o">=</span><span class="n">new_key</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
             <span class="o">...</span>
@@ -3854,21 +3854,21 @@ needed.</p>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="n">matches</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">_sub_pattern</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
-                <span class="n">key_to_sub_maybe_with_fmt</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+                <span class="n">key_to_sub_maybe_with_fmt</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">":"</span><span class="p">)</span>
                 <span class="n">key_to_sub</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">key_to_sub_maybe_with_fmt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
                 <span class="n">fmt</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
                 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">key_to_sub_maybe_with_fmt</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
                     <span class="n">fmt</span> <span class="o">=</span> <span class="n">key_to_sub_maybe_with_fmt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
                 <span class="n">sub</span><span class="p">:</span> <span class="n">Any</span>
-                <span class="k">if</span> <span class="n">key_to_sub</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;$&quot;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">key_to_sub</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"$"</span><span class="p">:</span>
                     <span class="n">sub</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="n">key_to_sub</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="kc">None</span><span class="p">)</span>
                     <span class="k">if</span> <span class="n">sub</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                         <span class="c1"># Check if we use a different env - substitution happens</span>
                         <span class="c1"># before environment reset</span>
-                        <span class="n">sub</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;LUTE_TENV_</span><span class="si">{</span><span class="n">key_to_sub</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                        <span class="n">sub</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="sa">f</span><span class="s2">"LUTE_TENV_</span><span class="si">{</span><span class="n">key_to_sub</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
                     <span class="k">if</span> <span class="n">sub</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                         <span class="nb">print</span><span class="p">(</span>
-                            <span class="sa">f</span><span class="s2">&quot;Environment variable </span><span class="si">{</span><span class="n">key_to_sub</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="si">}</span><span class="s2"> not found! Cannot substitute in YAML config!&quot;</span><span class="p">,</span>
+                            <span class="sa">f</span><span class="s2">"Environment variable </span><span class="si">{</span><span class="n">key_to_sub</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="si">}</span><span class="s2"> not found! Cannot substitute in YAML config!"</span><span class="p">,</span>
                             <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                         <span class="p">)</span>
                         <span class="k">continue</span>
@@ -3878,17 +3878,17 @@ needed.</p>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="k">try</span><span class="p">:</span>
                         <span class="n">sub</span> <span class="o">=</span> <span class="n">config</span>
-                        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">key_to_sub</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">):</span>
+                        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">key_to_sub</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"."</span><span class="p">):</span>
                             <span class="n">sub</span> <span class="o">=</span> <span class="n">sub</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
                     <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
                         <span class="n">sub</span> <span class="o">=</span> <span class="n">header</span><span class="p">[</span><span class="n">key_to_sub</span><span class="p">]</span>
                 <span class="n">pattern</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="p">(</span>
-                    <span class="n">m</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;{{&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;\{\{&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;}}&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;\}\}&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;\$&quot;</span><span class="p">)</span>
+                    <span class="n">m</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"{{"</span><span class="p">,</span> <span class="sa">r</span><span class="s2">"\{\{"</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"}}"</span><span class="p">,</span> <span class="sa">r</span><span class="s2">"\}\}"</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"$"</span><span class="p">,</span> <span class="sa">r</span><span class="s2">"\$"</span><span class="p">)</span>
                 <span class="p">)</span>
                 <span class="k">if</span> <span class="n">fmt</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">sub</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">sub</span><span class="si">:{</span><span class="n">fmt</span><span class="si">}}</span><span class="s2">&quot;</span>
+                    <span class="n">sub</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">sub</span><span class="si">:{</span><span class="n">fmt</span><span class="si">}}</span><span class="s2">"</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">sub</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">sub</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="n">sub</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">sub</span><span class="si">}</span><span class="s2">"</span>
                 <span class="n">iterable</span><span class="p">[</span><span class="n">param</span><span class="p">]</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">sub</span><span class="p">,</span> <span class="n">iterable</span><span class="p">[</span><span class="n">param</span><span class="p">])</span>
             <span class="c1"># Reconvert back to numeric values if needed...</span>
             <span class="n">iterable</span><span class="p">[</span><span class="n">param</span><span class="p">]</span> <span class="o">=</span> <span class="n">_check_str_numeric</span><span class="p">(</span><span class="n">iterable</span><span class="p">[</span><span class="n">param</span><span class="p">])</span>
@@ -3961,7 +3961,7 @@ needed.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

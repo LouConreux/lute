@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -3323,21 +3323,21 @@ Pydantic)</p>
 <span class="normal">95</span>
 <span class="normal">96</span>
 <span class="normal">97</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_record_git_commit_hash</span><span class="p">(</span><span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Collect the git commit hash of the specified repository.</span>
+<span class="w">    </span><span class="sd">"""Collect the git commit hash of the specified repository.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        location (str): Full path to the repository.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        commit_hash (str): The git commit hash as a string.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">location</span><span class="p">):</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Requested git commit hash of </span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2"> which does not exist!&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Requested git commit hash of </span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2"> which does not exist!"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">""</span>
     <span class="n">cmd</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s2">&quot;git&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;rev-parse&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;HEAD&quot;</span><span class="p">,</span>
+        <span class="s2">"git"</span><span class="p">,</span>
+        <span class="s2">"rev-parse"</span><span class="p">,</span>
+        <span class="s2">"HEAD"</span><span class="p">,</span>
     <span class="p">]</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">out</span><span class="p">:</span> <span class="nb">bytes</span>
@@ -3345,10 +3345,10 @@ Pydantic)</p>
             <span class="n">cmd</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">cwd</span><span class="o">=</span><span class="n">location</span>
         <span class="p">)</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
 
-        <span class="k">return</span> <span class="n">out</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">out</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">"utf-8"</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error getting git commit hash for </span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error getting git commit hash for </span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">""</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -3480,7 +3480,7 @@ E.g. can specify to exclude folders, ignore permission changes etc.</p>
 <span class="normal">66</span>
 <span class="normal">67</span>
 <span class="normal">68</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_record_git_diff</span><span class="p">(</span><span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">diff_args</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Collect the diff of the specified repository and then compress and encode it.</span>
+<span class="w">    </span><span class="sd">"""Collect the diff of the specified repository and then compress and encode it.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        location (str): Full path to the repository.</span>
@@ -3490,16 +3490,16 @@ E.g. can specify to exclude folders, ignore permission changes etc.</p>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        enc_str (str): The compressed, b64 encoded, diff as a string.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">location</span><span class="p">):</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Requested git diff of </span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2"> which does not exist!&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Requested git diff of </span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2"> which does not exist!"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">""</span>
 
     <span class="n">cmd</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s2">&quot;git&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;-c&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;core.fileMode=false&quot;</span><span class="p">,</span>  <span class="c1"># With this option, ignore changes in file mode (executable/not executable)</span>
-        <span class="s2">&quot;diff&quot;</span><span class="p">,</span>
+        <span class="s2">"git"</span><span class="p">,</span>
+        <span class="s2">"-c"</span><span class="p">,</span>
+        <span class="s2">"core.fileMode=false"</span><span class="p">,</span>  <span class="c1"># With this option, ignore changes in file mode (executable/not executable)</span>
+        <span class="s2">"diff"</span><span class="p">,</span>
     <span class="p">]</span>
     <span class="k">if</span> <span class="n">diff_args</span><span class="p">:</span>
         <span class="n">cmd</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">diff_args</span><span class="p">)</span>
@@ -3513,10 +3513,10 @@ E.g. can specify to exclude folders, ignore permission changes etc.</p>
         <span class="n">compressed</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="n">zlib</span><span class="o">.</span><span class="n">compress</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
         <span class="n">encoded</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="n">compressed</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">encoded</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">encoded</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">"utf-8"</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error getting git diff for </span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error getting git diff for </span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">""</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -3683,7 +3683,7 @@ E.g. can specify to exclude folders, ignore permission changes etc.</p>
     <span class="n">location</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">diff_args</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Record version information for an execution of a Task.</span>
+<span class="w">    </span><span class="sd">"""Record version information for an execution of a Task.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        version_specifier (int): Bitwise OR combination of VersionSpecifier enums.</span>
@@ -3696,18 +3696,18 @@ E.g. can specify to exclude folders, ignore permission changes etc.</p>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        version_info (Dict[str, str]): A dictionary of version details.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">if</span> <span class="n">version_specifier</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="c1"># No version selection information has been provided</span>
         <span class="k">return</span> <span class="p">{}</span>
 
-    <span class="n">lute_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;LUTE_PATH&quot;</span><span class="p">)</span>
+    <span class="n">lute_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"LUTE_PATH"</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">lute_dir</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">lute_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;..&quot;</span><span class="p">))</span>
+        <span class="n">lute_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s2">".."</span><span class="p">,</span> <span class="s2">".."</span><span class="p">))</span>
 
     <span class="k">if</span> <span class="n">location</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;No version location provided! Cannot record version info!&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"No version location provided! Cannot record version info!"</span><span class="p">)</span>
 
     <span class="c1"># A complete version specification may contain multiple parts</span>
     <span class="n">version_info</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
@@ -3716,16 +3716,16 @@ E.g. can specify to exclude folders, ignore permission changes etc.</p>
     <span class="k">if</span> <span class="n">_is_odd</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="n">version_specifier</span><span class="p">):</span>
         <span class="c1"># Use actual version? Or rely on diff until more strict about versioning?</span>
         <span class="c1"># from lute import __version__ as lute_ver</span>
-        <span class="c1"># version_info[&quot;lute-version&quot;] = lute_ver</span>
-        <span class="n">version_info</span><span class="p">[</span><span class="s2">&quot;lute-version&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_record_git_commit_hash</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="n">lute_dir</span><span class="p">)</span>
+        <span class="c1"># version_info["lute-version"] = lute_ver</span>
+        <span class="n">version_info</span><span class="p">[</span><span class="s2">"lute-version"</span><span class="p">]</span> <span class="o">=</span> <span class="n">_record_git_commit_hash</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="n">lute_dir</span><span class="p">)</span>
 
     <span class="c1"># GIT_SHA is enumerator 2</span>
     <span class="k">if</span> <span class="nb">bool</span><span class="p">(</span><span class="n">version_specifier</span> <span class="o">&amp;</span> <span class="mb">0b10</span><span class="p">)</span> <span class="ow">and</span> <span class="n">location</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">version_info</span><span class="p">[</span><span class="s2">&quot;git-sha&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_record_git_commit_hash</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="n">location</span><span class="p">)</span>
+        <span class="n">version_info</span><span class="p">[</span><span class="s2">"git-sha"</span><span class="p">]</span> <span class="o">=</span> <span class="n">_record_git_commit_hash</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="n">location</span><span class="p">)</span>
 
     <span class="c1"># GIT_DIFF is enumerator 4</span>
     <span class="k">if</span> <span class="nb">bool</span><span class="p">(</span><span class="n">version_specifier</span> <span class="o">&amp;</span> <span class="mb">0b100</span><span class="p">)</span> <span class="ow">and</span> <span class="n">location</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">version_info</span><span class="p">[</span><span class="s2">&quot;git-diff&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_record_git_diff</span><span class="p">(</span>
+        <span class="n">version_info</span><span class="p">[</span><span class="s2">"git-diff"</span><span class="p">]</span> <span class="o">=</span> <span class="n">_record_git_diff</span><span class="p">(</span>
             <span class="n">location</span><span class="o">=</span><span class="n">location</span><span class="p">,</span> <span class="n">diff_args</span><span class="o">=</span><span class="n">diff_args</span>
         <span class="p">)</span>
 
@@ -3799,7 +3799,7 @@ E.g. can specify to exclude folders, ignore permission changes etc.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

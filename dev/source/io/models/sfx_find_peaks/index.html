@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -3535,195 +3535,195 @@ NOTE: This Task is deprecated and provided for compatibility only.</p>
 <span class="normal">342</span>
 <span class="normal">343</span>
 <span class="normal">344</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">FindPeaksPsocakeParameters</span><span class="p">(</span><span class="n">ThirdPartyParameters</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parameters for crystallographic (Bragg) peak finding using Psocake.</span>
+<span class="w">    </span><span class="sd">"""Parameters for crystallographic (Bragg) peak finding using Psocake.</span>
 
 <span class="sd">    This peak finding Task optionally has the ability to compress/decompress</span>
 <span class="sd">    data with SZ for the purpose of compression validation.</span>
 <span class="sd">    NOTE: This Task is deprecated and provided for compatibility only.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">TaskParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
         <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Whether the Executor should mark a specified parameter as a result.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Whether the Executor should mark a specified parameter as a result."""</span>
 
-        <span class="n">result_from_params</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Defines a result from the parameters. Use a validator to do so.&quot;&quot;&quot;</span>
+        <span class="n">result_from_params</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">""</span>
+<span class="w">        </span><span class="sd">"""Defines a result from the parameters. Use a validator to do so."""</span>
 
-    <span class="n">executable</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">&quot;mpirun&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;MPI executable.&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">executable</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">"mpirun"</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"MPI executable."</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span>
     <span class="n">np</span><span class="p">:</span> <span class="n">PositiveInt</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;SLURM_NPROCS&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">sched_getaffinity</span><span class="p">(</span><span class="mi">0</span><span class="p">))))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of processes&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+        <span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"SLURM_NPROCS"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">sched_getaffinity</span><span class="p">(</span><span class="mi">0</span><span class="p">))))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Number of processes"</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"-"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">mca</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;btl ^openib&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Mca option for the MPI executable&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="s2">"btl ^openib"</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Mca option for the MPI executable"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="n">p_arg1</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Executable to run with mpi (i.e. python).&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+        <span class="s2">"python"</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Executable to run with mpi (i.e. python)."</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">""</span>
     <span class="p">)</span>
     <span class="n">u</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Python option for unbuffered output.&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;-&quot;</span>
+        <span class="s2">""</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Python option for unbuffered output."</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"-"</span>
     <span class="p">)</span>
     <span class="n">p_arg2</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;findPeaksSZ.py&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Executable to run with mpi (i.e. python).&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">"findPeaksSZ.py"</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Executable to run with mpi (i.e. python)."</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">d</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Detector name&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
-    <span class="n">e</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Experiment name&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
-    <span class="n">r</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Run number&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
+    <span class="n">d</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">"Detector name"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"-"</span><span class="p">)</span>
+    <span class="n">e</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Experiment name"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"-"</span><span class="p">)</span>
+    <span class="n">r</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Run number"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"-"</span><span class="p">)</span>
     <span class="n">outDir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Output directory where .cxi will be saved&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Output directory where .cxi will be saved"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
-    <span class="n">algorithm</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;PyAlgos algorithm to use&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+    <span class="n">algorithm</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"PyAlgos algorithm to use"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">)</span>
     <span class="n">alg_npix_min</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="mf">1.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;PyAlgos algorithm&#39;s npix_min parameter&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="mf">1.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"PyAlgos algorithm's npix_min parameter"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="n">alg_npix_max</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="mf">45.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;PyAlgos algorithm&#39;s npix_max parameter&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="mf">45.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"PyAlgos algorithm's npix_max parameter"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="n">alg_amax_thr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="mf">250.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;PyAlgos algorithm&#39;s amax_thr parameter&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="mf">250.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"PyAlgos algorithm's amax_thr parameter"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="n">alg_atot_thr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="mf">330.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;PyAlgos algorithm&#39;s atot_thr parameter&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="mf">330.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"PyAlgos algorithm's atot_thr parameter"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="n">alg_son_min</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="mf">10.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;PyAlgos algorithm&#39;s son_min parameter&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="mf">10.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"PyAlgos algorithm's son_min parameter"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="n">alg1_thr_low</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="mf">80.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;PyAlgos algorithm&#39;s thr_low parameter&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="mf">80.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"PyAlgos algorithm's thr_low parameter"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="n">alg1_thr_high</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="mf">270.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;PyAlgos algorithm&#39;s thr_high parameter&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="mf">270.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"PyAlgos algorithm's thr_high parameter"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="n">alg1_rank</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="mi">3</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;PyAlgos algorithm&#39;s rank parameter&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="mi">3</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"PyAlgos algorithm's rank parameter"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="n">alg1_radius</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="mi">3</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;PyAlgos algorithm&#39;s radius parameter&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="mi">3</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"PyAlgos algorithm's radius parameter"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="n">alg1_dr</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="mi">1</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;PyAlgos algorithm&#39;s dr parameter&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="mi">1</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"PyAlgos algorithm's dr parameter"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="n">psanaMask_on</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;True&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Whether psana&#39;s mask should be used&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="s2">"True"</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Whether psana's mask should be used"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="n">psanaMask_calib</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;True&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Psana mask&#39;s calib parameter&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="s2">"True"</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Psana mask's calib parameter"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="n">psanaMask_status</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;True&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Psana mask&#39;s status parameter&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="s2">"True"</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Psana mask's status parameter"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="n">psanaMask_edges</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;True&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Psana mask&#39;s edges parameter&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="s2">"True"</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Psana mask's edges parameter"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="n">psanaMask_central</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;True&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Psana mask&#39;s central parameter&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="s2">"True"</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Psana mask's central parameter"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="n">psanaMask_unbond</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;True&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Psana mask&#39;s unbond parameter&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="s2">"True"</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Psana mask's unbond parameter"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="n">psanaMask_unbondnrs</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;True&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Psana mask&#39;s unbondnbrs parameter&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="s2">"True"</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Psana mask's unbondnbrs parameter"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="n">mask</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Path to an additional mask to apply&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="s2">""</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Path to an additional mask to apply"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
     <span class="n">clen</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Epics variable storing the camera length&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Epics variable storing the camera length"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
-    <span class="n">coffset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Camera offset in m&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+    <span class="n">coffset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Camera offset in m"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">)</span>
     <span class="n">minPeaks</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="mi">15</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Minimum number of peaks to mark frame for indexing&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Minimum number of peaks to mark frame for indexing"</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">maxPeaks</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="mi">15</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Maximum number of peaks to mark frame for indexing&quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Maximum number of peaks to mark frame for indexing"</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">minRes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="mi">0</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Minimum peak resolution to mark frame for indexing &quot;</span><span class="p">,</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Minimum peak resolution to mark frame for indexing "</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">sample</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Sample name&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+    <span class="n">sample</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Sample name"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">)</span>
     <span class="n">instrument</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Instrument name&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Instrument name"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
-    <span class="n">pixelSize</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Pixel size&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+    <span class="n">pixelSize</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Pixel size"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">)</span>
     <span class="n">auto</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;False&quot;</span><span class="p">,</span>
+        <span class="s2">"False"</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;Whether to automatically determine peak per event peak &quot;</span>
-            <span class="s2">&quot;finding parameters&quot;</span>
+            <span class="s2">"Whether to automatically determine peak per event peak "</span>
+            <span class="s2">"finding parameters"</span>
         <span class="p">),</span>
-        <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span>
+        <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">detectorDistance</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="mf">0.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Detector distance from interaction point in m&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+        <span class="mf">0.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Detector distance from interaction point in m"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
-    <span class="n">access</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;ana&quot;</span><span class="p">,</span> <span class="s2">&quot;ffb&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;ana&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Data node type: {ana,ffb}&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;--&quot;</span>
+    <span class="n">access</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"ana"</span><span class="p">,</span> <span class="s2">"ffb"</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="s2">"ana"</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Data node type: {ana,ffb}"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">"--"</span>
     <span class="p">)</span>
-    <span class="n">szfile</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">&quot;qoz.json&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Path to SZ&#39;s JSON configuration file&quot;</span><span class="p">)</span>
+    <span class="n">szfile</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">"qoz.json"</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Path to SZ's JSON configuration file"</span><span class="p">)</span>
     <span class="n">lute_template_cfg</span><span class="p">:</span> <span class="n">TemplateConfig</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="n">TemplateConfig</span><span class="p">(</span>
-            <span class="n">template_name</span><span class="o">=</span><span class="s2">&quot;sz.json&quot;</span><span class="p">,</span>
-            <span class="n">output_path</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1"># Will want to change where this goes...</span>
+            <span class="n">template_name</span><span class="o">=</span><span class="s2">"sz.json"</span><span class="p">,</span>
+            <span class="n">output_path</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span>  <span class="c1"># Will want to change where this goes...</span>
         <span class="p">),</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Template information for the sz.json file&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Template information for the sz.json file"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">sz_parameters</span><span class="p">:</span> <span class="n">SZCompressorParameters</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Configuration parameters for SZ Compression&quot;</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Configuration parameters for SZ Compression"</span><span class="p">,</span> <span class="n">flag_type</span><span class="o">=</span><span class="s2">""</span>
     <span class="p">)</span>
 
-    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">"e"</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">validate_e</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">e</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">experiment</span>
+        <span class="k">if</span> <span class="n">e</span> <span class="o">==</span> <span class="s2">""</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="s2">"lute_config"</span><span class="p">]</span><span class="o">.</span><span class="n">experiment</span>
         <span class="k">return</span> <span class="n">e</span>
 
-    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">"r"</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">validate_r</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">r</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">r</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">run</span>
+            <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="s2">"lute_config"</span><span class="p">]</span><span class="o">.</span><span class="n">run</span>
         <span class="k">return</span> <span class="n">r</span>
 
-    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;lute_template_cfg&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">"lute_template_cfg"</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_output_path</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span> <span class="n">lute_template_cfg</span><span class="p">:</span> <span class="n">TemplateConfig</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TemplateConfig</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">lute_template_cfg</span><span class="o">.</span><span class="n">output_path</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
-            <span class="n">lute_template_cfg</span><span class="o">.</span><span class="n">output_path</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;szfile&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">lute_template_cfg</span><span class="o">.</span><span class="n">output_path</span> <span class="o">==</span> <span class="s2">""</span><span class="p">:</span>
+            <span class="n">lute_template_cfg</span><span class="o">.</span><span class="n">output_path</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">"szfile"</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">lute_template_cfg</span>
 
-    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;sz_parameters&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">"sz_parameters"</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_sz_compression_parameters</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span> <span class="n">sz_parameters</span><span class="p">:</span> <span class="n">SZCompressorParameters</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">values</span><span class="p">[</span><span class="s2">&quot;compressor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sz_parameters</span><span class="o">.</span><span class="n">compressor</span>
-        <span class="n">values</span><span class="p">[</span><span class="s2">&quot;binSize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sz_parameters</span><span class="o">.</span><span class="n">bin_size</span>
-        <span class="n">values</span><span class="p">[</span><span class="s2">&quot;roiWindowSize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sz_parameters</span><span class="o">.</span><span class="n">roi_window_size</span>
-        <span class="k">if</span> <span class="n">sz_parameters</span><span class="o">.</span><span class="n">compressor</span> <span class="o">==</span> <span class="s2">&quot;qoz&quot;</span><span class="p">:</span>
-            <span class="n">values</span><span class="p">[</span><span class="s2">&quot;pressio_opts&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="s2">&quot;pressio:abs&quot;</span><span class="p">:</span> <span class="n">sz_parameters</span><span class="o">.</span><span class="n">abs_error</span><span class="p">,</span>
-                <span class="s2">&quot;qoz&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;qoz:stride&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">},</span>
+        <span class="n">values</span><span class="p">[</span><span class="s2">"compressor"</span><span class="p">]</span> <span class="o">=</span> <span class="n">sz_parameters</span><span class="o">.</span><span class="n">compressor</span>
+        <span class="n">values</span><span class="p">[</span><span class="s2">"binSize"</span><span class="p">]</span> <span class="o">=</span> <span class="n">sz_parameters</span><span class="o">.</span><span class="n">bin_size</span>
+        <span class="n">values</span><span class="p">[</span><span class="s2">"roiWindowSize"</span><span class="p">]</span> <span class="o">=</span> <span class="n">sz_parameters</span><span class="o">.</span><span class="n">roi_window_size</span>
+        <span class="k">if</span> <span class="n">sz_parameters</span><span class="o">.</span><span class="n">compressor</span> <span class="o">==</span> <span class="s2">"qoz"</span><span class="p">:</span>
+            <span class="n">values</span><span class="p">[</span><span class="s2">"pressio_opts"</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">"pressio:abs"</span><span class="p">:</span> <span class="n">sz_parameters</span><span class="o">.</span><span class="n">abs_error</span><span class="p">,</span>
+                <span class="s2">"qoz"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"qoz:stride"</span><span class="p">:</span> <span class="mi">8</span><span class="p">},</span>
             <span class="p">}</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">values</span><span class="p">[</span><span class="s2">&quot;pressio_opts&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;pressio:abs&quot;</span><span class="p">:</span> <span class="n">sz_parameters</span><span class="o">.</span><span class="n">abs_error</span><span class="p">}</span>
+            <span class="n">values</span><span class="p">[</span><span class="s2">"pressio_opts"</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"pressio:abs"</span><span class="p">:</span> <span class="n">sz_parameters</span><span class="o">.</span><span class="n">abs_error</span><span class="p">}</span>
         <span class="k">return</span> <span class="kc">None</span>
 
     <span class="nd">@root_validator</span><span class="p">(</span><span class="n">pre</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">define_result</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-        <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">experiment</span>
-        <span class="n">run</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;lute_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">run</span><span class="p">)</span>
-        <span class="n">directory</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;outDir&quot;</span><span class="p">]</span>
-        <span class="n">fname</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">exp</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">.lst&quot;</span>
+        <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">"lute_config"</span><span class="p">]</span><span class="o">.</span><span class="n">experiment</span>
+        <span class="n">run</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">"lute_config"</span><span class="p">]</span><span class="o">.</span><span class="n">run</span><span class="p">)</span>
+        <span class="n">directory</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="s2">"outDir"</span><span class="p">]</span>
+        <span class="n">fname</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">exp</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">run</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">.lst"</span>
 
-        <span class="bp">cls</span><span class="o">.</span><span class="n">Config</span><span class="o">.</span><span class="n">result_from_params</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">directory</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">Config</span><span class="o">.</span><span class="n">result_from_params</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">directory</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s2">"</span>
         <span class="k">return</span> <span class="n">values</span>
 </code></pre></div></td></tr></table></div>
               </details>
@@ -3773,10 +3773,10 @@ NOTE: This Task is deprecated and provided for compatibility only.</p>
 <span class="normal">166</span>
 <span class="normal">167</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">TaskParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
     <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether the Executor should mark a specified parameter as a result.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Whether the Executor should mark a specified parameter as a result."""</span>
 
-    <span class="n">result_from_params</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Defines a result from the parameters. Use a validator to do so.&quot;&quot;&quot;</span>
+    <span class="n">result_from_params</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">""</span>
+<span class="w">    </span><span class="sd">"""Defines a result from the parameters. Use a validator to do so."""</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -3795,7 +3795,7 @@ NOTE: This Task is deprecated and provided for compatibility only.</p>
 
 
 <h4 id="io.models.sfx_find_peaks.FindPeaksPsocakeParameters.Config.result_from_params" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">result_from_params</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span></code>
+            <code class="highlight language-python"><span class="n">result_from_params</span> <span class="o">=</span> <span class="s1">''</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -4019,132 +4019,132 @@ data with SZ for the purpose of compression validation.</p>
 <span class="normal">149</span>
 <span class="normal">150</span>
 <span class="normal">151</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">FindPeaksSFXParameters</span><span class="p">(</span><span class="n">TaskParameters</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parameters for crystallographic (Bragg) peak finding using PyAlgos or Peakfinder8.</span>
+<span class="w">    </span><span class="sd">"""Parameters for crystallographic (Bragg) peak finding using PyAlgos or Peakfinder8.</span>
 
-<span class="sd">    The Peakfinder8 algorithm comes in two flavors &quot;Peakfinder8&quot; and &quot;Peakfinder8_v2&quot;,</span>
-<span class="sd">    the latter does not use a &quot;slab&quot; geometry. This, however, is not currently supported</span>
+<span class="sd">    The Peakfinder8 algorithm comes in two flavors "Peakfinder8" and "Peakfinder8_v2",</span>
+<span class="sd">    the latter does not use a "slab" geometry. This, however, is not currently supported</span>
 <span class="sd">    by downstream CrystFEL so should not yet be used for full pipelines.</span>
 
 
 <span class="sd">    This peak finding Task optionally has the ability to compress/decompress</span>
 <span class="sd">    data with SZ for the purpose of compression validation.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">TaskParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
         <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Whether the Executor should mark a specified parameter as a result.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Whether the Executor should mark a specified parameter as a result."""</span>
 
-    <span class="n">algorithm</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;PyAlgos&quot;</span><span class="p">,</span> <span class="s2">&quot;Peakfinder8&quot;</span><span class="p">,</span> <span class="s2">&quot;Peakfinder8_v2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;Peakfinder8&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The peakfinding algorithm to use. Either Peakfinder8 (v1 or v2) or PyAlgos.&quot;</span><span class="p">,</span>
+    <span class="n">algorithm</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"PyAlgos"</span><span class="p">,</span> <span class="s2">"Peakfinder8"</span><span class="p">,</span> <span class="s2">"Peakfinder8_v2"</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">"Peakfinder8"</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"The peakfinding algorithm to use. Either Peakfinder8 (v1 or v2) or PyAlgos."</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="n">outdir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Output directory for cxi files&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Output directory for cxi files"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">n_events</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="mi">0</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of events to process (0 to process all events)&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Number of events to process (0 to process all events)"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">det_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Psana name of the detector storing the image data&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Psana name of the detector storing the image data"</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">event_receiver</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;evr0&quot;</span><span class="p">,</span> <span class="s2">&quot;evr1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Event Receiver to be used: evr0 or evr1&quot;</span><span class="p">,</span>
+    <span class="n">event_receiver</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"evr0"</span><span class="p">,</span> <span class="s2">"evr1"</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Event Receiver to be used: evr0 or evr1"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Tag to add to the output file names&quot;</span><span class="p">,</span>
+        <span class="s2">""</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Tag to add to the output file names"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">pv_camera_length</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;PV associated with camera length &quot;</span>
-        <span class="s2">&quot;(if a number, camera length directly)&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"PV associated with camera length "</span>
+        <span class="s2">"(if a number, camera length directly)"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">event_logic</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;True if only events with a specific event code should be &quot;</span>
-        <span class="s2">&quot;processed. False if the event code should be ignored&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"True if only events with a specific event code should be "</span>
+        <span class="s2">"processed. False if the event code should be ignored"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">event_code</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="mi">0</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Required events code for events to be processed if event logic &quot;</span>
-        <span class="s2">&quot;is True&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Required events code for events to be processed if event logic "</span>
+        <span class="s2">"is True"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">psana_mask</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;If True, apply mask from psana Detector object&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"If True, apply mask from psana Detector object"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">mask_file</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;File with a custom mask to apply. If None, no custom mask is &quot;</span>
-        <span class="s2">&quot;applied&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"File with a custom mask to apply. If None, no custom mask is "</span>
+        <span class="s2">"applied"</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">min_peaks</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Minimum number of peaks per image&quot;</span><span class="p">)</span>
+    <span class="n">min_peaks</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Minimum number of peaks per image"</span><span class="p">)</span>
     <span class="n">max_peaks</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="mi">2048</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Maximum number of peaks per image&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Maximum number of peaks per image"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">npix_min</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="mi">2</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Minimum number of pixels per peak&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Minimum number of pixels per peak"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">npix_max</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="mi">30</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Maximum number of pixels per peak&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Maximum number of pixels per peak"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">amax_thr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="mf">80.0</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Minimum intensity threshold for starting a peak&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Minimum intensity threshold for starting a peak"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">atot_thr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="mf">120.0</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Minimum summed intensity threshold for pixel collection&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Minimum summed intensity threshold for pixel collection"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">son_min</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="mf">7.0</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Minimum signal-to-noise ratio to be considered a peak&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Minimum signal-to-noise ratio to be considered a peak"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">peak_rank</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="mi">3</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Radius in which central peak pixel is a local maximum&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Radius in which central peak pixel is a local maximum"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">r0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="mf">3.0</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Radius of ring for background evaluation in pixels&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Radius of ring for background evaluation in pixels"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">dr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="mf">2.0</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Width of ring for background evaluation in pixels&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Width of ring for background evaluation in pixels"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">nsigm</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="mf">7.0</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Intensity threshold to include pixel in connected group&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Intensity threshold to include pixel in connected group"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">compression</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SZCompressorParameters</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Options for the SZ Compression Algorithm&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Options for the SZ Compression Algorithm"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">out_file</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Path to output file.&quot;</span><span class="p">,</span>
+        <span class="s2">""</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Path to output file."</span><span class="p">,</span>
         <span class="n">is_result</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">geometry_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A path to a CrystFEL geometry file (for pf8).&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"A path to a CrystFEL geometry file (for pf8)."</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">make_powder_plots</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">True</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Whether to generate assembled powder plots in the eLog.&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Whether to generate assembled powder plots in the eLog."</span><span class="p">,</span>
     <span class="p">)</span>
 
-    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;out_file&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">"out_file"</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">validate_out_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">out_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">out_file</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">out_file</span> <span class="o">==</span> <span class="s2">""</span><span class="p">:</span>
             <span class="n">fname</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="n">Path</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">&quot;outdir&quot;</span><span class="p">])</span>
-                <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;lute_config&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">experiment</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;lute_config&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">run</span><span class="si">}</span><span class="s2">_&quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">&#39;tag&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">.list&quot;</span>
+                <span class="n">Path</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="s2">"outdir"</span><span class="p">])</span>
+                <span class="o">/</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">'lute_config'</span><span class="p">]</span><span class="o">.</span><span class="n">experiment</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">'lute_config'</span><span class="p">]</span><span class="o">.</span><span class="n">run</span><span class="si">}</span><span class="s2">_"</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="s1">'tag'</span><span class="p">]</span><span class="si">}</span><span class="s2">.list"</span>
             <span class="p">)</span>
             <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">out_file</span>
@@ -4193,7 +4193,7 @@ data with SZ for the purpose of compression validation.</p>
 <span class="normal">35</span>
 <span class="normal">36</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">(</span><span class="n">TaskParameters</span><span class="o">.</span><span class="n">Config</span><span class="p">):</span>
     <span class="n">set_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether the Executor should mark a specified parameter as a result.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Whether the Executor should mark a specified parameter as a result."""</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -4314,7 +4314,7 @@ data with SZ for the purpose of compression validation.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

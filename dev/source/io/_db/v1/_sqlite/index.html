@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -3371,7 +3371,7 @@ which matches the provided values.</p>
 <span class="normal">177</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_add_row_no_duplicate</span><span class="p">(</span>
     <span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">entry</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add a new row to a table with no duplicates.</span>
+<span class="w">    </span><span class="sd">"""Add a new row to a table with no duplicates.</span>
 
 <span class="sd">    This function will check first to see if the entry exists in the table. If</span>
 <span class="sd">    there is already a row with the provided information, its ID is returned.</span>
@@ -3396,27 +3396,27 @@ which matches the provided values.</p>
 <span class="sd">    Returns:</span>
 <span class="sd">        row_id (int): The row id of the newly added entry or the last entry</span>
 <span class="sd">            which matches the provided values.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">match_strs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2"> LIKE &#39;</span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">&#39;&quot;</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">entry</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
-    <span class="n">total_match</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot; AND &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">match_strs</span><span class="p">)</span>
+<span class="sd">    """</span>
+    <span class="n">match_strs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2"> LIKE '</span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">'"</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">entry</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+    <span class="n">total_match</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">" AND "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">match_strs</span><span class="p">)</span>
 
     <span class="n">res</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Cursor</span>
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
-        <span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SELECT id FROM </span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2"> WHERE </span><span class="si">{</span><span class="n">total_match</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">"SELECT id FROM </span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2"> WHERE </span><span class="si">{</span><span class="n">total_match</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">ids</span> <span class="o">:=</span> <span class="n">res</span><span class="o">.</span><span class="n">fetchall</span><span class="p">():</span>
             <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;_</span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">_table_entry: Rows matching </span><span class="si">{</span><span class="n">total_match</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">ids</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">"_</span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">_table_entry: Rows matching </span><span class="si">{</span><span class="n">total_match</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">ids</span><span class="si">}</span><span class="s2">"</span>
             <span class="p">)</span>
             <span class="k">return</span> <span class="n">ids</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">ins_str</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;:</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">, &quot;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">entry</span><span class="o">.</span><span class="n">keys</span><span class="p">())[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">ins_str</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">""</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">":</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">, "</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">entry</span><span class="o">.</span><span class="n">keys</span><span class="p">())[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
         <span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;INSERT INTO </span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">) VALUES (</span><span class="si">{</span><span class="n">ins_str</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">"INSERT INTO </span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="s1">','</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">) VALUES (</span><span class="si">{</span><span class="n">ins_str</span><span class="si">}</span><span class="s2">)"</span><span class="p">,</span>
             <span class="n">entry</span><span class="p">,</span>
         <span class="p">)</span>
-        <span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SELECT id FROM </span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2"> WHERE </span><span class="si">{</span><span class="n">total_match</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">"SELECT id FROM </span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2"> WHERE </span><span class="si">{</span><span class="n">total_match</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
         <span class="n">new_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;_</span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">_table_entry: No matching rows - adding new row: </span><span class="si">{</span><span class="n">new_id</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">"_</span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">_table_entry: No matching rows - adding new row: </span><span class="si">{</span><span class="n">new_id</span><span class="si">}</span><span class="s2">"</span>
         <span class="p">)</span>
     <span class="k">return</span> <span class="n">new_id</span>
 </code></pre></div></td></tr></table></div>
@@ -3539,28 +3539,28 @@ In most cases this is the Python class' name.</p>
     <span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">entry</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add an entry to a task table.</span>
+<span class="w">    </span><span class="sd">"""Add an entry to a task table.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        con (sqlite3.Connection): Database connection.</span>
 
-<span class="sd">        task_name (str): The Task&#39;s name. This will be provided by the Task.</span>
-<span class="sd">            In most cases this is the Python class&#39; name.</span>
+<span class="sd">        task_name (str): The Task's name. This will be provided by the Task.</span>
+<span class="sd">            In most cases this is the Python class' name.</span>
 
 <span class="sd">        entry (Dict[str, Any]): A dictionary of entries in the format of</span>
 <span class="sd">            {COLUMN: ENTRY}. These are assumed to match the columns of the table.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">placeholder_str</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;?&quot;</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">entry</span><span class="p">)))</span>
+<span class="sd">    """</span>
+    <span class="n">placeholder_str</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">"?"</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">entry</span><span class="p">)))</span>
     <span class="n">keys</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">values</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">entry</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="n">keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">&quot;&#39;</span><span class="p">)</span>
+        <span class="n">keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">'"</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">"'</span><span class="p">)</span>
         <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
-        <span class="c1"># ins_str: str = &quot;&quot;.join(f&#39;:&quot;{x}&quot;, &#39; for x in entry.keys())[:-2]</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;_add_task_entry: </span><span class="si">{</span><span class="n">keys</span><span class="si">}</span><span class="se">\n\t\t</span><span class="si">{</span><span class="n">values</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="c1"># ins_str: str = "".join(f':"{x}", ' for x in entry.keys())[:-2]</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">"_add_task_entry: </span><span class="si">{</span><span class="n">keys</span><span class="si">}</span><span class="se">\n\t\t</span><span class="si">{</span><span class="n">values</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
         <span class="n">_</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;INSERT INTO </span><span class="si">{</span><span class="n">task_name</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span><span class="si">}</span><span class="s2">) VALUES (</span><span class="si">{</span><span class="n">placeholder_str</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">"INSERT INTO </span><span class="si">{</span><span class="n">task_name</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="s1">','</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span><span class="si">}</span><span class="s2">) VALUES (</span><span class="si">{</span><span class="n">placeholder_str</span><span class="si">}</span><span class="s2">)"</span><span class="p">,</span>
             <span class="n">values</span><span class="p">,</span>
         <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -3670,7 +3670,7 @@ In most cases this is the Python class' name.</p>
 <span class="normal">93</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_make_shared_table</span><span class="p">(</span>
     <span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">columns</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a general configuration table.</span>
+<span class="w">    </span><span class="sd">"""Create a general configuration table.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        con (sqlite3.Connection): Database connection.</span>
@@ -3679,10 +3679,10 @@ In most cases this is the Python class' name.</p>
 
 <span class="sd">        columns (Dict[str, str]): A dictionary of columns in the format of</span>
 <span class="sd">            {COLNAME:TYPE}.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">col_str</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">columns</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">)</span>
-    <span class="n">db_str</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">(id INTEGER PRIMARY KEY AUTOINCREMENT, </span><span class="si">{</span><span class="n">col_str</span><span class="si">}</span><span class="s2">)&quot;</span>
-    <span class="n">sql</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;CREATE TABLE IF NOT EXISTS </span><span class="si">{</span><span class="n">db_str</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="sd">    """</span>
+    <span class="n">col_str</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">columns</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">)</span>
+    <span class="n">db_str</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">(id INTEGER PRIMARY KEY AUTOINCREMENT, </span><span class="si">{</span><span class="n">col_str</span><span class="si">}</span><span class="s2">)"</span>
+    <span class="n">sql</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"CREATE TABLE IF NOT EXISTS </span><span class="si">{</span><span class="n">db_str</span><span class="si">}</span><span class="s2">"</span>
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
         <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">does_table_exist</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="n">table_name</span><span class="p">)</span>
@@ -3849,13 +3849,13 @@ generating the dictionary from a TaskParameters object.</p>
 <span class="normal">72</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_make_task_table</span><span class="p">(</span>
     <span class="n">con</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">columns</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create  a sqlite Task table for LUTE&#39;s specification.</span>
+<span class="w">    </span><span class="sd">"""Create  a sqlite Task table for LUTE's specification.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        con (sqlite3.Connection): Database connection.</span>
 
-<span class="sd">        task_name (str): The Task&#39;s name. This will be provided by the Task.</span>
-<span class="sd">            In most cases this is the Python class&#39; name.</span>
+<span class="sd">        task_name (str): The Task's name. This will be provided by the Task.</span>
+<span class="sd">            In most cases this is the Python class' name.</span>
 
 <span class="sd">        columns (Dict[str, str]): A dictionary of columns in the format of</span>
 <span class="sd">            {COLNAME:TYPE}. These match the parameters of the Task and the Result</span>
@@ -3865,7 +3865,7 @@ generating the dictionary from a TaskParameters object.</p>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        success (bool): Whether the table was created correctly or not.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">sql</span><span class="p">:</span> <span class="nb">str</span>
     <span class="c1"># Check existence explicitly because may need to modify...</span>
     <span class="k">if</span> <span class="n">does_table_exist</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="n">task_name</span><span class="p">):</span>
@@ -3874,23 +3874,23 @@ generating the dictionary from a TaskParameters object.</p>
         <span class="n">current_cols</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_table_cols</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="n">task_name</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">diff</span> <span class="o">:=</span> <span class="n">compare_cols</span><span class="p">(</span><span class="n">current_cols</span><span class="p">,</span> <span class="n">columns</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">diff</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="n">sql</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;ALTER TABLE </span><span class="si">{</span><span class="n">task_name</span><span class="si">}</span><span class="s1"> ADD COLUMN &quot;</span><span class="si">{</span><span class="n">col</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">&quot; </span><span class="si">{</span><span class="n">col</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span>
-                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;_make_task_table[ALTER]: </span><span class="si">{</span><span class="n">sql</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">sql</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'ALTER TABLE </span><span class="si">{</span><span class="n">task_name</span><span class="si">}</span><span class="s1"> ADD COLUMN "</span><span class="si">{</span><span class="n">col</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">" </span><span class="si">{</span><span class="n">col</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">'</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">"_make_task_table[ALTER]: </span><span class="si">{</span><span class="n">sql</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
                 <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
                     <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
 
     <span class="c1"># Table does not yet exist -&gt; Create it</span>
     <span class="c1"># Need to escape column names using double quotes since they</span>
     <span class="c1"># may contain periods.</span>
-    <span class="n">col_str</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">&quot; </span><span class="si">{</span><span class="n">columns</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">)</span>
+    <span class="n">col_str</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s1">'"</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">" </span><span class="si">{</span><span class="n">columns</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="si">}</span><span class="s1">'</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">)</span>
     <span class="n">db_str</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">task_name</span><span class="si">}</span><span class="s2">(id INTEGER PRIMARY KEY AUTOINCREMENT, &quot;</span>
-        <span class="s2">&quot;timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, &quot;</span>
-        <span class="sa">f</span><span class="s2">&quot;gen_cfg_id INTEGER, exec_cfg_id INTEGER, </span><span class="si">{</span><span class="n">col_str</span><span class="si">}</span><span class="s2">, &quot;</span>
-        <span class="s2">&quot;valid_flag INTEGER)&quot;</span>
+        <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">task_name</span><span class="si">}</span><span class="s2">(id INTEGER PRIMARY KEY AUTOINCREMENT, "</span>
+        <span class="s2">"timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, "</span>
+        <span class="sa">f</span><span class="s2">"gen_cfg_id INTEGER, exec_cfg_id INTEGER, </span><span class="si">{</span><span class="n">col_str</span><span class="si">}</span><span class="s2">, "</span>
+        <span class="s2">"valid_flag INTEGER)"</span>
     <span class="p">)</span>
-    <span class="n">sql</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;CREATE TABLE IF NOT EXISTS </span><span class="si">{</span><span class="n">db_str</span><span class="si">}</span><span class="s2">&quot;</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;_make_task_table[CREATE]: </span><span class="si">{</span><span class="n">sql</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">sql</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"CREATE TABLE IF NOT EXISTS </span><span class="si">{</span><span class="n">db_str</span><span class="si">}</span><span class="s2">"</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">"_make_task_table[CREATE]: </span><span class="si">{</span><span class="n">sql</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
     <span class="k">with</span> <span class="n">con</span><span class="p">:</span>
         <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">does_table_exist</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="n">task_name</span><span class="p">)</span>
@@ -3963,7 +3963,7 @@ generating the dictionary from a TaskParameters object.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": [], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
