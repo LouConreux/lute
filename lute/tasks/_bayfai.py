@@ -56,6 +56,7 @@ PHOTON_ENERGY_KEYS: tuple = (
     "ebeam/photon_energy",
 )
 
+
 def _build_ai(
     detector: pyFAI.detectors.Detector,
     params: list,
@@ -250,7 +251,9 @@ class BayFAIOpt:
                     panel,
                     np.median(panel[panel_good]) if panel_good.any() else 0.0,
                 )
-                background = median_filter(filled, size=median_filter_size, mode="nearest")
+                background = median_filter(
+                    filled, size=median_filter_size, mode="nearest"
+                )
                 powder[p] = panel - background
             powder[powder < 0] = 0
         powder[~good] = 0
