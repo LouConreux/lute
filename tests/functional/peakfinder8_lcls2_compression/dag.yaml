@@ -1,23 +1,23 @@
 !LUTE_DAG
 task_name: "PeakFinderSFXXpp"
-slurm_params: "--account=lcls:data --partition=milano --nodes=1 --ntasks-per-node=73 --exclusive --constraint=OS_VER:9.6"
+slurm_params: "--account=lcls:data --partition=milano --nodes=1 --ntasks-per-node=73 --exclusive"
 next:
 - task_name: "CrystFELIndexer"
-  slurm_params: "--account=lcls:data --partition=milano --nodes=1 --ntasks-per-node=73 --exclusive --constraint=OS_VER:9.6"
+  slurm_params: "--account=lcls:data --partition=milano --nodes=1 --ntasks-per-node=73 --exclusive"
   next:
   - task_name: "StreamFileConcatenator"
-    slurm_params: "--account=lcls:data --partition=milano --nodes=1 --ntasks-per-node=2 --constraint=OS_VER:9.6"
+    slurm_params: "--account=lcls:data --partition=milano --nodes=1 --ntasks-per-node=2"
     next:
     - task_name: "PartialatorMerger"
-      slurm_params: "--account=lcls:data --partition=milano --nodes=1 --ntasks-per-node=73 --exclusive --constraint=OS_VER:9.6"
+      slurm_params: "--account=lcls:data --partition=milano --nodes=1 --ntasks-per-node=73 --exclusive"
       next:
       - task_name: "HKLManipulator"
-        slurm_params: "--account=lcls:data --partition=milano --nodes=1 --ntasks-per-node=8 --constraint=OS_VER:9.6"
+        slurm_params: "--account=lcls:data --partition=milano --nodes=1 --ntasks-per-node=8"
         next: []
         # Skipping the final solver for now
         # - task_name: "DimpleSolver"
-        #   slurm_params: "--account=lcls:data --partition=milano --nodes=1 --ntasks-per-node=73 --exclusive --constraint=OS_VER:9.6"
+        #   slurm_params: "--account=lcls:data --partition=milano --nodes=1 --ntasks-per-node=73 --exclusive"
         #   next: []
       - task_name: "HKLComparer"
-        slurm_params: "--account=lcls:data --partition=milano --nodes=1 --ntasks-per-node=8 --constraint=OS_VER:9.6"
+        slurm_params: "--account=lcls:data --partition=milano --nodes=1 --ntasks-per-node=8"
         next: []

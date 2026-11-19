@@ -1,4 +1,4 @@
 !LUTE_DAG
 task_name: SmallDataProducer
-slurm_params: "--psana1 --partition=milano --account=lcls:data --ntasks=120 --constraint=OS_VER:9.6"
+slurm_params: "--psana1 --partition=milano --account=lcls:data --ntasks=120"
 next: []

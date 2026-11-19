@@ -16,21 +16,22 @@ __author__ = "Louis Conreux"
 
 from lute.execution.logging import get_logger
 
+import contextlib
+import functools
+import gc
 import os
 from typing import Optional
+from unittest import mock
 import numpy as np
 import numpy.typing as npt
 import logging
-import matplotlib.pyplot as plt  # type: ignore
-import matplotlib.patches as patches  # type: ignore
-from matplotlib import lines  # type: ignore
-from bokeh.plotting import figure  # type: ignore
-from bokeh.models import LinearColorMapper, HoverTool  # type: ignore
-from bokeh.palettes import Viridis256, Category10  # type: ignore
-from bokeh.models.annotations import Label  # type: ignore
 import h5py  # type: ignore
 import pyFAI  # type: ignore
+import pyFAI.goniometer  # type: ignore
+import pyFAI.massif  # type: ignore
+from pyFAI.ext.mathutil import build_qmask  # type: ignore
 from pyFAI.geometry import Geometry  # type: ignore
+from pyFAI.geometry.core import _geometry  # type: ignore
 from pyFAI.goniometer import SingleGeometry  # type: ignore
 from pyFAI.geometryRefinement import GeometryRefinement  # type: ignore
 from pyFAI.calibrant import CALIBRANT_FACTORY  # type: ignore
@@ -48,7 +49,235 @@ from LCLSGeom.utils.pyfai_utils import pyfai_to_image_poni  # type: ignore
 
 pyFAI.use_opencl = False
 
+
+class _CachedKernelNames:
+    """Cache, per kernel class, the names sklearn recomputes on every theta access.
+
+    Stock leaf kernels run inspect.signature (get_params) and dir() (hyperparameters)
+    on each L-BFGS objective call; only the names are cached, values are always read.
+    """
+
+    def get_params(self, deep=True):
+        cls = type(self)
+        names = cls.__dict__.get("_param_names")
+        if names is None:
+            names = cls._param_names = tuple(super().get_params(deep=False))
+        return {name: getattr(self, name) for name in names}
+
+    @property
+    def hyperparameters(self):
+        cls = type(self)
+        names = cls.__dict__.get("_hp_names")
+        if names is None:
+            names = cls._hp_names = sorted(
+                a for a in dir(cls) if a.startswith("hyperparameter_")
+            )
+        return [getattr(self, a) for a in names]
+
+
+class _Matern(_CachedKernelNames, Matern):
+    pass
+
+
+class _ConstantKernel(_CachedKernelNames, ConstantKernel):
+    pass
+
+
+class _WhiteKernel(_CachedKernelNames, WhiteKernel):
+    pass
+
+
 logger: logging.Logger = get_logger(__name__)
+
+
+def _qmask_first(ttha, tth_min, tth_max, mask, max_rings):
+    """build_qmask over the first max_rings+2 2theta intervals only; full call if too few are non-empty."""
+    # ponytail: identical because the intervals do not overlap and extract_cp's ring loop breaks before index K.
+    n = len(tth_min)
+    K = min(n, max_rings + 2)
+    if K == n:
+        return build_qmask(ttha, tth_min, tth_max, mask)
+    qmask, count = build_qmask(ttha, tth_min[:K], tth_max[:K], mask)
+    if np.count_nonzero(count) < max_rings:
+        return build_qmask(ttha, tth_min, tth_max, mask)
+    return qmask, np.concatenate((count, np.zeros(n - K, dtype=count.dtype)))
+
+
+class _Massif(pyFAI.massif.Massif):
+    """Massif whose peaks_from_area scans only the mask's row band (same points, order, RNG draws)."""
+
+    def peaks_from_area(
+        self,
+        mask,
+        Imin=np.finfo(np.float64).min,
+        keep=1000,
+        dmin=0.0,
+        seed=None,
+        **kwarg,
+    ):
+        """Verbatim pyFAI 2024.9 Massif.peaks_from_area except for the all_points and shuffle lines."""
+        res = []
+        cnt = 0
+        dmin2 = dmin * dmin
+
+        # ponytail: same intp values in row-major order as np.where(mask), np.where over the rows that hold points only.
+        rows = np.flatnonzero(mask.any(axis=1))
+        if rows.size:
+            w = np.nonzero(mask[rows[0] : rows[-1] + 1])
+            all_points = np.vstack((w[0] + rows[0], w[1])).T
+        else:
+            all_points = np.vstack(np.where(mask)).T
+        # ponytail: legacy RandomState.permutation(n) is arange(n) plus the same Fisher-Yates random_interval(i),
+        # i = n-1..1, as shuffle's multi-dim path: same draws, same rows, without the per-row bounce buffer.
+        if len(all_points) > 0:
+            all_points = all_points[np.random.permutation(len(all_points))]
+
+        if seed:
+            seeds = np.array(list(seed))
+            if len(seeds) > 0:
+                seeds = seeds[np.random.permutation(len(seeds))]
+            all_points = np.concatenate((seeds, all_points))
+
+        msg = "[ %3i, %3i ] -> [ %.1f, %.1f ]"
+        for idx in all_points:
+            out = self.nearest_peak(idx)
+            if out is not None:
+
+                pyFAI.massif.logger.debug(msg, idx[1], idx[0], out[1], out[0])
+                p0, p1 = int(round(out[0])), int(round(out[1]))
+                if mask[p0, p1]:
+                    if (self.data[p0, p1] > Imin) and pyFAI.massif.is_far_from_group(
+                        out, res, dmin2
+                    ):
+                        res.append(out)
+                        cnt = 0
+            if len(res) >= keep or cnt > keep:
+                break
+            else:
+                cnt += 1
+        return res
+
+
+@contextlib.contextmanager
+def _fast_extract_cp(max_rings):
+    """Patches active around sg.extract_cp(max_rings=...); outputs and global RNG draws are unchanged."""
+    with (
+        mock.patch.object(
+            pyFAI.goniometer,
+            "build_qmask",
+            functools.partial(_qmask_first, max_rings=max_rings),
+        ),
+        mock.patch.object(pyFAI.goniometer, "Massif", _Massif),
+    ):
+        yield
+
+
+def _row_runs(rows):
+    """Contiguous runs of the sorted row indices, as slices in row order."""
+    cut = np.flatnonzero(np.diff(rows) > 1)
+    starts, ends = np.r_[rows[0], rows[cut + 1]], np.r_[rows[cut], rows[-1]]
+    return [slice(int(a), int(b) + 1) for a, b in zip(starts, ends)]
+
+
+class _SingleGeometry(SingleGeometry):
+    """SingleGeometry whose extract_cp does the per-ring mask ops on the ring's row band only."""
+
+    def extract_cp(self, max_rings=None, pts_per_deg=1.0, Imin=0):
+        """Verbatim pyFAI 2024.9 SingleGeometry.extract_cp except for the ring-loop mask ops."""
+        G = pyFAI.goniometer
+        if self.massif is None:
+            if self.detector:
+                mask = self.detector.dynamic_mask(self.image)
+            else:
+                mask = None
+            self.massif = G.Massif(self.image, mask)
+
+        tth = np.array([i for i in self.calibrant.get_2th() if i is not None])
+        tth = np.unique(tth)
+        tth_min = np.zeros_like(tth)
+        tth_max = np.zeros_like(tth)
+        delta = (tth[1:] - tth[:-1]) / 4.0
+        tth_max[:-1] = delta
+        tth_max[-1] = delta[-1]
+        tth_min[1:] = -delta
+        tth_min[0] = -delta[0]
+        tth_max += tth
+        tth_min += tth
+        shape = self.image.shape
+        ttha = self.geometry_refinement.twoThetaArray(shape)
+        chia = self.geometry_refinement.chiArray(shape)
+        rings = 0
+        cp = G.ControlPoints(calibrant=self.calibrant)
+        if max_rings is None:
+            max_rings = tth.size
+
+        qmask, count = G.build_qmask(
+            ttha, tth_min, tth_max, self.geometry_refinement.detector.mask
+        )
+        # ponytail: identical because ring i only lives in rows with lo <= i <= hi; outside them stock's
+        # qmask == i and mask2 are all False (mask2 kept zero there), and row-major order is preserved.
+        mask2 = np.zeros(qmask.shape, dtype=bool)
+        hi = qmask.max(axis=1)
+        lo = qmask.min(axis=1, initial=count.size, where=qmask >= 0)
+        prev = []
+        ms = G.marchingsquares.MarchingSquaresMergeImpl(
+            ttha, mask=self.geometry_refinement.detector.mask, use_minmax_cache=True
+        )
+        for i in range(tth.size):
+            if rings >= max_rings:
+                break
+            if count[i]:
+                rings += 1
+                runs = _row_runs(np.flatnonzero((lo <= i) & (hi >= i)))
+                for s in prev:
+                    mask2[s] = False
+                prev = runs
+                masks = [qmask[s] == i for s in runs]
+                parts = [self.image[s][m] for s, m in zip(runs, masks)]
+                sub_data = parts[0] if len(parts) == 1 else np.concatenate(parts)
+                mean = sub_data.mean(dtype=np.float64)
+                std = sub_data.std(dtype=np.float64)
+                upper_limit = mean + std
+                for s, m in zip(runs, masks):
+                    np.logical_and(self.image[s] > upper_limit, m, out=mask2[s])
+                size2 = sum(int(mask2[s].sum(dtype=int)) for s in runs)
+                if size2 < 1000:
+                    upper_limit = mean
+                    for s, m in zip(runs, masks):
+                        np.logical_and(self.image[s] > upper_limit, m, out=mask2[s])
+                    size2 = sum(int(mask2[s].sum()) for s in runs)
+                # length of the arc:
+                points = ms.find_pixels(tth[i])
+                seeds = set((i[0], i[1]) for i in points if mask2[i[0], i[1]])
+                # max number of points: 360 points for a full circle
+                azimuthal = chia[
+                    points[:, 0].clip(0, shape[0]), points[:, 1].clip(0, shape[1])
+                ]
+                nb_deg_azim = np.unique(np.rad2deg(azimuthal).round()).size
+                keep = int(nb_deg_azim * pts_per_deg)
+                if keep == 0:
+                    continue
+                dist_min = len(seeds) / 2.0 / keep
+                # why 3.0, why not ?
+
+                G.logger.info(
+                    "Extracting datapoint for ring %s (2theta = %.2f deg); "
+                    + "searching for %i pts out of %i with I>%.1f, dmin=%.1f",
+                    i,
+                    np.degrees(tth[i]),
+                    keep,
+                    size2,
+                    upper_limit,
+                    dist_min,
+                )
+                res = self.massif.peaks_from_area(
+                    mask2, Imin=Imin, keep=keep, dmin=dist_min, seed=seeds, ring=i
+                )
+                cp.append(res, i)
+        self.control_points = cp
+        self.geometry_refinement.data = np.asarray(cp.getList(), dtype=np.float64)
+        return cp
+
 
 PHOTON_ENERGY_KEYS: tuple = (
     "ebeamh/ebeamPhotonEnergy",
@@ -104,6 +333,8 @@ class BayFAIOpt:
         Run number
     """
 
+    min_points = 0  # score() returns 0 below this many control points
+
     def __init__(
         self,
         exp: str,
@@ -118,12 +349,13 @@ class BayFAIOpt:
             logger.info(f"Getting {self.size} processes for BayFAIOpt task")
 
     @staticmethod
-    def UCB(X, gp_model, visited_idx, beta=1.96):
-        y_pred, y_std = gp_model.predict(X, return_std=True)
-        ucb = y_pred + beta * y_std
-        ucb[visited_idx] = -np.inf
-        next = np.argmax(ucb)
-        return next
+    def UCB(X, gp_model, visited_idx, beta=1.96, n_cand=None):
+        """Return the index into X of the best unvisited UCB point, among n_cand random ones if set."""
+        idx = np.delete(np.arange(len(X)), visited_idx)
+        if n_cand and len(idx) > n_cand:
+            idx = np.random.choice(idx, n_cand, replace=False)
+        y_pred, y_std = gp_model.predict(X[idx], return_std=True)
+        return idx[np.argmax(y_pred + beta * y_std)]
 
     @staticmethod
     def q_UCB(X, gp_model, q, visited_idx, beta=1.96):
@@ -172,9 +404,31 @@ class BayFAIOpt:
             Minimum intensity value for identifying Bragg peaks
         """
         self.detector = self.build_detector(detname)
+        # twoThetaArray/chiArray recompute full-grid pixel positions (geometry-independent) on every
+        # BO evaluation via fromfunction index arrays; pyFAI callers copy (p1 - poni1), never mutate.
+        pos, calc = (
+            self.detector.calc_cartesian_positions(),
+            self.detector.calc_cartesian_positions,
+        )
+        for a in pos:
+            if a is not None:
+                a.flags.writeable = False
+        self.detector.calc_cartesian_positions = (
+            lambda d1=None, d2=None, center=True, use_cython=True: (
+                pos
+                if center
+                and all(
+                    d is None or np.shape(d) == self.detector.shape for d in (d1, d2)
+                )
+                else calc(d1, d2, center, use_cython)
+            )
+        )
         self.powder = self.generate_powder(h5, detname, Imin)
         self.calibrant = self.define_calibrant(calibrant, h5, wavelength)
         self.set_search_space(parallelized, fixed)
+        # pyFAI's poni setters reset engines and call gc.collect() on every geometry build;
+        # freezing the post-import/setup heap keeps those collections from rescanning it.
+        gc.freeze()
 
     def extract_powder(self, powder_path: str, detname: str) -> npt.NDArray[np.float64]:
         """
@@ -409,33 +663,57 @@ class BayFAIOpt:
             if p not in fixed:
                 self.space.append(p)
 
-    def distribute_parallelized(self, center, res):
+    def distribute_parallelized(self, bounds, res, dist_spacing="geometric"):
         """
-        Distribute the parallelized parameter across MPI ranks around
-        the center value and desired resolutions.
+        Split the parallelized parameter's absolute bounds into one window per MPI rank.
+
+        dist with dist_spacing 'geometric': rank r gets [b_r, b_r+1] of
+        b = low*(high/low)**(arange(size+1)/size), searched on a 2-point grid at the
+        window edges. Otherwise ('linear', or any other parallelized parameter):
+        size equal windows of width w = (high-low)/size, grid step w.
+        Sets res[p] to this rank's window width (refinement range +-step*w).
 
         Parameters
         ----------
-        center : dict
-            Center values for each parameter
+        bounds : dict
+            Absolute bounds per parameter, format: {param: (low, high)}
         res : dict
-            Resolution per parameter
+            Resolution per parameter (updated in place for the parallelized one)
+        dist_spacing : str
+            'geometric' or 'linear' split of bounds['dist'] when dist is parallelized
 
         Returns
         -------
         value : float, optional
-            The shifted center for the parallelized parameter assigned to
-            this MPI rank, or None if no parameter is parallelized.
+            Center of this rank's window, or None if no parameter is parallelized.
         """
+        self.param_values = None
+        self.window = None
         if not self.parallelized:
-            self.param_values = None
             return None
         p = self.parallelized
-        half = self.size // 2
-        values = center[p] + (np.arange(self.size) - half) * res[p]
-        values = np.round(values, 6)
-        self.param_values = values
-        return values[self.rank]
+        lo, hi = sorted(bounds[p])
+        n = self.size
+        if p == "dist" and dist_spacing == "geometric":
+            b = lo * (hi / lo) ** (np.arange(n + 1) / n)
+            lo_k, hi_k = b[self.rank], b[self.rank + 1]
+            w = hi_k - lo_k
+            value = (lo_k + hi_k) / 2
+            self.param_values = (b[:-1] + b[1:]) / 2
+            self.window = np.array([lo_k, hi_k])
+        else:
+            # ponytail: rounding to 9 decimals makes w the decimal of the config (e.g. 0.0058), so
+            # the windows reproduce the old center+k*res sweep bit for bit.
+            w = round((hi - lo) / n, 9)
+            self.param_values = np.round(lo + (np.arange(n) + 0.5) * w, 6)
+            value = self.param_values[self.rank]
+            self.window = np.arange(value - w / 2, value + w / 2 + w, w)
+        res[p] = self.window_width = w
+        logger.info(
+            f"tiling rank={self.rank} {p}={value:.6f} lo={self.window[0]:.6f} "
+            f"hi={self.window[-1]:.6f} w={w:.6f}"
+        )
+        return value
 
     def create_search_space(self, value, center, bounds, res):
         """
@@ -444,11 +722,11 @@ class BayFAIOpt:
         Parameters
         ----------
         value : float, optional
-            Shifted center for the parallelized parameter on this MPI rank
+            Window center of the parallelized parameter on this MPI rank
         center : dict
             Center values for each parameter
         bounds : dict
-            Bounds for each parameter, format: {param: (lower, upper)}
+            Absolute bounds for each parameter, format: {param: (low, high)}
         res : dict
             Resolution per parameter
 
@@ -464,9 +742,11 @@ class BayFAIOpt:
         full_params = {}
         search_params = {}
         for p in self.order:
-            if p in self.space:
-                low = center[p] + bounds[p][0]
-                high = center[p] + bounds[p][1]
+            if p == self.parallelized and value is not None:
+                full_params[p] = self.window
+                search_params[p] = full_params[p]
+            elif p in self.space:
+                low, high = bounds[p]
                 if high < low:
                     low, high = high, low
                 step = res[p]
@@ -512,9 +792,17 @@ class BayFAIOpt:
         """
         if prior:
             means = [center[p] for p in self.space]
-            cov = np.diag(
-                [(np.abs((bounds[p][1] - bounds[p][0])) / 5) ** 2 for p in self.space]
-            )
+            # ponytail: builtin round(), not np.round: c+b - (c-b) differs from 2b in the last bit for
+            # most centers (0.28 - 0.26 != 0.02), and the multivariate_normal draws would change.
+            widths = [
+                (
+                    self.window_width
+                    if p == self.parallelized
+                    else round(float(abs(bounds[p][1] - bounds[p][0])), 12)
+                )
+                for p in self.space
+            ]
+            cov = np.diag([(wd / 5) ** 2 for wd in widths])
             X_free = np.random.multivariate_normal(means, cov, n_samples)
             X_free = np.clip(X_free, self.mins, self.maxs)
             X_norm_samples = 2 * (X_free - self.mins) / (self.maxs - self.mins) - 1
@@ -528,6 +816,70 @@ class BayFAIOpt:
             X_samples = X[idx_samples]
             X_norm_samples = X_norm[idx_samples]
             return X_samples, X_norm_samples
+
+    @functools.cached_property
+    def _massif(self):
+        """The powder's Massif, built once: peaks_from_area only reads its data, mask and interpolator."""
+        return _Massif(
+            self.stacked_powder, self.detector.dynamic_mask(self.stacked_powder)
+        )
+
+    @functools.cached_property
+    def _pos64(self):
+        """float64 buffers for p1 - poni1, p2 - poni2 and p3: calc_tth copies other dtypes to float64."""
+        p1, p2, p3 = self.detector.calc_cartesian_positions()
+        return (
+            np.empty(p1.shape),
+            np.empty(p2.shape),
+            None if p3 is None else p3.astype(np.float64),
+        )
+
+    def _fast_maps(self, sg):
+        """Serve extract_cp's Massif and 2theta/chi maps from per-rank caches (same cython kernels).
+
+        chiArray is only read at ring-contour pixels, so chi is computed per indexed pixel instead of
+        over the full grid; both skip pyFAI's fromfunction index grids. The maps are left alone unless
+        the inputs match.
+        """
+        # Each extract_cp otherwise allocates and frees ~1 GiB on jungfrau16M; on a node whose memory is
+        # full of page cache, re-faulting those pages costs more kernel time than the scoring itself.
+        sg.massif = self._massif
+        gr = sg.geometry_refinement
+        if not (
+            self.stacked_powder.shape == self.detector.shape
+            and gr._parallax is None
+            and gr.chiDiscAtPi is True
+            and gr.detector is self.detector
+        ):
+            return
+        p1, p2, p3 = self.detector.calc_cartesian_positions()
+        b1, b2, b3 = self._pos64
+        # dtype=p1.dtype: the difference is still taken in the positions' precision, then widened.
+        gr.twoThetaArray = lambda shape=None: _geometry.calc_tth(
+            L=gr._dist,
+            rot1=gr._rot1,
+            rot2=gr._rot2,
+            rot3=gr._rot3,
+            pos1=np.subtract(p1, gr._poni1, out=b1, dtype=p1.dtype),
+            pos2=np.subtract(p2, gr._poni2, out=b2, dtype=p2.dtype),
+            pos3=b3,
+        )
+
+        class ChiAt:
+            def __getitem__(_, idx):
+                return _geometry.calc_chi(
+                    L=gr._dist,
+                    rot1=gr._rot1,
+                    rot2=gr._rot2,
+                    rot3=gr._rot3,
+                    pos1=p1[idx] - gr._poni1,
+                    pos2=p2[idx] - gr._poni2,
+                    pos3=None if p3 is None else p3[idx],
+                    orientation=gr.detector.orientation,
+                    chi_discontinuity_at_pi=gr.chiDiscAtPi,
+                )
+
+        gr.chiArray = lambda shape=None: ChiAt()
 
     def extract_data(self, sample, Imin, max_rings, pts_per_deg):
         """
@@ -560,14 +912,16 @@ class BayFAIOpt:
             detector=self.detector,
             wavelength=self.calibrant.wavelength,
         )
-        sg = SingleGeometry(
+        sg = _SingleGeometry(
             "Data Extraction Geometry",
             self.stacked_powder,
             calibrant=self.calibrant,
             detector=self.detector,
             geometry=geom_sample,
         )
-        sg.extract_cp(max_rings=max_rings, pts_per_deg=pts_per_deg, Imin=Imin)
+        self._fast_maps(sg)
+        with _fast_extract_cp(max_rings):
+            sg.extract_cp(max_rings=max_rings, pts_per_deg=pts_per_deg, Imin=Imin)
         return sg.geometry_refinement.data
 
     def score(self, sample, Imin, max_rings, pts_per_deg):
@@ -599,17 +953,20 @@ class BayFAIOpt:
             detector=self.detector,
             wavelength=self.calibrant.wavelength,
         )
-        sg = SingleGeometry(
+        sg = _SingleGeometry(
             "Score Geometry",
             self.stacked_powder,
             calibrant=self.calibrant,
             detector=self.detector,
             geometry=geom_sample,
         )
-        sg.extract_cp(max_rings=max_rings, pts_per_deg=pts_per_deg, Imin=Imin)
+        self._fast_maps(sg)
+        with _fast_extract_cp(max_rings):
+            sg.extract_cp(max_rings=max_rings, pts_per_deg=pts_per_deg, Imin=Imin)
         data = sg.geometry_refinement.data
 
-        if data is None or len(data) == 0:
+        # A handful of points can fit any geometry, so too few points is a failed geometry.
+        if data is None or len(data) == 0 or len(data) < self.min_points:
             return 0.0
 
         ix = data[:, 0]
@@ -734,7 +1091,7 @@ class BayFAIOpt:
         """
         dist, poni1, poni2, rot1, rot2, rot3 = sample
 
-        if data is None or len(data) == 0:
+        if data is None or len(data) == 0 or len(data) < self.min_points:
             return 0.0, [np.inf] * 5, 0.0, sample
 
         gr = GeometryRefinement(
@@ -782,6 +1139,8 @@ class BayFAIOpt:
         prior=True,
         step=5,
         seed=None,
+        n_cand=None,
+        gp_restarts=10,
     ):
         """
         Run Bayesian Optimization on this MPI rank's search space.
@@ -794,7 +1153,7 @@ class BayFAIOpt:
         center : dict
             Dictionary of center values for each parameter
         bounds : dict
-            Dictionary of bounds for each parameter
+            Dictionary of absolute (low, high) bounds for each parameter
         res : dict
             Dictionary of resolution for each parameter
         n_samples : int
@@ -816,6 +1175,8 @@ class BayFAIOpt:
         seed : optional, int
             Random seed for reproducibility. Offset by this rank's index so
             that every rank is independently seeded.
+        gp_restarts : int
+            n_restarts_optimizer of the GP kernel-hyperparameter fit
         """
         if seed is not None:
             np.random.seed(seed + self.rank)
@@ -840,9 +1201,15 @@ class BayFAIOpt:
         if np.all(y == 0.0):
             result = {
                 "bo_history": bo_history,
-                "params": center,
-                "data": [],
+                "params": np.array(
+                    [
+                        center[k]
+                        for k in ("dist", "poni1", "poni2", "rot1", "rot2", "rot3")
+                    ]
+                ),
                 "score": 0.0,
+                "sigma": [np.inf] * 5,
+                "penalty": 0.0,
                 "best_idx": 0,
             }
             if self.rank == 0:
@@ -860,15 +1227,15 @@ class BayFAIOpt:
             y_norm = y - np.mean(y)
 
         # 4. Initialize the Gaussian Process model
-        kernel = Matern(
+        kernel = _Matern(
             length_scale=0.3, length_scale_bounds=(0.2, 0.4), nu=2.5
-        ) * ConstantKernel(
+        ) * _ConstantKernel(
             constant_value=1.0, constant_value_bounds=(0.5, 1.5)
-        ) + WhiteKernel(
+        ) + _WhiteKernel(
             noise_level=0.001, noise_level_bounds="fixed"
         )
         gp_model = GaussianProcessRegressor(
-            kernel=kernel, n_restarts_optimizer=10, random_state=0
+            kernel=kernel, n_restarts_optimizer=gp_restarts, random_state=0
         )
         gp_model.fit(X_norm_samples, y_norm)
         visited_idx = list([])
@@ -876,7 +1243,7 @@ class BayFAIOpt:
         # 5. Run the Bayesian Optimization loop
         for i in range(n_iterations):
             # 6. Select the next point to evaluate
-            next = self.UCB(X_norm, gp_model, visited_idx, beta)
+            next = self.UCB(X_norm, gp_model, visited_idx, beta, n_cand)
             next_sample = X[next]
             visited_idx.append(next)
 
@@ -893,7 +1260,8 @@ class BayFAIOpt:
                 y_norm = y - np.mean(y)
 
             # 8. Update the Gaussian Process model
-            gp_model.fit(X_norm_samples, y_norm)
+            if i < n_iterations - 1:  # the final refit is never read
+                gp_model.fit(X_norm_samples, y_norm)
 
         # 9. Gather results
         best_idx = np.argmax(y)
@@ -928,6 +1296,10 @@ class BayFAIOpt:
         step=5,
         lbda=0.1,
         seed=None,
+        n_cand=None,
+        dist_spacing="geometric",
+        gp_restarts=10,
+        min_points=None,
     ):
         """
         Run BayFAI optimization.
@@ -941,7 +1313,7 @@ class BayFAIOpt:
         center : dict
             Dictionary of center values for each parameter
         bounds : dict
-            Dictionary of bounds for each parameter
+            Dictionary of absolute (low, high) bounds for each parameter
         res : dict
             Dictionary of resolution for each parameter
         n_samples : int
@@ -962,9 +1334,24 @@ class BayFAIOpt:
             Whether to sample initial points around the center or randomly
         seed : optional, int
             Random seed for reproducibility
+        n_cand : optional, int
+            Number of random grid candidates scored by UCB per step (None/0 = whole grid)
+        dist_spacing : str
+            'geometric' (default) or 'linear' split of bounds['dist'] across ranks when
+            parallelized == 'dist'
+        gp_restarts : int
+            n_restarts_optimizer of the GP kernel-hyperparameter fit
+        min_points : int, optional
+            Geometries with fewer extracted control points score 0 (0 = off; None = 100
+            when parallelized == 'dist', else 0)
         """
-        # Distribute the parallelized parameter's window across MPI ranks
-        value = self.distribute_parallelized(center, res)
+        # Distance sweeps reach geometries where a few stray points fit; MEC boxes do not.
+        if min_points is None:
+            min_points = 100 if self.parallelized == "dist" else 0
+        self.min_points = min_points
+        # Split the parallelized parameter's absolute bounds into one window per MPI rank
+        res = dict(res)
+        value = self.distribute_parallelized(bounds, res, dist_spacing)
         if self.rank == 0:
             if self.parallelized is not None:
                 logger.info(
@@ -983,6 +1370,8 @@ class BayFAIOpt:
             "step": step,
             "prior": prior,
             "seed": seed,
+            "n_cand": n_cand,
+            "gp_restarts": gp_restarts,
         }
 
         # Run BO on this rank's search space
@@ -993,6 +1382,13 @@ class BayFAIOpt:
             res,
             **bayfai_hyperparams,
         )
+
+        if self.rank == 0:
+            # Rank 0 mostly waits at the Barrier for slower ranks: hide its plotting imports there.
+            # They leave numpy's global RNG state untouched, so later pyFAI draws are unchanged.
+            import matplotlib.pyplot  # type: ignore # noqa: F401
+            import bokeh.plotting  # type: ignore # noqa: F401
+            import panel  # type: ignore # noqa: F401
 
         # Gather BayFAI results from all ranks
         self.comm.Barrier()
@@ -1028,6 +1424,8 @@ class BayFAIOpt:
                 detector=self.detector,
                 wavelength=self.calibrant.wavelength,
             )
+            # One integrator for all rank-0 plots: its 2theta/q arrays and integration engines are cached.
+            self.ai = _build_ai(self.detector, self.params, self.calibrant.wavelength)
 
     def plot_radial_integration(self, result1d, calibrant, ax=None):
         """
@@ -1042,6 +1440,9 @@ class BayFAIOpt:
         ax : plt.Axes
             Matplotlib axes
         """
+        import matplotlib.pyplot as plt  # type: ignore
+        from matplotlib import lines  # type: ignore
+
         if ax is None:
             fig, ax = plt.subplots()
 
@@ -1082,6 +1483,8 @@ class BayFAIOpt:
         ax : plt.Axes, optional
             Matplotlib axes.
         """
+        import matplotlib.pyplot as plt  # type: ignore
+
         if ax is None:
             _fig, ax = plt.subplots()
 
@@ -1285,6 +1688,8 @@ class BayFAIOpt:
         ax : plt.Axes, optional
             Matplotlib axes
         """
+        import matplotlib.pyplot as plt  # type: ignore
+
         if ax is None:
             _fig, ax = plt.subplots()
 
@@ -1299,7 +1704,7 @@ class BayFAIOpt:
         )
 
         # Ring overlay
-        ai = _build_ai(self.detector, self.params, self.calibrant.wavelength)
+        ai = self.ai
         tth = np.array(self.calibrant.get_2th())
         ttha = ai.twoThetaArray().reshape(self.detector.calib_shape)
         p1_3d = p1.reshape(self.detector.calib_shape)
@@ -1383,6 +1788,11 @@ class BayFAIOpt:
         """
         Create an interactive powder image with calibrated overlapping 2θ rings.
         """
+        from bokeh.plotting import figure  # type: ignore
+        from bokeh.models import LinearColorMapper, HoverTool  # type: ignore
+        from bokeh.palettes import Viridis256, Category10  # type: ignore
+        from bokeh.models.annotations import Label  # type: ignore
+
         p1, p2, _ = self.detector.calc_cartesian_positions()
         # d1 = vertical (bottom→top), d2 = horizontal (left→right)
         y = np.reshape(p1, self.detector.calib_shape)
@@ -1416,7 +1826,7 @@ class BayFAIOpt:
             color_mapper=color_mapper,
         )
 
-        ai = _build_ai(self.detector, self.params, self.calibrant.wavelength)
+        ai = self.ai
         tth = np.array(self.calibrant.get_2th())
         ttha = ai.twoThetaArray().reshape(self.detector.calib_shape)
         for i in range(self.detector.n_modules):
@@ -1518,6 +1928,9 @@ class BayFAIOpt:
         plot : str
             Path to save plot
         """
+        import matplotlib.pyplot as plt  # type: ignore
+        import matplotlib.patches as patches  # type: ignore
+
         fig = plt.figure(figsize=(8, 9), dpi=100)
         nrow, ncol = 3, 2
 
@@ -1604,7 +2017,7 @@ class BayFAIOpt:
         self.plot_intensity_hist(self.powder, self.Imin, ax2)
 
         # Compute 1D azimuthal integration via pyFAI
-        ai = _build_ai(self.detector, self.params, self.calibrant.wavelength)
+        ai = self.ai
         result1d = ai.integrate1d(self.stacked_powder, npt=256, unit="q_A^-1")
 
         # (1,0) 1D integration, spanning two cols
@@ -1637,6 +2050,9 @@ class BayFAIOpt:
         plot : str
             Path to save plot
         """
+        import matplotlib.pyplot as plt  # type: ignore
+        import matplotlib.patches as patches  # type: ignore
+
         fig = plt.figure(figsize=(9, 12), dpi=100)
         nrow, ncol = 4, 3
 
@@ -1719,7 +2135,7 @@ class BayFAIOpt:
         ax1.axis("off")
 
         # Compute azimuthal integrations via pyFAI
-        ai = _build_ai(self.detector, self.params, self.calibrant.wavelength)
+        ai = self.ai
         q_max = float(
             (ai.qArray().reshape(self.detector.calib_shape) / 10).max()
         )  # nm⁻¹ → Å⁻¹, detector-limited q maximum

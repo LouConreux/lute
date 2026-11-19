@@ -9,7 +9,7 @@ __all__ = ["BayFAIParameters"]
 __author__ = "Louis Conreux"
 
 import os
-from typing import Any, Dict, List, Tuple, Optional
+from typing import Any, Dict, List, Literal, Tuple, Optional
 
 import pydantic
 
@@ -61,7 +61,7 @@ class BayFAIParameters(TaskParameters):
         )
 
         n_iterations: int = Field(
-            default=80,
+            default=40,
             description="Number of iterations of Bayesian Optimization",
         )
 
@@ -105,10 +105,33 @@ class BayFAIParameters(TaskParameters):
             description="Random seed for reproducibility.",
         )
 
+        n_cand: Optional[int] = Field(
+            default=8192,
+            description="Number of random grid points scored by UCB per BO step (0 or None = whole grid).",
+        )
+
+        gp_restarts: int = Field(
+            default=10,
+            description="n_restarts_optimizer of the GP kernel-hyperparameter fit (sklearn GaussianProcessRegressor).",
+        )
+
+        min_points: Optional[int] = Field(
+            default=None,
+            description="Geometries with fewer extracted control points score 0 (0 = off; "
+            "None = 100 when parallelized is 'dist', else 0).",
+        )
+
     parallelized: Optional[str] = Field(
         None,
         description="Name of the geometry parameter to distribute across MPI ranks as a "
         "sliding window (e.g. 'dist'). If None, all ranks instead run BO over the same space.",
+    )
+
+    dist_spacing: Literal["geometric", "linear"] = Field(
+        "geometric",
+        description="With parallelized: dist, how bounds.dist is split across ranks: "
+        "'geometric' (window widths grow with distance, b = low*(high/low)**(r/size)) or "
+        "'linear' (equal windows). Each rank's grid step is its window width.",
     )
 
     fixed: List[str] = Field(
@@ -126,19 +149,22 @@ class BayFAIParameters(TaskParameters):
             "rot2": 0.0,
             "rot3": 0.0,
         },
-        description="Center of the search space for the detector geometry parameters.",
+        description="Prior mean and starting point of the search for each geometry parameter, "
+        "and the value of fixed parameters.",
     )
 
     bounds: Dict[str, Tuple[float, float]] = Field(
         {
-            "dist": (-0.01, 0.01),
+            "dist": (0.035, 0.4),
             "poni1": (-0.0025, 0.0025),
             "poni2": (-0.0025, 0.0025),
             "rot1": (-0.1, 0.1),
             "rot2": (-0.1, 0.1),
             "rot3": (-0.1, 0.1),
         },
-        description="Bounds of the search space for the detector geometry parameters.",
+        description="Absolute [low, high] limits of the search for each geometry parameter "
+        "(not offsets around center). With parallelized: dist, bounds.dist is the whole "
+        "distance range split across ranks.",
     )
 
     resolutions: Dict[str, float] = Field(
@@ -188,5 +214,29 @@ class BayFAIParameters(TaskParameters):
     )
 
     _find_smd_path = validate_smd_path("h5")
+
+    @validator("bounds")
+    def validate_bounds(
+        cls, bounds: Dict[str, Tuple[float, float]], values: Dict[str, Any]
+    ) -> Dict[str, Tuple[float, float]]:
+        center: Dict[str, float] = values.get("center", {})
+        fixed: List[str] = values.get("fixed", [])
+        errors: List[str] = []
+        for p, (low, high) in bounds.items():
+            if low >= high:
+                errors.append(f"{p}: low {low} >= high {high}")
+            elif p == "dist" and low <= 0:
+                errors.append(f"dist: low {low} <= 0")
+            elif p not in fixed and p in center and not low <= center[p] <= high:
+                errors.append(f"{p}: center {center[p]} outside [{low}, {high}]")
+        if errors:
+            raise ValueError(
+                "; ".join(errors) + ". BayFAI bounds are now absolute [low, high] "
+                "limits, not offsets around center. To convert an old config use "
+                "[center + old_low, center + old_high]. With parallelized: dist, "
+                "bounds.dist is the whole distance range split across ranks "
+                "(default [0.035, 0.4])."
+            )
+        return bounds
 
     _find_out_file_path = validate_geometry_path("out_file")

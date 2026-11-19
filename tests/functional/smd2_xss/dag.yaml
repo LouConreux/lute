@@ -1,7 +1,7 @@
 !LUTE_DAG
 task_name: SmallDataProducer2
-slurm_params: "--account=lcls:data --partition=milano --nodes=1 --ntasks-per-node=73 --exclusive --constraint=OS_VER:9.6"
+slurm_params: "--account=lcls:data --partition=milano --nodes=1 --ntasks-per-node=73 --exclusive"
 next:
 - task_name: SmallDataXSSAnalyzer
-  slurm_params: "--account=lcls:data --partition=milano --nodes=1 --ntasks-per-node=8 --constraint=OS_VER:9.6"
+  slurm_params: "--account=lcls:data --partition=milano --nodes=1 --ntasks-per-node=8"
   next: []

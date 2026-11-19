@@ -312,6 +312,13 @@ BayFAIOptimizer.update_environment(
     {
         "NUMEXPR_MAX_THREADS": "16",
         "NUMEXPR_NUM_THREADS": "16",
+        # One rank per core: unset, each rank's pyFAI OpenMP pool spins on every core of the node.
+        "OMP_NUM_THREADS": "1",
+        # pyFAI's OpenMP sizes its team from the CPU affinity, ignoring OMP_NUM_THREADS.
+        "OMP_THREAD_LIMIT": "1",
+        # numpy asks for huge pages on large arrays; on nodes full of page cache each fault then
+        # stalls in memory compaction (jungfrau jobs ran 2-4x slower, mostly in the kernel).
+        "NUMPY_MADVISE_HUGEPAGE": "0",
         "PYTHONPATH": "/sdf/group/lcls/ds/tools/LCLSGeom/src",
     }
 )
@@ -323,6 +330,12 @@ BayFAIOptimizer2.update_environment(
     {
         "NUMEXPR_MAX_THREADS": "16",
         "NUMEXPR_NUM_THREADS": "16",
+        "OMP_NUM_THREADS": "1",
+        # pyFAI's OpenMP sizes its team from the CPU affinity, ignoring OMP_NUM_THREADS.
+        "OMP_THREAD_LIMIT": "1",
+        # numpy asks for huge pages on large arrays; on nodes full of page cache each fault then
+        # stalls in memory compaction (jungfrau jobs ran 2-4x slower, mostly in the kernel).
+        "NUMPY_MADVISE_HUGEPAGE": "0",
         "PS_SRV_NODES": "0",
         "PS_EB_NODES": "1",
         "PYTHONPATH": "/sdf/group/lcls/ds/tools/LCLSGeom/src",

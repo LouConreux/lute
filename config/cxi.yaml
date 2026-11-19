@@ -162,6 +162,7 @@ SubmitSMD:
 ###########
 BayFAI:
   parallelized: "dist"
+  # bounds are absolute [low, high] limits; dist defaults to [0.035, 0.4] m, split across ranks.
   fixed:
   - "rot1"
   - "rot2"

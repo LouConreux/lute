@@ -34,7 +34,7 @@ The `bayfai` workflow runs two managed `Task`s:
 - `-D <folder>`: put everything in `/sdf/data/lcls/ds/<hutch>/<experiment>/results/<folder>/` (optional but recommended).
 - `-W bayfai`: copy the `bayfai` workflow definition. **At MEC use `-W bayfai_mec`** (see [MEC 4 quads particularity](#mec-4-quads-particularity)).
 
-The script will ask for partition, account, nodes and ntasks. Press Enter to accept the defaults. The resources used by each `Task` are then set per hutch: `BayFAIOptimizer` runs on 1 node with 120 tasks.
+The script will ask for partition, account, nodes and ntasks. Press Enter to accept the defaults: `BayFAIOptimizer` then runs on one node with 64 tasks at every hutch. Slurm flags you pass to `setup_lute` are written into the DAG for every `Task` and are never overwritten, e.g. `--ntasks-per-node=120`, `--nodes=2`, `--exclusive` or `--constraint=...`.
 
 After setup you will find, in `results/<folder>/lute_output/`:
 
@@ -91,11 +91,12 @@ BayFAI:
 |---|---|---|
 | `detname` | `""` | Detector name as defined in psana (`jungfrau`, `epix10k2M`, `jungfrau4M`, `Epix10kaQuad0`...). |
 | `calibrant` | `""` | pyFAI calibrant name, e.g. `AgBh`, `LaB6`, `CeO2` ([list of calibrants](https://github.com/silx-kit/pyFAI/tree/main/src/pyFAI/resources/calibration)). |
-| `center` | `dist: 0.1`, others `0.0` | Initial guess geometry. BayFAI searches around it. Distances in m, rotations in rad. |
-| `bounds` | `dist: ±0.01`, `poni1/2: ±0.0025`, `rot1/2/3: ±0.1` | Search range around `center` for each parameter. |
-| `resolutions` | `dist: 0.001`, `poni1/2: 0.0001`, `rot1/2/3: 0.02` | Grid step of the search space for each parameter. |
+| `center` | `dist: 0.1`, others `0.0` | Initial guess geometry: prior mean and starting point of the search, and the value of `fixed` parameters. Distances in m, rotations in rad. |
+| `bounds` | `dist: [0.035, 0.4]`, `poni1/2: [-0.0025, 0.0025]`, `rot1/2/3: [-0.1, 0.1]` | Absolute `[low, high]` search limits for each parameter (not offsets around `center`; a free parameter's `center` must lie inside). With `parallelized: "dist"`, `bounds.dist` is the whole distance range split across ranks. To convert an old relative config use `[center + low, center + high]`. |
+| `resolutions` | `dist: 0.001`, `poni1/2: 0.0001`, `rot1/2/3: 0.02` | Grid step of the search space for each parameter. The parallelized parameter uses its window width instead. |
 | `fixed` | `["rot3"]` | Parameters kept at their `center` value. `rot3` should always be fixed, because the rings don't change under rotation around the beam axis. Also fix `rot1`/`rot2` if the detector is normal to the beam. |
 | `parallelized` | `None` | Geometry parameter to spread across MPI ranks (usually `"dist"`). See [MPI ranks and convergence](#mpi-ranks-and-convergence). Can't also be in `fixed`. |
+| `dist_spacing` | `"geometric"` | With `parallelized: "dist"`, how `bounds.dist` is split across ranks: `"geometric"` (windows finer at short distance) or `"linear"` (equal windows). |
 | `wavelength` | `1e-10` | Wavelength in m. If you change it from the default, it overrides the mean photon energy read from the HDF5 file. |
 | `h5` | `""` | Smalldata HDF5 file. Filled in automatically from `SubmitSMD`. |
 | `out_file` | `""` | Output `.data` file. Defaults to `<work_dir>/geom/<run>-end_<detname>.data`. |
@@ -112,7 +113,7 @@ BayFAI:
   detname: "jungfrau"
   bayfai_params:
     n_samples: 20
-    n_iterations: 80
+    n_iterations: 40
     pts_per_deg: 1.0
     max_rings: 10
     Imin: 90
@@ -123,7 +124,7 @@ Overriding defaults will affect significantly convergence and/or compute time.
 | Hyperparameter | Default | Description |
 |---|---|---|
 | `n_samples` | `20` | Number of initial random samples used to initialize the Gaussian Process. |
-| `n_iterations` | `80` | Number of BO iterations. Increase it for a larger search space. |
+| `n_iterations` | `40` | Number of BO iterations. Increase it for a larger search space. |
 | `max_rings` | `8` | Maximum number of calibrant rings used to extract Bragg peaks. |
 | `pts_per_deg` | `2.0` | Number of control points extracted per azimuthal degree along each ring. |
 | `Imin` | `95` | Intensity percentile threshold for peak detection. Lower it for weak rings. |
@@ -132,18 +133,21 @@ Overriding defaults will affect significantly convergence and/or compute time.
 | `step` | `5` | Size (in grid steps) of the refinement space around the best BO parameters. |
 | `lbda` | `0.1` | Penalty weight in the final score used to select the winning geometry across ranks. |
 | `seed` | `None` | Random seed, for reproducibility. |
+| `n_cand` | `8192` | Number of random unvisited grid points scored by the UCB acquisition per BO step (`0` or `None` = whole grid). |
+| `gp_restarts` | `10` | `n_restarts_optimizer` of the Gaussian Process kernel fit. |
+| `min_points` | `None` | Geometries with fewer extracted control points score 0, so a few stray points cannot win a distance sweep. `None` = 100 when `parallelized: dist`, else 0 (off). |
 
 ## MPI ranks and Convergence
 
 BayFAI runs one BO per MPI rank.
 
-With `parallelized: "dist"`, each rank gets its own fixed distance on a sliding window centred on `center.dist` and spaced by `resolutions.dist`. The rank then optimizes the other parameters at that distance. The best geometry across all ranks wins.
+With `parallelized: "dist"`, `bounds.dist` (default 0.035-0.4 m) is split into one distance window per rank. With `dist_spacing: "geometric"` (default), rank `r` gets `[b_r, b_r+1]` with `b = low*(high/low)**(r/N)` for `N` ranks, so windows are narrower at short distance, where the rings move most per mm; `"linear"` gives `N` equal windows. Each rank searches its window (its edges) and optimizes the other parameters; the final refinement may move the distance by `step` window widths. The best geometry across all ranks wins.
 
-**The more ranks (CPUs) you give BayFAI, the more of the search space it explores, and the better the chance that BO converges to the right geometry. The trade-off is that the job takes longer and waits longer in the queue.** The default of 120 tasks on one node is a good compromise.
+**The more ranks (CPUs) you give BayFAI, the more of the search space it explores, and the better the chance that BO converges to the right geometry. The trade-off is that the job takes longer and waits longer in the queue.** The default (64 tasks on one node, at every hutch) is a good compromise. At MEC, 119 ranks give more seeds per quad and solve a few more seed-sensitive quads; at other hutches, 119 ranks did not help and double the memory. To change it, pass e.g. `--ntasks-per-node=120` (119 ranks) to `setup_lute`, or edit `slurm_params` in the DAG.
 
 ## MEC 4 Quads particularity
 
-At MEC, the detector is made of 4 independent quads (`Epix10kaQuad0` to `Epix10kaQuad3`), and each quad needs its own geometry. The `bayfai_mec` workflow uses a `!param_sweep` with `zip: true` to run one BayFAI per quad, each with its own `detname`, `center` and `fixed`:
+At MEC, the detector is made of 4 independent quads (`Epix10kaQuad0` to `Epix10kaQuad3`), and each quad needs its own geometry. The `bayfai_mec` workflow uses a `!param_sweep` with `zip: true` to run one BayFAI per quad, each with its own `detname`, `center`, `bounds` and `fixed`:
 
 ```yaml
 - !param_sweep
@@ -157,10 +161,18 @@ At MEC, the detector is made of 4 independent quads (`Epix10kaQuad0` to `Epix10k
       - ["rot2", "rot3"]
       - ["rot2", "rot3"]
     center:
-      - {dist: 0.27, poni1: 0.06, poni2: 0.06, rot1: 0.0, rot2: -0.6, rot3: 0.0}
-      - {dist: 0.27, poni1: 0.08, poni2: -0.04, rot1: 0.0, rot2: -0.6, rot3: 0.0}
-      - {dist: 0.2, poni1: -0.01, poni2: 0.0, rot1: 1.1, rot2: 0.0, rot3: 0.0}
-      - {dist: 0.1, poni1: -0.01, poni2: 0.04, rot1: -0.4, rot2: 0.0, rot3: 0.0}
+      - {dist: 0.278, poni1: 0.06, poni2: 0.06, rot1: 0.0, rot2: -0.6, rot3: 0.0}
+      - {dist: 0.28, poni1: 0.079, poni2: -0.04, rot1: 0.0, rot2: -0.56, rot3: 0.0}
+      - {dist: 0.192, poni1: -0.0125, poni2: 0.0, rot1: 1.09, rot2: 0.0, rot3: 0.0}
+      - {dist: 0.1, poni1: -0.008, poni2: 0.04, rot1: -0.41, rot2: 0.0, rot3: 0.0}
+    # Absolute [low, high] search limits: center +- 20 mm dist, 5 mm poni, 0.05 rad free rotation.
+    # The rotation bound matters most: wider tilts reach geometries that fit the arcs to the wrong
+    # LaB6 rings and outscore the true one.
+    bounds:
+      - {dist: [0.258, 0.298], poni1: [0.055, 0.065], poni2: [0.055, 0.065], rot1: [-0.1, 0.1], rot2: [-0.65, -0.55], rot3: [-0.1, 0.1]}
+      - {dist: [0.26, 0.3], poni1: [0.074, 0.084], poni2: [-0.045, -0.035], rot1: [-0.1, 0.1], rot2: [-0.61, -0.51], rot3: [-0.1, 0.1]}
+      - {dist: [0.172, 0.212], poni1: [-0.0175, -0.0075], poni2: [-0.005, 0.005], rot1: [1.04, 1.14], rot2: [-0.1, 0.1], rot3: [-0.1, 0.1]}
+      - {dist: [0.08, 0.12], poni1: [-0.013, -0.003], poni2: [0.035, 0.045], rot1: [-0.46, -0.36], rot2: [-0.1, 0.1], rot3: [-0.1, 0.1]}
     next: []
 ```
 

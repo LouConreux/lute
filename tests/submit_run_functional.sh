@@ -60,7 +60,6 @@ EOF
 }
 
 SLURM_ACCOUNT="lcls:data"
-SLURM_CONSTRAINT="OS_VER:9.6"
 
 while [[ $# -gt 0 ]]
 do
@@ -69,10 +68,6 @@ do
     case $flag in
         --account=*)
             SLURM_ACCOUNT="${1#*=}"
-            shift
-            ;;
-        --constraint=*)
-            SLURM_CONSTRAINT="${1#*=}"
             shift
             ;;
         -h|--help)
@@ -114,7 +109,7 @@ source /sdf/group/lcls/ds/ana/sw/conda1/manage/bin/psconda.sh
 echo "Sourced latest psconda.sh"
 CMD="python -B ${TEST_SCRIPT_PATH}/run_functional.py ${@}"
 echo $CMD
-SLURM_ARGS="--account=${SLURM_ACCOUNT} --constraint=${SLURM_CONSTRAINT} --ntasks=1 --partition=milano"
+SLURM_ARGS="--account=${SLURM_ACCOUNT} --ntasks=1 --partition=milano"
 echo "Running ${CMD} with ${SLURM_ARGS}"
 sbatch $SLURM_ARGS --wrap "${CMD}"
 export KRB5CCNAME="FILE:${KERB_CACHE_PATH}"

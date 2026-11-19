@@ -169,7 +169,8 @@ if [ ! -d "${BUILD_ENV}" ]; then
     source "${BUILD_ENV}/bin/activate"
     pip install --upgrade pip
     # Install the relevant build dependencies and nothing else
-    pip install "meson>=1.10.1" "meson-python" "ninja" "numpy" "pybind11" "setuptools"
+    # patchelf: meson-python fixes RPATHs with it, and --no-build-isolation below skips pulling it in
+    pip install "meson>=1.10.1" "meson-python" "ninja" "numpy" "patchelf" "pybind11" "setuptools"
     # Mark that this is a first-build. This is used to make decisions later
     FIRST_BUILD=1
 else

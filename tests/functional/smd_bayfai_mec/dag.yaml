@@ -1,10 +1,10 @@
 !LUTE_DAG
 task_name: SmallDataProducer
-slurm_params: "--account=lcls:data --partition=milano --nodes=1 --ntasks-per-node=10 --constraint=OS_VER:9.6"
+slurm_params: "--account=lcls:data --partition=milano --nodes=1 --ntasks-per-node=10"
 next:
 - !param_sweep
   task_name: BayFAIOptimizer
-  slurm_params: "--account=lcls:data --partition=milano --nodes=1 --ntasks-per-node=20 --exclusive --constraint=OS_VER:9.6"
+  slurm_params: "--account=lcls:data --partition=milano --nodes=1 --ntasks-per-node=20 --exclusive"
   zip: true
   param_matrix:
     detname: ["Epix10kaQuad0", "Epix10kaQuad1", "Epix10kaQuad2", "Epix10kaQuad3"]

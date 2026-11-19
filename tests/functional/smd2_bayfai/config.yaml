@@ -91,7 +91,7 @@ BayFAI:
     rot3: 0.0
   bayfai_params:
     n_samples: 5       # Reduced for functional test speed (default: 20)
-    n_iterations: 10   # Reduced for functional test speed (default: 80)
+    n_iterations: 10   # Reduced for functional test speed (default: 40)
     max_rings: 4
     seed: 42
 ...

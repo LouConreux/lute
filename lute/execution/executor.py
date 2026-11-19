@@ -881,6 +881,9 @@ class BaseExecutor(ABC):
         cmd: str = self._submit_cmd(executable_path, params)
         proc: subprocess.Popen = self._submit_task(cmd)
         self._task_time0 = time.monotonic()
+        # Count silence from submission, not from 0.0: monotonic() is time since boot, so a
+        # 0.0 start made every Task that was quiet for its first heartbeat look 900 s dead.
+        self._task_last_update = self._task_time0
         # In the event we were using generated parameters, we may have a _XX suffix
         # Now that the Task has been submitted, we can remove that from the name
         # for storage in the database - just reset the name

@@ -1,19 +1,19 @@
 !LUTE_DAG
 task_name: Tester
-slurm_params: "--partition=milano --account=lcls:data --ntasks=1 --constraint=OS_VER:9.6"
+slurm_params: "--partition=milano --account=lcls:data --ntasks=1"
 next:
 - task_name: BinaryTester
-  slurm_params: "--partition=milano --account=lcls:data --ntasks=5 --constraint=OS_VER:9.6"
+  slurm_params: "--partition=milano --account=lcls:data --ntasks=5"
   next: []
 - task_name: BinaryErrTester
-  slurm_params: "--partition=milano --account=lcls:data --ntasks=5 --constraint=OS_VER:9.6"
+  slurm_params: "--partition=milano --account=lcls:data --ntasks=5"
   next: []
 - task_name: SocketTester
-  slurm_params: "--partition=milano --account=lcls:data --ntasks=1 --constraint=OS_VER:9.6"
+  slurm_params: "--partition=milano --account=lcls:data --ntasks=1"
   next:
     - task_name: WriteTester
-      slurm_params: "--partition=milano --account=lcls:data --ntasks=1 --constraint=OS_VER:9.6"
+      slurm_params: "--partition=milano --account=lcls:data --ntasks=1"
       next:
         - task_name: ReadTester
-          slurm_params: "--partition=milano --account=lcls:data --ntasks=1 --constraint=OS_VER:9.6"
+          slurm_params: "--partition=milano --account=lcls:data --ntasks=1"
           next: []

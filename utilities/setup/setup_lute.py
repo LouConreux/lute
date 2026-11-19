@@ -16,7 +16,6 @@ from krtc import KerberosTicket  # type: ignore
 logging.basicConfig(level=logging.INFO)
 logger: logging.Logger = logging.getLogger(__name__)
 
-SLURM_CONSTRAINT = "OS_VER:9.6"
 DEFAULT_CONFIG = {
     "MEC": {
         "SmallDataProducer": {
@@ -27,13 +26,14 @@ DEFAULT_CONFIG = {
             "nodes": 1,
             "ntasks_per_node": 10,
         },
+        # 63 ranks as elsewhere; 119 (edit slurm_params in the DAG) gives more seeds per quad.
         "BayFAIOptimizer": {
             "nodes": 1,
-            "ntasks_per_node": 120,
+            "ntasks_per_node": 64,
         },
         "BayFAIOptimizer2": {
             "nodes": 1,
-            "ntasks_per_node": 120,
+            "ntasks_per_node": 64,
         },
     },
     "ELSE": {
@@ -45,13 +45,14 @@ DEFAULT_CONFIG = {
             "nodes": 2,
             "ntasks_per_node": 50,
         },
+        # 63 ranks: 119 did not help MFX and doubles memory.
         "BayFAIOptimizer": {
             "nodes": 1,
-            "ntasks_per_node": 120,
+            "ntasks_per_node": 64,
         },
         "BayFAIOptimizer2": {
             "nodes": 1,
-            "ntasks_per_node": 120,
+            "ntasks_per_node": 64,
         },
     },
 }
@@ -340,10 +341,11 @@ def update_dag_params(
     account: str,
     extra_slurm_params: str,
     default_config: dict,
+    user_slurm_params: str,
 ) -> None:
     """Update slurm_params in a DAG file in place.
 
-    For tasks listed in DEFAULT_CONFIG, use the task-specific nodes/ntasks_per_node.
+    For tasks listed in DEFAULT_CONFIG, use the user's flags and fill unset nodes/ntasks from it.
     For all other tasks, forward the user-provided SLURM parameters verbatim.
 
     Args:
@@ -354,6 +356,8 @@ def update_dag_params(
         account (str): SLURM account.
 
         extra_slurm_params (str): Additional SLURM parameters, forwarded as-is.
+
+        user_slurm_params (str): The flags the user passed, without the prompted defaults.
     """
     with open(dag_path, "r") as f:
         lines: List[str] = f.readlines()
@@ -377,14 +381,18 @@ def update_dag_params(
             indent = line[: len(line) - len(stripped)]
             if current_task and current_task in default_config:
                 cfg = default_config[current_task]
-                params = (
-                    f"--account={account} --partition={partition} "
-                    f"--ntasks-per-node={cfg['ntasks_per_node']} "
-                    f"--nodes={cfg['nodes']} "
-                    f"--constraint={SLURM_CONSTRAINT}"
-                )
+                # The task's defaults only fill in what the user did not set.
+                flags = [f"--account={account}", f"--partition={partition}"]
+                flags += [user_slurm_params] if user_slurm_params else []
+                if "--ntasks" not in user_slurm_params:
+                    flags.append(f"--ntasks-per-node={cfg['ntasks_per_node']}")
+                if "--nodes" not in user_slurm_params:
+                    flags.append(f"--nodes={cfg['nodes']}")
+                params = " ".join(flags)
             else:
-                params = f"--account={account} --partition={partition} --constraint={SLURM_CONSTRAINT} {extra_slurm_params}"
+                params = (
+                    f"--account={account} --partition={partition} {extra_slurm_params}"
+                )
             result.append(f"{indent}slurm_params: '{params}'\n")
         else:
             result.append(line)
@@ -580,7 +588,8 @@ def main() -> None:
             logger.info("Exiting.")
             sys.exit(0)
 
-    extra_slurm_params: str = " ".join(extra_slurm_args)
+    user_slurm_params: str = " ".join(extra_slurm_args)
+    extra_slurm_params: str = user_slurm_params
     # Check for at least nodes and ntasks, and if not provided, prompt the user to use defaults.
     nodes: int = 1
     if "nodes" not in extra_slurm_params:
@@ -632,7 +641,12 @@ def main() -> None:
         # Update the DAG file in place with collected SLURM params
         config = DEFAULT_CONFIG.get(hutch.upper(), DEFAULT_CONFIG["ELSE"])
         update_dag_params(
-            full_workflow_path, partition, account, extra_slurm_params, config
+            full_workflow_path,
+            partition,
+            account,
+            extra_slurm_params,
+            config,
+            user_slurm_params,
         )
 
         # Build workflow dict with appropriate trigger

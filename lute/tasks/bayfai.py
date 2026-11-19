@@ -14,8 +14,6 @@ import logging
 import time
 from typing import Union
 
-import panel as pn  # type: ignore
-
 from lute.tasks._bayfai import BayFAIOpt
 from lute.io.models.bayfai import BayFAIParameters
 
@@ -61,11 +59,15 @@ class BayFAI(Task):
             "step": self._task_parameters.bayfai_params.step,
             "lbda": self._task_parameters.bayfai_params.lbda,
             "seed": self._task_parameters.bayfai_params.seed,
+            "n_cand": self._task_parameters.bayfai_params.n_cand,
+            "gp_restarts": self._task_parameters.bayfai_params.gp_restarts,
+            "min_points": self._task_parameters.bayfai_params.min_points,
         }
         optimizer.bayfai_opt(
             center=self._task_parameters.center,
             bounds=self._task_parameters.bounds,
             res=self._task_parameters.resolutions,
+            dist_spacing=self._task_parameters.dist_spacing,
             **bayfai_hyperparams,
         )
         if optimizer.rank == 0:
@@ -93,6 +95,8 @@ class BayFAI(Task):
             powder_plot, qs, resolutions = optimizer.create_interactive_powder()
             diagnostics_plot = optimizer.create_diagnostics_panel()
             _ = optimizer.create_summary_plot(plot=plot)
+            import panel as pn  # type: ignore
+
             pn.extension("matplotlib", "bokeh")
             plots: Union[pn.Row, pn.Tabs] = pn.Row(
                 pn.pane.Matplotlib(diagnostics_plot, sizing_mode="fixed"),

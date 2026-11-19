@@ -728,7 +728,7 @@ def run_workflow_maestro(
 
 
 def clean_up(
-    cache_file: Optional[str], lute_location: str, output_location: str
+    cache_file: Optional[str], lute_location: Optional[str], output_location: str
 ) -> None:
     # We had to do some funny business to get Kerberos credentials...
     # Cleanup now that we're done
@@ -742,8 +742,10 @@ def clean_up(
         except FileNotFoundError:
             logger.error("No cache file found to remove.")
 
-    logger.info(f"Cleaning up {lute_location}")
-    shutil.rmtree(lute_location)
+    # None when running from the caller's own checkout (--no_clone): keep it
+    if lute_location is not None:
+        logger.info(f"Cleaning up {lute_location}")
+        shutil.rmtree(lute_location)
     logger.info(f"Cleaning up {output_location}")
     shutil.rmtree(output_location)
 
@@ -875,6 +877,7 @@ if __name__ == "__main__":
         run_dir = os.path.abspath(f"{os.path.dirname(__file__)}/../..")
         lute_location = os.path.abspath(f"{os.path.dirname(__file__)}/..")
 
+    clone_location: Optional[str] = None if args.no_clone else lute_location
     output_location: str = f"{run_dir}/lute_output"
     logger.info(f"Will write output to {output_location}")
     if not os.path.exists(output_location):
@@ -940,7 +943,7 @@ if __name__ == "__main__":
                     sed_pattern = f"s|--account=[^[:space:]]*|{arg}|g"
                     inplace_sed(wf_file, sed_pattern)
                 elif "--constraint=" in arg:
-                    sed_pattern = f"s|--constraint=[^[:space:]]*|{arg}|g"
+                    sed_pattern = f"s|slurm_params: \\([\"']\\)|slurm_params: \\1{arg} |g"
                     inplace_sed(wf_file, sed_pattern)
 
             # Retrieve the experiment and run from each test YAML
@@ -1006,9 +1009,9 @@ if __name__ == "__main__":
     except Exception as e:
         logger.error(f"Error in testing framework: {e}")
         if not args.no_delete:
-            clean_up(cache_file, lute_location, output_location)
+            clean_up(cache_file, clone_location, output_location)
         sys.exit(-1)
 
     logger.info(f"Ran {len(test_dirs)} tests. {num_successful} were successful.")
     if not args.no_delete:
-        clean_up(cache_file, lute_location, output_location)
+        clean_up(cache_file, clone_location, output_location)

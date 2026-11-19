@@ -1,7 +1,7 @@
 !LUTE_DAG
 task_name: SmallDataProducer2
-slurm_params: "--account=lcls:data --partition=milano --nodes=1 --ntasks-per-node=120 --exclusive --constraint=OS_VER:9.6"
+slurm_params: "--account=lcls:data --partition=milano --nodes=1 --ntasks-per-node=120 --exclusive"
 next:
 - task_name: BayFAIOptimizer2
-  slurm_params: "--account=lcls:data --partition=milano --nodes=1 --ntasks-per-node=120 --exclusive --constraint=OS_VER:9.6"
+  slurm_params: "--account=lcls:data --partition=milano --nodes=1 --ntasks-per-node=120 --exclusive"
   next: []
