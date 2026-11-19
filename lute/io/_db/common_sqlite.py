@@ -6,7 +6,8 @@ __all__: List[str] = []
 __author__ = "Gabriel Dorlhiac"
 
 import sqlite3
-from typing import Any, Dict, List, Optional, Tuple
+from contextlib import contextmanager
+from typing import Any, Dict, Iterator, List, Optional, Tuple
 
 
 class DatabaseError(Exception):
@@ -125,3 +126,84 @@ def compare_cols(
             diff[col_name] = cols2[col_name]
 
     return diff if diff else None
+
+
+# `PRAGMA user_version` of a database created by the v3 specification. Any later
+# change within v3 increments it (301, 302, ...). v1/v2 never set it (0).
+V3_BASE_USER_VERSION: int = 300
+
+
+def get_user_version(con: sqlite3.Connection) -> int:
+    """Retrieve the schema version stored in the database file.
+
+    Args:
+        con (sqlite3.Connection): Database connection.
+
+    Returns:
+        user_version (int): The value of `PRAGMA user_version`. 0 if never set.
+    """
+    return con.execute("PRAGMA user_version").fetchone()[0]
+
+
+def set_user_version(con: sqlite3.Connection, user_version: int) -> None:
+    """Set the schema version stored in the database file.
+
+    This is transactional: it is undone if the enclosing transaction is rolled
+    back.
+
+    Args:
+        con (sqlite3.Connection): Database connection.
+
+        user_version (int): The new value of `PRAGMA user_version`.
+    """
+    # PRAGMA does not accept bound parameters
+    con.execute(f"PRAGMA user_version = {int(user_version)}")
+
+
+def execute_in_transaction(con: sqlite3.Connection, script: str) -> None:
+    """Execute a multi-statement SQL script without committing.
+
+    `sqlite3.Connection.executescript` always commits any pending transaction
+    first, so it cannot be used inside a migration. This splits the script into
+    complete statements (TRIGGER bodies included) and executes them one by one.
+
+    Args:
+        con (sqlite3.Connection): Database connection.
+
+        script (str): The SQL statements to execute.
+
+    Raises:
+        DatabaseError: If the script ends with an incomplete statement.
+    """
+    statement: str = ""
+    for line in script.splitlines(keepends=True):
+        statement += line
+        if sqlite3.complete_statement(statement):
+            con.execute(statement)
+            statement = ""
+    if statement.strip():
+        raise DatabaseError(f"Incomplete SQL statement: {statement.strip()}")
+
+
+@contextmanager
+def write_transaction(con: sqlite3.Connection) -> Iterator[sqlite3.Connection]:
+    """Run a block of writes as one transaction.
+
+    The write lock is taken at the start (`BEGIN IMMEDIATE`), so concurrent
+    writers wait for each other instead of interleaving. The block is committed
+    if it completes, and rolled back entirely on any exception, which is then
+    re-raised.
+
+    Args:
+        con (sqlite3.Connection): Database connection, not in a transaction.
+
+    Yields:
+        con (sqlite3.Connection): The same connection.
+    """
+    con.execute("BEGIN IMMEDIATE")
+    try:
+        yield con
+    except BaseException:
+        con.rollback()
+        raise
+    con.commit()

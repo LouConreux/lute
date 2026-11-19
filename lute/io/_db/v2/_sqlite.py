@@ -48,6 +48,30 @@ PRAGMA secure_delete = OFF;
 """
 
 
+def connect(db_path: str) -> sqlite3.Connection:
+    """Open the database, refusing a file written by the v3 specification.
+
+    Args:
+        db_path (str): Path to the database file.
+
+    Returns:
+        con (sqlite3.Connection): A connection to the database.
+
+    Raises:
+        DatabaseError: If the file was written with database specification v3.
+    """
+    from lute.io._db.common_sqlite import V3_BASE_USER_VERSION, get_user_version
+
+    con: sqlite3.Connection = sqlite3.Connection(db_path)
+    if get_user_version(con) >= V3_BASE_USER_VERSION:
+        con.close()
+        raise DatabaseError(
+            f"{db_path} was written with database specification v3 and cannot "
+            "be used with v2. Set LUTE_DB_SPEC_VERSION=3, or move it aside."
+        )
+    return con
+
+
 def _create_executions_table(con: sqlite3.Connection) -> None:
     """Setup the `executions` table.
 

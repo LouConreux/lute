@@ -11,3 +11,4 @@ py3.install_sources(
 
 subdir('v1')
 subdir('v2')
+subdir('v3')

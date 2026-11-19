@@ -71,6 +71,9 @@ nav:
           - db: "source/io/db.md"
           - _db:
               - common_sqlite: "source/io/_db/common_sqlite.md"
+              - v3:
+                  - api: "source/io/_db/v3/api.md"
+                  - _sqlite: "source/io/_db/v3/_sqlite.md"
               - v2:
                   - api: "source/io/_db/v2/api.md"
                   - _sqlite: "source/io/_db/v2/_sqlite.md"

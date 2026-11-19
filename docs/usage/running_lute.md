@@ -195,7 +195,7 @@ A number of environment variables can be set to control certain aspects of LUTE 
 
 - `LUTE_USE_ZMQ`: By default, LUTE will use ZMQ for socket-based IPC between the `Task` and `Executor`. Setting `LUTE_USE_ZMQ=0` will switch to a `socket`-based implementation. There is feature parity between the two implementations.
 - `LUTE_USE_TCP`: Set to 1 to use TCP sockets. Otherwise will use Unix sockets.
-- `LUTE_DB_SPEC_VERSION`: Set to determine the database specification version. Either 1 or 2, currently.
+- `LUTE_DB_SPEC_VERSION`: Set to determine the database specification version. Either 1 or 2, currently (default 2). Version 3 (labels/units for processing groups of runs, see issue #151) is in development and can be selected with `LUTE_DB_SPEC_VERSION=3` for testing.
 - `LUTE_MAESTRO_LOG_LEVEL`: Set the logging level for the workflow manager `maestro`. Can be `trace`, `debug`, `info`, `warning`, `error`. The settings can also be set per logger. E.g. `LUTE_MAESTRO_LOG_LEVEL=debug,HTTP:Server=trace`.
 
 #### Virtual Environment Variables

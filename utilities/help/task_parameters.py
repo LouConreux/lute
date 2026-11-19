@@ -91,6 +91,7 @@ LUTE_ENV_VARS: Dict[str, EnvVarDefinition] = {
         "description": (
             "  - Selects the database specification to use for the lute.db.\n"
             "  - Generally, the latest should always be used unless needing to interface with old data.\n"
+            "  - Version 3 (labels/units for multi-run processing) is in development.\n"
         ),
     },
     "LUTE_MAESTRO_LOG_LEVEL": {

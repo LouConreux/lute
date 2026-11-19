@@ -57,7 +57,7 @@ class DBView(App):
                     with VerticalScroll(id=f"view_{table}"):
                         if api_version == 1 or not self._summarize_v2:
                             yield self.pull_table_data_v1(DataTable(id=f"data_{table}"))
-                        elif api_version == 2:
+                        elif api_version in (2, 3):
                             yield self.pull_table_data_v2(DataTable(id=f"data_{table}"))
         yield Footer()
 

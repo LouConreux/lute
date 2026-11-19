@@ -22,7 +22,7 @@ else:
 
 logger: logging.Logger = get_logger(__name__, is_task=False)
 
-LUTE_DB_CURRENT_SPEC_VERSION: int = 0x000002
+LUTE_DB_CURRENT_SPEC_VERSION: int = 0x000003
 LUTE_DB_DEFAULT_SPEC_VERSION: int = 0x000002
 
 LUTE_DB_SPEC_VERSION: int = int(
@@ -47,7 +47,8 @@ def import_function(func_name: str, api_version: int) -> Callable:
     Args:
         func_name (str): The name of the function to import.
 
-        api_version (int): The API version. Currently either 0x000001 or 0x000002.
+        api_version (int): The API version. Currently 0x000001, 0x000002 or
+            0x000003.
 
     Returns:
         func (Callable): The requested function.
@@ -57,10 +58,10 @@ def import_function(func_name: str, api_version: int) -> Callable:
 
         AttributeError: Raised if the function requested does not exist.
     """
-    if api_version not in (1, 2):
+    if api_version not in (1, 2, 3):
         raise common_sqlite.DatabaseError(
             "Unrecognized database specification version! Set LUTE_DB_SPEC_VERSION appropriately! "
-            "Supported versions: 0x000001 and 0x000002"
+            "Supported versions: 0x000001, 0x000002 and 0x000003"
         )
     api_mod: ModuleType = importlib.import_module(f"lute.io._db.v{api_version}.api")
     try:
@@ -90,7 +91,7 @@ read_latest_db_entry: Callable = lazy_import(
 )
 
 import_or_raise: Callable
-if LUTE_DB_SPEC_VERSION == 0x000002:
+if LUTE_DB_SPEC_VERSION in (0x000002, 0x000003):
     import_or_raise = lazy_import
 elif LUTE_DB_SPEC_VERSION == 0x000001:
     import_or_raise = api_unavailable
