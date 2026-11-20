@@ -58,11 +58,33 @@ DEFAULT_CONFIG = {
 }
 
 
-# Available Python interpreters for multiversioning.
-PYTHON_INTERPRETERS: Dict[str, str] = {
-    "3.9": "/sdf/group/lcls/ds/ana/sw/conda2/inst/bin/python3.9",
-    "3.11": "/sdf/group/lcls/ds/ana/sw/conda2-v3/inst/bin/python3.11",
-}
+# Environments Tasks run in; a venv is built per distinct Python they provide, so a
+# psana Python bump needs no edit here. The first is the primary (LUTE base, psana1).
+ENV_SCRIPTS: List[str] = [
+    "/sdf/group/lcls/ds/ana/sw/conda1/manage/bin/psconda.sh",
+    "/sdf/group/lcls/ds/ana/sw/conda2/manage/bin/psconda.sh",
+    "/sdf/group/lcls/ds/ana/sw/conda2/manage/bin/xpp_drp_cpu.sh",
+]
+
+
+def find_interpreters() -> Dict[str, str]:
+    """Map "X.Y" to the python executable each env script provides, in ENV_SCRIPTS order."""
+    probe: str = (
+        "python -c \"import sys; "
+        "print(f'{sys.version_info[0]}.{sys.version_info[1]} {sys.executable}')\""
+    )
+    found: Dict[str, str] = {}
+    for script in ENV_SCRIPTS:
+        out: List[str] = subprocess.run(
+            ["bash", "-c", f"source {script} >/dev/null 2>&1; {probe}"],
+            capture_output=True,
+            text=True,
+        ).stdout.split()
+        if len(out) == 2:
+            found.setdefault(out[0], out[1])
+        else:
+            logger.warning(f"Could not determine Python from {script}. Skipping.")
+    return found
 
 
 def _run_subprocess_log(
@@ -200,27 +222,12 @@ class LuteEnvBuilder:
             "site-packages",
         )
 
-    def create(self, python_version: str) -> str:
-        """Create a LUTE venv for the given Python version.
+    def create(self, python_version: str, python_path: str) -> str:
+        """Create a LUTE venv from `python_path` and return its absolute path.
 
-        Looks up the interpreter from PYTHON_INTERPRETERS, creates the venv
-        using the standard naming scheme, installs lute-lcls, and writes
-        an activation script that sets LUTE_ environment variables.
-
-        Args:
-            python_version: Version string (e.g. "3.9", "3.11").
-
-        Returns:
-            The absolute path to the created venv directory.
+        Creates the venv using the standard naming scheme, installs lute-lcls,
+        and writes an activation script that sets LUTE_ environment variables.
         """
-        python_path = PYTHON_INTERPRETERS.get(python_version)
-        if python_path is None:
-            logger.warning(
-                f"No interpreter configured for Python {python_version}. "
-                f"Available: {list(PYTHON_INTERPRETERS.keys())}"
-            )
-            sys.exit(-1)
-
         env_dir = self.venv_path(python_version)
         venv_python = os.path.join(env_dir, "bin", "python")
 
@@ -498,12 +505,13 @@ def main() -> None:
         # Create a venv for each requested Python version
         env_dir = f"{results_dir}/lute_envs"
         builder = LuteEnvBuilder(lute_version=version, env_dir=env_dir)
-        for pv in PYTHON_INTERPRETERS.keys():
-            builder.create(pv)
+        interpreters: Dict[str, str] = find_interpreters()
+        for pv, python_path in interpreters.items():
+            builder.create(pv, python_path)
         modify_permissions(env_dir)
 
         # Use the first requested version as the primary for workflow setup
-        primary_version: str = list(PYTHON_INTERPRETERS.keys())[0]
+        primary_version: str = next(iter(interpreters))
         lute_path = builder.venv_path(primary_version)
         venv_bin: str = builder.bin_path(primary_version)
         arp_executable = f"{venv_bin}/submit_launch_slurm.sh"
