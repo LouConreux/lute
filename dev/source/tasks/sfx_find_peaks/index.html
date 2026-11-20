@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
       
       
 
@@ -2606,7 +2606,7 @@
   <span class="md-ellipsis">
     
   
-    v2
+    v3
   
 
     
@@ -2619,6 +2619,117 @@
         
         <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_4_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_4_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    v3
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../io/_db/v3/api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    api
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../io/_db/v3/_sqlite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    _sqlite
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_4_3" id="__nav_4_4_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v2
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_4_3">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2707,10 +2818,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_4_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_4_4" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_4_3" id="__nav_4_4_4_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_4_4_4" id="__nav_4_4_4_4_label" tabindex="0">
             
   
   
@@ -2728,8 +2839,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_4_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_4_3">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_4_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -6064,11 +6175,7 @@ writes the peak information to CXI files.</p>
 <span class="normal">1714</span>
 <span class="normal">1715</span>
 <span class="normal">1716</span>
-<span class="normal">1717</span>
-<span class="normal">1718</span>
-<span class="normal">1719</span>
-<span class="normal">1720</span>
-<span class="normal">1721</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">FindPeaksSFX</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
+<span class="normal">1717</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">FindPeaksSFX</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Task that performs peak finding using the PyAlgos peak finding algorithms and</span>
 <span class="sd">    writes the peak information to CXI files.</span>
@@ -6169,11 +6276,9 @@ writes the peak information to CXI files.</p>
 
             <span class="n">det</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">Detector</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">det_name</span><span class="p">)</span>
             <span class="n">det</span><span class="o">.</span><span class="n">do_reshape_2d_to_3d</span><span class="p">(</span><span class="n">flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-            <span class="n">i_x</span> <span class="o">=</span> <span class="n">det</span><span class="o">.</span><span class="n">indexes_x</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">lute_config</span><span class="o">.</span><span class="n">run</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
-            <span class="n">i_y</span> <span class="o">=</span> <span class="n">det</span><span class="o">.</span><span class="n">indexes_y</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">lute_config</span><span class="o">.</span><span class="n">run</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
-            <span class="n">ipx</span><span class="p">,</span> <span class="n">ipy</span> <span class="o">=</span> <span class="n">det</span><span class="o">.</span><span class="n">point_indexes</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">lute_config</span><span class="o">.</span><span class="n">run</span><span class="p">,</span> <span class="n">pxy_um</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-            <span class="p">)</span>
+            <span class="n">i_x</span> <span class="o">=</span> <span class="n">det</span><span class="o">.</span><span class="n">indexes_x</span><span class="p">(</span><span class="n">run_num</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+            <span class="n">i_y</span> <span class="o">=</span> <span class="n">det</span><span class="o">.</span><span class="n">indexes_y</span><span class="p">(</span><span class="n">run_num</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+            <span class="n">ipx</span><span class="p">,</span> <span class="n">ipy</span> <span class="o">=</span> <span class="n">det</span><span class="o">.</span><span class="n">point_indexes</span><span class="p">(</span><span class="n">run_num</span><span class="p">,</span> <span class="n">pxy_um</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
 
             <span class="k">return</span> <span class="n">DetectorGeomInfo</span><span class="p">(</span><span class="n">i_x</span><span class="o">=</span><span class="n">i_x</span><span class="p">,</span> <span class="n">i_y</span><span class="o">=</span><span class="n">i_y</span><span class="p">,</span> <span class="n">ipx</span><span class="o">=</span><span class="n">ipx</span><span class="p">,</span> <span class="n">ipy</span><span class="o">=</span><span class="n">ipy</span><span class="p">)</span>
 
@@ -6275,6 +6380,7 @@ writes the peak information to CXI files.</p>
             <span class="n">det</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">Detector</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">det_name</span><span class="p">)</span>
             <span class="n">det</span><span class="o">.</span><span class="n">do_reshape_2d_to_3d</span><span class="p">(</span><span class="n">flag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="n">evr</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">Detector</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">event_receiver</span><span class="p">)</span>
+            <span class="n">ebeam</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">Detector</span><span class="p">(</span><span class="s2">"EBeam"</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">n_events</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">ds</span><span class="o">.</span><span class="n">break_after</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">n_events</span><span class="p">)</span>
@@ -6284,7 +6390,14 @@ writes the peak information to CXI files.</p>
                 <span class="n">seconds</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">evt_id</span><span class="o">.</span><span class="n">time</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
                 <span class="n">nanoseconds</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">evt_id</span><span class="o">.</span><span class="n">time</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
                 <span class="n">fiducials</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">evt_id</span><span class="o">.</span><span class="n">fiducials</span><span class="p">()</span>
-                <span class="n">event_codes</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">evr</span><span class="o">.</span><span class="n">eventCodes</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">event_logic</span><span class="p">:</span>
+                    <span class="n">event_codes</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">evr</span><span class="o">.</span><span class="n">eventCodes</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="p">(</span>
+                        <span class="n">event_codes</span> <span class="ow">is</span> <span class="kc">None</span>
+                        <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">event_code</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">event_codes</span>
+                    <span class="p">):</span>
+                        <span class="k">continue</span>
 
                 <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">pv_camera_length</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
                     <span class="n">clen</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">pv_camera_length</span>
@@ -6295,13 +6408,9 @@ writes the peak information to CXI files.</p>
                         <span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">pv_camera_length</span><span class="p">)</span>
                     <span class="p">)</span>
 
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">event_logic</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">event_code</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">event_codes</span><span class="p">:</span>
-                        <span class="k">continue</span>
-
                 <span class="n">photon_energy</span><span class="p">:</span> <span class="nb">float</span>
                 <span class="k">try</span><span class="p">:</span>
-                    <span class="n">photon_energy</span> <span class="o">=</span> <span class="n">Detector</span><span class="p">(</span><span class="s2">"EBeam"</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span><span class="o">.</span><span class="n">ebeamPhotonEnergy</span><span class="p">()</span>
+                    <span class="n">photon_energy</span> <span class="o">=</span> <span class="n">ebeam</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span><span class="o">.</span><span class="n">ebeamPhotonEnergy</span><span class="p">()</span>
                     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">photon_energy</span><span class="p">):</span>
                         <span class="k">raise</span> <span class="ne">ValueError</span>
                 <span class="k">except</span> <span class="p">(</span><span class="ne">AttributeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
@@ -6310,56 +6419,50 @@ writes the peak information to CXI files.</p>
                         <span class="o">/</span> <span class="n">ds</span><span class="o">.</span><span class="n">env</span><span class="p">()</span><span class="o">.</span><span class="n">epicsStore</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s2">"SIOC:SYS0:ML00:AO192"</span><span class="p">)</span>
                     <span class="p">)</span> <span class="o">*</span> <span class="mf">1e9</span>
 
+                <span class="c1"># Keep the detector's own (panels, ss, fs) shape, as the psana2 branch</span>
+                <span class="c1"># does: _run reshapes image and mask to the CrystFEL slab itself.</span>
                 <span class="n">data</span> <span class="o">=</span> <span class="n">det</span><span class="o">.</span><span class="n">calib</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">first_event</span><span class="p">:</span>
-                    <span class="n">mask</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
-                <span class="k">if</span> <span class="n">data</span><span class="p">:</span>
-                    <span class="n">det_shape</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span>
-                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">det_shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-                        <span class="n">det_shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">det_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">det_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">det_shape</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-                    <span class="k">else</span><span class="p">:</span>
-                        <span class="n">det_shape</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span>
-
-                        <span class="k">if</span> <span class="n">first_event</span><span class="p">:</span>
-                            <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">det_shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
-                            <span class="n">psana_mask</span> <span class="o">=</span> <span class="n">det</span><span class="o">.</span><span class="n">mask</span><span class="p">(</span>
-                                <span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">lute_config</span><span class="o">.</span><span class="n">run</span><span class="p">,</span>
-                                <span class="n">calib</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                                <span class="n">status</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                                <span class="n">edges</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                                <span class="n">centra</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                                <span class="n">unbond</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                                <span class="n">unbondnbrs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                            <span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
-                            <span class="k">if</span> <span class="n">psana_mask</span><span class="p">:</span>
-                                <span class="n">mask</span> <span class="o">=</span> <span class="n">psana_mask</span>
-
-                            <span class="n">first_event</span> <span class="o">=</span> <span class="kc">False</span>
-
-                            <span class="k">yield</span> <span class="n">EventMaskData</span><span class="p">(</span>
-                                <span class="n">data</span><span class="p">,</span>
-                                <span class="n">mask</span><span class="p">,</span>
-                                <span class="n">seconds</span><span class="p">,</span>
-                                <span class="n">nanoseconds</span><span class="p">,</span>
-                                <span class="n">fiducials</span><span class="p">,</span>
-                                <span class="n">clen</span><span class="p">,</span>
-                                <span class="n">photon_energy</span><span class="p">,</span>
-                            <span class="p">)</span>
-                        <span class="k">else</span><span class="p">:</span>
-                            <span class="k">yield</span> <span class="n">EventData</span><span class="p">(</span>
-                                <span class="n">data</span><span class="p">,</span>
-                                <span class="n">seconds</span><span class="p">,</span>
-                                <span class="n">nanoseconds</span><span class="p">,</span>
-                                <span class="n">fiducials</span><span class="p">,</span>
-                                <span class="n">clen</span><span class="p">,</span>
-                                <span class="n">photon_energy</span><span class="p">,</span>
-                            <span class="p">)</span>
+                    <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="k">continue</span>
+                    <span class="n">mask</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+                    <span class="n">psana_mask</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="n">det</span><span class="o">.</span><span class="n">mask</span><span class="p">(</span>
+                        <span class="n">run_num</span><span class="p">,</span>
+                        <span class="n">calib</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                        <span class="n">status</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                        <span class="n">edges</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                        <span class="n">central</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                        <span class="n">unbond</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                        <span class="n">unbondnbrs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                    <span class="p">)</span>
+                    <span class="k">if</span> <span class="n">psana_mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">mask</span> <span class="o">=</span> <span class="n">psana_mask</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+                    <span class="n">first_event</span> <span class="o">=</span> <span class="kc">False</span>
+                    <span class="k">yield</span> <span class="n">EventMaskData</span><span class="p">(</span>
+                        <span class="n">data</span><span class="p">,</span>
+                        <span class="n">mask</span><span class="p">,</span>
+                        <span class="n">seconds</span><span class="p">,</span>
+                        <span class="n">nanoseconds</span><span class="p">,</span>
+                        <span class="n">fiducials</span><span class="p">,</span>
+                        <span class="n">clen</span><span class="p">,</span>
+                        <span class="n">photon_energy</span><span class="p">,</span>
+                    <span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">yield</span> <span class="n">EventData</span><span class="p">(</span>
+                        <span class="n">data</span><span class="p">,</span>
+                        <span class="n">seconds</span><span class="p">,</span>
+                        <span class="n">nanoseconds</span><span class="p">,</span>
+                        <span class="n">fiducials</span><span class="p">,</span>
+                        <span class="n">clen</span><span class="p">,</span>
+                        <span class="n">photon_energy</span><span class="p">,</span>
+                    <span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">rank</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">COMM_WORLD</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>
         <span class="n">size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">COMM_WORLD</span><span class="o">.</span><span class="n">Get_size</span><span class="p">()</span>
 
-        <span class="n">i_x</span><span class="p">,</span> <span class="n">i_y</span><span class="p">,</span> <span class="n">ipx</span><span class="p">,</span> <span class="n">ipy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_retrieve_psana_detector_data</span><span class="p">()</span>
+        <span class="n">lcls2</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_task_parameters</span><span class="o">.</span><span class="n">psana_version</span> <span class="o">==</span> <span class="mi">2</span>
+        <span class="n">i_x</span><span class="p">,</span> <span class="n">i_y</span><span class="p">,</span> <span class="n">ipx</span><span class="p">,</span> <span class="n">ipy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_retrieve_psana_detector_data</span><span class="p">(</span><span class="n">lcls2</span><span class="o">=</span><span class="n">lcls2</span><span class="p">)</span>
 
         <span class="n">alg</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span>
             <span class="n">Union</span><span class="p">[</span>
@@ -6380,7 +6483,7 @@ writes the peak information to CXI files.</p>
         <span class="n">file_writer</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">CxiWriter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">powder_hits</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">powder_misses</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">for</span> <span class="n">event_data</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_event_generator</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">event_data</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_event_generator</span><span class="p">(</span><span class="n">lcls2</span><span class="o">=</span><span class="n">lcls2</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">first_event</span><span class="p">:</span>
                 <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">event_data</span><span class="p">,</span> <span class="n">EventMaskData</span><span class="p">)</span>
                 <span class="p">(</span>
@@ -7021,7 +7124,11 @@ generally be of shape (n_panels, ss, fs)</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/sfx_find_peaks.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1624</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1620</span>
+<span class="normal">1621</span>
+<span class="normal">1622</span>
+<span class="normal">1623</span>
+<span class="normal">1624</span>
 <span class="normal">1625</span>
 <span class="normal">1626</span>
 <span class="normal">1627</span>
@@ -7044,11 +7151,7 @@ generally be of shape (n_panels, ss, fs)</p>
 <span class="normal">1644</span>
 <span class="normal">1645</span>
 <span class="normal">1646</span>
-<span class="normal">1647</span>
-<span class="normal">1648</span>
-<span class="normal">1649</span>
-<span class="normal">1650</span>
-<span class="normal">1651</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_assemble_image</span><span class="p">(</span>
+<span class="normal">1647</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_assemble_image</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">img</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
     <span class="n">i_x</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">uint64</span><span class="p">],</span>
@@ -7202,7 +7305,11 @@ misses across the run.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>lute/tasks/sfx_find_peaks.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1653</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1649</span>
+<span class="normal">1650</span>
+<span class="normal">1651</span>
+<span class="normal">1652</span>
+<span class="normal">1653</span>
 <span class="normal">1654</span>
 <span class="normal">1655</span>
 <span class="normal">1656</span>
@@ -7266,11 +7373,7 @@ misses across the run.</p>
 <span class="normal">1714</span>
 <span class="normal">1715</span>
 <span class="normal">1716</span>
-<span class="normal">1717</span>
-<span class="normal">1718</span>
-<span class="normal">1719</span>
-<span class="normal">1720</span>
-<span class="normal">1721</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_create_powder_plots</span><span class="p">(</span>
+<span class="normal">1717</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_create_powder_plots</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">powder_hits</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
     <span class="n">powder_misses</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span>
@@ -8009,10 +8112,10 @@ n_hits_total (int): Total number of hits found across all nodes.
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
     
   </body>

@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
       
       
 
@@ -650,10 +650,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#azimuthal-integration-getazintparams-and-getazintpyfaiparams" class="md-nav__link">
+  <a href="#azimuthal-integration-getazintparams-getazintpyfaiparams-and-getazintlclsgeomparams" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Azimuthal integration: getAzIntParams and getAzIntPyFAIParams
+        Azimuthal integration: getAzIntParams, getAzIntPyFAIParams and getAzIntLCLSGeomParams
       
     </span>
   </a>
@@ -2627,7 +2627,7 @@
   <span class="md-ellipsis">
     
   
-    v2
+    v3
   
 
     
@@ -2640,6 +2640,117 @@
         
         <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_4_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_4_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    v3
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../source/io/_db/v3/api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    api
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../source/io/_db/v3/_sqlite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    _sqlite
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_4_3" id="__nav_4_4_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v2
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_4_3">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2728,10 +2839,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_4_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_4_4" >
         
           
-          <label class="md-nav__link" for="__nav_4_4_4_3" id="__nav_4_4_4_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_4_4_4" id="__nav_4_4_4_4_label" tabindex="0">
             
   
   
@@ -2749,8 +2860,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_4_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4_4_3">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_4_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -3280,10 +3391,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#azimuthal-integration-getazintparams-and-getazintpyfaiparams" class="md-nav__link">
+  <a href="#azimuthal-integration-getazintparams-getazintpyfaiparams-and-getazintlclsgeomparams" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Azimuthal integration: getAzIntParams and getAzIntPyFAIParams
+        Azimuthal integration: getAzIntParams, getAzIntPyFAIParams and getAzIntLCLSGeomParams
       
     </span>
   </a>
@@ -3532,6 +3643,13 @@ to the producer.</p>
     #    npts: 512
     #    int_units: &quot;2th_deg&quot;
     #    return2d: False
+    #getAzIntLCLSGeomParams:
+    #  jungfrau:
+    #    poni_file: &quot;path/to/geometry/params.poni&quot;
+    #    npts: 512
+    #    npts_az: 36
+    #    int_units: &quot;q_A^-1&quot;
+    #    return2d: True
     #getPhotonsParams:
     #  jungfrau1M:
     #    ADU_per_photon: 9.5
@@ -3657,8 +3775,9 @@ to the producer.</p>
 <li><code>calcPars</code>: Whether to output some summary statistics (mean, max, etc.) along with the ROI.</li>
 <li><code>writeArea</code>: A boolean indicating whether to write out the area, or just the sum of the ROI.</li>
 </ul>
-<h4 id="azimuthal-integration-getazintparams-and-getazintpyfaiparams">Azimuthal integration: <code>getAzIntParams</code> and <code>getAzIntPyFAIParams</code></h4>
-<p>Two algorithms for azimuthal integration are provided, the home grown implementation via <code>getAzIntParams</code> and the PyFAI implementation using <code>getAzIntPyFAIParams</code>. The two can be run simultaneously if really needed.</p>
+<h4 id="azimuthal-integration-getazintparams-getazintpyfaiparams-and-getazintlclsgeomparams">Azimuthal integration: <code>getAzIntParams</code>, <code>getAzIntPyFAIParams</code> and <code>getAzIntLCLSGeomParams</code></h4>
+<p>Three algorithms for azimuthal integration are provided: the home grown implementation via <code>getAzIntParams</code>, the PyFAI implementation on the assembled image via <code>getAzIntPyFAIParams</code>, and the PyFAI implementation on the LCLSGeom detector via <code>getAzIntLCLSGeomParams</code>. They can be run simultaneously if really needed.</p>
+<p>Use <code>getAzIntLCLSGeomParams</code> with the <code>.poni</code> file produced by BayFAI. That file is defined relative to the LCLSGeom metrology, and <code>getAzIntLCLSGeomParams</code> rebuilds the same detector, so the geometry stays consistent. Pixels are also mapped once at initialization instead of assembling an image at every event. See <a href="../bayfai/bayfai/#to-go-further-azimuthal-integration-after-bayfai">To go further: Azimuthal Integration after BayFAI</a> for the full parameter list.</p>
 <pre><code class="language-yaml">  #getAzIntParams:
   #  jungfrau:
   #    eBeam: 18
@@ -3684,6 +3803,13 @@ to the producer.</p>
   #    npts: 512
   #    int_units: &quot;2th_deg&quot;
   #    return2d: False
+  #getAzIntLCLSGeomParams:
+  #  jungfrau:
+  #    poni_file: &quot;/path/to/lute_output/geom/r0012_jungfrau.poni&quot;
+  #    npts: 512
+  #    npts_az: 36
+  #    int_units: &quot;q_A^-1&quot;   # Requires a wavelength in the .poni file
+  #    return2d: True
 </code></pre>
 <h4 id="compression-verification">Compression Verification</h4>
 <p>Via libpressio (if using the <code>SmallDataProducerSpack</code> <strong>managed</strong> <code>Task</code> with the spack environment) a simple compression/decompression operation is provided. This will compress and immediately decompress the data before performing any other operations. The purpose of this is to provide a method for verifying whether the compression has any effect on the resultant output data. The configuration is as follows:</p>
@@ -3757,10 +3883,10 @@ to the producer.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
     
   </body>
