@@ -28,9 +28,12 @@ setup_lute -fi -e <EXPERIMENT> [-v VERSION] [-W WORKFLOW [WORKFLOW ...]] [SLURM_
 This will:
 
 1. Create a `lute_envs/` directory inside your experiment results folder.
-2. Build two virtual environments — one for each supported Python version:
-   - `lute_envs/lute_env_py39/`
-   - `lute_envs/lute_env_py311/`
+2. Build one virtual environment per Python version used by the `Task` environments
+   (psana1, psana2 and the XPP DRP environment). The versions are read from those
+   environments' setup scripts, currently:
+   - `lute_envs/lute_env_py39/` (psana1)
+   - `lute_envs/lute_env_py311/` (XPP DRP)
+   - `lute_envs/lute_env_py313/` (psana2)
 3. Install `lute-lcls` from PyPI into each environment. Stable release tags
    (e.g. `0.2.0`) and a nightly `dev` build are available.
 4. Produce a configuration file at
@@ -76,6 +79,7 @@ When using the virtual-environment install the submission scripts
 | `LUTE_VIRTUAL_ENV` | Path to the active primary virtual environment directory |
 | `LUTE_VIRTUAL_ENV_PY39` | Path to the Python 3.9 interpreter in `lute_env_py39` |
 | `LUTE_VIRTUAL_ENV_PY311` | Path to the Python 3.11 interpreter in `lute_env_py311` |
+| `LUTE_VIRTUAL_ENV_PY313` | Path to the Python 3.13 interpreter in `lute_env_py313` |
 
 Detection logic: if `bin/activate` is present in the LUTE bin path the venv
 path is used; otherwise `bin/activate_installation` (meson build) is used.

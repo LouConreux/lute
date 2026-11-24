@@ -208,6 +208,7 @@ scripts automatically detect the install type and export additional variables:
 | `LUTE_VIRTUAL_ENV` | `submit_slurm.sh` (venv path) | Path to the active primary virtual environment directory |
 | `LUTE_VIRTUAL_ENV_PY39` | `submit_slurm.sh` (venv path) | Path to the Python 3.9 interpreter in the sibling `lute_env_py39` virtual environment |
 | `LUTE_VIRTUAL_ENV_PY311` | `submit_slurm.sh` (venv path) | Path to the Python 3.11 interpreter in the sibling `lute_env_py311` virtual environment |
+| `LUTE_VIRTUAL_ENV_PY313` | `submit_slurm.sh` (venv path) | Path to the Python 3.13 interpreter in the sibling `lute_env_py313` virtual environment |
 
 **Install-type detection:** the submit scripts check whether `bin/activate` is present
 in the LUTE bin path. If so, the venv path is used and the variables above are exported.
