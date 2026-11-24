@@ -9,6 +9,7 @@ __all__ = ["BayFAIParameters"]
 __author__ = "Louis Conreux"
 
 import os
+import warnings
 from typing import Any, Dict, List, Literal, Tuple, Optional
 
 import pydantic
@@ -40,6 +41,49 @@ def validate_geometry_path(output_path_name: str):
         return output_path
 
     return validator(output_path_name, always=True)(_validate_geometry_path)
+
+
+def validate_bounds(bounds_name: str):
+    """Rejects bounds that are not absolute [low, high] limits."""
+
+    def _validate_bounds(
+        cls, bounds: Dict[str, Tuple[float, float]], values: Dict[str, Any]
+    ) -> Dict[str, Tuple[float, float]]:
+        errors: List[str] = []
+        for p, (low, high) in bounds.items():
+            if low >= high:
+                errors.append(f"{p}: low {low} >= high {high}")
+            elif p == "dist" and low <= 0:
+                errors.append(f"dist: low {low} <= 0")
+        if errors:
+            raise ValueError(
+                "; ".join(errors) + ". BayFAI bounds are absolute [low, high] limits."
+            )
+        return bounds
+
+    return validator(bounds_name, always=True, allow_reuse=True)(_validate_bounds)
+
+
+def validate_center(center_name: str):
+    """Defaults a missing or out-of-bounds free center to its bounds midpoint."""
+
+    def _validate_center(
+        cls, center: Dict[str, float], values: Dict[str, Any]
+    ) -> Dict[str, float]:
+        bounds: Dict[str, Tuple[float, float]] = values.get("bounds", {})
+        fixed: List[str] = values.get("fixed", [])
+        center = dict(center)
+        for p, (low, high) in bounds.items():
+            if p not in center or (p not in fixed and not low <= center[p] <= high):
+                if p in center:
+                    warnings.warn(
+                        f"BayFAI {p}: center {center[p]} outside [{low}, {high}], "
+                        "using midpoint"
+                    )
+                center[p] = (low + high) / 2
+        return center
+
+    return validator(center_name, always=True, allow_reuse=True)(_validate_center)
 
 
 class BayFAIParameters(TaskParameters):
@@ -140,19 +184,6 @@ class BayFAIParameters(TaskParameters):
         "because diffraction rings are invariance by rotation around the beam axis.",
     )
 
-    center: Dict[str, float] = Field(
-        {
-            "dist": 0.1,
-            "poni1": 0.0,
-            "poni2": 0.0,
-            "rot1": 0.0,
-            "rot2": 0.0,
-            "rot3": 0.0,
-        },
-        description="Prior mean and starting point of the search for each geometry parameter, "
-        "and the value of fixed parameters.",
-    )
-
     bounds: Dict[str, Tuple[float, float]] = Field(
         {
             "dist": (0.035, 0.4),
@@ -165,6 +196,13 @@ class BayFAIParameters(TaskParameters):
         description="Absolute [low, high] limits of the search for each geometry parameter "
         "(not offsets around center). With parallelized: dist, bounds.dist is the whole "
         "distance range split across ranks.",
+    )
+
+    center: Dict[str, float] = Field(
+        {},
+        description="Prior mean and starting point for each geometry parameter, and the "
+        "value of fixed parameters. Missing parameters, or free parameters outside bounds, "
+        "default to the bounds midpoint.",
     )
 
     resolutions: Dict[str, float] = Field(
@@ -215,28 +253,7 @@ class BayFAIParameters(TaskParameters):
 
     _find_smd_path = validate_smd_path("h5")
 
-    @validator("bounds")
-    def validate_bounds(
-        cls, bounds: Dict[str, Tuple[float, float]], values: Dict[str, Any]
-    ) -> Dict[str, Tuple[float, float]]:
-        center: Dict[str, float] = values.get("center", {})
-        fixed: List[str] = values.get("fixed", [])
-        errors: List[str] = []
-        for p, (low, high) in bounds.items():
-            if low >= high:
-                errors.append(f"{p}: low {low} >= high {high}")
-            elif p == "dist" and low <= 0:
-                errors.append(f"dist: low {low} <= 0")
-            elif p not in fixed and p in center and not low <= center[p] <= high:
-                errors.append(f"{p}: center {center[p]} outside [{low}, {high}]")
-        if errors:
-            raise ValueError(
-                "; ".join(errors) + ". BayFAI bounds are now absolute [low, high] "
-                "limits, not offsets around center. To convert an old config use "
-                "[center + old_low, center + old_high]. With parallelized: dist, "
-                "bounds.dist is the whole distance range split across ranks "
-                "(default [0.035, 0.4])."
-            )
-        return bounds
+    _check_bounds = validate_bounds("bounds")
+    _fill_center = validate_center("center")
 
     _find_out_file_path = validate_geometry_path("out_file")
