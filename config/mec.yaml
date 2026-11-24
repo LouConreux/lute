@@ -179,34 +179,20 @@ SubmitSMD:
 
 # Base/default BayFAI parameters (used as a template when BayFAI runs as a
 # single Task). To run BayFAI on all 4 Quads in parallel, use a `!param_sweep`
-# with `zip: true` in the DAG (see dag.yaml) - the per-quad detname/center/
+# with `zip: true` in the DAG (see dag.yaml) - the per-quad detname/bounds/
 # fixed/calibrant values below are collected there instead of being repeated
 # as separate commented-out blocks here.
 BayFAI:
   fixed:
   - "rot1"
   - "rot3"
-  center:
-    dist: 0.278               # Fill this section with rough estimates
-    poni1: 0.06
-    poni2: 0.06
-    rot1: 0.0
-    rot2: -0.6
-    rot3: 0.0
-  bounds:                     # absolute [low, high] limits, not offsets around center
-    dist: [0.258, 0.298]      # center +- 20 mm
-    poni1: [0.055, 0.065]     # center +- 5 mm
+  bounds:                     # absolute [low, high] limits; center defaults to their midpoint
+    dist: [0.258, 0.298]      # expected dist +- 20 mm
+    poni1: [0.055, 0.065]     # expected poni +- 5 mm
     poni2: [0.055, 0.065]
     rot1: [-0.1, 0.1]
-    rot2: [-0.65, -0.55]      # center +- 0.05 rad: wider tilts fit the wrong rings
+    rot2: [-0.65, -0.55]      # expected tilt +- 0.05 rad: wider tilts fit the wrong rings
     rot3: [-0.1, 0.1]
-  resolutions:
-    dist: 0.001
-    poni1: 0.0001
-    poni2: 0.0001
-    rot1: 0.02
-    rot2: 0.02
-    rot3: 0.02
   calibrant: "CeO2"           # Fill this line with calibrant name (CeO2, LaB6...)
   detname: "Epix10kaQuad0"
 ...

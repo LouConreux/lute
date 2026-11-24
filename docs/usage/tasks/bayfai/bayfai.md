@@ -67,7 +67,7 @@ Optionally, set `directory` to write the smalldata file somewhere other than the
 
 ## BayFAI parameters
 
-Scroll down to the `BayFAI` section of the YAML. At minimum, fill in `detname`, `calibrant` and a rough `center`:
+Scroll down to the `BayFAI` section of the YAML. At minimum, fill in `detname` and `calibrant`, and set `bounds` around the expected geometry if the defaults don't cover it:
 
 ```yaml
 BayFAI:
@@ -76,13 +76,6 @@ BayFAI:
   - "rot1"
   - "rot2"
   - "rot3"
-  center:
-    dist: 0.1               # Fill this section with rough estimates
-    poni1: 0.0
-    poni2: 0.0
-    rot1: 0.0
-    rot2: 0.0
-    rot3: 0.0
   calibrant: "AgBh"           # Fill this line with calibrant name (AgBh, LaB6...)
   detname: "jungfrau"         # Fill this line with detector name (epix10k2M, jungfrau...)
 ```
@@ -91,17 +84,17 @@ BayFAI:
 |---|---|---|
 | `detname` | `""` | Detector name as defined in psana (`jungfrau`, `epix10k2M`, `jungfrau4M`, `Epix10kaQuad0`...). |
 | `calibrant` | `""` | pyFAI calibrant name, e.g. `AgBh`, `LaB6`, `CeO2` ([list of calibrants](https://github.com/silx-kit/pyFAI/tree/main/src/pyFAI/resources/calibration)). |
-| `center` | `dist: 0.1`, others `0.0` | Initial guess geometry: prior mean and starting point of the search, and the value of `fixed` parameters. Distances in m, rotations in rad. |
-| `bounds` | `dist: [0.035, 0.4]`, `poni1/2: [-0.0025, 0.0025]`, `rot1/2/3: [-0.1, 0.1]` | Absolute `[low, high]` search limits for each parameter (not offsets around `center`; a free parameter's `center` must lie inside). With `parallelized: "dist"`, `bounds.dist` is the whole distance range split across ranks. To convert an old relative config use `[center + low, center + high]`. |
+| `center` | `{}` | Initial guess geometry: prior mean and starting point of the search, and the value of `fixed` parameters. Distances in m, rotations in rad. A parameter left out, or a free parameter outside its `bounds` (with a warning), defaults to the bounds midpoint. |
+| `bounds` | `dist: [0.035, 0.4]`, `poni1/2: [-0.0025, 0.0025]`, `rot1/2/3: [-0.1, 0.1]` | Absolute `[low, high]` search limits for each parameter (not offsets around `center`). With `parallelized: "dist"`, `bounds.dist` is the whole distance range split across ranks. To convert an old relative config use `[center + low, center + high]`. |
 | `resolutions` | `dist: 0.001`, `poni1/2: 0.0001`, `rot1/2/3: 0.02` | Grid step of the search space for each parameter. The parallelized parameter uses its window width instead. |
-| `fixed` | `["rot3"]` | Parameters kept at their `center` value. `rot3` should always be fixed, because the rings don't change under rotation around the beam axis. Also fix `rot1`/`rot2` if the detector is normal to the beam. |
+| `fixed` | `["rot3"]` | Parameters kept at their `center` value (the bounds midpoint if not set). `rot3` should always be fixed, because the rings don't change under rotation around the beam axis. Also fix `rot1`/`rot2` if the detector is normal to the beam. |
 | `parallelized` | `None` | Geometry parameter to spread across MPI ranks (usually `"dist"`). See [MPI ranks and convergence](#mpi-ranks-and-convergence). Can't also be in `fixed`. |
 | `dist_spacing` | `"geometric"` | With `parallelized: "dist"`, how `bounds.dist` is split across ranks: `"geometric"` (windows finer at short distance) or `"linear"` (equal windows). |
 | `wavelength` | `1e-10` | Wavelength in m. If you change it from the default, it overrides the mean photon energy read from the HDF5 file. |
 | `h5` | `""` | Smalldata HDF5 file. Filled in automatically from `SubmitSMD`. |
 | `out_file` | `""` | Output `.data` file. Defaults to `<work_dir>/geom/<run>-end_<detname>.data`. |
 
-Double-check `center.dist`, `calibrant` and `detname` before each calibration run, since they often change between runs.
+Double-check `bounds.dist`, `calibrant` and `detname` before each calibration run, since they often change between runs.
 
 ## BayFAI hyperparameters
 
@@ -147,7 +140,7 @@ With `parallelized: "dist"`, `bounds.dist` (default 0.035-0.4 m) is split into o
 
 ## MEC 4 Quads particularity
 
-At MEC, the detector is made of 4 independent quads (`Epix10kaQuad0` to `Epix10kaQuad3`), and each quad needs its own geometry. The `bayfai_mec` workflow uses a `!param_sweep` with `zip: true` to run one BayFAI per quad, each with its own `detname`, `center`, `bounds` and `fixed`:
+At MEC, the detector is made of 4 independent quads (`Epix10kaQuad0` to `Epix10kaQuad3`), and each quad needs its own geometry. The `bayfai_mec` workflow uses a `!param_sweep` with `zip: true` to run one BayFAI per quad, each with its own `detname`, `bounds` and `fixed`:
 
 ```yaml
 - !param_sweep
@@ -160,12 +153,8 @@ At MEC, the detector is made of 4 independent quads (`Epix10kaQuad0` to `Epix10k
       - ["rot1", "rot3"]
       - ["rot2", "rot3"]
       - ["rot2", "rot3"]
-    center:
-      - {dist: 0.278, poni1: 0.06, poni2: 0.06, rot1: 0.0, rot2: -0.6, rot3: 0.0}
-      - {dist: 0.28, poni1: 0.079, poni2: -0.04, rot1: 0.0, rot2: -0.56, rot3: 0.0}
-      - {dist: 0.192, poni1: -0.0125, poni2: 0.0, rot1: 1.09, rot2: 0.0, rot3: 0.0}
-      - {dist: 0.1, poni1: -0.008, poni2: 0.04, rot1: -0.41, rot2: 0.0, rot3: 0.0}
-    # Absolute [low, high] search limits: center +- 20 mm dist, 5 mm poni, 0.05 rad free rotation.
+    # Absolute [low, high] search limits around the expected geometry (+- 20 mm dist, 5 mm poni,
+    # 0.05 rad free rotation). center is left out: it defaults to the bounds midpoint.
     # The rotation bound matters most: wider tilts reach geometries that fit the arcs to the wrong
     # LaB6 rings and outscore the true one.
     bounds:

@@ -247,17 +247,11 @@ AnalyzeSmallDataXES:
 BayFAI:
   parallelized: "dist"
   # bounds are absolute [low, high] limits; dist defaults to [0.035, 0.4] m, split across ranks.
+  # center (initial guess) defaults to the bounds midpoint; set it only for a better guess.
   fixed:
   - "rot1"
   - "rot2"
   - "rot3"
-  center:
-    dist: 0.1               # Fill this section with rough estimates
-    poni1: 0.0
-    poni2: 0.0
-    rot1: 0.0
-    rot2: 0.0
-    rot3: 0.0
   calibrant: "AgBh"           # Fill this line with calibrant name (AgBh, LaB6...)
   detname: "jungfrau"         # Fill this line with detector name (epix10k2M, jungfrau...)
 

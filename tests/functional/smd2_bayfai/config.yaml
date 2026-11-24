@@ -82,13 +82,13 @@ BayFAI:
   calibrant: "AgBh"
   parallelized: "dist"
   fixed: ["rot1", "rot2", "rot3"]
-  center:
-    dist: 0.13
-    poni1: -0.001
-    poni2: -0.006
-    rot1: 0.0
-    rot2: 0.0
-    rot3: 0.0
+  bounds:                # default bounds, with poni windows around the expected beam position
+    dist: [0.035, 0.4]
+    poni1: [-0.0035, 0.0015]
+    poni2: [-0.0085, -0.0035]
+    rot1: [-0.1, 0.1]
+    rot2: [-0.1, 0.1]
+    rot3: [-0.1, 0.1]
   bayfai_params:
     n_samples: 5       # Reduced for functional test speed (default: 20)
     n_iterations: 10   # Reduced for functional test speed (default: 40)
