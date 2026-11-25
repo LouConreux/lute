@@ -49,16 +49,14 @@ def validate_bounds(bounds_name: str):
     def _validate_bounds(
         cls, bounds: Dict[str, Tuple[float, float]], values: Dict[str, Any]
     ) -> Dict[str, Tuple[float, float]]:
-        errors: List[str] = []
         for p, (low, high) in bounds.items():
-            if low >= high:
-                errors.append(f"{p}: low {low} >= high {high}")
-            elif p == "dist" and low <= 0:
-                errors.append(f"dist: low {low} <= 0")
-        if errors:
-            raise ValueError(
-                "; ".join(errors) + ". BayFAI bounds are absolute [low, high] limits."
-            )
+            if p == "dist" and (low <= 0 or high <= 0):
+                raise ValueError(f"dist: bounds must be positive, got ({low}, {high})")
+            if low == high:
+                raise ValueError(f"{p}: empty bounds ({low}, {high})")
+            if low > high:
+                warnings.warn(f"BayFAI {p}: bounds ({low}, {high}) reversed, swapping")
+                bounds[p] = (high, low)
         return bounds
 
     return validator(bounds_name, always=True, allow_reuse=True)(_validate_bounds)
