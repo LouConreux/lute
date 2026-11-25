@@ -68,6 +68,7 @@ do
     case $flag in
         --account=*)
             SLURM_ACCOUNT="${1#*=}"
+            POS+=("$1")
             shift
             ;;
         -h|--help)
